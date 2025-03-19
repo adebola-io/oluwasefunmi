@@ -35,6 +35,8 @@
   --animate-fade-in: fade-in var(--duration) backwards;
   --animate-expand: expand calc(var(--duration) * 1.25) backwards;
   --animate-expand-in: expand-in calc(var(--duration) * 1.25) backwards;
+  --animate-fade-in-from-bottom: fade-in-from-bottom
+    calc(var(--duration) * 1.25) backwards;
   --color-text: #504f4f;
   --color-stroke: #727272;
   --color-heading: #555555;
@@ -46,6 +48,13 @@
   @keyframes fade-in {
     from {
       opacity: 0;
+    }
+  }
+
+  @keyframes fade-in-from-bottom {
+    from {
+      opacity: 0;
+      transform: translateY(10%);
     }
   }
 
@@ -139,9 +148,36 @@ body {
 }
 
 .plane {
+  &.animated {
+    --speed: calc(var(--duration) * 1.75);
+
+    &::before {
+      animation: plane-backdrop var(--speed) var(--delay) ease backwards;
+    }
+
+    & > .plane-content {
+      animation: plane-content-animation var(--speed) var(--delay) ease
+        backwards;
+    }
+  }
+
   @apply relative [&>*]:relative;
   @apply before:block before:absolute before:top-[7px] before:left-[-7px];
   @apply before:w-full before:h-full before:bg-[#B1B1B1] before:rounded-lg;
   @apply transition-transform before:transition-transform;
   @apply not-[:has(&>:active)]:active:before:translate-x-[3.5px] not-[:has(&>:active)]:active:before:translate-y-[-3.5px] not-[:has(&>:active)]:active:translate-x-[-1.75px] not-[:has(&>:active)]:active:translate-y-[1.75px];
+}
+
+@keyframes plane-backdrop {
+  from,
+  50% {
+    opacity: 0;
+  }
+}
+
+@keyframes plane-content-animation {
+  from {
+    opacity: 0;
+    translate: -7px 7px;
+  }
 }

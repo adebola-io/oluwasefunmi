@@ -3,14 +3,27 @@ import { Plane } from '@/components/plane';
 
 type DivProps = JSX.IntrinsicElements['div'];
 
-export function ShiftingLayout(props: DivProps) {
-  const { class: className, ...rest } = props;
+interface ShiftingLayoutProps extends DivProps {
+  'container:class'?: JSX.IntrinsicElements['div']['class'];
+  animated?: JSX.ValueOrCell<boolean>;
+  animationDelay?: JSX.ValueOrCell<string>;
+}
+
+export function ShiftingLayout(props: ShiftingLayoutProps) {
+  const {
+    animated,
+    animationDelay,
+    'container:class': containerClass,
+    ...rest
+  } = props;
 
   return (
     <Plane
       {...rest}
+      animated={animated}
+      animationDelay={animationDelay}
       class="background grid grid-cols-6 grid-rows-6 p-4 gap-2"
-      container:class={className}
+      container:class={containerClass}
     >
       {/* Row 1 */}
       <Plane noise container:class="col-span-6" class="[div]:bg-solid" />
