@@ -4,54 +4,44 @@
   font-family: 'Liga DM Mono';
   font-style: normal;
   font-weight: 300;
-  src: url(../fonts/LIGADMMONOLIGHT-LIGHT.TTF);
+  src: url(../assets/fonts/LIGADMMONOLIGHT-LIGHT.TTF);
 }
 
 @font-face {
   font-family: 'Liga DM Mono';
   font-style: normal;
   font-weight: 400;
-  src: url(../fonts/LIGADMMONO-REGULAR.TTF);
+  src: url(../assets/fonts/LIGADMMONO-REGULAR.TTF);
 }
 
 @font-face {
   font-family: 'Liga DM Mono';
   font-style: normal;
   font-weight: 600;
-  src: url(../fonts/LIGADMMONOMEDIUM-MEDIUM.TTF);
+  src: url(../assets/fonts/LIGADMMONOMEDIUM-MEDIUM.TTF);
 }
 
 @font-face {
   font-family: 'Liga DM Mono';
   font-style: italic;
   font-weight: 400;
-  src: url(../fonts/LIGADMMONO-ITALIC.TTF);
-}
-
-body {
-  color: #525252;
-  /* user-select: none; */
-  letter-spacing: -1px;
-  font-family: 'Liga DM Mono', 'DM Mono', Consolas, monospace, sans-serif;
-  font-size: 1.1rem;
-}
-
-.grid-center {
-  place-content: center;
-  place-items: center;
-}
-
-.background {
-  background: linear-gradient(to bottom right, #ffffff, #f6f6f6),
-    radial-gradient(#00000015, #f1f1f1);
+  src: url(../assets/fonts/LIGADMMONO-ITALIC.TTF);
 }
 
 @theme {
   --spacing: 12.5px;
   --duration: 200ms;
+  --tw-duration: var(--tw-duration);
   --animate-fade-in: fade-in var(--duration) backwards;
   --animate-expand: expand calc(var(--duration) * 1.25) backwards;
   --animate-expand-in: expand-in calc(var(--duration) * 1.25) backwards;
+  --color-text: #504f4f;
+  --color-stroke: #727272;
+  --color-heading: #555555;
+  --color-solid: #e1e1e1;
+  --color-emphasis: #646464;
+  --color-link: #707070;
+  --color-inactive-nav-link: #56565685;
 
   @keyframes fade-in {
     from {
@@ -72,4 +62,86 @@ body {
       translate: 0 20px;
     }
   }
+}
+
+a[data-inline] {
+  @apply text-link underline;
+}
+
+body {
+  /* user-select: none; */
+  letter-spacing: -1.5px;
+  word-spacing: -0.1ch;
+
+  font-family: 'Liga DM Mono', 'DM Mono', Consolas, monospace, sans-serif;
+  font-size: 1.15rem;
+  @apply text-text;
+}
+
+::selection {
+  background-color: var(--color-solid);
+}
+
+.grid-center {
+  place-content: center;
+  place-items: center;
+}
+
+.home-backdrop {
+  background-image: url(../assets/backdrop.svg);
+}
+
+.background {
+  background-image: linear-gradient(to bottom right, #eeeeee, #eaeaea),
+    radial-gradient(#00000015, #f1f1f1);
+}
+
+.noise {
+  position: relative;
+
+  & > * {
+    position: relative;
+  }
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 50%;
+    background-image: url(../assets/noise.webp);
+    content: '';
+  }
+}
+
+.background-noise {
+  position: relative;
+
+  & > * {
+    position: relative;
+  }
+
+  &::before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    width: 100%;
+    height: 100%;
+    opacity: 31%;
+    background-image: url(../assets/noise.webp),
+      linear-gradient(to bottom right, #eeeeee, #eaeaea),
+      radial-gradient(#00000015, #f1f1f1);
+    content: '';
+  }
+}
+
+.plane {
+  @apply relative [&>*]:relative;
+  @apply before:block before:absolute before:top-[7px] before:left-[-7px];
+  @apply before:w-full before:h-full before:bg-[#B1B1B1] before:rounded-lg;
+  @apply transition-transform before:transition-transform;
+  @apply not-[:has(&>:active)]:active:before:translate-x-[3.5px] not-[:has(&>:active)]:active:before:translate-y-[-3.5px] not-[:has(&>:active)]:active:translate-x-[-1.75px] not-[:has(&>:active)]:active:translate-y-[1.75px];
 }
