@@ -4,23 +4,17 @@ import { Plane } from '@/components/plane';
 import { Emphasis, LargeText } from '@/components/typography';
 import { LinkButton } from '@/components/links-and-buttons';
 import { ShiftingLayout } from '@/components/shifting-layout';
+import { timeline } from '@/library';
 
 const Home: RouteComponent<PageMeta> = () => {
   const { Link } = useRouter();
-
-  const timeline = [
-    '0ms',
-    'calc(var(--duration) * 0.25)',
-    'calc(var(--duration) * 0.5)',
-  ];
 
   return (
     <Plane
       animated
       class={[
         'h-[calc(100dvh-var(--spacing)*9)] px-6 py-4',
-        'grid grid-cols-2 gap-6 items-center',
-        'bg-no-repeat bg-cover home-backdrop',
+        'grid grid-cols-2 gap-6 items-center home-backdrop',
         'before:block before:[grid-area:1/1/1/3] before:scale-[1.06] before:border-solid before:border-[2.76px] before:self-center before:justify-self-center before:w-full before:h-full before:rounded-xl',
       ]}
     >
@@ -41,7 +35,10 @@ const Home: RouteComponent<PageMeta> = () => {
             web engineer.
           </LargeText>
         </div>
-        <p class="col-span-3">
+        <p
+          style={{ animationDelay: timeline[2] }}
+          class="col-span-3 animate-fade-in-from-bottom"
+        >
           I am a <Emphasis>full-stack</Emphasis> web developer from{' '}
           <Emphasis>Lagos, Nigeria</Emphasis> focused on creating interactive
           digital experiences and tackling complex design challenges.
@@ -65,7 +62,7 @@ const Home: RouteComponent<PageMeta> = () => {
           </Link>
           .
         </p>
-        <LinkButton animated animationDelay={timeline[1]} href="/random-notes">
+        <LinkButton animated animationDelay={timeline[1]} href="/works">
           see works
         </LinkButton>
         <LinkButton animated animationDelay={timeline[1]} href="/contact">

@@ -5,7 +5,7 @@ import { Navigation } from '@/components/navigation';
 const RootLayout: RouteComponent<PageMeta> = () => {
   const { Outlet } = useRouter();
   return (
-    <main class="px-4 pt-2 background-noise min-h-[100dvh] min-w-[100dvw]">
+    <main class="px-4 pt-2 background-noise min-h-[100dvh]">
       <Navigation />
       <Outlet />
     </main>
