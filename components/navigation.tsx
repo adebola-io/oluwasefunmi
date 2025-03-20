@@ -27,7 +27,7 @@ export function Navigation() {
   ];
 
   return (
-    <nav class="grid grid-cols-[repeat(5,auto)_1fr] gap-2 [&>*]:[align-self:center] h-4">
+    <nav class="relative grid grid-cols-[repeat(5,auto)_1fr] gap-2 [&>*]:[align-self:center] h-4">
       {For(links, (link) => (
         <Link
           class={[

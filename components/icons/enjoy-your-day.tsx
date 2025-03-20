@@ -3,7 +3,6 @@ import type { JSX } from 'retend/jsx-runtime';
 export const EnjoyYourDayIcon = (props: JSX.IntrinsicElements['svg']) => (
   <svg
     {...props}
-    class={[props.class, 'h-18 w-18']}
     width="186"
     height="186"
     viewBox="0 0 186 186"

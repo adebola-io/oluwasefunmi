@@ -3,7 +3,6 @@ import type { JSX } from 'retend/jsx-dev-runtime';
 export const RetendIcon = (props: JSX.IntrinsicElements['svg']) => (
   <svg
     {...props}
-    class={[props.class, 'h-18 w-18']}
     width="355"
     height="355"
     viewBox="0 0 355 355"
@@ -12,7 +11,7 @@ export const RetendIcon = (props: JSX.IntrinsicElements['svg']) => (
   >
     <title xmlns="http://www.w3.org/2000/svg">Retend Icon</title>
     <rect
-      class="duration-[calc(var(--duration)*2)] transition-[stroke]"
+      class="duration-[calc(var(--duration)*1.25)] transition-[stroke]"
       xmlns="http://www.w3.org/2000/svg"
       x="6"
       y="6"
@@ -23,7 +22,7 @@ export const RetendIcon = (props: JSX.IntrinsicElements['svg']) => (
       stroke-width="12"
     />
     <path
-      class="duration-[calc(var(--duration)*2)] transition-[fill]"
+      class="duration-[calc(var(--duration)*1.25)] transition-[fill]"
       xmlns="http://www.w3.org/2000/svg"
       fill-rule="evenodd"
       clip-rule="evenodd"

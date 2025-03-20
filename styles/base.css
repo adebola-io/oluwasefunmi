@@ -31,7 +31,7 @@
 @theme {
   --spacing: 12.5px;
   --duration: 200ms;
-  --tw-duration: var(--tw-duration);
+  --tw-duration: var(--duration);
   --animate-fade-in: fade-in var(--duration) backwards;
   --animate-expand: expand calc(var(--duration) * 1.25) backwards;
   --animate-expand-in: expand-in calc(var(--duration) * 1.25) backwards;
@@ -115,10 +115,6 @@ body {
 .noise {
   position: relative;
 
-  & > * {
-    position: relative;
-  }
-
   &::before {
     position: absolute;
     top: 0;
@@ -134,10 +130,6 @@ body {
 
 .background-noise {
   position: relative;
-
-  & > * {
-    position: relative;
-  }
 
   &::before {
     position: absolute;
@@ -170,7 +162,7 @@ body {
 
   @apply relative [&>*]:relative;
   @apply before:block before:absolute before:top-[7px] before:left-[-7px];
-  @apply before:w-full before:h-full before:bg-[var(--plane-backdrop-color,#B1B1B1)] before:rounded-lg;
+  @apply before:w-full before:h-full before:bg-(--plane-backdrop-color,#B1B1B1) before:rounded-lg;
   @apply transition-transform before:transition-[transform,background-color];
   @apply not-[:has(&>:active)]:active:before:translate-x-[3.5px] not-[:has(&>:active)]:active:before:translate-y-[-3.5px] not-[:has(&>:active)]:active:translate-x-[-1.75px] not-[:has(&>:active)]:active:translate-y-[1.75px];
 }

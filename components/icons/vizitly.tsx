@@ -32,13 +32,13 @@ export const VizitlyIcon = (props: JSX.IntrinsicElements['svg']) => (
         gradientUnits="userSpaceOnUse"
       >
         <stop
-          class="duration-[calc(var(--duration)*2)] transition-[stop-color]"
+          class="duration-[calc(var(--duration)*1.25)] transition-[stop-color]"
           xmlns="http://www.w3.org/2000/svg"
           offset="0.17387"
           stop-color="var(--primary-color)"
         />
         <stop
-          class="duration-[calc(var(--duration)*2)] transition-[stop-color]"
+          class="duration-[calc(var(--duration)*1.25)] transition-[stop-color]"
           xmlns="http://www.w3.org/2000/svg"
           offset="1"
           stop-color="var(--secondary-color)"
@@ -54,12 +54,12 @@ export const VizitlyIcon = (props: JSX.IntrinsicElements['svg']) => (
         gradientUnits="userSpaceOnUse"
       >
         <stop
-          class="duration-[calc(var(--duration)*2)] transition-[stop-color]"
+          class="duration-[calc(var(--duration)*1.25)] transition-[stop-color]"
           xmlns="http://www.w3.org/2000/svg"
           stop-color="var(--secondary-color)"
         />
         <stop
-          class="duration-[calc(var(--duration)*2)] transition-[stop-color]"
+          class="duration-[calc(var(--duration)*1.25)] transition-[stop-color]"
           xmlns="http://www.w3.org/2000/svg"
           offset="0.639723"
           stop-color="var(--primary-color)"

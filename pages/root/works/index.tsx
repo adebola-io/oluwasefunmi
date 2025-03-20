@@ -2,8 +2,9 @@ import { For } from 'retend';
 import { useRouter, type RouteComponent } from 'retend/router';
 import type { PageMeta } from 'retend-server/client';
 import { Plane } from '@/components/plane';
-import { LargeText } from '@/components/typography';
+import { ItemNameText, LargeText, SmallText } from '@/components/typography';
 import { timeline, projects } from '@/library';
+import { ArrowIcon } from '@/components/icons/arrow';
 
 const Works: RouteComponent<PageMeta> = () => {
   const { Link } = useRouter();
@@ -18,31 +19,60 @@ const Works: RouteComponent<PageMeta> = () => {
           as a developer.
         </p>
       </div>
-      <ul class="grid grid-cols-12 grid-rows-4 gap-4">
-        {For(projects, (project) => {
-          return (
-            <li
-              class={[
-                'min-h-[300px] max-w-[120dvh] hover:[--icon-opacity:1]',
-                project.class,
-              ]}
-            >
-              <Link class="w-ful h-full" href={project.link}>
-                <Plane
-                  noise
-                  animated
-                  elevateOnHover
-                  animationDelay={timeline[1]}
-                  container:class="w-full h-full"
-                  class="[div]:bg-solid grid place-items-center"
-                >
-                  <project.icon class="h-13 w-13 [grid-area:1/1] opacity-[var(--icon-opacity)] duration-[calc(var(--duration)*2)] transition-opacity" />
-                  <span class="[grid-area:1/1] text-center" />
-                </Plane>
-              </Link>
-            </li>
-          );
-        })}
+      <ul
+        class={[
+          'grid grid-cols-12 gap-4',
+          'max-lg:grid-cols-1 max-lg:grid-flow-row',
+        ]}
+      >
+        {For(projects, (project) => (
+          <li
+            class={[
+              'min-h-[300px] max-w-[120dvh]',
+              'max-lg:col-span-1 max-lg:row-span-1',
+              '[--arrow-opacity:0] [--arrow-translate-x:0]',
+              'hover:[--icon-opacity:1] hover:[--arrow-opacity:1] hover:[--arrow-translate-x:20%]',
+              project.class,
+            ]}
+          >
+            <Link class="contents" href={project.link}>
+              <Plane
+                noise
+                animated
+                elevateOnHover
+                animationDelay={timeline[1]}
+                container:class="w-full h-full"
+                class="grid [div]:bg-solid p-3 grid-rows-[1fr_auto_auto] text-left"
+              >
+                <project.icon
+                  class={[
+                    'self-center justify-self-center',
+                    'h-11 w-11 max-w-[70%] aspect-square opacity-(--icon-opacity) duration-[calc(var(--duration)*1.25)] transition-opacity',
+                    'max-lg:max-h-13 max-lg:max-w-13',
+                  ]}
+                />
+                <ItemNameText class="[h2]:flex items-center text-(--primary-color) opacity-[calc(var(--icon-opacity)+.5)] transition-colors">
+                  {project.name}.
+                  <ArrowIcon class="h-3 w-3 opacity-(--arrow-opacity) translate-x-(--arrow-translate-x) transition-[opacity,translate]" />
+                </ItemNameText>
+                <p class="text-stroke">{project.description}</p>
+                <ul class="flex flex-wrap gap-0.5 mt-2">
+                  {For(project.tags, (tag) => (
+                    <li
+                      class={[
+                        'flex-auto text-center text-(--primary-color) px-2',
+                        'border-(--primary-color) border-dashed border-2',
+                        'opacity-[calc(var(--icon-opacity)+.3)] brightness-75 transition-[opacity,color]',
+                      ]}
+                    >
+                      <SmallText>{tag}</SmallText>
+                    </li>
+                  ))}
+                </ul>
+              </Plane>
+            </Link>
+          </li>
+        ))}
       </ul>
     </Plane>
   );

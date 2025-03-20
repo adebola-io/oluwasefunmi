@@ -3,7 +3,7 @@ import type { JSX } from 'retend/jsx-runtime';
 export const QuizwizIcon = (props: JSX.IntrinsicElements['svg']) => (
   <svg
     {...props}
-    class={[props.class, 'h-25 w-25']}
+    class={[props.class, 'h-18 w-18']}
     xmlns="http://www.w3.org/2000/svg"
     viewBox="0 0 1000 1000"
   >

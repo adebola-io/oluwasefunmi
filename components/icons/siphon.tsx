@@ -3,7 +3,7 @@ import type { JSX } from 'retend/jsx-runtime';
 export const SiphonIcon = (props: JSX.IntrinsicElements['svg']) => (
   <svg
     {...props}
-    class={[props.class, 'w-17 h-17 siphon-icon']}
+    class={[props.class, 'w-14 h-14 siphon-icon']}
     width="415"
     height="415"
     viewBox="0 0 415 415"

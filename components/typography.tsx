@@ -36,6 +36,33 @@ export function LargeText(props: LargeTextProps) {
   );
 }
 
+export function ItemNameText(props: HeadingTextProps) {
+  const { children, ...rest } = props;
+  return (
+    <h2
+      {...rest}
+      class={[
+        'inline-block font-bold text-[clamp(3dvh,30px,50dvw)] leading-[1.4]',
+        rest.class,
+      ]}
+    >
+      {children}
+    </h2>
+  );
+}
+
+export function SmallText(props: JSX.IntrinsicElements['span']) {
+  const { children, ...rest } = props;
+  return (
+    <span
+      {...rest}
+      class={['inline-block text-[clamp(2dvh,11pt,70dvw)]', rest.class]}
+    >
+      {children}
+    </span>
+  );
+}
+
 export function Emphasis(props: JSX.IntrinsicElements['i']) {
   const { children, ...rest } = props;
   return (

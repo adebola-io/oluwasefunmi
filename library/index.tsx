@@ -21,13 +21,14 @@ interface Project {
   link: string;
   class?: unknown;
   icon: (props: JSX.IntrinsicElements['svg']) => JSX.Template;
+  tags: string[];
 }
 
 export const projects: Project[] = [
   {
     id: 0,
     name: 'vizitly',
-    description: 'A visitor',
+    description: 'Complete suite for a modern visitor management system.',
     link: '/works/vizitly',
     class: [
       'col-span-4',
@@ -35,59 +36,67 @@ export const projects: Project[] = [
       'hover:[--primary-color:#23AD5F] hover:[--plane-backdrop-color:#23AD5F] hover:[--secondary-color:#66ED27]',
     ],
     icon: VizitlyIcon,
+    tags: ['nuxt', 'vue', 'scss', 'pwa', 'typescript', 'bootstrap', 'web'],
   },
   {
     id: 1,
-    name: 'Enjoy Your Day',
-    description: 'A visitor',
+    name: 'enjoy your day',
+    description: 'Fast progressive web app for tracking daily goals.',
     link: '/works/enjoy-your-day',
     class: [
-      'col-span-8',
+      'col-span-4',
       '[--primary-color:var(--color-text)] [--icon-opacity:.2]',
       'hover:[--primary-color:#55556C] hover:[--plane-backdrop-color:#55556C]',
     ],
     icon: EnjoyYourDayIcon,
+    tags: ['pwa', 'typescript', 'css modules', 'dexie', 'localfirst', 'web'],
   },
   {
     id: 2,
-    name: 'Retend',
-    description: 'A visitor',
+    name: 'retend',
+    description: 'React-inspired JSX framework for fast and fluid web apps.',
     link: '/works/retend',
     class: [
-      'col-span-5 row-span-2',
+      'col-span-4',
       '[--primary-color:var(--color-text)] [--icon-opacity:.2]',
       'hover:[--primary-color:#ED923C] hover:[--plane-backdrop-color:#ED923C]',
     ],
     icon: RetendIcon,
+    tags: ['jsx', 'vite', 'frameworks', 'dsa', 'dev tools', 'web'],
   },
   {
     id: 3,
-    name: 'Whirlwind',
-    description: 'A programming language',
+    name: 'whirlwind',
+    description:
+      'Compiler, checker and IDE extension for a statically-typed, general-purpose, compiled-to-WASM programming language.',
     link: '/works/whirlwind',
     class: [
-      'col-span-7',
+      'col-span-8',
       '[--primary-color:var(--color-text)] [--secondary-color:var(--color-text)] [--icon-opacity:.2]',
-      'hover:[--primary-color:#a2cab4] hover:[--plane-backdrop-color:#7ab294] hover:[--secondary-color:#7ab294]',
+      'hover:[--primary-color:#7ab294] hover:[--plane-backdrop-color:#7ab294] hover:[--secondary-color:#a2cab4]',
     ],
     icon: WhirlwindIcon,
+    tags: ['compilers', 'type checkers', 'rust', 'tokio', 'dsa', 'dev-tools'],
   },
   {
     id: 4,
-    name: 'Quizwiz',
-    description: 'A visitor',
+    name: 'quizwiz',
+    description:
+      'Quiz game to test and improve knowledge across a variety of subjects.',
     link: '/works/quizwiz',
     class: [
-      'col-span-7',
+      'col-span-4',
       '[--primary-color:var(--color-text)] [--icon-opacity:.2]',
       'hover:[--primary-color:#364f52] hover:[--plane-backdrop-color:#364f52]',
     ],
     icon: QuizwizIcon,
+    tags: ['react', 'typescript', 'tailwindcss', 'mongodb', 'node.js', 'web'],
   },
   {
     id: 5,
-    name: 'Siphon',
-    description: 'A parser and bundler for Javascript',
+    name: 'siphon',
+    description:
+      'Crude, non-compliant bundler and minifier for HTML, CSS and JS projects.',
     link: '/works/siphon',
     class: [
       'col-span-4',
@@ -95,11 +104,13 @@ export const projects: Project[] = [
       'hover:[--primary-color:#C38400] hover:[--plane-backdrop-color:#F0B744] hover:[--secondary-color:#F0B744]',
     ],
     icon: SiphonIcon,
+    tags: ['node.js', 'compilers', 'jsx', 'dev tools'],
   },
   {
     id: 6,
-    name: 'Spry',
-    description: 'An ecommerce-clothing store concept written in Nuxt.js',
+    name: 'spry',
+    description:
+      'Landing page concept for an e-commerce clothing and fabric store.',
     link: '/works/spry',
     class: [
       'col-span-4',
@@ -107,11 +118,12 @@ export const projects: Project[] = [
       'hover:[--primary-color:#B0228C] hover:[--plane-backdrop-color:#B0228C] hover:[--secondary-color:#F391A0]',
     ],
     icon: SpryIcon,
+    tags: ['nuxt', 'vue', 'tailwind', 'web', 'scss', 'typescript'],
   },
   {
     id: 7,
-    name: 'Cadence',
-    description: 'A landing page for a logistics company.',
+    name: 'cadence',
+    description: 'Website for a small logistics management company.',
     link: '/works/cadence',
     class: [
       'col-span-4',
@@ -119,5 +131,6 @@ export const projects: Project[] = [
       'hover:[--primary-color:#125E8A] hover:[--plane-backdrop-color:#197BBD] hover:[--secondary-color:#197BBD] hover:[--tertiary-color:#8A716A]',
     ],
     icon: CadenceIcon,
+    tags: ['web', 'vue', 'typescript', 'gsap', 'scss'],
   },
 ];
