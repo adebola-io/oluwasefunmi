@@ -1,10 +1,20 @@
 import { useRouter, type RouteComponent } from 'retend/router';
 import type { PageMeta } from 'retend-server/client';
+import { getGlobalContext, matchContext, Modes } from 'retend/context';
 import { Plane } from '@/components/plane';
 import { Emphasis, LargeText } from '@/components/typography';
 import { LinkButton } from '@/components/links-and-buttons';
 import { ShiftingLayout } from '@/components/shifting-layout';
 import { timeline } from '@/library';
+
+const { window } = getGlobalContext();
+// Preload routes.
+if (matchContext(window, Modes.Interactive)) {
+  import('./works/index.tsx');
+  import('./contact.tsx');
+  import('./random-notes/index.tsx');
+  import('./playground/index.tsx');
+}
 
 const Home: RouteComponent<PageMeta> = () => {
   const { Link } = useRouter();
