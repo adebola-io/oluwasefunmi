@@ -51,9 +51,9 @@ const Works: RouteComponent<PageMeta> = () => {
                     'max-lg:max-h-13 max-lg:max-w-13',
                   ]}
                 />
-                <ItemNameText class="[h2]:flex items-center text-(--primary-color) opacity-[calc(var(--icon-opacity)+.5)] transition-colors">
+                <ItemNameText class="[h2]:flex items-center text-(--primary-color) opacity-[calc(var(--icon-opacity)+.5)] duration-[calc(var(--duration)*1.25)] transition-colors">
                   {project.name}.
-                  <ArrowIcon class="h-3 w-3 opacity-(--arrow-opacity) translate-x-(--arrow-translate-x) transition-[opacity,translate]" />
+                  <ArrowIcon class="h-3 w-3 opacity-(--arrow-opacity) translate-x-(--arrow-translate-x) duration-[calc(var(--duration)*1.25)] transition-[opacity,translate]" />
                 </ItemNameText>
                 <p class="text-stroke">{project.description}</p>
                 <ul class="flex flex-wrap gap-0.5 mt-2">
@@ -62,7 +62,7 @@ const Works: RouteComponent<PageMeta> = () => {
                       class={[
                         'flex-auto text-center text-(--primary-color) px-2',
                         'border-(--primary-color) border-dashed border-2',
-                        'opacity-[calc(var(--icon-opacity)+.3)] brightness-75 transition-[opacity,color]',
+                        'opacity-[calc(var(--icon-opacity)+.3)] brightness-75 duration-[calc(var(--duration)*1.25)] transition-[opacity,color]',
                       ]}
                     >
                       <SmallText>{tag}</SmallText>
