@@ -4,7 +4,7 @@ import { LargeText } from '@/components/typography';
 
 const Playground: RouteComponent<PageMeta> = () => {
   return (
-    <div class="grid py-6 relative top-level-bare">
+    <div class="grid grid-rows-[auto_auto_1fr] py-6 relative top-level-bare">
       <LargeText underline class="mb-1">
         playground.
       </LargeText>
