@@ -9,9 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "retend": "^0.0.3",
-    "retend-server": "^0.0.3",
     "@tailwindcss/vite": "^4.0.12",
+    "retend": "https://pkg.pr.new/adebola-io/retend@d9e4293",
+    "retend-server": "https://pkg.pr.new/adebola-io/retend/retend-server@d9e4293",
     "tailwindcss": "^4.0.12"
   },
   "devDependencies": {
