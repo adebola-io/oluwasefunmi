@@ -43,7 +43,7 @@ export function Navigation() {
           {For(links, (link, index) => (
             <Link
               style={{
-                animationDelay: `calc((var(--duration) * 0.5) + ${index.value} * var(--duration) * 0.35)`,
+                animationDelay: `calc((var(--duration) * 0.5) + ${index.value} * var(--duration) * 0.25)`,
               }}
               class={[
                 'pb-0.25 px-0.5 relative text-nowrap [[active]]:font-bold not-[[active]]:text-inactive-nav-link',
@@ -68,7 +68,7 @@ export function Navigation() {
     <nav
       class={[
         'relative grid grid-cols-[repeat(5,auto)_1fr] gap-2 [&>*]:[align-self:center] h-4',
-        'max-md:h-2 max-md:grid-cols-1',
+        'max-md:h-2 max-md:grid-cols-2',
       ]}
     >
       {For(links, (link) => (
@@ -85,9 +85,15 @@ export function Navigation() {
           {link.name}
         </Link>
       ))}
+      <Link
+        href="/home"
+        class="font-bold underline ml-1 text-link min-md:hidden"
+      >
+        oluwasefunmi
+      </Link>
       <button
         class={[
-          'z-2 grid grid-rows-2 place-items-center justify-self-end w-2.5 mr-1 h-full transition-transform duration-[calc(var(--duration)*2)]',
+          'z-2 grid grid-rows-2 place-items-center justify-self-end w-2.5 h-2 mr-1 transition-transform duration-[calc(var(--duration)*2)]',
           '[&>*]:w-full [&>*]:h-0.25 [&>*]:rounded-md [&>*]:bg-stroke [&>*]:transition-transform',
           '[&[data-sidebar-is-open]>:first-child]:rotate-45 [&[data-sidebar-is-open]>:nth-child(2)]:-rotate-45',
           '[[data-sidebar-is-open]]:rotate-180',
