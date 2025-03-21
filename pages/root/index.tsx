@@ -5,7 +5,12 @@ import { Navigation } from '@/components/navigation';
 const RootLayout: RouteComponent<PageMeta> = () => {
   const { Outlet } = useRouter();
   return (
-    <main class="px-4 pt-2 background-noise min-h-[100dvh]">
+    <main
+      class={[
+        'grid grid-rows-[auto_1fr] px-4 pt-2 background-noise h-[calc(100dvh-var(--spacing)*2)]',
+        'max-md:h-[100dvh] max-md:px-1 max-md:pb-2 max-md:gap-2',
+      ]}
+    >
       <Navigation />
       <Outlet />
     </main>

@@ -26,7 +26,7 @@ export function LargeText(props: LargeTextProps) {
     <h1
       {...rest}
       class={[
-        'inline-block font-extrabold text-[clamp(6.5dvh,40px,60dvw)] leading-[1.4] tracking-[-1px] text-heading',
+        'inline-block font-extrabold text-[clamp(6.5dvh,40px,50dvw)] max-md:text-[clamp(3dvh,35px,40dvw)] leading-[1.4] tracking-[-1px] text-heading',
         { underline },
         rest.class,
       ]}

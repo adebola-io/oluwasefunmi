@@ -10,8 +10,12 @@ const Works: RouteComponent<PageMeta> = () => {
   const { Link } = useRouter();
 
   return (
-    <Plane animated class="grid gap-4 px-6 py-6 other-backdrop">
-      <div class="grid gap-1">
+    <Plane
+      animated
+      topLevel
+      class="grid gap-4 max-md:gap-2 px-6 max-md:px-2 max-md:mb-4 py-6 max-md:py-4 other-backdrop"
+    >
+      <div class="grid gap-1 max-md:text-center">
         <LargeText underline>my projects.</LargeText>
         <p class="max-w-[600px]">
           Here's a curated collection of my works, highlighting my past
@@ -32,6 +36,7 @@ const Works: RouteComponent<PageMeta> = () => {
               'max-lg:col-span-1 max-lg:row-span-1',
               '[--arrow-opacity:0] [--arrow-translate-x:0]',
               'hover:[--icon-opacity:1] hover:[--arrow-opacity:1] hover:[--arrow-translate-x:20%]',
+              'active:[--icon-opacity:1] active:[--arrow-opacity:1] active:[--arrow-translate-x:20%]',
               project.class,
             ]}
           >
@@ -42,7 +47,10 @@ const Works: RouteComponent<PageMeta> = () => {
                 elevateOnHover
                 animationDelay={timeline[1]}
                 container:class="w-full h-full"
-                class="grid [div]:bg-solid p-3 grid-rows-[1fr_auto_auto] text-left"
+                class={[
+                  'grid [div]:bg-solid p-3 grid-rows-[1fr_auto_auto] text-left',
+                  'max-sm:px-2',
+                ]}
               >
                 <project.icon
                   class={[
@@ -56,7 +64,7 @@ const Works: RouteComponent<PageMeta> = () => {
                   <ArrowIcon class="h-3 w-3 opacity-(--arrow-opacity) translate-x-(--arrow-translate-x) duration-[calc(var(--duration)*1.25)] transition-[opacity,translate]" />
                 </ItemNameText>
                 <p class="text-stroke">{project.description}</p>
-                <ul class="flex flex-wrap gap-0.5 mt-2">
+                <ul class="flex flex-wrap gap-0.5 mt-2 max-md:hidden">
                   {For(project.tags, (tag) => (
                     <li
                       class={[

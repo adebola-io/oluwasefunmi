@@ -12,19 +12,17 @@ const Contact: RouteComponent<PageMeta> = () => {
   const { Link } = useRouter();
   return (
     <Plane
+      topLevel
       animated
-      class={[
-        'h-[calc(100dvh-var(--spacing)*9)]',
-        'grid place-items-center place-content-center other-backdrop gap-3',
-      ]}
+      class="grid px-3 place-items-center place-content-center other-backdrop gap-3 text-center"
     >
-      <Box class="w-[50dvh] h-auto" />
+      <Box class="w-[min(50dvh,50dvw)] h-auto" />
       <div class="grid gap-1 w-full place-items-center">
-        <p class="text-center max-w-[487px]">
+        <p class="max-w-[487px]">
           Got a cool idea or a big dream? Don't just sit on it! Hit me up, and
           let's turn it into something awesome together! You can reach me at:
         </p>
-        <LargeText class="text-center underline hover:text-link transition-colors">
+        <LargeText class="text-center [h1]:max-lg:text-[40px] [h1]:max-md:text-[1.5rem] [h1]:max-sm:text-[1.1rem] underline hover:text-link hover:scale-95 transition-[scale,color]">
           <a href="mailto:adebolaakomolafe@gmail.com">
             adebolaakomolafe@gmail.com
           </a>
