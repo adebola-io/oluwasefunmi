@@ -33,6 +33,8 @@
   --duration: 200ms;
   --tw-duration: var(--duration);
   --animate-fade-in: fade-in var(--duration) backwards;
+  --animate-fade-out: fade-out var(--duration) backwards;
+  --animate-hide-page: hide-page 0ms var(--duration) forwards;
   --animate-condense: condense var(--duration) backwards;
   --animate-expand: expand calc(var(--duration) * 1.25) backwards;
   --animate-expand-in: expand-in calc(var(--duration) * 1.25) backwards;
@@ -52,10 +54,22 @@
     }
   }
 
+  @keyframes fade-out {
+    to {
+      opacity: 0;
+    }
+  }
+
   @keyframes fade-in-from-bottom {
     from {
       opacity: 0;
       transform: translateY(10%);
+    }
+  }
+
+  @keyframes hide-page {
+    100% {
+      display: none;
     }
   }
 
@@ -193,13 +207,15 @@ body {
       @apply max-md:opacity-0 max-md:[translate:3.5px_3.5px];
     }
 
-    @apply max-md:animate-[hide-page_0ms_var(--tw-duration)_forwards] max-md:[--tw-duration:calc(var(--duration)*3)];
+    @apply max-md:animate-hide-page max-md:[--tw-duration:calc(var(--duration)*3)];
   }
 }
 
-@keyframes hide-page {
-  100% {
-    display: none;
+.top-level-bare {
+  @apply animate-fade-in;
+
+  :root:has(#page-sidebar) & {
+    @apply max-md:animate-[var(--animate-fade-out),var(--animate-hide-page)];
   }
 }
 
