@@ -4,7 +4,12 @@ import { LargeText } from '@/components/typography';
 
 const RandomNotes: RouteComponent<PageMeta> = () => {
   return (
-    <div class="grid grid-rows-[auto_auto_1fr] place-items-center p-6 relative text-center top-level-bare">
+    <div
+      class={[
+        'grid grid-rows-[auto_auto_1fr] place-items-center p-6 relative text-center top-level-bare',
+        'px-3',
+      ]}
+    >
       <LargeText underline class="mb-1">
         random notes.
       </LargeText>
