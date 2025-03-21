@@ -1,8 +1,11 @@
-import { For } from 'retend';
+import { Cell, For, If } from 'retend';
 import { useRouter } from 'retend/router';
+import { LargeText } from '@/components/typography';
 
 export function Navigation() {
   const { Link } = useRouter();
+  const sidebarIsOpen = Cell.source(false);
+
   const links = [
     {
       name: 'home',
@@ -26,15 +29,55 @@ export function Navigation() {
     },
   ];
 
+  const toggleSidebar = () => {
+    sidebarIsOpen.value = !sidebarIsOpen.value;
+  };
+
+  const Sidebar = () => {
+    return If(sidebarIsOpen, () => {
+      return (
+        <aside
+          id="page-sidebar"
+          class="fixed top-0 left-0 min-md:hidden w-full h-full grid py-4 px-2 place-content-center"
+        >
+          {For(links, (link, index) => (
+            <Link
+              style={{
+                animationDelay: `calc((var(--duration) * 0.5) + ${index.value} * var(--duration) * 0.35)`,
+              }}
+              class={[
+                'pb-0.25 px-0.5 relative text-nowrap [[active]]:font-bold not-[[active]]:text-inactive-nav-link',
+                'transition-[font-weight,color] animate-condense',
+                'before:block before:absolute before:bottom-0 before:w-full before:h-0.25 before:rounded-xl before:bg-stroke not-[[active]]:before:bg-inactive-nav-link before:scale-[0_1] before:transition-[scale] before:[transform-origin:0%_0%]',
+                'not-hover:before:delay-[calc(var(--duration)*.75)] hover:before:scale-100 [[active]]:before:scale-100',
+              ]}
+              href={link.path}
+              onAfterNavigate={toggleSidebar}
+            >
+              <LargeText class="not-[[active]>*]:font-normal">
+                {link.name}
+              </LargeText>
+            </Link>
+          ))}
+        </aside>
+      );
+    });
+  };
+
   return (
-    <nav class="relative grid grid-cols-[repeat(5,auto)_1fr] gap-2 [&>*]:[align-self:center] h-4">
+    <nav
+      class={[
+        'relative grid grid-cols-[repeat(5,auto)_1fr] gap-2 [&>*]:[align-self:center] h-4',
+        'max-md:h-2 max-md:grid-cols-1',
+      ]}
+    >
       {For(links, (link) => (
         <Link
           class={[
-            'inline-block pb-[calc(var(--spacing)*.25)] px-0.5 relative text-nowrap [[active]]:font-bold not-[[active]]:text-inactive-nav-link',
+            'inline-block pb-0.25 px-0.5 relative text-nowrap [[active]]:font-bold not-[[active]]:text-inactive-nav-link',
             'transition-[font-weight,color]',
             'before:block before:absolute before:bottom-0 before:w-full before:h-[2px] before:rounded-xl before:bg-stroke not-[[active]]:before:bg-inactive-nav-link before:scale-[0_1] before:transition-[scale] before:[transform-origin:0%_0%]',
-            'not-hover:before:delay-[calc(var(--duration)*.75)] hover:before:scale-100',
+            'not-hover:before:delay-[calc(var(--duration)*.75)] hover:before:scale-100 [[active]]:before:scale-100',
             'max-md:hidden',
           ]}
           href={link.path}
@@ -42,6 +85,20 @@ export function Navigation() {
           {link.name}
         </Link>
       ))}
+      <button
+        class={[
+          'grid grid-rows-2 place-items-center justify-self-end rounded-md w-2.5 h-full',
+          '[&>*]:w-full [&>*]:h-0.25 [&>*]:rounded-md [&>*]:bg-stroke',
+          'min-md:hidden',
+        ]}
+        type="button"
+        title="Open Sidebar"
+        onClick={toggleSidebar}
+      >
+        <hr />
+        <hr />
+      </button>
+      <Sidebar />
     </nav>
   );
 }
