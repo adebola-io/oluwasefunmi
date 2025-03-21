@@ -38,7 +38,7 @@ export function Navigation() {
       return (
         <aside
           id="page-sidebar"
-          class="fixed top-0 left-0 min-md:hidden w-full h-full grid py-4 px-2 place-content-center"
+          class="fixed top-0 left-0 min-md:hidden w-full h-full grid py-4 px-2 gap-0.5 place-content-center"
         >
           {For(links, (link, index) => (
             <Link
@@ -87,13 +87,18 @@ export function Navigation() {
       ))}
       <button
         class={[
-          'grid grid-rows-2 place-items-center justify-self-end rounded-md w-2.5 h-full',
-          '[&>*]:w-full [&>*]:h-0.25 [&>*]:rounded-md [&>*]:bg-stroke',
+          'z-2 grid grid-rows-2 place-items-center justify-self-end w-2.5 mr-1 h-full transition-transform duration-[calc(var(--duration)*2)]',
+          '[&>*]:w-full [&>*]:h-0.25 [&>*]:rounded-md [&>*]:bg-stroke [&>*]:transition-transform',
+          '[&[data-sidebar-is-open]>:first-child]:rotate-45 [&[data-sidebar-is-open]>:nth-child(2)]:-rotate-45',
+          '[[data-sidebar-is-open]]:rotate-180',
+          '[&>*:first-child]:delay-[calc(var(--duration)*0.25)] [&>*:nth-child(2)]:delay-[calc(var(--duration)*0.5)]',
+          '[&[data-sidebar-is-open]>:first-child]:translate-y-0.5 [&[data-sidebar-is-open]>:nth-child(2)]:-translate-y-0.5',
           'min-md:hidden',
         ]}
         type="button"
         title="Open Sidebar"
         onClick={toggleSidebar}
+        data-sidebar-is-open={sidebarIsOpen}
       >
         <hr />
         <hr />
