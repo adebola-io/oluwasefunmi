@@ -29,7 +29,7 @@ export const projects: Project[] = [
     id: 0,
     name: 'vizitly',
     description: 'Complete suite for a modern visitor management system.',
-    link: '/works/vizitly',
+    link: 'https://www.vizitly.io',
     class: [
       'col-span-4',
       '[--primary-color:var(--color-text)] [--secondary-color:#000] [--icon-opacity:.2]',
@@ -43,7 +43,7 @@ export const projects: Project[] = [
     id: 1,
     name: 'enjoy your day',
     description: 'Fast progressive web app for tracking daily goals.',
-    link: '/works/enjoy-your-day',
+    link: 'https://dev.enjoyyourday.live',
     class: [
       'col-span-4',
       '[--primary-color:var(--color-text)] [--icon-opacity:.2]',
@@ -57,7 +57,7 @@ export const projects: Project[] = [
     id: 2,
     name: 'retend',
     description: 'React-inspired JSX framework for fast and fluid web apps.',
-    link: '/works/retend',
+    link: 'https://www.npmjs.com/package/retend',
     class: [
       'col-span-4',
       '[--primary-color:var(--color-text)] [--icon-opacity:.2]',
@@ -72,7 +72,7 @@ export const projects: Project[] = [
     name: 'whirlwind',
     description:
       'Compiler, checker and IDE extension for a statically-typed, general-purpose, compiled-to-WASM programming language.',
-    link: '/works/whirlwind',
+    link: 'https://github.com/adebola-io/whirlwind',
     class: [
       'col-span-8',
       '[--primary-color:var(--color-text)] [--secondary-color:var(--color-text)] [--icon-opacity:.2]',
@@ -87,7 +87,7 @@ export const projects: Project[] = [
     name: 'quizwiz',
     description:
       'Quiz game to test and improve knowledge across a variety of subjects.',
-    link: '/works/quizwiz',
+    link: 'https://quizwiz-game.vercel.app',
     class: [
       'col-span-4',
       '[--primary-color:var(--color-text)] [--icon-opacity:.2]',
@@ -102,7 +102,7 @@ export const projects: Project[] = [
     name: 'siphon',
     description:
       'Crude, non-compliant bundler and minifier for HTML, CSS and JS projects.',
-    link: '/works/siphon',
+    link: 'https://www.npmjs.com/package/siphon-cli',
     class: [
       'col-span-4',
       '[--primary-color:var(--color-text)] [--secondary-color:var(--color-stroke)] [--icon-opacity:.2]',
@@ -117,7 +117,7 @@ export const projects: Project[] = [
     name: 'spry',
     description:
       'Landing page concept for an e-commerce clothing and fabric store.',
-    link: '/works/spry',
+    link: 'https://www.spry-store.vercel.app/',
     class: [
       'col-span-4',
       '[--primary-color:var(--color-text)] [--secondary-color:var(--color-text)] [--icon-opacity:.2]',
@@ -131,7 +131,7 @@ export const projects: Project[] = [
     id: 7,
     name: 'cadence',
     description: 'Website for a small logistics management company.',
-    link: '/works/cadence',
+    link: 'https://www.cadence-logistics.vercel.app/',
     class: [
       'col-span-4',
       '[--primary-color:var(--color-text)] [--secondary-color:var(--color-text)] [--tertiary-color:var(--color-text)] [--icon-opacity:.2]',

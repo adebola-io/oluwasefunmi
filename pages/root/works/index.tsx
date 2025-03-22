@@ -1,5 +1,5 @@
 import { For } from 'retend';
-import { useRouter, type RouteComponent } from 'retend/router';
+import { type RouteComponent } from 'retend/router';
 import type { PageMeta } from 'retend-server/client';
 import { Plane } from '@/components/plane';
 import { ItemNameText, LargeText, SmallText } from '@/components/typography';
@@ -7,8 +7,6 @@ import { timeline, projects } from '@/library';
 import { ArrowIcon } from '@/components/icons/arrow';
 
 const Works: RouteComponent<PageMeta> = () => {
-  const { Link } = useRouter();
-
   return (
     <Plane
       animated
@@ -40,7 +38,12 @@ const Works: RouteComponent<PageMeta> = () => {
               project.class,
             ]}
           >
-            <Link class="contents" href={project.link}>
+            <a
+              rel="noreferrer"
+              target="__blank"
+              class="contents"
+              href={project.link}
+            >
               <Plane
                 noise
                 animated
@@ -78,7 +81,7 @@ const Works: RouteComponent<PageMeta> = () => {
                   ))}
                 </ul>
               </Plane>
-            </Link>
+            </a>
           </li>
         ))}
       </ul>

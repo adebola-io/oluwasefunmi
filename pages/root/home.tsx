@@ -1,4 +1,4 @@
-import { useRouter, type RouteComponent } from 'retend/router';
+import { type RouteComponent } from 'retend/router';
 import type { PageMeta } from 'retend-server/client';
 import { getGlobalContext, matchContext, Modes } from 'retend/context';
 import { Plane } from '@/components/plane';
@@ -22,8 +22,6 @@ if (matchContext(window, Modes.Interactive)) {
 }
 
 const Home: RouteComponent<PageMeta> = () => {
-  const { Link } = useRouter();
-
   return (
     <Plane
       animated
@@ -68,21 +66,41 @@ const Home: RouteComponent<PageMeta> = () => {
           <br />
           <br />
           Some of my works include{' '}
-          <Link data-inline href="/works/vizitly">
+          <a
+            data-inline
+            href="https://www.vizitly.io"
+            rel="noreferrer"
+            target="__blank"
+          >
             Vizitly
-          </Link>
+          </a>
           ,{' '}
-          <Link data-inline href="/works/whirlwind">
+          <a
+            data-inline
+            href="https://github.com/adebola-io/whirlwind"
+            rel="noreferrer"
+            target="__blank"
+          >
             Whirlwind
-          </Link>
+          </a>
           ,{' '}
-          <Link data-inline href="/works/enjoy-your-day">
+          <a
+            data-inline
+            href="https://dev.enjoyyourday.live"
+            rel="noreferrer"
+            target="__blank"
+          >
             Enjoy Your Day
-          </Link>{' '}
+          </a>{' '}
           and{' '}
-          <Link data-inline href="/works/retend">
+          <a
+            data-inline
+            href="https://www.npmjs.com/package/retend"
+            rel="noreferrer"
+            target="__blank"
+          >
             Retend
-          </Link>
+          </a>
           .
         </p>
         <LinkButton
