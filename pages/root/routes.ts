@@ -26,7 +26,19 @@ export const rootRoutes = defineRoute({
     {
       name: 'Website Random Notes',
       path: 'random-notes',
-      component: lazy(() => import('./random-notes/index.tsx')),
+      redirect: '/random-notes/index',
+      children: [
+        {
+          name: 'Website Random Notes Index',
+          path: 'index',
+          component: lazy(() => import('./random-notes/index.tsx')),
+        },
+        {
+          name: 'Website Random Note Page',
+          path: ':id',
+          component: lazy(() => import('./random-notes/[id].tsx')),
+        },
+      ],
     },
     {
       name: 'Website Playground',
