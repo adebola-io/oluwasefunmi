@@ -1,8 +1,8 @@
-import { defineRoute } from '@adbl/unfinished/router';
+import { defineRoute } from 'retend/router';
 import Start from '.';
 
 export const waitingRoute = defineRoute({
-  name: 'Start View',
-  path: '/',
+  name: 'Waiting View',
+  path: '/waiting',
   component: Start,
 });

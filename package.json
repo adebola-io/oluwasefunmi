@@ -9,11 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@adbl/cells": "^0.0.11",
-    "@adbl/unfinished": "https://pkg.pr.new/adebola-io/unfinished/@adbl/unfinished@d67f2c9",
-    "@adbl/unfinished-ssg": "^0.0.4",
+    "@mdx-js/rollup": "^3.1.0",
     "@tailwindcss/vite": "^4.0.12",
-    "tailwindcss": "^4.0.12"
+    "@types/mdx": "^2.0.13",
+    "retend": "https://pkg.pr.new/adebola-io/retend@b361bd2",
+    "retend-server": "https://pkg.pr.new/adebola-io/retend/retend-server@b361bd2",
+    "tailwindcss": "^4.0.12",
+    "vite-plugin-markdown": "^2.2.0"
   },
   "devDependencies": {
     "@types/node": "latest",
