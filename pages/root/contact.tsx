@@ -83,17 +83,17 @@ const Contact: RouteComponent<PageMeta> = () => {
   );
 };
 
+const ogImage =
+  'https://github.com/user-attachments/assets/e7a8c2aa-4c7c-48de-ad44-0a511b4563ad';
 Contact.metadata = {
   title: 'Contact Me | Oluwasefunmi, Web Developer',
   ogTitle: 'Contact Me | Oluwasefunmi, Web Developer',
-  ogImage:
-    'https://private-user-images.githubusercontent.com/60784068/425762101-ee8d7d0a-afc1-42fb-bfa6-d261efcc811d.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDI2NjE1MzUsIm5iZiI6MTc0MjY2MTIzNSwicGF0aCI6Ii82MDc4NDA2OC80MjU3NjIxMDEtZWU4ZDdkMGEtYWZjMS00MmZiLWJmYTYtZDI2MWVmY2M4MTFkLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTAzMjIlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwMzIyVDE2MzM1NVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWUyYjFhYWYzMDkyYjY0NWMxOWExMDM3ZDAzYjIxODNhM2I4OWYyNDQ3ZDUyZGE1MDBjNTc4NmZhNjFjMmVkNDEmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.Z0Yyh5bt23h1XscgUyIy8KtrgCOE-0OvdHFeuupHeFE',
+  ogImage,
   twitterTitle: 'Contact Me | Oluwasefunmi, Web Developer',
   description: 'This is how you can reach me.',
   ogDescription: 'This is how you can reach me.',
   twitterDescription: 'This is how you can reach me.',
-  twitterImage:
-    'https://private-user-images.githubusercontent.com/60784068/425762101-ee8d7d0a-afc1-42fb-bfa6-d261efcc811d.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDI2NjE1MzUsIm5iZiI6MTc0MjY2MTIzNSwicGF0aCI6Ii82MDc4NDA2OC80MjU3NjIxMDEtZWU4ZDdkMGEtYWZjMS00MmZiLWJmYTYtZDI2MWVmY2M4MTFkLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTAzMjIlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwMzIyVDE2MzM1NVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWUyYjFhYWYzMDkyYjY0NWMxOWExMDM3ZDAzYjIxODNhM2I4OWYyNDQ3ZDUyZGE1MDBjNTc4NmZhNjFjMmVkNDEmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.Z0Yyh5bt23h1XscgUyIy8KtrgCOE-0OvdHFeuupHeFE',
+  twitterImage: ogImage,
 };
 
 export default Contact;

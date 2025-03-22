@@ -52,6 +52,9 @@ RootLayout.metadata = {
   lang: 'en',
   viewport: 'width=device-width, initial-scale=1',
   themeColor: '#e1e1e1',
+  ogUrl: 'https://adebola.online',
+  ogType: 'website',
+  ogSiteName: 'adebola.online',
 };
 
 export default RootLayout;

@@ -1,4 +1,4 @@
-import { type RouteComponent } from 'retend/router';
+import type { RouteComponent } from 'retend/router';
 import type { PageMeta } from 'retend-server/client';
 import { getGlobalContext, matchContext, Modes } from 'retend/context';
 import { Plane } from '@/components/plane';
@@ -131,9 +131,6 @@ Home.metadata = {
   ogTitle: 'Oluwasefunmi, Web Engineer',
   twitterTitle: 'Oluwasefunmi, Web Engineer',
   ogImage,
-  ogUrl: 'https://adebola.online',
-  ogType: 'website',
-  ogSiteName: 'adebola.online',
   description:
     'I am a full-stack web developer from Lagos, Nigeria focused on creating interactive digital experiences and tackling complex design challenges.',
   ogDescription:
