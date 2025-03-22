@@ -1,18 +1,23 @@
 import { NoteHeadingText, Emphasis } from '@/components/typography';
 import { timeline } from '@/library';
 
-export { default as ogImage } from './og-image.png';
 export const id = '1-sefunmi-makes-a-blog';
 export const title = '#1: sefunmi makes a blog.';
-export const date = '2023-03-22';
+export const date = '2025-03-22';
 export const description =
   'After much procrastination, Sefunmi finally launches a blog, bracing for potential failure and future regret, with content ranging from tech to existential musings.';
+export const dateStr = new Date(date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+export { default as ogImage } from './og-image.png';
 
 <NoteHeadingText class="pb-0.25 animate-fade-in-from-bottom">
   {title}
 </NoteHeadingText>
 <div id="note-details" class="inline-block pb-0.5 animate-fade-in-from-bottom">
-  General | March 22, 2023.
+  General | {dateStr}
 </div>
 
 <div id="note-content" class="animate-fade-in-from-bottom">

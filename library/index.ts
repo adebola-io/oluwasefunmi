@@ -6,6 +6,7 @@ import { SiphonIcon } from '@/components/icons/siphon';
 import { SpryIcon } from '@/components/icons/spry';
 import { VizitlyIcon } from '@/components/icons/vizitly';
 import { WhirlwindIcon } from '@/components/icons/whirlwind';
+import { NotePreviewProps } from '@/components/note-preview';
 import type { JSX } from 'retend/jsx-runtime';
 
 export const timeline = [
@@ -13,6 +14,8 @@ export const timeline = [
   'calc(var(--duration)*0.25)',
   'calc(var(--duration)*0.5)',
 ];
+
+export const noteList: NotePreviewProps[] = [];
 
 interface Project {
   id: number;
