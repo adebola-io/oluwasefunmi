@@ -38,7 +38,7 @@ export function Navigation() {
       return (
         <aside
           id="page-sidebar"
-          class="fixed top-0 left-0 min-md:hidden w-full h-full grid py-4 px-2 gap-0.5 place-content-center"
+          class="fixed top-0 left-0 min-md:hidden w-screen h-screen grid py-4 px-2 gap-0.5 place-content-center"
         >
           {For(links, (link, index) => (
             <Link
@@ -66,6 +66,7 @@ export function Navigation() {
 
   return (
     <nav
+      id="page-nav"
       class={[
         'relative grid grid-cols-[repeat(5,auto)_1fr] gap-2 [&>*]:[align-self:center] h-4',
         'max-md:h-2 max-md:grid-cols-2',

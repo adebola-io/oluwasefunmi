@@ -36,6 +36,15 @@ export function LargeText(props: LargeTextProps) {
   );
 }
 
+export function NoteHeadingText(props: HeadingTextProps) {
+  const { children, ...rest } = props;
+  return (
+    <LargeText {...rest} class={['w-full underline text-left', rest.class]}>
+      <span class="max-w-[500px]">{children}</span>
+    </LargeText>
+  );
+}
+
 export function ItemNameText(props: HeadingTextProps) {
   const { children, ...rest } = props;
   return (

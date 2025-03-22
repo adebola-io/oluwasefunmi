@@ -7,7 +7,7 @@ const RandomNotes: RouteComponent<PageMeta> = () => {
     <div
       class={[
         'grid grid-rows-[auto_auto_1fr] place-items-center p-6 relative text-center top-level-bare',
-        'px-3',
+        'px-3 max-md:pt-4',
       ]}
     >
       <LargeText underline class="mb-1">

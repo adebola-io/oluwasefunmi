@@ -9,20 +9,37 @@ const RandomNote: RouteComponent<PageMeta<MDXModule>> = () => {
   const content = metadata.get('misc') as MDXModule;
 
   return (
-    <article class="relative">
-      <content.default />
-    </article>
+    <div
+      id="note-article-container"
+      class="grid place-items-center py-6 max-md:pt-4 mx-2 top-level-bare"
+    >
+      <article
+        class={[
+          'relative [&_p]:text-[1rem] [&_p]:my-1  max-w-[700px] max-md:max-w-[500px]',
+          '[&_ul]:list-disc [&_ul]:pl-2',
+        ]}
+      >
+        <content.default />
+      </article>
+    </div>
   );
 };
 
 RandomNote.metadata = async (routeData) => {
   const id = routeData.params.get('id');
-  console.log('Loading note: ', id);
-  const content = await import(`@/content/markdown/${id}.mdx`);
-  console.log('Loaded note: ', id);
+  const content = await import(`@/content/markdown/${id}/page.mdx`);
 
   return {
     title: `${content.title} - random notes`,
+    ogTitle: `${content.title} - random notes`,
+    twitterTitle: `${content.title} - random notes`,
+    ogType: 'article',
+    twitterDescription: content.description,
+    description: content.description,
+    ogDescription: content.description,
+    author: 'Oluwasefunmi Akomolafe',
+    ogImage: content.ogImage,
+    twitterImage: content.ogImage,
     misc: content,
   };
 };

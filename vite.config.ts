@@ -9,7 +9,7 @@ import process from 'node:process';
 
 const notes = fs
   .readdirSync('./content/markdown')
-  .map((file) => `/random-notes/${file.slice(0, -4)}`);
+  .map((name) => `/random-notes/${name}`);
 
 // Combine base routes with markdown routes
 const pages = [
