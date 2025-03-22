@@ -109,6 +109,10 @@ body {
   @apply text-text;
 }
 
+* {
+  overscroll-behavior: none;
+}
+
 ::selection {
   background-color: var(--color-solid);
 }

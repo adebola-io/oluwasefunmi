@@ -126,8 +126,18 @@ const Home: RouteComponent<PageMeta> = () => {
 
 Home.metadata = {
   title: 'Oluwasefunmi, Web Engineer',
+  ogTitle: 'Oluwasefunmi, Web Engineer',
+  twitterTitle: 'Oluwasefunmi, Web Engineer',
+  ogImage:
+    'https://private-user-images.githubusercontent.com/60784068/425762057-1ca41a15-c65d-456c-af09-18a3391a7a81.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDI2NjE1MzUsIm5iZiI6MTc0MjY2MTIzNSwicGF0aCI6Ii82MDc4NDA2OC80MjU3NjIwNTctMWNhNDFhMTUtYzY1ZC00NTZjLWFmMDktMThhMzM5MWE3YTgxLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTAzMjIlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwMzIyVDE2MzM1NVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWU4YTA2MjhkMjg3ZjEyNTVjMDE3ZWEzMGE1ZjFmMTZiMTU2M2NkNTUzOWMxNzliYTdiMWMwYTY1NTMxOWUwODImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.WrBGtFpOeZzIvYvDlap9NUbgzEj3DCCOObGTnDR75Y0',
   description:
     'I am a full-stack web developer from Lagos, Nigeria focused on creating interactive digital experiences and tackling complex design challenges.',
+  ogDescription:
+    'I am a full-stack web developer from Lagos, Nigeria focused on creating interactive digital experiences and tackling complex design challenges.',
+  twitterDescription:
+    'I am a full-stack web developer from Lagos, Nigeria focused on creating interactive digital experiences and tackling complex design challenges.',
+  twitterImage:
+    'https://private-user-images.githubusercontent.com/60784068/425762057-1ca41a15-c65d-456c-af09-18a3391a7a81.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDI2NjE1MzUsIm5iZiI6MTc0MjY2MTIzNSwicGF0aCI6Ii82MDc4NDA2OC80MjU3NjIwNTctMWNhNDFhMTUtYzY1ZC00NTZjLWFmMDktMThhMzM5MWE3YTgxLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTAzMjIlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwMzIyVDE2MzM1NVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPWU4YTA2MjhkMjg3ZjEyNTVjMDE3ZWEzMGE1ZjFmMTZiMTU2M2NkNTUzOWMxNzliYTdiMWMwYTY1NTMxOWUwODImWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.WrBGtFpOeZzIvYvDlap9NUbgzEj3DCCOObGTnDR75Y0',
 };
 
 export default Home;

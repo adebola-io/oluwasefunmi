@@ -37,8 +37,8 @@ const RootLayout: RouteComponent<PageMeta> = async () => {
     <main
       id="page-main"
       class={[
-        'grid grid-rows-[auto_1fr] px-4 pt-2 background-noise min-h-[100dvh]',
-        'max-md:px-1 max-md:pb-3 max-md:gap-2',
+        'grid grid-rows-[auto_1fr] px-4 pt-2 background-noise min-h-[calc(100dvh_-_var(--spacing))]',
+        'max-md:min-h-[100dvh] max-md:px-1 max-md:pb-3 max-md:gap-2',
       ]}
     >
       <Navigation />

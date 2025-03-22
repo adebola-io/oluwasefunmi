@@ -91,7 +91,15 @@ const Works: RouteComponent<PageMeta> = () => {
 
 Works.metadata = {
   title: 'My Works | Oluwasefunmi, Web Developer',
-  description: 'This is the works page',
+  ogTitle: 'My Works | Oluwasefunmi, Web Developer',
+  ogImage:
+    'https://private-user-images.githubusercontent.com/60784068/425762080-394aac24-b453-4729-9cfa-aa92f4b3da00.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDI2NjE1MzUsIm5iZiI6MTc0MjY2MTIzNSwicGF0aCI6Ii82MDc4NDA2OC80MjU3NjIwODAtMzk0YWFjMjQtYjQ1My00NzI5LTljZmEtYWE5MmY0YjNkYTAwLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTAzMjIlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwMzIyVDE2MzM1NVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPThmYjg1NWExZGFjNWU4YTFiNmJjYWFkOWZmNzdmNzIzMDQxMzMwYmNjZWY3ZTllNTVmODk5YjZiZmZlN2NkYmQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.bI3ZrxZVUj-xH368bxTpnGyUPzkL_e1JYXAAjTg4a8w',
+  twitterTitle: 'My Works | Oluwasefunmi, Web Developer',
+  description: 'Some projects I am involved in.',
+  twitterDescription: 'Some projects I am involved in.',
+  ogDescription: 'Some projects I am involved in.',
+  twitterImage:
+    'https://private-user-images.githubusercontent.com/60784068/425762080-394aac24-b453-4729-9cfa-aa92f4b3da00.png?jwt=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NDI2NjE1MzUsIm5iZiI6MTc0MjY2MTIzNSwicGF0aCI6Ii82MDc4NDA2OC80MjU3NjIwODAtMzk0YWFjMjQtYjQ1My00NzI5LTljZmEtYWE5MmY0YjNkYTAwLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTAzMjIlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwMzIyVDE2MzM1NVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPThmYjg1NWExZGFjNWU4YTFiNmJjYWFkOWZmNzdmNzIzMDQxMzMwYmNjZWY3ZTllNTVmODk5YjZiZmZlN2NkYmQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.bI3ZrxZVUj-xH368bxTpnGyUPzkL_e1JYXAAjTg4a8w',
 };
 
 export default Works;
