@@ -1,4 +1,5 @@
 import { NoteHeadingText, Emphasis } from '@/components/typography';
+import { timeline } from '@/library';
 
 export { default as ogImage } from './og-image.png';
 export const title = '#1: sefunmi makes a blog.';
@@ -6,8 +7,14 @@ export const date = '2023-03-22';
 export const description =
   'After much procrastination, Sefunmi finally launches a blog, bracing for potential failure and future regret, with content ranging from tech to existential musings.';
 
-<NoteHeadingText class="pb-0.5">{title}</NoteHeadingText>
-<p class="inline-block pb-0.5">General | March 22, 2023.</p>
+<NoteHeadingText class="pb-0.25 animate-fade-in-from-bottom">
+  {title}
+</NoteHeadingText>
+<div id="note-details" class="inline-block pb-0.5 animate-fade-in-from-bottom">
+  General | March 22, 2023.
+</div>
+
+<div id="note-content" class="animate-fade-in-from-bottom">
 
 Alhamdulillah and Hallelujah, I have done it!
 
@@ -34,3 +41,5 @@ At some point, I will regret this first post and try to rewrite it to fit a futu
 So, you are welcome, if you're there. Or don't feel welcome, it's your business.
 
 Sefunmi made a blog. That is all for now.
+
+</div>

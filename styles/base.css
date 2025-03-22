@@ -63,7 +63,7 @@
   @keyframes fade-in-from-bottom {
     from {
       opacity: 0;
-      transform: translateY(10%);
+      transform: translateY(var(--starting-fade-position-y, 10%));
     }
   }
 
@@ -229,6 +229,17 @@ body {
 #page-main {
   :root:has(#note-article-container) & {
     @apply max-md:pt-4;
+  }
+}
+
+#note-article-container {
+  #note-details {
+    animation-delay: calc(var(--duration) * 0.35);
+  }
+
+  #note-content {
+    --starting-fade-position-y: 20px;
+    animation-delay: calc(var(--duration) * 0.5);
   }
 }
 

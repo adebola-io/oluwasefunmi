@@ -10,8 +10,8 @@ import type { JSX } from 'retend/jsx-runtime';
 
 export const timeline = [
   '0ms',
-  'calc(var(--duration) * 0.25)',
-  'calc(var(--duration) * 0.5)',
+  'calc(var(--duration)*0.25)',
+  'calc(var(--duration)*0.5)',
 ];
 
 interface Project {

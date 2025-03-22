@@ -15,7 +15,7 @@ const RandomNote: RouteComponent<PageMeta<MDXModule>> = () => {
     >
       <article
         class={[
-          'relative [&_p]:text-[1rem] [&_p]:my-1  max-w-[700px] max-md:max-w-[500px]',
+          'relative [&_p]:text-[1rem] [&_p]:my-1 max-w-[700px] max-md:max-w-[500px]',
           '[&_ul]:list-disc [&_ul]:pl-2',
         ]}
       >
