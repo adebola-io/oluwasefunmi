@@ -1,5 +1,5 @@
-import { defineConfig } from 'vite';
-import path from 'node:path';
+import { defineConfig, Plugin } from 'vite';
+import path, { resolve } from 'node:path';
 import { retend } from 'retend/plugin';
 import { retendSSG } from 'retend-server/plugin';
 import tailwindcss from '@tailwindcss/vite';
