@@ -12,7 +12,8 @@
     "@tailwindcss/vite": "^4.0.12",
     "retend": "https://pkg.pr.new/adebola-io/retend@d9e4293",
     "retend-server": "https://pkg.pr.new/adebola-io/retend/retend-server@d9e4293",
-    "tailwindcss": "^4.0.12"
+    "tailwindcss": "^4.0.12",
+    "vite-plugin-markdown": "^2.2.0"
   },
   "devDependencies": {
     "@types/node": "latest",
