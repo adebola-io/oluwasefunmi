@@ -23,10 +23,10 @@ export function Navigation() {
       name: 'random notes',
       path: '/random-notes',
     },
-    {
-      name: 'playground',
-      path: '/playground',
-    },
+    // {
+    //   name: 'playground',
+    //   path: '/playground',
+    // },
   ];
 
   const toggleSidebar = () => {

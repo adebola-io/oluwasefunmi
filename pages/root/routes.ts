@@ -40,10 +40,10 @@ export const rootRoutes = defineRoute({
         },
       ],
     },
-    {
-      name: 'Website Playground',
-      path: 'playground',
-      component: lazy(() => import('./playground/index.tsx')),
-    },
+    // {
+    //   name: 'Website Playground',
+    //   path: 'playground',
+    //   component: lazy(() => import('./playground/index.tsx')),
+    // },
   ],
 });
