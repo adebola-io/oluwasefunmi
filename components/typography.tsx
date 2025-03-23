@@ -39,7 +39,13 @@ export function LargeText(props: LargeTextProps) {
 export function NoteHeadingText(props: HeadingTextProps) {
   const { children, ...rest } = props;
   return (
-    <LargeText {...rest} class={['w-full underline text-left', rest.class]}>
+    <LargeText
+      {...rest}
+      class={[
+        'w-full underline text-left pb-0.25 animate-fade-in-from-bottom',
+        rest.class,
+      ]}
+    >
       <span class="max-w-[500px]">{children}</span>
     </LargeText>
   );
@@ -78,5 +84,31 @@ export function Emphasis(props: JSX.IntrinsicElements['i']) {
     <i {...rest} class={['text-emphasis', rest.class]}>
       {children}
     </i>
+  );
+}
+
+export function NoteContent(props: JSX.IntrinsicElements['div']) {
+  const { children, ...rest } = props;
+  return (
+    <div
+      {...rest}
+      id="note-content"
+      class={['animate-fade-in-from-bottom', rest.class]}
+    >
+      {children}
+    </div>
+  );
+}
+
+export function NoteDetails(props: JSX.IntrinsicElements['div']) {
+  const { children, ...rest } = props;
+  return (
+    <div
+      {...rest}
+      id="note-details"
+      class={['inline-block pb-0.5 animate-fade-in-from-bottom', rest.class]}
+    >
+      {children}
+    </div>
   );
 }

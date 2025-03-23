@@ -1,4 +1,8 @@
-import { NoteHeadingText } from '@/components/typography';
+import {
+  NoteHeadingText,
+  NoteContent,
+  NoteDetails,
+} from '@/components/typography';
 
 export const id = '1-sefunmi-makes-a-blog';
 export const title = '#1: sefunmi makes a blog.';
@@ -13,15 +17,10 @@ export const dateStr = new Date(date).toLocaleDateString('en-US', {
 export const ogImage =
   'https://github.com/user-attachments/assets/bc5bc1f4-1ab9-40b3-9bbe-0b55798d1378';
 
-<NoteHeadingText class="pb-0.25 animate-fade-in-from-bottom">
-  {title}
-</NoteHeadingText>
-<div id="note-details" class="inline-block pb-0.5 animate-fade-in-from-bottom">
-  General | {dateStr}
-</div>
+<NoteHeadingText>{title}</NoteHeadingText>
+<NoteDetails>General | {dateStr}</NoteDetails>
 
-<div id="note-content" class="animate-fade-in-from-bottom">
-
+<NoteContent>
 Alhamdulillah and Hallelujah, I have done it!
 
 After years of hand-wringing, bike-shedding and over-engineering, I have made a blog for me. A new internet home, where I will infrequently blab about anything and everything, to a silent, invisible and intimidating Schrödinger’s audience.
@@ -48,4 +47,4 @@ So, you are welcome, if you're there. Or don't feel welcome, it's your business.
 
 Sefunmi made a blog. That is all for now.
 
-</div>
+</NoteContent>
