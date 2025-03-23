@@ -106,7 +106,7 @@ body {
 
   font-family: 'Liga DM Mono', 'DM Mono', Consolas, monospace, sans-serif;
   font-size: 1.15rem;
-  @apply text-text;
+  @apply text-text max-sm:text-sm max-sm:tracking-tight;
 }
 
 * {

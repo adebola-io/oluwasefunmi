@@ -31,15 +31,22 @@ const Home: RouteComponent<PageMeta> = () => {
         'px-6 py-4',
         'grid grid-cols-2 gap-6 items-center home-backdrop',
         'before:block before:[grid-area:1/1/1/3] before:scale-[1.06] before:border-solid before:border-[2.76px] before:self-center before:justify-self-center before:w-full before:h-full before:rounded-xl',
-        'max-md:before:hidden max-md:h-fit max-md:px-3 max-md:text-center max-md:grid-cols-1 max-md:gap-0',
+        'max-md:before:hidden max-md:h-fit',
+        'max-sm:px-2',
+        'max-xl:grid-cols-1 max-xl:gap-0 max-xl:px-3 max-xl:before:scale-90 max-xl:text-center',
       ]}
     >
       <ShiftingLayout
-        container:class="h-full [grid-area:1/1] z-1 max-md:hidden"
+        container:class="h-full [grid-area:1/1] z-1 max-xl:hidden"
         animated
         animationDelay={timeline[1]}
       />
-      <div class="grid grid-cols-[auto_auto_auto] place-content-center gap-1 [grid-area:1/2] z-1">
+      <div
+        class={[
+          'grid grid-cols-[auto_auto_auto] place-content-center gap-1 [grid-area:1/2] z-1',
+          'max-xl:flex max-xl:flex-wrap max-xl:gap-2 max-md:gap-1',
+        ]}
+      >
         <div
           class={[
             'overflow-hidden col-span-3',
@@ -58,53 +65,55 @@ const Home: RouteComponent<PageMeta> = () => {
         </div>
         <p
           style={{ animationDelay: timeline[2] }}
-          class="col-span-3 animate-fade-in-from-bottom"
+          class="col-span-3 animate-fade-in-from-bottom w-full"
         >
-          I am a <Emphasis>full-stack</Emphasis> web developer from{' '}
-          <Emphasis>Lagos, Nigeria</Emphasis> focused on creating interactive
-          digital experiences and tackling complex design challenges.
-          <br />
-          <br />
-          Some of my works include{' '}
-          <a
-            data-inline
-            href="https://www.vizitly.io"
-            rel="noreferrer"
-            target="__blank"
-          >
-            Vizitly
-          </a>
-          ,{' '}
-          <a
-            data-inline
-            href="https://github.com/adebola-io/whirlwind"
-            rel="noreferrer"
-            target="__blank"
-          >
-            Whirlwind
-          </a>
-          ,{' '}
-          <a
-            data-inline
-            href="https://dev.enjoyyourday.live"
-            rel="noreferrer"
-            target="__blank"
-          >
-            Enjoy Your Day
-          </a>{' '}
-          and{' '}
-          <a
-            data-inline
-            href="https://www.npmjs.com/package/retend"
-            rel="noreferrer"
-            target="__blank"
-          >
-            Retend
-          </a>
-          .
+          <span class="inline-block max-xl:max-w-[70dvw] max-md:max-w-[unset]">
+            I am a <Emphasis>full-stack</Emphasis> web developer from{' '}
+            <Emphasis>Lagos, Nigeria</Emphasis> focused on creating interactive
+            digital experiences and tackling complex design challenges.
+            <br />
+            <br />
+            Some of my works include{' '}
+            <a
+              data-inline
+              href="https://www.vizitly.io"
+              rel="noreferrer"
+              target="__blank"
+            >
+              Vizitly
+            </a>
+            ,{' '}
+            <a
+              data-inline
+              href="https://github.com/adebola-io/whirlwind"
+              rel="noreferrer"
+              target="__blank"
+            >
+              Whirlwind
+            </a>
+            ,{' '}
+            <a
+              data-inline
+              href="https://dev.enjoyyourday.live"
+              rel="noreferrer"
+              target="__blank"
+            >
+              Enjoy Your Day
+            </a>{' '}
+            and{' '}
+            <a
+              data-inline
+              href="https://www.npmjs.com/package/retend"
+              rel="noreferrer"
+              target="__blank"
+            >
+              Retend
+            </a>
+            .
+          </span>
         </p>
         <LinkButton
-          class="max-md:text-nowrap max-md:col-span-3 max-md:mt-2"
+          class="max-md:text-nowrap max-md:col-span-3 max-md:w-full"
           animated
           animationDelay={timeline[1]}
           href="/works"
@@ -112,7 +121,7 @@ const Home: RouteComponent<PageMeta> = () => {
           see works
         </LinkButton>
         <LinkButton
-          class="max-md:text-nowrap max-md:col-span-3"
+          class="max-md:text-nowrap max-md:col-span-3 max-md:w-full"
           animated
           animationDelay={timeline[1]}
           href="/contact"

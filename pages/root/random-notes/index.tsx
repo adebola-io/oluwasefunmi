@@ -9,14 +9,14 @@ const RandomNotes: RouteComponent<PageMeta> = () => {
   return (
     <div
       class={[
-        'grid grid-rows-[auto_auto_1fr] place-items-center px-6 py-4 relative text-center top-level-bare',
-        'px-3',
+        'grid grid-rows-[auto_auto_auto_1fr] place-items-center px-6 py-4 relative text-center top-level-bare',
+        'max-md:px-3 max-sm:px-1',
       ]}
     >
       <LargeText underline class="mb-1">
         random notes.
       </LargeText>
-      <p class="max-w-[500px]">
+      <p class="max-w-[500px] mb-4">
         Disjoint musings, incoherent rants and streams of consciousness that I
         have decided to write down. Anything about life, technology and
         consequence.

@@ -1,5 +1,5 @@
 import { For } from 'retend';
-import { type RouteComponent } from 'retend/router';
+import type { RouteComponent } from 'retend/router';
 import type { PageMeta } from 'retend-server/client';
 import { Plane } from '@/components/plane';
 import { ItemNameText, LargeText, SmallText } from '@/components/typography';
@@ -24,7 +24,7 @@ const Works: RouteComponent<PageMeta> = () => {
       <ul
         class={[
           'grid grid-cols-12 gap-4',
-          'max-lg:grid-cols-1 max-lg:grid-flow-row',
+          'max-lg:grid-cols-1 max-lg:grid-flow-row max-lg:gap-2',
         ]}
       >
         {For(projects, (project) => (
