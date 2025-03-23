@@ -8,7 +8,7 @@
 ::view-transition-old(*),
 ::view-transition-new(*),
 ::view-transition-group(*) {
-  animation-duration: calc(var(--duration) * 2);
+  animation-duration: calc(var(--duration) * 1.25);
 }
 
 ::view-transition-old(page-heading) {
@@ -18,5 +18,4 @@
 ::view-transition-group(page-heading) {
   width: fit-content;
   height: fit-content;
-  opacity: 0.7;
 }
