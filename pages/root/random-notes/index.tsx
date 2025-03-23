@@ -1,11 +1,11 @@
+import { For } from 'retend';
 import type { RouteComponent } from 'retend/router';
 import type { PageMeta } from 'retend-server/client';
 import { NotePreview } from '@/components/note-preview';
 import { LargeText } from '@/components/typography';
-import { For } from 'retend';
 import { noteList } from '@/library';
 
-const RandomNotes: RouteComponent<PageMeta> = async () => {
+const RandomNotes: RouteComponent<PageMeta> = () => {
   return (
     <div
       class={[
@@ -26,19 +26,19 @@ const RandomNotes: RouteComponent<PageMeta> = async () => {
   );
 };
 
+const title = 'Random Notes | Oluwasefunmi, Web Developer';
 const ogImage =
   'https://github.com/user-attachments/assets/aa453638-5962-48a1-859d-0af86555c870';
+const description =
+  'Disjoint musings, incoherent rants and streams of consciousness that I have decided to write down. Anything about life, technology and consequence.';
 RandomNotes.metadata = {
-  title: 'Random Notes | Oluwasefunmi, Web Developer',
-  ogTitle: 'Random Notes | Oluwasefunmi, Web Developer',
-  twitterTitle: 'Random Notes | Oluwasefunmi, Web Developer',
+  title,
+  ogTitle: title,
+  twitterTitle: title,
   ogImage,
-  description:
-    'Disjoint musings, incoherent rants and streams of consciousness that I have decided to write down. Anything about life, technology and consequence.',
-  ogDescription:
-    'Disjoint musings, incoherent rants and streams of consciousness that I have decided to write down. Anything about life, technology and consequence.',
-  twitterDescription:
-    'Disjoint musings, incoherent rants and streams of consciousness that I have decided to write down. Anything about life, technology and consequence.',
+  description,
+  ogDescription: description,
+  twitterDescription: description,
   twitterImage: ogImage,
 };
 

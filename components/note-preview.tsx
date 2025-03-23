@@ -1,4 +1,4 @@
-import { Cell } from 'retend';
+import type { Cell } from 'retend';
 import { useRouter } from 'retend/router';
 
 export interface NotePreviewProps {
@@ -8,11 +8,7 @@ export interface NotePreviewProps {
   date: string;
 }
 
-export const NotePreview = (
-  props: NotePreviewProps,
-  index: Cell<number>,
-  items: NotePreviewProps[]
-) => {
+export const NotePreview = (props: NotePreviewProps, index: Cell<number>) => {
   const { Link } = useRouter();
 
   const date = new Date(props.date);
