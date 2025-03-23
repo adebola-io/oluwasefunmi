@@ -17,7 +17,7 @@ const pages = [
   '/works',
   '/contact',
   '/random-notes',
-  '/playground',
+  // '/playground',
   ...notes,
 ];
 
