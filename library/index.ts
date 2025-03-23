@@ -6,7 +6,8 @@ import { SiphonIcon } from '@/components/icons/siphon';
 import { SpryIcon } from '@/components/icons/spry';
 import { VizitlyIcon } from '@/components/icons/vizitly';
 import { WhirlwindIcon } from '@/components/icons/whirlwind';
-import { NotePreviewProps } from '@/components/note-preview';
+import type { NotePreviewProps } from '@/components/note-preview';
+import type { MDXModule } from 'mdx/types';
 import type { JSX } from 'retend/jsx-runtime';
 
 export const timeline = [
@@ -145,3 +146,20 @@ export const projects: Project[] = [
     tags: ['web', 'vue', 'typescript', 'gsap', 'scss'],
   },
 ];
+
+export interface Note {
+  id: string;
+  title: string;
+  date: string;
+  description: string;
+  dateStr: string;
+  ogImage: string;
+  default: MDXModule['default'];
+}
+
+export interface ObjectToMap<Object extends object>
+  extends Map<keyof Object, Object[keyof Object]> {
+  get<K extends keyof Object>(key: K): Object[K];
+  has<U extends PropertyKey>(key: U): U extends keyof Object ? true : false;
+  set<K extends keyof Object>(key: K, value: Object[K]): this;
+}

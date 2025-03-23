@@ -1,12 +1,16 @@
 import { useRouter, type RouteComponent } from 'retend/router';
 import type { PageMeta } from 'retend-server/client';
-import { MDXModule } from 'mdx/types';
+import type { Note, ObjectToMap } from '@/library';
 
-const RandomNote: RouteComponent<PageMeta<MDXModule>> = () => {
+const RandomNote: RouteComponent<PageMeta<Note>> = () => {
   const router = useRouter();
   const currentRoute = router.getCurrentRoute();
-  const metadata = currentRoute.value.metadata;
-  const content = metadata.get('misc') as MDXModule;
+  const metadata = currentRoute.value.metadata as ObjectToMap<PageMeta<Note>>;
+  const content = metadata.get('misc');
+
+  if (!content) {
+    return <div>Error: Could not read note content.</div>;
+  }
 
   return (
     <div
@@ -27,7 +31,7 @@ const RandomNote: RouteComponent<PageMeta<MDXModule>> = () => {
 
 RandomNote.metadata = async (routeData) => {
   const id = routeData.params.get('id');
-  const content = await import(`@/content/markdown/${id}/page.mdx`);
+  const content = (await import(`@/content/markdown/${id}/page.mdx`)) as Note;
 
   return {
     title: `${content.title} - random notes`,
