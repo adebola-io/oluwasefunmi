@@ -8,6 +8,7 @@ export interface PlaneProps extends DivProps {
   animated?: JSX.ValueOrCell<boolean>;
   animationDelay?: JSX.ValueOrCell<string>;
   topLevel?: JSX.ValueOrCell<boolean>;
+  bare?: JSX.ValueOrCell<boolean>;
 }
 
 export const Plane = (props: PlaneProps) => {
@@ -20,13 +21,14 @@ export const Plane = (props: PlaneProps) => {
     animated,
     animationDelay = '0ms',
     noise,
+    bare,
     ...rest
   } = props;
 
   return (
     <div
       style={{ '--delay': animationDelay }}
-      class={['plane', containerClass, { animated, topLevel }]}
+      class={['plane', containerClass, { animated, topLevel, bare }]}
     >
       <div
         {...rest}

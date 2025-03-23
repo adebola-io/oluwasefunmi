@@ -186,6 +186,24 @@ body {
     }
   }
 
+  &.bare {
+    &::before {
+      clip-path: polygon(
+        0 0,
+        10px 0,
+        10px calc(100% - 10px),
+        100% calc(100% - 10px),
+        100% 100%,
+        0 100%
+      );
+      @apply bg-transparent;
+    }
+
+    & > .plane-content {
+      @apply bg-transparent;
+    }
+  }
+
   @apply relative [&>*]:relative;
   @apply before:block before:absolute before:top-[7px] before:left-[-7px];
   @apply before:w-full before:h-full before:bg-(--plane-backdrop-color,#B1B1B1) before:rounded-lg;

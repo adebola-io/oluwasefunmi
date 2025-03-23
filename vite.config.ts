@@ -1,5 +1,5 @@
-import { defineConfig, Plugin } from 'vite';
-import path, { resolve } from 'node:path';
+import { defineConfig } from 'vite';
+import path from 'node:path';
 import { retend } from 'retend/plugin';
 import { retendSSG } from 'retend-server/plugin';
 import tailwindcss from '@tailwindcss/vite';
@@ -11,7 +11,6 @@ const notes = fs
   .readdirSync('./content/markdown')
   .map((name) => `/random-notes/${name}`);
 
-// Combine base routes with markdown routes
 const pages = [
   '/',
   '/works',
@@ -27,7 +26,7 @@ export default defineConfig({
   },
   plugins: [
     tailwindcss(),
-    mdx({ jsxImportSource: 'retend', development: true }),
+    mdx({ jsxImportSource: 'retend' }),
     retend(),
     retendSSG({
       pages,

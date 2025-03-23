@@ -176,8 +176,8 @@ export const getNotesIndex = async () => {
       id: markdownContent.id,
       title: markdownContent.title,
       description: markdownContent.description,
-      date: markdownContent.date,
-    } as unknown as NotePreviewProps);
+      dateStr: markdownContent.dateStr,
+    });
   }
 
   return items.sort((a, b) => {
