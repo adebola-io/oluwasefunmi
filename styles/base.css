@@ -211,7 +211,7 @@ body {
       @apply max-md:opacity-0 max-md:[translate:3.5px_3.5px];
     }
 
-    @apply max-md:animate-hide-page max-md:[--tw-duration:calc(var(--duration)*3)];
+    @apply max-md:animate-hide-page max-md:[--tw-duration:calc(var(--duration)*3)] pointer-events-none;
   }
 }
 
@@ -219,7 +219,7 @@ body {
   @apply animate-fade-in;
 
   :root:has(#page-sidebar) & {
-    @apply max-md:animate-[var(--animate-fade-out),var(--animate-hide-page)];
+    @apply max-md:animate-[var(--animate-fade-out),var(--animate-hide-page)] pointer-events-none;
   }
 }
 
