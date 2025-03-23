@@ -22,7 +22,13 @@ const Contact: RouteComponent<PageMeta> = () => {
           Got a cool idea or a big dream? Don't just sit on it! Hit me up, and
           let's turn it into something awesome together! You can reach me at:
         </p>
-        <LargeText class="text-center [h1]:max-lg:text-[40px] [h1]:max-md:text-[1.5rem] [h1]:max-sm:text-[1.1rem] underline hover:text-link hover:scale-95 transition-[scale,color]">
+        <LargeText
+          underline
+          class={[
+            'text-center [h1]:max-lg:text-[40px] [h1]:max-md:text-[1.5rem] [h1]:max-sm:text-[1.1rem]',
+            'hover:text-link hover:scale-95 transition-[scale,color] view-transition-heading',
+          ]}
+        >
           <a href="mailto:adebolaakomolafe@gmail.com">
             adebolaakomolafe@gmail.com
           </a>

@@ -36,8 +36,14 @@ export function LargeText(props: LargeTextProps) {
   );
 }
 
-export function NoteHeadingText(props: HeadingTextProps) {
-  const { children, ...rest } = props;
+export function NoteHeadingText(props: HeadingTextProps & { noteId: string }) {
+  const { children, style, noteId, ...rest } = props;
+  const styles = {
+    viewTransitionName: `note-heading-${noteId}`,
+  };
+  if (typeof style === 'object') {
+    Object.assign(styles, style);
+  }
   return (
     <LargeText
       {...rest}
@@ -45,6 +51,7 @@ export function NoteHeadingText(props: HeadingTextProps) {
         'w-full underline text-left pb-0.25 animate-fade-in-from-bottom',
         rest.class,
       ]}
+      style={styles}
     >
       <span class="max-w-[500px]">{children}</span>
     </LargeText>

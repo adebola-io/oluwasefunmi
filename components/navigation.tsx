@@ -3,8 +3,11 @@ import { useRouter } from 'retend/router';
 import { LargeText } from '@/components/typography';
 
 export function Navigation() {
-  const { Link } = useRouter();
-  const sidebarIsOpen = Cell.source(false);
+  const router = useRouter();
+  const route = router.getCurrentRoute();
+  const sidebarIsOpen = Cell.derived(() => {
+    return route.value.query.get('sidebar') === 'open';
+  });
 
   const links = [
     {
@@ -29,8 +32,14 @@ export function Navigation() {
     // },
   ];
 
-  const toggleSidebar = () => {
-    sidebarIsOpen.value = !sidebarIsOpen.value;
+  const toggleSidebar = async () => {
+    router.useViewTransitions = false; // prevents interference with other animation.
+    await router.navigate(
+      sidebarIsOpen.value
+        ? route.value.path
+        : `${route.value.path}?sidebar=open`
+    );
+    router.useViewTransitions = true;
   };
 
   const Sidebar = () => {
@@ -41,7 +50,7 @@ export function Navigation() {
           class="fixed top-0 left-0 min-md:hidden w-screen h-screen grid py-4 px-2 gap-0.5 place-content-center"
         >
           {For(links, (link, index) => (
-            <Link
+            <router.Link
               style={{
                 animationDelay: `calc((var(--duration) * 0.5) + ${index.value} * var(--duration) * 0.25)`,
               }}
@@ -52,12 +61,11 @@ export function Navigation() {
                 'not-hover:before:delay-[calc(var(--duration)*.75)] hover:before:scale-100 [[active]]:before:scale-100',
               ]}
               href={link.path}
-              onAfterNavigate={toggleSidebar}
             >
               <LargeText class="not-[[active]>*]:font-normal">
                 {link.name}
               </LargeText>
-            </Link>
+            </router.Link>
           ))}
         </aside>
       );
@@ -73,7 +81,7 @@ export function Navigation() {
       ]}
     >
       {For(links, (link) => (
-        <Link
+        <router.Link
           class={[
             'inline-block pb-0.25 px-0.5 relative text-nowrap [[active]]:font-bold not-[[active]]:text-inactive-nav-link',
             'transition-[font-weight,color]',
@@ -84,14 +92,14 @@ export function Navigation() {
           href={link.path}
         >
           {link.name}
-        </Link>
+        </router.Link>
       ))}
-      <Link
+      <router.Link
         href="/home"
         class="font-bold underline ml-1 text-link min-md:hidden"
       >
         oluwasefunmi
-      </Link>
+      </router.Link>
       <button
         class={[
           'z-2 grid grid-rows-2 place-items-center justify-self-end w-2.5 h-2 mr-1 transition-transform duration-[calc(var(--duration)*2)]',

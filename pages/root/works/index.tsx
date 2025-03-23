@@ -14,7 +14,9 @@ const Works: RouteComponent<PageMeta> = () => {
       class="grid gap-4 max-md:gap-2 px-6 max-md:px-2 max-md:mb-4 py-6 max-md:py-4 other-backdrop"
     >
       <div class="grid gap-1 max-md:gap-0 max-md:text-center">
-        <LargeText underline>my projects.</LargeText>
+        <LargeText underline class="view-transition-heading">
+          my projects.
+        </LargeText>
         <p class="max-w-[600px]">
           Here's a curated collection of my works, highlighting my past
           achievements and current projects. This selection showcases my growth

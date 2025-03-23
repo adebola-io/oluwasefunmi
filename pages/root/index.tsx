@@ -7,7 +7,7 @@ import { useConsistent } from 'retend';
 const RootLayout: RouteComponent<PageMeta> = async () => {
   const { Outlet } = useRouter();
   const notes = await useConsistent('notes', getNotesIndex);
-  noteList.value = notes;
+  if (notes?.length) noteList.value = notes;
 
   return (
     <main

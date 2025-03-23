@@ -13,7 +13,7 @@ const RandomNotes: RouteComponent<PageMeta> = () => {
         'max-md:px-3 max-sm:px-1',
       ]}
     >
-      <LargeText underline class="mb-1">
+      <LargeText underline class="mb-1 view-transition-heading">
         random notes.
       </LargeText>
       <p class="max-w-[500px] mb-4">

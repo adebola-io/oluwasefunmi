@@ -17,7 +17,7 @@ export const dateStr = new Date(date).toLocaleDateString('en-US', {
 export const ogImage =
   'https://github.com/user-attachments/assets/bc5bc1f4-1ab9-40b3-9bbe-0b55798d1378';
 
-<NoteHeadingText>{title}</NoteHeadingText>
+<NoteHeadingText noteId={id}>{title}</NoteHeadingText>
 <NoteDetails>General | {dateStr}</NoteDetails>
 
 <NoteContent>
