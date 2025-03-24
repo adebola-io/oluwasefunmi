@@ -2,10 +2,15 @@ import { type RouteComponent, useRouter } from 'retend/router';
 import type { PageMeta } from 'retend-server/client';
 import { Navigation } from '@/components/navigation';
 import { getNotesIndex, noteList } from '@/library';
-import { useConsistent } from 'retend';
+import { Cell, useConsistent } from 'retend';
 
 const RootLayout: RouteComponent<PageMeta> = async () => {
-  const { Outlet } = useRouter();
+  const { Outlet, getCurrentRoute } = useRouter();
+  const route = getCurrentRoute();
+  const sidebarIsOpen = Cell.derived(() => {
+    return route.value.query.get('sidebar') === 'open';
+  });
+
   const notes = await useConsistent('notes', getNotesIndex);
   if (notes?.length) noteList.value = notes;
 
@@ -18,7 +23,7 @@ const RootLayout: RouteComponent<PageMeta> = async () => {
       ]}
     >
       <Navigation />
-      <Outlet />
+      <Outlet inert={sidebarIsOpen} />
     </main>
   );
 };
