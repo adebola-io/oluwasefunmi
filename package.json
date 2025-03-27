@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port 5229",
-    "build": "vite build",
+    "build": "vite build && echo \"https://www.adebola.online/ https://adebola.online/ 301\" > dist/_redirects",
     "preview": "vite preview"
   },
   "dependencies": {
