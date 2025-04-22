@@ -55,7 +55,7 @@ const Home: RouteComponent<PageMeta> = () => {
         >
           <LargeText
             style={{ animationDelay: timeline[2] }}
-            class="animate-fade-in-from-bottom view-transition-heading w-full"
+            class="animate-fade-in-from-bottom w-full"
             underline
           >
             oluwasefunmi.

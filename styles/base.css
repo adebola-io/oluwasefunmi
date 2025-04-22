@@ -89,10 +89,6 @@
   }
 }
 
-@utility view-transition-heading {
-  view-transition-name: page-heading;
-}
-
 a[data-inline] {
   @apply text-link underline;
 }
@@ -255,13 +251,11 @@ body {
 #note-article-container {
   #note-details {
     animation-delay: calc(var(--duration) * 0.35);
-    @apply supports-[view-transition-name:page-heading]:[animation-delay:calc(var(--duration)*0.75)];
   }
 
   #note-content {
     --starting-fade-position-y: 20px;
     animation-delay: calc(var(--duration) * 0.5);
-    @apply supports-[view-transition-name:page-heading]:[animation-delay:calc(var(--duration)*1)];
   }
 }
 

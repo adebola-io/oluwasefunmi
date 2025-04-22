@@ -10,12 +10,3 @@
 ::view-transition-group(*) {
   animation-duration: calc(var(--duration) * 1.25);
 }
-
-::view-transition-old(page-heading) {
-  animation: none;
-}
-::view-transition-new(page-heading),
-::view-transition-group(page-heading) {
-  width: fit-content;
-  height: fit-content;
-}
