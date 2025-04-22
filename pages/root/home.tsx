@@ -7,21 +7,21 @@ import { LinkButton } from '@/components/links-and-buttons';
 import { ShiftingLayout } from '@/components/shifting-layout';
 import { timeline } from '@/library';
 
-const { window } = getGlobalContext();
-// Preload routes.
-if (matchContext(window, Modes.Interactive)) {
-  const callback = () => {
-    import('./works/index.tsx');
-    import('./contact.tsx');
-    import('./random-notes/index.tsx');
-    import('./playground/index.tsx');
-  };
-  if ('requestIdleCallback' in window) {
-    window.requestIdleCallback(callback);
-  } else callback();
-}
-
 const Home: RouteComponent<PageMeta> = () => {
+  const { window } = getGlobalContext();
+  // Preload routes.
+  if (matchContext(window, Modes.Interactive)) {
+    const callback = () => {
+      import('./works/index.tsx');
+      import('./contact.tsx');
+      import('./random-notes/index.tsx');
+      import('./playground/index.tsx');
+    };
+    if ('requestIdleCallback' in window) {
+      window.requestIdleCallback(callback);
+    } else callback();
+  }
+
   return (
     <Plane
       animated
