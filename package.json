@@ -5,17 +5,16 @@
   "type": "module",
   "scripts": {
     "dev": "vite --port 5229",
-    "build": "vite build && echo \"https://www.adebola.online/ https://adebola.online/ 301\" > dist/_redirects",
+    "build": "vite build",
     "preview": "vite preview"
   },
   "dependencies": {
     "@mdx-js/rollup": "^3.1.0",
     "@tailwindcss/vite": "^4.0.12",
     "@types/mdx": "^2.0.13",
-    "retend": "https://pkg.pr.new/adebola-io/retend@b361bd2",
-    "retend-server": "https://pkg.pr.new/adebola-io/retend/retend-server@b361bd2",
-    "tailwindcss": "^4.0.12",
-    "vite-plugin-markdown": "^2.2.0"
+    "retend": "^0.0.9",
+    "retend-server": "^0.0.9",
+    "tailwindcss": "^4.0.12"
   },
   "devDependencies": {
     "@types/node": "latest",
