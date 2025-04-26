@@ -6,7 +6,7 @@ import { SiphonIcon } from '@/components/icons/siphon';
 import { SpryIcon } from '@/components/icons/spry';
 import { VizitlyIcon } from '@/components/icons/vizitly';
 import { WhirlwindIcon } from '@/components/icons/whirlwind';
-import type { NotePreviewProps } from '@/components/note-preview';
+import type { PlaygroundItemProps } from '@/components/playground-item';
 import type { MDXModule } from 'mdx/types';
 import { Cell } from 'retend';
 import type { JSX } from 'retend/jsx-runtime';
@@ -17,7 +17,7 @@ export const timeline = [
   'calc(var(--duration)*0.5)',
 ];
 
-export const noteList = Cell.source<NotePreviewProps[]>([]);
+export const playgroundItems = Cell.source<PlaygroundItemProps[]>([]);
 
 interface Project {
   id: number;
@@ -164,25 +164,3 @@ export interface ObjectToMap<Object extends object>
   has<U extends PropertyKey>(key: U): U extends keyof Object ? true : false;
   set<K extends keyof Object>(key: K, value: Object[K]): this;
 }
-
-export const getNotesIndex = async () => {
-  const items: NotePreviewProps[] = [];
-  const files = import.meta.glob('@/content/markdown/*/page.mdx');
-
-  for (const file in files) {
-    const component = files[file];
-    const markdownContent = (await component()) as Note;
-    items.push({
-      id: markdownContent.id,
-      title: markdownContent.title,
-      description: markdownContent.description,
-      dateStr: markdownContent.dateStr,
-    });
-  }
-
-  return items.sort((a, b) => {
-    const id = a.id?.split('-').slice(0, -1).join('-');
-    const id2 = b.id?.split('-').slice(0, -1).join('-');
-    return Number(id) - Number(id2);
-  });
-};

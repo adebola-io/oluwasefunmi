@@ -1,18 +1,14 @@
 import { type RouteComponent, useRouter } from 'retend/router';
 import type { PageMeta } from 'retend-server/client';
 import { Navigation } from '@/components/navigation';
-import { getNotesIndex, noteList } from '@/library';
-import { Cell, useConsistent } from 'retend';
+import { Cell } from 'retend';
 
 const RootLayout: RouteComponent<PageMeta> = async () => {
   const { Outlet, getCurrentRoute } = useRouter();
   const route = getCurrentRoute();
   const sidebarIsOpen = Cell.derived(() => {
-    return route.value.query.get('sidebar') === 'open';
+    return route.get().query.get('sidebar') === 'open';
   });
-
-  const notes = await useConsistent('notes', getNotesIndex);
-  if (notes?.length) noteList.value = notes;
 
   return (
     <main

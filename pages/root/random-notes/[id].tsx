@@ -5,7 +5,7 @@ import type { Note, ObjectToMap } from '@/library';
 const RandomNote: RouteComponent<PageMeta<Note>> = () => {
   const router = useRouter();
   const currentRoute = router.getCurrentRoute();
-  const metadata = currentRoute.value.metadata as ObjectToMap<PageMeta<Note>>;
+  const metadata = currentRoute.get().metadata as ObjectToMap<PageMeta<Note>>;
   const content = metadata.get('misc');
 
   if (!content) {

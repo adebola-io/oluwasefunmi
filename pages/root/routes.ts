@@ -6,6 +6,7 @@ import {
 } from 'retend/router';
 import RootLayout from '.';
 import Home from './home';
+import { playgroundRoutes } from './playground/playground.routes.ts';
 
 export const rootRoutes = defineRoute({
   name: 'Website Root',
@@ -29,27 +30,16 @@ export const rootRoutes = defineRoute({
       component: lazy(() => import('./contact.tsx')),
     },
     {
-      name: 'Website Random Notes',
       path: 'random-notes',
-      redirect: '/random-notes/index',
-      children: [
-        {
-          name: 'Website Random Notes Index',
-          path: 'index',
-          component: lazy(() => import('./random-notes/index.tsx')),
-        },
-        {
-          name: 'Website Random Note Page',
-          path: ':id',
-          component: lazy(() => import('./random-notes/[id].tsx')),
-        },
-      ],
+      name: 'Website Random Notes Index',
+      component: lazy(() => import('./random-notes/index.tsx')),
     },
-    // {
-    //   name: 'Website Playground',
-    //   path: 'playground',
-    //   component: lazy(() => import('./playground/index.tsx')),
-    // },
+    {
+      name: 'Website Random Note Page',
+      path: 'random-notes/:id',
+      component: lazy(() => import('./random-notes/[id].tsx')),
+    },
+    ...playgroundRoutes,
   ],
 });
 

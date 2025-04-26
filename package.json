@@ -12,8 +12,9 @@
     "@mdx-js/rollup": "^3.1.0",
     "@tailwindcss/vite": "^4.0.12",
     "@types/mdx": "^2.0.13",
-    "retend": "^0.0.10",
-    "retend-server": "^0.0.10",
+    "retend": "https://pkg.pr.new/resuite/retend@8503f6c",
+    "retend-server": "https://pkg.pr.new/resuite/retend/retend-server@8503f6c",
+    "retend-utils": "^0.0.10",
     "tailwindcss": "^4.0.12"
   },
   "devDependencies": {

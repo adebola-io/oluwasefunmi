@@ -1,11 +1,11 @@
 import { For } from 'retend';
 import type { RouteComponent } from 'retend/router';
-import type { PageMeta } from 'retend-server/client';
+import { getServerSnapshot, type PageMeta } from 'retend-server/client';
 import { NotePreview } from '@/components/note-preview';
 import { LargeText } from '@/components/typography';
-import { noteList } from '@/library';
 
-const RandomNotes: RouteComponent<PageMeta> = () => {
+const RandomNotes: RouteComponent<PageMeta> = async () => {
+  const snapshot = await getServerSnapshot(() => import('@/server/data'));
   return (
     <div
       class={[
@@ -21,7 +21,7 @@ const RandomNotes: RouteComponent<PageMeta> = () => {
         have decided to write down. Anything about life, technology and
         consequence.
       </p>
-      <ul>{For(noteList, NotePreview)}</ul>
+      <ul>{For(snapshot.noteList, NotePreview)}</ul>
     </div>
   );
 };

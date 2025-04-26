@@ -6,7 +6,7 @@ export function Navigation() {
   const router = useRouter();
   const route = router.getCurrentRoute();
   const sidebarIsOpen = Cell.derived(() => {
-    return route.value.query.get('sidebar') === 'open';
+    return route.get().query.get('sidebar') === 'open';
   });
 
   const links = [
@@ -26,18 +26,18 @@ export function Navigation() {
       name: 'random notes',
       path: '/random-notes',
     },
-    // {
-    //   name: 'playground',
-    //   path: '/playground',
-    // },
+    {
+      name: 'playground',
+      path: '/playground',
+    },
   ];
 
   const toggleSidebar = async () => {
     router.useViewTransitions = false; // prevents interference with other animation.
     await router.navigate(
-      sidebarIsOpen.value
-        ? route.value.path
-        : `${route.value.path}?sidebar=open`
+      sidebarIsOpen.get()
+        ? route.get().path
+        : `${route.get().path}?sidebar=open`
     );
     router.useViewTransitions = true;
   };
@@ -52,7 +52,7 @@ export function Navigation() {
           {For(links, (link, index) => (
             <router.Link
               style={{
-                animationDelay: `calc((var(--duration) * 0.5) + ${index.value} * var(--duration) * 0.25)`,
+                animationDelay: `calc((var(--duration) * 0.5) + ${index.get()} * var(--duration) * 0.25)`,
               }}
               class={[
                 'pb-0.25 px-0.5 relative text-nowrap [[active]]:font-bold not-[[active]]:text-inactive-nav-link',
@@ -76,30 +76,36 @@ export function Navigation() {
     <nav
       id="page-nav"
       class={[
-        'relative grid grid-cols-[repeat(5,auto)_1fr] gap-2 [&>*]:[align-self:center] h-4',
+        'relative grid grid-cols-[repeat(5,auto)_1fr] gap-2 h-4',
         'max-md:h-2 max-md:grid-cols-2',
       ]}
     >
-      {For(links, (link) => (
-        <router.Link
-          class={[
-            'inline-block pb-0.25 px-0.5 relative text-nowrap [[active]]:font-bold not-[[active]]:text-inactive-nav-link',
-            'transition-[font-weight,color]',
-            'before:block before:absolute before:bottom-0 before:w-full before:h-[2px] before:rounded-xl before:bg-stroke not-[[active]]:before:bg-inactive-nav-link before:scale-[0_1] before:transition-[scale] before:[transform-origin:0%_0%]',
-            'not-hover:before:delay-[calc(var(--duration)*.75)] hover:before:scale-100 [[active]]:before:scale-100',
-            'max-md:hidden',
-          ]}
-          href={link.path}
-        >
-          {link.name}
-        </router.Link>
-      ))}
-      <router.Link
-        href="/home"
-        class="font-bold underline ml-1 text-link min-md:hidden"
-      >
-        oluwasefunmi
-      </router.Link>
+      <ul class="contents [&>*>*]:[align-self:center]">
+        {For(links, (link) => (
+          <li class="contents">
+            <router.Link
+              class={[
+                'inline-block pb-0.25 px-0.5 relative text-nowrap [[active]]:font-bold not-[[active]]:text-inactive-nav-link',
+                'transition-[font-weight,color]',
+                'before:block before:absolute before:bottom-0 before:w-full before:h-[2px] before:rounded-xl before:bg-stroke not-[[active]]:before:bg-inactive-nav-link before:scale-[0_1] before:transition-[scale] before:[transform-origin:0%_0%]',
+                'not-hover:before:delay-[calc(var(--duration)*.75)] hover:before:scale-100 [[active]]:before:scale-100',
+                'max-md:hidden',
+              ]}
+              href={link.path}
+            >
+              {link.name}
+            </router.Link>
+          </li>
+        ))}
+        <li class="contents">
+          <router.Link
+            href="/home"
+            class="font-bold underline ml-1 text-link min-md:hidden"
+          >
+            oluwasefunmi
+          </router.Link>
+        </li>
+      </ul>
       <button
         class={[
           'z-2 grid grid-rows-2 place-items-center justify-self-end w-2.5 h-2 mr-1 transition-transform duration-[calc(var(--duration)*2)]',

@@ -21,5 +21,12 @@
     },
     "skipLibCheck": true
   },
-  "include": ["components", "pages", "router.ts", "main.ts", "content"]
+  "include": [
+    "components",
+    "pages",
+    "router.ts",
+    "main.ts",
+    "content",
+    "server"
+  ]
 }
