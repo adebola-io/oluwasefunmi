@@ -1,11 +1,11 @@
-import { useRouter, type RouteComponent } from 'retend/router';
+import { type RouteComponent, ObjectToMap, useRouter } from 'retend/router';
 import type { PageMeta } from 'retend-server/client';
-import type { Note, ObjectToMap } from '@/library';
+import type { Note } from '@/library';
 
 const RandomNote: RouteComponent<PageMeta<Note>> = () => {
   const router = useRouter();
   const currentRoute = router.getCurrentRoute();
-  const metadata = currentRoute.value.metadata as ObjectToMap<PageMeta<Note>>;
+  const metadata = currentRoute.get().metadata as ObjectToMap<PageMeta<Note>>;
   const content = metadata.get('misc');
 
   if (!content) {
@@ -19,7 +19,7 @@ const RandomNote: RouteComponent<PageMeta<Note>> = () => {
     >
       <article
         class={[
-          'relative [&_p]:text-[1rem] [&_p]:my-1 max-w-[700px] max-md:max-w-[500px]',
+          'relative [&_p]:text-[.9rem] [&_p]:my-1 max-w-[700px] max-md:max-w-[500px]',
           '[&_ul]:list-disc [&_ul]:pl-2',
         ]}
       >

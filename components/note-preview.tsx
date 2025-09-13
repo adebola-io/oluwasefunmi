@@ -1,6 +1,6 @@
-import type { Cell } from 'retend';
-import { useRouter } from 'retend/router';
-import { Plane } from '@/components/plane';
+import type { Cell } from "retend";
+import { useRouter } from "retend/router";
+import { Plane } from "@/components/plane";
 
 export interface NotePreviewProps {
   id: string;
@@ -19,11 +19,11 @@ export const NotePreview = (props: NotePreviewProps, index: Cell<number>) => {
         bare
         elevateOnHover
         container:class="before:border-stroke before:border-[2.76px] before:border-dashed"
-        style={{ animationDelay: `calc(var(--duration)*${index.value}*0.75)` }}
+        style={{ animationDelay: `calc(var(--duration)*${index.get()}*0.75)` }}
         class={[
-          'bg-transparent text-left max-w-[500px] rounded-lg',
-          'border-stroke border-[2.76px] border-dashed',
-          'animate-fade-in opacity-90 [animation-duration:calc(var(--duration)*2)]',
+          "bg-transparent text-left max-w-[500px] rounded-lg",
+          "border-stroke border-[2.76px] border-dashed",
+          "animate-fade-in opacity-90 [animation-duration:calc(var(--duration)*2)]",
         ]}
       >
         <Link

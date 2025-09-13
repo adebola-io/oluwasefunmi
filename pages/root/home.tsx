@@ -1,10 +1,10 @@
+import { getGlobalContext, Modes, matchContext } from 'retend/context';
 import type { RouteComponent } from 'retend/router';
 import type { PageMeta } from 'retend-server/client';
-import { getGlobalContext, matchContext, Modes } from 'retend/context';
-import { Plane } from '@/components/plane';
-import { Emphasis, LargeText } from '@/components/typography';
 import { LinkButton } from '@/components/links-and-buttons';
+import { Plane } from '@/components/plane';
 import { ShiftingLayout } from '@/components/shifting-layout';
+import { Emphasis, LargeText } from '@/components/typography';
 import { timeline } from '@/library';
 
 const Home: RouteComponent<PageMeta> = () => {

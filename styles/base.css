@@ -2,273 +2,261 @@
 @import './transitions.css';
 
 @font-face {
-  font-family: 'Liga DM Mono';
-  font-style: normal;
-  font-weight: 300;
-  src: url(../assets/fonts/LIGADMMONOLIGHT-LIGHT.TTF);
+    font-family: 'Consolas';
+    font-style: normal;
+    font-weight: 400;
+    src: url(../assets/fonts/consola.ttf);
 }
 
 @font-face {
-  font-family: 'Liga DM Mono';
-  font-style: normal;
-  font-weight: 400;
-  src: url(../assets/fonts/LIGADMMONO-REGULAR.TTF);
+    font-family: 'Consolas';
+    font-style: normal;
+    font-weight: 600;
+    src: url(../assets/fonts/consolab.ttf);
 }
 
 @font-face {
-  font-family: 'Liga DM Mono';
-  font-style: normal;
-  font-weight: 600;
-  src: url(../assets/fonts/LIGADMMONOMEDIUM-MEDIUM.TTF);
-}
-
-@font-face {
-  font-family: 'Liga DM Mono';
-  font-style: italic;
-  font-weight: 400;
-  src: url(../assets/fonts/LIGADMMONO-ITALIC.TTF);
+    font-family: 'Monaspace Neon';
+    font-style: italic;
+    font-weight: 400;
+    src: url(../assets/fonts/consolai.ttf);
 }
 
 @theme {
-  --spacing: 12.5px;
-  --duration: 200ms;
-  --tw-duration: var(--duration);
-  --animate-fade-in: fade-in var(--duration) backwards;
-  --animate-fade-out: fade-out var(--duration) backwards;
-  --animate-condense: condense var(--duration) backwards;
-  --animate-expand: expand calc(var(--duration) * 1.25) backwards;
-  --animate-expand-in: expand-in calc(var(--duration) * 1.25) backwards;
-  --animate-fade-in-from-bottom: fade-in-from-bottom
-    calc(var(--duration) * 1.25) backwards;
-  --color-text: #504f4f;
-  --color-stroke: #727272;
-  --color-heading: #555555;
-  --color-solid: #e1e1e1;
-  --color-emphasis: #646464;
-  --color-link: #707070;
-  --color-inactive-nav-link: #56565685;
+    --spacing: 12.5px;
+    --duration: 200ms;
+    --tw-duration: var(--duration);
+    --animate-fade-in: fade-in var(--duration) backwards;
+    --animate-fade-out: fade-out var(--duration) backwards;
+    --animate-condense: condense var(--duration) backwards;
+    --animate-expand: expand calc(var(--duration) * 1.25) backwards;
+    --animate-expand-in: expand-in calc(var(--duration) * 1.25) backwards;
+    --animate-fade-in-from-bottom: fade-in-from-bottom
+        calc(var(--duration) * 1.25) backwards;
+    --color-text: #504f4f;
+    --color-stroke: #727272;
+    --color-heading: #555555;
+    --color-solid: #e1e1e1;
+    --color-emphasis: #646464;
+    --color-link: #707070;
+    --color-inactive-nav-link: #56565685;
 
-  @keyframes fade-in {
-    from {
-      opacity: 0;
+    @keyframes fade-in {
+        from {
+            opacity: 0;
+        }
     }
-  }
 
-  @keyframes fade-out {
-    to {
-      opacity: 0;
+    @keyframes fade-out {
+        to {
+            opacity: 0;
+        }
     }
-  }
 
-  @keyframes fade-in-from-bottom {
-    from {
-      opacity: 0;
-      transform: translateY(var(--starting-fade-position-y, 10%));
+    @keyframes fade-in-from-bottom {
+        from {
+            opacity: 0;
+            transform: translateY(var(--starting-fade-position-y, 10%));
+        }
     }
-  }
 
-  @keyframes expand {
-    from {
-      scale: 0.8;
+    @keyframes expand {
+        from {
+            scale: 0.8;
+        }
     }
-  }
 
-  @keyframes expand-in {
-    from {
-      opacity: 0;
-      scale: 0.75;
-      translate: 0 20px;
+    @keyframes expand-in {
+        from {
+            opacity: 0;
+            scale: 0.75;
+            translate: 0 20px;
+        }
     }
-  }
 
-  @keyframes condense {
-    from {
-      opacity: 0;
-      translate: 10px -10px;
+    @keyframes condense {
+        from {
+            opacity: 0;
+            translate: 10px -10px;
+        }
     }
-  }
 }
 
 a[data-inline] {
-  @apply text-link underline;
+    @apply text-link underline;
 }
 
 body {
-  /* user-select: none; */
-  letter-spacing: -1.5px;
-  word-spacing: -0.1ch;
-
-  font-family: 'Liga DM Mono', 'DM Mono', Consolas, monospace, sans-serif;
-  font-size: 1.15rem;
-  @apply text-text max-sm:text-sm max-sm:tracking-tight;
-}
-
-* {
-  overscroll-behavior: none;
+    word-spacing: -0.1ch;
+    font-family: Consolas, monospace, sans-serif;
+    font-size: 1rem;
+    @apply text-text max-sm:text-sm;
 }
 
 ::selection {
-  background-color: var(--color-solid);
+    background-color: var(--color-solid);
 }
 
 .grid-center {
-  place-content: center;
-  place-items: center;
+    place-content: center;
+    place-items: center;
 }
 
 .home-backdrop {
-  background-image: url(../assets/backdrop.svg);
-  background-repeat: no-repeat;
-  background-size: cover;
+    background-image: url(../assets/backdrop.svg);
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
 .other-backdrop {
-  background-image: url(../assets/backdrop-lines.svg);
-  background-size: 100%;
+    background-image: url(../assets/backdrop-lines.svg);
+    background-size: 100%;
 }
 
 .background {
-  background-image: linear-gradient(to bottom right, #eeeeee, #eaeaea),
-    radial-gradient(#00000015, #f1f1f1);
+    background-image:
+        linear-gradient(to bottom right, #eeeeee, #eaeaea),
+        radial-gradient(#00000015, #f1f1f1);
 }
 
 .noise {
-  position: relative;
+    position: relative;
 
-  &::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
-    opacity: 50%;
-    background-image: url(../assets/noise.webp);
-    content: '';
-  }
+    &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        opacity: 50%;
+        background-image: url(../assets/noise.webp);
+        content: '';
+    }
 }
 
-.background-noise {
-  position: relative;
+@utility background-noise {
+    position: relative;
 
-  &::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    display: block;
-    width: 100%;
-    height: 100%;
-    opacity: 31%;
-    background-image: url(../assets/noise.webp),
-      linear-gradient(to bottom right, #eeeeee, #eaeaea),
-      radial-gradient(#00000015, #f1f1f1);
-    content: '';
-  }
+    &::before {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        width: 100%;
+        height: 100%;
+        opacity: 31%;
+        background-image:
+            url(../assets/noise.webp),
+            linear-gradient(to bottom right, #eeeeee, #eaeaea),
+            radial-gradient(#00000015, #f1f1f1);
+        content: '';
+    }
 }
 
 .plane {
-  &.animated {
-    --speed: calc(var(--duration) * 1.75);
+    &.animated {
+        --speed: calc(var(--duration) * 1.75);
 
-    &::before {
-      animation: plane-backdrop var(--speed) var(--delay) ease backwards;
+        &::before {
+            animation: plane-backdrop var(--speed) var(--delay) ease backwards;
+        }
+
+        & > .plane-content {
+            animation: plane-content-animation var(--speed) var(--delay) ease
+                backwards;
+        }
     }
 
-    & > .plane-content {
-      animation: plane-content-animation var(--speed) var(--delay) ease
-        backwards;
-    }
-  }
+    &.bare {
+        &::before {
+            clip-path: polygon(
+                0 0,
+                10px 0,
+                10px calc(100% - 10px),
+                100% calc(100% - 10px),
+                100% 100%,
+                0 100%
+            );
+            @apply bg-transparent;
+        }
 
-  &.bare {
-    &::before {
-      clip-path: polygon(
-        0 0,
-        10px 0,
-        10px calc(100% - 10px),
-        100% calc(100% - 10px),
-        100% 100%,
-        0 100%
-      );
-      @apply bg-transparent;
+        & > .plane-content {
+            @apply bg-transparent;
+        }
     }
 
-    & > .plane-content {
-      @apply bg-transparent;
-    }
-  }
-
-  @apply relative [&>*]:relative;
-  @apply before:block before:absolute before:top-[7px] before:left-[-7px];
-  @apply before:w-full before:h-full before:bg-(--plane-backdrop-color,#B1B1B1) before:rounded-lg;
-  @apply transition-transform before:transition-[transform,opacity,background-color];
-  @apply not-[:has(&>:active)]:active:before:translate-x-[3.5px] not-[:has(&>:active)]:active:before:translate-y-[-3.5px] not-[:has(&>:active)]:active:translate-x-[-1.75px] not-[:has(&>:active)]:active:translate-y-[1.75px];
+    @apply relative [&>*]:relative;
+    @apply before:block before:absolute before:top-[7px] before:left-[-7px];
+    @apply before:w-full before:h-full before:bg-(--plane-backdrop-color,#B1B1B1) before:rounded-lg;
+    @apply transition-transform before:transition-[transform,opacity,background-color];
+    @apply not-[:has(&>:active)]:active:before:translate-x-[3.5px] not-[:has(&>:active)]:active:before:translate-y-[-3.5px] not-[:has(&>:active)]:active:translate-x-[-1.75px] not-[:has(&>:active)]:active:translate-y-[1.75px];
 }
 
 :root:has(#page-sidebar) {
-  @apply max-md:overflow-hidden max-md:w-[100dvw] max-md:h-[100dvh];
+    @apply max-md:overflow-hidden max-md:w-[100dvw] max-md:h-[100dvh];
 }
 
 .topLevel {
-  & > .plane-content {
-    @apply transition-[translate,opacity];
-  }
-
-  :root:has(#page-sidebar) & {
     & > .plane-content {
-      @apply max-md:opacity-0 max-md:[translate:-3.5px_3.5px];
+        @apply transition-[translate,opacity];
     }
 
-    &::before {
-      @apply max-md:opacity-0 max-md:[translate:3.5px_3.5px];
-    }
+    :root:has(#page-sidebar) & {
+        & > .plane-content {
+            @apply max-md:opacity-0 max-md:[translate:-3.5px_3.5px];
+        }
 
-    @apply max-md:[--tw-duration:calc(var(--duration)*3)] pointer-events-none;
-  }
+        &::before {
+            @apply max-md:opacity-0 max-md:[translate:3.5px_3.5px];
+        }
+
+        @apply max-md:[--tw-duration:calc(var(--duration)*3)] pointer-events-none;
+    }
 }
 
 .top-level-bare {
-  @apply animate-fade-in transition-opacity;
+    @apply animate-fade-in transition-opacity;
 
-  :root:has(#page-sidebar) & {
-    @apply max-md:opacity-0 pointer-events-none;
-  }
+    :root:has(#page-sidebar) & {
+        @apply max-md:opacity-0 pointer-events-none;
+    }
 }
 
 #page-nav {
-  :root:has(#note-article-container) & {
-    backdrop-filter: saturate(100%) blur(3px);
-    @apply z-2 fixed top-0 left-0 w-full h-fit max-h-5 min-md:pt-3 py-2 px-4 max-md:px-1 ml-0;
-  }
+    :root:has(#note-article-container) & {
+        backdrop-filter: saturate(100%) blur(3px);
+        @apply z-2 fixed top-0 left-0 w-full h-fit max-h-5 min-md:pt-3 py-2 px-4 max-md:px-1 ml-0;
+    }
 }
 
 #page-main {
-  :root:has(#note-article-container) & {
-    @apply max-md:pt-4;
-  }
+    :root:has(#note-article-container) & {
+        @apply max-md:pt-4;
+    }
 }
 
 #note-article-container {
-  #note-details {
-    animation-delay: calc(var(--duration) * 0.35);
-  }
+    #note-details {
+        animation-delay: calc(var(--duration) * 0.35);
+    }
 
-  #note-content {
-    --starting-fade-position-y: 20px;
-    animation-delay: calc(var(--duration) * 0.5);
-  }
+    #note-content {
+        --starting-fade-position-y: 20px;
+        animation-delay: calc(var(--duration) * 0.5);
+    }
 }
 
 @keyframes plane-backdrop {
-  from {
-    opacity: 0;
-    translate: 0px 0px;
-  }
+    from {
+        opacity: 0;
+        translate: 0px 0px;
+    }
 }
 
 @keyframes plane-content-animation {
-  from {
-    opacity: 0;
-    translate: -7px 7px;
-  }
+    from {
+        opacity: 0;
+        translate: -7px 7px;
+    }
 }

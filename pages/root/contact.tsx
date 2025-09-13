@@ -25,7 +25,7 @@ const Contact: RouteComponent<PageMeta> = () => {
         <LargeText
           underline
           class={[
-            'text-center [h1]:max-lg:text-[40px] [h1]:max-md:text-[1.5rem] [h1]:max-sm:text-[1.1rem]',
+            'text-center [h1]:max-lg:text-[40px] [h1]:max-md:text-[1.5rem] [h1]:max-sm:text-[1rem]',
             'hover:text-link hover:scale-95 transition-[scale,color]',
           ]}
         >

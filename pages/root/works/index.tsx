@@ -1,10 +1,10 @@
 import { For } from 'retend';
 import type { RouteComponent } from 'retend/router';
 import type { PageMeta } from 'retend-server/client';
+import { ArrowIcon } from '@/components/icons/arrow';
 import { Plane } from '@/components/plane';
 import { ItemNameText, LargeText, SmallText } from '@/components/typography';
-import { timeline, projects } from '@/library';
-import { ArrowIcon } from '@/components/icons/arrow';
+import { projects, timeline } from '@/library';
 
 const Works: RouteComponent<PageMeta> = () => {
   return (

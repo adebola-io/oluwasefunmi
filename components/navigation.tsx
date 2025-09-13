@@ -1,31 +1,17 @@
-import { Cell, For, If } from 'retend';
-import { useRouter } from 'retend/router';
+import { For, If } from 'retend';
+import { useRouteQuery, useRouter } from 'retend/router';
 import { LargeText } from '@/components/typography';
 
 export function Navigation() {
   const router = useRouter();
-  const route = router.getCurrentRoute();
-  const sidebarIsOpen = Cell.derived(() => {
-    return route.value.query.get('sidebar') === 'open';
-  });
+  const query = useRouteQuery();
+  const sidebarIsOpen = query.has('sidebar');
 
   const links = [
-    {
-      name: 'home',
-      path: '/home',
-    },
-    {
-      name: 'works',
-      path: '/works',
-    },
-    {
-      name: 'contact',
-      path: '/contact',
-    },
-    {
-      name: 'random notes',
-      path: '/random-notes',
-    },
+    { name: 'home', path: '/' },
+    { name: 'works', path: '/works' },
+    { name: 'contact', path: '/contact' },
+    { name: 'random notes', path: '/random-notes' },
     // {
     //   name: 'playground',
     //   path: '/playground',
@@ -34,11 +20,11 @@ export function Navigation() {
 
   const toggleSidebar = async () => {
     router.useViewTransitions = false; // prevents interference with other animation.
-    await router.navigate(
-      sidebarIsOpen.value
-        ? route.value.path
-        : `${route.value.path}?sidebar=open`
-    );
+    if (sidebarIsOpen.get()) {
+      await query.delete('sidebar');
+    } else {
+      await query.append('sidebar', 'open');
+    }
     router.useViewTransitions = true;
   };
 
@@ -51,8 +37,9 @@ export function Navigation() {
         >
           {For(links, (link, index) => (
             <router.Link
+              replace
               style={{
-                animationDelay: `calc((var(--duration) * 0.5) + ${index.value} * var(--duration) * 0.25)`,
+                animationDelay: `calc((var(--duration) * 0.5) + ${index.get()} * var(--duration) * 0.25)`,
               }}
               class={[
                 'pb-0.25 px-0.5 relative text-nowrap [[active]]:font-bold not-[[active]]:text-inactive-nav-link',
@@ -95,7 +82,7 @@ export function Navigation() {
         </router.Link>
       ))}
       <router.Link
-        href="/home"
+        href="/"
         class="font-bold underline ml-1 text-link min-md:hidden"
       >
         oluwasefunmi
