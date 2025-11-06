@@ -94,7 +94,7 @@ const Home: RouteComponent<PageMeta> = () => {
             ,{' '}
             <a
               data-inline
-              href="https://dev.enjoyyourday.live"
+              href="https://enjoy-your-day.pages.dev"
               rel="noreferrer"
               target="__blank"
             >

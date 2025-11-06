@@ -44,7 +44,7 @@ export const projects: Project[] = [
     id: 1,
     name: 'enjoy your day',
     description: 'Fast progressive web app for tracking daily goals.',
-    link: 'https://dev.enjoyyourday.live',
+    link: 'https://enjoy-your-day.pages.dev',
     class: [
       'col-span-4',
       '[--primary-color:var(--color-text)] [--icon-opacity:.2]',
