@@ -1,0 +1,8 @@
+.app {
+    display: grid;
+    place-items: center;
+    place-content: center;
+    height: 100dvh;
+    width: 100dvw;
+    box-sizing: border-box;
+}

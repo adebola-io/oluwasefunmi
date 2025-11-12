@@ -1,0 +1,21 @@
+{
+  "name": "curved-3d-surfaces",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --port 5229",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "retend": "https://pkg.pr.new/resuite/retend@1b2c5f5",
+    "retend-server": "https://pkg.pr.new/resuite/retend/retend-server@1b2c5f5",
+    "retend-utils": "https://pkg.pr.new/resuite/retend/retend-utils@1b2c5f5"
+  },
+  "devDependencies": {
+    "vite": "^6.2.1",
+    "typescript": "^5.5.2",
+    "@types/node": "latest"
+  }
+}

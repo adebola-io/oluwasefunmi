@@ -1,0 +1,123 @@
+.box {
+    display: grid;
+    grid: 1fr / 1fr;
+    place-items: center;
+    transform-style: preserve-3d;
+    container: box inline-size;
+    --surface: #a50469;
+    --box-height-px: calc(var(--box-height) * 1px);
+    --box-width-px: calc(var(--box-width) * 1px);
+    --box-depth-px: calc(var(--box-depth) * 1px);
+    --box-curve-px: calc(var(--box-curve) * 1px);
+
+    --cs-height: calc(var(--box-height) - var(--box-curve));
+    --cs-width: var(--box-width);
+    --cs-diagonal: sqrt(pow(var(--cs-width), 2) + pow(var(--cs-height), 2));
+    --cs-angle: calc(90deg - atan2(var(--cs-height), var(--cs-width)));
+
+    --ce-width: calc(var(--box-width) - var(--box-curve));
+    --ce-height: var(--box-height);
+    --ce-diagonal: sqrt(pow(var(--ce-width), 2) + pow(var(--ce-height), 2));
+    --ce-angle: calc(90deg - atan2(var(--ce-height), var(--ce-width)));
+
+    & > * {
+        grid-area: 1 / 1;
+        background-color: var(--surface);
+
+        &:not(.front, .back) {
+            filter: brightness(0.79);
+        }
+    }
+}
+
+.front,
+.frontBehind,
+.back,
+.backBehind {
+    height: var(--box-height-px);
+    width: var(--box-width-px);
+    border-radius: var(--box-curve-px);
+}
+
+.left,
+.right {
+    height: calc(var(--box-height-px) - var(--box-curve-px) * 2);
+    width: var(--box-depth-px);
+}
+
+.top,
+.bottom {
+    width: calc(var(--box-width-px) - var(--box-curve-px) * 2);
+    height: var(--box-depth-px);
+}
+
+.front {
+    transform: translateZ(calc(var(--box-depth-px) / 2));
+}
+
+.frontBehind {
+    transform: translateZ(calc(var(--box-depth-px) / 2 - 1px));
+}
+
+.back {
+    transform: translateZ(calc(var(--box-depth-px) / -2)) rotateY(180deg);
+}
+
+.backBehind {
+    transform: translateZ(calc(var(--box-depth-px) / -2 + 1px));
+}
+
+.left {
+    transform: rotateY(-90deg) translateZ(calc(var(--box-width-px) / 2));
+}
+
+.right {
+    transform: rotateY(90deg) translateZ(calc(var(--box-width-px) / 2));
+}
+
+.top {
+    transform: rotateX(90deg) translateZ(calc(var(--box-height-px) / 2));
+}
+
+.bottom {
+    transform: rotateX(-90deg) translateZ(calc(var(--box-height-px) / 2));
+}
+
+.centerX {
+    height: var(--box-depth-px);
+    width: var(--box-width-px);
+    transform: rotateX(90deg);
+}
+
+.centerY {
+    height: var(--box-height-px);
+    width: var(--box-depth-px);
+    transform: rotateY(-90deg);
+}
+
+.diagonalLeftToRightCurveStart,
+.diagonalRightToLeftCurveStart,
+.diagonalLeftToRightCurveEnd,
+.diagonalRightToLeftCurveEnd {
+    width: var(--box-depth-px);
+}
+
+.diagonalRightToLeftCurveStart {
+    height: calc(var(--cs-diagonal) * 1px - var(--box-curve-px) / 4.5);
+    transform: rotateY(-90deg) rotateX(var(--cs-angle));
+}
+
+.diagonalLeftToRightCurveStart {
+    height: calc(var(--cs-diagonal) * 1px - var(--box-curve-px) / 4.5);
+    transform: rotateY(90deg) rotateX(var(--cs-angle));
+}
+
+.diagonalRightToLeftCurveEnd {
+    height: calc(var(--ce-diagonal) * 1px - var(--box-curve-px) / 4.5);
+    transform: rotateY(-90deg) rotateX(var(--ce-angle));
+}
+
+.diagonalLeftToRightCurveEnd {
+    height: calc(var(--ce-diagonal) * 1px - var(--box-curve-px) / 4.5);
+    transform: rotateY(90deg) rotateX(var(--ce-angle));
+}
