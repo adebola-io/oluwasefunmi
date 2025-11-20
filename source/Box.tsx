@@ -7,6 +7,8 @@ interface BoxProps extends DivProps {
   width?: JSX.ValueOrCell<number>;
   depth?: JSX.ValueOrCell<number>;
   curve?: JSX.ValueOrCell<number>;
+  color?: JSX.ValueOrCell<string>;
+  stroke?: JSX.ValueOrCell<number>;
 }
 
 export const Box = (props: BoxProps) => {
@@ -16,6 +18,8 @@ export const Box = (props: BoxProps) => {
     width = 100,
     depth = 100,
     curve = 40,
+    color = "#a50469",
+    stroke = 0,
     ...rest
   } = props;
 
@@ -23,7 +27,9 @@ export const Box = (props: BoxProps) => {
     "--box-height": height,
     "--box-width": width,
     "--box-depth": depth,
+    "--box-stroke": stroke,
     "--box-curve": curve,
+    "--surface": color,
   };
   if (rest.style) {
     Object.assign(style, rest.style);

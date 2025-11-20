@@ -4,14 +4,15 @@ import { Box } from "@/Box";
 import classes from "./App.module.css";
 
 const App = () => {
-  const rx = Cell.source(0);
-  const ry = Cell.source(0);
-  const rz = Cell.source(0);
+  const rx = Cell.source(25);
+  const ry = Cell.source(-35);
+  const rz = Cell.source(-0.5);
 
-  const height = Cell.source(200);
-  const width = Cell.source(200);
-  const depth = Cell.source(40);
-  const curve = Cell.source(0);
+  const height = Cell.source(354);
+  const width = Cell.source(354);
+  const depth = Cell.source(110);
+  const curve = Cell.source(0.05);
+  const color = Cell.source("#6074dd");
 
   const transform = Cell.derived(() => {
     return `rotateX(${rx.get()}deg) rotateY(${ry.get()}deg) rotateZ(${rz.get()}deg)`;
@@ -19,85 +20,60 @@ const App = () => {
 
   return (
     <div class={classes.app}>
-      <Box
-        style={{ transform }}
-        height={height}
-        width={width}
-        depth={depth}
-        curve={curve}
-      />
-      <br />
-      <br />
+      <div class={classes.container}>
+        <div class={classes.controls}>
+          <h2>Dimensions</h2>
+          <div class={classes.controlGroup}>
+            <label for="height">Height: {height}</label>
+            <Input id="height" type="range" min="0" max="1000" model={height} />
+          </div>
+          <div class={classes.controlGroup}>
+            <label for="width">Width: {width}</label>
+            <Input id="width" type="range" min="0" max="1000" model={width} />
+          </div>
+          <div class={classes.controlGroup}>
+            <label for="depth">Depth: {depth}</label>
+            <Input id="depth" type="range" min="0" max="1000" model={depth} />
+          </div>
+          <div class={classes.controlGroup}>
+            <label for="curve">Curve: {curve}</label>
+            <Input id="curve" type="range" min="0" max="100" model={curve} />
+          </div>
+          <div class={classes.controlGroup}>
+            <label for="color">Color</label>
+            <input
+              id="color"
+              type="color"
+              value={color.get()}
+              onInput={(e) => color.set((e.target as HTMLInputElement).value)}
+            />
+          </div>
 
-      <label for="height">Height</label>
-      <Input
-        id="height"
-        type="range"
-        min="0"
-        max="1000"
-        value="0"
-        model={height}
-      />
-
-      <label for="width">Width</label>
-      <Input
-        id="width"
-        type="range"
-        min="0"
-        max="1000"
-        value="0"
-        model={width}
-      />
-
-      <label for="depth">Depth</label>
-      <Input
-        id="depth"
-        type="range"
-        min="0"
-        max="1000"
-        value="0"
-        model={depth}
-      />
-
-      <label for="curve">Curve</label>
-      <Input
-        id="curve"
-        type="range"
-        min="0"
-        max="100"
-        value="0"
-        model={curve}
-      />
-
-      <label for="rotateX">Rotate on x-axis</label>
-      <Input
-        id="rotateX"
-        type="range"
-        min="-180"
-        max="180"
-        value="0"
-        model={rx}
-      />
-
-      <label for="rotateY">Rotate on y-axis</label>
-      <Input
-        id="rotateY"
-        type="range"
-        min="-180"
-        max="180"
-        value="0"
-        model={ry}
-      />
-
-      <label for="rotateZ">Rotate on z-axis</label>
-      <Input
-        id="rotateZ"
-        type="range"
-        min="-180"
-        max="180"
-        value="0"
-        model={rz}
-      />
+          <h2>Rotation</h2>
+          <div class={classes.controlGroup}>
+            <label for="rotateX">X-axis: {rx}°</label>
+            <Input id="rotateX" type="range" min="-180" max="180" model={rx} />
+          </div>
+          <div class={classes.controlGroup}>
+            <label for="rotateY">Y-axis: {ry}°</label>
+            <Input id="rotateY" type="range" min="-180" max="180" model={ry} />
+          </div>
+          <div class={classes.controlGroup}>
+            <label for="rotateZ">Z-axis: {rz}°</label>
+            <Input id="rotateZ" type="range" min="-180" max="180" model={rz} />
+          </div>
+        </div>
+        <div class={classes.viewer}>
+          <Box
+            style={{ transform }}
+            height={height}
+            width={width}
+            depth={depth}
+            curve={curve}
+            color={color}
+          />
+        </div>
+      </div>
     </div>
   );
 };

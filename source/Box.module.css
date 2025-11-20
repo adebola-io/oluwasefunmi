@@ -4,11 +4,11 @@
     place-items: center;
     transform-style: preserve-3d;
     container: box inline-size;
-    --surface: #a50469;
     --box-height-px: calc(var(--box-height) * 1px);
     --box-width-px: calc(var(--box-width) * 1px);
     --box-depth-px: calc(var(--box-depth) * 1px);
     --box-curve-px: calc(var(--box-curve) * 1px);
+    --box-stroke-px: calc(var(--box-stroke) * 1px);
 
     --cs-height: calc(var(--box-height) - var(--box-curve));
     --cs-width: var(--box-width);
@@ -25,9 +25,14 @@
         background-color: var(--surface);
 
         &:not(.front, .back) {
-            filter: brightness(0.79);
+            filter: brightness(0.69);
         }
     }
+}
+
+.front,
+.back {
+    border: var(--box-stroke-px) solid;
 }
 
 .front,
