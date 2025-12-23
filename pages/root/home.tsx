@@ -1,4 +1,3 @@
-import { getGlobalContext, Modes, matchContext } from 'retend/context';
 import type { RouteComponent } from 'retend/router';
 import type { PageMeta } from 'retend-server/client';
 import { LinkButton } from '@/components/links-and-buttons';
@@ -6,11 +5,13 @@ import { Plane } from '@/components/plane';
 import { ShiftingLayout } from '@/components/shifting-layout';
 import { Emphasis, LargeText } from '@/components/typography';
 import { timeline } from '@/library';
+import { getActiveRenderer } from 'retend';
+import { DOMRenderer } from 'retend-web';
 
 const Home: RouteComponent<PageMeta> = () => {
-  const { window } = getGlobalContext();
+  const renderer = getActiveRenderer();
   // Preload routes.
-  if (matchContext(window, Modes.Interactive)) {
+  if (renderer instanceof DOMRenderer) {
     const callback = () => {
       import('./works/index.tsx');
       import('./contact.tsx');

@@ -1,5 +1,5 @@
 import type { JSX } from 'retend/jsx-runtime';
-import { type RouterLinkProps, useRouter } from 'retend/router';
+import { type RouterLinkProps, Link } from 'retend/router';
 import { Plane } from '@/components/plane';
 
 interface LinkButtonProps extends RouterLinkProps {
@@ -9,7 +9,6 @@ interface LinkButtonProps extends RouterLinkProps {
 }
 
 export const LinkButton = (props: LinkButtonProps) => {
-  const { Link } = useRouter();
   const {
     children,
     animated,

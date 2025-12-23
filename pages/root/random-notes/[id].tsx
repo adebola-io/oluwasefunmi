@@ -1,4 +1,8 @@
-import { type RouteComponent, ObjectToMap, useRouter } from 'retend/router';
+import {
+  type RouteComponent,
+  type ObjectToMap,
+  useRouter,
+} from 'retend/router';
 import type { PageMeta } from 'retend-server/client';
 import type { Note } from '@/library';
 
