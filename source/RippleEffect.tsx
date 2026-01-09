@@ -1,4 +1,5 @@
 import { Cell, For } from "retend";
+import { useWindowSize } from "retend-utils/hooks";
 import classes from "./RippleEffect.module.css";
 import { PageLayout } from "@/components/PageLayout";
 
@@ -113,9 +114,22 @@ const colors = [
   "#556B2F",
 ];
 
+const BOX_SIZE = 48;
+const GAP = 3;
+
 const RippleEffect = () => {
-  const rows = Cell.source(15);
-  const cols = Cell.source(25);
+  const { width, height } = useWindowSize();
+
+  const cols = Cell.derived(() => {
+    const availableWidth = Math.min(width.get() - 64, 1200);
+    return Math.max(5, Math.floor(availableWidth / (BOX_SIZE + GAP)));
+  });
+
+  const rows = Cell.derived(() => {
+    const availableHeight = height.get() - 200;
+    return Math.max(5, Math.floor(availableHeight / (BOX_SIZE + GAP)));
+  });
+
   const clicked = Cell.source<[number, number]>([0, 0]);
   const currentColorIndex = Cell.source(0);
   const color = Cell.derived(() => {
