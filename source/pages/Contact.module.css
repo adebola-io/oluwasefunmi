@@ -1,17 +1,8 @@
 .page {
-  min-height: 100vh;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  padding: 4rem 2rem;
-  background-color: #050505;
-  color: #ededed;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
-  
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
+  flex: 1;
 }
 
 .container {

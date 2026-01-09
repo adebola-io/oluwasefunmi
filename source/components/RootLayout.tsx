@@ -1,28 +1,36 @@
 import { Cell, If } from "retend";
 import { Outlet, useRouter } from "retend/router";
 import { Navigation } from "./Navigation";
+import classes from "./PageLayout.module.css";
 
 export function RootLayout() {
   const router = useRouter();
 
-  const showNav = Cell.derived(() => {
+  const isExplorationDetail = Cell.derived(() => {
     const route = router.getCurrentRoute().get();
-    if (!route) return true;
-
+    if (!route) return false;
     const path = route.path;
-    // Hide nav on individual exploration pages
-    const isExplorationDetail =
-      path.startsWith("/explorations/") && path !== "/explorations";
-
-    return !isExplorationDetail;
+    return path.startsWith("/explorations/") && path !== "/explorations";
   });
 
+  const showNav = Cell.derived(() => !isExplorationDetail.get());
+
   return (
-    <>
+    <div class={classes.layout}>
       {If(showNav, () => (
         <Navigation />
       ))}
-      <Outlet />
-    </>
+      {If(
+        showNav,
+        () => (
+          <main class={classes.main}>
+            <Outlet />
+          </main>
+        ),
+        () => (
+          <Outlet />
+        )
+      )}
+    </div>
   );
 }
