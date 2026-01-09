@@ -1,7 +1,7 @@
 import { Cell } from "retend";
 import { Input } from "retend-utils/components";
 import { Box } from "@/Box";
-import classes from "./App.module.css";
+import classes from "./CurvedCssSolid.module.css";
 
 const App = () => {
   const rx = Cell.source(25);

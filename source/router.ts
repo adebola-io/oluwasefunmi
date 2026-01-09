@@ -1,12 +1,14 @@
 import { Router } from "retend/router";
-import App from "./App";
+import CurvedCssSolid from "./CurvedCssSolid";
 import RippleEffect from "./RippleEffect";
+import BlurCarouselDemo from "@/BlurCarousel";
 
 export function createRouter() {
   return new Router({
     routes: [
-      { path: "/", component: App },
+      { path: "/curved-css-solid", component: CurvedCssSolid },
       { path: "/ripple-effect", component: RippleEffect },
+      { path: "/blur-carousel", component: BlurCarouselDemo },
     ],
   });
 }
