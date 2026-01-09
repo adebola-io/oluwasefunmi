@@ -12,7 +12,7 @@ export default defineConfig({
     tailwindcss(),
     retend(),
     retendSSG({
-      pages: ["/"],
+      pages: ["/curved-css-solid", "/blur-carousel", "/ripple-effect"],
       routerModulePath: "./source/router.ts",
     }),
   ],
