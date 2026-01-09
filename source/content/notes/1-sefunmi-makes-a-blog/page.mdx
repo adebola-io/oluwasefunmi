@@ -1,0 +1,50 @@
+import {
+  NoteHeadingText,
+  NoteContent,
+  NoteDetails,
+} from '@/components/typography';
+
+export const id = '1-sefunmi-makes-a-blog';
+export const title = '#1: sefunmi makes a blog.';
+export const date = '2025-03-22';
+export const description =
+  'After much procrastination, Sefunmi finally launches a blog, bracing for potential failure and future regret, with content ranging from tech to existential musings.';
+export const dateStr = new Date(date).toLocaleDateString('en-US', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+export const ogImage =
+  'https://github.com/user-attachments/assets/bc5bc1f4-1ab9-40b3-9bbe-0b55798d1378';
+
+<NoteHeadingText noteId={id}>{title}</NoteHeadingText>
+<NoteDetails>General | {dateStr}</NoteDetails>
+
+<NoteContent>
+Alhamdulillah and Hallelujah, I have done it!
+
+After years of hand-wringing, bike-shedding and over-engineering, I have made a blog for me. A new internet home, where I will infrequently blab about anything and everything, to a silent, invisible and intimidating Schrödinger's audience.
+
+Applause, applause. Thank you. Thank you so much.
+
+I am still unsure about a lot of details, but I've decided that this corner of the internet will contain:
+
+- technical tutorials and explorations,
+
+- unasked-for and unwanted thoughts about the economic and political state of the world right now,
+
+- documentations of my failed, successful and ongoing projects,
+
+- arbitrary reflections that sound profound at 3 AM but look ridiculous in daylight, and lastly,
+
+- the secret answer to life, the universe and everything.
+
+The coin is still spinning in the air. Maybe this blog will just be another thing that starts with a grand declaration and fades into mental obscurity. Maybe I'll give up or get distracted after this first one. But that's part of the charm. I'm standing by it!
+
+At some point, I will regret this first post and try to rewrite it to fit a future narrative. That's how these things tend to go. For now though, I refuse to overthink it. Write now, cringe later.
+
+So, you are welcome, if you're there. Or don't feel welcome, it's your business.
+
+Sefunmi made a blog. That is all for now.
+
+</NoteContent>
