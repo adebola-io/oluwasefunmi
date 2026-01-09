@@ -16,12 +16,34 @@
     "Open Sans",
     "Helvetica Neue",
     sans-serif;
-  
-  /* Subtle grid background */
+  position: relative;
+  overflow-x: hidden;
+}
+
+.layout::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 100vh;
+  background: radial-gradient(circle at 50% 0%, rgba(120, 120, 255, 0.08) 0%, transparent 60%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.layout::after {
+  content: "";
+  position: absolute;
+  inset: 0;
   background-image: 
     linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-  background-size: 40px 40px;
+  background-size: 50px 50px;
+  mask-image: radial-gradient(circle at 50% 0%, black 40%, transparent 100%);
+  -webkit-mask-image: radial-gradient(circle at 50% 0%, black 40%, transparent 100%);
+  pointer-events: none;
+  z-index: 0;
 }
 
 .header {
