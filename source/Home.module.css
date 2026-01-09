@@ -1,0 +1,196 @@
+.home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 4rem 2rem;
+  background-color: #050505;
+  color: #ededed;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    "Open Sans",
+    "Helvetica Neue",
+    sans-serif;
+  
+  /* Subtle grid background */
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.header {
+  margin-bottom: 5rem;
+  max-width: 1200px;
+  width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.headerContent {
+  border-left: 2px solid #333;
+  padding-left: 2rem;
+}
+
+.title {
+  font-size: 4rem;
+  font-weight: 300;
+  letter-spacing: -0.04em;
+  margin: 0;
+  line-height: 1;
+  background: linear-gradient(to right, #fff, #888);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.subtitle {
+  font-size: 1.1rem;
+  color: #666;
+  margin-top: 1rem;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+  max-width: 400px;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.card {
+  display: block;
+  text-decoration: none;
+  position: relative;
+  background: rgba(10, 10, 10, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 0; /* Boxy/Modern feel */
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
+}
+
+.card::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    800px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 255, 255, 0.04),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card:hover {
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.8);
+}
+
+.cardInner {
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  z-index: 1;
+  position: relative;
+}
+
+.cardHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: #fff;
+  margin: 0;
+  letter-spacing: -0.02em;
+}
+
+.arrowIcon {
+  color: #444;
+  transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.card:hover .arrowIcon {
+  color: #fff;
+  transform: translate(4px, -4px);
+}
+
+.cardDescription {
+  font-size: 0.95rem;
+  color: #888;
+  line-height: 1.6;
+  margin: 0;
+  flex-grow: 1;
+  transition: color 0.3s ease;
+}
+
+.card:hover .cardDescription {
+  color: #aaa;
+}
+
+.footer {
+  margin-top: auto;
+  padding-top: 4rem;
+  text-align: center;
+  color: #333;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* Add a corner accent to the cards */
+.card::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 0 0 10px 10px;
+  border-color: transparent transparent #333 transparent;
+  transition: border-color 0.3s ease;
+}
+
+.card:hover::after {
+  border-color: transparent transparent #fff transparent;
+}
+
+@media (max-width: 768px) {
+  .header {
+    margin-bottom: 3rem;
+  }
+  
+  .title {
+    font-size: 2.5rem;
+  }
+  
+  .cardInner {
+    padding: 1.5rem;
+  }
+}

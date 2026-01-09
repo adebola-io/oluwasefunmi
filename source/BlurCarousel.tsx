@@ -3,6 +3,7 @@ import { FluidList, type ListTemplateProps } from "retend-utils/components";
 import { useDerivedValue } from "retend-utils/hooks";
 import type { JSX } from "retend/jsx-runtime";
 import classes from "./BlurCarousel.module.css";
+import { PageLayout } from "@/components/PageLayout";
 
 interface Item {
   name: string;
@@ -68,12 +69,14 @@ const items: Item[] = [
 
 const BlurCarouselDemo = () => {
   return (
-    <div class="min-h-screen bg-black grid place-items-center">
-      <BlurCarousel
-        items={items}
-        Template={({ item, index }) => <Avatar item={item} index={index} />}
-      />
-    </div>
+    <PageLayout>
+      <div class="h-full w-full grid place-items-center">
+        <BlurCarousel
+          items={items}
+          Template={({ item, index }) => <Avatar item={item} index={index} />}
+        />
+      </div>
+    </PageLayout>
   );
 };
 
@@ -119,7 +122,7 @@ function BlurCarousel<Item>(props: BlurCarouselProps<Item>) {
           }
         }
       },
-      { threshold: 0.5, root: containerRef.peek() },
+      { threshold: 0.5, root: containerRef.peek() }
     );
 
     for (const child of ul.children) {
@@ -132,7 +135,7 @@ function BlurCarousel<Item>(props: BlurCarouselProps<Item>) {
   return (
     <div
       ref={containerRef}
-      class="w-200 @container max-w-[90dvw] overflow-scroll bg-neutral-900 border rounded-4xl grid py-10 px-[10cqw]"
+      class="w-200 @container max-w-[90dvw] overflow-scroll bg-white/5 border border-white/10 rounded-xl grid py-10 px-[10cqw]"
       style={{ scrollbarWidth: "none" }}
     >
       <FluidList

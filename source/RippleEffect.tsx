@@ -1,5 +1,6 @@
 import { Cell, For } from "retend";
 import classes from "./RippleEffect.module.css";
+import { PageLayout } from "@/components/PageLayout";
 
 interface BoxProps {
   rows: Cell<number>;
@@ -66,7 +67,7 @@ const RippleButton = (props: BoxProps) => {
   const euclidDistanceFromClick = Cell.derived(() => {
     const [clickedRow, clickedCol] = clicked.get();
     return Math.floor(
-      Math.sqrt((row.get() - clickedRow) ** 2 + (col.get() - clickedCol) ** 2),
+      Math.sqrt((row.get() - clickedRow) ** 2 + (col.get() - clickedCol) ** 2)
     );
   });
 
@@ -101,14 +102,15 @@ const RippleButton = (props: BoxProps) => {
 };
 
 const colors = [
-  "red",
-  "orange",
-  "gold",
-  "green",
-  "deepskyblue",
-  "pink",
-  "rebeccapurple",
-  "white",
+  "#2a2a2a",
+  "#404040",
+  "#525252",
+  "#2F4F4F",
+  "#4A3B3B",
+  "#3B4A3F",
+  "#2C3E50",
+  "#483D8B",
+  "#556B2F",
 ];
 
 const RippleEffect = () => {
@@ -132,20 +134,22 @@ const RippleEffect = () => {
   };
 
   return (
-    <div class={classes.app}>
-      <div class={classes.rippleContainer} style={{ gridTemplate }}>
-        {For(boxes, (_, index) => (
-          <RippleButton
-            index={index}
-            rows={rows}
-            cols={cols}
-            clicked={clicked}
-            color={color}
-            onClick={handleClick}
-          />
-        ))}
+    <PageLayout>
+      <div class={classes.app}>
+        <div class={classes.rippleContainer} style={{ gridTemplate }}>
+          {For(boxes, (_, index) => (
+            <RippleButton
+              index={index}
+              rows={rows}
+              cols={cols}
+              clicked={clicked}
+              color={color}
+              onClick={handleClick}
+            />
+          ))}
+        </div>
       </div>
-    </div>
+    </PageLayout>
   );
 };
 
