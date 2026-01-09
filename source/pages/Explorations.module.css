@@ -3,7 +3,7 @@
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(30px); }
+  from { opacity: 0; transform: translateY(20px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -13,56 +13,57 @@
   width: 100%;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
 }
 
-
-
 .title {
-  font-size: clamp(3.5rem, 11vw, 7rem);
-  font-weight: 300;
+  /* Clean, professional title */
+  font-family: var(--font-family);
+  font-size: clamp(3rem, 8vw, 5rem);
+  font-weight: 500;
   letter-spacing: -0.04em;
   margin: 0;
-  line-height: 0.95;
-  color: #fff;
+  line-height: 1;
+  color: var(--text-primary);
   opacity: 0;
-  animation: slideUp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .subtitle {
-  font-size: 1.1rem;
-  color: #888;
+  font-family: var(--font-family);
+  font-size: 1.2rem;
+  color: var(--text-secondary);
   margin-top: 1.5rem;
   font-weight: 400;
-  letter-spacing: 0.02em;
   max-width: 500px;
   line-height: 1.6;
   opacity: 0;
-  animation: slideUp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.05s forwards;
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
 }
 
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
   gap: 2rem;
   width: 100%;
   max-width: 1200px;
   margin: 0 auto;
   opacity: 0;
-  animation: slideUp 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s forwards;
+  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
 }
 
 .card {
   display: block;
   text-decoration: none;
   position: relative;
-  background: rgba(20, 20, 20, 0.4);
-  backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.06);
-  border-radius: 12px;
-  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  background: var(--bg-card); /* Clean dark card */
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px; /* Standard rounding */
+  transition: all 0.3s ease;
   overflow: hidden;
 }
 
+/* Kept the mouse glow logic but removed the color. It's now just a subtle highlight */
 .card::before {
   content: "";
   position: absolute;
@@ -72,7 +73,7 @@
   height: 100%;
   background: radial-gradient(
     600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(255, 255, 255, 0.06),
+    rgba(255, 255, 255, 0.04), /* Subtle white glow */
     transparent 40%
   );
   opacity: 0;
@@ -86,10 +87,9 @@
 }
 
 .card:hover {
-  border-color: rgba(255, 255, 255, 0.2);
-  transform: translateY(-6px);
-  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 1);
-  background: rgba(25, 25, 25, 0.6);
+  border-color: rgba(255, 255, 255, 0.15); /* Slightly brighter border */
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Deep shadow */
 }
 
 .cardInner {
@@ -109,26 +109,31 @@
 }
 
 .cardTitle {
-  font-size: 1.5rem;
+  font-family: var(--font-family);
+  font-size: 1.4rem;
   font-weight: 500;
-  color: #fff;
+  color: var(--text-primary);
   margin: 0;
-  letter-spacing: -0.03em;
+  letter-spacing: -0.02em;
+  transition: color 0.3s;
 }
 
+
+
 .arrowIcon {
-  color: #444;
+  color: var(--text-secondary);
   transition: transform 0.3s ease, color 0.3s ease;
 }
 
 .card:hover .arrowIcon {
-  color: #fff;
-  transform: translate(4px, -4px);
+  color: var(--text-primary);
+  transform: translate(2px, -2px);
 }
 
 .cardDescription {
+  font-family: var(--font-family);
   font-size: 0.95rem;
-  color: #888;
+  color: var(--text-secondary);
   line-height: 1.6;
   margin: 0;
   flex-grow: 1;
@@ -136,34 +141,24 @@
 }
 
 .card:hover .cardDescription {
-  color: #bbb;
+  color: #ccc;
 }
 
 .footer {
   margin-top: auto;
   padding-top: 4rem;
   text-align: center;
-  color: #333;
+  color: var(--text-secondary);
   font-size: 0.8rem;
+  font-family: var(--font-family);
   text-transform: uppercase;
   letter-spacing: 0.1em;
+  opacity: 0.5;
 }
 
+/* Remove weird corner accent */
 .card::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 0;
-  height: 0;
-  border-style: solid;
-  border-width: 0 0 10px 10px;
-  border-color: transparent transparent #333 transparent;
-  transition: border-color 0.3s ease;
-}
-
-.card:hover::after {
-  border-color: transparent transparent #fff transparent;
+  content: none;
 }
 
 @media (max-width: 768px) {

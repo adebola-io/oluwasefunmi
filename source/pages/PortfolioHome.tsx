@@ -32,10 +32,10 @@ const PortfolioHome = () => {
 
         <div class={classes.actions}>
           <Link href="/explorations" class={classes.primaryButton}>
-            see explorations
+            <span>see explorations</span>
           </Link>
           <Link href="/contact" class={classes.secondaryButton}>
-            contact me
+            <span>contact me</span>
           </Link>
         </div>
       </div>

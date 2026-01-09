@@ -1,5 +1,5 @@
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(20px); }
+  from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
 }
 
@@ -8,73 +8,80 @@
   flex-direction: column;
   justify-content: center;
   flex: 1;
+  position: relative;
+  z-index: 1;
 }
 
 .container {
-  max-width: 900px;
+  max-width: 1000px;
   margin: 0 auto;
   width: 100%;
+  padding: 0 2rem;
+  box-sizing: border-box;
 }
 
 .hero {
   margin-bottom: 5rem;
+  position: relative;
 }
 
 .title {
-  font-size: clamp(3.5rem, 11vw, 7rem);
-  font-weight: 300;
-  letter-spacing: -0.04em;
+  /* Clean, tight typography */
+  font-family: var(--font-family);
+  font-size: clamp(3rem, 10vw, 6.5rem); /* Reduced max size to fit better */
+  font-weight: 500;
+  letter-spacing: -0.05em;
   margin: 0;
-  line-height: 0.95;
-  color: #fff;
-  animation: fadeIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+  line-height: 1;
+  color: var(--text-primary);
+  opacity: 0;
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .titleAccent {
   display: block;
-  font-size: 0.35em;
+  font-size: 0.25em;
   font-weight: 400;
-  color: #666;
-  margin-top: 1rem;
-  letter-spacing: 0.02em;
-  background: linear-gradient(90deg, #888, #444);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  margin-top: 1.5rem;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  color: var(--text-secondary);
+  
   opacity: 0;
-  animation: fadeIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.05s forwards;
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
 }
 
 .intro {
-  font-size: 1.25rem;
-  color: #999;
+  font-family: var(--font-family);
+  font-size: 1.25rem; /* Classic readable size */
+  color: var(--text-secondary);
   line-height: 1.6;
   max-width: 600px;
-  margin-bottom: 4rem;
-  font-weight: 300;
+  margin-bottom: 3.5rem;
+  font-weight: 400;
   opacity: 0;
-  animation: fadeIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.1s forwards;
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
 }
 
 .intro a {
-  color: #fff;
+  color: var(--text-primary);
   text-decoration: none;
-  border-bottom: 1px solid #444;
-  padding-bottom: 1px;
+  border-bottom: 1px solid var(--border-subtle);
   transition: all 0.2s ease;
 }
 
 .intro a:hover {
-  border-bottom-color: #fff;
-  text-shadow: 0 0 8px rgba(255, 255, 255, 0.5);
+  border-bottom-color: var(--accent-color);
+  color: var(--accent-color);
 }
 
 .actions {
   display: flex;
   gap: 1.5rem;
+  align-items: center;
   flex-wrap: wrap;
   opacity: 0;
-  animation: fadeIn 0.5s cubic-bezier(0.2, 0.8, 0.2, 1) 0.15s forwards;
+  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
 }
 
 .primaryButton,
@@ -82,35 +89,39 @@
   display: inline-flex;
   align-items: center;
   gap: 0.75rem;
-  padding: 1rem 2.5rem;
+  padding: 0.9rem 2rem;
   font-size: 0.95rem;
   font-weight: 500;
   text-decoration: none;
-  border-radius: 99px; /* Pill shape for modern feel */
-  transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
-  border: 1px solid;
+  border-radius: 6px; /* Subtle rounding instead of pills */
+  transition: all 0.2s ease;
+  cursor: pointer;
+  letter-spacing: -0.01em;
 }
 
 .primaryButton {
-  background: #fff;
-  color: #000;
-  border-color: #fff;
-  box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+  background: var(--text-primary);
+  color: var(--bg-dark);
+  border: 1px solid var(--text-primary);
 }
 
 .primaryButton:hover {
-  transform: translateY(-2px) scale(1.02);
-  box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
+  background: var(--accent-color);
+  border-color: var(--accent-color);
+  color: white;
 }
 
 .secondaryButton {
   background: transparent;
-  color: #888;
-  border-color: #333;
+  color: var(--text-secondary);
+  border: 1px solid var(--border-subtle);
 }
 
 .secondaryButton:hover {
-  color: #fff;
-  border-color: #fff;
-  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--text-primary);
+  color: var(--text-primary);
 }
+
+/* Removed all extra decorative blobs/glows to keep it clean */
+
+
