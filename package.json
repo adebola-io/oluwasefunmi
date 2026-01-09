@@ -9,10 +9,10 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "retend": "^0.0.24",
-    "retend-server": "^0.0.24",
-    "retend-utils": "^0.0.24",
-    "retend-web": "^0.0.24"
+    "retend": "https://pkg.pr.new/resuite/retend@0b4e03c",
+    "retend-server": "https://pkg.pr.new/resuite/retend/retend-server@0b4e03c",
+    "retend-utils": "https://pkg.pr.new/resuite/retend/retend-utils@0b4e03c",
+    "retend-web": "https://pkg.pr.new/resuite/retend/retend-web@0b4e03c"
   },
   "devDependencies": {
     "vite": "^6.2.1",
