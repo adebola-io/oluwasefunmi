@@ -1,17 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 
 :root {
-  --bg-dark: #0A0A09;
-  --bg-card: #141413;
-  --text-primary: #EBEBEB;
-  --text-secondary: #9F9F95;
+  --bg-dark: #08090A;
+  --bg-card: #111214;
+  --text-primary: #e0ebfd;
+  --text-secondary: #94A3B8;
   
-  --accent-color: #D4D4CE;
+  --accent-color: #c3cde1;
   --accent-hover: #FFFFFF; 
   
   --font-family: 'Inter', system-ui, -apple-system, sans-serif;
   
-  --border-subtle: #2A2A28;
+  --border-subtle: #1E293B;
 }
 
 body {
@@ -35,7 +35,7 @@ h1, h2, h3, h4, h5, h6 {
 
 ::selection {
   background: var(--accent-color);
-  color: white;
+  color: var(--bg-dark);
 }
 
   

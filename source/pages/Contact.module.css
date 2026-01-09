@@ -12,7 +12,7 @@
 }
 
 .intro {
-  color: #666;
+  color: var(--text-secondary);
   font-size: 1rem;
   margin-bottom: 2rem;
   max-width: 500px;
@@ -22,25 +22,25 @@
 .emailLink {
   font-size: clamp(1.5rem, 5vw, 3rem);
   font-weight: 300;
-  color: #fff;
+  color: var(--text-primary);
   text-decoration: none;
   letter-spacing: -0.02em;
   display: inline-block;
   margin-bottom: 2rem;
-  border-bottom: 1px solid #333;
+  border-bottom: 1px solid var(--border-subtle);
   padding-bottom: 0.5rem;
   transition: border-color 0.2s;
 }
 
 .emailLink:hover {
-  border-color: #fff;
+  border-color: var(--text-primary);
 }
 
 .resume {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  color: #888;
+  color: var(--text-secondary);
   text-decoration: none;
   font-size: 0.9rem;
   margin-bottom: 4rem;
@@ -48,7 +48,7 @@
 }
 
 .resume:hover {
-  color: #fff;
+  color: var(--text-primary);
 }
 
 .socials {
@@ -58,7 +58,7 @@
 }
 
 .socialLink {
-  color: #666;
+  color: var(--text-secondary);
   text-decoration: none;
   font-size: 0.9rem;
   transition: color 0.2s;
@@ -68,6 +68,6 @@
 }
 
 .socialLink:hover {
-  color: #fff;
+  color: var(--text-primary);
 }
 

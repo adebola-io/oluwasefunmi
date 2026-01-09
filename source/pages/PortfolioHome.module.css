@@ -18,17 +18,20 @@
   width: 100%;
   padding: 0 2rem;
   box-sizing: border-box;
+  text-align: left;
 }
 
 .hero {
-  margin-bottom: 5rem;
+  margin-bottom: 4rem;
   position: relative;
+  /* Ensure word break on mobile if absolutely needed, though shrinking font is better */
+  word-wrap: break-word; 
 }
 
 .title {
   /* Clean, tight typography */
   font-family: var(--font-family);
-  font-size: clamp(3rem, 10vw, 6.5rem); /* Reduced max size to fit better */
+  font-size: clamp(2rem, 8vw, 5rem);
   font-weight: 500;
   letter-spacing: -0.05em;
   margin: 0;
@@ -40,11 +43,10 @@
 
 .titleAccent {
   display: block;
-  font-size: 0.25em;
+  font-size: 0.25em; /* This is relative to the parent title size */
   font-weight: 400;
   margin-top: 1.5rem;
   letter-spacing: 0.05em;
-  text-transform: uppercase;
   color: var(--text-secondary);
   
   opacity: 0;
@@ -53,14 +55,34 @@
 
 .intro {
   font-family: var(--font-family);
-  font-size: 1.25rem; /* Classic readable size */
+  font-size: 1.25rem;
   color: var(--text-secondary);
   line-height: 1.6;
   max-width: 600px;
-  margin-bottom: 3.5rem;
+  margin: 0 0 3.5rem 0; /* Left aligned */
   font-weight: 400;
   opacity: 0;
   animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 0 1.5rem;
+  }
+  
+  .hero {
+    margin-bottom: 3rem;
+  }
+  
+  .titleAccent {
+    margin-top: 1rem;
+    font-size: 0.35em; /* Make slightly larger relatively on mobile for readability */
+  }
+  
+  .intro {
+    font-size: 1.1rem;
+    margin-bottom: 2.5rem;
+  }
 }
 
 .intro a {
@@ -79,6 +101,7 @@
   display: flex;
   gap: 1.5rem;
   align-items: center;
+  justify-content: flex-start; /* Left align buttons */
   flex-wrap: wrap;
   opacity: 0;
   animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
@@ -108,7 +131,7 @@
 .primaryButton:hover {
   background: var(--accent-color);
   border-color: var(--accent-color);
-  color: white;
+  
 }
 
 .secondaryButton {

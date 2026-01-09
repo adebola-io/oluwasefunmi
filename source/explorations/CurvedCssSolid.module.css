@@ -15,6 +15,7 @@
   overflow: hidden;
   /* Technical feel */
   backdrop-filter: blur(10px);
+  padding-top: 5rem;
 }
 
 .controls {

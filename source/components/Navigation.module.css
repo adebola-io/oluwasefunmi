@@ -50,12 +50,115 @@
   text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
 }
 
-@media (max-width: 768px) {
+/* Menu Toggle (Hamburger) */
+.menuToggle {
+  display: none;
+  background: none;
+  border: none;
+  flex-direction: column;
+  gap: 6px;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 200;
+}
+
+.bar {
+  display: block;
+  width: 24px;
+  height: 2px;
+  background-color: var(--text-primary);
+  transition: all 0.3s ease;
+}
+
+.backdrop {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 150;
+  pointer-events: none;
+}
+
+.sidebarHeader {
+  display: none;
+}
+
+@media (max-width: 600px) {
   .nav {
-    padding: 1rem 1.5rem;
+    /* Reset from previous column layout attempt */
+    flex-direction: row;
+    padding: 1.5rem 2rem;
+    gap: 0;
+    justify-content: space-between;
+    background: transparent;
   }
   
+  .menuToggle {
+    display: flex;
+  }
+
+  .backdrop.backdropOpen {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+  }
+
   .navLinks {
-    gap: 1.5rem;
+    position: fixed;
+    top: 0;
+    right: 0;
+    height: 100vh;
+    width: 280px;
+    background: var(--bg-card); /* Sidebar background */
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 2rem;
+    gap: 2rem;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
+    transform: translateX(100%); /* Hidden by default */
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    z-index: 201; /* Above toggle */
+  }
+
+  /* The class toggled by JS */
+  .navLinksOpen {
+    transform: translateX(0);
+  }
+  
+  .sidebarHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  
+  .sidebarTitle {
+    font-weight: 600;
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+  }
+  
+  .closeButton {
+    background: none;
+    border: none;
+    font-size: 2rem;
+    line-height: 1;
+    color: var(--text-primary);
+    cursor: pointer;
+    padding: 0 0.5rem;
+  }
+
+  .navLink {
+    font-size: 1.1rem;
+    width: 100%;
+    /* border-bottom: 1px solid var(--border-subtle); */
+    padding-bottom: 0.5rem;
   }
 }
