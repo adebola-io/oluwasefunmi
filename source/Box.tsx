@@ -1,14 +1,15 @@
 import type { JSX } from "retend/jsx-runtime";
 import classes from "./Box.module.css";
 
-type DivProps = JSX.IntrinsicElements["div"];
-interface BoxProps extends DivProps {
+interface BoxProps extends JSX.BaseContainerProps {
   height?: JSX.ValueOrCell<number>;
   width?: JSX.ValueOrCell<number>;
   depth?: JSX.ValueOrCell<number>;
   curve?: JSX.ValueOrCell<number>;
   color?: JSX.ValueOrCell<string>;
   stroke?: JSX.ValueOrCell<number>;
+  frontClass?: unknown;
+  backClass?: unknown;
 }
 
 export const Box = (props: BoxProps) => {
@@ -17,9 +18,12 @@ export const Box = (props: BoxProps) => {
     height = 100,
     width = 100,
     depth = 100,
-    curve = 40,
-    color = "#a50469",
+    curve = 20,
+    color = "#ababab",
     stroke = 0,
+    frontClass,
+    backClass,
+    children,
     ...rest
   } = props;
 
@@ -37,9 +41,9 @@ export const Box = (props: BoxProps) => {
 
   return (
     <div {...rest} style={style} class={[classes.box, className]}>
-      <div class={classes.front} />
+      <div class={[classes.front, frontClass]}>{children}</div>
       <div class={classes.frontBehind} />
-      <div class={classes.back} />
+      <div class={[classes.back, backClass]} />
       <div class={classes.backBehind} />
       <div class={classes.top} />
       <div class={classes.bottom} />

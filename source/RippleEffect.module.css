@@ -1,0 +1,37 @@
+body {
+    background-color: black;
+}
+
+.app {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.rippleContainer {
+    display: grid;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3px;
+}
+
+.rippleButtonContainer {
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    height: 45px;
+    width: 45px;
+    border-radius: 8px;
+    background-color: white;
+}
+
+.rippleButtonContainer:active {
+    transform: scale(0.8);
+}
+
+.rippleButton {
+    transition: transform 800ms;
+}
