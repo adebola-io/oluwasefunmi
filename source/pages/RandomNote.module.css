@@ -1,0 +1,76 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 8rem 2rem 4rem;
+  background-color: #050505;
+  color: #ededed;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.container {
+  max-width: 700px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.backLink {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #666;
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 3rem;
+  transition: color 0.2s;
+}
+
+.backLink:hover {
+  color: #fff;
+}
+
+.header {
+  margin-bottom: 3rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 2rem;
+}
+
+.number {
+  font-size: 0.8rem;
+  color: #444;
+  margin-bottom: 0.5rem;
+  font-family: monospace;
+}
+
+.title {
+  font-size: 2rem;
+  font-weight: 500;
+  margin-bottom: 0.75rem;
+  letter-spacing: -0.02em;
+}
+
+.date {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.content {
+  font-size: 1.1rem;
+  line-height: 1.9;
+  color: #ccc;
+}
+
+.content p {
+  margin-bottom: 1.5rem;
+}
+
+.notFound {
+  text-align: center;
+  color: #666;
+}
+

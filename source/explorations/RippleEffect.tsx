@@ -1,7 +1,6 @@
 import { Cell, For } from "retend";
 import { useWindowSize } from "retend-utils/hooks";
 import classes from "./RippleEffect.module.css";
-import { PageLayout } from "@/components/PageLayout";
 
 interface BoxProps {
   rows: Cell<number>;
@@ -148,22 +147,20 @@ const RippleEffect = () => {
   };
 
   return (
-    <PageLayout>
-      <div class={classes.app}>
-        <div class={classes.rippleContainer} style={{ gridTemplate }}>
-          {For(boxes, (_, index) => (
-            <RippleButton
-              index={index}
-              rows={rows}
-              cols={cols}
-              clicked={clicked}
-              color={color}
-              onClick={handleClick}
-            />
-          ))}
-        </div>
+    <div class={classes.app}>
+      <div class={classes.rippleContainer} style={{ gridTemplate }}>
+        {For(boxes, (_, index) => (
+          <RippleButton
+            index={index}
+            rows={rows}
+            cols={cols}
+            clicked={clicked}
+            color={color}
+            onClick={handleClick}
+          />
+        ))}
       </div>
-    </PageLayout>
+    </div>
   );
 };
 

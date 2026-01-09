@@ -1,0 +1,109 @@
+.home {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 2rem;
+  background-color: #050505;
+  color: #ededed;
+  font-family:
+    "Inter",
+    -apple-system,
+    BlinkMacSystemFont,
+    sans-serif;
+  
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.container {
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.hero {
+  margin-bottom: 4rem;
+}
+
+.title {
+  font-size: clamp(3rem, 10vw, 6rem);
+  font-weight: 300;
+  letter-spacing: -0.05em;
+  margin: 0;
+  line-height: 1;
+  color: #fff;
+}
+
+.titleAccent {
+  display: block;
+  font-size: 0.35em;
+  font-weight: 400;
+  color: #666;
+  margin-top: 0.5rem;
+  letter-spacing: 0.05em;
+}
+
+.intro {
+  font-size: 1.15rem;
+  color: #888;
+  line-height: 1.8;
+  max-width: 600px;
+  margin-bottom: 3rem;
+}
+
+.intro a {
+  color: #fff;
+  text-decoration: underline;
+  text-underline-offset: 4px;
+  text-decoration-color: #444;
+  transition: text-decoration-color 0.2s;
+}
+
+.intro a:hover {
+  text-decoration-color: #fff;
+}
+
+.actions {
+  display: flex;
+  gap: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.primaryButton,
+.secondaryButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 1rem 2rem;
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  border-radius: 0;
+  transition: all 0.3s ease;
+  border: 1px solid;
+}
+
+.primaryButton {
+  background: #fff;
+  color: #000;
+  border-color: #fff;
+}
+
+.primaryButton:hover {
+  background: transparent;
+  color: #fff;
+}
+
+.secondaryButton {
+  background: transparent;
+  color: #888;
+  border-color: #333;
+}
+
+.secondaryButton:hover {
+  color: #fff;
+  border-color: #666;
+}

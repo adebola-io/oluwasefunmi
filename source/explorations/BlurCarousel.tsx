@@ -3,7 +3,6 @@ import { FluidList, type ListTemplateProps } from "retend-utils/components";
 import { useDerivedValue } from "retend-utils/hooks";
 import type { JSX } from "retend/jsx-runtime";
 import classes from "./BlurCarousel.module.css";
-import { PageLayout } from "@/components/PageLayout";
 
 interface Item {
   name: string;
@@ -69,14 +68,12 @@ const items: Item[] = [
 
 const BlurCarouselDemo = () => {
   return (
-    <PageLayout>
-      <div class="h-full w-full grid place-items-center">
-        <BlurCarousel
-          items={items}
-          Template={({ item, index }) => <Avatar item={item} index={index} />}
-        />
-      </div>
-    </PageLayout>
+    <div class="h-full w-full min-h-screen grid place-items-center">
+      <BlurCarousel
+        items={items}
+        Template={({ item, index }) => <Avatar item={item} index={index} />}
+      />
+    </div>
   );
 };
 

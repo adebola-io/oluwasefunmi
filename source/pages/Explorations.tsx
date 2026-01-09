@@ -1,28 +1,29 @@
-import classes from "./Home.module.css";
+import { Link } from "retend/router";
+import classes from "./Explorations.module.css";
 
 const explorations = [
   {
-    path: "/curved-css-solid",
+    path: "/explorations/curved-css-solid",
     title: "Curved CSS Solid",
     description:
       "Interactive 3D box with curved edges using pure CSS transforms",
   },
   {
-    path: "/ripple-effect",
+    path: "/explorations/ripple-effect",
     title: "Ripple Effect",
     description:
       "Grid of cells with cascading wave animations and color transitions on click",
   },
   {
-    path: "/blur-carousel",
+    path: "/explorations/blur-carousel",
     title: "Blur Carousel",
     description: "Horizontal avatar carousel with focus-based blur effects",
   },
 ];
 
-const Home = () => {
+const Explorations = () => {
   return (
-    <div class={classes.home}>
+    <div class={classes.page}>
       <header class={classes.header}>
         <div class={classes.headerContent}>
           <h1 class={classes.title}>Explorations</h1>
@@ -34,7 +35,7 @@ const Home = () => {
 
       <main class={classes.grid}>
         {explorations.map((exp) => (
-          <a
+          <Link
             href={exp.path}
             class={classes.card}
             onMouseMove={(e: MouseEvent) => {
@@ -72,7 +73,7 @@ const Home = () => {
               </div>
               <p class={classes.cardDescription}>{exp.description}</p>
             </div>
-          </a>
+          </Link>
         ))}
       </main>
 
@@ -83,4 +84,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default Explorations;

@@ -1,0 +1,82 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 4rem 2rem;
+  background-color: #050505;
+  color: #ededed;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.intro {
+  color: #666;
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  max-width: 500px;
+  line-height: 1.7;
+}
+
+.emailLink {
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  font-weight: 300;
+  color: #fff;
+  text-decoration: none;
+  letter-spacing: -0.02em;
+  display: inline-block;
+  margin-bottom: 2rem;
+  border-bottom: 1px solid #333;
+  padding-bottom: 0.5rem;
+  transition: border-color 0.2s;
+}
+
+.emailLink:hover {
+  border-color: #fff;
+}
+
+.resume {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #888;
+  text-decoration: none;
+  font-size: 0.9rem;
+  margin-bottom: 4rem;
+  transition: color 0.2s;
+}
+
+.resume:hover {
+  color: #fff;
+}
+
+.socials {
+  display: flex;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.socialLink {
+  color: #666;
+  text-decoration: none;
+  font-size: 0.9rem;
+  transition: color 0.2s;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.socialLink:hover {
+  color: #fff;
+}
+

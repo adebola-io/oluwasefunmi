@@ -1,8 +1,8 @@
-.home {
+.page {
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 4rem 2rem;
+  padding: 8rem 2rem 4rem;
   background-color: #050505;
   color: #ededed;
   font-family:
@@ -74,7 +74,7 @@
   position: relative;
   background: rgba(10, 10, 10, 0.6);
   border: 1px solid rgba(255, 255, 255, 0.08);
-  border-radius: 0; /* Boxy/Modern feel */
+  border-radius: 0;
   transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   overflow: hidden;
 }
@@ -163,7 +163,6 @@
   letter-spacing: 0.1em;
 }
 
-/* Add a corner accent to the cards */
 .card::after {
   content: "";
   position: absolute;

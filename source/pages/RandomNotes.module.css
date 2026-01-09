@@ -1,0 +1,87 @@
+.page {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  padding: 8rem 2rem 4rem;
+  background-color: #050505;
+  color: #ededed;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+  
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.title {
+  font-size: 2.5rem;
+  font-weight: 300;
+  margin-bottom: 1rem;
+  letter-spacing: -0.03em;
+}
+
+.subtitle {
+  color: #666;
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 500px;
+  margin-bottom: 4rem;
+}
+
+.notesList {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.noteCard {
+  display: block;
+  text-decoration: none;
+  padding: 2rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.noteCard:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.noteNumber {
+  font-size: 0.8rem;
+  color: #444;
+  margin-bottom: 0.5rem;
+  font-family: monospace;
+}
+
+.noteTitle {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.noteDate {
+  font-size: 0.85rem;
+  color: #666;
+  margin-bottom: 1rem;
+}
+
+.noteSummary {
+  font-size: 0.95rem;
+  color: #888;
+  line-height: 1.6;
+}
+
+
+.empty {
+  color: #444;
+  font-style: italic;
+}
