@@ -99,10 +99,8 @@
 }
 
 .primaryButton:hover {
-  transform: translateY(-2px);
+  transform: translateY(-2px) scale(1.02);
   box-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
-  padding-left: 3rem; /* Subtle expansion */
-  padding-right: 3rem;
 }
 
 .secondaryButton {

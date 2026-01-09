@@ -6,18 +6,19 @@ const explorations = [
     path: "/explorations/curved-css-solid",
     title: "Curved CSS Solid",
     description:
-      "Interactive 3D box with curved edges using pure CSS transforms",
+      "Pushing the limits of CSS transforms to create a volumetric 3D box without WebGL. It uses pure DOM elements to achieve smooth curves and full interactivity.",
   },
   {
     path: "/explorations/ripple-effect",
     title: "Ripple Effect",
     description:
-      "Grid of cells with cascading wave animations and color transitions on click",
+      "An optimized grid interaction where clicks trigger cascading ripple effects across hundreds of cells. The focus here was on efficient state management to maintain a smooth 60fps.",
   },
   {
     path: "/explorations/blur-carousel",
     title: "Blur Carousel",
-    description: "Horizontal avatar carousel with focus-based blur effects",
+    description:
+      "A carousel exploring scroll-driven animations to mimic physical depth of field. Items dynamically blur and recede as they move out of focus, creating a more natural browsing experience.",
   },
 ];
 
@@ -26,7 +27,7 @@ const Explorations = () => {
     <div class={classes.page}>
       <header class={classes.header}>
         <div class={classes.headerContent}>
-          <h1 class={classes.title}>Explorations</h1>
+          <h1 class={classes.title}>Explorations.</h1>
           <p class={classes.subtitle}>
             Interactive UI experiments & visual effects
           </p>
