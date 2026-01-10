@@ -33,19 +33,15 @@ export default function PortfolioHome() {
         </p>
 
         <div class={classes.actions}>
+          <LayeredCard as={Link} href="/contact" class={classes.primaryButton}>
+            <span>contact me</span>
+          </LayeredCard>
           <LayeredCard
             as={Link}
             href="/explorations"
             class={classes.primaryButton}
           >
             <span>see explorations</span>
-          </LayeredCard>
-          <LayeredCard
-            as={Link}
-            href="/contact"
-            class={classes.secondaryButton}
-          >
-            <span>contact me</span>
           </LayeredCard>
         </div>
       </div>
