@@ -22,6 +22,7 @@ const Contact: RouteComponent = () => {
           href="/oluwasefunmi-akomolafe.pdf"
           class={classes.resume}
           target="_blank"
+          rel="noopener noreferrer"
         >
           read my resume →
         </a>
@@ -31,6 +32,7 @@ const Contact: RouteComponent = () => {
             href="https://www.twitter.com/adebola_io"
             class={classes.socialLink}
             target="_blank"
+            rel="noopener noreferrer"
           >
             twitter
           </a>
@@ -38,13 +40,15 @@ const Contact: RouteComponent = () => {
             href="https://www.linkedin.com/in/oluwasefunmi-akomolafe-3a6a42214/"
             class={classes.socialLink}
             target="_blank"
+            rel="noopener noreferrer"
           >
             linkedin
           </a>
           <a
-            href="https://bsky.app/profile/adebola.online"
+            href="https://bsky.app/profile/oluwasefunmi.com"
             class={classes.socialLink}
             target="_blank"
+            rel="noopener noreferrer"
           >
             bluesky
           </a>
@@ -52,6 +56,7 @@ const Contact: RouteComponent = () => {
             href="https://www.github.com/adebola-io"
             class={classes.socialLink}
             target="_blank"
+            rel="noopener noreferrer"
           >
             github
           </a>

@@ -1,88 +1,87 @@
 .titleWrapper {
-  position: relative;
-  width: 100%;
-  pointer-events: auto;
-  z-index: 1000;
+    position: relative;
+    width: 100%;
+    pointer-events: auto;
+    z-index: 1000;
 }
 
 .contact {
-  position: relative;
+    position: relative;
 }
 
 .emailTitle {
-  color: inherit;
-  text-decoration: none;
-  font-size: clamp(1.5rem, 4vw, 3rem);
-  font-weight: inherit;
-  transition: opacity 0.2s var(--ease-spring);
-  word-break: break-all;
+    color: inherit;
+    text-decoration: none;
+    font-size: clamp(1.5rem, 4vw, 3rem);
+    font-weight: inherit;
+    transition: opacity 0.2s var(--ease-spring);
+    word-break: break-all;
 }
 
 .emailTitle:hover {
-  opacity: 0.7;
+    opacity: 0.7;
 }
 
 .title {
-  font-family: var(--font-family);
-  font-weight: 500;
-  line-height: 1;
-  color: var(--text-primary);
-  margin: 0;
-  white-space: nowrap;
+    font-family: var(--font-family);
+    font-weight: 500;
+    line-height: 1;
+    color: var(--text-primary);
+    margin: 0;
+    white-space: nowrap;
 }
 
 .home {
-  position: relative;
-  width: 100%;
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  margin-bottom: 0.5rem;
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 0.5rem;
 }
 
 .home .title {
-  font-size: clamp(2rem, 8vw, 5rem);
-  letter-spacing: -0.05em;
-  text-align: left;
+    font-size: clamp(2rem, 8vw, 5rem);
+    letter-spacing: -0.05em;
+    text-align: left;
 }
 
 .page {
-  position: relative;
-  max-width: 1200px;
-  margin: 0 auto;
-  padding-top: 4rem;
-  display: block;
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding-top: 4rem;
+    display: block;
 }
 
 .page .title {
-  font-size: clamp(3rem, 8vw, 5rem);
-  letter-spacing: -0.04em;
-  text-align: left;
+    font-size: clamp(3rem, 8vw, 4rem);
+    letter-spacing: -0.04em;
+    text-align: left;
 }
 
 @media (max-width: 768px) {
-  .page {
-    padding-top: 2rem;
-  }
-  
-  .page .title {
-    font-size: 2.5rem;
-  }
+    .page {
+        padding-top: 2rem;
+    }
+
+    .page .title {
+        font-size: 2.5rem;
+    }
 }
 
-
 @keyframes blurSlideUp {
-  from {
-    opacity: 0;
-    filter: blur(8px);
-  }
-  to {
-    opacity: 1;
-    filter: blur(0);
-  }
+    from {
+        opacity: 0;
+        filter: blur(8px);
+    }
+    to {
+        opacity: 1;
+        filter: blur(0);
+    }
 }
 
 .animateEnter {
-  display: inline-block;
-  animation: blurSlideUp 0.8s var(--ease-spring) backwards;
+    display: inline-block;
+    animation: blurSlideUp 0.8s var(--ease-spring) backwards;
 }
