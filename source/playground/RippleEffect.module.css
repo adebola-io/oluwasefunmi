@@ -1,38 +1,40 @@
 .app {
-  min-height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .rippleContainer {
-  display: grid;
-  padding: 10px;
-  align-items: center;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 3px;
-  background: rgba(255, 255, 255, 0.02);
-  border: 1px solid rgba(255, 255, 255, 0.05);
-  border-radius: 12px;
+    display: grid;
+    padding: 10px;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 3px;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
 }
 
 .rippleButtonContainer {
-  appearance: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  height: 45px;
-  width: 45px;
-  border-radius: 4px;
-  background-color: rgba(255, 255, 255, 0.1);
-  transition: transform 0.1s var(--ease-spring), background-color 0.2s;
+    appearance: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    height: 45px;
+    width: 45px;
+    border-radius: 4px;
+    background-color: rgba(255, 255, 255, 0.1);
+    transition:
+        transform 0.1s var(--ease-spring),
+        background-color 0.2s;
 }
 
 .rippleButtonContainer:hover {
-  background-color: rgba(255, 255, 255, 0.15);
+    background-color: rgba(255, 255, 255, 0.15);
 }
 
 .rippleButtonContainer:active {
-  transform: scale(0.9);
+    transform: scale(0.9);
 }

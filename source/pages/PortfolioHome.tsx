@@ -19,15 +19,27 @@ const PortfolioHome: RouteComponent = () => {
           I am a full-stack software engineer from Lagos, Nigeria focused on
           creating interactive digital experiences and tackling complex design
           challenges. Some of my works include{" "}
-          <a href="https://www.vizitly.io" target="_blank">
+          <a
+            href="https://www.vizitly.io"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Vizitly
           </a>
           ,{" "}
-          <a href="https://github.com/adebola-io/whirlwind" target="_blank">
+          <a
+            href="https://github.com/adebola-io/whirlwind"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Whirlwind
           </a>
           , and{" "}
-          <a href="https://www.npmjs.com/package/retend" target="_blank">
+          <a
+            href="https://www.npmjs.com/package/retend"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
             Retend
           </a>
           .

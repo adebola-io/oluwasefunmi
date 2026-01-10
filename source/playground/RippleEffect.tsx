@@ -13,50 +13,10 @@ interface BoxProps {
   clicked: Cell<[number, number]>;
 }
 
-interface AnimationQueueOptions {
-  keyframes: PropertyIndexedKeyframes;
-  duration: number;
-  delay: number;
-  fill: FillMode;
-}
-
-class AnimationQueue {
-  #ref: Cell<HTMLButtonElement | null>;
-  #queue: AnimationQueueOptions[] = [];
-  #isProcessing = false;
-
-  constructor(ref: Cell<HTMLButtonElement | null>) {
-    this.#ref = ref;
-  }
-
-  push(animation: AnimationQueueOptions) {
-    this.#queue.push(animation);
-    this.#process();
-  }
-
-  async #process() {
-    if (this.#isProcessing) return;
-    this.#isProcessing = true;
-
-    while (true) {
-      const nextAnimation = this.#queue.shift();
-      if (!nextAnimation) break;
-      const button = this.#ref.peek();
-      if (button) {
-        const { keyframes, ...options } = nextAnimation;
-        const animation = button.animate(keyframes, options);
-        await animation.finished.finally(() => {});
-      }
-    }
-
-    this.#isProcessing = false;
-  }
-}
-
 const RippleButton = (props: BoxProps) => {
   const { cols, index, onClick, clicked, color } = props;
   const buttonRef = Cell.source<HTMLButtonElement | null>(null);
-  const queue = new AnimationQueue(buttonRef);
+  const queue = new AsyncQueue();
 
   const col = Cell.derived(() => {
     return (index.get() % cols.get()) + 1;
@@ -69,7 +29,7 @@ const RippleButton = (props: BoxProps) => {
   const euclidDistanceFromClick = Cell.derived(() => {
     const [clickedRow, clickedCol] = clicked.get();
     return Math.floor(
-      Math.sqrt((row.get() - clickedRow) ** 2 + (col.get() - clickedCol) ** 2)
+      Math.sqrt((row.get() - clickedRow) ** 2 + (col.get() - clickedCol) ** 2),
     );
   });
 
@@ -81,22 +41,30 @@ const RippleButton = (props: BoxProps) => {
     onClick(row.get(), col.get());
   };
 
-  color.listen((nextColor) => {
-    queue.push({
-      keyframes: {
-        backgroundColor: nextColor,
+  color.listen((backgroundColor) => {
+    const runNextAnimation = async () => {
+      const button = buttonRef.peek();
+      if (!button) return;
+      const options: KeyframeAnimationOptions = {
+        delay: delay.get(),
+        duration: 100,
+        fill: "forwards",
+      };
+      const keyframes = {
+        backgroundColor,
         transform: ["scale(0.9)", "scale(1.1)", "scale(1)"],
-      },
-      delay: delay.get(),
-      duration: 100,
-      fill: "forwards",
-    });
+      };
+      const animation = button.animate(keyframes, options);
+      await animation.finished.finally(() => {});
+    };
+    queue.push(runNextAnimation);
   });
 
   return (
     <button
       ref={buttonRef}
       type="button"
+      style={{ backgroundColor: color.get() }}
       class={classes.rippleButtonContainer}
       onPointerDown={handleClick}
     />
@@ -175,3 +143,30 @@ RippleEffect.metadata = () => ({
 });
 
 export default RippleEffect;
+
+class AsyncQueue {
+  #queue: Array<() => Promise<void>> = [];
+  #isProcessing = false;
+
+  push(callback: () => Promise<void>) {
+    this.#queue.push(callback);
+    this.#process();
+  }
+
+  get size() {
+    return this.#queue.length;
+  }
+
+  async #process() {
+    if (this.#isProcessing) return;
+    this.#isProcessing = true;
+
+    while (true) {
+      const nextCallback = this.#queue.shift();
+      if (!nextCallback) break;
+      await nextCallback();
+    }
+
+    this.#isProcessing = false;
+  }
+}

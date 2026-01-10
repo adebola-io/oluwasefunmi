@@ -7,6 +7,7 @@ import { CurrentPageTitle } from "@/components/CurrentPageTitle";
 import { StarShower } from "@/components/StarShower";
 import { projects } from "@/data/projects";
 import { ArrowIcon } from "@/components/icons/arrow";
+
 const Works: RouteComponent = () => {
   return (
     <div class={classes.works}>
@@ -18,8 +19,7 @@ const Works: RouteComponent = () => {
 
         <p class={classes.intro}>
           Here's a curated collection of my works, highlighting my past
-          achievements and current projects. This selection showcases my growth
-          as a developer.
+          achievements and current projects.
         </p>
 
         <ul class={classes.grid}>
