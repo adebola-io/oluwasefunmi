@@ -11,10 +11,10 @@
   "dependencies": {
     "@mdx-js/rollup": "^3.1.0",
     "@types/mdx": "^2.0.13",
-    "retend": "https://pkg.pr.new/resuite/retend@0b4e03c",
-    "retend-server": "https://pkg.pr.new/resuite/retend/retend-server@0b4e03c",
-    "retend-utils": "https://pkg.pr.new/resuite/retend/retend-utils@0b4e03c",
-    "retend-web": "https://pkg.pr.new/resuite/retend/retend-web@0b4e03c"
+    "retend": "https://pkg.pr.new/resuite/retend@f32652a",
+    "retend-server": "https://pkg.pr.new/resuite/retend/retend-server@f32652a",
+    "retend-utils": "https://pkg.pr.new/resuite/retend/retend-utils@f32652a",
+    "retend-web": "https://pkg.pr.new/resuite/retend/retend-web@f32652a"
   },
   "devDependencies": {
     "vite": "^6.2.1",

@@ -9,7 +9,7 @@
 .container {
   display: flex;
   width: 100%;
-  height: 100dvh;
+  min-height: 100dvh;
   background: rgba(5, 5, 5, 0.4);
   border: 1px solid rgba(255, 255, 255, 0.1);
   overflow: hidden;
@@ -106,15 +106,45 @@
   .container {
     flex-direction: column;
     height: auto;
+    padding-top: 5.5rem;
   }
 
   .controls {
     flex: none;
+    width: 100%;
+    padding: 1.5rem;
+    padding-top: 4rem;
     border-right: none;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    max-height: 50vh;
   }
 
   .viewer {
-    min-height: 400px;
+    min-height: 60vh;
+    perspective: 800px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding-top: 5rem;
+  }
+
+  .controls {
+    padding: 1rem;
+    padding-top: 4rem;
+  }
+
+  .controls h2 {
+    font-size: 0.8rem;
+    margin-bottom: 1rem;
+  }
+
+  .controlGroup {
+    margin-bottom: 1.2rem;
+  }
+
+  .controlGroup label {
+    font-size: 0.75rem;
   }
 }

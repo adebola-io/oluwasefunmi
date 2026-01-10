@@ -1,7 +1,5 @@
 import classes from "./Contact.module.css";
 
-import { CurrentPageTitle } from "../components/CurrentPageTitle";
-
 const Contact = () => {
   return (
     <div class={classes.page}>
@@ -10,7 +8,11 @@ const Contact = () => {
           Got a cool idea or a big dream? Don't just sit on it! Hit me up, and
           let's turn it into something awesome together. You can reach me at:
         </p>
-        <CurrentPageTitle />
+        <h1 class={classes.emailLink}>
+          <a href="mailto:adebolaakomolafe@gmail.com">
+            adebolaakomolafe@gmail.com
+          </a>
+        </h1>
         <br />
 
         <a

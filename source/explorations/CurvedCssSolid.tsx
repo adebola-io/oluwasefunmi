@@ -28,12 +28,14 @@ const App = () => {
           top: 0,
           left: 0,
           right: 0,
-          padding: "2rem",
+          padding: "clamp(1rem, 3vw, 2rem)",
           display: "flex",
           justifyContent: "space-between",
           alignItems: "center",
           zIndex: 100,
           pointerEvents: "none",
+          gap: "0.5rem",
+          flexWrap: "wrap",
         }}
       >
         <Link
@@ -45,12 +47,13 @@ const App = () => {
             display: "flex",
             alignItems: "center",
             gap: "0.5rem",
-            fontSize: "0.9rem",
+            fontSize: "clamp(0.75rem, 2vw, 0.9rem)",
             background: "rgba(0,0,0,0.5)",
             padding: "0.5rem 1rem",
             borderRadius: "99px",
             border: "1px solid rgba(255,255,255,0.1)",
             backdropFilter: "blur(10px)",
+            whiteSpace: "nowrap",
           }}
         >
           <svg
@@ -73,7 +76,7 @@ const App = () => {
           style={{
             margin: 0,
             color: "rgba(255,255,255,0.5)",
-            fontSize: "0.9rem",
+            fontSize: "clamp(0.75rem, 2vw, 0.9rem)",
             fontWeight: 500,
             letterSpacing: "0.05em",
             textTransform: "uppercase",

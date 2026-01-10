@@ -5,7 +5,12 @@ import classes from "./CurrentPageTitle.module.css";
 
 export function CurrentPageTitle() {
   return (
-    <UniqueTransition name="page-title" transitionDuration="400ms">
+    <UniqueTransition
+      name="page-title"
+      transitionDuration="350ms"
+      maintainWidthDuringTransition
+      maintainHeightDuringTransition
+    >
       {() => <PageTitle />}
     </UniqueTransition>
   );
@@ -39,23 +44,14 @@ function PageTitle() {
         {Switch(
           viewState,
           {
-            contact: () => (
-              <a
-                key="contact"
-                href="mailto:adebolaakomolafe@gmail.com"
-                class={[classes.emailTitle, classes.animateEnter]}
-              >
-                adebolaakomolafe@gmail.com
-              </a>
-            ),
             explorations: () => (
               <span key="explorations" class={classes.animateEnter}>
-                Explorations.
+                explorations.
               </span>
             ),
             notes: () => (
               <span key="notes" class={classes.animateEnter}>
-                Random Notes.
+                random notes.
               </span>
             ),
           },
