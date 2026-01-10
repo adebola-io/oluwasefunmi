@@ -59,7 +59,7 @@
   background: var(--bg-card); /* Clean dark card */
   border: 1px solid var(--border-subtle);
   border-radius: 8px; /* Standard rounding */
-  transition: all 0.3s var(--ease-spring);
+  transition: transform 0.3s var(--ease-spring), border-color 0.3s var(--ease-spring), box-shadow 0.3s var(--ease-spring);
   overflow: hidden;
 }
 

@@ -68,7 +68,7 @@
   --layered-border-color: rgba(255, 255, 255, 0.25);
   --layered-shadow-color: rgba(255, 255, 255, 0.15);
   
-  transition: all 0.3s var(--ease-spring);
+  transition: transform 0.3s var(--ease-spring), opacity 0.3s var(--ease-spring);
 }
 
 .projectIcon {
@@ -99,7 +99,7 @@
   height: 1rem;
   opacity: 0;
   transform: translateX(-5px);
-  transition: all 0.3s var(--ease-spring);
+  transition: transform 0.3s var(--ease-spring), opacity 0.3s var(--ease-spring);
   color: var(--primary-color);
 }
 

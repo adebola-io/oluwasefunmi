@@ -90,7 +90,7 @@
   color: var(--text-primary);
   text-decoration: none;
   border-bottom: 1px solid var(--border-subtle);
-  transition: all 0.2s var(--ease-spring);
+  transition: opacity 0.2s var(--ease-spring), border-color 0.2s var(--ease-spring);
 }
 
 .intro a:hover {
@@ -118,7 +118,7 @@
   font-weight: 500;
   text-decoration: none;
   border-radius: 6px; /* Subtle rounding instead of pills */
-  transition: all 0.2s var(--ease-spring);
+  transition: transform 0.2s var(--ease-spring), opacity 0.2s var(--ease-spring), background-color 0.2s var(--ease-spring);
   cursor: pointer;
   letter-spacing: -0.01em;
 }

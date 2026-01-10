@@ -29,7 +29,6 @@
   color: var(--text-primary);
   margin: 0;
   white-space: nowrap;
-  transition: font-size 0.6s var(--ease-spring), letter-spacing 0.6s var(--ease-spring);
 }
 
 .home {

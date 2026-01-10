@@ -41,7 +41,7 @@
   font-weight: 500;
   color: var(--text-secondary);
   text-decoration: none;
-  transition: all 0.3s var(--ease-spring);
+  transition: transform 0.3s var(--ease-spring), opacity 0.3s var(--ease-spring), background-color 0.3s var(--ease-spring), border-color 0.3s var(--ease-spring), box-shadow 0.3s var(--ease-spring);
   position: relative;
   padding: 0.5rem 1rem;
   border-radius: 99px;
@@ -71,7 +71,7 @@
   width: 24px;
   height: 2px;
   background-color: var(--text-primary);
-  transition: all 0.3s var(--ease-spring);
+  transition: transform 0.3s var(--ease-spring), opacity 0.3s var(--ease-spring), background-color 0.3s var(--ease-spring);
 }
 
 .backdrop {

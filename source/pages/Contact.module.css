@@ -44,7 +44,7 @@
   text-decoration: none;
   font-size: 0.9rem;
   font-weight: 500;
-  transition: all 0.3s var(--ease-spring);
+  transition: transform 0.3s var(--ease-spring), opacity 0.3s var(--ease-spring), background-color 0.3s var(--ease-spring), border-color 0.3s var(--ease-spring), box-shadow 0.3s var(--ease-spring);
   padding: 0.5rem 0.5rem 0.5rem 1rem;
   border-radius: 99px;
   border: 1px solid transparent;
@@ -68,7 +68,7 @@
   color: var(--text-secondary);
   text-decoration: none;
   font-size: 0.9rem;
-  transition: color 0.2s;
+  transition: opacity 0.2s;
   display: flex;
   align-items: center;
   gap: 0.5rem;
