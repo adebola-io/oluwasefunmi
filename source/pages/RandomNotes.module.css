@@ -36,7 +36,7 @@
   background: transparent;
   border: 2.76px dashed rgba(255, 255, 255, 0.25);
   border-radius: 0.5rem;
-  transition: transform 0.2s ease;
+  transition: transform 0.2s var(--ease-spring);
   position: relative;
 }
 
@@ -59,7 +59,7 @@
     100% 100%,
     0 100%
   );
-  transition: transform 0.2s ease, opacity 0.2s ease;
+  transition: transform 0.2s var(--ease-spring), opacity 0.2s var(--ease-spring);
   z-index: -1;
 }
 

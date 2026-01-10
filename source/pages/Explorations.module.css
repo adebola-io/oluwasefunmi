@@ -26,7 +26,7 @@
   line-height: 1;
   color: var(--text-primary);
   opacity: 0;
-  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: slideUp 0.6s var(--ease-spring) forwards;
 }
 
 .subtitle {
@@ -38,7 +38,7 @@
   max-width: 500px;
   line-height: 1.6;
   opacity: 0;
-  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+  animation: slideUp 0.6s var(--ease-spring) 0.1s forwards;
 }
 
 .grid {
@@ -49,7 +49,7 @@
   max-width: 1200px;
   margin: 0 auto;
   opacity: 0;
-  animation: slideUp 0.6s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+  animation: slideUp 0.6s var(--ease-spring) 0.2s forwards;
 }
 
 .card {
@@ -59,7 +59,7 @@
   background: var(--bg-card); /* Clean dark card */
   border: 1px solid var(--border-subtle);
   border-radius: 8px; /* Standard rounding */
-  transition: all 0.3s ease;
+  transition: all 0.3s var(--ease-spring);
   overflow: hidden;
 }
 
@@ -138,7 +138,7 @@
 
 .arrowIcon {
   color: var(--text-secondary);
-  transition: transform 0.3s ease, color 0.3s ease;
+  transition: transform 0.3s var(--ease-spring), color 0.3s var(--ease-spring);
 }
 
 .card:hover .arrowIcon {
@@ -153,7 +153,7 @@
   line-height: 1.6;
   margin: 0;
   flex-grow: 1;
-  transition: color 0.3s ease;
+  transition: color 0.3s var(--ease-spring);
 }
 
 .card:hover .cardDescription {

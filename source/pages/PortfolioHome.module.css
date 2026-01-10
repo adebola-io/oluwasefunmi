@@ -38,7 +38,7 @@
   line-height: 1;
   color: var(--text-primary);
   opacity: 0;
-  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: fadeIn 0.8s var(--ease-spring) forwards;
 }
 
 .titleAccent {
@@ -51,7 +51,7 @@
   color: var(--text-secondary);
   
   opacity: 0;
-  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+  animation: fadeIn 0.8s var(--ease-spring) 0.1s forwards;
 }
 
 .intro {
@@ -63,7 +63,7 @@
   margin: 0 0 3.5rem 0; /* Left aligned */
   font-weight: 400;
   opacity: 0;
-  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+  animation: fadeIn 0.8s var(--ease-spring) 0.2s forwards;
 }
 
 @media (max-width: 600px) {
@@ -90,7 +90,7 @@
   color: var(--text-primary);
   text-decoration: none;
   border-bottom: 1px solid var(--border-subtle);
-  transition: all 0.2s ease;
+  transition: all 0.2s var(--ease-spring);
 }
 
 .intro a:hover {
@@ -105,7 +105,7 @@
   justify-content: flex-start; /* Left align buttons */
   flex-wrap: wrap;
   opacity: 0;
-  animation: fadeIn 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+  animation: fadeIn 0.8s var(--ease-spring) 0.3s forwards;
 }
 
 .primaryButton,
@@ -118,7 +118,7 @@
   font-weight: 500;
   text-decoration: none;
   border-radius: 6px; /* Subtle rounding instead of pills */
-  transition: all 0.2s ease;
+  transition: all 0.2s var(--ease-spring);
   cursor: pointer;
   letter-spacing: -0.01em;
 }

@@ -41,7 +41,7 @@
   font-weight: 500;
   color: var(--text-secondary);
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.3s var(--ease-spring);
   position: relative;
   padding: 0.5rem 1rem;
   border-radius: 99px;
@@ -72,7 +72,7 @@
   width: 24px;
   height: 2px;
   background-color: var(--text-primary);
-  transition: all 0.3s ease;
+  transition: all 0.3s var(--ease-spring);
 }
 
 .backdrop {
@@ -81,7 +81,7 @@
   inset: 0;
   background: rgba(0, 0, 0, 0.5);
   opacity: 0;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s var(--ease-spring);
   z-index: 150;
   pointer-events: none;
 }
@@ -123,7 +123,7 @@
     gap: 2rem;
     box-shadow: -10px 0 30px rgba(0,0,0,0.5);
     transform: translateX(100%); /* Hidden by default */
-    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    transition: transform 0.4s var(--ease-spring);
     z-index: 201; /* Above toggle */
   }
 

@@ -27,12 +27,12 @@
   color: var(--text-secondary);
   font-size: 0.9rem;
   font-weight: 500;
-  transition: all 0.3s ease;
+  transition: all 0.3s var(--ease-spring);
   padding: 0.5rem 1rem 0.5rem 0.5rem;
   border-radius: 99px;
   border: 1px solid transparent;
   margin-bottom: 2rem;
-  animation: fadeInUp 0.25s ease backwards;
+  animation: fadeInUp 0.25s var(--ease-spring) backwards;
   animation-delay: 0.05s;
 }
 
@@ -63,7 +63,7 @@
   margin-bottom: 2rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  animation: fadeInUp 0.25s ease backwards;
+  animation: fadeInUp 0.25s var(--ease-spring) backwards;
   animation-delay: 0.08s;
 }
 
@@ -72,7 +72,7 @@
   font-size: 1.05rem;
   line-height: 1.85;
   color: #ccc;
-  animation: fadeInUp 0.3s ease backwards;
+  animation: fadeInUp 0.3s var(--ease-spring) backwards;
   animation-delay: 0.12s;
 }
 
