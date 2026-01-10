@@ -2,10 +2,12 @@ import { Link } from "retend/router";
 import { LayeredCard } from "../components/LayeredCard";
 import classes from "./PortfolioHome.module.css";
 import { CurrentPageTitle } from "@/components/CurrentPageTitle";
+import { StarShower } from "@/components/StarShower";
 
 export default function PortfolioHome() {
   return (
     <div class={classes.home}>
+      <StarShower />
       <div class={classes.container}>
         <div class={classes.hero}>
           <CurrentPageTitle />
@@ -13,7 +15,7 @@ export default function PortfolioHome() {
         </div>
 
         <p class={classes.intro}>
-          I am a full-stack web developer from Lagos, Nigeria focused on
+          I am a full-stack software engineer from Lagos, Nigeria focused on
           creating interactive digital experiences and tackling complex design
           challenges. Some of my works include{" "}
           <a href="https://www.vizitly.io" target="_blank">

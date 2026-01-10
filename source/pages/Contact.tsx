@@ -1,8 +1,10 @@
 import classes from "./Contact.module.css";
+import { StarShower } from "@/components/StarShower";
 
 const Contact = () => {
   return (
     <div class={classes.page}>
+      <StarShower />
       <div class={classes.container}>
         <p class={classes.intro}>
           Got a cool idea or a big dream? Don't just sit on it! Hit me up, and

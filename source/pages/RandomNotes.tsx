@@ -5,6 +5,7 @@ import type { Note, NotePreviewProps } from "@/library";
 import { Link } from "retend/router";
 import { UniqueTransition } from "retend-utils/components";
 import { CurrentPageTitle } from "@/components/CurrentPageTitle";
+import { StarShower } from "@/components/StarShower";
 import classes from "./RandomNotes.module.css";
 
 export const getNotesIndex = async () => {
@@ -34,6 +35,7 @@ const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
 
   return (
     <div class={classes.page}>
+      <StarShower />
       <div class={classes.container}>
         <CurrentPageTitle />
         <p class={classes.subtitle}>

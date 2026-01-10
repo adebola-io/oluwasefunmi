@@ -2,6 +2,7 @@ import { Link } from "retend/router";
 import classes from "./Explorations.module.css";
 import { CurrentPageTitle } from "@/components/CurrentPageTitle";
 import { explorations } from "@/data/explorations.tsx";
+import { StarShower } from "@/components/StarShower";
 
 const Explorations = () => {
   const handlePointerMove = (e: PointerEvent) => {
@@ -13,6 +14,7 @@ const Explorations = () => {
 
   return (
     <div class={classes.page}>
+      <StarShower />
       <header class={classes.header}>
         <div class={classes.headerContent}>
           <CurrentPageTitle />
