@@ -55,7 +55,6 @@
   box-shadow: 0 0 15px rgba(255, 46, 147, 0.2);
 }
 
-/* Menu Toggle (Hamburger) */
 .menuToggle {
   display: none;
   background: none;
@@ -92,7 +91,6 @@
 
 @media (max-width: 600px) {
   .nav {
-    /* Reset from previous column layout attempt */
     flex-direction: row;
     padding: 1.5rem 2rem;
     gap: 0;
@@ -127,7 +125,6 @@
     z-index: 201; /* Above toggle */
   }
 
-  /* The class toggled by JS */
   .navLinksOpen {
     transform: translateX(0);
   }
@@ -163,7 +160,6 @@
   .navLink {
     font-size: 1.1rem;
     width: 100%;
-    /* border-bottom: 1px solid var(--border-subtle); */
     padding-bottom: 0.5rem;
   }
 }

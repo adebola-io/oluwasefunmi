@@ -1,7 +1,6 @@
 import type { JSX } from "retend/jsx-runtime";
 import classes from "./LayeredCard.module.css";
 
-// Props for the LayeredCard
 export interface LayeredCardProps {
   // eslint-disable-next-line @typescript-eslint/ban-types
   as?: keyof JSX.IntrinsicElements | Function;
@@ -22,9 +21,7 @@ export function LayeredCard(props: LayeredCardProps) {
 
   const combinedClass = [classes.layeredCard, classProp];
 
-  // Render based on component type
   if (typeof Component === "string") {
-    // For string elements, default to div wrapper
     return (
       <div {...rest} class={combinedClass}>
         {children}
@@ -32,6 +29,5 @@ export function LayeredCard(props: LayeredCardProps) {
     );
   }
 
-  // Component function - call it directly with props
   return Component({ ...rest, class: combinedClass, children });
 }

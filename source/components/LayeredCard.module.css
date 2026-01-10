@@ -1,6 +1,6 @@
 .layeredCard {
   position: relative;
-  display: block; /* Default to block */
+  display: block;
   text-decoration: none;
   background: transparent;
   --layered-border-color: rgba(255, 255, 255, 0.4);
@@ -10,7 +10,6 @@
   border: 2.76px dashed var(--layered-border-color);
   border-radius: 0.5rem;
   transition: transform 0.2s var(--ease-spring);
-  /* Ensure z-index context */
   z-index: 1;
 }
 
@@ -42,7 +41,7 @@
 }
 
 .layeredCard:hover::before {
-  transform: translate(-3px, 3px); /* Adjusted movement */
+  transform: translate(-3px, 3px);
 }
 
 .layeredCard:active {

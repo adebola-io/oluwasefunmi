@@ -6,7 +6,6 @@ export const Navigation = () => {
   const isMenuOpen = Cell.source(false);
   const router = useRouter();
 
-  // Close menu whenever route changes
   router.getCurrentRoute().listen(() => {
     isMenuOpen.set(false);
   });

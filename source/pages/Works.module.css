@@ -63,11 +63,8 @@
   justify-content: space-between;
   text-decoration: none;
   
-  /* Use darker default style for clearer contrast */
   background: rgba(0, 0, 0, 0.2); 
   
-  /* Map CSS variables for LayeredCard matching project colors */
-  /* Using darker/muted border styles to match Random Notes */
   --layered-border-color: rgba(255, 255, 255, 0.25);
   --layered-shadow-color: rgba(255, 255, 255, 0.15);
   
@@ -131,7 +128,7 @@
   padding: 0.25rem 0.5rem;
   border: 1px solid var(--primary-color);
   background: rgba(255, 255, 255, 0.03);
-  color: var(--text-secondary); /* Lighter text color */
+  color: var(--text-secondary);
   border-radius: 4px;
   opacity: 0.8;
 }

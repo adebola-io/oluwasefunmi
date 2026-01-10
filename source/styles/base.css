@@ -34,7 +34,7 @@ body {
 
 h1, h2, h3, h4, h5, h6 {
   font-weight: 500;
-  letter-spacing: -0.04em; /* Tight tracking for modern feel */
+  letter-spacing: -0.04em;
   margin: 0;
 }
 

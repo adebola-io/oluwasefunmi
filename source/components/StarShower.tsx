@@ -24,29 +24,27 @@ export function StarShower() {
   let stars: Star[] = [];
   let meteors: Meteor[] = [];
 
-  // Dimensions
   let width = 0;
   let height = 0;
 
   const initStars = () => {
     stars = [];
-    const starCount = Math.floor((width * height) / 15000); // Low Density
+    const starCount = Math.floor((width * height) / 15000);
     for (let i = 0; i < starCount; i++) {
       stars.push({
         x: Math.random() * width,
         y: Math.random() * height,
         size: Math.random() * 1.5 + 0.5,
         opacity: Math.random(),
-        speed: Math.random() * 0.005 + 0.002, // Much slower twinkle
+        speed: Math.random() * 0.005 + 0.002,
       });
     }
   };
 
   const createMeteor = () => {
-    // Start from top or spread horizontally
-    const startX = Math.random() * width * 2 - width; // -width to width
+    const startX = Math.random() * width * 2 - width;
     const startY = -100;
-    const angle = Math.PI / 4 + (Math.random() * 0.2 - 0.1); // ~45 degrees
+    const angle = Math.PI / 4 + (Math.random() * 0.2 - 0.1);
 
     meteors.push({
       x: startX,
@@ -54,7 +52,7 @@ export function StarShower() {
       length: Math.random() * 80 + 20,
       speed: Math.random() * 15 + 10,
       angle: angle,
-      opacity: Math.random() * 0.3 + 0.1, // Much more subtle
+      opacity: Math.random() * 0.3 + 0.1,
     });
   };
 
@@ -66,10 +64,8 @@ export function StarShower() {
 
     ctx.clearRect(0, 0, width, height);
 
-    // Draw Stars
     ctx.fillStyle = "#FFF";
     stars.forEach((star) => {
-      // Twinkle effect
       star.opacity += star.speed;
       if (star.opacity > 1 || star.opacity < 0.2) {
         star.speed = -star.speed;
@@ -81,7 +77,6 @@ export function StarShower() {
       ctx.fill();
     });
 
-    // Draw Meteors
     meteors.forEach((meteor, index) => {
       meteor.x += meteor.speed * Math.cos(meteor.angle);
       meteor.y += meteor.speed * Math.sin(meteor.angle);
@@ -92,7 +87,6 @@ export function StarShower() {
         return;
       }
 
-      // Draw meteor trail
       const endX = meteor.x - meteor.length * Math.cos(meteor.angle);
       const endY = meteor.y - meteor.length * Math.sin(meteor.angle);
 
@@ -109,9 +103,7 @@ export function StarShower() {
       ctx.stroke();
     });
 
-    // Random meteor spawn
     if (Math.random() < 0.015) {
-      // Adjust chance
       createMeteor();
     }
 
@@ -126,7 +118,6 @@ export function StarShower() {
     canvas.width = width;
     canvas.height = height;
 
-    // Re-init stars on resize
     if (stars.length === 0) initStars();
   };
 
