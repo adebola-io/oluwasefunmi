@@ -83,7 +83,7 @@
   font-size: 0.8rem;
   color: #444;
   margin-bottom: 0.5rem;
-  font-family: monospace;
+  font-family: var(--font-family);
 }
 
 /* Note heading - styling the global class when in list context */

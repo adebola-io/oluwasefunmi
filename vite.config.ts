@@ -12,10 +12,10 @@ const notes = fs.existsSync("./source/content/notes")
 
 const pages = [
   "/",
-  "/explorations",
-  "/curved-css-solid",
-  "/ripple-effect",
-  "/blur-carousel",
+  "/playground",
+  "/playground/curved-css-solid",
+  "/playground/ripple-effect",
+  "/playground/blur-carousel",
   "/random-notes",
   "/contact",
   ...notes,
