@@ -41,8 +41,8 @@ export const Navigation = () => {
             &times;
           </button>
         </div>
-        <Link href="/explorations" class={classes.navLink} onClick={closeMenu}>
-          explorations
+        <Link href="/playground" class={classes.navLink} onClick={closeMenu}>
+          playground
         </Link>
         <Link href="/contact" class={classes.navLink} onClick={closeMenu}>
           contact

@@ -6,14 +6,14 @@ import classes from "./PageLayout.module.css";
 export function RootLayout() {
   const router = useRouter();
 
-  const isExplorationDetail = Cell.derived(() => {
+  const isPlaygroundDetail = Cell.derived(() => {
     const route = router.getCurrentRoute().get();
     if (!route) return false;
     const path = route.path;
-    return path.startsWith("/explorations/") && path !== "/explorations";
+    return path.startsWith("/playground/") && path !== "/playground";
   });
 
-  const showNav = Cell.derived(() => !isExplorationDetail.get());
+  const showNav = Cell.derived(() => !isPlaygroundDetail.get());
 
   return (
     <div class={classes.layout}>

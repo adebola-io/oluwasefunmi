@@ -23,7 +23,7 @@ function PageTitle() {
   const viewState = Cell.derived(() => {
     const path = route.get()?.path || "/";
     if (path === "/contact") return "contact";
-    if (path.startsWith("/explorations")) return "explorations";
+    if (path.startsWith("/playground")) return "playground";
     if (path.startsWith("/random-notes")) return "notes";
     return "home";
   });
@@ -44,9 +44,9 @@ function PageTitle() {
         {Switch(
           viewState,
           {
-            explorations: () => (
-              <span key="explorations" class={classes.animateEnter}>
-                explorations.
+            playground: () => (
+              <span key="playground" class={classes.animateEnter}>
+                playground.
               </span>
             ),
             notes: () => (

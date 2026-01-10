@@ -38,10 +38,10 @@ export default function PortfolioHome() {
           </LayeredCard>
           <LayeredCard
             as={Link}
-            href="/explorations"
+            href="/playground"
             class={classes.primaryButton}
           >
-            <span>see explorations</span>
+            <span>see playground</span>
           </LayeredCard>
         </div>
       </div>

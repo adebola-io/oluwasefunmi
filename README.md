@@ -12,7 +12,7 @@ bun run dev
 ## Structure
 
 - `source/pages/` - Page components
-- `source/explorations/` - Interactive experiments
+- `source/playground/` - Interactive experiments
 - `source/components/` - Shared components
 - `source/content/` - MDX notes
 

@@ -1,10 +1,11 @@
+import { For } from "retend";
 import { Link } from "retend/router";
-import classes from "./Explorations.module.css";
+import classes from "./Playground.module.css";
 import { CurrentPageTitle } from "@/components/CurrentPageTitle";
-import { explorations } from "@/data/explorations.tsx";
+import { playgroundItems } from "@/data/playground.tsx";
 import { StarShower } from "@/components/StarShower";
 
-const Explorations = () => {
+const Playground = () => {
   const handlePointerMove = (e: PointerEvent) => {
     const target = e.currentTarget as HTMLElement;
     const rect = target.getBoundingClientRect();
@@ -25,7 +26,7 @@ const Explorations = () => {
       </header>
 
       <main class={classes.grid}>
-        {explorations.map((exp) => (
+        {For(playgroundItems, (exp) => (
           <Link
             href={exp.path}
             class={classes.card}
@@ -68,4 +69,4 @@ const Explorations = () => {
   );
 };
 
-export default Explorations;
+export default Playground;

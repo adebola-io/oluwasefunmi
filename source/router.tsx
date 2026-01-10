@@ -2,15 +2,15 @@ import { defineRoutes, Router } from "retend/router";
 
 // Pages
 import PortfolioHome from "./pages/PortfolioHome";
-import Explorations from "./pages/Explorations";
+import Playground from "./pages/Playground";
 import RandomNotes from "./pages/RandomNotes";
 import RandomNote from "./pages/RandomNote";
 import Contact from "./pages/Contact";
 
-// Explorations
-import CurvedCssSolid from "./explorations/CurvedCssSolid";
-import RippleEffect from "./explorations/RippleEffect";
-import BlurCarousel from "./explorations/BlurCarousel";
+// Playground
+import CurvedCssSolid from "./playground/CurvedCssSolid";
+import RippleEffect from "./playground/RippleEffect";
+import BlurCarousel from "./playground/BlurCarousel";
 
 import { RootLayout } from "./components/RootLayout";
 
@@ -21,9 +21,9 @@ const routes = defineRoutes([
     children: [
       { path: "/", component: PortfolioHome },
       {
-        path: "/explorations",
+        path: "/playground",
         children: [
-          { path: "/", component: Explorations },
+          { path: "/", component: Playground },
           { path: "/curved-css-solid", component: CurvedCssSolid },
           { path: "/ripple-effect", component: RippleEffect },
           { path: "/blur-carousel", component: BlurCarousel },

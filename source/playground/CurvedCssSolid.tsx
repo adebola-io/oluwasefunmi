@@ -39,7 +39,7 @@ const App = () => {
         }}
       >
         <Link
-          href="/explorations"
+          href="/playground"
           style={{
             pointerEvents: "auto",
             color: "#888",
@@ -70,7 +70,7 @@ const App = () => {
               stroke-linejoin="round"
             />
           </svg>
-          back to explorations
+          back to playground
         </Link>
         <h1
           style={{

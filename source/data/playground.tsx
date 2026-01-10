@@ -1,15 +1,15 @@
 import type { JSX } from "retend/jsx-runtime";
 
-export interface ExplorationItem {
+export interface PlaygroundItem {
   path: string;
   title: string;
   description: string;
   icon: () => JSX.Element;
 }
 
-export const explorations: ExplorationItem[] = [
+export const playgroundItems: PlaygroundItem[] = [
   {
-    path: "/explorations/curved-css-solid",
+    path: "/playground/curved-css-solid",
     title: "Curved CSS Solid",
     description:
       "Pushing the limits of CSS transforms to create a volumetric 3D box without WebGL. It uses pure DOM elements to achieve smooth curves and full interactivity.",
@@ -37,7 +37,7 @@ export const explorations: ExplorationItem[] = [
     ),
   },
   {
-    path: "/explorations/ripple-effect",
+    path: "/playground/ripple-effect",
     title: "Ripple Effect",
     description:
       "An optimized grid interaction where clicks trigger cascading ripple effects across hundreds of cells. The focus here was on efficient state management to maintain a smooth 60fps.",
@@ -57,7 +57,7 @@ export const explorations: ExplorationItem[] = [
     ),
   },
   {
-    path: "/explorations/blur-carousel",
+    path: "/playground/blur-carousel",
     title: "Blur Carousel",
     description:
       "A carousel exploring scroll-driven animations to mimic physical depth of field. Items dynamically blur and recede as they move out of focus, creating a more natural browsing experience.",
