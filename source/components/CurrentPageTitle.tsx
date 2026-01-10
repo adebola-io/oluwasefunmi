@@ -41,16 +41,29 @@ function PageTitle() {
           {
             contact: () => (
               <a
+                key="contact"
                 href="mailto:adebolaakomolafe@gmail.com"
-                class={classes.emailTitle}
+                class={[classes.emailTitle, classes.animateEnter]}
               >
                 adebolaakomolafe@gmail.com
               </a>
             ),
-            explorations: () => "Explorations.",
-            notes: () => "Random Notes.",
+            explorations: () => (
+              <span key="explorations" class={classes.animateEnter}>
+                Explorations.
+              </span>
+            ),
+            notes: () => (
+              <span key="notes" class={classes.animateEnter}>
+                Random Notes.
+              </span>
+            ),
           },
-          () => "oluwasefunmi."
+          () => (
+            <span key="home" class={classes.animateEnter}>
+              oluwasefunmi.
+            </span>
+          )
         )}
       </h1>
     </div>
