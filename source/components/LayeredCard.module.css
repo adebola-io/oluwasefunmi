@@ -1,0 +1,54 @@
+.layeredCard {
+  position: relative;
+  display: block; /* Default to block */
+  text-decoration: none;
+  background: transparent;
+  --layered-border-color: rgba(255, 255, 255, 0.4);
+  --layered-shadow-color: rgba(255, 255, 255, 0.3);
+  --layered-offset-x: -12px;
+  --layered-offset-y: 12px;
+  border: 2.76px dashed var(--layered-border-color);
+  border-radius: 0.5rem;
+  transition: transform 0.2s ease;
+  /* Ensure z-index context */
+  z-index: 1;
+}
+
+.layeredCard::before {
+  content: '';
+  position: absolute;
+  top: var(--layered-offset-y);
+  left: var(--layered-offset-x);
+  width: 100%;
+  height: 100%;
+  border: 2.76px dashed var(--layered-shadow-color);
+  border-radius: 0.5rem;
+  background: transparent;
+  clip-path: polygon(
+    0 0,
+    10px 0,
+    10px calc(100% - 10px),
+    100% calc(100% - 10px),
+    100% 100%,
+    0 100%
+  );
+  transition: transform 0.2s ease, opacity 0.2s ease;
+  z-index: -1;
+  pointer-events: none;
+}
+
+.layeredCard:hover {
+  transform: translate(2px, -2px);
+}
+
+.layeredCard:hover::before {
+  transform: translate(-3px, 3px); /* Adjusted movement */
+}
+
+.layeredCard:active {
+  transform: translate(0, 0);
+}
+
+.layeredCard:active::before {
+  transform: translate(0, 0);
+}

@@ -193,8 +193,10 @@ function BlurCarousel<Item>(props: BlurCarouselProps<Item>) {
   return (
     <div
       ref={containerRef}
-      class="w-200 @container max-w-[90dvw] overflow-scroll bg-white/5 border border-white/10 rounded-xl grid py-10 px-[10cqw]"
-      style={{ scrollbarWidth: "none" }}
+      class={[
+        "w-200 @container max-w-[90dvw] overflow-scroll bg-white/5 border border-white/10 rounded-xl grid py-10 px-[10cqw]",
+        classes.carouselContainer,
+      ]}
     >
       <FluidList
         ref={listRef}
@@ -205,6 +207,21 @@ function BlurCarousel<Item>(props: BlurCarouselProps<Item>) {
         itemWidth="min(25dvw, 200px)"
         gap="20px"
       />
+      <div
+        style={{
+          position: "fixed",
+          bottom: "2rem",
+          left: "50%",
+          transform: "translateX(-50%)",
+          color: "rgba(255, 255, 255, 0.5)",
+          fontSize: "0.9rem",
+          pointerEvents: "none",
+          textTransform: "uppercase",
+          letterSpacing: "0.1em",
+        }}
+      >
+        Scroll to explore
+      </div>
     </div>
   );
 }

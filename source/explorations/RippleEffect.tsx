@@ -221,6 +221,22 @@ const RippleEffect = () => {
           />
         ))}
       </div>
+      <div
+        style={{
+          position: "fixed",
+          bottom: "2rem",
+          left: "50%",
+          transform: "translateX(-50%)",
+          color: "rgba(255, 255, 255, 0.5)",
+          fontSize: "0.9rem",
+          pointerEvents: "none",
+          textTransform: "uppercase",
+          letterSpacing: "0.1em",
+          zIndex: 100,
+        }}
+      >
+        Click anywhere to ripple
+      </div>
     </div>
   );
 };

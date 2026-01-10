@@ -1,8 +1,9 @@
 import { For } from "retend";
-import type { RouteComponent, ObjectToMap } from "retend/router";
+import type { RouteComponent } from "retend/router";
 import type { PageMeta } from "retend-server/client";
 import type { Note, NotePreviewProps } from "@/library";
 import { Link } from "retend/router";
+import { UniqueTransition } from "retend-utils/components";
 import classes from "./RandomNotes.module.css";
 
 export const getNotesIndex = async () => {
@@ -47,7 +48,12 @@ const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
             For(notes, (note, index) => (
               <Link href={`/random-notes/${note.id}`} class={classes.noteCard}>
                 <div class={classes.noteNumber}>#{index.get() + 1}</div>
-                <h2 class={classes.noteTitle}>{note.title}</h2>
+                <UniqueTransition
+                  name={`note-heading-${note.id}`}
+                  transitionDuration="300ms"
+                >
+                  {() => <h1 class="note-heading">{note.title}</h1>}
+                </UniqueTransition>
                 <div class={classes.noteDate}>{note.dateStr}</div>
                 <p class={classes.noteSummary}>{note.description}</p>
               </Link>

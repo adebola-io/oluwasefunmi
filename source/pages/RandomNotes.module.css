@@ -86,7 +86,8 @@
   font-family: monospace;
 }
 
-.noteTitle {
+/* Note heading - styling the global class when in list context */
+.noteCard :global(.note-heading) {
   font-size: 1.25rem;
   font-weight: 500;
   color: #fff;

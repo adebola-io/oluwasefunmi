@@ -1,4 +1,5 @@
 import { Link } from "retend/router";
+import { LayeredCard } from "../components/LayeredCard";
 import classes from "./PortfolioHome.module.css";
 
 const PortfolioHome = () => {
@@ -31,12 +32,20 @@ const PortfolioHome = () => {
         </p>
 
         <div class={classes.actions}>
-          <Link href="/explorations" class={classes.primaryButton}>
+          <LayeredCard
+            as={Link}
+            href="/explorations"
+            class={classes.primaryButton}
+          >
             <span>see explorations</span>
-          </Link>
-          <Link href="/contact" class={classes.secondaryButton}>
+          </LayeredCard>
+          <LayeredCard
+            as={Link}
+            href="/contact"
+            class={classes.secondaryButton}
+          >
             <span>contact me</span>
-          </Link>
+          </LayeredCard>
         </div>
       </div>
     </div>

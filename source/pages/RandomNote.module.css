@@ -2,6 +2,17 @@
   width: 100%;
 }
 
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 .container {
   max-width: 700px;
   margin: 0 auto;
@@ -21,6 +32,8 @@
   border-radius: 99px;
   border: 1px solid transparent;
   margin-bottom: 2rem;
+  animation: fadeInUp 0.25s ease backwards;
+  animation-delay: 0.05s;
 }
 
 .backLink:hover {
@@ -50,6 +63,8 @@
   margin-bottom: 2rem;
   padding-bottom: 1.5rem;
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  animation: fadeInUp 0.25s ease backwards;
+  animation-delay: 0.08s;
 }
 
 /* Note content wrapper */
@@ -57,6 +72,8 @@
   font-size: 1.05rem;
   line-height: 1.85;
   color: #ccc;
+  animation: fadeInUp 0.3s ease backwards;
+  animation-delay: 0.12s;
 }
 
 .article :global(.note-content) p {

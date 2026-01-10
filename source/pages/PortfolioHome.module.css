@@ -47,6 +47,7 @@
   font-weight: 400;
   margin-top: 1.5rem;
   letter-spacing: 0.05em;
+  text-transform: uppercase;
   color: var(--text-secondary);
   
   opacity: 0;
@@ -123,25 +124,28 @@
 }
 
 .primaryButton {
-  background: var(--text-primary);
-  color: var(--bg-dark);
-  border: 1px solid var(--text-primary);
+  background: transparent;
+  color: var(--text-primary);
 }
 
 .primaryButton:hover {
-  background: var(--accent-color);
-  border-color: var(--accent-color);
-  
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .secondaryButton {
   background: transparent;
   color: var(--text-secondary);
-  border: 1px solid var(--border-subtle);
+}
+
+.primaryButton, .secondaryButton {
+  --layered-border-color: rgba(255, 255, 255, 0.6);
+  --layered-shadow-color: rgba(255, 255, 255, 0.3);
+  --layered-offset-x: -6px;
+  --layered-offset-y: 6px;
 }
 
 .secondaryButton:hover {
-  border-color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.1);
   color: var(--text-primary);
 }
 

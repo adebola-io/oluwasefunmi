@@ -73,7 +73,7 @@
   height: 100%;
   background: radial-gradient(
     600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(255, 255, 255, 0.04), /* Subtle white glow */
+    rgba(255, 255, 255, 0.12), /* More visible white glow */
     transparent 40%
   );
   opacity: 0;
@@ -101,11 +101,27 @@
   position: relative;
 }
 
+/* Removed hover styles from cardInner since properies moved back to card */
+
 .cardHeader {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   margin-bottom: 1.5rem;
+}
+
+.titleGroup {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  opacity: 0.8;
 }
 
 .cardTitle {
