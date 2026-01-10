@@ -1,5 +1,6 @@
 import { Cell, For } from "retend";
 import { Link } from "retend/router";
+import type { RouteComponent } from "retend/router";
 import { useWindowSize } from "retend-utils/hooks";
 import classes from "./RippleEffect.module.css";
 
@@ -117,7 +118,7 @@ const colors = [
 const BOX_SIZE = 48;
 const GAP = 3;
 
-const RippleEffect = () => {
+const RippleEffect: RouteComponent = () => {
   const { width, height } = useWindowSize();
 
   const cols = Cell.derived(() => {
@@ -240,5 +241,11 @@ const RippleEffect = () => {
     </div>
   );
 };
+
+RippleEffect.metadata = () => ({
+  title: "Ripple Effect | Playground",
+  description: "An optimized grid interaction with cascading ripple effects.",
+  viewport: "width=device-width, initial-scale=1.0",
+});
 
 export default RippleEffect;

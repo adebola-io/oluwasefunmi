@@ -1,7 +1,8 @@
+import type { RouteComponent } from "retend/router";
 import classes from "./Contact.module.css";
 import { StarShower } from "@/components/StarShower";
 
-const Contact = () => {
+const Contact: RouteComponent = () => {
   return (
     <div class={classes.page}>
       <StarShower />
@@ -59,5 +60,17 @@ const Contact = () => {
     </div>
   );
 };
+
+Contact.metadata = () => ({
+  title: "Contact | Oluwasefunmi Akomolafe",
+  description:
+    "Get in touch with Oluwasefunmi Akomolafe. Let's collaborate on your next project.",
+  ogTitle: "Contact | Oluwasefunmi Akomolafe",
+  ogDescription:
+    "Get in touch with Oluwasefunmi. Let's collaborate on your next project.",
+  twitterTitle: "Contact | Oluwasefunmi Akomolafe",
+  twitterDescription:
+    "Get in touch with Oluwasefunmi. Let's collaborate on your next project.",
+});
 
 export default Contact;

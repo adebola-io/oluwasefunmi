@@ -1,11 +1,12 @@
 import { For } from "retend";
 import { Link } from "retend/router";
+import type { RouteComponent } from "retend/router";
 import classes from "./Playground.module.css";
 import { CurrentPageTitle } from "@/components/CurrentPageTitle";
 import { playgroundItems } from "@/data/playground.tsx";
 import { StarShower } from "@/components/StarShower";
 
-const Playground = () => {
+const Playground: RouteComponent = () => {
   const handlePointerMove = (e: PointerEvent) => {
     const target = e.currentTarget as HTMLElement;
     const rect = target.getBoundingClientRect();
@@ -68,5 +69,15 @@ const Playground = () => {
     </div>
   );
 };
+
+Playground.metadata = () => ({
+  title: "Playground | Oluwasefunmi Akomolafe",
+  description:
+    "Interactive UI experiments and visual effects showcasing creative web development.",
+  ogTitle: "Playground | Oluwasefunmi Akomolafe",
+  ogDescription: "Interactive UI experiments and visual effects.",
+  twitterTitle: "Playground | Oluwasefunmi Akomolafe",
+  twitterDescription: "Interactive UI experiments and visual effects.",
+});
 
 export default Playground;

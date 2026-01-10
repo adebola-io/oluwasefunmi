@@ -1,5 +1,6 @@
 import { Cell, useObserver } from "retend";
 import { Link } from "retend/router";
+import type { RouteComponent } from "retend/router";
 import { FluidList, type ListTemplateProps } from "retend-utils/components";
 import { useDerivedValue } from "retend-utils/hooks";
 import type { JSX } from "retend/jsx-runtime";
@@ -67,7 +68,7 @@ const items: Item[] = [
   },
 ];
 
-const BlurCarouselDemo = () => {
+const BlurCarouselDemo: RouteComponent = () => {
   return (
     <div class="h-full w-full min-h-screen grid place-items-center">
       <header
@@ -225,5 +226,12 @@ function BlurCarousel<Item>(props: BlurCarouselProps<Item>) {
     </div>
   );
 }
+
+BlurCarouselDemo.metadata = () => ({
+  title: "Blur Carousel | Playground",
+  description:
+    "A carousel with scroll-driven blur effects simulating depth of field.",
+  viewport: "width=device-width, initial-scale=1.0",
+});
 
 export default BlurCarouselDemo;

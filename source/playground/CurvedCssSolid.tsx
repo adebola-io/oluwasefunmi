@@ -1,11 +1,12 @@
 import { Cell } from "retend";
 import { Link } from "retend/router";
+import type { RouteComponent } from "retend/router";
 import { Input } from "retend-utils/components";
 import { Box } from "./Box";
 
 import classes from "./CurvedCssSolid.module.css";
 
-const App = () => {
+const CurvedCssSolid: RouteComponent = () => {
   const rx = Cell.source(25);
   const ry = Cell.source(-35);
   const rz = Cell.source(-0.5);
@@ -143,4 +144,10 @@ const App = () => {
   );
 };
 
-export default App;
+CurvedCssSolid.metadata = () => ({
+  title: "Curved CSS Solid | Playground",
+  description: "A volumetric 3D box using pure CSS transforms without WebGL.",
+  viewport: "width=device-width, initial-scale=1.0",
+});
+
+export default CurvedCssSolid;

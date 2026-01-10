@@ -1,10 +1,11 @@
 import { Link } from "retend/router";
+import type { RouteComponent } from "retend/router";
 import { LayeredCard } from "../components/LayeredCard";
 import classes from "./PortfolioHome.module.css";
 import { CurrentPageTitle } from "@/components/CurrentPageTitle";
 import { StarShower } from "@/components/StarShower";
 
-export default function PortfolioHome() {
+const PortfolioHome: RouteComponent = () => {
   return (
     <div class={classes.home}>
       <StarShower />
@@ -47,4 +48,18 @@ export default function PortfolioHome() {
       </div>
     </div>
   );
-}
+};
+
+PortfolioHome.metadata = () => ({
+  title: "Oluwasefunmi | Software Engineer",
+  description:
+    "Full-stack software engineer from Lagos, Nigeria focused on creating interactive digital experiences.",
+  ogTitle: "Oluwasefunmi | Software Engineer",
+  ogDescription:
+    "Full-stack software engineer from Lagos, Nigeria focused on creating interactive digital experiences.",
+  twitterTitle: "Oluwasefunmi | Software Engineer",
+  twitterDescription:
+    "Full-stack software engineer from Lagos, Nigeria focused on creating interactive digital experiences.",
+});
+
+export default PortfolioHome;
