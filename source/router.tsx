@@ -6,6 +6,7 @@ import Playground from "./pages/Playground";
 import RandomNotes from "./pages/RandomNotes";
 import RandomNote from "./pages/RandomNote";
 import Contact from "./pages/Contact";
+import Works from "./pages/Works";
 
 // Playground
 import CurvedCssSolid from "./playground/CurvedCssSolid";
@@ -36,6 +37,7 @@ const routes = defineRoutes([
           { path: "/:slug", component: RandomNote },
         ],
       },
+      { path: "/works", component: Works },
       { path: "/contact", component: Contact },
     ],
   },

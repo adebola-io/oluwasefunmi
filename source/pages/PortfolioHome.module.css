@@ -140,8 +140,8 @@
 .primaryButton, .secondaryButton {
   --layered-border-color: rgba(255, 255, 255, 0.6);
   --layered-shadow-color: rgba(255, 255, 255, 0.3);
-  --layered-offset-x: -6px;
-  --layered-offset-y: 6px;
+  --layered-offset-x: -8px;
+  --layered-offset-y: 8px;
 }
 
 .secondaryButton:hover {

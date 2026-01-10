@@ -18,6 +18,7 @@ const pages = [
   "/playground/blur-carousel",
   "/random-notes",
   "/contact",
+  "/works",
   ...notes,
 ];
 

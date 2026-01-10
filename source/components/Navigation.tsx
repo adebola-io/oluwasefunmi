@@ -54,6 +54,9 @@ export const Navigation = () => {
             </svg>
           </button>
         </div>
+        <Link href="/works" class={classes.navLink} onClick={closeMenu}>
+          works
+        </Link>
         <Link href="/playground" class={classes.navLink} onClick={closeMenu}>
           playground
         </Link>

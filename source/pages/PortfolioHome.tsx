@@ -34,15 +34,11 @@ const PortfolioHome: RouteComponent = () => {
         </p>
 
         <div class={classes.actions}>
+          <LayeredCard as={Link} href="/works" class={classes.primaryButton}>
+            <span>see works</span>
+          </LayeredCard>
           <LayeredCard as={Link} href="/contact" class={classes.primaryButton}>
             <span>contact me</span>
-          </LayeredCard>
-          <LayeredCard
-            as={Link}
-            href="/playground"
-            class={classes.primaryButton}
-          >
-            <span>see playground</span>
           </LayeredCard>
         </div>
       </div>

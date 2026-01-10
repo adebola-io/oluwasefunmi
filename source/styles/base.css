@@ -14,6 +14,9 @@
   --border-subtle: #1E293B;
 
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  
+  --duration: 200ms;
+  --tw-duration: var(--duration);
 }
 
 body {

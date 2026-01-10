@@ -25,6 +25,7 @@ function PageTitle() {
     if (path === "/contact") return "contact";
     if (path.startsWith("/playground")) return "playground";
     if (path.startsWith("/random-notes")) return "notes";
+    if (path === "/works") return "works";
     return "home";
   });
 
@@ -52,6 +53,11 @@ function PageTitle() {
             notes: () => (
               <span key="notes" class={classes.animateEnter}>
                 random notes.
+              </span>
+            ),
+            works: () => (
+              <span key="works" class={classes.animateEnter}>
+                my projects.
               </span>
             ),
           },
