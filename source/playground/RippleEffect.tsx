@@ -1,7 +1,7 @@
 import { Cell, For } from "retend";
-import { Link } from "retend/router";
 import type { RouteComponent } from "retend/router";
 import { useWindowSize } from "retend-utils/hooks";
+import { PlaygroundLayout } from "./PlaygroundLayout";
 import classes from "./RippleEffect.module.css";
 
 interface BoxProps {
@@ -150,94 +150,20 @@ const RippleEffect: RouteComponent = () => {
 
   return (
     <div class={classes.app}>
-      <header
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          padding: "2rem",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          zIndex: 100,
-          pointerEvents: "none",
-        }}
-      >
-        <Link
-          href="/playground"
-          style={{
-            pointerEvents: "auto",
-            color: "#888",
-            textDecoration: "none",
-            display: "flex",
-            alignItems: "center",
-            gap: "0.5rem",
-            fontSize: "0.9rem",
-            background: "rgba(0,0,0,0.5)",
-            padding: "0.5rem 1rem",
-            borderRadius: "99px",
-            border: "1px solid rgba(255,255,255,0.1)",
-            backdropFilter: "blur(10px)",
-          }}
-        >
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path
-              d="M19 12H5M12 19l-7-7 7-7"
-              stroke-linecap="round"
-              stroke-linejoin="round"
+      <PlaygroundLayout title="Ripple Effect" hint="Click anywhere to ripple">
+        <div class={classes.rippleContainer} style={{ gridTemplate }}>
+          {For(boxes, (_, index) => (
+            <RippleButton
+              index={index}
+              rows={rows}
+              cols={cols}
+              clicked={clicked}
+              color={color}
+              onClick={handleClick}
             />
-          </svg>
-          back to playground
-        </Link>
-        <h1
-          style={{
-            margin: 0,
-            color: "rgba(255,255,255,0.5)",
-            fontSize: "0.9rem",
-            fontWeight: 500,
-            letterSpacing: "0.05em",
-            textTransform: "uppercase",
-          }}
-        >
-          Ripple Effect
-        </h1>
-      </header>
-      <div class={classes.rippleContainer} style={{ gridTemplate }}>
-        {For(boxes, (_, index) => (
-          <RippleButton
-            index={index}
-            rows={rows}
-            cols={cols}
-            clicked={clicked}
-            color={color}
-            onClick={handleClick}
-          />
-        ))}
-      </div>
-      <div
-        style={{
-          position: "fixed",
-          bottom: "2rem",
-          left: "50%",
-          transform: "translateX(-50%)",
-          color: "rgba(255, 255, 255, 0.5)",
-          fontSize: "0.9rem",
-          pointerEvents: "none",
-          textTransform: "uppercase",
-          letterSpacing: "0.1em",
-          zIndex: 100,
-        }}
-      >
-        Click anywhere to ripple
-      </div>
+          ))}
+        </div>
+      </PlaygroundLayout>
     </div>
   );
 };

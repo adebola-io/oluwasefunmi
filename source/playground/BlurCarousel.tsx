@@ -1,9 +1,9 @@
 import { Cell, useObserver } from "retend";
-import { Link } from "retend/router";
 import type { RouteComponent } from "retend/router";
 import { FluidList, type ListTemplateProps } from "retend-utils/components";
 import { useDerivedValue } from "retend-utils/hooks";
 import type { JSX } from "retend/jsx-runtime";
+import { PlaygroundLayout } from "./PlaygroundLayout";
 import classes from "./BlurCarousel.module.css";
 
 interface Item {
@@ -71,70 +71,12 @@ const items: Item[] = [
 const BlurCarouselDemo: RouteComponent = () => {
   return (
     <div class="h-full w-full min-h-screen grid place-items-center">
-      <header
-        style={{
-          position: "fixed",
-          top: 0,
-          left: 0,
-          right: 0,
-          padding: "2rem",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          zIndex: 100,
-          pointerEvents: "none",
-        }}
-      >
-        <Link
-          href="/playground"
-          style={{
-            pointerEvents: "auto",
-            color: "#888",
-            textDecoration: "none",
-            display: "flex",
-            alignItems: "center",
-            gap: "0.5rem",
-            fontSize: "0.9rem",
-            background: "rgba(0,0,0,0.5)",
-            padding: "0.5rem 1rem",
-            borderRadius: "99px",
-            border: "1px solid rgba(255,255,255,0.1)",
-            backdropFilter: "blur(10px)",
-          }}
-        >
-          <svg
-            width="16"
-            height="16"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-          >
-            <path
-              d="M19 12H5M12 19l-7-7 7-7"
-              stroke-linecap="round"
-              stroke-linejoin="round"
-            />
-          </svg>
-          back to playground
-        </Link>
-        <h1
-          style={{
-            margin: 0,
-            color: "rgba(255,255,255,0.5)",
-            fontSize: "0.9rem",
-            fontWeight: 500,
-            letterSpacing: "0.05em",
-            textTransform: "uppercase",
-          }}
-        >
-          Blur Carousel
-        </h1>
-      </header>
-      <BlurCarousel
-        items={items}
-        Template={({ item, index }) => <Avatar item={item} index={index} />}
-      />
+      <PlaygroundLayout title="Blur Carousel" hint="Scroll to explore">
+        <BlurCarousel
+          items={items}
+          Template={({ item, index }) => <Avatar item={item} index={index} />}
+        />
+      </PlaygroundLayout>
     </div>
   );
 };
@@ -208,21 +150,6 @@ function BlurCarousel<Item>(props: BlurCarouselProps<Item>) {
         itemWidth="min(25dvw, 200px)"
         gap="20px"
       />
-      <div
-        style={{
-          position: "fixed",
-          bottom: "2rem",
-          left: "50%",
-          transform: "translateX(-50%)",
-          color: "rgba(255, 255, 255, 0.5)",
-          fontSize: "0.9rem",
-          pointerEvents: "none",
-          textTransform: "uppercase",
-          letterSpacing: "0.1em",
-        }}
-      >
-        Scroll to explore
-      </div>
     </div>
   );
 }
