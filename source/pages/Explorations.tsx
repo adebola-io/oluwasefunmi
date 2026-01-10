@@ -1,5 +1,6 @@
 import { Link } from "retend/router";
 import classes from "./Explorations.module.css";
+import { CurrentPageTitle } from "@/components/CurrentPageTitle";
 
 import type { JSX } from "retend/jsx-runtime";
 
@@ -86,7 +87,7 @@ const Explorations = () => {
     <div class={classes.page}>
       <header class={classes.header}>
         <div class={classes.headerContent}>
-          <h1 class={classes.title}>Explorations.</h1>
+          <CurrentPageTitle />
           <p class={classes.subtitle}>
             Interactive UI experiments & visual effects
           </p>

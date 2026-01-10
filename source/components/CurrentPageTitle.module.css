@@ -1,0 +1,75 @@
+.titleWrapper {
+  position: relative;
+  width: 100%;
+  /* Enable pointer events so email link is clickable */
+  pointer-events: auto;
+  z-index: 1000;
+}
+
+.contact {
+  position: relative;
+}
+
+.emailTitle {
+  color: inherit;
+  text-decoration: none;
+  font-size: clamp(1.5rem, 4vw, 3rem); /* Smaller than main title to fit long email */
+  font-weight: inherit;
+  transition: opacity 0.2s ease;
+  word-break: break-all; /* Ensure it wraps if absolutely necessary */
+}
+
+.emailTitle:hover {
+  opacity: 0.7;
+}
+
+.title {
+  font-family: var(--font-family);
+  font-weight: 500;
+  line-height: 1;
+  color: var(--text-primary);
+  margin: 0;
+  white-space: nowrap;
+  transition: font-size 0.6s cubic-bezier(0.16, 1, 0.3, 1), letter-spacing 0.6s ease;
+}
+
+/* Home State: Left Aligned in Hero */
+.home {
+  position: relative;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-bottom: 0.5rem;
+}
+
+.home .title {
+  font-size: clamp(2rem, 8vw, 5rem);
+  letter-spacing: -0.05em;
+  text-align: left;
+}
+
+/* Page State: Top-Left in Container */
+.page {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding-top: 4rem;
+  display: block;
+}
+
+.page .title {
+  font-size: clamp(3rem, 8vw, 5rem);
+  letter-spacing: -0.04em;
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .page {
+    padding-top: 2rem;
+  }
+  
+  .page .title {
+    font-size: 2.5rem;
+  }
+}

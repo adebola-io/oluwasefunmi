@@ -43,7 +43,7 @@
 
 .titleAccent {
   display: block;
-  font-size: 0.25em; /* This is relative to the parent title size */
+  font-size: clamp(0.75rem, 2vw, 1.25rem); /* Restored size independent of h1 parent */
   font-weight: 400;
   margin-top: 1.5rem;
   letter-spacing: 0.05em;
@@ -77,7 +77,7 @@
   
   .titleAccent {
     margin-top: 1rem;
-    font-size: 0.35em; /* Make slightly larger relatively on mobile for readability */
+    font-size: 1rem; /* Fixed readable size on mobile */
   }
   
   .intro {

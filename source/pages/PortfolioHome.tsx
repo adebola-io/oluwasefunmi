@@ -1,17 +1,16 @@
 import { Link } from "retend/router";
 import { LayeredCard } from "../components/LayeredCard";
 import classes from "./PortfolioHome.module.css";
+import { CurrentPageTitle } from "@/components/CurrentPageTitle";
 
-const PortfolioHome = () => {
+export default function PortfolioHome() {
   return (
     <div class={classes.home}>
       <div class={classes.container}>
-        <header class={classes.hero}>
-          <h1 class={classes.title}>
-            oluwasefunmi.
-            <span class={classes.titleAccent}>web engineer.</span>
-          </h1>
-        </header>
+        <div class={classes.hero}>
+          <CurrentPageTitle />
+          <span class={classes.titleAccent}>web engineer.</span>
+        </div>
 
         <p class={classes.intro}>
           I am a full-stack web developer from Lagos, Nigeria focused on
@@ -50,6 +49,4 @@ const PortfolioHome = () => {
       </div>
     </div>
   );
-};
-
-export default PortfolioHome;
+}

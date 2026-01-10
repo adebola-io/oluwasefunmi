@@ -4,6 +4,7 @@ import type { PageMeta } from "retend-server/client";
 import type { Note, NotePreviewProps } from "@/library";
 import { Link } from "retend/router";
 import { UniqueTransition } from "retend-utils/components";
+import { CurrentPageTitle } from "@/components/CurrentPageTitle";
 import classes from "./RandomNotes.module.css";
 
 export const getNotesIndex = async () => {
@@ -34,7 +35,7 @@ const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
   return (
     <div class={classes.page}>
       <div class={classes.container}>
-        <h1 class={classes.title}>random notes.</h1>
+        <CurrentPageTitle />
         <p class={classes.subtitle}>
           Disjoint musings, incoherent rants and streams of consciousness that I
           have decided to write down. Anything about life, technology and
