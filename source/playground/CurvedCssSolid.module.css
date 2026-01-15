@@ -88,18 +88,41 @@
   padding: 2px;
 }
 
+.hint {
+  margin-top: 1.5rem;
+  padding: 0.75rem;
+  background: rgba(100, 116, 234, 0.1);
+  border: 1px solid rgba(100, 116, 234, 0.2);
+  border-radius: 6px;
+  text-align: center;
+}
+
+.hint span {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.8rem;
+}
+
 .viewer {
   flex: 1;
   display: flex;
   align-items: center;
   justify-content: center;
-  background:
-    radial-gradient(circle at center, rgba(100, 100, 255, 0.03) 0%, transparent 70%),
+  background: radial-gradient(
+      circle at center,
+      rgba(100, 100, 255, 0.03) 0%,
+      transparent 70%
+    ),
     linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
   background-size: 100% 100%, 20px 20px, 20px 20px;
   perspective: 1000px;
   overflow: hidden;
+  cursor: grab;
+  user-select: none;
+}
+
+.viewerDragging {
+  cursor: grabbing;
 }
 
 @media (max-width: 768px) {

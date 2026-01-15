@@ -16,9 +16,45 @@ const CurvedCssSolid: RouteComponent = () => {
   const curve = Cell.source(0.05);
   const color = Cell.source("#6074dd");
 
+  const isDragging = Cell.source(false);
+
   const transform = Cell.derived(() => {
     return `rotateX(${rx.get()}deg) rotateY(${ry.get()}deg) rotateZ(${rz.get()}deg)`;
   });
+
+  let lastX = 0;
+  let lastY = 0;
+
+  const handleMouseDown = (e: MouseEvent) => {
+    if (e.button !== 0) return;
+    isDragging.set(true);
+    lastX = e.clientX;
+    lastY = e.clientY;
+    e.preventDefault();
+  };
+
+  const handleMouseMove = (e: MouseEvent) => {
+    if (!isDragging.get()) return;
+
+    const deltaX = e.clientX - lastX;
+    const deltaY = e.clientY - lastY;
+
+    const sensitivity = 0.5;
+
+    ry.set(ry.get() + deltaX * sensitivity);
+    rx.set(rx.get() - deltaY * sensitivity);
+
+    lastX = e.clientX;
+    lastY = e.clientY;
+  };
+
+  const handleMouseUp = () => {
+    isDragging.set(false);
+  };
+
+  const handleMouseLeave = () => {
+    isDragging.set(false);
+  };
 
   return (
     <div class={classes.app}>
@@ -89,8 +125,18 @@ const CurvedCssSolid: RouteComponent = () => {
                 model={rz}
               />
             </div>
+
+            <div class={classes.hint}>
+              <span>💡 Drag on the viewer to orbit</span>
+            </div>
           </div>
-          <div class={classes.viewer}>
+          <div
+            class={[classes.viewer, { [classes.viewerDragging]: isDragging }]}
+            onMouseDown={handleMouseDown}
+            onMouseMove={handleMouseMove}
+            onMouseUp={handleMouseUp}
+            onMouseLeave={handleMouseLeave}
+          >
             <Box
               style={{ transform }}
               height={height}
