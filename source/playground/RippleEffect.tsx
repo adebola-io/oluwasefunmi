@@ -3,6 +3,7 @@ import type { RouteComponent } from "retend/router";
 import { useWindowSize } from "retend-utils/hooks";
 import { PlaygroundLayout } from "./PlaygroundLayout";
 import classes from "./RippleEffect.module.css";
+import { AsyncQueue } from "@/utils";
 
 interface BoxProps {
   rows: Cell<number>;
@@ -29,7 +30,7 @@ const RippleButton = (props: BoxProps) => {
   const euclidDistanceFromClick = Cell.derived(() => {
     const [clickedRow, clickedCol] = clicked.get();
     return Math.floor(
-      Math.sqrt((row.get() - clickedRow) ** 2 + (col.get() - clickedCol) ** 2),
+      Math.sqrt((row.get() - clickedRow) ** 2 + (col.get() - clickedCol) ** 2)
     );
   });
 
@@ -143,30 +144,3 @@ RippleEffect.metadata = () => ({
 });
 
 export default RippleEffect;
-
-class AsyncQueue {
-  #queue: Array<() => Promise<void>> = [];
-  #isProcessing = false;
-
-  push(callback: () => Promise<void>) {
-    this.#queue.push(callback);
-    this.#process();
-  }
-
-  get size() {
-    return this.#queue.length;
-  }
-
-  async #process() {
-    if (this.#isProcessing) return;
-    this.#isProcessing = true;
-
-    while (true) {
-      const nextCallback = this.#queue.shift();
-      if (!nextCallback) break;
-      await nextCallback();
-    }
-
-    this.#isProcessing = false;
-  }
-}

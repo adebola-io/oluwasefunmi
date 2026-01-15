@@ -16,6 +16,7 @@ const pages = [
   "/playground/curved-css-solid",
   "/playground/ripple-effect",
   "/playground/blur-carousel",
+  "/playground/animated-icons",
   "/random-notes",
   "/contact",
   "/works",

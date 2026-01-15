@@ -37,7 +37,9 @@ const Playground: RouteComponent = () => {
             <div class={classes.cardInner}>
               <div class={classes.cardHeader}>
                 <div class={classes.titleGroup}>
-                  <div class={classes.iconWrapper}>{exp.icon()}</div>
+                  <div class={classes.iconWrapper}>
+                    <exp.icon />
+                  </div>
                   <h2 class={classes.cardTitle}>{exp.title}</h2>
                 </div>
                 <div class={classes.arrowIcon}>
@@ -57,7 +59,9 @@ const Playground: RouteComponent = () => {
                   </svg>
                 </div>
               </div>
-              <p class={classes.cardDescription}>{exp.description}</p>
+              <p class={classes.cardDescription}>
+                <exp.description />
+              </p>
             </div>
           </Link>
         ))}

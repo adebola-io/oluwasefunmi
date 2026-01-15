@@ -154,6 +154,12 @@
   margin: 0;
   flex-grow: 1;
   transition: color 0.3s var(--ease-spring);
+
+
+  a {
+    color: var(--text-primary);
+  
+  }
 }
 
 .card:hover .cardDescription {
