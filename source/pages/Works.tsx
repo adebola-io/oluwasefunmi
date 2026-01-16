@@ -1,10 +1,10 @@
 import { For } from "retend";
 import { Link } from "retend/router";
 import type { RouteComponent } from "retend/router";
-import { LayeredCard } from "../components/LayeredCard";
+import { LayeredCard } from "@/components/ui/LayeredCard";
 import classes from "./Works.module.css";
-import { CurrentPageTitle } from "@/components/CurrentPageTitle";
-import { StarShower } from "@/components/StarShower";
+import { CurrentPageTitle } from "@/components/layout/CurrentPageTitle";
+import { StarShower } from "@/components/ui/StarShower";
 import { projects } from "@/data/projects";
 import { ArrowIcon } from "@/components/icons/arrow";
 

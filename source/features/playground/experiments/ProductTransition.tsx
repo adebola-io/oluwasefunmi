@@ -1,11 +1,11 @@
 import { Cell, For, If, useSetupEffect } from "retend";
 import type { RouteComponent } from "retend/router";
 import { useRouteQuery } from "retend/router";
-import { PlaygroundLayout } from "./PlaygroundLayout";
-import { Modal } from "@/components/Modal";
+import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
+import { Modal } from "@/components/ui/Modal/Modal";
 import { products, getProductById, type Product } from "@/data/products";
-import { ProductCard } from "./components/ProductCard";
-import { ProductDetails } from "./components/ProductDetails";
+import { ProductCard } from "@/features/playground/components/ProductCard";
+import { ProductDetails } from "@/features/playground/components/ProductDetails";
 
 const ProductTransition: RouteComponent = () => {
   const query = useRouteQuery();

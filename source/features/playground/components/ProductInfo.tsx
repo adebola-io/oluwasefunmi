@@ -1,4 +1,4 @@
-import { formatPrice } from "@/utils/index";
+import { formatPrice } from "@/utils";
 import { getProductById } from "@/data/products";
 import { UniqueTransition } from "retend-utils/components";
 

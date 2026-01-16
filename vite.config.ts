@@ -33,7 +33,7 @@ export default defineConfig({
     retend(),
     retendSSG({
       pages,
-      routerModulePath: "./source/router.tsx",
+      routerModulePath: "./source/app/router.tsx",
     }),
   ],
 });

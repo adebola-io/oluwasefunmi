@@ -2,20 +2,20 @@ import {
   NoteHeadingText,
   NoteContent,
   NoteDetails,
-} from '@/components/typography';
+} from "@/components/ui/typography";
 
-export const id = '1-sefunmi-makes-a-blog';
-export const title = '#1: sefunmi makes a blog.';
-export const date = '2025-03-22';
+export const id = "1-sefunmi-makes-a-blog";
+export const title = "#1: sefunmi makes a blog.";
+export const date = "2025-03-22";
 export const description =
-  'After much procrastination, Sefunmi finally launches a blog, bracing for potential failure and future regret, with content ranging from tech to existential musings.';
-export const dateStr = new Date(date).toLocaleDateString('en-US', {
-  year: 'numeric',
-  month: 'long',
-  day: 'numeric',
+  "After much procrastination, Sefunmi finally launches a blog, bracing for potential failure and future regret, with content ranging from tech to existential musings.";
+export const dateStr = new Date(date).toLocaleDateString("en-US", {
+  year: "numeric",
+  month: "long",
+  day: "numeric",
 });
 export const ogImage =
-  'https://github.com/user-attachments/assets/bc5bc1f4-1ab9-40b3-9bbe-0b55798d1378';
+  "https://github.com/user-attachments/assets/bc5bc1f4-1ab9-40b3-9bbe-0b55798d1378";
 
 <NoteHeadingText noteId={id}>{title}</NoteHeadingText>
 <NoteDetails>General | {dateStr}</NoteDetails>

@@ -1,6 +1,6 @@
 import type { RouteComponent } from "retend/router";
 import classes from "./Contact.module.css";
-import { StarShower } from "@/components/StarShower";
+import { StarShower } from "@/components/ui/StarShower";
 
 const Contact: RouteComponent = () => {
   return (

@@ -1,18 +1,18 @@
 import { defineRoutes, Router } from "retend/router";
 
-import PortfolioHome from "./pages/PortfolioHome";
-import Playground from "./pages/Playground";
-import RandomNotes from "./pages/RandomNotes";
-import RandomNote from "./pages/RandomNote";
-import Contact from "./pages/Contact";
-import Works from "./pages/Works";
+import PortfolioHome from "@/pages/PortfolioHome";
+import Playground from "@/pages/Playground";
+import RandomNotes from "@/pages/RandomNotes";
+import RandomNote from "@/pages/RandomNote";
+import Contact from "@/pages/Contact";
+import Works from "@/pages/Works";
 
-import CurvedCssSolid from "./playground/CurvedCssSolid";
-import RippleEffect from "./playground/RippleEffect";
-import BlurCarousel from "./playground/BlurCarousel";
-import ProductTransition from "./playground/ProductTransition";
+import CurvedCssSolid from "@/features/playground/experiments/CurvedCssSolid";
+import RippleEffect from "@/features/playground/experiments/RippleEffect";
+import BlurCarousel from "@/features/playground/experiments/BlurCarousel";
+import ProductTransition from "@/features/playground/experiments/ProductTransition";
 
-import { RootLayout } from "./components/RootLayout";
+import { RootLayout } from "@/components/layout/RootLayout";
 
 const routes = defineRoutes([
   {

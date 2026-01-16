@@ -1,6 +1,6 @@
 import { Cell, If } from "retend";
 import { useRouteQuery } from "retend/router";
-import { getProductImage } from "@/utils/productImages";
+import { getProductImage } from "@/data/productImages";
 import { getProductById } from "@/data/products";
 import { UniqueTransition } from "retend-utils/components";
 
@@ -37,7 +37,7 @@ export const ProductImageContent = (props: ProductImageProps) => {
   const showImage = Cell.derived(() => !!imageSrc.get());
 
   const altText = Cell.derived(
-    () => `${product.name} in ${selectedColor.get()}`,
+    () => `${product.name} in ${selectedColor.get()}`
   );
 
   const imageClass = className || "w-full h-[85%] object-cover object-center";

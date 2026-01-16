@@ -1,11 +1,11 @@
 import { For } from "retend";
 import type { RouteComponent } from "retend/router";
 import type { PageMeta } from "retend-server/client";
-import type { Note, NotePreviewProps } from "@/library";
+import type { Note, NotePreviewProps } from "@/types";
 import { Link } from "retend/router";
 import { UniqueTransition } from "retend-utils/components";
-import { CurrentPageTitle } from "@/components/CurrentPageTitle";
-import { StarShower } from "@/components/StarShower";
+import { CurrentPageTitle } from "@/components/layout/CurrentPageTitle";
+import { StarShower } from "@/components/ui/StarShower";
 import classes from "./RandomNotes.module.css";
 
 export const getNotesIndex = async () => {

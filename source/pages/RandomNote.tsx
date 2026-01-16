@@ -1,7 +1,7 @@
 import type { RouteComponent, ObjectToMap } from "retend/router";
 import { useRouter, Link } from "retend/router";
 import type { PageMeta } from "retend-server/client";
-import type { Note } from "@/library";
+import type { Note } from "@/types";
 import classes from "./RandomNote.module.css";
 
 const RandomNote: RouteComponent<PageMeta<Note>> = () => {

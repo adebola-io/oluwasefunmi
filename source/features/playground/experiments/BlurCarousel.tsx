@@ -3,7 +3,7 @@ import type { RouteComponent } from "retend/router";
 import { FluidList, type ListTemplateProps } from "retend-utils/components";
 import { useDerivedValue } from "retend-utils/hooks";
 import type { JSX } from "retend/jsx-runtime";
-import { PlaygroundLayout } from "./PlaygroundLayout";
+import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
 import { carouselItems, type CarouselItem } from "@/data/carousel";
 import classes from "./BlurCarousel.module.css";
 

@@ -1,7 +1,7 @@
 import { Cell, For } from "retend";
 import type { RouteComponent } from "retend/router";
 import { useWindowSize } from "retend-utils/hooks";
-import { PlaygroundLayout } from "./PlaygroundLayout";
+import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
 import classes from "./RippleEffect.module.css";
 import { AsyncQueue } from "@/utils";
 

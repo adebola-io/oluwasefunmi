@@ -2,9 +2,9 @@ import { For } from "retend";
 import { Link } from "retend/router";
 import type { RouteComponent } from "retend/router";
 import classes from "./Playground.module.css";
-import { CurrentPageTitle } from "@/components/CurrentPageTitle";
+import { CurrentPageTitle } from "@/components/layout/CurrentPageTitle";
 import { playgroundItems } from "@/data/playground.tsx";
-import { StarShower } from "@/components/StarShower";
+import { StarShower } from "@/components/ui/StarShower";
 
 const Playground: RouteComponent = () => {
   const handlePointerMove = (e: PointerEvent) => {

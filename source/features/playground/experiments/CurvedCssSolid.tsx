@@ -2,7 +2,7 @@ import { Cell } from "retend";
 import type { RouteComponent } from "retend/router";
 import { Input } from "retend-utils/components";
 import { Box } from "./Box";
-import { PlaygroundLayout } from "./PlaygroundLayout";
+import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
 import classes from "./CurvedCssSolid.module.css";
 
 const CurvedCssSolid: RouteComponent = () => {

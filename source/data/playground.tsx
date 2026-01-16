@@ -1,8 +1,8 @@
 import type { JSX } from "retend/jsx-runtime";
-import { CubeIcon } from "../components/icons/cube";
-import { RippleIcon } from "../components/icons/ripple";
-import { CarouselIcon } from "../components/icons/carousel";
-import { TransitionIcon } from "../components/icons/transition";
+import { CubeIcon } from "@/components/icons/cube";
+import { RippleIcon } from "@/components/icons/ripple";
+import { CarouselIcon } from "@/components/icons/carousel";
+import { TransitionIcon } from "@/components/icons/transition";
 
 export interface PlaygroundItem {
   path: string;
