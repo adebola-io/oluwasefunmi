@@ -69,7 +69,7 @@ export const products: Product[] = [
     material: "100% Mongolian Cashmere",
     care: ["Hand wash cold", "Lay flat to dry"],
     sizes: ["XS", "S", "M", "L"],
-    colors: ["Ivory", "Dusty Rose", "Slate Grey"],
+    colors: ["Slate Grey", "Ivory", "Dusty Rose"],
   },
   {
     id: 3,
@@ -81,7 +81,7 @@ export const products: Product[] = [
     material: "100% Mulberry Silk",
     care: ["Dry clean recommended", "Iron on low heat"],
     sizes: ["XS", "S", "M", "L", "XL"],
-    colors: ["Champagne", "Black", "Powder Blue"],
+    colors: ["Powder Blue", "Champagne", "Black"],
   },
   {
     id: 4,
@@ -93,7 +93,7 @@ export const products: Product[] = [
     material: "95% Wool, 5% Elastane",
     care: ["Dry clean only"],
     sizes: ["24", "26", "28", "30", "32"],
-    colors: ["Black", "Charcoal", "Navy"],
+    colors: ["Charcoal", "Navy", "Black"],
   },
   {
     id: 5,
@@ -121,7 +121,7 @@ export const products: Product[] = [
     material: "100% European Linen",
     care: ["Machine wash cold", "Line dry"],
     sizes: ["XS", "S", "M", "L", "XL"],
-    colors: ["Orange", "Terracotta", "Sage"],
+    colors: ["Sage", "Terracotta", "Orange"],
   },
   {
     id: 7,
@@ -133,7 +133,7 @@ export const products: Product[] = [
     material: "100% Organic Pima Cotton",
     care: ["Machine wash cold", "Tumble dry low"],
     sizes: ["XS", "S", "M", "L", "XL", "XXL"],
-    colors: ["Orange", "Black", "Heather Grey", "Navy"],
+    colors: ["Heather Gray", "Orange", "Black", "Navy"],
   },
   {
     id: 8,
@@ -169,7 +169,7 @@ export const products: Product[] = [
     material: "100% Extra-Fine Merino Wool",
     care: ["Hand wash cold", "Reshape and dry flat"],
     sizes: ["XS", "S", "M", "L", "XL"],
-    colors: ["Oatmeal", "Charcoal", "Dusty Blue"],
+    colors: ["Charcoal", "Oatmeal", "Dusty Blue"],
   },
   {
     id: 11,
@@ -182,7 +182,7 @@ export const products: Product[] = [
     material: "98% Cotton Velvet, 2% Elastane",
     care: ["Dry clean only", "Store on padded hanger"],
     sizes: ["XS", "S", "M", "L"],
-    colors: ["Midnight Blue", "Bordeaux", "Emerald"],
+    colors: ["Emerald", "Midnight Blue", "Bordeaux"],
   },
   {
     id: 12,
@@ -194,7 +194,7 @@ export const products: Product[] = [
     material: "70% Viscose, 30% Polyamide",
     care: ["Hand wash cold", "Reshape and dry flat"],
     sizes: ["XS", "S", "M", "L"],
-    colors: ["Black", "Camel", "Cream"],
+    colors: ["Camel", "Black", "Cream"],
   },
 ];
 

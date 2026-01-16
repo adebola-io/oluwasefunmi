@@ -30,6 +30,14 @@ body {
 
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+
+    &:has(dialog[open]) {
+        overflow: hidden;
+    }
+}
+
+:has([data-transitioning]) {
+    z-index: 99;
 }
 
 h1,

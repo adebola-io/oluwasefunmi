@@ -26,7 +26,6 @@ export const ProductCard = (props: ProductCardProps) => {
       class={[
         heightClass,
         "break-inside-avoid mb-5 relative rounded-2xl transition-[border-color] duration-300 ease-out isolate border border-white/20 hover:border-white/50 ",
-        "has-data-transitioning:z-99",
       ]}
     >
       <button
@@ -34,7 +33,7 @@ export const ProductCard = (props: ProductCardProps) => {
         class="w-full h-full flex flex-col bg-transparent border-none rounded-2xl p-0 cursor-pointer text-inherit font-inherit"
         onClick={handleClick}
       >
-        <div class="grid grid-rows-[1fr] items-center w-full flex-1 bg-[#2a2a2a] relative rounded-2xl">
+        <div class="grid grid-rows-[1fr] items-center w-full flex-1 bg-[#313030] relative rounded-2xl">
           <ProductImage
             productId={product.id}
             className="w-full h-full object-contain object-center transition-transform duration-300 ease-out group-hover:scale-[1.02]"

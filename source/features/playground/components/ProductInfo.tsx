@@ -1,12 +1,11 @@
 import { formatPrice } from "@/utils";
 import { getProductById } from "@/data/products";
-import { UniqueTransition } from "retend-utils/components";
 
 interface ProductInfoProps {
   productId: number;
 }
 
-export const ProductInfoContent = (props: ProductInfoProps) => {
+export const ProductInfo = (props: ProductInfoProps) => {
   const { productId } = props;
   const product = getProductById(productId);
 
@@ -16,7 +15,7 @@ export const ProductInfoContent = (props: ProductInfoProps) => {
 
   return (
     <>
-      <h3 class="product-name text-base font-medium text-[#f0f0f0] m-0 tracking-[0.01em] leading-[1.3] [text-shadow:0_2px_4px_rgba(0,0,0,0.3)]">
+      <h3 class="product-name text-base text-left font-medium text-[#f0f0f0] m-0 tracking-[0.01em] leading-[1.3] [text-shadow:0_2px_4px_rgba(0,0,0,0.3)]">
         {product.name}
       </h3>
       <div class="product-price-container flex items-center gap-3">
@@ -30,17 +29,5 @@ export const ProductInfoContent = (props: ProductInfoProps) => {
         )}
       </div>
     </>
-  );
-};
-
-export const ProductInfo = (props: ProductInfoProps) => {
-  return (
-    <UniqueTransition
-      name={`product-info-${props.productId}`}
-      transitionTimingFunction="cubic-bezier(0.16, 1, 0.3, 1)"
-      transitionDuration="500ms"
-    >
-      {() => <ProductInfoContent {...props} />}
-    </UniqueTransition>
   );
 };

@@ -5,8 +5,8 @@
 
 // Import all product images using Vite's glob import
 const imageModules = import.meta.glob<{ default: string }>(
-  "/source/data/images/*.png",
-  { eager: true }
+  "/source/data/images/*.webp",
+  { eager: true },
 );
 
 // Build a lookup map from the imported images
@@ -14,8 +14,8 @@ const imageModules = import.meta.glob<{ default: string }>(
 const imageMap: Record<string, string> = {};
 
 for (const path of Object.keys(imageModules)) {
-  // Extract filename from path: "/source/data/images/1-camel.png" -> "1-camel"
-  const match = path.match(/\/(\d+-[^/]+)\.png$/);
+  // Extract filename from path: "/source/data/images/1-camel.webp" -> "1-camel"
+  const match = path.match(/\/(\d+-[^/]+)\.webp$/);
   if (match) {
     const key = match[1].toLowerCase();
     imageMap[key] = imageModules[path].default;
@@ -30,7 +30,7 @@ for (const path of Object.keys(imageModules)) {
  */
 export function getProductImage(
   productId: number,
-  color: string
+  color: string,
 ): string | undefined {
   const normalizedColor = color.toLowerCase().replace(/\s+/g, "-");
   const key = `${productId}-${normalizedColor}`;

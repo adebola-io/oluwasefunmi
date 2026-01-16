@@ -70,7 +70,7 @@ export const ProductDetails = (props: ProductDetailsProps) => {
         </div>
 
         {/* Details Container */}
-        <div class="relative has-data-transitioning:z-99 z-10 bg-[#0c0c0c] p-6 min-h-[50vh] flex flex-col gap-6 md:h-full md:p-12 md:z-auto">
+        <div class="relative z-10 bg-[#0c0c0c] p-6 min-h-[50vh] flex flex-col gap-6 md:h-full md:p-12 md:z-auto">
           {/* Header Section */}
           <div class="flex flex-col gap-2">
             <ProductInfo productId={product.id} />
@@ -83,12 +83,12 @@ export const ProductDetails = (props: ProductDetailsProps) => {
             <div class="flex flex-wrap gap-2 md:gap-3">
               {For(product.colors, (color) => {
                 const isSelected = Cell.derived(
-                  () => selectedColor.get() === color
+                  () => selectedColor.get() === color,
                 );
                 const optionClasses = Cell.derived(() =>
                   isSelected.get()
                     ? "py-2 px-4 rounded-full text-sm text-white/90 bg-white/15 border border-white/40 transition-all duration-200 ease-out cursor-pointer flex items-center gap-2"
-                    : "py-2 px-4 rounded-full text-sm text-white/70 bg-white/5 border border-transparent transition-all duration-200 ease-out cursor-pointer hover:bg-white/10 hover:border-white/10 flex items-center gap-2"
+                    : "py-2 px-4 rounded-full text-sm text-white/70 bg-white/5 border border-transparent transition-all duration-200 ease-out cursor-pointer hover:bg-white/10 hover:border-white/10 flex items-center gap-2",
                 );
 
                 return (
