@@ -1,6 +1,5 @@
 import { Cell, useObserver } from "retend";
 import type { JSX } from "retend/jsx-runtime";
-import classes from "./Modal.module.css";
 
 export interface ModalProps {
   isOpen: Cell<boolean>;
@@ -29,17 +28,28 @@ export const Modal = (props: ModalProps) => {
     if (isOpen.get()) dialog.showModal();
   });
 
+  const handleClose = () => onClose();
+
   return (
     <dialog
       ref={dialogRef}
       class={[
-        classes.modal,
-        { [classes.fillScreenOnMobile]: fillScreenOnMobile },
+        "fixed inset-0 w-full h-full max-w-full max-h-full m-0 p-0 border-none bg-transparent text-white",
+        "open:flex open:items-center open:justify-center backdrop:bg-black/50",
       ]}
-      onClose={onClose}
-      onClick--self={onClose}
+      onClose={handleClose}
     >
-      <div class={classes.modalCard}>{children}</div>
+      <div
+        class={[
+          "relative max-w-[90vw] max-h-[90vh] rounded-xl bg-[#0c0c0c]/95 shadow-2xl ring-1 ring-white/40",
+          {
+            "max-md:w-full max-md:h-full max-md:max-w-full max-md:max-h-full max-md:rounded-none":
+              fillScreenOnMobile,
+          },
+        ]}
+      >
+        {children}
+      </div>
     </dialog>
   );
 };

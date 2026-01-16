@@ -2,7 +2,6 @@ import type { JSX } from "retend/jsx-runtime";
 import classes from "./LayeredCard.module.css";
 
 export interface LayeredCardProps {
-  // eslint-disable-next-line @typescript-eslint/ban-types
   as?: keyof JSX.IntrinsicElements | Function;
   class?: string | string[];
   children?:
