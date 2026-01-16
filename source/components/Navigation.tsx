@@ -20,23 +20,25 @@ export const Navigation = () => {
       </Link>
 
       <button
+        type="button"
         class={classes.menuToggle}
         onClick={toggleMenu}
         aria-label="Toggle menu"
       >
-        <span class={classes.bar}></span>
-        <span class={classes.bar}></span>
+        <span class={classes.bar} />
+        <span class={classes.bar} />
       </button>
 
-      <div
+      <button
+        type="button"
         class={[classes.backdrop, { [classes.backdropOpen]: isMenuOpen }]}
         onClick={closeMenu}
-      ></div>
+      />
 
       <div class={[classes.navLinks, { [classes.navLinksOpen]: isMenuOpen }]}>
         <div class={classes.sidebarHeader}>
           <span class={classes.sidebarTitle}>Menu</span>
-          <button class={classes.closeButton} onClick={closeMenu}>
+          <button type="button" class={classes.closeButton} onClick={closeMenu}>
             <svg
               width="24"
               height="24"

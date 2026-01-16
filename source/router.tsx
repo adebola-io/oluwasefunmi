@@ -10,6 +10,7 @@ import Works from "./pages/Works";
 import CurvedCssSolid from "./playground/CurvedCssSolid";
 import RippleEffect from "./playground/RippleEffect";
 import BlurCarousel from "./playground/BlurCarousel";
+import ProductTransition from "./playground/ProductTransition";
 
 import { RootLayout } from "./components/RootLayout";
 
@@ -26,6 +27,7 @@ const routes = defineRoutes([
           { path: "/curved-css-solid", component: CurvedCssSolid },
           { path: "/ripple-effect", component: RippleEffect },
           { path: "/blur-carousel", component: BlurCarousel },
+          { path: "/product-transition", component: ProductTransition },
         ],
       },
       {
@@ -42,5 +44,5 @@ const routes = defineRoutes([
 ]);
 
 export function createRouter() {
-  return new Router({ routes });
+  return new Router({ routes, stackMode: true });
 }

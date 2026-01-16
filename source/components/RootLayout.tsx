@@ -14,23 +14,17 @@ export function RootLayout() {
   });
 
   const showNav = Cell.derived(() => !isPlaygroundDetail.get());
+  const containerClass = Cell.derived(() => {
+    if (showNav.get()) return classes.main;
+    return "contents";
+  });
 
   return (
     <div class={classes.layout}>
-      {If(showNav, () => (
-        <Navigation />
-      ))}
-      {If(
-        showNav,
-        () => (
-          <main class={classes.main}>
-            <Outlet />
-          </main>
-        ),
-        () => (
-          <Outlet />
-        )
-      )}
+      {If(showNav, Navigation)}
+      <main class={containerClass}>
+        <Outlet />
+      </main>
     </div>
   );
 }

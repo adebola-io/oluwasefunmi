@@ -2,6 +2,7 @@ import type { JSX } from "retend/jsx-runtime";
 import { CubeIcon } from "../components/icons/cube";
 import { RippleIcon } from "../components/icons/ripple";
 import { CarouselIcon } from "../components/icons/carousel";
+import { TransitionIcon } from "../components/icons/transition";
 
 export interface PlaygroundItem {
   path: string;
@@ -46,5 +47,16 @@ export const playgroundItems: PlaygroundItem[] = [
       </>
     ),
     icon: () => <CarouselIcon />,
+  },
+  {
+    path: "/playground/product-transition",
+    title: "Product Transition",
+    description: () => (
+      <>
+        An exploration of smooth product card transitions and animations for
+        e-commerce interfaces.
+      </>
+    ),
+    icon: () => <TransitionIcon />,
   },
 ];

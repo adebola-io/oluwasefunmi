@@ -1,198 +1,208 @@
 .page {
-  width: 100%;
+    width: 100%;
 }
 
 @keyframes slideUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .header {
-  margin-bottom: 5rem;
-  max-width: 1200px;
-  width: 100%;
-  margin-left: auto;
-  margin-right: auto;
-  position: relative;
+    margin-bottom: 5rem;
+    max-width: 1200px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
 }
 
 .title {
-  /* Clean, professional title */
-  font-family: var(--font-family);
-  font-size: clamp(3rem, 8vw, 5rem);
-  font-weight: 500;
-  letter-spacing: -0.04em;
-  margin: 0;
-  line-height: 1;
-  color: var(--text-primary);
-  opacity: 0;
-  animation: slideUp 0.6s var(--ease-spring) forwards;
+    /* Clean, professional title */
+    font-family: var(--font-family);
+    font-size: clamp(3rem, 8vw, 5rem);
+    font-weight: 500;
+    letter-spacing: -0.04em;
+    margin: 0;
+    line-height: 1;
+    color: var(--text-primary);
+    opacity: 0;
+    animation: slideUp 0.6s var(--ease-spring) forwards;
 }
 
 .subtitle {
-  font-family: var(--font-family);
-  font-size: 1.2rem;
-  color: var(--text-secondary);
-  margin-top: 1.5rem;
-  font-weight: 400;
-  max-width: 500px;
-  line-height: 1.6;
-  opacity: 0;
-  animation: slideUp 0.6s var(--ease-spring) 0.1s forwards;
+    font-family: var(--font-family);
+    font-size: 1.2rem;
+    color: var(--text-secondary);
+    margin-top: 1.5rem;
+    font-weight: 400;
+    max-width: 500px;
+    line-height: 1.6;
+    opacity: 0;
+    animation: slideUp 0.6s var(--ease-spring) 0.1s forwards;
 }
 
 .grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-  gap: 2rem;
-  width: 100%;
-  max-width: 1200px;
-  margin: 0 auto;
-  opacity: 0;
-  animation: slideUp 0.6s var(--ease-spring) 0.2s forwards;
+    display: grid;
+    grid-template-columns: repeat(
+        auto-fill,
+        minmax(min(340px, calc(100dvw - 4rem)), 1fr)
+    );
+    gap: 2rem;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    opacity: 0;
+    animation: slideUp 0.6s var(--ease-spring) 0.2s forwards;
 }
 
 .card {
-  display: block;
-  text-decoration: none;
-  position: relative;
-  background: var(--bg-card); /* Clean dark card */
-  border: 1px solid var(--border-subtle);
-  border-radius: 8px; /* Standard rounding */
-  transition: transform 0.3s var(--ease-spring), border-color 0.3s var(--ease-spring), box-shadow 0.3s var(--ease-spring);
-  overflow: hidden;
+    display: block;
+    text-decoration: none;
+    position: relative;
+    background: var(--bg-card); /* Clean dark card */
+    border: 1px solid var(--border-subtle);
+    border-radius: 8px; /* Standard rounding */
+    transition:
+        transform 0.3s var(--ease-spring),
+        border-color 0.3s var(--ease-spring),
+        box-shadow 0.3s var(--ease-spring);
+    overflow: hidden;
 }
 
 /* Kept the mouse glow logic but removed the color. It's now just a subtle highlight */
 .card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: radial-gradient(
-    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-    rgba(255, 255, 255, 0.12), /* More visible white glow */
-    transparent 40%
-  );
-  opacity: 0;
-  transition: opacity 0.5s;
-  pointer-events: none;
-  z-index: 2;
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(
+        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+        rgba(255, 255, 255, 0.12),
+        /* More visible white glow */ transparent 40%
+    );
+    opacity: 0;
+    transition: opacity 0.5s;
+    pointer-events: none;
+    z-index: 2;
 }
 
 .card:hover::before {
-  opacity: 1;
+    opacity: 1;
 }
 
 .card:hover {
-  border-color: rgba(255, 255, 255, 0.15); /* Slightly brighter border */
-  transform: translateY(-4px);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Deep shadow */
+    border-color: rgba(255, 255, 255, 0.15); /* Slightly brighter border */
+    transform: translateY(-4px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Deep shadow */
 }
 
 .cardInner {
-  padding: 2.5rem;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  z-index: 1;
-  position: relative;
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    z-index: 1;
+    position: relative;
 }
 
 /* Removed hover styles from cardInner since properies moved back to card */
 
 .cardHeader {
-  display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin-bottom: 1.5rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 1.5rem;
 }
 
 .titleGroup {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
 }
 
 .iconWrapper {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: var(--text-primary);
-  opacity: 0.8;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-primary);
+    opacity: 0.8;
 }
 
 .cardTitle {
-  font-family: var(--font-family);
-  font-size: 1.4rem;
-  font-weight: 500;
-  color: var(--text-primary);
-  margin: 0;
-  letter-spacing: -0.02em;
-  transition: color 0.3s;
+    font-family: var(--font-family);
+    font-size: 1.4rem;
+    font-weight: 500;
+    color: var(--text-primary);
+    margin: 0;
+    letter-spacing: -0.02em;
+    transition: color 0.3s;
 }
 
-
-
 .arrowIcon {
-  color: var(--text-secondary);
-  transition: transform 0.3s var(--ease-spring), color 0.3s var(--ease-spring);
+    color: var(--text-secondary);
+    transition:
+        transform 0.3s var(--ease-spring),
+        color 0.3s var(--ease-spring);
 }
 
 .card:hover .arrowIcon {
-  color: var(--text-primary);
-  transform: translate(2px, -2px);
+    color: var(--text-primary);
+    transform: translate(2px, -2px);
 }
 
 .cardDescription {
-  font-family: var(--font-family);
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  margin: 0;
-  flex-grow: 1;
-  transition: color 0.3s var(--ease-spring);
+    font-family: var(--font-family);
+    font-size: 0.95rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    margin: 0;
+    flex-grow: 1;
+    transition: color 0.3s var(--ease-spring);
 
-
-  a {
-    color: var(--text-primary);
-  
-  }
+    a {
+        color: var(--text-primary);
+    }
 }
 
 .card:hover .cardDescription {
-  color: #ccc;
+    color: #ccc;
 }
 
 .footer {
-  margin-top: auto;
-  padding-top: 4rem;
-  text-align: center;
-  color: var(--text-secondary);
-  font-size: 0.8rem;
-  font-family: var(--font-family);
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  opacity: 0.5;
+    margin-top: auto;
+    padding-top: 4rem;
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    font-family: var(--font-family);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.5;
 }
 
 /* Remove weird corner accent */
 .card::after {
-  content: none;
+    content: none;
 }
 
 @media (max-width: 768px) {
-  .header {
-    margin-bottom: 3rem;
-  }
-  
-  .title {
-    font-size: 2.5rem;
-  }
-  
-  .cardInner {
-    padding: 1.5rem;
-  }
+    .header {
+        margin-bottom: 3rem;
+    }
+
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .cardInner {
+        padding: 1.5rem;
+    }
 }

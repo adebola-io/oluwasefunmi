@@ -1,0 +1,45 @@
+@keyframes mobileImageScroll {
+    from {
+        transform: scale(1) translateY(0);
+    }
+    to {
+        transform: scale(0.85) translateY(-10%);
+    }
+}
+
+@media (max-width: 767px) {
+    .mobileScrollContainer {
+        scroll-timeline: --mobile-scroll block;
+    }
+    .mobileScrollImage {
+        animation: mobileImageScroll linear both;
+        animation-timeline: --mobile-scroll;
+        animation-range: 0% 30%;
+    }
+}
+
+/* Product Info styles inside details view */
+.productDetailsView .productName {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+    text-shadow: none;
+}
+.productDetailsView .productPriceContainer {
+    align-items: baseline;
+}
+.productDetailsView .productPrice {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: none;
+}
+@media (min-width: 768px) {
+    .productDetailsView .productName {
+        font-size: 1.875rem;
+    }
+    .productDetailsView .productPrice {
+        font-size: 1.5rem;
+    }
+}
