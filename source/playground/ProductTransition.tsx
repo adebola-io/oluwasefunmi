@@ -37,7 +37,7 @@ const ProductTransition: RouteComponent = () => {
         title="Product Transition"
         hint="Click a product to view details"
       >
-        <div class="w-full p-8 max-w-350 mt-10 mx-auto max-sm:p-4 grid grid-rows-[auto_1fr] gap-4">
+        <div class="w-full p-8 max-w-350 z-1 relative mt-10 mx-auto max-sm:p-4 grid grid-rows-[auto_1fr] gap-4">
           <h1 class="md:text-5xl text-3xl pt-5">Products</h1>
           <div class="columns-4 gap-5 max-[1200px]:columns-3 max-[900px]:columns-2 max-[500px]:columns-1">
             {For(products, (product) => (

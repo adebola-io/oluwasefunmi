@@ -6,7 +6,7 @@ export interface ModalProps {
   isOpen: Cell<boolean>;
   onClose: () => void;
   children: JSX.Template;
-  fillScreenOnMobile?: boolean;
+  fillScreenOnMobile?: JSX.ValueOrCell<boolean>;
 }
 
 export const Modal = (props: ModalProps) => {
@@ -14,7 +14,6 @@ export const Modal = (props: ModalProps) => {
   const observer = useObserver();
   const dialogRef = Cell.source<HTMLDialogElement | null>(null);
 
-  // Sync dialog open/close with isOpen cell
   isOpen.listen((open) => {
     const dialog = dialogRef.get();
     if (!dialog) return;
@@ -26,24 +25,19 @@ export const Modal = (props: ModalProps) => {
     }
   });
 
-  const handleClose = () => {
-    onClose();
-  };
-
   observer.onConnected(dialogRef, (dialog) => {
-    if (isOpen.get()) {
-      console.log("modal opened ");
-      dialog.showModal();
-    }
+    if (isOpen.get()) dialog.showModal();
   });
-
-  console.log({ children });
 
   return (
     <dialog
       ref={dialogRef}
-      class={[classes.modal, fillScreenOnMobile && classes.fillScreenOnMobile]}
-      onClose={handleClose}
+      class={[
+        classes.modal,
+        { [classes.fillScreenOnMobile]: fillScreenOnMobile },
+      ]}
+      onClose={onClose}
+      onClick--self={onClose}
     >
       <div class={classes.modalCard}>{children}</div>
     </dialog>

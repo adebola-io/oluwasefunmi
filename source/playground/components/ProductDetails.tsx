@@ -59,7 +59,7 @@ export const ProductDetails = (props: ProductDetailsProps) => {
           <div
             class={[
               styles.mobileScrollImage,
-              "*:h-full! w-full h-full flex items-center justify-center",
+              "max-sm:*:h-full! w-full h-full flex items-center justify-center",
             ]}
           >
             <ProductImage
