@@ -35,8 +35,9 @@ export const ProductCard = (props: ProductCardProps) => {
       >
         <div class="grid grid-rows-[1fr] items-center w-full flex-1 bg-[#313030] relative rounded-2xl">
           <ProductImage
+            id={`product-image-${product.id}`}
             productId={product.id}
-            className="w-full h-full object-contain object-center transition-transform duration-300 ease-out group-hover:scale-[1.02]"
+            class="w-full h-full object-contain object-center transition-transform duration-300 ease-out group-hover:scale-[1.02]"
           />
         </div>
         <div class="absolute bottom-0 p-5 flex flex-col gap-1 rounded-b-2xl w-full">

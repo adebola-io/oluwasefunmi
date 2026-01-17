@@ -2,7 +2,7 @@ import { Link } from "retend/router";
 import type { RouteComponent } from "retend/router";
 import { LayeredCard } from "@/components/ui/LayeredCard";
 import classes from "./PortfolioHome.module.css";
-import { CurrentPageTitle } from "@/components/layout/CurrentPageTitle";
+import { PageTitle } from "@/components/layout/PageTitle";
 import { StarShower } from "@/components/ui/StarShower";
 
 const PortfolioHome: RouteComponent = () => {
@@ -11,7 +11,7 @@ const PortfolioHome: RouteComponent = () => {
       <StarShower />
       <div class={classes.container}>
         <div class={classes.hero}>
-          <CurrentPageTitle />
+          <PageTitle name="Oluwasefunmi." />
           <span class={classes.titleAccent}>web engineer.</span>
         </div>
 

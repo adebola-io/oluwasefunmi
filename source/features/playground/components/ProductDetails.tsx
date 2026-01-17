@@ -55,7 +55,7 @@ export const ProductDetails = (props: ProductDetailsProps) => {
         </button>
 
         {/* Image Container */}
-        <div class="sticky top-0 h-[60vh] w-full shrink-0 md:relative md:h-full md:w-auto z-0 md:z-auto bg-[#1a1a1a] flex items-center justify-center overflow-hidden">
+        <div class="sticky top-0 h-[60vh] w-full rounded-l-2xl shrink-0 md:relative md:h-full md:w-auto z-0 md:z-auto bg-[#1a1a1a] flex items-center justify-center overflow-hidden">
           <div
             class={[
               styles.mobileScrollImage,
@@ -63,14 +63,15 @@ export const ProductDetails = (props: ProductDetailsProps) => {
             ]}
           >
             <ProductImage
+              id={`product-image-${product.id}`}
               productId={product.id}
-              className="w-full h-full object-contain object-center"
+              class="w-full h-full object-contain object-center"
             />
           </div>
         </div>
 
         {/* Details Container */}
-        <div class="relative z-10 bg-[#0c0c0c] p-6 min-h-[50vh] flex flex-col gap-6 md:h-full md:p-12 md:z-auto">
+        <div class="relative z-10 bg-[#0c0c0c] rounded-r-2xl p-6 min-h-[50vh] flex flex-col gap-6 md:h-full md:p-12 md:z-auto">
           {/* Header Section */}
           <div class="flex flex-col gap-2">
             <ProductInfo productId={product.id} />

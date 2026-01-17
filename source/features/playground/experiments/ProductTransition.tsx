@@ -1,30 +1,15 @@
-import { Cell, For, If, useSetupEffect } from "retend";
+import { For, useSetupEffect } from "retend";
 import type { RouteComponent } from "retend/router";
-import { useRouteQuery } from "retend/router";
+import { Outlet, useRouter } from "retend/router";
 import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
-import { Modal } from "@/components/ui/Modal/Modal";
-import { products, getProductById, type Product } from "@/data/products";
+import { products } from "@/data/products";
 import { ProductCard } from "@/features/playground/components/ProductCard";
-import { ProductDetails } from "@/features/playground/components/ProductDetails";
 
 const ProductTransition: RouteComponent = () => {
-  const query = useRouteQuery();
-  const selectedProductId = query.get("product");
-
-  const isModalOpen = Cell.derived(() => selectedProductId.get() !== null);
-
-  const selectedProduct = Cell.derived(() => {
-    const id = selectedProductId.get();
-    if (!id) return null;
-    return getProductById(Number.parseInt(id, 10));
-  });
+  const router = useRouter();
 
   const handleSelectProduct = async (id: number) => {
-    await query.set("product", String(id));
-  };
-
-  const handleCloseModal = async () => {
-    await query.delete("product");
+    await router.navigate(`/playground/product-transition/${id}`);
   };
 
   useSetupEffect(() => {
@@ -47,11 +32,7 @@ const ProductTransition: RouteComponent = () => {
         </div>
       </PlaygroundLayout>
 
-      <Modal isOpen={isModalOpen} onClose={handleCloseModal} fillScreenOnMobile>
-        {If(selectedProduct, (product: Product) => (
-          <ProductDetails product={product} onClose={handleCloseModal} />
-        ))}
-      </Modal>
+      <Outlet />
     </div>
   );
 };

@@ -1,113 +1,107 @@
 .page {
-  width: 100%;
+    width: 100%;
 }
 
 .container {
-  max-width: 800px;
-  margin: 0 auto;
-  width: 100%;
-}
-
-.title {
-  font-size: 2.5rem;
-  font-weight: 300;
-  margin-bottom: 1rem;
-  letter-spacing: -0.03em;
+    max-width: 800px;
+    margin: 0 auto;
+    width: 100%;
 }
 
 .subtitle {
-  color: #666;
-  font-size: 1rem;
-  line-height: 1.7;
-  max-width: 500px;
-  margin-bottom: 4rem;
+    color: #666;
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 500px;
+    margin-bottom: 4rem;
 }
 
 .notesList {
-  display: flex;
-  flex-direction: column;
-  gap: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
 }
 
 .noteCard {
-  display: block;
-  text-decoration: none;
-  padding: 1.5rem;
-  background: transparent;
-  border: 2.76px dashed rgba(255, 255, 255, 0.25);
-  border-radius: 0.5rem;
-  transition: transform 0.2s var(--ease-spring);
-  position: relative;
+    display: block;
+    text-decoration: none;
+    padding: 1.5rem;
+    background: transparent;
+    border: 2.76px dashed rgba(255, 255, 255, 0.25);
+    border-radius: 0.5rem;
+    transition: transform 0.2s var(--ease-spring);
+    position: relative;
 }
 
 /* Layered backdrop effect with clip-path */
 .noteCard::before {
-  content: '';
-  position: absolute;
-  top: 12px;
-  left: -12px;
-  width: 100%;
-  height: 100%;
-  border: 2.76px dashed rgba(255, 255, 255, 0.15);
-  border-radius: 0.5rem;
-  background: transparent;
-  clip-path: polygon(
-    0 0,
-    10px 0,
-    10px calc(100% - 10px),
-    100% calc(100% - 10px),
-    100% 100%,
-    0 100%
-  );
-  transition: transform 0.2s var(--ease-spring), opacity 0.2s var(--ease-spring);
-  z-index: -1;
+    content: "";
+    position: absolute;
+    top: 12px;
+    left: -12px;
+    width: 100%;
+    height: 100%;
+    border: 2.76px dashed rgba(255, 255, 255, 0.15);
+    border-radius: 0.5rem;
+    background: transparent;
+    clip-path: polygon(
+        0 0,
+        10px 0,
+        10px calc(100% - 10px),
+        100% calc(100% - 10px),
+        100% 100%,
+        0 100%
+    );
+    transition:
+        transform 0.2s var(--ease-spring),
+        opacity 0.2s var(--ease-spring);
+    z-index: -1;
 }
 
 .noteCard:hover {
-  transform: translate(2px, -2px);
+    transform: translate(2px, -2px);
 }
 
 .noteCard:hover::before {
-  transform: translate(-2px, 2px);
+    transform: translate(-2px, 2px);
 }
 
 .noteCard:active {
-  transform: translate(-1.75px, 1.75px);
+    transform: translate(-1.75px, 1.75px);
 }
 
 .noteCard:active::before {
-  transform: translate(3.5px, -3.5px);
+    transform: translate(3.5px, -3.5px);
 }
 
 .noteNumber {
-  font-size: 0.8rem;
-  color: #444;
-  margin-bottom: 0.5rem;
-  font-family: var(--font-family);
+    font-size: 0.8rem;
+    color: #444;
+    margin-bottom: 0.5rem;
+    font-family: var(--font-family);
 }
 
 /* Note heading - styling the global class when in list context */
 .noteCard :global(.note-heading) {
-  font-size: 1.25rem;
-  font-weight: 500;
-  color: #fff;
-  margin-bottom: 0.5rem;
+    font-size: 1.25rem;
+    font-weight: 500;
+    color: #fff;
+    margin-bottom: 0.5rem;
 }
 
 .noteDate {
-  font-size: 0.85rem;
-  color: #666;
-  margin-bottom: 1rem;
+    font-size: 0.85rem;
+    color: #666;
+    margin-bottom: 1rem;
 }
 
 .noteSummary {
-  font-size: 0.95rem;
-  color: #888;
-  line-height: 1.6;
+    font-size: 0.95rem;
+    color: #888;
+    line-height: 1.6;
 }
 
-
 .empty {
-  color: #444;
-  font-style: italic;
+    color: #444;
+    font-style: italic;
 }

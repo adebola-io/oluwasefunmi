@@ -3,10 +3,10 @@ import type { RouteComponent } from "retend/router";
 import type { PageMeta } from "retend-server/client";
 import type { Note, NotePreviewProps } from "@/types";
 import { Link } from "retend/router";
-import { UniqueTransition } from "retend-utils/components";
-import { CurrentPageTitle } from "@/components/layout/CurrentPageTitle";
+import { PageTitle } from "@/components/layout/PageTitle";
 import { StarShower } from "@/components/ui/StarShower";
 import classes from "./RandomNotes.module.css";
+import { NoteHeading } from "@/components/ui/typography";
 
 export const getNotesIndex = async () => {
   const items: NotePreviewProps[] = [];
@@ -37,7 +37,7 @@ const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
     <div class={classes.page}>
       <StarShower />
       <div class={classes.container}>
-        <CurrentPageTitle />
+        <PageTitle name="Random Notes." />
         <p class={classes.subtitle}>
           Disjoint musings, incoherent rants and streams of consciousness that I
           have decided to write down. Anything about life, technology and
@@ -51,12 +51,10 @@ const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
             For(notes, (note, index) => (
               <Link href={`/random-notes/${note.id}`} class={classes.noteCard}>
                 <div class={classes.noteNumber}>#{index.get() + 1}</div>
-                <UniqueTransition
-                  name={`note-heading-${note.id}`}
-                  transitionDuration="300ms"
-                >
-                  {() => <h1 class="note-heading">{note.title}</h1>}
-                </UniqueTransition>
+                <NoteHeading
+                  id={`random-note-heading-${note.id}`}
+                  title={note.title}
+                />
                 <div class={classes.noteDate}>{note.dateStr}</div>
                 <p class={classes.noteSummary}>{note.description}</p>
               </Link>

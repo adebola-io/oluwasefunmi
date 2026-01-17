@@ -41,7 +41,7 @@ export const Modal = (props: ModalProps) => {
     >
       <div
         class={[
-          "relative max-w-[90vw] max-h-[90vh] rounded-xl bg-[#0c0c0c]/95 shadow-2xl ring-1 ring-white/40",
+          "relative max-w-[90vw] max-h-[90vh] rounded-2xl bg-[#0c0c0c]/95 shadow-2xl ring-1 ring-white/40",
           {
             "max-md:w-full max-md:h-full max-md:max-w-full max-md:max-h-full max-md:rounded-none":
               fillScreenOnMobile,
