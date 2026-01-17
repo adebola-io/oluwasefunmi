@@ -4,13 +4,12 @@
   flex-direction: column;
   background-color: var(--bg-dark);
   color: var(--text-primary);
-  /* Font fallbacks are handled in base.css */
   position: relative;
   overflow-x: hidden;
   overflow-y: auto;
 }
 
-/* Background gradient blobs */
+
 .layout::before {
   content: "";
   position: fixed;
@@ -94,5 +93,5 @@
   width: 100%;
   max-width: 1400px;
   margin: 0 auto;
-  padding: 8rem 2rem 4rem; /* Standardized top padding for pages with nav/header */
+  padding: 8rem 2rem 4rem; 
 }

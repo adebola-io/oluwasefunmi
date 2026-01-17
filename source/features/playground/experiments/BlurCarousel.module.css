@@ -65,7 +65,7 @@
 .carouselContainer::-webkit-scrollbar-thumb {
     background-color: rgba(255, 255, 255, 0.2);
     border-radius: 99px;
-    border: 2px solid transparent; /* padding hack */
+    border: 2px solid transparent; 
     background-clip: content-box;
 }
 

@@ -40,13 +40,9 @@
 
 .titleAccent {
     display: block;
-    font-size: clamp(
-        0.75rem,
-        2vw,
-        1.25rem
-    ); /* Restored size independent of h1 parent */
+    font-size: clamp(0.75rem, 2vw, 1.25rem);
     font-weight: 400;
-    margin-top: 1.5rem;
+    margin-top: 1rem;
     letter-spacing: 0.05em;
     text-transform: uppercase;
     color: var(--text-secondary);
@@ -57,11 +53,11 @@
 
 .intro {
     font-family: var(--font-family);
-    font-size: 1.25rem;
+    font-size: 1.15rem;
     color: var(--text-secondary);
     line-height: 1.6;
     max-width: 600px;
-    margin: 0 0 3.5rem 0; /* Left aligned */
+    margin: 0 0 3.5rem 0;
     font-weight: 400;
     opacity: 0;
     animation: fadeIn 0.8s var(--ease-spring) 0.2s forwards;
@@ -78,7 +74,7 @@
 
     .titleAccent {
         margin-top: 1rem;
-        font-size: 1rem; /* Fixed readable size on mobile */
+        font-size: 1rem;
     }
 
     .intro {
@@ -105,7 +101,7 @@
     display: flex;
     gap: 1.5rem;
     align-items: center;
-    justify-content: flex-start; /* Left align buttons */
+    justify-content: center;
     flex-wrap: wrap;
     opacity: 0;
     animation: fadeIn 0.8s var(--ease-spring) 0.3s forwards;
@@ -120,7 +116,7 @@
     font-size: 0.95rem;
     font-weight: 500;
     text-decoration: none;
-    border-radius: 6px; /* Subtle rounding instead of pills */
+    border-radius: 6px;
     transition:
         transform 0.2s var(--ease-spring),
         opacity 0.2s var(--ease-spring),
@@ -155,5 +151,3 @@
     background: rgba(255, 255, 255, 0.1);
     color: var(--text-primary);
 }
-
-/* Removed all extra decorative blobs/glows to keep it clean */

@@ -13,6 +13,7 @@
     color: var(--text-primary);
     margin: 0;
     white-space: nowrap;
+    text-align: center; 
 }
 
 @keyframes blurSlideUp {

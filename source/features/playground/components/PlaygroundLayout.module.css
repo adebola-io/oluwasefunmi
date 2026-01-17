@@ -41,6 +41,11 @@
   font-weight: 500;
   letter-spacing: 0.05em;
   text-transform: uppercase;
+  
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
 }
 
 .hint {

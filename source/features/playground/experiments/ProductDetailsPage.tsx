@@ -5,10 +5,6 @@ import { Modal } from "@/components/ui/Modal/Modal";
 import { ProductDetails } from "@/features/playground/components/ProductDetails";
 import { getProductById, type Product } from "@/data/products";
 
-/**
- * Product details page component that uses route params instead of query params.
- * This component is rendered as a nested outlet route under /playground/product-transition/:productId
- */
 const ProductDetailsPage: RouteComponent = () => {
   const currentRoute = useCurrentRoute();
   const router = useRouter();

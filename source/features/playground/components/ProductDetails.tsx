@@ -14,7 +14,6 @@ export const ProductDetails = (props: ProductDetailsProps) => {
   const { product, onClose } = props;
   const query = useRouteQuery();
 
-  // Get selected color from URL, default to first color
   const selectedColorQuery = query.get("color");
   const selectedColor = Cell.derived(() => {
     const colorFromUrl = selectedColorQuery.get();
@@ -54,7 +53,6 @@ export const ProductDetails = (props: ProductDetailsProps) => {
           ×
         </button>
 
-        {/* Image Container */}
         <div class="sticky top-0 h-[60vh] w-full rounded-l-2xl shrink-0 md:relative md:h-full md:w-auto z-0 md:z-auto bg-[#1a1a1a] flex items-center justify-center overflow-hidden">
           <div
             class={[
@@ -70,9 +68,7 @@ export const ProductDetails = (props: ProductDetailsProps) => {
           </div>
         </div>
 
-        {/* Details Container */}
         <div class="relative z-10 bg-[#0c0c0c] rounded-r-2xl p-6 min-h-[50vh] flex flex-col gap-6 md:h-full md:p-12 md:z-auto">
-          {/* Header Section */}
           <div class="flex flex-col gap-2">
             <ProductInfo productId={product.id} />
           </div>
@@ -121,7 +117,6 @@ export const ProductDetails = (props: ProductDetailsProps) => {
             {product.description}
           </p>
 
-          {/* Info Sections Grid */}
           <div class="grid grid-cols-1 gap-6 md:gap-8">
             <div class="flex flex-col gap-3">
               <h4 class="text-xs font-semibold uppercase tracking-[0.15em] text-white/30 m-0">
@@ -156,7 +151,7 @@ export const ProductDetails = (props: ProductDetailsProps) => {
               </ul>
             </div>
           </div>
-          {/* Extra padding at bottom for mobile scrolling */}
+
           <div class="h-10 md:h-0 shrink-0" />
         </div>
       </div>

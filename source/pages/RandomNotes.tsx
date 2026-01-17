@@ -37,7 +37,9 @@ const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
     <div class={classes.page}>
       <StarShower />
       <div class={classes.container}>
-        <PageTitle name="Random Notes." />
+        <div class={classes.title}>
+          <PageTitle name="Random Notes." />
+        </div>
         <p class={classes.subtitle}>
           Disjoint musings, incoherent rants and streams of consciousness that I
           have decided to write down. Anything about life, technology and

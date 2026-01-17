@@ -47,16 +47,16 @@
   width: 100%;
 }
 
-/* Note heading from MDX */
+
 .article :global(.note-heading) {
   font-size: 2rem;
   font-weight: 600;
   margin-bottom: 0.5rem;
   letter-spacing: -0.02em;
   line-height: 1.3;
+  text-align: center; 
 }
 
-/* Note details (category | date) */
 .article :global(.note-details) {
   font-size: 0.9rem;
   color: #666;
@@ -65,9 +65,9 @@
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
   animation: fadeInUp 0.25s var(--ease-spring) backwards;
   animation-delay: 0.08s;
+  text-align: center; 
 }
 
-/* Note content wrapper */
 .article :global(.note-content) {
   font-size: 1.05rem;
   line-height: 1.85;

@@ -15,21 +15,21 @@
 
 .header {
     margin-bottom: 5rem;
-    max-width: 1200px;
-    width: 100%;
-    margin-left: auto;
-    margin-right: auto;
     position: relative;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .subtitle {
     font-family: var(--font-family);
     font-size: 1.2rem;
     color: var(--text-secondary);
-    margin-top: 1.5rem;
     font-weight: 400;
     max-width: 500px;
     line-height: 1.6;
+    margin: 1rem auto 0 auto;
     opacity: 0;
     animation: slideUp 0.6s var(--ease-spring) 0.1s forwards;
 }
@@ -44,6 +44,7 @@
     width: 100%;
     max-width: 1200px;
     margin: 0 auto;
+    text-align: left;
     opacity: 0;
     animation: slideUp 0.6s var(--ease-spring) 0.2s forwards;
 }
@@ -52,9 +53,9 @@
     display: block;
     text-decoration: none;
     position: relative;
-    background: var(--bg-card); /* Clean dark card */
+    background: var(--bg-card);
     border: 1px solid var(--border-subtle);
-    border-radius: 8px; /* Standard rounding */
+    border-radius: 8px;
     transition:
         transform 0.3s var(--ease-spring),
         border-color 0.3s var(--ease-spring),
@@ -62,7 +63,6 @@
     overflow: hidden;
 }
 
-/* Kept the mouse glow logic but removed the color. It's now just a subtle highlight */
 .card::before {
     content: "";
     position: absolute;
@@ -73,7 +73,7 @@
     background: radial-gradient(
         600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
         rgba(255, 255, 255, 0.12),
-        /* More visible white glow */ transparent 40%
+        transparent 40%
     );
     opacity: 0;
     transition: opacity 0.5s;
@@ -86,9 +86,9 @@
 }
 
 .card:hover {
-    border-color: rgba(255, 255, 255, 0.15); /* Slightly brighter border */
+    border-color: rgba(255, 255, 255, 0.15);
     transform: translateY(-4px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5); /* Deep shadow */
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .cardInner {
@@ -99,8 +99,6 @@
     z-index: 1;
     position: relative;
 }
-
-/* Removed hover styles from cardInner since properies moved back to card */
 
 .cardHeader {
     display: flex;
@@ -175,7 +173,6 @@
     opacity: 0.5;
 }
 
-/* Remove weird corner accent */
 .card::after {
     content: none;
 }

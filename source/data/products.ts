@@ -12,7 +12,7 @@ export interface Product {
 }
 
 export const colorMap: Record<string, string> = {
-  // Dark/Neutrals
+
   Charcoal: "#36454F",
   Black: "#000000",
   Navy: "#000080",
@@ -20,7 +20,7 @@ export const colorMap: Record<string, string> = {
   "Heather Grey": "#9AA297",
   "Midnight Blue": "#191970",
 
-  // Earth/Warm
+
   Camel: "#C19A6B",
   Terracotta: "#E2725B",
   Sage: "#BCB88A",
@@ -31,7 +31,7 @@ export const colorMap: Record<string, string> = {
   Emerald: "#50C878",
   "Forest Green": "#228B22",
 
-  // Light/Pastel
+
   Ivory: "#FFFFF0",
   Cream: "#FFFDD0",
   Orange: "#FFA500",
@@ -40,7 +40,7 @@ export const colorMap: Record<string, string> = {
   "Powder Blue": "#B0E0E6",
   "Dusty Blue": "#5B7C99",
 
-  // Denim
+
   "Light Wash": "#ADD8E6",
   "Medium Wash": "#5D8AA8",
 };
