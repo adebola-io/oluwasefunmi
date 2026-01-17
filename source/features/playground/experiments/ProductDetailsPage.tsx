@@ -1,7 +1,7 @@
 import type { RouteComponent } from "retend/router";
 import { useCurrentRoute, useRouter } from "retend/router";
 import { Cell, If } from "retend";
-import { Modal } from "@/components/ui/Modal/Modal";
+import { Modal } from "@/components/ui/Modal";
 import { ProductDetails } from "@/features/playground/components/ProductDetails";
 import { getProductById, type Product } from "@/data/products";
 

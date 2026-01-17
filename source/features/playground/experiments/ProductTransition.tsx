@@ -4,6 +4,7 @@ import { Outlet, useRouter } from "retend/router";
 import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
 import { products } from "@/data/products";
 import { ProductCard } from "@/features/playground/components/ProductCard";
+import { PageTitle } from "@/components/layout/PageTitle";
 
 const ProductTransition: RouteComponent = () => {
   const router = useRouter();
@@ -23,7 +24,15 @@ const ProductTransition: RouteComponent = () => {
         hint="Click a product to view details"
       >
         <div class="w-full p-8 max-w-350 z-1 relative mt-10 mx-auto max-sm:p-4 grid grid-rows-[auto_1fr] gap-4">
-          <h1 class="md:text-5xl text-3xl pt-5 text-center">Products</h1>
+          <div class="flex flex-col items-center gap-4 text-center mb-12">
+            <PageTitle name="Products" />
+            <p class="text-white/60 max-w-2xl mx-auto text-lg font-light leading-relaxed">
+              Explore our curated collection of premium apparel. Every
+              interaction is designed to be as fluid as the fabrics themselves,
+              featuring seamless layout transitions between the catalog and
+              detailed views.
+            </p>
+          </div>
           <div class="columns-4 gap-5 max-[1200px]:columns-3 max-[900px]:columns-2 max-[500px]:columns-1">
             {For(products, (product) => (
               <ProductCard product={product} onSelect={handleSelectProduct} />

@@ -12,14 +12,12 @@ export interface Product {
 }
 
 export const colorMap: Record<string, string> = {
-
   Charcoal: "#36454F",
   Black: "#000000",
   Navy: "#000080",
   "Slate Grey": "#708090",
   "Heather Grey": "#9AA297",
   "Midnight Blue": "#191970",
-
 
   Camel: "#C19A6B",
   Terracotta: "#E2725B",
@@ -31,7 +29,6 @@ export const colorMap: Record<string, string> = {
   Emerald: "#50C878",
   "Forest Green": "#228B22",
 
-
   Ivory: "#FFFFF0",
   Cream: "#FFFDD0",
   Orange: "#FFA500",
@@ -39,7 +36,6 @@ export const colorMap: Record<string, string> = {
   Champagne: "#F7E7CE",
   "Powder Blue": "#B0E0E6",
   "Dusty Blue": "#5B7C99",
-
 
   "Light Wash": "#ADD8E6",
   "Medium Wash": "#5D8AA8",
@@ -157,7 +153,7 @@ export const products: Product[] = [
     material: "100% Polyester Crepe",
     care: ["Dry clean recommended"],
     sizes: ["XS", "S", "M", "L"],
-    colors: ["Black", "Burgundy", "Forest Green"],
+    colors: ["Forest Green", "Black", "Burgundy"],
   },
   {
     id: 10,
@@ -194,7 +190,7 @@ export const products: Product[] = [
     material: "70% Viscose, 30% Polyamide",
     care: ["Hand wash cold", "Reshape and dry flat"],
     sizes: ["XS", "S", "M", "L"],
-    colors: ["Camel", "Black", "Cream"],
+    colors: ["Cream", "Camel", "Black"],
   },
 ];
 

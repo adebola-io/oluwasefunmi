@@ -6,10 +6,10 @@
       "dependencies": {
         "@mdx-js/rollup": "^3.1.0",
         "@types/mdx": "^2.0.13",
-        "retend": "https://pkg.pr.new/resuite/retend@768ab86",
-        "retend-server": "https://pkg.pr.new/resuite/retend/retend-server@768ab86",
-        "retend-utils": "https://pkg.pr.new/resuite/retend/retend-utils@768ab86",
-        "retend-web": "https://pkg.pr.new/resuite/retend/retend-web@768ab86",
+        "retend": "https://pkg.pr.new/resuite/retend@02ed147",
+        "retend-server": "https://pkg.pr.new/resuite/retend/retend-server@02ed147",
+        "retend-utils": "https://pkg.pr.new/resuite/retend/retend-utils@02ed147",
+        "retend-web": "https://pkg.pr.new/resuite/retend/retend-web@02ed147",
       },
       "devDependencies": {
         "@tailwindcss/vite": "^4.1.5",
@@ -473,13 +473,13 @@
 
     "remark-rehype": ["remark-rehype@11.1.2", "", { "dependencies": { "@types/hast": "^3.0.0", "@types/mdast": "^4.0.0", "mdast-util-to-hast": "^13.0.0", "unified": "^11.0.0", "vfile": "^6.0.0" } }, "sha512-Dh7l57ianaEoIpzbp0PC9UKAdCSVklD8E5Rpw7ETfbTl3FqcOOgq5q2LVDhgGCkaBv7p24JXikPdvhhmHvKMsw=="],
 
-    "retend": ["retend@https://pkg.pr.new/resuite/retend@768ab86", { "dependencies": { "@adbl/cells": "https://pkg.pr.new/adebola-io/cells/@adbl/cells@cae34a7", "csstype": "^3.1.3" } }],
+    "retend": ["retend@https://pkg.pr.new/resuite/retend@02ed147", { "dependencies": { "@adbl/cells": "https://pkg.pr.new/adebola-io/cells/@adbl/cells@cae34a7", "csstype": "^3.1.3" } }],
 
-    "retend-server": ["retend-server@https://pkg.pr.new/resuite/retend/retend-server@768ab86", { "dependencies": { "acorn": "^8.14.1", "domhandler": "^5.0.3", "estree-walker": "^3.0.3", "htmlparser2": "^10.0.0", "magic-string": "^0.30.17", "oxc-walker": "^0.2.5" }, "peerDependencies": { "retend": "*", "retend-web": "*", "vite": "*" } }],
+    "retend-server": ["retend-server@https://pkg.pr.new/resuite/retend/retend-server@02ed147", { "dependencies": { "acorn": "^8.14.1", "domhandler": "^5.0.3", "estree-walker": "^3.0.3", "htmlparser2": "^10.0.0", "magic-string": "^0.30.17", "oxc-walker": "^0.2.5" }, "peerDependencies": { "retend": "*", "retend-web": "*", "vite": "*" } }],
 
-    "retend-utils": ["retend-utils@https://pkg.pr.new/resuite/retend/retend-utils@768ab86", { "peerDependencies": { "retend": "*", "retend-web": "*" } }],
+    "retend-utils": ["retend-utils@https://pkg.pr.new/resuite/retend/retend-utils@02ed147", { "peerDependencies": { "retend": "*", "retend-web": "*" } }],
 
-    "retend-web": ["retend-web@https://pkg.pr.new/resuite/retend/retend-web@768ab86", { "dependencies": { "csstype": "^3.2.3" }, "peerDependencies": { "retend": "*" } }],
+    "retend-web": ["retend-web@https://pkg.pr.new/resuite/retend/retend-web@02ed147", { "dependencies": { "csstype": "^3.2.3" }, "peerDependencies": { "retend": "*" } }],
 
     "rollup": ["rollup@4.53.2", "", { "dependencies": { "@types/estree": "1.0.8" }, "optionalDependencies": { "@rollup/rollup-android-arm-eabi": "4.53.2", "@rollup/rollup-android-arm64": "4.53.2", "@rollup/rollup-darwin-arm64": "4.53.2", "@rollup/rollup-darwin-x64": "4.53.2", "@rollup/rollup-freebsd-arm64": "4.53.2", "@rollup/rollup-freebsd-x64": "4.53.2", "@rollup/rollup-linux-arm-gnueabihf": "4.53.2", "@rollup/rollup-linux-arm-musleabihf": "4.53.2", "@rollup/rollup-linux-arm64-gnu": "4.53.2", "@rollup/rollup-linux-arm64-musl": "4.53.2", "@rollup/rollup-linux-loong64-gnu": "4.53.2", "@rollup/rollup-linux-ppc64-gnu": "4.53.2", "@rollup/rollup-linux-riscv64-gnu": "4.53.2", "@rollup/rollup-linux-riscv64-musl": "4.53.2", "@rollup/rollup-linux-s390x-gnu": "4.53.2", "@rollup/rollup-linux-x64-gnu": "4.53.2", "@rollup/rollup-linux-x64-musl": "4.53.2", "@rollup/rollup-openharmony-arm64": "4.53.2", "@rollup/rollup-win32-arm64-msvc": "4.53.2", "@rollup/rollup-win32-ia32-msvc": "4.53.2", "@rollup/rollup-win32-x64-gnu": "4.53.2", "@rollup/rollup-win32-x64-msvc": "4.53.2", "fsevents": "~2.3.2" }, "bin": { "rollup": "dist/bin/rollup" } }, "sha512-MHngMYwGJVi6Fmnk6ISmnk7JAHRNF0UkuucA0CUW3N3a4KnONPEZz+vUanQP/ZC/iY1Qkf3bwPWzyY84wEks1g=="],
 

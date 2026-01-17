@@ -1,5 +1,4 @@
-import { Cell, For, useSetupEffect } from "retend";
-import { useRouteQuery } from "retend/router";
+import { Cell, For } from "retend";
 import { colorMap, type Product } from "@/data/products";
 import { ProductImage } from "./ProductImage";
 import { ProductInfo } from "./ProductInfo";
@@ -12,28 +11,10 @@ interface ProductDetailsProps {
 
 export const ProductDetails = (props: ProductDetailsProps) => {
   const { product, onClose } = props;
-  const query = useRouteQuery();
-
-  const selectedColorQuery = query.get("color");
-  const selectedColor = Cell.derived(() => {
-    const colorFromUrl = selectedColorQuery.get();
-    if (colorFromUrl && product.colors.includes(colorFromUrl)) {
-      return colorFromUrl;
-    }
-    return product.colors[0];
-  });
-
+  const selectedColor = Cell.source(product.colors[0]);
   const handleColorClick = (color: string) => {
-    query.set("color", color);
+    selectedColor.set(color);
   };
-
-  useSetupEffect(() => {
-    return () => {
-      setTimeout(() => {
-        query.delete("color");
-      });
-    };
-  });
 
   return (
     <>
@@ -63,6 +44,7 @@ export const ProductDetails = (props: ProductDetailsProps) => {
             <ProductImage
               id={`product-image-${product.id}`}
               productId={product.id}
+              color={selectedColor}
               class="w-full h-full object-contain object-center"
             />
           </div>

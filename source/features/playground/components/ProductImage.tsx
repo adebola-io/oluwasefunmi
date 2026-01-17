@@ -2,10 +2,12 @@ import { Cell, If } from "retend";
 import { getProductImage } from "@/data/productImages";
 import { getProductById } from "@/data/products";
 import { createUniqueTransition } from "retend-utils/components";
+import type { JSX } from "retend/jsx-runtime";
+import { useDerivedValue } from "retend-utils/hooks";
 
 interface ProductImageProps {
   productId: number;
-  color?: string;
+  color?: JSX.ValueOrCell<string>;
   class?: string;
 }
 
@@ -16,14 +18,12 @@ export const ProductImage = createUniqueTransition<ProductImageProps>(
 
     const product = getProductById(productId.get());
     if (!product) return null;
-
     const selectedColor = Cell.derived(() => {
-      return props.get().color || product.colors[0];
+      return useDerivedValue(props.get().color)?.get() || product.colors[0];
     });
 
     const imageSrc = Cell.derived(() => {
-      const color = selectedColor.get();
-      return getProductImage(productId.get(), color);
+      return getProductImage(productId.get(), selectedColor.get());
     });
 
     const showImage = Cell.derived(() => !!imageSrc.get());
