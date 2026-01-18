@@ -60,12 +60,17 @@ export function DragToDismissView(props: DragToDismissViewProps) {
   const handleTouchEnd = () => {
     if (thresholdReached) onDismiss?.();
     else {
-      setTimeout(() => {
-        const content = contentRef.peek();
-        content?.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-          inline: "start",
+      const content = contentRef.peek();
+      const container = containerRef.peek();
+      container?.style.setProperty("overflow", "hidden");
+      requestAnimationFrame(() => {
+        container?.style.removeProperty("overflow");
+        requestAnimationFrame(() => {
+          content?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+            inline: "start",
+          });
         });
       });
     }
