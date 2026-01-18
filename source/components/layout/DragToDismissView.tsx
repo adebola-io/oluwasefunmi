@@ -16,19 +16,33 @@ export function DragToDismissView(props: DragToDismissViewProps) {
   const containerRef = Cell.source<HTMLElement | null>(null);
   const isTouchDevice = useMatchMedia("(width < 40rem) and (pointer: coarse)");
   const enableDismiss = Cell.source(false);
+  const innerScrollDisabled = Cell.source(false);
   const observer = useObserver();
   let thresholdReached = false;
 
-  const options = (): IntersectionObserverInit => ({
+  const dismissObserverOptions = (): IntersectionObserverInit => ({
     root: containerRef.peek(),
-    threshold: 0.5,
+    threshold: 0.65,
   });
-  const callback: IntersectionObserverCallback = ([entry]) => {
+  const dismissCallback: IntersectionObserverCallback = ([entry]) => {
     if (!isTouchDevice.get()) return;
     thresholdReached = !entry.isIntersecting;
   };
+  const innerScrollBlockOptions = (): IntersectionObserverInit => ({
+    root: containerRef.peek(),
+    threshold: 0.99,
+  });
+  const innerScrollBlockCallback: IntersectionObserverCallback = ([entry]) => {
+    if (!isTouchDevice.get()) return;
+    innerScrollDisabled.set(!entry.isIntersecting);
+  };
 
-  useIntersectionObserver(contentRef, callback, options);
+  useIntersectionObserver(contentRef, dismissCallback, dismissObserverOptions);
+  useIntersectionObserver(
+    contentRef,
+    innerScrollBlockCallback,
+    innerScrollBlockOptions,
+  );
 
   observer.onConnected(contentRef, (content) => {
     requestAnimationFrame(() => {
@@ -46,11 +60,13 @@ export function DragToDismissView(props: DragToDismissViewProps) {
   const handleTouchEnd = () => {
     if (thresholdReached) onDismiss?.();
     else {
-      const content = contentRef.peek();
-      content?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-        inline: "start",
+      setTimeout(() => {
+        const content = contentRef.peek();
+        content?.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+          inline: "start",
+        });
       });
     }
   };
@@ -61,6 +77,7 @@ export function DragToDismissView(props: DragToDismissViewProps) {
       class={[
         "size-full",
         "max-sm:overflow-auto [scrollbar-width:none] overscroll-none scroll-smooth",
+        { "**:overflow-hidden": innerScrollDisabled },
       ]}
       onTouchEnd={handleTouchEnd}
     >

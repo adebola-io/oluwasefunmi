@@ -55,7 +55,7 @@ export const ProductDetails = (props: ProductDetailsProps) => {
           <ProductInfo productId={product.id} />
         </div>
 
-        <div class="flex flex-col gap-3">
+        <div class="flex flex-col gap-3 relative z-10">
           <h4 class="text-xs font-semibold uppercase tracking-[0.15em] text-white/30 m-0">
             Colors
           </h4>
