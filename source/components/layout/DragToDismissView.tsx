@@ -2,12 +2,12 @@ import { Cell, useObserver } from "retend";
 import { useIntersectionObserver, useMatchMedia } from "retend-utils/hooks";
 import type { JSX } from "retend/jsx-runtime";
 
-interface DraggableViewProps extends JSX.BaseContainerProps {
+interface DragToDismissViewProps extends JSX.BaseContainerProps {
   ref?: Cell<HTMLElement | null>;
   onDismiss?: () => void;
 }
 
-export function DraggableView(props: DraggableViewProps) {
+export function DragToDismissView(props: DragToDismissViewProps) {
   const {
     ref: contentRef = Cell.source<HTMLElement | null>(null),
     onDismiss,
@@ -16,19 +16,33 @@ export function DraggableView(props: DraggableViewProps) {
   const containerRef = Cell.source<HTMLElement | null>(null);
   const isTouchDevice = useMatchMedia("(width < 40rem) and (pointer: coarse)");
   const enableDismiss = Cell.source(false);
+  const innerScrollDisabled = Cell.source(false);
   const observer = useObserver();
   let thresholdReached = false;
 
-  const options = (): IntersectionObserverInit => ({
+  const dismissObserverOptions = (): IntersectionObserverInit => ({
     root: containerRef.peek(),
-    threshold: 0.5,
+    threshold: 0.65,
   });
-  const callback: IntersectionObserverCallback = ([entry]) => {
+  const dismissCallback: IntersectionObserverCallback = ([entry]) => {
     if (!isTouchDevice.get()) return;
     thresholdReached = !entry.isIntersecting;
   };
+  const innerScrollBlockOptions = (): IntersectionObserverInit => ({
+    root: containerRef.peek(),
+    threshold: 0.99,
+  });
+  const innerScrollBlockCallback: IntersectionObserverCallback = ([entry]) => {
+    if (!isTouchDevice.get()) return;
+    innerScrollDisabled.set(!entry.isIntersecting);
+  };
 
-  useIntersectionObserver(contentRef, callback, options);
+  useIntersectionObserver(contentRef, dismissCallback, dismissObserverOptions);
+  useIntersectionObserver(
+    contentRef,
+    innerScrollBlockCallback,
+    innerScrollBlockOptions,
+  );
 
   observer.onConnected(contentRef, (content) => {
     requestAnimationFrame(() => {
@@ -47,10 +61,17 @@ export function DraggableView(props: DraggableViewProps) {
     if (thresholdReached) onDismiss?.();
     else {
       const content = contentRef.peek();
-      content?.scrollIntoView({
-        behavior: "smooth",
-        block: "start",
-        inline: "start",
+      const container = containerRef.peek();
+      container?.style.setProperty("overflow", "hidden");
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          container?.style.removeProperty("overflow");
+          content?.scrollIntoView({
+            behavior: "smooth",
+            block: "start",
+            inline: "start",
+          });
+        });
       });
     }
   };
@@ -61,6 +82,7 @@ export function DraggableView(props: DraggableViewProps) {
       class={[
         "size-full",
         "max-sm:overflow-auto [scrollbar-width:none] overscroll-none scroll-smooth",
+        { "**:overflow-hidden": innerScrollDisabled },
       ]}
       onTouchEnd={handleTouchEnd}
     >

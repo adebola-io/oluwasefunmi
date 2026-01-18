@@ -74,15 +74,15 @@ const RippleButton = (props: BoxProps) => {
 };
 
 const colors = [
-  "#2a2a2a",
-  "#404040",
-  "#525252",
-  "#2F4F4F",
-  "#4A3B3B",
-  "#3B4A3F",
-  "#2C3E50",
-  "#483D8B",
-  "#556B2F",
+  "#2a2a2a", // Dark gray (initial)
+  "#06B6D4", // Cyan
+  "#10B981", // Emerald
+  "#F59E0B", // Amber
+  "#EF4444", // Red
+  "#EC4899", // Pink
+  "#8B5CF6", // Violet
+  "#3B82F6", // Blue
+  "#D946EF", // Fuchsia
 ];
 
 const BOX_SIZE = 48;

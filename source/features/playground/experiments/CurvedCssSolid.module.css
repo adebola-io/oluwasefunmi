@@ -1,172 +1,292 @@
 .app {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100dvh;
-  width: 100%;
+    width: 100vw;
+    height: 100dvh;
+    background-color: #050505;
+    color: #fff;
+    font-family: "Inter", system-ui, sans-serif;
+    overflow: hidden;
+    position: relative;
+    touch-action: none;
+    user-select: none;
 }
 
-.container {
-  display: flex;
-  width: 100%;
-  min-height: 100dvh;
-  background: rgba(5, 5, 5, 0.4);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  overflow: hidden;
-  backdrop-filter: blur(10px);
-  padding-top: 5rem;
-}
+/* --- 3D Viewer Area --- */
 
-.controls {
-  flex: 0 0 300px;
-  padding: 2rem;
-  background: rgba(10, 10, 10, 0.6);
-  border-right: 1px solid rgba(255, 255, 255, 0.1);
-  overflow-y: auto;
-}
-
-.controls h2 {
-  color: #fff;
-  margin-bottom: 1.5rem;
-  font-size: 0.9rem;
-  text-transform: uppercase;
-  letter-spacing: 0.1em;
-  font-weight: 600;
-  opacity: 0.8;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-  padding-bottom: 0.5rem;
-}
-
-.controlGroup {
-  margin-bottom: 1.5rem;
-}
-
-.controlGroup label {
-  display: flex;
-  justify-content: space-between;
-  color: #888;
-  margin-bottom: 0.5rem;
-  font-size: 0.85rem;
-  font-family: var(--font-family);
-}
-
-.controlGroup input[type="range"] {
-  width: 100%;
-  -webkit-appearance: none;
-  appearance: none;
-  height: 2px;
-  background: rgba(255, 255, 255, 0.1);
-  border-radius: 0;
-  outline: none;
-}
-
-.controlGroup input[type="range"]::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 12px;
-  height: 12px;
-  background: #fff;
-  border: 2px solid #000;
-  border-radius: 50%;
-  cursor: grab;
-  transition: transform 0.1s;
-}
-
-.controlGroup input[type="range"]::-webkit-slider-thumb:active {
-  transform: scale(1.2);
-  background: #667eea;
-}
-
-.controlGroup input[type="color"] {
-  width: 100%;
-  height: 30px;
-  background: transparent;
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  border-radius: 4px;
-  cursor: pointer;
-  padding: 2px;
-}
-
-.hint {
-  margin-top: 1.5rem;
-  padding: 0.75rem;
-  background: rgba(100, 116, 234, 0.1);
-  border: 1px solid rgba(100, 116, 234, 0.2);
-  border-radius: 6px;
-  text-align: center;
-}
-
-.hint span {
-  color: rgba(255, 255, 255, 0.6);
-  font-size: 0.8rem;
+.immersiveContainer {
+    position: relative;
+    width: 100%;
+    height: 100%;
 }
 
 .viewer {
-  flex: 1;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: radial-gradient(
-      circle at center,
-      rgba(100, 100, 255, 0.03) 0%,
-      transparent 70%
-    ),
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
-  background-size: 100% 100%, 20px 20px, 20px 20px;
-  perspective: 1000px;
-  overflow: hidden;
-  cursor: grab;
-  user-select: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: grab;
+    /* Dynamic Background */
+    background:
+        radial-gradient(
+            circle at 50% 50%,
+            rgba(30, 30, 40, 0.4) 0%,
+            transparent 60%
+        ),
+        linear-gradient(to bottom, #050505 0%, #111 100%);
+    perspective: 1200px;
+    overflow: hidden;
+    touch-action: none; /* Prevent scroll on mobile */
 }
 
 .viewerDragging {
-  cursor: grabbing;
+    cursor: grabbing;
 }
 
-@media (max-width: 768px) {
-  .container {
-    flex-direction: column;
-    height: auto;
-    padding-top: 5.5rem;
-  }
+.scene {
+    position: relative;
+    transform-style: preserve-3d;
+    /* Center the box */
+    display: grid;
+    place-items: center;
+}
 
-  .controls {
-    flex: none;
-    width: 100%;
+/* Floor Shadow / Reflection */
+.floor {
+    position: absolute;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(
+        circle closest-side,
+        rgba(255, 255, 255, 0.05),
+        transparent
+    );
+    transform: rotateX(90deg) translateZ(-300px);
+    pointer-events: none;
+    filter: blur(40px);
+    opacity: 0.6;
+}
+
+/* --- Floating UI Layer --- */
+
+.uiLayer {
+    position: absolute;
+    inset: 0;
+    pointer-events: none; /* Let clicks pass through to 3D scene */
     padding: 1.5rem;
-    padding-top: 4rem;
-    border-right: none;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    max-height: 50vh;
-  }
-
-  .viewer {
-    min-height: 60vh;
-    perspective: 800px;
-  }
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    align-items: flex-end;
 }
 
-@media (max-width: 480px) {
-  .container {
-    padding-top: 5rem;
-  }
+.headerActions {
+    position: absolute;
+    top: 1.5rem;
+    right: 1.5rem;
+    display: flex;
+    gap: 0.75rem;
+    pointer-events: auto;
+    z-index: 100;
+}
 
-  .controls {
-    padding: 1rem;
-    padding-top: 4rem;
-  }
+.iconButton {
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(20, 20, 20, 0.6);
+    backdrop-filter: blur(12px);
+    color: #a1a1aa;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
 
-  .controls h2 {
-    font-size: 0.8rem;
-    margin-bottom: 1rem;
-  }
+.iconButton:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+}
 
-  .controlGroup {
-    margin-bottom: 1.2rem;
-  }
+.iconButton.active {
+    background: rgba(255, 255, 255, 1);
+    color: #000;
+    border-color: #fff;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
 
-  .controlGroup label {
+/* --- Controls Panel --- */
+
+.controlsPanel {
+    pointer-events: auto;
+    width: 340px;
+    max-width: calc(100vw - 3rem);
+    max-height: 70vh;
+    background: rgba(18, 18, 18, 0.75);
+    backdrop-filter: blur(24px);
+    -webkit-backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+    overflow: hidden;
+    transition:
+        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
+        opacity 0.3s ease;
+    transform-origin: bottom right;
+}
+
+.controlsHidden {
+    transform: translateY(20px) scale(0.95);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.scrollableContent {
+    padding: 1.5rem;
+    overflow-y: auto;
+    max-height: 70vh;
+}
+
+.scrollableContent::-webkit-scrollbar {
+    width: 4px;
+}
+.scrollableContent::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+}
+
+.section {
+    margin-bottom: 2rem;
+}
+
+.section:last-child {
+    margin-bottom: 0;
+}
+
+.section h3 {
     font-size: 0.75rem;
-  }
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+/* --- Presets Grid --- */
+
+.presetGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0.5rem;
+}
+
+.presetGrid button {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    color: #ccc;
+    padding: 0.5rem 0;
+    border-radius: 8px;
+    font-size: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.presetGrid button:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+}
+
+/* --- Sliders & Inputs --- */
+
+.controlRow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 0.75rem;
+}
+
+.controlRow label {
+    width: 40px;
+    font-size: 0.85rem;
+    color: #888;
+    font-weight: 500;
+}
+
+.valueDisplay {
+    width: 40px;
+    text-align: right;
+    font-family: monospace;
+    font-size: 0.85rem;
+    color: rgba(255, 255, 255, 0.7);
+}
+
+.slider[type="range"] {
+    flex: 1;
+    -webkit-appearance: none;
+    background: transparent;
+    height: 20px;
+    cursor: pointer;
+}
+
+.slider[type="range"]::-webkit-slider-runnable-track {
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+.slider[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 16px;
+    width: 16px;
+    border-radius: 50%;
+    background: #fff;
+    margin-top: -6px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+    transition: transform 0.1s;
+}
+
+.slider[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+/* Color Picker */
+.colorPickerWrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.colorPickerWrapper input[type="color"] {
+    -webkit-appearance: none;
+    border: none;
+    width: 100%;
+    height: 40px;
+    border-radius: 8px;
+    background: none;
+    cursor: pointer;
+}
+
+.colorPickerWrapper input[type="color"]::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.colorPickerWrapper input[type="color"]::-webkit-color-swatch {
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+}
+
+/* --- Mobile Adjuustments --- */
+@media (max-width: 600px) {
+    .controlsPanel {
+        right: 1rem;
+        left: 1rem;
+        bottom: 1rem;
+        width: auto;
+        max-width: none;
+    }
 }
