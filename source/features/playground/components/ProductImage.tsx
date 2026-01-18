@@ -42,7 +42,7 @@ export const ProductImage = createUniqueTransition<ProductImageProps>(
   },
   {
     transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
-    transitionDuration: "300ms",
+    transitionDuration: "550ms",
     maintainWidthDuringTransition: true,
     maintainHeightDuringTransition: true,
   },

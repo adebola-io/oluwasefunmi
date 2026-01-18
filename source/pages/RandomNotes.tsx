@@ -52,7 +52,6 @@ const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
           ) : (
             For(notes, (note, index) => (
               <Link href={`/random-notes/${note.id}`} class={classes.noteCard}>
-                <div class={classes.noteNumber}>#{index.get() + 1}</div>
                 <NoteHeading
                   id={`random-note-heading-${note.id}`}
                   title={note.title}
