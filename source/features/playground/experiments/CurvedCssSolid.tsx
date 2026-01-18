@@ -26,15 +26,16 @@ const CurvedCssSolid: RouteComponent = () => {
   let lastX = 0;
   let lastY = 0;
 
-  const handleMouseDown = (e: MouseEvent) => {
+  const handlePointerDown = (e: PointerEvent) => {
     if (e.button !== 0) return;
     isDragging.set(true);
     lastX = e.clientX;
     lastY = e.clientY;
     e.preventDefault();
+    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
   };
 
-  const handleMouseMove = (e: MouseEvent) => {
+  const handlePointerMove = (e: PointerEvent) => {
     if (!isDragging.get()) return;
 
     const deltaX = e.clientX - lastX;
@@ -49,11 +50,12 @@ const CurvedCssSolid: RouteComponent = () => {
     lastY = e.clientY;
   };
 
-  const handleMouseUp = () => {
+  const handlePointerUp = (e: PointerEvent) => {
     isDragging.set(false);
+    (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
   };
 
-  const handleMouseLeave = () => {
+  const handlePointerLeave = () => {
     isDragging.set(false);
   };
 
@@ -133,10 +135,10 @@ const CurvedCssSolid: RouteComponent = () => {
           </div>
           <div
             class={[classes.viewer, { [classes.viewerDragging]: isDragging }]}
-            onMouseDown={handleMouseDown}
-            onMouseMove={handleMouseMove}
-            onMouseUp={handleMouseUp}
-            onMouseLeave={handleMouseLeave}
+            onPointerDown={handlePointerDown}
+            onPointerMove={handlePointerMove}
+            onPointerUp={handlePointerUp}
+            onPointerLeave={handlePointerLeave}
           >
             <Box
               style={{ transform }}

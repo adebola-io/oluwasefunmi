@@ -11,46 +11,55 @@ export interface PlaygroundItem {
   icon: () => JSX.Element;
 }
 
+function ExternalLink({ url, children }: { url: string; children: string }) {
+  return (
+    <a href={url} target="_blank" rel="noopener noreferrer">
+      {children}
+    </a>
+  );
+}
+
 export const playgroundItems: PlaygroundItem[] = [
   {
     path: "/playground/curved-css-solid",
-    title: "Curved CSS Solid",
+    title: "curved-css-solid",
     description: () => (
       <>
-        Pushing the limits of CSS transforms to create a volumetric 3D box
-        without WebGL. It uses pure DOM elements to achieve smooth curves and
-        full interactivity.
+        Using CSS transforms to create a volumetric 3D box. It uses pure DOM
+        elements to achieve smooth curves and full interactivity.
       </>
     ),
     icon: () => <CubeIcon />,
   },
   {
     path: "/playground/ripple-effect",
-    title: "Ripple Effect",
+    title: "ripple-effect",
     description: () => (
       <>
-        An optimized grid interaction where clicks trigger cascading ripple
-        effects across hundreds of cells. The focus here was on efficient state
-        management to maintain a smooth 60fps.
+        Optimized grid interaction where clicks trigger cascading ripple effects
+        across cells.
       </>
     ),
     icon: () => <RippleIcon />,
   },
   {
     path: "/playground/blur-carousel",
-    title: "Blur Carousel",
+    title: "blur-carousel",
     description: () => (
       <>
-        A carousel exploring scroll-driven animations to mimic physical depth of
-        field. Items dynamically blur and recede as they move out of focus,
-        creating a more natural browsing experience.
+        A carousel using scroll-driven animations to mimic physical depth of
+        field. Items dynamically blur and recede as they move out of focus.
+        Original by{" "}
+        <ExternalLink url="https://x.com/SebJVidal/status/2005309959056338981">
+          @SebJVidal
+        </ExternalLink>
       </>
     ),
     icon: () => <CarouselIcon />,
   },
   {
     path: "/playground/product-transitions",
-    title: "Product Transition",
+    title: "product-transitions",
     description: () => (
       <>
         An exploration of smooth product card transitions and animations for

@@ -2,12 +2,12 @@ import { Cell, useObserver } from "retend";
 import { useIntersectionObserver, useMatchMedia } from "retend-utils/hooks";
 import type { JSX } from "retend/jsx-runtime";
 
-interface DraggableViewProps extends JSX.BaseContainerProps {
+interface DragToDismissViewProps extends JSX.BaseContainerProps {
   ref?: Cell<HTMLElement | null>;
   onDismiss?: () => void;
 }
 
-export function DraggableView(props: DraggableViewProps) {
+export function DragToDismissView(props: DragToDismissViewProps) {
   const {
     ref: contentRef = Cell.source<HTMLElement | null>(null),
     onDismiss,
@@ -60,7 +60,7 @@ export function DraggableView(props: DraggableViewProps) {
       ref={containerRef}
       class={[
         "size-full",
-        "max-sm:overflow-auto [scrollbar-width:none] overscroll-none scroll-smooth",
+        "max-sm:overflow-auto [scrollbar-width:none] overscroll-none **:overscroll-none scroll-smooth",
       ]}
       onTouchEnd={handleTouchEnd}
     >

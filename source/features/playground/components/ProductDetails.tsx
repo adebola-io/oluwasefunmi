@@ -3,7 +3,7 @@ import { colorMap, type Product } from "@/data/products";
 import { ProductImage } from "./ProductImage";
 import { ProductInfo } from "./ProductInfo";
 import styles from "./ProductDetails.module.css";
-import { DraggableView } from "@/components/layout/DraggableView";
+import { DragToDismissView } from "@/components/layout/DraggableView";
 
 interface ProductDetailsProps {
   product: Product;
@@ -18,7 +18,7 @@ export const ProductDetails = (props: ProductDetailsProps) => {
   };
 
   return (
-    <DraggableView
+    <DragToDismissView
       class={[
         styles.productDetailsView,
         styles.mobileScrollContainer,
@@ -136,6 +136,6 @@ export const ProductDetails = (props: ProductDetailsProps) => {
 
         <div class="h-10 md:h-0 shrink-0" />
       </div>
-    </DraggableView>
+    </DragToDismissView>
   );
 };
