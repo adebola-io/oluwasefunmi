@@ -1,0 +1,33 @@
+.titleWrapper {
+    position: relative;
+    width: 100%;
+    pointer-events: auto;
+    z-index: 1000;
+}
+
+.title {
+    font-family: var(--font-family);
+    font-size: 2.5rem;
+    font-weight: 500;
+    line-height: 1;
+    color: var(--text-primary);
+    margin: 0;
+    white-space: nowrap;
+    text-align: center; 
+}
+
+@keyframes blurSlideUp {
+    from {
+        opacity: 0;
+        filter: blur(8px);
+    }
+    to {
+        opacity: 1;
+        filter: blur(0);
+    }
+}
+
+.animateEnter {
+    display: inline-block;
+    animation: blurSlideUp 0.8s var(--ease-spring) backwards;
+}

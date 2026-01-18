@@ -1,11 +1,12 @@
 import { For } from "retend";
 import type { RouteComponent } from "retend/router";
 import type { PageMeta } from "retend-server/client";
-import type { Note, NotePreviewProps } from "@/library";
+import type { Note, NotePreviewProps } from "@/types";
 import { Link } from "retend/router";
-import { UniqueTransition } from "retend-utils/components";
-import { CurrentPageTitle } from "@/components/CurrentPageTitle";
-import { StarShower } from "@/components/StarShower";
+import { PageTitle } from "@/components/layout/PageTitle";
+import { StarShower } from "@/components/ui/StarShower";
+import { NoteHeading } from "@/components/ui/typography";
+import { SITE_URL } from "@/constants";
 import classes from "./RandomNotes.module.css";
 
 export const getNotesIndex = async () => {
@@ -37,7 +38,9 @@ const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
     <div class={classes.page}>
       <StarShower />
       <div class={classes.container}>
-        <CurrentPageTitle />
+        <div class={classes.title}>
+          <PageTitle name="Random Notes." />
+        </div>
         <p class={classes.subtitle}>
           Disjoint musings, incoherent rants and streams of consciousness that I
           have decided to write down. Anything about life, technology and
@@ -48,15 +51,12 @@ const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
           {!notes || notes.length === 0 ? (
             <p class={classes.empty}>No notes yet.</p>
           ) : (
-            For(notes, (note, index) => (
+            For(notes, (note) => (
               <Link href={`/random-notes/${note.id}`} class={classes.noteCard}>
-                <div class={classes.noteNumber}>#{index.get() + 1}</div>
-                <UniqueTransition
-                  name={`note-heading-${note.id}`}
-                  transitionDuration="300ms"
-                >
-                  {() => <h1 class="note-heading">{note.title}</h1>}
-                </UniqueTransition>
+                <NoteHeading
+                  id={`random-note-heading-${note.id}`}
+                  title={note.title}
+                />
                 <div class={classes.noteDate}>{note.dateStr}</div>
                 <p class={classes.noteSummary}>{note.description}</p>
               </Link>
@@ -69,8 +69,7 @@ const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
 };
 
 const title = "Random Notes | Oluwasefunmi, Web Developer";
-const ogImage =
-  "https://github.com/user-attachments/assets/aa453638-5962-48a1-859d-0af86555c870";
+const ogImage = `${SITE_URL}/og/random-notes.png`;
 const description =
   "Disjoint musings, incoherent rants and streams of consciousness that I have decided to write down. Anything about life, technology and consequence.";
 

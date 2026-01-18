@@ -1,154 +1,153 @@
 @keyframes fadeIn {
-  from { opacity: 0; transform: translateY(10px); }
-  to { opacity: 1; transform: translateY(0); }
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .home {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  flex: 1;
-  position: relative;
-  z-index: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex: 1;
+    position: relative;
+    z-index: 1;
 }
 
 .container {
-  max-width: 1000px;
-  margin: 0 auto;
-  width: 100%;
-  padding: 0 2rem;
-  box-sizing: border-box;
-  text-align: left;
+    max-width: 1000px;
+    margin: 0 auto;
+    width: 100%;
+    padding: 0 2rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .hero {
-  margin-bottom: 4rem;
-  position: relative;
-  /* Ensure word break on mobile if absolutely needed, though shrinking font is better */
-  word-wrap: break-word; 
-}
-
-.title {
-  /* Clean, tight typography */
-  font-family: var(--font-family);
-  font-size: clamp(1.5rem, 8vw, 5rem);
-  font-weight: 500;
-  letter-spacing: -0.05em;
-  margin: 0;
-  line-height: 1;
-  color: var(--text-primary);
-  opacity: 0;
-  animation: fadeIn 0.8s var(--ease-spring) forwards;
+    margin-bottom: 2rem;
+    position: relative;
+    word-wrap: break-word;
+    width: fit-content;
 }
 
 .titleAccent {
-  display: block;
-  font-size: clamp(0.75rem, 2vw, 1.25rem); /* Restored size independent of h1 parent */
-  font-weight: 400;
-  margin-top: 1.5rem;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
-  color: var(--text-secondary);
-  
-  opacity: 0;
-  animation: fadeIn 0.8s var(--ease-spring) 0.1s forwards;
+    display: block;
+    font-size: clamp(0.75rem, 2vw, 1.25rem);
+    font-weight: 400;
+    margin-top: 1rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+
+    opacity: 0;
+    animation: fadeIn 0.8s var(--ease-spring) 0.1s forwards;
 }
 
 .intro {
-  font-family: var(--font-family);
-  font-size: 1.25rem;
-  color: var(--text-secondary);
-  line-height: 1.6;
-  max-width: 600px;
-  margin: 0 0 3.5rem 0; /* Left aligned */
-  font-weight: 400;
-  opacity: 0;
-  animation: fadeIn 0.8s var(--ease-spring) 0.2s forwards;
+    font-family: var(--font-family);
+    font-size: 1.15rem;
+    color: var(--text-secondary);
+    line-height: 1.6;
+    max-width: 600px;
+    margin: 0 0 3.5rem 0;
+    font-weight: 400;
+    opacity: 0;
+    animation: fadeIn 0.8s var(--ease-spring) 0.2s forwards;
 }
 
 @media (max-width: 600px) {
-  .container {
-    padding: 0 1.5rem;
-  }
-  
-  .hero {
-    margin-bottom: 3rem;
-  }
-  
-  .titleAccent {
-    margin-top: 1rem;
-    font-size: 1rem; /* Fixed readable size on mobile */
-  }
-  
-  .intro {
-    font-size: 1.1rem;
-    margin-bottom: 2.5rem;
-  }
+    .container {
+        padding: 0 1.5rem;
+    }
+
+    .hero {
+        margin-bottom: 3rem;
+    }
+
+    .titleAccent {
+        margin-top: 1rem;
+        font-size: 1rem;
+    }
+
+    .intro {
+        font-size: 1.1rem;
+        margin-bottom: 2.5rem;
+    }
 }
 
 .intro a {
-  color: var(--text-primary);
-  text-decoration: none;
-  border-bottom: 1px solid var(--border-subtle);
-  transition: opacity 0.2s var(--ease-spring), border-color 0.2s var(--ease-spring);
+    color: var(--text-primary);
+    text-decoration: none;
+    border-bottom: 1px solid var(--border-subtle);
+    transition:
+        opacity 0.2s var(--ease-spring),
+        border-color 0.2s var(--ease-spring);
 }
 
 .intro a:hover {
-  border-bottom-color: var(--accent-color);
-  color: var(--accent-color);
+    border-bottom-color: var(--accent-color);
+    color: var(--accent-color);
 }
 
 .actions {
-  display: flex;
-  gap: 1.5rem;
-  align-items: center;
-  justify-content: flex-start; /* Left align buttons */
-  flex-wrap: wrap;
-  opacity: 0;
-  animation: fadeIn 0.8s var(--ease-spring) 0.3s forwards;
+    display: flex;
+    gap: 1.5rem;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    opacity: 0;
+    animation: fadeIn 0.8s var(--ease-spring) 0.3s forwards;
 }
 
 .primaryButton,
 .secondaryButton {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.75rem;
-  padding: 0.9rem 2rem;
-  font-size: 0.95rem;
-  font-weight: 500;
-  text-decoration: none;
-  border-radius: 6px; /* Subtle rounding instead of pills */
-  transition: transform 0.2s var(--ease-spring), opacity 0.2s var(--ease-spring), background-color 0.2s var(--ease-spring);
-  cursor: pointer;
-  letter-spacing: -0.01em;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    padding: 0.9rem 2rem;
+    font-size: 0.95rem;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 6px;
+    transition:
+        transform 0.2s var(--ease-spring),
+        opacity 0.2s var(--ease-spring),
+        background-color 0.2s var(--ease-spring);
+    cursor: pointer;
+    letter-spacing: -0.01em;
 }
 
 .primaryButton {
-  background: transparent;
-  color: var(--text-primary);
+    background: transparent;
+    color: var(--text-primary);
 }
 
 .primaryButton:hover {
-  background: rgba(255, 255, 255, 0.1);
+    background: rgba(255, 255, 255, 0.1);
 }
 
 .secondaryButton {
-  background: transparent;
-  color: var(--text-secondary);
+    background: transparent;
+    color: var(--text-secondary);
 }
 
-.primaryButton, .secondaryButton {
-  --layered-border-color: rgba(255, 255, 255, 0.6);
-  --layered-shadow-color: rgba(255, 255, 255, 0.3);
-  --layered-offset-x: -8px;
-  --layered-offset-y: 8px;
+.primaryButton,
+.secondaryButton {
+    --layered-border-color: rgba(255, 255, 255, 0.6);
+    --layered-shadow-color: rgba(255, 255, 255, 0.3);
+    --layered-offset-x: -8px;
+    --layered-offset-y: 8px;
 }
 
 .secondaryButton:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-primary);
 }
-
-/* Removed all extra decorative blobs/glows to keep it clean */
-
-

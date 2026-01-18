@@ -1,0 +1,62 @@
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  padding: clamp(1rem, 3vw, 2rem);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  z-index: 100;
+  pointer-events: none;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.backLink {
+  pointer-events: auto;
+  color: #888;
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: clamp(0.75rem, 2vw, 0.9rem);
+  background: rgba(0, 0, 0, 0.5);
+  padding: 0.5rem 1rem;
+  border-radius: 99px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  white-space: nowrap;
+  transition: opacity 0.2s, border-color 0.2s;
+}
+
+.backLink:hover {
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.title {
+  margin: 0;
+  color: rgba(255, 255, 255, 0.5);
+  font-size: clamp(0.75rem, 2vw, 0.9rem);
+  font-weight: 500;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  text-align: center;
+}
+
+.hint {
+  position: fixed;
+  bottom: 2rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.9rem;
+  pointer-events: none;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  z-index: 100;
+}

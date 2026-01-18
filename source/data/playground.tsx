@@ -1,9 +1,13 @@
 import type { JSX } from "retend/jsx-runtime";
+import { CubeIcon } from "@/components/icons/cube";
+import { RippleIcon } from "@/components/icons/ripple";
+import { CarouselIcon } from "@/components/icons/carousel";
+import { ShoppingCartIcon } from "@/components/icons/shopping-cart";
 
 export interface PlaygroundItem {
   path: string;
   title: string;
-  description: string;
+  description: () => JSX.Element;
   icon: () => JSX.Element;
 }
 
@@ -11,69 +15,48 @@ export const playgroundItems: PlaygroundItem[] = [
   {
     path: "/playground/curved-css-solid",
     title: "Curved CSS Solid",
-    description:
-      "Pushing the limits of CSS transforms to create a volumetric 3D box without WebGL. It uses pure DOM elements to achieve smooth curves and full interactivity.",
-    icon: () => (
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.5"
-      >
-        <path
-          d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-        <path
-          d="M3.27 6.96L12 12.01l8.73-5.05"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-        />
-        <path d="M12 22.08V12" stroke-linecap="round" stroke-linejoin="round" />
-      </svg>
+    description: () => (
+      <>
+        Pushing the limits of CSS transforms to create a volumetric 3D box
+        without WebGL. It uses pure DOM elements to achieve smooth curves and
+        full interactivity.
+      </>
     ),
+    icon: () => <CubeIcon />,
   },
   {
     path: "/playground/ripple-effect",
     title: "Ripple Effect",
-    description:
-      "An optimized grid interaction where clicks trigger cascading ripple effects across hundreds of cells. The focus here was on efficient state management to maintain a smooth 60fps.",
-    icon: () => (
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.5"
-      >
-        <circle cx="12" cy="12" r="10" />
-        <circle cx="12" cy="12" r="6" />
-        <circle cx="12" cy="12" r="2" />
-      </svg>
+    description: () => (
+      <>
+        An optimized grid interaction where clicks trigger cascading ripple
+        effects across hundreds of cells. The focus here was on efficient state
+        management to maintain a smooth 60fps.
+      </>
     ),
+    icon: () => <RippleIcon />,
   },
   {
     path: "/playground/blur-carousel",
     title: "Blur Carousel",
-    description:
-      "A carousel exploring scroll-driven animations to mimic physical depth of field. Items dynamically blur and recede as they move out of focus, creating a more natural browsing experience.",
-    icon: () => (
-      <svg
-        width="24"
-        height="24"
-        viewBox="0 0 24 24"
-        fill="none"
-        stroke="currentColor"
-        stroke-width="1.5"
-      >
-        <rect x="2" y="14" width="20" height="8" rx="2" stroke-opacity="0.5" />
-        <rect x="4" y="8" width="16" height="8" rx="2" stroke-opacity="0.8" />
-        <rect x="6" y="2" width="12" height="8" rx="2" />
-      </svg>
+    description: () => (
+      <>
+        A carousel exploring scroll-driven animations to mimic physical depth of
+        field. Items dynamically blur and recede as they move out of focus,
+        creating a more natural browsing experience.
+      </>
     ),
+    icon: () => <CarouselIcon />,
+  },
+  {
+    path: "/playground/product-transitions",
+    title: "Product Transition",
+    description: () => (
+      <>
+        An exploration of smooth product card transitions and animations for
+        e-commerce interfaces.
+      </>
+    ),
+    icon: () => <ShoppingCartIcon />,
   },
 ];

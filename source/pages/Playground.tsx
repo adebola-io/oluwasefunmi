@@ -2,9 +2,10 @@ import { For } from "retend";
 import { Link } from "retend/router";
 import type { RouteComponent } from "retend/router";
 import classes from "./Playground.module.css";
-import { CurrentPageTitle } from "@/components/CurrentPageTitle";
+import { PageTitle } from "@/components/layout/PageTitle";
 import { playgroundItems } from "@/data/playground.tsx";
-import { StarShower } from "@/components/StarShower";
+import { StarShower } from "@/components/ui/StarShower";
+import { SITE_URL } from "@/constants";
 
 const Playground: RouteComponent = () => {
   const handlePointerMove = (e: PointerEvent) => {
@@ -18,12 +19,10 @@ const Playground: RouteComponent = () => {
     <div class={classes.page}>
       <StarShower />
       <header class={classes.header}>
-        <div class={classes.headerContent}>
-          <CurrentPageTitle />
-          <p class={classes.subtitle}>
-            Interactive UI experiments & visual effects
-          </p>
-        </div>
+        <PageTitle name="Playground." />
+        <p class={classes.subtitle}>
+          Interactive UI experiments & visual effects
+        </p>
       </header>
 
       <main class={classes.grid}>
@@ -37,7 +36,9 @@ const Playground: RouteComponent = () => {
             <div class={classes.cardInner}>
               <div class={classes.cardHeader}>
                 <div class={classes.titleGroup}>
-                  <div class={classes.iconWrapper}>{exp.icon()}</div>
+                  <div class={classes.iconWrapper}>
+                    <exp.icon />
+                  </div>
                   <h2 class={classes.cardTitle}>{exp.title}</h2>
                 </div>
                 <div class={classes.arrowIcon}>
@@ -57,7 +58,9 @@ const Playground: RouteComponent = () => {
                   </svg>
                 </div>
               </div>
-              <p class={classes.cardDescription}>{exp.description}</p>
+              <p class={classes.cardDescription}>
+                <exp.description />
+              </p>
             </div>
           </Link>
         ))}
@@ -76,8 +79,10 @@ Playground.metadata = () => ({
     "Interactive UI experiments and visual effects showcasing creative web development.",
   ogTitle: "Playground | Oluwasefunmi Akomolafe",
   ogDescription: "Interactive UI experiments and visual effects.",
+  ogImage: `${SITE_URL}/og/playground.png`,
   twitterTitle: "Playground | Oluwasefunmi Akomolafe",
   twitterDescription: "Interactive UI experiments and visual effects.",
+  twitterImage: `${SITE_URL}/og/playground.png`,
 });
 
 export default Playground;

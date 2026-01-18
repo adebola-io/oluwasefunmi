@@ -1,12 +1,13 @@
 import { For } from "retend";
 import { Link } from "retend/router";
 import type { RouteComponent } from "retend/router";
-import { LayeredCard } from "../components/LayeredCard";
+import { LayeredCard } from "@/components/ui/LayeredCard";
 import classes from "./Works.module.css";
-import { CurrentPageTitle } from "@/components/CurrentPageTitle";
-import { StarShower } from "@/components/StarShower";
+import { PageTitle } from "@/components/layout/PageTitle";
+import { StarShower } from "@/components/ui/StarShower";
 import { projects } from "@/data/projects";
 import { ArrowIcon } from "@/components/icons/arrow";
+import { SITE_URL } from "@/constants";
 
 const Works: RouteComponent = () => {
   return (
@@ -14,7 +15,7 @@ const Works: RouteComponent = () => {
       <StarShower />
       <div class={classes.container}>
         <div class={classes.hero}>
-          <CurrentPageTitle />
+          <PageTitle name="My Works." />
         </div>
 
         <p class={classes.intro}>
@@ -66,9 +67,11 @@ Works.metadata = () => ({
   ogTitle: "My Works | Oluwasefunmi",
   ogDescription:
     "A curated collection of my works, highlighting my past achievements and current projects.",
+  ogImage: `${SITE_URL}/og/my-works.png`,
   twitterTitle: "My Works | Oluwasefunmi",
   twitterDescription:
     "A curated collection of my works, highlighting my past achievements and current projects.",
+  twitterImage: `${SITE_URL}/og/my-works.png`,
 });
 
 export default Works;
