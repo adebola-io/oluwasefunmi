@@ -5,6 +5,7 @@ import classes from "./Playground.module.css";
 import { PageTitle } from "@/components/layout/PageTitle";
 import { playgroundItems } from "@/data/playground.tsx";
 import { StarShower } from "@/components/ui/StarShower";
+import { SITE_URL } from "@/constants";
 
 const Playground: RouteComponent = () => {
   const handlePointerMove = (e: PointerEvent) => {
@@ -78,8 +79,10 @@ Playground.metadata = () => ({
     "Interactive UI experiments and visual effects showcasing creative web development.",
   ogTitle: "Playground | Oluwasefunmi Akomolafe",
   ogDescription: "Interactive UI experiments and visual effects.",
+  ogImage: `${SITE_URL}/og/playground.png`,
   twitterTitle: "Playground | Oluwasefunmi Akomolafe",
   twitterDescription: "Interactive UI experiments and visual effects.",
+  twitterImage: `${SITE_URL}/og/playground.png`,
 });
 
 export default Playground;

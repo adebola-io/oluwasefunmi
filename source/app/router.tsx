@@ -29,7 +29,7 @@ const routes = defineRoutes([
           { path: "/ripple-effect", component: RippleEffect },
           { path: "/blur-carousel", component: BlurCarousel },
           {
-            path: "/product-transition",
+            path: "/product-transitions",
             component: ProductTransition,
             children: [{ path: "/:productId", component: ProductDetailsPage }],
           },

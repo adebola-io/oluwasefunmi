@@ -2,6 +2,7 @@ import type { RouteComponent, ObjectToMap } from "retend/router";
 import { useRouter, Link } from "retend/router";
 import type { PageMeta } from "retend-server/client";
 import type { Note } from "@/types";
+import { SITE_URL } from "@/constants";
 import classes from "./RandomNote.module.css";
 
 const RandomNote: RouteComponent<PageMeta<Note>> = () => {
@@ -53,8 +54,12 @@ RandomNote.metadata = async (routeData) => {
     description: content.description,
     ogDescription: content.description,
     author: "Oluwasefunmi Akomolafe",
-    ogImage: content.ogImage,
-    twitterImage: content.ogImage,
+    ogImage: content.ogImage?.startsWith("http")
+      ? content.ogImage
+      : `${SITE_URL}${content.ogImage}`,
+    twitterImage: content.ogImage?.startsWith("http")
+      ? content.ogImage
+      : `${SITE_URL}${content.ogImage}`,
     misc: content,
   };
 };

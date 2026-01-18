@@ -4,6 +4,7 @@ import { LayeredCard } from "@/components/ui/LayeredCard";
 import classes from "./PortfolioHome.module.css";
 import { PageTitle } from "@/components/layout/PageTitle";
 import { StarShower } from "@/components/ui/StarShower";
+import { SITE_URL } from "@/constants";
 
 const PortfolioHome: RouteComponent = () => {
   return (
@@ -44,9 +45,11 @@ PortfolioHome.metadata = () => ({
   ogTitle: "Oluwasefunmi | Software Engineer",
   ogDescription:
     "Full-stack software engineer from Lagos, Nigeria focused on creating interactive digital experiences.",
+  ogImage: `${SITE_URL}/og/home.png`,
   twitterTitle: "Oluwasefunmi | Software Engineer",
   twitterDescription:
     "Full-stack software engineer from Lagos, Nigeria focused on creating interactive digital experiences.",
+  twitterImage: `${SITE_URL}/og/home.png`,
 });
 
 export default PortfolioHome;

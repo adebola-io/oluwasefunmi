@@ -1,4 +1,4 @@
-
+/// <reference types="vite/client" />
 import { hydrate } from 'retend-server/client';
 import { createRouter } from './router';
 

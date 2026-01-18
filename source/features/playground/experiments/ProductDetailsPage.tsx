@@ -4,6 +4,7 @@ import { Cell, If } from "retend";
 import { Modal } from "@/components/ui/Modal";
 import { ProductDetails } from "@/features/playground/components/ProductDetails";
 import { getProductById, type Product } from "@/data/products";
+import { SITE_URL } from "@/constants";
 
 const ProductDetailsPage: RouteComponent = () => {
   const currentRoute = useCurrentRoute();
@@ -38,6 +39,12 @@ const ProductDetailsPage: RouteComponent = () => {
 ProductDetailsPage.metadata = () => ({
   title: "Product Details | Playground",
   description: "View product details.",
+  ogTitle: "Product Details | Playground",
+  ogDescription: "View product details.",
+  ogImage: `${SITE_URL}/og/product-transitions.png`,
+  twitterTitle: "Product Details | Playground",
+  twitterDescription: "View product details.",
+  twitterImage: `${SITE_URL}/og/product-transitions.png`,
   viewport: "width=device-width, initial-scale=1.0",
 });
 

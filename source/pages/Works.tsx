@@ -7,6 +7,7 @@ import { PageTitle } from "@/components/layout/PageTitle";
 import { StarShower } from "@/components/ui/StarShower";
 import { projects } from "@/data/projects";
 import { ArrowIcon } from "@/components/icons/arrow";
+import { SITE_URL } from "@/constants";
 
 const Works: RouteComponent = () => {
   return (
@@ -66,9 +67,11 @@ Works.metadata = () => ({
   ogTitle: "My Works | Oluwasefunmi",
   ogDescription:
     "A curated collection of my works, highlighting my past achievements and current projects.",
+  ogImage: `${SITE_URL}/og/my-works.png`,
   twitterTitle: "My Works | Oluwasefunmi",
   twitterDescription:
     "A curated collection of my works, highlighting my past achievements and current projects.",
+  twitterImage: `${SITE_URL}/og/my-works.png`,
 });
 
 export default Works;

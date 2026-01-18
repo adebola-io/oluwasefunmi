@@ -5,8 +5,9 @@ import type { Note, NotePreviewProps } from "@/types";
 import { Link } from "retend/router";
 import { PageTitle } from "@/components/layout/PageTitle";
 import { StarShower } from "@/components/ui/StarShower";
-import classes from "./RandomNotes.module.css";
 import { NoteHeading } from "@/components/ui/typography";
+import { SITE_URL } from "@/constants";
+import classes from "./RandomNotes.module.css";
 
 export const getNotesIndex = async () => {
   const items: NotePreviewProps[] = [];
@@ -50,7 +51,7 @@ const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
           {!notes || notes.length === 0 ? (
             <p class={classes.empty}>No notes yet.</p>
           ) : (
-            For(notes, (note, index) => (
+            For(notes, (note) => (
               <Link href={`/random-notes/${note.id}`} class={classes.noteCard}>
                 <NoteHeading
                   id={`random-note-heading-${note.id}`}
@@ -68,8 +69,7 @@ const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
 };
 
 const title = "Random Notes | Oluwasefunmi, Web Developer";
-const ogImage =
-  "https://github.com/user-attachments/assets/aa453638-5962-48a1-859d-0af86555c870";
+const ogImage = `${SITE_URL}/og/random-notes.png`;
 const description =
   "Disjoint musings, incoherent rants and streams of consciousness that I have decided to write down. Anything about life, technology and consequence.";
 

@@ -5,6 +5,7 @@ import { useDerivedValue } from "retend-utils/hooks";
 import type { JSX } from "retend/jsx-runtime";
 import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
 import { carouselItems, type CarouselItem } from "@/data/carousel";
+import { SITE_URL } from "@/constants";
 import classes from "./BlurCarousel.module.css";
 
 const BlurCarouselDemo: RouteComponent = () => {
@@ -65,7 +66,7 @@ function BlurCarousel<Item>(props: BlurCarouselProps<Item>) {
           }
         }
       },
-      { threshold: 0.5, root: containerRef.peek() }
+      { threshold: 0.5, root: containerRef.peek() },
     );
 
     for (const child of ul.children) {
@@ -100,6 +101,14 @@ BlurCarouselDemo.metadata = () => ({
   title: "Blur Carousel | Playground",
   description:
     "A carousel with scroll-driven blur effects simulating depth of field.",
+  ogTitle: "Blur Carousel | Playground",
+  ogDescription:
+    "A carousel with scroll-driven blur effects simulating depth of field.",
+  ogImage: `${SITE_URL}/og/blur-carousel.png`,
+  twitterTitle: "Blur Carousel | Playground",
+  twitterDescription:
+    "A carousel with scroll-driven blur effects simulating depth of field.",
+  twitterImage: `${SITE_URL}/og/blur-carousel.png`,
   viewport: "width=device-width, initial-scale=1.0",
 });
 

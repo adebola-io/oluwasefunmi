@@ -5,6 +5,7 @@ import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLay
 import { products } from "@/data/products";
 import { ProductCard } from "@/features/playground/components/ProductCard";
 import { PageTitle } from "@/components/layout/PageTitle";
+import { SITE_URL } from "@/constants";
 
 const ProductTransition: RouteComponent = () => {
   const router = useRouter();
@@ -49,6 +50,12 @@ const ProductTransition: RouteComponent = () => {
 ProductTransition.metadata = () => ({
   title: "Product Transition | Playground",
   description: "A product transition animation playground.",
+  ogTitle: "Product Transition | Playground",
+  ogDescription: "A product transition animation playground.",
+  ogImage: `${SITE_URL}/og/product-transitions.png`,
+  twitterTitle: "Product Transition | Playground",
+  twitterDescription: "A product transition animation playground.",
+  twitterImage: `${SITE_URL}/og/product-transitions.png`,
   viewport: "width=device-width, initial-scale=1.0",
 });
 

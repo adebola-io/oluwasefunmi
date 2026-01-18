@@ -2,8 +2,9 @@ import { Cell, For } from "retend";
 import type { RouteComponent } from "retend/router";
 import { useWindowSize } from "retend-utils/hooks";
 import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
-import classes from "./RippleEffect.module.css";
 import { AsyncQueue } from "@/utils";
+import { SITE_URL } from "@/constants";
+import classes from "./RippleEffect.module.css";
 
 interface BoxProps {
   rows: Cell<number>;
@@ -30,7 +31,7 @@ const RippleButton = (props: BoxProps) => {
   const euclidDistanceFromClick = Cell.derived(() => {
     const [clickedRow, clickedCol] = clicked.get();
     return Math.floor(
-      Math.sqrt((row.get() - clickedRow) ** 2 + (col.get() - clickedCol) ** 2)
+      Math.sqrt((row.get() - clickedRow) ** 2 + (col.get() - clickedCol) ** 2),
     );
   });
 
@@ -140,6 +141,13 @@ const RippleEffect: RouteComponent = () => {
 RippleEffect.metadata = () => ({
   title: "Ripple Effect | Playground",
   description: "An optimized grid interaction with cascading ripple effects.",
+  ogTitle: "Ripple Effect | Playground",
+  ogDescription: "An optimized grid interaction with cascading ripple effects.",
+  ogImage: `${SITE_URL}/og/ripple-effect.png`,
+  twitterTitle: "Ripple Effect | Playground",
+  twitterDescription:
+    "An optimized grid interaction with cascading ripple effects.",
+  twitterImage: `${SITE_URL}/og/ripple-effect.png`,
   viewport: "width=device-width, initial-scale=1.0",
 });
 

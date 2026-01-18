@@ -1,6 +1,7 @@
 import type { RouteComponent } from "retend/router";
 import classes from "./Contact.module.css";
 import { StarShower } from "@/components/ui/StarShower";
+import { SITE_URL } from "@/constants";
 
 const Contact: RouteComponent = () => {
   return (
@@ -73,9 +74,11 @@ Contact.metadata = () => ({
   ogTitle: "Contact | Oluwasefunmi Akomolafe",
   ogDescription:
     "Get in touch with Oluwasefunmi. Let's collaborate on your next project.",
+  ogImage: `${SITE_URL}/og/contact-me.png`,
   twitterTitle: "Contact | Oluwasefunmi Akomolafe",
   twitterDescription:
     "Get in touch with Oluwasefunmi. Let's collaborate on your next project.",
+  twitterImage: `${SITE_URL}/og/contact-me.png`,
 });
 
 export default Contact;
