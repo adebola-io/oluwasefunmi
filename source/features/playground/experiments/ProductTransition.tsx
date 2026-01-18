@@ -11,7 +11,7 @@ const ProductTransition: RouteComponent = () => {
   const router = useRouter();
 
   const handleSelectProduct = async (id: number) => {
-    await router.navigate(`/playground/product-transition/${id}`);
+    await router.navigate(`/playground/product-transitions/${id}`);
   };
 
   useSetupEffect(() => {
