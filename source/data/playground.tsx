@@ -13,7 +13,12 @@ export interface PlaygroundItem {
 
 function ExternalLink({ url, children }: { url: string; children: string }) {
   return (
-    <a href={url} target="_blank" rel="noopener noreferrer">
+    <a
+      onClick--stop={() => {}}
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+    >
       {children}
     </a>
   );
