@@ -60,7 +60,7 @@ export function DragToDismissView(props: DragToDismissViewProps) {
       ref={containerRef}
       class={[
         "size-full",
-        "max-sm:overflow-auto [scrollbar-width:none] overscroll-none **:overscroll-none scroll-smooth",
+        "max-sm:overflow-auto [scrollbar-width:none] overscroll-none scroll-smooth",
       ]}
       onTouchEnd={handleTouchEnd}
     >

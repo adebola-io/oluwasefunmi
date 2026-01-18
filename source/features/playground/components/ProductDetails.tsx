@@ -3,7 +3,7 @@ import { colorMap, type Product } from "@/data/products";
 import { ProductImage } from "./ProductImage";
 import { ProductInfo } from "./ProductInfo";
 import styles from "./ProductDetails.module.css";
-import { DragToDismissView } from "@/components/layout/DraggableView";
+import { DragToDismissView } from "@/components/layout/DragToDismissView";
 
 interface ProductDetailsProps {
   product: Product;
