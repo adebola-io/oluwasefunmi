@@ -38,7 +38,6 @@ export const ProductCard = (props: ProductCardProps) => {
             id={`product-image-${product.id}`}
             productId={product.id}
             color={product.colors[0]}
-            class="w-full h-full object-contain object-center transition-transform duration-300 ease-out group-hover:scale-[1.02]"
           />
         </div>
         <div class="absolute bottom-0 p-5 flex flex-col gap-1 rounded-b-2xl w-full">

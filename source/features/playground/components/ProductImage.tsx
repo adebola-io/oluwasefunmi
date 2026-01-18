@@ -42,6 +42,8 @@ export const ProductImage = createUniqueTransition<ProductImageProps>(
   },
   {
     transitionTimingFunction: "cubic-bezier(0.16, 1, 0.3, 1)",
-    transitionDuration: "500ms",
+    transitionDuration: "300ms",
+    maintainWidthDuringTransition: true,
+    maintainHeightDuringTransition: true,
   },
 );
