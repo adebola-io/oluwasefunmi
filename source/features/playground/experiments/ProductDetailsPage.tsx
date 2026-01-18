@@ -24,7 +24,7 @@ const ProductDetailsPage: RouteComponent = () => {
   const isModalOpen = Cell.derived(() => selectedProduct.get() !== null);
 
   const handleCloseModal = async () => {
-    await router.navigate("/playground/product-transition");
+    await router.navigate("/playground/product-transitions");
   };
 
   return (
