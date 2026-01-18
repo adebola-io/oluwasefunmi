@@ -1,0 +1,19 @@
+.modal {
+    transition-property: opacity, transform, display, overlay;
+    transition-duration: 300ms;
+    transition-behavior: allow-discrete;
+    opacity: 1;
+    transform: scale(1);
+
+    @starting-style {
+        opacity: 0.5;
+        transform: scale(0.9);
+    }
+
+    @media (max-width: 768px) {
+        @starting-style {
+            transform: scale(1);
+            opacity: 1;
+        }
+    }
+}

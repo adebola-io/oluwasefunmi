@@ -1,5 +1,6 @@
 import { Cell, useObserver } from "retend";
 import type { JSX } from "retend/jsx-runtime";
+import classes from "./Modal.module.css";
 
 export interface ModalProps {
   isOpen: Cell<boolean>;
@@ -34,6 +35,7 @@ export const Modal = (props: ModalProps) => {
     <dialog
       ref={dialogRef}
       class={[
+        classes.modal,
         "fixed inset-0 w-full h-full max-w-full max-h-full m-0 p-0 border-none bg-transparent text-white",
         "open:flex open:items-center open:justify-center backdrop:bg-black/50",
       ]}
