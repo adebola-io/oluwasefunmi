@@ -66,10 +66,7 @@ export const playgroundItems: PlaygroundItem[] = [
     path: "/playground/product-transitions",
     title: "product-transitions",
     description: () => (
-      <>
-        An exploration of smooth product card transitions and animations for
-        e-commerce interfaces.
-      </>
+      <>Product card transitions with drag to dismiss gesture.</>
     ),
     icon: () => <ShoppingCartIcon />,
   },

@@ -64,8 +64,8 @@ export function DragToDismissView(props: DragToDismissViewProps) {
       const container = containerRef.peek();
       container?.style.setProperty("overflow", "hidden");
       requestAnimationFrame(() => {
-        container?.style.removeProperty("overflow");
         requestAnimationFrame(() => {
+          container?.style.removeProperty("overflow");
           content?.scrollIntoView({
             behavior: "smooth",
             block: "start",
