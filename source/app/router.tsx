@@ -19,6 +19,11 @@ const routes = defineRoutes([
   {
     path: "/",
     component: RootLayout,
+    metadata: {
+      twitterCard: "summary_large_image",
+      twitterSite: "@adebola_io",
+      twitterCreator: "@adebola_io",
+    },
     children: [
       { path: "/", component: PortfolioHome },
       {
