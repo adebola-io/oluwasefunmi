@@ -21,10 +21,11 @@ export function LayeredCard(props: LayeredCardProps) {
   const combinedClass = [classes.layeredCard, classProp];
 
   if (typeof Component === "string") {
+    const Tag = Component as any;
     return (
-      <div {...rest} class={combinedClass}>
+      <Tag {...rest} class={combinedClass}>
         {children}
-      </div>
+      </Tag>
     );
   }
 

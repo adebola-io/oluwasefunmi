@@ -15,6 +15,15 @@ interface Project {
 
 export const projects: Project[] = [
   {
+    id: 6,
+    name: "cells",
+    description:
+      "Lightweight library for managing reactive state with source cells, derived values, effects, and source-flattening.",
+    link: "https://github.com/adebola-io/cells",
+    class: "col-span-12 md:col-span-6",
+    tags: ["reactivity", "state management", "npm", "library"],
+  },
+  {
     id: 0,
     name: "vizitly",
     description: "Complete suite for a modern visitor management system.",
