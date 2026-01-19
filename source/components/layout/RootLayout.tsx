@@ -1,5 +1,6 @@
 import { Cell, If } from "retend";
 import { Outlet, useRouter } from "retend/router";
+import { ScrollRestoration } from "@/components/layout/ScrollRestoration";
 import { Navigation } from "./Navigation";
 import classes from "./PageLayout.module.css";
 
@@ -21,6 +22,7 @@ export function RootLayout() {
 
   return (
     <div class={classes.layout}>
+      <ScrollRestoration />
       {If(showNav, Navigation)}
       <main class={containerClass}>
         <Outlet />
