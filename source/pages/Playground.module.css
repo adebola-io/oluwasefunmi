@@ -103,7 +103,7 @@
 .cardHeader {
     display: flex;
     justify-content: space-between;
-    align-items: flex-start;
+    align-items: center;
     margin-bottom: 1.5rem;
 }
 
@@ -131,16 +131,36 @@
     transition: color 0.3s;
 }
 
-.arrowIcon {
-    color: var(--text-secondary);
-    transition:
-        transform 0.3s var(--ease-spring),
-        color 0.3s var(--ease-spring);
+.viewButton {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-subtle);
+    border-radius: 20px;
+    color: var(--text-primary);
+    font-family: var(--font-family);
+    font-size: 0.9rem;
+    text-decoration: none;
+    transition: all 0.3s var(--ease-spring);
+    z-index: 10;
+    align-self: flex-start;
+    margin-top: 1.5rem;
 }
 
-.card:hover .arrowIcon {
-    color: var(--text-primary);
-    transform: translate(2px, -2px);
+.viewButton:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+    transform: translateX(2px);
+}
+
+.viewButton svg {
+    transition: transform 0.3s var(--ease-spring);
+}
+
+.viewButton:hover svg {
+    transform: translateX(2px);
 }
 
 .cardDescription {

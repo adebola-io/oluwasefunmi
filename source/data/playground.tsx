@@ -66,7 +66,12 @@ export const playgroundItems: PlaygroundItem[] = [
     path: "/playground/product-transitions",
     title: "product-transitions",
     description: () => (
-      <>Product card transitions with drag to dismiss gesture.</>
+      <>
+        Product card transitions with drag to dismiss gesture. Original by{" "}
+        <ExternalLink url="https://x.com/aydahnizzy/status/2009766429780820131">
+          @aydahnizzy
+        </ExternalLink>
+      </>
     ),
     icon: () => <ShoppingCartIcon />,
   },

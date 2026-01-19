@@ -27,12 +27,7 @@ const Playground: RouteComponent = () => {
 
       <main class={classes.grid}>
         {For(playgroundItems, (exp) => (
-          <Link
-            href={exp.path}
-            class={classes.card}
-            draggable={false}
-            onPointerMove={handlePointerMove}
-          >
+          <div class={classes.card} onPointerMove={handlePointerMove}>
             <div class={classes.cardInner}>
               <div class={classes.cardHeader}>
                 <div class={classes.titleGroup}>
@@ -41,28 +36,29 @@ const Playground: RouteComponent = () => {
                   </div>
                   <h2 class={classes.cardTitle}>{exp.title}</h2>
                 </div>
-                <div class={classes.arrowIcon}>
-                  <svg
-                    width="20"
-                    height="20"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="1.5"
-                  >
-                    <path
-                      d="M7 17L17 7M17 7H7M17 7V17"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </div>
               </div>
               <p class={classes.cardDescription}>
                 <exp.description />
               </p>
+              <Link href={exp.path} class={classes.viewButton}>
+                View
+                <svg
+                  width="16"
+                  height="16"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                >
+                  <path
+                    d="M5 12h14M12 5l7 7-7 7"
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                  />
+                </svg>
+              </Link>
             </div>
-          </Link>
+          </div>
         ))}
       </main>
 
