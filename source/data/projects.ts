@@ -20,7 +20,7 @@ export const projects: Project[] = [
     description:
       "Lightweight library for managing reactive state with source cells, derived values, effects, and source-flattening.",
     link: "https://github.com/adebola-io/cells",
-    class: "col-span-12 md:col-span-6",
+    class: "col-span-12 md:col-span-7",
     tags: ["reactivity", "state management", "npm", "library"],
   },
   {
@@ -71,7 +71,7 @@ export const projects: Project[] = [
     description:
       "Crude, non-compliant bundler and minifier for HTML, CSS and JS projects.",
     link: "https://www.npmjs.com/package/siphon-cli",
-    class: "col-span-12 md:col-span-6",
+    class: "col-span-12 md:col-span-5",
     tags: ["node.js", "compilers", "jsx", "dev tools"],
   },
 ];
