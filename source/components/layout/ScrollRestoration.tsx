@@ -1,9 +1,13 @@
-import { useSetupEffect } from "retend";
+import { Cell, useSetupEffect } from "retend";
 import { useRouter, useCurrentRoute } from "retend/router";
 
 export function ScrollRestoration() {
   const router = useRouter();
   const currentRoute = useCurrentRoute();
+  const basePath = Cell.derived(() => {
+    const segments = currentRoute.get().fullPath.split("/");
+    return `${segments[0]}/${segments[1]}/${segments[2]}`;
+  });
 
   useSetupEffect(() => {
     // 1. Disable browser auto-restore
@@ -15,7 +19,6 @@ export function ScrollRestoration() {
     const saveScrollPosition = () => {
       const scroll = { x: window.scrollX, y: window.scrollY };
       const currentState = window.history.state || {};
-      console.log("Saving scroll position", { currentState, scroll });
       window.history.replaceState({ ...currentState, scroll }, "");
     };
 
@@ -23,15 +26,14 @@ export function ScrollRestoration() {
     router.addEventListener("beforenavigate", saveScrollPosition);
 
     // 4. Restore position when the route updates
-    const unlisten = currentRoute.listen(() => {
+    const unlisten = basePath.listen((basePath) => {
+      console.log({ basePath });
       queueMicrotask(() => {
         requestAnimationFrame(() => {
           const state = window.history.state;
-          console.log("Restoring scroll position", { state });
           if (state?.scroll) {
             window.scrollTo(state.scroll.x, state.scroll.y);
           } else {
-            console.log("Restoring default scroll position");
             window.scrollTo(0, 0);
           }
         });
