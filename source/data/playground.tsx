@@ -82,7 +82,7 @@ export const playgroundItems: PlaygroundItem[] = [
     title: "three-dimensional-marquee",
     description: () => (
       <>
-        3d marquee rotating text with a halo effect. Original by{" "}
+        3d marquee rotating text with a halo effect, in pure CSS. Original by{" "}
         <ExternalLink url="https://x.com/dejager/status/2012219287952380320">
           @dejager
         </ExternalLink>

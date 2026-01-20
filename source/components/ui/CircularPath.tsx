@@ -9,9 +9,18 @@ interface CircularPathProps extends JSX.BaseContainerProps {
 }
 
 export const CircularPath = (props: CircularPathProps) => {
-  const { speed = "7s", text: textProp, children, ...rest } = props;
+  const {
+    speed = "7s",
+    text: textProp,
+    children,
+    style: userStyle,
+    ...rest
+  } = props;
 
-  const text = useDerivedValue(textProp);
+  const textRaw = useDerivedValue(textProp);
+  const text = Cell.derived(() => {
+    return `${textRaw.get()} `;
+  });
   const parts = Cell.derived(() => {
     return text.get().split("");
   });
@@ -21,8 +30,8 @@ export const CircularPath = (props: CircularPathProps) => {
 
   const style = {
     "--circ-path-speed": speed,
-    "--circ-path-length-px": length,
     "--circ-count": count,
+    ...(userStyle as any),
   };
 
   return (
@@ -33,8 +42,22 @@ export const CircularPath = (props: CircularPathProps) => {
       class={[classes.container, rest.class]}
     >
       {For(parts, (part, i) => {
+        const ref = Cell.source<HTMLElement | null>(null);
+
+        text.listen(() => {
+          const div = ref.get();
+          if (!div) return;
+          const animations = div.getAnimations();
+
+          animations.forEach((animation) => {
+            animation.cancel();
+            animation.play();
+          });
+        });
+
         return (
           <div
+            ref={ref}
             style={{ "--i": i, "--letter": `'${part}'` }}
             class={classes.letter}
           >

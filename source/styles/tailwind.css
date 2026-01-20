@@ -1,1 +1,14 @@
 @import "tailwindcss";
+
+@utility animate-fade-in {
+    animation: fade-in 800ms var(--ease-spring);
+}
+
+@keyframes fade-in {
+    from {
+        translate: 0px 10%;
+        opacity: 0;
+    }
+  
+    
+}
