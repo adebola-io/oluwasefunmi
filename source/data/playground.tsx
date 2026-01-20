@@ -3,6 +3,7 @@ import { CubeIcon } from "@/components/icons/cube";
 import { RippleIcon } from "@/components/icons/ripple";
 import { CarouselIcon } from "@/components/icons/carousel";
 import { ShoppingCartIcon } from "@/components/icons/shopping-cart";
+import { HaloIcon } from "@/components/icons/halo";
 
 export interface PlaygroundItem {
   path: string;
@@ -18,6 +19,7 @@ function ExternalLink({ url, children }: { url: string; children: string }) {
       href={url}
       target="_blank"
       rel="noopener noreferrer"
+      class="hover:underline"
     >
       {children}
     </a>
@@ -74,5 +76,18 @@ export const playgroundItems: PlaygroundItem[] = [
       </>
     ),
     icon: () => <ShoppingCartIcon />,
+  },
+  {
+    path: "/playground/three-dimensional-marquee",
+    title: "three-dimensional-marquee",
+    description: () => (
+      <>
+        3d marquee rotating text with a halo effect. Original by{" "}
+        <ExternalLink url="https://x.com/dejager/status/2012219287952380320">
+          @dejager
+        </ExternalLink>
+      </>
+    ),
+    icon: () => <HaloIcon />,
   },
 ];

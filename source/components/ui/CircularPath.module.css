@@ -1,0 +1,59 @@
+.container {
+    --circ-path-length-px: calc(var(--circ-path-length) * 1px);
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    transform-style: preserve-3d;
+    transform: rotateX(-90deg);
+    letter-spacing: -1px;
+    height: 90px;
+    font-size: 4rem;
+    font-weight: bolder;
+    user-select: none;
+    width: var(--circ-path-length-px);
+}
+
+.letter {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 1fr;
+    transform-style: preserve-3d;
+    aspect-ratio: 2.7;
+    offset-path: shape(
+        from 18.41% 0%,
+        hline to 81.59%,
+        curve to 100% 50% with 91.77% 0%/100% 22.43%,
+        curve to 81.59% 100% with 100% 77.57%/91.77% 100%,
+        hline to 18.41%,
+        curve to 0% 50% with 8.23% 100%/0% 77.57%,
+        curve to 18.41% 0% with 0% 22.43%/8.23% 0%,
+        close
+    );
+    animation: rotate-text var(--circ-path-speed) infinite linear;
+    animation-delay: calc(var(--i) * 250ms);
+    transform: rotateX(90deg);
+    grid-area: 1/1;
+    align-self: center;
+    justify-self: start;
+    /*animation-play-state: paused;*/
+}
+
+.letterMain {
+    color: salmon;
+    grid-area: 1/1;
+    backface-visibility: hidden;
+}
+
+.letterBackface {
+    grid-area: 1 / 1;
+    color: #a3638a;
+    transform: translateZ(-1px);
+    transform-style: preserve-3d;
+}
+
+@keyframes rotate-text {
+    to {
+        offset-distance: -100%;
+    }
+}

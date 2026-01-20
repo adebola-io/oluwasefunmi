@@ -1,18 +1,21 @@
-import { Cell, useSetupEffect } from "retend";
+import { Cell } from "retend";
 import type { RouteComponent } from "retend/router";
 import { Input } from "retend-utils/components";
 import { Box } from "./Box";
 import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
 import { SITE_URL } from "@/constants";
 import classes from "./CurvedCssSolid.module.css";
+import { Viewer } from "@/features/playground/components/Viewer/Viewer";
 
 const CurvedCssSolid: RouteComponent = () => {
   const rx = Cell.source(25);
   const ry = Cell.source(-35);
   const rz = Cell.source(-0.5);
+  const scale = Cell.source(1);
+  const isDragging = Cell.source(false);
+  const isAutoRotating = Cell.source(false);
 
   const isControlsOpen = Cell.source(true);
-  const isAutoRotating = Cell.source(false);
 
   const height = Cell.source(354);
   const width = Cell.source(354);
@@ -20,119 +23,12 @@ const CurvedCssSolid: RouteComponent = () => {
   const curve = Cell.source(20);
   const color = Cell.source("#6074dd");
 
-  const scale = Cell.source(1);
-
-  const isDragging = Cell.source(false);
-
-  const transform = Cell.derived(() => {
-    return `scale(${scale.get()}) rotateX(${rx.get()}deg) rotateY(${ry.get()}deg) rotateZ(${rz.get()}deg)`;
-  });
-
-  const pointers = new Map<number, { x: number; y: number }>();
-  let lastPinchDist = 0;
-
-  const handlePointerDown = (e: PointerEvent) => {
-    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
-    pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
-    isDragging.set(true);
-
-    if (pointers.size === 2) {
-      const points = Array.from(pointers.values());
-      lastPinchDist = Math.hypot(
-        points[0].x - points[1].x,
-        points[0].y - points[1].y,
-      );
-    }
-  };
-
-  const handlePointerMove = (e: PointerEvent) => {
-    if (!pointers.has(e.pointerId)) return;
-
-    if (pointers.size === 1) {
-      const prev = pointers.get(e.pointerId);
-      if (!prev) return;
-      const deltaX = e.clientX - prev.x;
-      const deltaY = e.clientY - prev.y;
-
-      const sensitivity = 0.5;
-      const dx = deltaX * sensitivity;
-      const dy = deltaY * sensitivity;
-
-      ry.set(ry.get() + dx);
-      rx.set(rx.get() - dy);
-
-      vx.set(dy);
-      vy.set(dx);
-
-      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
-    } else if (pointers.size === 2) {
-      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
-
-      const points = Array.from(pointers.values());
-      const dist = Math.hypot(
-        points[0].x - points[1].x,
-        points[0].y - points[1].y,
-      );
-
-      const delta = dist - lastPinchDist;
-      scale.set(Math.max(0.2, Math.min(3, scale.get() + delta * 0.01)));
-
-      lastPinchDist = dist;
-    }
-  };
-
-  const handlePointerUp = (e: PointerEvent) => {
-    pointers.delete(e.pointerId);
-    (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
-
-    if (pointers.size === 0) {
-      isDragging.set(false);
-    } else if (pointers.size === 1) {
-    }
-    lastPinchDist = 0;
-  };
-
-  const handlePointerLeave = (e: PointerEvent) => {
-    if (pointers.has(e.pointerId)) {
-      handlePointerUp(e);
-    }
-  };
-
-  const handleWheel = (e: WheelEvent) => {
-    const zoomSensitivity = 0.001;
-    scale.set(
-      Math.max(0.2, Math.min(3, scale.get() - e.deltaY * zoomSensitivity)),
-    );
-  };
-
   const presets = {
     cube: { height: 200, width: 200, depth: 200, curve: 0 },
     pill: { height: 100, width: 300, depth: 100, curve: 50 },
     card: { height: 400, width: 300, depth: 20, curve: 15 },
     tower: { height: 500, width: 150, depth: 150, curve: 10 },
   };
-
-  const vx = Cell.source(0);
-  const vy = Cell.source(0);
-
-  useSetupEffect(() => {
-    let animationFrame: number;
-    const animate = () => {
-      if (isAutoRotating.get()) {
-        ry.set(ry.get() + 0.5);
-      } else if (!isDragging.get()) {
-        if (Math.abs(vx.get()) > 0.01 || Math.abs(vy.get()) > 0.01) {
-          rx.set(rx.get() - vx.get());
-          ry.set(ry.get() + vy.get());
-          vx.set(vx.get() * 0.95);
-          vy.set(vy.get() * 0.95);
-        }
-      }
-      animationFrame = requestAnimationFrame(animate);
-    };
-    animate();
-    return () => cancelAnimationFrame(animationFrame);
-  });
 
   const applyPreset = (preset: keyof typeof presets) => {
     const p = presets[preset];
@@ -152,17 +48,16 @@ const CurvedCssSolid: RouteComponent = () => {
         hint="Interactive 3D CSS Experiment"
       >
         <div class={classes.immersiveContainer}>
-          <div
-            class={[classes.viewer, { [classes.viewerDragging]: isDragging }]}
-            onPointerDown={handlePointerDown}
-            onPointerMove={handlePointerMove}
-            onPointerUp={handlePointerUp}
-            onPointerLeave={handlePointerLeave}
-            onWheel={handleWheel}
+          <Viewer
+            rx={rx}
+            ry={ry}
+            rz={rz}
+            scale={scale}
+            isDragging={isDragging}
+            isAutoRotating={isAutoRotating}
           >
-            <div class={classes.scene}>
+            <>
               <Box
-                style={{ transform }}
                 height={height}
                 width={width}
                 depth={depth}
@@ -170,8 +65,8 @@ const CurvedCssSolid: RouteComponent = () => {
                 color={color}
               />
               <div class={classes.floor} />
-            </div>
-          </div>
+            </>
+          </Viewer>
 
           <div class={classes.uiLayer}>
             <div class={classes.headerActions}>

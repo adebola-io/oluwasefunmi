@@ -12,9 +12,9 @@ const notes = fs.existsSync("./source/content/notes")
       .readdirSync("./source/content/notes")
       .map((name) => `/random-notes/${name}`)
   : [];
-const productRoutes = products.map(
-  (product) => `/playground/product-transitions/${product.id}`,
-);
+const productRoutes = products.map((product) => {
+  return `/playground/product-transitions/${product.id}`;
+});
 
 const pages = [
   "/",
@@ -23,6 +23,7 @@ const pages = [
   "/playground/ripple-effect",
   "/playground/blur-carousel",
   "/playground/product-transitions",
+  "/playground/three-dimensional-marquee",
   "/random-notes",
   "/contact",
   "/works",

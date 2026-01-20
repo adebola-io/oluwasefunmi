@@ -12,6 +12,7 @@ import RippleEffect from "@/features/playground/experiments/RippleEffect";
 import BlurCarousel from "@/features/playground/experiments/BlurCarousel";
 import ProductTransition from "@/features/playground/experiments/ProductTransition";
 import ProductDetailsPage from "@/features/playground/experiments/ProductDetailsPage";
+import ThreeDimensionalMarquee from "@/features/playground/experiments/ThreeDimensionalMarquee";
 
 import { RootLayout } from "@/components/layout/RootLayout";
 
@@ -37,6 +38,10 @@ const routes = defineRoutes([
             path: "/product-transitions",
             component: ProductTransition,
             children: [{ path: "/:productId", component: ProductDetailsPage }],
+          },
+          {
+            path: "/three-dimensional-marquee",
+            component: ThreeDimensionalMarquee,
           },
         ],
       },
