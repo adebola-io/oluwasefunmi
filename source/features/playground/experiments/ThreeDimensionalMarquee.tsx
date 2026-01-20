@@ -7,8 +7,11 @@ import { Viewer } from "@/features/playground/components/Viewer/Viewer";
 const ThreeDimensionalMarquee: RouteComponent = () => {
   return (
     <PlaygroundLayout title="3D Marquee" hint="3D Marquee Experiment">
-      <Viewer>
-        <CircularPath class="m-auto" text="STAY FOOLISH STAY HUNGRY. " />
+      <Viewer initialRx={33.5336} initialRy={-27.3133}>
+        <CircularPath
+          class="m-auto text-[#75d4d2]"
+          text="NOW SHOWING: AVENGERS DOOMSDAY. "
+        />
       </Viewer>
     </PlaygroundLayout>
   );

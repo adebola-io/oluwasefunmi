@@ -1,21 +1,28 @@
-.container {
-    --circ-path-length-px: calc(var(--circ-path-length) * 1px);
+@property --letter {
+    syntax: "<string>";
+    initial-value: "";
+    inherits: true;
+}
 
+.container {
+    --width: min(1000px, 90dvw);
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     transform-style: preserve-3d;
     transform: rotateX(-90deg);
-    letter-spacing: -1px;
-    height: 90px;
-    font-size: 4rem;
+    font-family: monospace;
+    font-size: calc(var(--width) / (var(--circ-count) * 0.25));
     font-weight: bolder;
     user-select: none;
-    width: var(--circ-path-length-px);
+    width: var(--width);
+    white-space: pre;
+    opacity: 1;
 }
 
 .letter {
     display: grid;
+    pointer-events: none;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;
     transform-style: preserve-3d;
@@ -30,26 +37,31 @@
         curve to 18.41% 0% with 0% 22.43%/8.23% 0%,
         close
     );
+
     animation: rotate-text var(--circ-path-speed) infinite linear;
-    animation-delay: calc(var(--i) * 250ms);
+    animation-delay: calc(
+        (var(--circ-path-speed) / var(--circ-count)) *
+            (var(--circ-count) - var(--i)) * -1
+    );
     transform: rotateX(90deg);
     grid-area: 1/1;
     align-self: center;
     justify-self: start;
-    /*animation-play-state: paused;*/
+
+    &::before {
+        content: var(--letter);
+        display: block;
+        grid-area: 1 / 1;
+        color: black;
+        -webkit-text-stroke: 0.5px white;
+        transform: translateZ(-1px);
+        transform-style: preserve-3d;
+    }
 }
 
 .letterMain {
-    color: salmon;
     grid-area: 1/1;
     backface-visibility: hidden;
-}
-
-.letterBackface {
-    grid-area: 1 / 1;
-    color: #a3638a;
-    transform: translateZ(-1px);
-    transform-style: preserve-3d;
 }
 
 @keyframes rotate-text {
