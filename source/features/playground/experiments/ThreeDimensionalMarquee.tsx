@@ -79,13 +79,13 @@ const ThreeDimensionalMarquee: RouteComponent = () => {
 
 ThreeDimensionalMarquee.metadata = () => ({
   title: "3D Marquee | Playground",
-  description: "A 3D marquee effect.",
+  description: "Interactive, 3D marquee, made with pure CSS",
   ogTitle: "3D Marquee | Playground",
-  ogDescription: "A 3D marquee effect.",
-  ogImage: `${SITE_URL}/og/playground.png`,
+  ogDescription: "Interactive, 3D marquee, made with pure CSS",
+  ogImage: `${SITE_URL}/og/marquee.png`,
   twitterTitle: "3D Marquee | Playground",
-  twitterDescription: "A 3D marquee effect.",
-  twitterImage: `${SITE_URL}/og/playground.png`,
+  twitterDescription: "Interactive, 3D marquee, made with pure CSS",
+  twitterImage: `${SITE_URL}/og/marquee.png`,
   viewport: "width=device-width, initial-scale=1.0",
 });
 
