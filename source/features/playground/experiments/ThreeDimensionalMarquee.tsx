@@ -11,7 +11,7 @@ const ThreeDimensionalMarquee: RouteComponent = () => {
   const isControlsOpen = Cell.source(true);
 
   const text = Cell.source("PLAYING: A KNIGHT OF THE SEVEN KINGDOMS.");
-  const color = Cell.source("#77a7d4");
+  const color = Cell.source("#c2e1ff");
 
   return (
     <div class="w-screen h-dvh bg-[#050505] text-white font-sans overflow-hidden relative touch-none select-none">

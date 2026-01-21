@@ -49,10 +49,10 @@ export const CircularPath = (props: CircularPathProps) => {
           if (!div) return;
           const animations = div.getAnimations();
 
-          animations.forEach((animation) => {
+          for (const animation of animations) {
             animation.cancel();
             animation.play();
-          });
+          }
         });
 
         return (
