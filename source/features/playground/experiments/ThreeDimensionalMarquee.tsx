@@ -36,7 +36,7 @@ const ThreeDimensionalMarquee: RouteComponent = () => {
               ]}
             >
               <div class="p-6 overflow-y-auto max-h-[70vh]">
-                <div class="mb-8 last:mb-0">
+                <div class="grid gap-2 mb-8 last:mb-0">
                   <h3 class="text-xs uppercase tracking-widest text-white/50 mb-4 font-semibold">
                     Content
                   </h3>
@@ -50,7 +50,7 @@ const ThreeDimensionalMarquee: RouteComponent = () => {
                   </div>
                 </div>
 
-                <div class="mb-8 last:mb-0">
+                <div class="grid gap-2 mb-8 last:mb-0">
                   <h3 class="text-xs uppercase tracking-widest text-white/50 mb-4 font-semibold">
                     Appearance
                   </h3>
