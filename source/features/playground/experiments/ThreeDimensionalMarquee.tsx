@@ -15,7 +15,7 @@ const ThreeDimensionalMarquee: RouteComponent = () => {
 
   return (
     <div class="w-screen h-dvh bg-[#050505] text-white font-sans overflow-hidden relative touch-none select-none">
-      <PlaygroundLayout title="3D Marquee" hint="3D Marquee Experiment">
+      <PlaygroundLayout title="3D Marquee">
         <div class="relative w-full h-full">
           <Viewer
             initialRx={33.5336}
@@ -28,7 +28,7 @@ const ThreeDimensionalMarquee: RouteComponent = () => {
           <div class="absolute inset-0 pointer-events-none p-6 flex flex-col justify-end items-end">
             <div
               class={[
-                "pointer-events-auto w-[340px] max-w-[calc(100vw-3rem)] max-h-[70vh] bg-[#121212]/75 backdrop-blur-2xl border border-white/5 rounded-[20px] shadow-[0_10px_40px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] origin-bottom-right",
+                "pointer-events-auto w-85 max-w-[calc(100vw-3rem)] max-h-[70vh] bg-[#121212]/75 backdrop-blur-2xl border border-white/5 rounded-[20px] shadow-[0_10px_40px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] origin-bottom-right",
                 {
                   "translate-y-5 scale-95 opacity-0 pointer-events-none":
                     Cell.derived(() => !isControlsOpen.get()),

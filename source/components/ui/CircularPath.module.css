@@ -5,7 +5,7 @@
 }
 
 .container {
-    --width: min(2000px, 75dvw);
+    --width: min(2000px, 90dvw);
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: 1fr;

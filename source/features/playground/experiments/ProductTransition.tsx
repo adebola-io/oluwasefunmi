@@ -20,10 +20,7 @@ const ProductTransition: RouteComponent = () => {
 
   return (
     <div class="w-full min-h-screen bg-linear-to-br from-[#0a0a0a] to-[#1a1a1a]">
-      <PlaygroundLayout
-        title="Product Transition"
-        hint="Click a product to view details"
-      >
+      <PlaygroundLayout title="Product Transition">
         <div class="w-full p-8 max-w-350 z-1 relative mt-10 mx-auto max-sm:p-4 max-sm:mt-19 grid grid-rows-[auto_1fr] gap-4">
           <div class="flex flex-col items-center gap-4 text-center mb-12">
             <PageTitle name="Products" />

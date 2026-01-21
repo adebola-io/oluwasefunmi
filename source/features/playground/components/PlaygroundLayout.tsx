@@ -33,7 +33,7 @@ export function PlaygroundLayout(props: PlaygroundLayoutProps) {
       <header class={classes.header}>
         <Link href="/playground" class={classes.backLink}>
           <BackArrow />
-          back to playground
+          <span>back to playground</span>
         </Link>
         <h1 class={classes.title}>{title}</h1>
       </header>
