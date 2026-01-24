@@ -137,7 +137,7 @@ const Key = (props: KeyProps) => {
   );
 
   const curve = Cell.derived(() => {
-    return Math.max(2, Math.min(7, unitWidth.get() * 0.25));
+    return Math.max(2, Math.min(8, unitWidth.get() * 0.55));
   });
 
   return (
@@ -145,7 +145,7 @@ const Key = (props: KeyProps) => {
       <Box
         width={width}
         height={height}
-        depth={10}
+        depth={20}
         curve={curve}
         color={keyColor}
         secondaryColor={secondaryKeyColor}

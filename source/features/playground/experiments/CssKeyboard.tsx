@@ -51,7 +51,7 @@ const CssKeyboard = () => {
     <div class={classes.app}>
       <PlaygroundLayout title="CSS Keyboard">
         <div class={classes.immersiveContainer}>
-          <Viewer class="animate-fade-in">
+          <Viewer class="animate-fade-in" initialRx={9}>
             <Keyboard colors={colors} />
           </Viewer>
 
