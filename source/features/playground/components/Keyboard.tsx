@@ -3,6 +3,17 @@ import classes from "./Keyboard.module.css";
 import { useWindowSize } from "retend-utils/hooks";
 import { Cell, For, If, useSetupEffect } from "retend";
 
+const KeyboardBack = () => (
+  <div class={classes.keyboardBack}>
+    <div style={{ gridArea: "c" }} class={classes.backInfo}>
+      <p>RETEND KEYBOARD</p>
+      <p>Designed in California</p>
+      <p>Model A1234</p>
+    </div>
+  </div>
+);
+import { playClick } from "./KeyboardSounds";
+
 interface KeyData {
   shiftName?: string;
   name: string;
@@ -10,7 +21,8 @@ interface KeyData {
   height?: number;
 }
 
-const GAP = 6;
+const GAP_X = 8;
+const GAP_Y = 6;
 
 const KEYS: KeyData[][] = [
   // Row 0: Function keys (14 keys)
@@ -182,7 +194,7 @@ const Key = (props: KeyProps) => {
   const rowMeta = ROW_METADATA[rowIndex];
 
   const width = Cell.derived(() => {
-    const totalGapSpace = (rowMeta.numKeys - 1) * GAP;
+    const totalGapSpace = (rowMeta.numKeys - 1) * GAP_X;
     const availableForKeys = contentWidth.get() - totalGapSpace;
     return ((data.width || 1) / rowMeta.totalUnits) * availableForKeys;
   });
@@ -209,6 +221,7 @@ const Key = (props: KeyProps) => {
   const handlePointerDown = (e: PointerEvent) => {
     e.stopPropagation();
     isPointerPressed.set(true);
+    playClick();
   };
 
   const handlePointerUp = (e: PointerEvent) => {
@@ -267,6 +280,7 @@ const Key = (props: KeyProps) => {
         }}
         renderBack={false}
         backBehindClass={classes.keyBackBehind}
+        frontClass={classes.keyFront}
       >
         <div
           class="flex flex-col justify-center items-center h-full w-full px-0.5 py-1 font-medium select-none leading-none border border-[#00000025]"
@@ -305,6 +319,8 @@ const Keyboard = (props: KeyboardProps) => {
 
   useSetupEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.repeat) return;
+      playClick();
       const next = new Set(pressedKeys.get());
       next.add(e.key.toLowerCase());
       pressedKeys.set(next);
@@ -326,7 +342,7 @@ const Keyboard = (props: KeyboardProps) => {
   });
 
   const keyboardWidth = Cell.derived(() => {
-    return Math.min(width.get() * (width.get() < 600 ? 0.98 : 0.9), 1200);
+    return Math.min(width.get() * (width.get() < 600 ? 0.98 : 0.9), 1400);
   });
 
   const paddingX = Cell.derived(() => (width.get() < 600 ? 10 : 20));
@@ -338,7 +354,7 @@ const Keyboard = (props: KeyboardProps) => {
 
   const baseKeyHeight = Cell.derived(() => {
     const refRow = ROW_METADATA[1];
-    const totalGapSpace = (refRow.numKeys - 1) * GAP;
+    const totalGapSpace = (refRow.numKeys - 1) * GAP_Y;
     const availableForKeys = contentWidth.get() - totalGapSpace;
     const singleKeyWidth = availableForKeys / refRow.totalUnits;
     return singleKeyWidth * 1.05;
@@ -349,7 +365,7 @@ const Keyboard = (props: KeyboardProps) => {
       (sum, meta) => sum + meta.rowHeight * baseKeyHeight.get(),
       0,
     );
-    const totalRowGaps = (KEYS.length - 1) * GAP;
+    const totalRowGaps = (KEYS.length - 1) * GAP_Y;
     return totalRowHeights + totalRowGaps + 2 * paddingY.get();
   });
 
@@ -362,7 +378,7 @@ const Keyboard = (props: KeyboardProps) => {
       style={{
         "--padding-x": Cell.derived(() => `${paddingX.get()}px`),
         "--padding-y": Cell.derived(() => `${paddingY.get()}px`),
-        "--gap": `${GAP}px`,
+        "--gap": `${GAP_X}px`,
       }}
     >
       <Box
@@ -374,6 +390,7 @@ const Keyboard = (props: KeyboardProps) => {
         secondaryColor={secondaryBodyColor}
         class={classes.keyboardSolid}
         frontClass={classes.keyboardSolidFront}
+        back={KeyboardBack}
       />
       <div class={classes.keyboard}>
         {For(KEYS, (row, rowIndex) => (

@@ -19,6 +19,7 @@ interface BoxProps extends JSX.BaseContainerProps {
   renderLeft?: JSX.ValueOrCell<boolean>;
   renderRight?: JSX.ValueOrCell<boolean>;
   renderBack?: JSX.ValueOrCell<boolean>;
+  back?: () => JSX.Template;
 }
 
 export const Box = (props: BoxProps) => {
@@ -40,6 +41,7 @@ export const Box = (props: BoxProps) => {
     renderLeft = true,
     renderRight = true,
     children,
+    back,
     ...rest
   } = props;
 
@@ -69,7 +71,7 @@ export const Box = (props: BoxProps) => {
       <div class={[classes.front, frontClass]}>{children}</div>
       <div class={classes.frontBehind} />
       {If(renderBack, () => (
-        <div class={[classes.back, backClass]} />
+        <div class={[classes.back, backClass]}>{back?.()}</div>
       ))}
       <div class={[classes.backBehind, backBehindClass]} />
       {If(renderTop, () => (

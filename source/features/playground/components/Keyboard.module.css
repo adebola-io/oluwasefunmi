@@ -20,7 +20,13 @@
 }
 
 .keyboardSolidFront {
-  box-shadow: inset 0 0 8px 2px #ffffff03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.99' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  background-blend-mode: overlay;
+}
+
+.keyBackBehind {
+  scale: 1.02;
+  box-shadow: 0 0 0 1px #00000050;
 }
 
 .keyboardRow {
@@ -30,7 +36,54 @@
   transform-style: preserve-3d;
 }
 
+.keyFront {
+  background-image: 
+    url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.95' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"),
+    radial-gradient(circle at center, transparent 40%, rgba(0,0,0,0.03) 100%),
+    linear-gradient(135deg, rgba(255,255,255,0.08) 0%, transparent 15%),
+    linear-gradient(-45deg, rgba(0,0,0,0.05) 0%, transparent 15%) !important;
+  background-blend-mode: overlay, normal, normal, normal;
+  box-shadow: 
+    inset 0 1px 0.5px rgba(255,255,255,0.1),
+    inset 0 -1px 0.5px rgba(0,0,0,0.15),
+    inset 0 0 10px rgba(0,0,0,0.02) !important;
+}
+
 .keyWrapper {
   display: grid;
   transform-style: preserve-3d;
+}
+
+.keyboardBack {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-areas: 
+    "tl . tr"
+    ".  c  ."
+    "bl . br";
+  grid-template-columns: 40px 1fr 40px;
+  grid-template-rows: 40px 1fr 40px;
+  padding: 40px;
+  background-image: linear-gradient(180deg, rgba(255,255,255,0.05) 0%, rgba(0,0,0,0.05) 100%);
+  background-blend-mode: normal;
+  box-shadow: inset 0 0 40px rgba(0,0,0,0.1);
+}
+
+
+.backInfo {
+  grid-area: c;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: system-ui, -apple-system, sans-serif;
+  
+  opacity: 0.6;
+  font-size: 14pt;
+  color: var(--secondary-surface);
+  font-weight: 700;
+  letter-spacing: 1px;
+  text-shadow: 0 1px 1px rgba(255,255,255,0.1), 0 -1px 1px rgba(0,0,0,0.2);
 }
