@@ -36,7 +36,7 @@ const playSwitchSound = (ctx: AudioContext, now: number, buffer: AudioBuffer) =>
     tickFilter.frequency.setValueAtTime(5000 + Math.random() * 2000, now);
 
     const tickGain = ctx.createGain();
-    tickGain.gain.setValueAtTime(0.06, now);
+    tickGain.gain.setValueAtTime(0.25, now);
     tickGain.gain.exponentialRampToValueAtTime(0.001, now + 0.008);
 
     tick.connect(tickFilter);
@@ -53,7 +53,7 @@ const playSwitchSound = (ctx: AudioContext, now: number, buffer: AudioBuffer) =>
     thumpFilter.Q.value = 1.5;
 
     const thumpGain = ctx.createGain();
-    thumpGain.gain.setValueAtTime(0.04, now);
+    thumpGain.gain.setValueAtTime(0.2, now);
     thumpGain.gain.exponentialRampToValueAtTime(0.001, now + 0.03);
 
     thump.connect(thumpFilter);
@@ -74,7 +74,7 @@ const playTypewriterSound = (ctx: AudioContext, now: number, buffer: AudioBuffer
     thudFilter.frequency.setValueAtTime(300, now);
 
     const thudGain = ctx.createGain();
-    thudGain.gain.setValueAtTime(0.2, now);
+    thudGain.gain.setValueAtTime(0.5, now);
     thudGain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
 
     thud.connect(thudFilter);
@@ -92,7 +92,7 @@ const playTypewriterSound = (ctx: AudioContext, now: number, buffer: AudioBuffer
     snapFilter.frequency.setValueAtTime(2000, now);
     
     const snapGain = ctx.createGain();
-    snapGain.gain.setValueAtTime(0.1, now);
+    snapGain.gain.setValueAtTime(0.3, now);
     snapGain.gain.exponentialRampToValueAtTime(0.001, now + 0.05);
     
     snap.connect(snapFilter);
@@ -107,7 +107,7 @@ const playTypewriterSound = (ctx: AudioContext, now: number, buffer: AudioBuffer
     metal.frequency.setValueAtTime(2200, now); // Fixed frequency
     
     const metalGain = ctx.createGain();
-    metalGain.gain.setValueAtTime(0.01, now);
+    metalGain.gain.setValueAtTime(0.05, now);
     metalGain.gain.exponentialRampToValueAtTime(0.001, now + 0.08); // Very short decay
     
     metal.connect(metalGain);
@@ -128,7 +128,7 @@ const playBubbleSound = (ctx: AudioContext, now: number) => {
     osc.frequency.setValueAtTime(freq, now);
     osc.frequency.exponentialRampToValueAtTime(freq * 2, now + 0.1);
     
-    gain.gain.setValueAtTime(0.1, now);
+    gain.gain.setValueAtTime(0.3, now);
     gain.gain.exponentialRampToValueAtTime(0.001, now + 0.1);
     
     osc.start(now);

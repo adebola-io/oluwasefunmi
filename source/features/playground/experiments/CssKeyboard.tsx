@@ -28,12 +28,12 @@ const THEMES = {
     text: "rgba(255, 255, 255, 0.5)",
   },
   cream: {
-    bg: "#b6b3a9",
-    body: "#a4a095",
-    secondaryBody: "#807c70",
-    key: "#bab8b0",
-    secondaryKey: "#919180",
-    text: "rgba(60, 56, 45, 0.9)",
+    bg: "#c3c0b5",
+    body: "#b1ada0",
+    secondaryBody: "#8d897b",
+    key: "#c7c5bc",
+    secondaryKey: "#9e9d8c",
+    text: "rgba(65, 60, 50, 0.9)",
   },
 };
 

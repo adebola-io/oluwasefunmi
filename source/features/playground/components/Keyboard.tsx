@@ -151,6 +151,7 @@ interface KeyProps {
   colors: Cell<KeyboardColors>;
   mode: Cell<"view" | "type">;
   pressedKeys: Cell<Set<string>>;
+  keyDepth: Cell<number>;
 }
 
 const Key = (props: KeyProps) => {
@@ -162,6 +163,7 @@ const Key = (props: KeyProps) => {
     colors,
     mode,
     pressedKeys,
+    keyDepth,
   } = props;
   const isPointerPressed = Cell.source(false);
 
@@ -266,14 +268,16 @@ const Key = (props: KeyProps) => {
       <Box
         width={width}
         height={height}
-        depth={12}
+        depth={keyDepth}
         curve={curve}
         color={keyColor}
         secondaryColor={secondaryKeyColor}
         class={classes.key}
         style={{
           transform: Cell.derived(() =>
-            isPressed.get() ? "translateZ(-10px)" : "translateZ(0px)",
+            isPressed.get()
+              ? `translateZ(-${keyDepth.get() * 0.8}px)`
+              : "translateZ(0px)",
           ),
           transition:
             "transform 0.05s ease-out, background-color 0.05s ease-out",
@@ -372,6 +376,10 @@ const Keyboard = (props: KeyboardProps) => {
   const bodyColor = Cell.derived(() => colors.get().body);
   const secondaryBodyColor = Cell.derived(() => colors.get().secondaryBody);
 
+  const keyDepth = Cell.derived(() => (width.get() < 600 ? 5 : 12));
+  const keyboardDepth = Cell.derived(() => (width.get() < 600 ? 10 : 20));
+  const keyboardCurve = Cell.derived(() => (width.get() < 600 ? 8 : 20));
+
   return (
     <div
       class={classes.container}
@@ -382,8 +390,8 @@ const Keyboard = (props: KeyboardProps) => {
       }}
     >
       <Box
-        depth={20}
-        curve={20}
+        depth={keyboardDepth}
+        curve={keyboardCurve}
         width={keyboardWidth}
         height={keyboardHeight}
         color={bodyColor}
@@ -404,6 +412,7 @@ const Keyboard = (props: KeyboardProps) => {
                 baseKeyHeight={baseKeyHeight}
                 colors={colors}
                 pressedKeys={pressedKeys}
+                keyDepth={keyDepth}
               />
             ))}
           </div>
