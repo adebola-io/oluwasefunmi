@@ -7,7 +7,7 @@ const KeyboardBack = () => (
   <div class={classes.keyboardBack}>
     <div style={{ gridArea: "c" }} class={classes.backInfo}>
       <p>RETEND KEYBOARD</p>
-      <p>Designed in California</p>
+      <p>Designed in Neverland</p>
       <p>Model A1234</p>
     </div>
   </div>
@@ -215,7 +215,7 @@ const Key = (props: KeyProps) => {
   });
 
   const curve = Cell.derived(() => {
-    return Math.max(3, Math.min(8, baseKeyHeight.get() * 0.12));
+    return Math.max(3, Math.min(10, baseKeyHeight.get() * 0.12));
   });
 
   const handlePointerDown = (e: PointerEvent) => {
