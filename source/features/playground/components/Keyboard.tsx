@@ -210,7 +210,7 @@ const Key = (props: KeyProps) => {
   const textColor = Cell.derived(() => colors.get().text);
 
   const fontSize = Cell.derived(() => {
-    const base = Math.min(width.get(), height.get()) * 0.32;
+    const base = Math.min(width.get(), height.get()) * 0.25;
     return Math.max(7, Math.min(24, base));
   });
 
@@ -342,7 +342,7 @@ const Keyboard = (props: KeyboardProps) => {
   });
 
   const keyboardWidth = Cell.derived(() => {
-    return Math.min(width.get() * 0.9, 1400);
+    return Math.min(width.get() * 0.9, 1200);
   });
 
   const paddingX = Cell.derived(() => (width.get() < 600 ? 10 : 20));
