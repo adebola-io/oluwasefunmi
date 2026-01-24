@@ -26,7 +26,7 @@ const KEYS: KeyData[][] = [
     { name: "F10", height: 0.6 },
     { name: "F11", height: 0.6 },
     { name: "F12", height: 0.6 },
-    { name: "lock", width: 2, height: 0.6 },
+    { name: "lock", width: 2.5, height: 0.6 },
   ],
   [
     { name: "`", shiftName: "~" },
@@ -42,7 +42,7 @@ const KEYS: KeyData[][] = [
     { name: "0", shiftName: ")" },
     { name: "-", shiftName: "_" },
     { name: "=", shiftName: "+" },
-    { name: "delete", width: 2.5 },
+    { name: "delete", width: 2 },
   ],
   [
     { name: "tab", width: 1.5 },
@@ -93,9 +93,9 @@ const KEYS: KeyData[][] = [
     { name: "fn" },
     { name: "control" },
     { name: "option" },
-    { name: "command", width: 2 },
-    { name: " ", width: 4 }, // Space
-    { name: "command", width: 2 },
+    { name: "command" },
+    { name: " ", width: 6 }, // Space
+    { name: "command" },
     { name: "option" },
     { name: "←" },
     { name: "↑" },
@@ -119,6 +119,7 @@ interface KeyProps {
 }
 const Key = (props: KeyProps) => {
   const { data, unitWidth, colors } = props;
+  const isPressed = Cell.source(false);
 
   const width = Cell.derived(() => {
     return (data.width || 1) * unitWidth.get() - 8;
@@ -141,7 +142,13 @@ const Key = (props: KeyProps) => {
   });
 
   return (
-    <div class={classes.keyWrapper}>
+    <div
+      class={classes.keyWrapper}
+      onPointerDown--stop={() => isPressed.set(true)}
+      onPointerUp--stop={() => isPressed.set(false)}
+      onPointerLeave--stop={() => isPressed.set(false)}
+      onPointerCancel--stop={() => isPressed.set(false)}
+    >
       <Box
         width={width}
         height={height}
@@ -150,15 +157,17 @@ const Key = (props: KeyProps) => {
         color={keyColor}
         secondaryColor={secondaryKeyColor}
         class={classes.key}
+        style={{
+          transform: Cell.derived(() =>
+            isPressed.get() ? "translateZ(-15px)" : "translateZ(0px)",
+          ),
+          transition: "transform 0.05s ease-out",
+        }}
         renderBack={false}
-        renderTop={false}
-        renderBottom={false}
-        renderLeft={false}
-        renderRight={false}
         backBehindClass={classes.keyBackBehind}
       >
         <div
-          class="flex flex-col justify-center items-center h-full w-full px-0.5 py-1 font-medium select-none leading-none border border-[#00000025]"
+          class="flex flex-col justify-center items-center h-full w-full px-0.5 py-1 font-medium select-none leading-none border border-[#ffffff15]"
           style={{
             color: textColor,
             fontSize: Cell.derived(() => `${fontSize.get()}px`),
@@ -194,7 +203,7 @@ const Keyboard = (props: KeyboardProps) => {
     return Math.min(width.get() * (width.get() < 600 ? 0.98 : 0.9), 1400);
   });
 
-  const paddingX = Cell.derived(() => (width.get() < 600 ? 5 : 20));
+  const paddingX = Cell.derived(() => (width.get() < 600 ? 12 : 20));
 
   const MAX_ROW_UNITS = 16;
 
