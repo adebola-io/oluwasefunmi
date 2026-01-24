@@ -24,6 +24,7 @@ const pages = [
   "/playground/blur-carousel",
   "/playground/product-transitions",
   "/playground/three-dimensional-marquee",
+  "/playground/css-keyboard",
   "/random-notes",
   "/contact",
   "/works",
