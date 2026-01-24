@@ -263,7 +263,7 @@ CssKeyboard.metadata = () => ({
   twitterTitle: "CSS Keyboard | Playground",
   twitterDescription:
     "A 3D keyboard implementation using pure CSS transformations.",
-  twitterImage: `${SITE_URL}/og/playground.png`,
+  twitterImage: `${SITE_URL}/og/css-keyboard.png`,
   viewport: "width=device-width, initial-scale=1.0",
 });
 
