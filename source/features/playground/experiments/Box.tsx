@@ -1,5 +1,7 @@
 import type { JSX } from "retend/jsx-runtime";
 import classes from "./Box.module.css";
+import { Cell, If } from "retend";
+import { useDerivedValue } from "retend-utils/hooks";
 
 interface BoxProps extends JSX.BaseContainerProps {
   height?: JSX.ValueOrCell<number>;
@@ -7,9 +9,16 @@ interface BoxProps extends JSX.BaseContainerProps {
   depth?: JSX.ValueOrCell<number>;
   curve?: JSX.ValueOrCell<number>;
   color?: JSX.ValueOrCell<string>;
+  secondaryColor?: JSX.ValueOrCell<string>;
   stroke?: JSX.ValueOrCell<number>;
   frontClass?: unknown;
   backClass?: unknown;
+  backBehindClass?: unknown;
+  renderTop?: JSX.ValueOrCell<boolean>;
+  renderBottom?: JSX.ValueOrCell<boolean>;
+  renderLeft?: JSX.ValueOrCell<boolean>;
+  renderRight?: JSX.ValueOrCell<boolean>;
+  renderBack?: JSX.ValueOrCell<boolean>;
 }
 
 export const Box = (props: BoxProps) => {
@@ -20,9 +29,16 @@ export const Box = (props: BoxProps) => {
     depth = 100,
     curve = 20,
     color = "#ababab",
+    secondaryColor: secondaryColorProp,
     stroke = 0,
     frontClass,
     backClass,
+    backBehindClass,
+    renderBack = true,
+    renderTop = true,
+    renderBottom = true,
+    renderLeft = true,
+    renderRight = true,
     children,
     ...rest
   } = props;
@@ -34,21 +50,40 @@ export const Box = (props: BoxProps) => {
     "--box-stroke": stroke,
     "--box-curve": curve,
     "--surface": color,
+    "--secondary-surface": secondaryColorProp,
   };
   if (rest.style) {
     Object.assign(style, rest.style);
   }
 
+  const secondaryColor = useDerivedValue(secondaryColorProp);
+  const hasSecondaryColor = Cell.derived(() => Boolean(secondaryColor.get()));
+
   return (
-    <div {...rest} style={style} class={[classes.box, className]}>
+    <div
+      {...rest}
+      style={style}
+      class={[classes.box, className]}
+      data-has-secondary-color={hasSecondaryColor}
+    >
       <div class={[classes.front, frontClass]}>{children}</div>
       <div class={classes.frontBehind} />
-      <div class={[classes.back, backClass]} />
-      <div class={classes.backBehind} />
-      <div class={classes.top} />
-      <div class={classes.bottom} />
-      <div class={classes.left} />
-      <div class={classes.right} />
+      {If(renderBack, () => (
+        <div class={[classes.back, backClass]} />
+      ))}
+      <div class={[classes.backBehind, backBehindClass]} />
+      {If(renderTop, () => (
+        <div class={classes.top} />
+      ))}
+      {If(renderBottom, () => (
+        <div class={classes.bottom} />
+      ))}
+      {If(renderLeft, () => (
+        <div class={classes.left} />
+      ))}
+      {If(renderRight, () => (
+        <div class={classes.right} />
+      ))}
       <div class={classes.centerX} />
       <div class={classes.centerY} />
       <div class={classes.diagonalRightToLeftCurveStart} />

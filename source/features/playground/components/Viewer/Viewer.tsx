@@ -166,7 +166,13 @@ export function Viewer(props: ViewerProps) {
       onWheel={handleWheel}
     >
       <div class={classes.scene}>
-        <div style={{ transform, transformStyle: "preserve-3d" }}>
+        <div
+          style={{
+            transform,
+            transformStyle: "preserve-3d",
+            willChange: "transform",
+          }}
+        >
           {props.children}
         </div>
       </div>

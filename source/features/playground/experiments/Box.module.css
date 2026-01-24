@@ -32,10 +32,22 @@
 
     & > * {
         grid-area: 1 / 1;
-        background-color: var(--surface);
+        background: var(--surface);
+        transform-style: preserve-3d;
+
+        &:is(.front, .back) {
+            backface-visibility: hidden;
+        }
 
         &:not(.front, .back) {
             filter: brightness(0.69);
+        }
+    }
+
+    &[data-has-secondary-color] {
+        & > *:not(.front, .back) {
+            background: var(--secondary-surface);
+            filter: unset;
         }
     }
 }

@@ -5,25 +5,40 @@
 
 .keyboard {
     height: 100%;
-    padding: 30px 20px;
+    padding: 30px var(--padding-x);
     display: flex;
     flex-direction: column;
     gap: 6px;
     transform-style: preserve-3d;
-    grid-area: 1/ 1;
+    grid-area: 1 / 1;
+    border-radius: 30px;
+    translate: 0 0 15px;
 }
 
 .keyboardSolid {
     grid-area: 1/ 1;
 }
 
+.keyboardSolidFront {
+    box-shadow: inset 0 0 8px 2px #ffffff03;
+}
+
 .keyboardRow {
     width: 100%;
     display: flex;
+    gap: 6px;
+    justify-content: space-between;
     transform-style: preserve-3d;
 }
 
-.key {
-    flex-grow: 1;
-    translate: 0 0 20px;
+
+.keyBackBehind {
+    width: calc(var(--box-width-px) + 2px);
+    height: calc(var(--box-height-px) + 2px);
 }
+
+.keyWrapper {
+    display: grid;
+    transform-style: preserve-3d;
+}
+
