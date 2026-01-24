@@ -2,9 +2,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    position: relative;
+}
+
+.draggable {
     cursor: grab;
     touch-action: none;
-    position: relative;
 }
 
 .viewerDragging {

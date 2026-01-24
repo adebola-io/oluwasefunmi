@@ -10,6 +10,7 @@ export interface ViewerProps {
   scale?: SourceCell<number>;
   isDragging?: SourceCell<boolean>;
   isAutoRotating?: SourceCell<boolean>;
+  isEnabled?: Cell<boolean>;
   class?: string | (string | Record<string, boolean | Cell<boolean>>)[];
   initialRx?: number;
   initialRy?: number;
@@ -35,6 +36,7 @@ export function Viewer(props: ViewerProps) {
   const scale = props.scale || Cell.source(initialScale);
   const isDragging = props.isDragging || Cell.source(false);
   const isAutoRotating = props.isAutoRotating || Cell.source(false);
+  const isEnabled = props.isEnabled || Cell.source(true);
 
   const vx = Cell.source(0);
   const vy = Cell.source(0);
@@ -44,6 +46,7 @@ export function Viewer(props: ViewerProps) {
   let lastMoveTime = 0;
 
   const handlePointerDown = (e: PointerEvent) => {
+    if (!isEnabled.get()) return;
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
     pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
     isDragging.set(true);
@@ -63,6 +66,7 @@ export function Viewer(props: ViewerProps) {
   };
 
   const handlePointerMove = (e: PointerEvent) => {
+    if (!isEnabled.get()) return;
     if (!pointers.has(e.pointerId)) return;
 
     // Track time of last move to avoid "fling after hold"
@@ -102,6 +106,7 @@ export function Viewer(props: ViewerProps) {
   };
 
   const handlePointerUp = (e: PointerEvent) => {
+    if (!isEnabled.get()) return;
     pointers.delete(e.pointerId);
     (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
 
@@ -117,12 +122,14 @@ export function Viewer(props: ViewerProps) {
   };
 
   const handlePointerLeave = (e: PointerEvent) => {
+    if (!isEnabled.get()) return;
     if (pointers.has(e.pointerId)) {
       handlePointerUp(e);
     }
   };
 
   const handleWheel = (e: WheelEvent) => {
+    if (!isEnabled.get()) return;
     e.preventDefault();
     scale.set(
       Math.max(0.2, Math.min(3, scale.get() - e.deltaY * zoomSensitivity)),
@@ -156,14 +163,17 @@ export function Viewer(props: ViewerProps) {
     <div
       class={[
         classes.viewer,
-        { [classes.viewerDragging]: isDragging },
+        {
+          [classes.viewerDragging]: isDragging,
+          [classes.draggable]: isEnabled,
+        },
         props.class,
       ]}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
       onPointerLeave={handlePointerLeave}
-      onWheel={handleWheel}
+      onWheel--passive={handleWheel}
     >
       <div class={classes.scene}>
         <div

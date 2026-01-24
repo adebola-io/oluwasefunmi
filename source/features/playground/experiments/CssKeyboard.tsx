@@ -36,7 +36,7 @@ type ThemeType = keyof typeof THEMES;
 
 const CssKeyboard = () => {
   const isControlsOpen = Cell.source(true);
-  const theme = Cell.source<ThemeType>("black");
+  const theme = Cell.source<ThemeType>("cream");
 
   const colors = Cell.derived(() => THEMES[theme.get()]);
 
@@ -45,17 +45,20 @@ const CssKeyboard = () => {
   const isBlackActive = Cell.derived(() => theme.get() === "black");
   const isCreamActive = Cell.derived(() => theme.get() === "cream");
 
+  const mode = Cell.source<"view" | "type">("view");
+  const isViewMode = Cell.derived(() => mode.get() === "view");
+  const isTypeMode = Cell.derived(() => mode.get() === "type");
+
   const toggleControls = () => isControlsOpen.set(!isControlsOpen.get());
 
   return (
     <div class={classes.app}>
       <PlaygroundLayout title="CSS Keyboard">
         <div class={classes.immersiveContainer}>
-          <Viewer class="animate-fade-in" initialRx={9}>
-            <Keyboard colors={colors} />
+          <Viewer class="animate-fade-in" initialRx={9} isEnabled={isViewMode}>
+            <Keyboard colors={colors} mode={mode} />
           </Viewer>
 
-          {/* Floating UI Layer */}
           <div class={classes.uiLayer}>
             <div class={classes.headerActions}>
               <button
@@ -92,6 +95,32 @@ const CssKeyboard = () => {
               ]}
             >
               <div class={classes.scrollableContent}>
+                <div class={classes.section}>
+                  <h3>Interaction Mode</h3>
+                  <div class={classes.segmentedControl}>
+                    <button
+                      type="button"
+                      class={[
+                        classes.segmentButton,
+                        { [classes.activeSegment]: isViewMode },
+                      ]}
+                      onClick={() => mode.set("view")}
+                    >
+                      Adjust View
+                    </button>
+                    <button
+                      type="button"
+                      class={[
+                        classes.segmentButton,
+                        { [classes.activeSegment]: isTypeMode },
+                      ]}
+                      onClick={() => mode.set("type")}
+                    >
+                      Tap Keys
+                    </button>
+                  </div>
+                </div>
+
                 <div class={classes.section}>
                   <h3>Color Theme</h3>
                   <div class={classes.themeGrid}>

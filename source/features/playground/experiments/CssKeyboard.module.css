@@ -1,5 +1,3 @@
-/* Copy of CurvedCssSolid.module.css styles tailored for CssKeyboard controls */
-
 .app {
     width: 100vw;
     height: 100dvh;
@@ -141,17 +139,52 @@
     gap: 6px;
 }
 
+/* -- Segmented Control for Mode -- */
+.segmentedControl {
+    display: flex;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 4px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    gap: 4px;
+}
+
+.segmentButton {
+    flex: 1;
+    background: transparent;
+    border: none;
+    color: #888;
+    padding: 0.6rem 0;
+    border-radius: 8px;
+    font-size: 0.85rem;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+    font-weight: 500;
+}
+
+.segmentButton:hover {
+    color: #ccc;
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.segmentButton.activeSegment {
+    background: #fff;
+    color: #000;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
 .themeButton:hover {
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.1);
     border-color: rgba(255, 255, 255, 0.2);
     color: #fff;
 }
 
 .themeButton.activeTheme {
-    background: rgba(255, 255, 255, 0.2);
+    background: #fff;
     border-color: #fff;
-    color: #fff;
+    color: #000;
     box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+    font-weight: 500;
 }
 
 .colorPreview {

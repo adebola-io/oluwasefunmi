@@ -117,7 +117,7 @@
 }
 
 .centerX {
-    transform: rotateX(90deg) scale(var(--box-height), var(--box-depth));
+    transform: rotateX(90deg) scale(var(--box-width), var(--box-depth));
 }
 
 .centerY {
