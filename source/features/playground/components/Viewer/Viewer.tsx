@@ -173,7 +173,7 @@ export function Viewer(props: ViewerProps) {
       onPointerMove={handlePointerMove}
       onPointerUp={handlePointerUp}
       onPointerLeave={handlePointerLeave}
-      onWheel--passive={handleWheel}
+      onWheel={handleWheel}
     >
       <div class={classes.scene}>
         <div
