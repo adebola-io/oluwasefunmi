@@ -2,8 +2,13 @@ import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLay
 import { SITE_URL } from "@/constants";
 import { Viewer } from "@/features/playground/components/Viewer/Viewer";
 import Keyboard from "@/features/playground/components/Keyboard";
-import { Cell } from "retend";
+import { Cell, useSetupEffect } from "retend";
 import classes from "./CssKeyboard.module.css";
+import { WPMCounter } from "@/features/playground/components/WPMCounter";
+import {
+  setSoundProfile,
+  type SoundProfile,
+} from "@/features/playground/components/KeyboardSounds";
 
 const THEMES = {
   blue: {
@@ -37,6 +42,8 @@ type ThemeType = keyof typeof THEMES;
 const CssKeyboard = () => {
   const isControlsOpen = Cell.source(true);
   const theme = Cell.source<ThemeType>("cream");
+  const soundProfile = Cell.source<SoundProfile>("switch");
+  const showWPM = Cell.source(true);
 
   const colors = Cell.derived(() => THEMES[theme.get()]);
 
@@ -45,11 +52,21 @@ const CssKeyboard = () => {
   const isBlackActive = Cell.derived(() => theme.get() === "black");
   const isCreamActive = Cell.derived(() => theme.get() === "cream");
 
+  const isSwitchSound = Cell.derived(() => soundProfile.get() === "switch");
+  const isTypewriterSound = Cell.derived(
+    () => soundProfile.get() === "typewriter",
+  );
+  const isBubbleSound = Cell.derived(() => soundProfile.get() === "bubble");
+
   const mode = Cell.source<"view" | "type">("view");
   const isViewMode = Cell.derived(() => mode.get() === "view");
   const isTypeMode = Cell.derived(() => mode.get() === "type");
 
   const toggleControls = () => isControlsOpen.set(!isControlsOpen.get());
+
+  useSetupEffect(() => {
+    soundProfile.listen((p) => setSoundProfile(p));
+  });
 
   return (
     <div class={classes.app}>
@@ -58,6 +75,8 @@ const CssKeyboard = () => {
           <Viewer class="animate-fade-in" initialRx={9} isEnabled={isViewMode}>
             <Keyboard colors={colors} mode={mode} />
           </Viewer>
+
+          <WPMCounter show={showWPM} />
 
           <div class={classes.uiLayer}>
             <div class={classes.headerActions}>
@@ -117,6 +136,58 @@ const CssKeyboard = () => {
                       onClick={() => mode.set("type")}
                     >
                       Tap Keys
+                    </button>
+                  </div>
+                </div>
+
+                <div class={classes.section}>
+                  <h3>Features</h3>
+                  <div class={classes.featureGrid}>
+                    <label class={classes.featureToggle}>
+                      <input
+                        type="checkbox"
+                        checked={Cell.derived(() => showWPM.get())}
+                        onChange={(e: Event) =>
+                          showWPM.set((e.target as HTMLInputElement).checked)
+                        }
+                      />
+                      <span>Show WPM</span>
+                    </label>
+                  </div>
+                </div>
+
+                <div class={classes.section}>
+                  <h3>Sound Pack</h3>
+                  <div class={classes.segmentedControl}>
+                    <button
+                      type="button"
+                      class={[
+                        classes.segmentButton,
+                        { [classes.activeSegment]: isSwitchSound },
+                      ]}
+                      onClick={() => soundProfile.set("switch")}
+                    >
+                      Switch
+                    </button>
+                    <button
+                      type="button"
+                      class={[
+                        classes.segmentButton,
+                        { [classes.activeSegment]: isTypewriterSound },
+                      ]}
+                      onClick={() => soundProfile.set("typewriter")}
+                    >
+                      Typewriter
+                    </button>
+                    <button
+                      type="button"
+                      class={[
+                        classes.segmentButton,
+                        { [classes.activeSegment]: isBubbleSound },
+                      ]}
+                      onClick={() => soundProfile.set("bubble")}
+                    >
+                      Bubble
                     </button>
                   </div>
                 </div>

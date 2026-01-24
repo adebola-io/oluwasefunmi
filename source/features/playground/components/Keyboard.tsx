@@ -210,8 +210,8 @@ const Key = (props: KeyProps) => {
   const textColor = Cell.derived(() => colors.get().text);
 
   const fontSize = Cell.derived(() => {
-    const base = Math.min(width.get(), height.get()) * 0.28;
-    return Math.max(7, Math.min(12, base));
+    const base = Math.min(width.get(), height.get()) * 0.32;
+    return Math.max(7, Math.min(24, base));
   });
 
   const curve = Cell.derived(() => {
@@ -266,14 +266,14 @@ const Key = (props: KeyProps) => {
       <Box
         width={width}
         height={height}
-        depth={18}
+        depth={12}
         curve={curve}
         color={keyColor}
         secondaryColor={secondaryKeyColor}
         class={classes.key}
         style={{
           transform: Cell.derived(() =>
-            isPressed.get() ? "translateZ(-15px)" : "translateZ(0px)",
+            isPressed.get() ? "translateZ(-10px)" : "translateZ(0px)",
           ),
           transition:
             "transform 0.05s ease-out, background-color 0.05s ease-out",
@@ -342,7 +342,7 @@ const Keyboard = (props: KeyboardProps) => {
   });
 
   const keyboardWidth = Cell.derived(() => {
-    return Math.min(width.get() * (width.get() < 600 ? 0.98 : 0.9), 1400);
+    return Math.min(width.get() * 0.9, 1400);
   });
 
   const paddingX = Cell.derived(() => (width.get() < 600 ? 10 : 20));
