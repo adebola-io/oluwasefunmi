@@ -13,6 +13,10 @@
   grid-area: 1 / 1;
   border-radius: 30px;
   translate: 0 0 15px;
+  
+  @media (max-width: 600px) {
+    translate: 0 0 8px;
+  }
 }
 
 .keyboardSolid {
