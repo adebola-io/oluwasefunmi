@@ -14,59 +14,57 @@ const ThreeDimensionalMarquee: RouteComponent = () => {
   const color = Cell.source("#c2e1ff");
 
   return (
-    <div class="w-screen h-dvh bg-[#050505] text-white font-sans overflow-hidden relative touch-none select-none">
+    <div class="w-dvw h-dvh flex justify-center bg-[#050505] text-white font-sans overflow-hidden relative touch-none select-none">
       <PlaygroundLayout title="3D Marquee">
-        <div class="relative w-full h-full">
-          <Viewer
-            initialRx={33.5336}
-            initialRy={-27.3133}
-            class="animate-fade-in"
+        <Viewer
+          initialRx={33.5336}
+          initialRy={-27.3133}
+          class="animate-fade-in"
+        >
+          <CircularPath class="m-auto" style={{ color }} text={text} />
+        </Viewer>
+
+        <div class="absolute inset-0 pointer-events-none p-6 flex flex-col justify-end items-end">
+          <div
+            class={[
+              "pointer-events-auto w-85 max-w-[calc(100vw-3rem)] max-h-[70vh] bg-[#121212]/75 backdrop-blur-2xl border border-white/5 rounded-[20px] shadow-[0_10px_40px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] origin-bottom-right",
+              {
+                "translate-y-5 scale-95 opacity-0 pointer-events-none":
+                  Cell.derived(() => !isControlsOpen.get()),
+              },
+            ]}
           >
-            <CircularPath class="m-auto" style={{ color }} text={text} />
-          </Viewer>
-
-          <div class="absolute inset-0 pointer-events-none p-6 flex flex-col justify-end items-end">
-            <div
-              class={[
-                "pointer-events-auto w-85 max-w-[calc(100vw-3rem)] max-h-[70vh] bg-[#121212]/75 backdrop-blur-2xl border border-white/5 rounded-[20px] shadow-[0_10px_40px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] origin-bottom-right",
-                {
-                  "translate-y-5 scale-95 opacity-0 pointer-events-none":
-                    Cell.derived(() => !isControlsOpen.get()),
-                },
-              ]}
-            >
-              <div class="p-6 overflow-y-auto max-h-[70vh]">
-                <div class="grid gap-2 mb-8 last:mb-0">
-                  <h3 class="text-xs uppercase tracking-widest text-white/50 mb-4 font-semibold">
-                    Content
-                  </h3>
-                  <div class="flex items-center gap-4 mb-3">
-                    <Input
-                      id="input-text"
-                      type="text"
-                      model={text}
-                      class="w-full p-2 bg-white/5 border border-white/10 rounded-lg text-white"
-                    />
-                  </div>
+            <div class="p-6 overflow-y-auto max-h-[70vh]">
+              <div class="grid gap-2 mb-8 last:mb-0">
+                <h3 class="text-xs uppercase tracking-widest text-white/50 mb-4 font-semibold">
+                  Content
+                </h3>
+                <div class="flex items-center gap-4 mb-3">
+                  <Input
+                    id="input-text"
+                    type="text"
+                    model={text}
+                    class="w-full p-2 bg-white/5 border border-white/10 rounded-lg text-white"
+                  />
                 </div>
+              </div>
 
-                <div class="grid gap-2 mb-8 last:mb-0">
-                  <h3 class="text-xs uppercase tracking-widest text-white/50 mb-4 font-semibold">
-                    Appearance
-                  </h3>
-                  <div class="flex items-center gap-4">
-                    <input
-                      id="input-color"
-                      aria-label="Color"
-                      type="color"
-                      value={color.get()}
-                      onInput={(e) =>
-                        color.set((e.target as HTMLInputElement).value)
-                      }
-                      class="appearance-none border-none w-full h-10 rounded-lg bg-transparent cursor-pointer [&::-webkit-color-swatch-wrapper]:p-0 [&::-webkit-color-swatch]:border [&::-webkit-color-swatch]:border-white/20 [&::-webkit-color-swatch]:rounded-lg"
-                    />
-                    <span style={{ color: color }}>{color}</span>
-                  </div>
+              <div class="grid gap-2 mb-8 last:mb-0">
+                <h3 class="text-xs uppercase tracking-widest text-white/50 mb-4 font-semibold">
+                  Appearance
+                </h3>
+                <div class="flex items-center gap-4">
+                  <input
+                    id="input-color"
+                    aria-label="Color"
+                    type="color"
+                    value={color.get()}
+                    onInput={(e) =>
+                      color.set((e.target as HTMLInputElement).value)
+                    }
+                    class="appearance-none border-none w-full h-10 rounded-lg bg-transparent cursor-pointer [&::-webkit-color-swatch-wrapper]:p-0 [&::-webkit-color-swatch]:border [&::-webkit-color-swatch]:border-white/20 [&::-webkit-color-swatch]:rounded-lg"
+                  />
+                  <span style={{ color: color }}>{color}</span>
                 </div>
               </div>
             </div>

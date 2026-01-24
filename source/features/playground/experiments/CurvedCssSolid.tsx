@@ -20,7 +20,7 @@ const CurvedCssSolid: RouteComponent = () => {
   const height = Cell.source(354);
   const width = Cell.source(354);
   const depth = Cell.source(110);
-  const curve = Cell.source(20);
+  const curve = Cell.source(30);
   const color = Cell.source("#6074dd");
 
   const presets = {
@@ -56,16 +56,13 @@ const CurvedCssSolid: RouteComponent = () => {
             isDragging={isDragging}
             isAutoRotating={isAutoRotating}
           >
-            <>
-              <Box
-                height={height}
-                width={width}
-                depth={depth}
-                curve={curve}
-                color={color}
-              />
-              <div class={classes.floor} />
-            </>
+            <Box
+              height={height}
+              width={width}
+              depth={depth}
+              curve={curve}
+              color={color}
+            />
           </Viewer>
 
           <div class={classes.uiLayer}>

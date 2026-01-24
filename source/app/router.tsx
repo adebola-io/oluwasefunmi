@@ -13,6 +13,7 @@ import BlurCarousel from "@/features/playground/experiments/BlurCarousel";
 import ProductTransition from "@/features/playground/experiments/ProductTransition";
 import ProductDetailsPage from "@/features/playground/experiments/ProductDetailsPage";
 import ThreeDimensionalMarquee from "@/features/playground/experiments/ThreeDimensionalMarquee";
+import CssKeyboard from "@/features/playground/experiments/CssKeyboard";
 
 import { RootLayout } from "@/components/layout/RootLayout";
 
@@ -43,6 +44,7 @@ const routes = defineRoutes([
             path: "/three-dimensional-marquee",
             component: ThreeDimensionalMarquee,
           },
+          { path: "/css-keyboard", component: CssKeyboard },
         ],
       },
       {

@@ -1,0 +1,29 @@
+.container {
+    display: grid;
+    transform-style: preserve-3d;
+}
+
+.keyboard {
+    height: 100%;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    transform-style: preserve-3d;
+    grid-area: 1/ 1;
+}
+
+.keyboardSolid {
+    grid-area: 1/ 1;
+}
+
+.keyboardRow {
+    width: 100%;
+    display: flex;
+    transform-style: preserve-3d;
+}
+
+.key {
+    flex-grow: 1;
+    translate: 0 0 20px;
+}

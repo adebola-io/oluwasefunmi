@@ -5,12 +5,14 @@ import type { JSX } from "retend/jsx-runtime";
 interface DragToDismissViewProps extends JSX.BaseContainerProps {
   ref?: Cell<HTMLElement | null>;
   onDismiss?: () => void;
+  threshold: number;
 }
 
 export function DragToDismissView(props: DragToDismissViewProps) {
   const {
     ref: contentRef = Cell.source<HTMLElement | null>(null),
     onDismiss,
+    threshold = 0.65,
     ...rest
   } = props;
   const containerRef = Cell.source<HTMLElement | null>(null);
@@ -22,7 +24,7 @@ export function DragToDismissView(props: DragToDismissViewProps) {
 
   const dismissObserverOptions = (): IntersectionObserverInit => ({
     root: containerRef.peek(),
-    threshold: 0.65,
+    threshold,
   });
   const dismissCallback: IntersectionObserverCallback = ([entry]) => {
     if (!isTouchDevice.get()) return;

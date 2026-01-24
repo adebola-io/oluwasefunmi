@@ -1,4 +1,5 @@
 .box {
+    position: relative;
     display: grid;
     grid: 1fr / 1fr;
     place-items: center;
@@ -10,15 +11,24 @@
     --box-curve-px: calc(var(--box-curve) * 1px);
     --box-stroke-px: calc(var(--box-stroke) * 1px);
 
-    --cs-height: calc(var(--box-height) - var(--box-curve));
-    --cs-width: var(--box-width);
-    --cs-diagonal: sqrt(pow(var(--cs-width), 2) + pow(var(--cs-height), 2));
-    --cs-angle: calc(90deg - atan2(var(--cs-height), var(--cs-width)));
+    --c-opp: var(--box-width);
+    --c-adj: var(--box-height);
+    --c-hyp: calc(sqrt(pow(var(--c-opp), 2) + pow(var(--c-adj), 2)));
+    --c-oh: calc(var(--c-opp) / var(--c-hyp));
+    --c-angle: asin(var(--c-oh));
+    --c-diff: 1.245;
 
-    --ce-width: calc(var(--box-width) - var(--box-curve));
-    --ce-height: var(--box-height);
-    --ce-diagonal: sqrt(pow(var(--ce-width), 2) + pow(var(--ce-height), 2));
-    --ce-angle: calc(90deg - atan2(var(--ce-height), var(--ce-width)));
+    --cs-opp: calc((var(--box-width) - var(--box-curve)));
+    --cs-adj: var(--box-height);
+    --cs-hyp: calc(sqrt(pow(var(--cs-opp), 2) + pow(var(--cs-adj), 2)));
+    --cs-oh: calc(var(--cs-opp) / var(--cs-hyp));
+    --cs-angle: asin(var(--cs-oh));
+
+    --ce-opp: var(--box-width);
+    --ce-adj: calc((var(--box-height) - var(--box-curve)));
+    --ce-hyp: calc(sqrt(pow(var(--ce-opp), 2) + pow(var(--ce-adj), 2)));
+    --ce-oh: calc(var(--ce-opp) / var(--ce-hyp));
+    --ce-angle: asin(var(--ce-oh));
 
     & > * {
         grid-area: 1 / 1;
@@ -28,7 +38,6 @@
             filter: brightness(0.69);
         }
     }
-
 }
 
 .front,
@@ -43,18 +52,20 @@
     height: var(--box-height-px);
     width: var(--box-width-px);
     border-radius: var(--box-curve-px);
+    overflow: hidden;
 }
 
 .left,
-.right {
-    height: calc(var(--box-height-px) - var(--box-curve-px) * 2);
-    width: var(--box-depth-px);
-}
-
+.right,
 .top,
-.bottom {
-    width: calc(var(--box-width-px) - var(--box-curve-px) * 2);
-    height: var(--box-depth-px);
+.bottom,
+.centerX,
+.centerY,
+.diagonalLeftToRightCurveStart,
+.diagonalRightToLeftCurveStart,
+.diagonalLeftToRightCurveEnd {
+    height: 1px;
+    width: 1px;
 }
 
 .front {
@@ -74,56 +85,75 @@
 }
 
 .left {
-    transform: rotateY(-90deg) translateZ(calc(var(--box-width-px) / 2));
+    transform: rotateY(-90deg) translateZ(calc(var(--box-width-px) / 2))
+        scale(var(--box-depth), calc(var(--box-height) - var(--box-curve) * 2));
 }
 
 .right {
-    transform: rotateY(90deg) translateZ(calc(var(--box-width-px) / 2));
+    transform: rotateY(90deg) translateZ(calc(var(--box-width-px) / 2))
+        scale(var(--box-depth), calc(var(--box-height) - var(--box-curve) * 2));
 }
 
 .top {
-    transform: rotateX(90deg) translateZ(calc(var(--box-height-px) / 2));
+    transform: rotateX(90deg) translateZ(calc(var(--box-height-px) / 2))
+        scale(calc(var(--box-width) - var(--box-curve) * 2), var(--box-depth));
 }
 
 .bottom {
-    transform: rotateX(-90deg) translateZ(calc(var(--box-height-px) / 2));
+    transform: rotateX(-90deg) translateZ(calc(var(--box-height-px) / 2))
+        scale(calc(var(--box-width) - var(--box-curve) * 2), var(--box-depth));
 }
 
 .centerX {
-    height: var(--box-depth-px);
-    width: var(--box-width-px);
-    transform: rotateX(90deg);
+    transform: rotateX(90deg) scale(var(--box-height), var(--box-depth));
 }
 
 .centerY {
-    height: var(--box-height-px);
-    width: var(--box-depth-px);
-    transform: rotateY(-90deg);
-}
-
-.diagonalLeftToRightCurveStart,
-.diagonalRightToLeftCurveStart,
-.diagonalLeftToRightCurveEnd,
-.diagonalRightToLeftCurveEnd {
-    width: var(--box-depth-px);
+    transform: rotateY(-90deg) scale(var(--box-depth), var(--box-height));
 }
 
 .diagonalRightToLeftCurveStart {
-    height: calc(var(--cs-diagonal) * 1px - var(--box-curve-px) / 4.5);
-    transform: rotateY(-90deg) rotateX(var(--cs-angle));
+    /*background-color: greenyellow;*/
+    transform: rotateY(-90deg) rotateX(var(--c-angle))
+        scale(
+            var(--box-depth),
+            calc(var(--c-hyp) - var(--box-curve) / var(--c-diff))
+        );
 }
 
 .diagonalLeftToRightCurveStart {
-    height: calc(var(--cs-diagonal) * 1px - var(--box-curve-px) / 4.5);
-    transform: rotateY(90deg) rotateX(var(--cs-angle));
+    /*background-color: slateblue;*/
+    transform: rotateY(-90deg) rotateX(calc(-1 * var(--c-angle)))
+        scale(
+            var(--box-depth),
+            calc(var(--c-hyp) - var(--box-curve) / var(--c-diff))
+        );
 }
 
 .diagonalRightToLeftCurveEnd {
-    height: calc(var(--ce-diagonal) * 1px - var(--box-curve-px) / 4.5);
+    /*background-color: lightpink;*/
+    transform: rotateY(-90deg) rotateX(var(--cs-angle))
+        scale(var(--box-depth), calc(var(--cs-hyp) - var(--box-curve) / 4));
+}
+
+.diagonalLeftToRightCurveEnd {
+    /*background-color: lightsalmon;*/
+    height: 1px;
+    width: 1px;
+    transform: rotateY(-90deg) rotateX(calc(-1 * var(--ce-angle)))
+        scale(var(--box-depth), calc(var(--ce-hyp) - var(--box-curve) / 4));
+}
+
+/*.
+
+.diagonalRightToLeftCurveEnd {
+    background-color: lightpink;
+    height: calc(var(--ce-diagonal) * 1px - var(--ce-diff));
     transform: rotateY(-90deg) rotateX(var(--ce-angle));
 }
 
 .diagonalLeftToRightCurveEnd {
-    height: calc(var(--ce-diagonal) * 1px - var(--box-curve-px) / 4.5);
+    background-color: lightsalmon;
+    height: calc(var(--ce-diagonal) * 1px - var(--ce-diff));
     transform: rotateY(90deg) rotateX(var(--ce-angle));
-}
+}*/

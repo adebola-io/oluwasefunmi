@@ -14,24 +14,10 @@
 
 .immersiveContainer {
     position: relative;
+    display: flex;
+    justify-content: center;
     width: 100%;
     height: 100%;
-}
-
-/* Floor Shadow / Reflection */
-.floor {
-    position: absolute;
-    width: 800px;
-    height: 800px;
-    background: radial-gradient(
-        circle closest-side,
-        rgba(255, 255, 255, 0.05),
-        transparent
-    );
-    transform: rotateX(90deg) translateZ(-300px);
-    pointer-events: none;
-    filter: blur(40px);
-    opacity: 0.6;
 }
 
 /* --- Floating UI Layer --- */
@@ -100,16 +86,10 @@
     border-radius: 20px;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
     overflow: hidden;
-    transition:
-        transform 0.4s cubic-bezier(0.16, 1, 0.3, 1),
-        opacity 0.3s ease;
-    transform-origin: bottom right;
 }
 
 .controlsHidden {
-    transform: translateY(20px) scale(0.95);
-    opacity: 0;
-    pointer-events: none;
+    display: none;
 }
 
 .scrollableContent {

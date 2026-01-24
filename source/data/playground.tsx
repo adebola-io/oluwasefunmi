@@ -4,6 +4,7 @@ import { RippleIcon } from "@/components/icons/ripple";
 import { CarouselIcon } from "@/components/icons/carousel";
 import { ShoppingCartIcon } from "@/components/icons/shopping-cart";
 import { HaloIcon } from "@/components/icons/halo";
+import { KeyboardIcon } from "@/components/icons/keyboard";
 
 export interface PlaygroundItem {
   path: string;
@@ -89,5 +90,13 @@ export const playgroundItems: PlaygroundItem[] = [
       </>
     ),
     icon: () => <HaloIcon />,
+  },
+  {
+    path: "/playground/css-keyboard",
+    title: "css-keyboard",
+    description: () => (
+      <>A 3D keyboard implementation using pure CSS transformations.</>
+    ),
+    icon: () => <KeyboardIcon />,
   },
 ];

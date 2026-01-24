@@ -31,8 +31,10 @@ interface AvatarProps {
 
 function Avatar(props: AvatarProps) {
   return (
-    <div class={["grid gap-3", classes.avatar]}>
+    <div class={["grid gap-3 w-50 h-50", classes.avatar]}>
       <img
+        width="200px"
+        height="200px"
         class="aspect-square rounded-full object-cover border border-stone-400"
         src={props.item.imageUrl}
         alt="Avatar"
