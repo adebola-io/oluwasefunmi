@@ -259,7 +259,7 @@ CssKeyboard.metadata = () => ({
   description: "A 3D keyboard implementation using pure CSS transformations.",
   ogTitle: "CSS Keyboard | Playground",
   ogDescription: "A 3D keyboard implementation using pure CSS transformations.",
-  ogImage: `${SITE_URL}/og/playground.png`,
+  ogImage: `${SITE_URL}/og/css-keyboard.png`,
   twitterTitle: "CSS Keyboard | Playground",
   twitterDescription:
     "A 3D keyboard implementation using pure CSS transformations.",
