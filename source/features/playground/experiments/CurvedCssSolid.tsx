@@ -3,6 +3,8 @@ import type { RouteComponent } from "retend/router";
 import { Input } from "retend-utils/components";
 import { Box } from "./Box";
 import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
+import { RotateIcon } from "@/components/icons/rotate";
+import { SettingsIcon } from "@/components/icons/settings";
 import { SITE_URL } from "@/constants";
 import classes from "./CurvedCssSolid.module.css";
 import { Viewer } from "@/features/playground/components/Viewer/Viewer";
@@ -76,16 +78,7 @@ const CurvedCssSolid: RouteComponent = () => {
                 onClick={toggleAutoRotate}
                 title="Toggle Auto-Rotate"
               >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path d="M21.5 2v6h-6M2.5 22v-6h6M2 12c0-5.5 4.5-10 10-10 .7 0 1.4.1 2.1.2M22 12c0 5.5-4.5 10-10 10-.7 0-1.4-.1-2.1-.2" />
-                </svg>
+                <RotateIcon />
               </button>
               <button
                 type="button"
@@ -96,18 +89,7 @@ const CurvedCssSolid: RouteComponent = () => {
                 onClick={toggleControls}
                 title="Toggle Controls"
               >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16z" />
-                  <path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
-                  <path d="M12 2v2M12 22v-2M2 12h2M22 12h-2" />
-                </svg>
+                <SettingsIcon />
               </button>
             </div>
 

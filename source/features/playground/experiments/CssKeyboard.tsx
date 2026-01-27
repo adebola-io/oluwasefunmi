@@ -5,6 +5,7 @@ import Keyboard from "@/features/playground/components/Keyboard";
 import { Cell, useSetupEffect } from "retend";
 import classes from "./CssKeyboard.module.css";
 import { WPMCounter } from "@/features/playground/components/WPMCounter";
+import { SettingsIcon } from "@/components/icons/settings";
 import {
   setSoundProfile,
   type SoundProfile,
@@ -89,19 +90,7 @@ const CssKeyboard = () => {
                 onClick={toggleControls}
                 title="Toggle Controls"
               >
-                <svg
-                  width="20"
-                  height="20"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <title>Toggle Controls</title>
-                  <path d="M12 20a8 8 0 1 0 0-16 8 8 0 0 0 0 16z" />
-                  <path d="M12 14a2 2 0 1 0 0-4 2 2 0 0 0 0 4z" />
-                  <path d="M12 2v2M12 22v-2M2 12h2M22 12h-2" />
-                </svg>
+                <SettingsIcon />
               </button>
             </div>
 

@@ -5,6 +5,7 @@ import classes from "./Playground.module.css";
 import { PageTitle } from "@/components/layout/PageTitle";
 import { playgroundItems } from "@/data/playground.tsx";
 import { StarShower } from "@/components/ui/StarShower";
+import { ArrowRightIcon } from "@/components/icons/arrow-right";
 import { SITE_URL } from "@/constants";
 
 const Playground: RouteComponent = () => {
@@ -42,20 +43,7 @@ const Playground: RouteComponent = () => {
               </p>
               <Link href={exp.path} class={classes.viewButton}>
                 View
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                >
-                  <path
-                    d="M5 12h14M12 5l7 7-7 7"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                </svg>
+                <ArrowRightIcon />
               </Link>
             </div>
           </div>

@@ -1,5 +1,6 @@
 import { Cell } from "retend";
 import { useRouter, Link } from "retend/router";
+import { CloseIcon } from "@/components/icons/close";
 import classes from "./Navigation.module.css";
 
 export const Navigation = () => {
@@ -39,20 +40,7 @@ export const Navigation = () => {
         <div class={classes.sidebarHeader}>
           <span class={classes.sidebarTitle}>Menu</span>
           <button type="button" class={classes.closeButton} onClick={closeMenu}>
-            <svg
-              width="24"
-              height="24"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              stroke-width="2"
-            >
-              <path
-                d="M18 6L6 18M6 6l12 12"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
+            <CloseIcon />
           </button>
         </div>
         <Link href="/works" class={classes.navLink} onClick={closeMenu}>

@@ -5,7 +5,7 @@ import type { JSX } from "retend/jsx-runtime";
 interface DragToDismissViewProps extends JSX.BaseContainerProps {
   ref?: Cell<HTMLElement | null>;
   onDismiss?: () => void;
-  threshold: number;
+  threshold?: number;
 }
 
 export function DragToDismissView(props: DragToDismissViewProps) {
