@@ -1,7 +1,7 @@
 import { Box } from "@/features/playground/experiments/Box";
 import classes from "./Keyboard.module.css";
 import { useWindowSize } from "retend-utils/hooks";
-import { Cell, For, If, useSetupEffect } from "retend";
+import { Cell, For, If, onSetup } from "retend";
 
 const KeyboardBack = () => (
   <div class={classes.keyboardBack}>
@@ -257,7 +257,7 @@ const Key = (props: KeyProps) => {
     }
   };
 
-  useSetupEffect(() => {
+  onSetup(() => {
     updateMode(mode.get());
   });
 
@@ -321,7 +321,7 @@ const Keyboard = (props: KeyboardProps) => {
   const { width } = useWindowSize();
   const pressedKeys = Cell.source(new Set<string>());
 
-  useSetupEffect(() => {
+  onSetup(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.repeat) return;
       playClick();

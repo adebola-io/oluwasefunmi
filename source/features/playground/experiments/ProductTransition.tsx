@@ -1,4 +1,4 @@
-import { For, useSetupEffect } from "retend";
+import { For, onSetup } from "retend";
 import type { RouteComponent } from "retend/router";
 import { Outlet, useRouter } from "retend/router";
 import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
@@ -14,7 +14,7 @@ const ProductTransition: RouteComponent = () => {
     await router.navigate(`/playground/product-transitions/${id}`);
   };
 
-  useSetupEffect(() => {
+  onSetup(() => {
     window.scrollTo(0, 0);
   });
 

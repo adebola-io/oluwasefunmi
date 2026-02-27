@@ -1,11 +1,11 @@
-import { Cell, useSetupEffect } from "retend";
+import { Cell, onSetup } from "retend";
 import classes from "./StarShower.module.css";
 import StarShowerWorker from "./starshower.worker?worker";
 
 export function StarShower() {
   const canvasRef = Cell.source<HTMLCanvasElement | null>(null);
 
-  useSetupEffect(() => {
+  onSetup(() => {
     const canvas = canvasRef.peek();
     if (!canvas) return;
 

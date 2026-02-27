@@ -1,4 +1,4 @@
-import { Cell, If, useSetupEffect } from "retend";
+import { Cell, If, onSetup } from "retend";
 
 interface WPMCounterProps {
   show: Cell<boolean>;
@@ -11,7 +11,7 @@ export const WPMCounter = ({ show }: WPMCounterProps) => {
   const lastTypeTime = Cell.source<number>(Date.now());
   const isActive = Cell.source(false);
 
-  useSetupEffect(() => {
+  onSetup(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!show.get()) return;
       // Ignore modifier keys only

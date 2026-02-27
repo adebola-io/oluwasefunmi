@@ -1,4 +1,4 @@
-import { Cell, useSetupEffect } from "retend";
+import { Cell, onSetup } from "retend";
 import { useRouter, useCurrentRoute } from "retend/router";
 
 export function ScrollRestoration() {
@@ -9,7 +9,7 @@ export function ScrollRestoration() {
     return `${segments[0]}/${segments[1]}/${segments[2]}`;
   });
 
-  useSetupEffect(() => {
+  onSetup(() => {
     // 1. Disable browser auto-restore
     if ("scrollRestoration" in window.history) {
       window.history.scrollRestoration = "manual";

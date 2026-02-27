@@ -1,4 +1,4 @@
-import { Cell, type SourceCell, useSetupEffect } from "retend";
+import { Cell, type SourceCell, onSetup } from "retend";
 import type { JSX } from "retend/jsx-runtime";
 import classes from "./Viewer.module.css";
 
@@ -136,7 +136,7 @@ export function Viewer(props: ViewerProps) {
     );
   };
 
-  useSetupEffect(() => {
+  onSetup(() => {
     let animationFrame: number;
     const animate = () => {
       if (isAutoRotating.get()) {

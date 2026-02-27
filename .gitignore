@@ -1,3 +1,8 @@
 node_modules
 dist
 .DS_Store
+
+# Wrangler
+.wrangler
+.dev.vars
+worker-configuration.d.ts

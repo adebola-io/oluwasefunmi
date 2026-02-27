@@ -1,4 +1,4 @@
-import { Cell, useObserver } from "retend";
+import { Cell, onConnected } from "retend";
 import type { RouteComponent } from "retend/router";
 import { FluidList, type ListTemplateProps } from "retend-utils/components";
 import { useDerivedValue } from "retend-utils/hooks";
@@ -51,12 +51,11 @@ interface BlurCarouselProps<Item> {
 
 function BlurCarousel<Item>(props: BlurCarouselProps<Item>) {
   const { items: itemsProp, Template } = props;
-  const observer = useObserver();
   const items = useDerivedValue(itemsProp);
   const containerRef = Cell.source<HTMLDivElement | null>(null);
   const listRef = Cell.source<HTMLUListElement | null>(null);
 
-  observer.onConnected(listRef, (ul) => {
+  onConnected(listRef, (ul) => {
     const intersectionObserver = new IntersectionObserver(
       (entries) => {
         for (const entry of entries) {

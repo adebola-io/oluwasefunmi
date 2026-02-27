@@ -2,7 +2,7 @@ import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLay
 import { SITE_URL } from "@/constants";
 import { Viewer } from "@/features/playground/components/Viewer/Viewer";
 import Keyboard from "@/features/playground/components/Keyboard";
-import { Cell, useSetupEffect } from "retend";
+import { Cell, onSetup } from "retend";
 import classes from "./CssKeyboard.module.css";
 import { WPMCounter } from "@/features/playground/components/WPMCounter";
 import { SettingsIcon } from "@/components/icons/settings";
@@ -65,7 +65,7 @@ const CssKeyboard = () => {
 
   const toggleControls = () => isControlsOpen.set(!isControlsOpen.get());
 
-  useSetupEffect(() => {
+  onSetup(() => {
     soundProfile.listen((p) => setSoundProfile(p));
   });
 

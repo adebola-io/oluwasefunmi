@@ -1,4 +1,4 @@
-import { Cell, useObserver } from "retend";
+import { Cell, onConnected } from "retend";
 import type { JSX } from "retend/jsx-runtime";
 import classes from "./Modal.module.css";
 
@@ -11,7 +11,6 @@ export interface ModalProps {
 
 export const Modal = (props: ModalProps) => {
   const { isOpen, onClose, children, fillScreenOnMobile } = props;
-  const observer = useObserver();
   const dialogRef = Cell.source<HTMLDialogElement | null>(null);
 
   isOpen.listen((open) => {
@@ -25,7 +24,7 @@ export const Modal = (props: ModalProps) => {
     }
   });
 
-  observer.onConnected(dialogRef, (dialog) => {
+  onConnected(dialogRef, (dialog) => {
     if (isOpen.get()) dialog.showModal();
   });
 

@@ -1,6 +1,7 @@
 import { Cell, For } from "retend";
 import type { RouteComponent } from "retend/router";
 import { useWindowSize } from "retend-utils/hooks";
+import { ClientOnly } from "retend-server";
 import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
 import { AsyncQueue } from "@/utils";
 import { SITE_URL } from "@/constants";
@@ -121,18 +122,20 @@ const RippleEffect: RouteComponent = () => {
   return (
     <div class={classes.app}>
       <PlaygroundLayout title="Ripple Effect" hint="Click anywhere to ripple">
-        <div class={classes.rippleContainer} style={{ gridTemplate }}>
-          {For(boxes, (_, index) => (
-            <RippleButton
-              index={index}
-              rows={rows}
-              cols={cols}
-              clicked={clicked}
-              color={color}
-              onClick={handleClick}
-            />
-          ))}
-        </div>
+        <ClientOnly>
+          <div class={classes.rippleContainer} style={{ gridTemplate }}>
+            {For(boxes, (_, index) => (
+              <RippleButton
+                index={index}
+                rows={rows}
+                cols={cols}
+                clicked={clicked}
+                color={color}
+                onClick={handleClick}
+              />
+            ))}
+          </div>
+        </ClientOnly>
       </PlaygroundLayout>
     </div>
   );

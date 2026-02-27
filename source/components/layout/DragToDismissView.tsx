@@ -1,4 +1,4 @@
-import { Cell, useObserver } from "retend";
+import { Cell, onConnected } from "retend";
 import { useIntersectionObserver, useMatchMedia } from "retend-utils/hooks";
 import type { JSX } from "retend/jsx-runtime";
 
@@ -19,7 +19,6 @@ export function DragToDismissView(props: DragToDismissViewProps) {
   const isTouchDevice = useMatchMedia("(width < 40rem) and (pointer: coarse)");
   const enableDismiss = Cell.source(false);
   const innerScrollDisabled = Cell.source(false);
-  const observer = useObserver();
   let thresholdReached = false;
 
   const dismissObserverOptions = (): IntersectionObserverInit => ({
@@ -46,7 +45,7 @@ export function DragToDismissView(props: DragToDismissViewProps) {
     innerScrollBlockOptions,
   );
 
-  observer.onConnected(contentRef, (content) => {
+  onConnected(contentRef, (content) => {
     requestAnimationFrame(() => {
       requestAnimationFrame(() => {
         enableDismiss.set(true);
