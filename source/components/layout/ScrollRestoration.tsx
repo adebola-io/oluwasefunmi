@@ -26,8 +26,7 @@ export function ScrollRestoration() {
     router.addEventListener("beforenavigate", saveScrollPosition);
 
     // 4. Restore position when the route updates
-    const unlisten = basePath.listen((basePath) => {
-      console.log({ basePath });
+    const unlisten = basePath.listen(() => {
       queueMicrotask(() => {
         requestAnimationFrame(() => {
           const state = window.history.state;

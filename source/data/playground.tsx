@@ -2,6 +2,7 @@ import type { JSX } from "retend/jsx-runtime";
 import { CubeIcon } from "@/components/icons/cube";
 import { RippleIcon } from "@/components/icons/ripple";
 import { CarouselIcon } from "@/components/icons/carousel";
+import { ImageWheelIcon } from "@/components/icons/image-wheel";
 import { ShoppingCartIcon } from "@/components/icons/shopping-cart";
 import { HaloIcon } from "@/components/icons/halo";
 import { KeyboardIcon } from "@/components/icons/keyboard";
@@ -29,26 +30,46 @@ function ExternalLink({ url, children }: { url: string; children: string }) {
 
 export const playgroundItems: PlaygroundItem[] = [
   {
-    path: "/playground/curved-css-solid",
-    title: "curved-css-solid",
+    path: "/playground/image-wheel",
+    title: "image-wheel",
     description: () => (
-      <>
-        Using CSS transforms to create a volumetric 3D box. It uses pure DOM
-        elements to achieve smooth curves and full interactivity.
-      </>
+      <>A specialized image carousel that rotates like a wheel.</>
     ),
-    icon: () => <CubeIcon />,
+    icon: () => <ImageWheelIcon />,
   },
   {
-    path: "/playground/ripple-effect",
-    title: "ripple-effect",
+    path: "/playground/css-keyboard",
+    title: "css-keyboard",
+    description: () => (
+      <>A 3D keyboard implementation using pure CSS transformations.</>
+    ),
+    icon: () => <KeyboardIcon />,
+  },
+  {
+    path: "/playground/three-dimensional-marquee",
+    title: "three-dimensional-marquee",
     description: () => (
       <>
-        Optimized grid interaction where clicks trigger cascading ripple effects
-        across cells.
+        3d marquee rotating text with a halo effect, in pure CSS. Original by{" "}
+        <ExternalLink url="https://x.com/dejager/status/2012219287952380320">
+          @dejager
+        </ExternalLink>
       </>
     ),
-    icon: () => <RippleIcon />,
+    icon: () => <HaloIcon />,
+  },
+  {
+    path: "/playground/product-transitions",
+    title: "product-transitions",
+    description: () => (
+      <>
+        Product card transitions with drag to dismiss gesture. Original by{" "}
+        <ExternalLink url="https://x.com/aydahnizzy/status/2009766429780820131">
+          @aydahnizzy
+        </ExternalLink>
+      </>
+    ),
+    icon: () => <ShoppingCartIcon />,
   },
   {
     path: "/playground/blur-carousel",
@@ -66,37 +87,25 @@ export const playgroundItems: PlaygroundItem[] = [
     icon: () => <CarouselIcon />,
   },
   {
-    path: "/playground/product-transitions",
-    title: "product-transitions",
+    path: "/playground/ripple-effect",
+    title: "ripple-effect",
     description: () => (
       <>
-        Product card transitions with drag to dismiss gesture. Original by{" "}
-        <ExternalLink url="https://x.com/aydahnizzy/status/2009766429780820131">
-          @aydahnizzy
-        </ExternalLink>
+        Optimized grid interaction where clicks trigger cascading ripple effects
+        across cells.
       </>
     ),
-    icon: () => <ShoppingCartIcon />,
+    icon: () => <RippleIcon />,
   },
   {
-    path: "/playground/three-dimensional-marquee",
-    title: "three-dimensional-marquee",
+    path: "/playground/curved-css-solid",
+    title: "curved-css-solid",
     description: () => (
       <>
-        3d marquee rotating text with a halo effect, in pure CSS. Original by{" "}
-        <ExternalLink url="https://x.com/dejager/status/2012219287952380320">
-          @dejager
-        </ExternalLink>
+        Using CSS transforms to create a volumetric 3D box. It uses pure DOM
+        elements to achieve smooth curves and full interactivity.
       </>
     ),
-    icon: () => <HaloIcon />,
-  },
-  {
-    path: "/playground/css-keyboard",
-    title: "css-keyboard",
-    description: () => (
-      <>A 3D keyboard implementation using pure CSS transformations.</>
-    ),
-    icon: () => <KeyboardIcon />,
+    icon: () => <CubeIcon />,
   },
 ];

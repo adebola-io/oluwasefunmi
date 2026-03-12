@@ -14,6 +14,7 @@ import ProductTransition from "@/features/playground/experiments/ProductTransiti
 import ProductDetailsPage from "@/features/playground/experiments/ProductDetailsPage";
 import ThreeDimensionalMarquee from "@/features/playground/experiments/ThreeDimensionalMarquee";
 import CssKeyboard from "@/features/playground/experiments/CssKeyboard";
+import ImageWheel from "@/features/playground/experiments/ImageWheel";
 
 import { RootLayout } from "@/components/layout/RootLayout";
 
@@ -32,6 +33,7 @@ const routes = defineRoutes([
         path: "/playground",
         children: [
           { path: "/", component: Playground },
+          { path: "/image-wheel", component: ImageWheel },
           { path: "/curved-css-solid", component: CurvedCssSolid },
           { path: "/ripple-effect", component: RippleEffect },
           { path: "/blur-carousel", component: BlurCarousel },

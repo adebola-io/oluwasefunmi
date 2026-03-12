@@ -3,6 +3,7 @@ import type { RouteComponent } from "retend/router";
 import type { PageMeta } from "retend-server/client";
 import type { Note, NotePreviewProps } from "@/types";
 import { Link } from "retend/router";
+import { LayeredCard } from "@/components/ui/LayeredCard";
 import { PageTitle } from "@/components/layout/PageTitle";
 import { StarShower } from "@/components/ui/StarShower";
 import { NoteHeading } from "@/components/ui/typography";
@@ -52,14 +53,14 @@ const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
             <p class={classes.empty}>No notes yet.</p>
           ) : (
             For(notes, (note) => (
-              <Link href={`/random-notes/${note.id}`} class={classes.noteCard}>
+              <LayeredCard as={Link} href={`/random-notes/${note.id}`} class={classes.noteCard}>
                 <NoteHeading
                   id={`random-note-heading-${note.id}`}
                   title={note.title}
                 />
                 <div class={classes.noteDate}>{note.dateStr}</div>
                 <p class={classes.noteSummary}>{note.description}</p>
-              </Link>
+              </LayeredCard>
             ))
           )}
         </div>

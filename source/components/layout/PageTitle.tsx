@@ -12,8 +12,6 @@ export const PageTitle = createUniqueTransition<PageTitleProps>(
     const name = Cell.derived(() => props.get().name);
     const className = Cell.derived(() => props.get().class);
 
-    className.listen(console.log);
-
     return (
       <div class={[classes.titleWrapper, className]}>
         <h1 class={classes.title}>

@@ -15,7 +15,7 @@ const RandomNote: RouteComponent<PageMeta<Note>> = () => {
     return (
       <div class={classes.page}>
         <div class={classes.container}>
-          <Link href="/random-notes" class={classes.backLink}>
+          <Link href="/random-notes" class={classes.backLink} data-pill-link>
             ← back to notes
           </Link>
           <div class={classes.notFound}>
@@ -30,7 +30,7 @@ const RandomNote: RouteComponent<PageMeta<Note>> = () => {
   return (
     <div class={classes.page}>
       <div class={classes.container}>
-        <Link href="/random-notes" class={classes.backLink}>
+        <Link href="/random-notes" class={classes.backLink} data-pill-link>
           ← back to notes
         </Link>
         <article class={classes.article}>

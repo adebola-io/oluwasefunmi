@@ -11,16 +11,17 @@
   "dependencies": {
     "@mdx-js/rollup": "^3.1.0",
     "@types/mdx": "^2.0.13",
-    "retend": "https://pkg.pr.new/resuite/retend@05e2f782",
-    "retend-server": "https://pkg.pr.new/resuite/retend/retend-server@05e2f782",
-    "retend-utils": "https://pkg.pr.new/resuite/retend/retend-utils@05e2f782",
-    "retend-web": "https://pkg.pr.new/resuite/retend/retend-web@05e2f782"
+    "retend": "https://pkg.pr.new/resuite/retend@c05495c",
+    "retend-server": "https://pkg.pr.new/resuite/retend/retend-server@c05495c",
+    "retend-utils": "https://pkg.pr.new/resuite/retend/retend-utils@c05495c",
+    "retend-web": "https://pkg.pr.new/resuite/retend/retend-web@c05495c",
+    "retend-web-devtools": "https://pkg.pr.new/resuite/retend/retend-web-devtools@c05495c"
   },
   "devDependencies": {
-    "vite": "^6.2.1",
-    "typescript": "^5.5.2",
+    "@tailwindcss/vite": "^4.1.5",
     "@types/node": "latest",
     "tailwindcss": "^4.1.8",
-    "@tailwindcss/vite": "^4.1.5"
+    "typescript": "^5.5.2",
+    "vite": "^6.2.1"
   }
 }

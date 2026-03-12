@@ -22,6 +22,7 @@ const Contact: RouteComponent = () => {
         <a
           href="/oluwasefunmi-akomolafe.pdf"
           class={classes.resume}
+          data-pill-link
           target="_blank"
           rel="noopener noreferrer"
         >

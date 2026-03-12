@@ -55,3 +55,40 @@ h6 {
     background: var(--accent-color);
     color: var(--bg-dark);
 }
+
+@keyframes fade-in-up {
+    from {
+        opacity: 0;
+        transform: translateY(var(--fade-distance, 10px));
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+[data-pill-link] {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.75rem;
+    color: var(--text-secondary);
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 500;
+    transition:
+        transform 0.3s var(--ease-spring),
+        opacity 0.3s var(--ease-spring),
+        background-color 0.3s var(--ease-spring),
+        border-color 0.3s var(--ease-spring),
+        box-shadow 0.3s var(--ease-spring);
+    padding: 0.5rem 1rem;
+    border-radius: 99px;
+    border: 1px solid transparent;
+}
+
+[data-pill-link]:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 15px rgba(255, 46, 147, 0.2);
+}
