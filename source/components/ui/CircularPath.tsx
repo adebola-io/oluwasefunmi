@@ -12,7 +12,7 @@ export const CircularPath = (props: CircularPathProps) => {
   const {
     speed = "7s",
     text: textProp,
-    children,
+    children: _children,
     style: userStyle,
     ...rest
   } = props;

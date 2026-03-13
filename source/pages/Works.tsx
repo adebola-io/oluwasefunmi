@@ -1,4 +1,4 @@
-import { For } from "retend";
+import { Cell, For } from "retend";
 import { Link } from "retend/router";
 import type { RouteComponent } from "retend/router";
 import { LayeredCard } from "@/components/ui/LayeredCard";
@@ -28,7 +28,9 @@ const Works: RouteComponent = () => {
             <li
               key={project.id}
               class={[classes.item, project.class]}
-              style={{ animationDelay: `${i.get() * 100}ms` }}
+              style={Cell.derived(() => ({
+                animationDelay: `${i.get() * 100}ms`,
+              }))}
             >
               <LayeredCard
                 as={Link}

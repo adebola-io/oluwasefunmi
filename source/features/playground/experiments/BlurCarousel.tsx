@@ -1,3 +1,4 @@
+// oxlint-disable retend/max-jsx-components-per-file
 import { Cell, onConnected } from "retend";
 import type { RouteComponent } from "retend/router";
 import { FluidList, type ListTemplateProps } from "retend-utils/components";
@@ -30,16 +31,17 @@ interface AvatarProps {
 }
 
 function Avatar(props: AvatarProps) {
+  const { item } = props;
   return (
     <div class={["grid gap-3 w-50 h-50", classes.avatar]}>
       <img
         width="200px"
         height="200px"
         class="aspect-square rounded-full object-cover border border-stone-400"
-        src={props.item.imageUrl}
+        src={item.imageUrl}
         alt="Avatar"
       />
-      <div class="text-center text-lg text-white">{props.item.name}</div>
+      <div class="text-center text-lg text-white">{item.name}</div>
     </div>
   );
 }

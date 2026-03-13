@@ -14,7 +14,8 @@ export interface PlaygroundItem {
   icon: () => JSX.Element;
 }
 
-function ExternalLink({ url, children }: { url: string; children: string }) {
+function ExternalLink(props: { url: string; children: string }) {
+  const { url, children } = props;
   return (
     <a
       onClick--stop={() => {}}

@@ -54,17 +54,14 @@ const ThreeDimensionalMarquee: RouteComponent = () => {
                   Appearance
                 </h3>
                 <div class="flex items-center gap-4">
-                  <input
+                  <Input
                     id="input-color"
                     aria-label="Color"
                     type="color"
-                    value={color.get()}
-                    onInput={(e) =>
-                      color.set((e.target as HTMLInputElement).value)
-                    }
+                    model={color}
                     class="appearance-none border-none w-full h-10 rounded-lg bg-transparent cursor-pointer [&::-webkit-color-swatch-wrapper]:p-0 [&::-webkit-color-swatch]:border [&::-webkit-color-swatch]:border-white/20 [&::-webkit-color-swatch]:rounded-lg"
                   />
-                  <span style={{ color: color }}>{color}</span>
+                  <span style={{ color }}>{color}</span>
                 </div>
               </div>
             </div>

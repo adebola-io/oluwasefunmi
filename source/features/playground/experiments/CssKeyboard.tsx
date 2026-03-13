@@ -2,7 +2,7 @@ import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLay
 import { SITE_URL } from "@/constants";
 import { Viewer } from "@/features/playground/components/Viewer/Viewer";
 import Keyboard from "@/features/playground/components/Keyboard";
-import { Cell, onSetup } from "retend";
+import { Cell } from "retend";
 import classes from "./CssKeyboard.module.css";
 import { WPMCounter } from "@/features/playground/components/WPMCounter";
 import { SettingsIcon } from "@/components/icons/settings";
@@ -40,11 +40,13 @@ const THEMES = {
 
 type ThemeType = keyof typeof THEMES;
 
+// oxlint-disable-next-line retend/max-component-lines
 const CssKeyboard = () => {
   const isControlsOpen = Cell.source(true);
   const theme = Cell.source<ThemeType>("cream");
   const soundProfile = Cell.source<SoundProfile>("switch");
   const showWPM = Cell.source(true);
+  const mode = Cell.source<"view" | "type">("view");
 
   const colors = Cell.derived(() => THEMES[theme.get()]);
 
@@ -59,15 +61,12 @@ const CssKeyboard = () => {
   );
   const isBubbleSound = Cell.derived(() => soundProfile.get() === "bubble");
 
-  const mode = Cell.source<"view" | "type">("view");
   const isViewMode = Cell.derived(() => mode.get() === "view");
   const isTypeMode = Cell.derived(() => mode.get() === "type");
 
   const toggleControls = () => isControlsOpen.set(!isControlsOpen.get());
 
-  onSetup(() => {
-    soundProfile.listen((p) => setSoundProfile(p));
-  });
+  soundProfile.listen((p) => setSoundProfile(p));
 
   return (
     <div class={classes.app}>

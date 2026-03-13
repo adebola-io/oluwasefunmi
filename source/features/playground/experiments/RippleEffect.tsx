@@ -67,7 +67,7 @@ const RippleButton = (props: BoxProps) => {
     <button
       ref={buttonRef}
       type="button"
-      style={{ backgroundColor: color.get() }}
+      style={{ backgroundColor: color }}
       class={classes.rippleButtonContainer}
       onPointerDown={handleClick}
     />
@@ -92,6 +92,9 @@ const GAP = 3;
 const RippleEffect: RouteComponent = () => {
   const { width, height } = useWindowSize();
 
+  const clicked = Cell.source<[number, number]>([0, 0]);
+  const currentColorIndex = Cell.source(0);
+
   const cols = Cell.derived(() => {
     const availableWidth = Math.min(width.get() - 64, 1200);
     return Math.max(5, Math.floor(availableWidth / (BOX_SIZE + GAP)));
@@ -102,8 +105,6 @@ const RippleEffect: RouteComponent = () => {
     return Math.max(5, Math.floor(availableHeight / (BOX_SIZE + GAP)));
   });
 
-  const clicked = Cell.source<[number, number]>([0, 0]);
-  const currentColorIndex = Cell.source(0);
   const color = Cell.derived(() => {
     return colors[currentColorIndex.get()];
   });

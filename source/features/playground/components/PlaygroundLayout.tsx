@@ -1,3 +1,4 @@
+import { If } from "retend";
 import { Link } from "retend/router";
 import type { JSX } from "retend/jsx-runtime";
 import { ArrowLeftIcon } from "@/components/icons/arrow-left";
@@ -22,7 +23,9 @@ export function PlaygroundLayout(props: PlaygroundLayoutProps) {
         <h1 class={classes.title}>{title}</h1>
       </header>
       {children}
-      {hint && <div class={classes.hint}>{hint}</div>}
+      {If(hint, () => (
+        <div class={classes.hint}>{hint}</div>
+      ))}
     </>
   );
 }

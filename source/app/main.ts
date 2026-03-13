@@ -8,5 +8,6 @@ hydrate(createRouter, {
     return RetendDevTools({ children: root });
   },
 }).then(() => {
+  // oxlint-disable-next-line no-console
   console.log("[retend-server] app successfully hydrated.");
 });

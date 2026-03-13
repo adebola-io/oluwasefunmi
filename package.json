@@ -6,12 +6,15 @@
   "scripts": {
     "dev": "vite --port 5229",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "lint": "oxlint --config oxlint.json",
+    "lint:fix": "oxlint --config oxlint.json --fix"
   },
   "dependencies": {
     "@mdx-js/rollup": "^3.1.0",
     "@types/mdx": "^2.0.13",
     "retend": "https://pkg.pr.new/resuite/retend@c05495c",
+    "retend-oxlint-plugin": "^0.0.27",
     "retend-server": "https://pkg.pr.new/resuite/retend/retend-server@c05495c",
     "retend-utils": "https://pkg.pr.new/resuite/retend/retend-utils@c05495c",
     "retend-web": "https://pkg.pr.new/resuite/retend/retend-web@c05495c",
@@ -20,6 +23,7 @@
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.5",
     "@types/node": "latest",
+    "oxlint": "^1.55.0",
     "tailwindcss": "^4.1.8",
     "typescript": "^5.5.2",
     "vite": "^6.2.1"

@@ -145,7 +145,7 @@ interface KeyboardColors {
 
 interface KeyProps {
   data: KeyData;
-  rowIndex: number;
+  rowIndex: Cell<number>;
   contentWidth: Cell<number>;
   baseKeyHeight: Cell<number>;
   colors: Cell<KeyboardColors>;
@@ -154,6 +154,7 @@ interface KeyProps {
   keyDepth: Cell<number>;
 }
 
+// oxlint-disable-next-line retend/max-component-lines
 const Key = (props: KeyProps) => {
   const {
     data,
@@ -166,6 +167,9 @@ const Key = (props: KeyProps) => {
     keyDepth,
   } = props;
   const isPointerPressed = Cell.source(false);
+  const containerRef = Cell.source<HTMLDivElement | null>(null);
+
+  const rowMeta = Cell.derived(() => ROW_METADATA[rowIndex.get()]);
 
   const isPhysicallyPressed = Cell.derived(() => {
     const name = data.name.toLowerCase();
@@ -181,8 +185,9 @@ const Key = (props: KeyProps) => {
     if (name === "cmd" && set.has("meta")) return true;
     if (name === "←" && set.has("arrowleft")) return true;
     if (name === "→" && set.has("arrowright")) return true;
-    if (name === "↑↓" && (set.has("arrowup") || set.has("arrowdown")))
+    if (name === "↑↓" && (set.has("arrowup") || set.has("arrowdown"))) {
       return true;
+    }
 
     return set.has(name) || (shiftName && set.has(shiftName));
   });
@@ -191,14 +196,10 @@ const Key = (props: KeyProps) => {
     () => isPointerPressed.get() || isPhysicallyPressed.get(),
   );
 
-  const containerRef = Cell.source<HTMLDivElement | null>(null);
-
-  const rowMeta = ROW_METADATA[rowIndex];
-
   const width = Cell.derived(() => {
-    const totalGapSpace = (rowMeta.numKeys - 1) * GAP_X;
+    const totalGapSpace = (rowMeta.get().numKeys - 1) * GAP_X;
     const availableForKeys = contentWidth.get() - totalGapSpace;
-    return ((data.width || 1) / rowMeta.totalUnits) * availableForKeys;
+    return ((data.width || 1) / rowMeta.get().totalUnits) * availableForKeys;
   });
 
   const height = Cell.derived(() => {
@@ -321,30 +322,6 @@ const Keyboard = (props: KeyboardProps) => {
   const { width } = useWindowSize();
   const pressedKeys = Cell.source(new Set<string>());
 
-  onSetup(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.repeat) return;
-      playClick();
-      const next = new Set(pressedKeys.get());
-      next.add(e.key.toLowerCase());
-      pressedKeys.set(next);
-    };
-
-    const handleKeyUp = (e: KeyboardEvent) => {
-      const next = new Set(pressedKeys.get());
-      next.delete(e.key.toLowerCase());
-      pressedKeys.set(next);
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("keyup", handleKeyUp);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("keyup", handleKeyUp);
-    };
-  });
-
   const keyboardWidth = Cell.derived(() => {
     return Math.min(width.get() * 0.9, 1200);
   });
@@ -380,6 +357,30 @@ const Keyboard = (props: KeyboardProps) => {
   const keyboardDepth = Cell.derived(() => (width.get() < 600 ? 10 : 20));
   const keyboardCurve = Cell.derived(() => (width.get() < 600 ? 8 : 20));
 
+  onSetup(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.repeat) return;
+      playClick();
+      const next = new Set(pressedKeys.get());
+      next.add(e.key.toLowerCase());
+      pressedKeys.set(next);
+    };
+
+    const handleKeyUp = (e: KeyboardEvent) => {
+      const next = new Set(pressedKeys.get());
+      next.delete(e.key.toLowerCase());
+      pressedKeys.set(next);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+    };
+  });
+
   return (
     <div
       class={classes.container}
@@ -407,7 +408,7 @@ const Keyboard = (props: KeyboardProps) => {
               <Key
                 mode={mode}
                 data={key}
-                rowIndex={rowIndex.get()}
+                rowIndex={rowIndex}
                 contentWidth={contentWidth}
                 baseKeyHeight={baseKeyHeight}
                 colors={colors}

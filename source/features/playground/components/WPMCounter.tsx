@@ -15,8 +15,9 @@ export const WPMCounter = ({ show }: WPMCounterProps) => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!show.get()) return;
       // Ignore modifier keys only
-      if (["Shift", "Control", "Alt", "Meta", "CapsLock"].includes(e.key))
+      if (["Shift", "Control", "Alt", "Meta", "CapsLock"].includes(e.key)) {
         return;
+      }
 
       const now = Date.now();
       lastTypeTime.set(now);

@@ -9,6 +9,7 @@ import { SITE_URL } from "@/constants";
 import classes from "./CurvedCssSolid.module.css";
 import { Viewer } from "@/features/playground/components/Viewer/Viewer";
 
+// oxlint-disable-next-line retend/max-component-lines
 const CurvedCssSolid: RouteComponent = () => {
   const rx = Cell.source(25);
   const ry = Cell.source(-35);
@@ -178,16 +179,13 @@ const CurvedCssSolid: RouteComponent = () => {
                 <div class={classes.section}>
                   <h3>Appearance</h3>
                   <div class={classes.colorPickerWrapper}>
-                    <input
+                    <Input
                       id="input-color"
                       aria-label="Color"
                       type="color"
-                      value={color.get()}
-                      onInput={(e) =>
-                        color.set((e.target as HTMLInputElement).value)
-                      }
+                      model={color}
                     />
-                    <span style={{ color: color }}>{color}</span>
+                    <span style={{ color }}>{color}</span>
                   </div>
                 </div>
 
