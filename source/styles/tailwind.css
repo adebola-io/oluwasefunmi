@@ -4,11 +4,28 @@
     animation: fade-in 800ms var(--ease-spring);
 }
 
+@utility animate-offset-path {
+    animation:
+        to-offset-start 1000ms ease,
+        offset-path 8000ms linear infinite;
+    animation-composition: replace;
+}
+
 @keyframes fade-in {
     from {
         translate: 0px 10%;
         opacity: 0;
     }
-  
-    
+}
+
+@keyframes to-offset-start {
+    from {
+        offset-distance: 0%;
+    }
+}
+
+@keyframes offset-path {
+    to {
+        offset-distance: var(--offset-distance-end, 100%);
+    }
 }

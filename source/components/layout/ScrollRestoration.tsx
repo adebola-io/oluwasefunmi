@@ -8,24 +8,7 @@ export function ScrollRestoration() {
     const segments = currentRoute.get().fullPath.split("/");
     return `${segments[0]}/${segments[1]}/${segments[2]}`;
   });
-
-  // 1. Disable browser auto-restore
-  if ("scrollRestoration" in window.history) {
-    window.history.scrollRestoration = "manual";
-  }
-
-  // 2. Save position before leaving a route
-  const saveScrollPosition = () => {
-    const scroll = { x: window.scrollX, y: window.scrollY };
-    const currentState = window.history.state || {};
-    window.history.replaceState({ ...currentState, scroll }, "");
-  };
-
-  // 3. Attach save listener
-  router.addEventListener("beforenavigate", saveScrollPosition);
-
-  // 4. Restore position when the route updates
-  const unlisten = basePath.listen(() => {
+  basePath.listen(() => {
     queueMicrotask(() => {
       requestAnimationFrame(() => {
         const state = window.history.state;
@@ -39,10 +22,24 @@ export function ScrollRestoration() {
   });
 
   onSetup(() => {
+    // 1. Disable browser auto-restore
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+
+    // 2. Save position before leaving a route
+    const saveScrollPosition = () => {
+      const scroll = { x: window.scrollX, y: window.scrollY };
+      const currentState = window.history.state || {};
+      window.history.replaceState({ ...currentState, scroll }, "");
+    };
+
+    // 3. Attach save listener
+    router.addEventListener("beforenavigate", saveScrollPosition);
+
     // Cleanup
     return () => {
       router.removeEventListener("beforenavigate", saveScrollPosition);
-      unlisten();
     };
   });
 
