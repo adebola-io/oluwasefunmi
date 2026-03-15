@@ -2,14 +2,14 @@ import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLay
 import { SITE_URL } from "@/constants";
 import { Viewer } from "@/features/playground/components/Viewer/Viewer";
 import Keyboard from "@/features/playground/components/Keyboard";
-import { Cell } from "retend";
-import classes from "./CssKeyboard.module.css";
+import { Cell, For } from "retend";
 import { WPMCounter } from "@/features/playground/components/WPMCounter";
-import { SettingsIcon } from "@/components/icons/settings";
 import {
   setSoundProfile,
   type SoundProfile,
 } from "@/features/playground/components/KeyboardSounds";
+import { InteractionPanel } from "@/features/playground/components/InteractionPanel/InteractionPanel";
+import classes from "./CssKeyboard.module.css";
 
 const THEMES = {
   blue: {
@@ -40,9 +40,19 @@ const THEMES = {
 
 type ThemeType = keyof typeof THEMES;
 
+const MODE_OPTIONS = [
+  { value: "view", label: "Adjust View" },
+  { value: "type", label: "Tap Keys" },
+];
+
+const SOUND_OPTIONS = [
+  { value: "switch", label: "Switch" },
+  { value: "typewriter", label: "Typewriter" },
+  { value: "bubble", label: "Bubble" },
+];
+
 // oxlint-disable-next-line retend/max-component-lines
 const CssKeyboard = () => {
-  const isControlsOpen = Cell.source(true);
   const theme = Cell.source<ThemeType>("cream");
   const soundProfile = Cell.source<SoundProfile>("switch");
   const showWPM = Cell.source(true);
@@ -50,21 +60,9 @@ const CssKeyboard = () => {
 
   const colors = Cell.derived(() => THEMES[theme.get()]);
 
-  const isControlsHidden = Cell.derived(() => !isControlsOpen.get());
   const isBlueActive = Cell.derived(() => theme.get() === "blue");
   const isBlackActive = Cell.derived(() => theme.get() === "black");
   const isCreamActive = Cell.derived(() => theme.get() === "cream");
-
-  const isSwitchSound = Cell.derived(() => soundProfile.get() === "switch");
-  const isTypewriterSound = Cell.derived(
-    () => soundProfile.get() === "typewriter",
-  );
-  const isBubbleSound = Cell.derived(() => soundProfile.get() === "bubble");
-
-  const isViewMode = Cell.derived(() => mode.get() === "view");
-  const isTypeMode = Cell.derived(() => mode.get() === "type");
-
-  const toggleControls = () => isControlsOpen.set(!isControlsOpen.get());
 
   soundProfile.listen((p) => setSoundProfile(p));
 
@@ -72,170 +70,106 @@ const CssKeyboard = () => {
     <div class={classes.app}>
       <PlaygroundLayout title="CSS Keyboard">
         <div class={classes.immersiveContainer}>
-          <Viewer class="animate-fade-in" initialRx={9} isEnabled={isViewMode}>
+          <Viewer
+            class="animate-fade-in"
+            initialRx={9}
+            isEnabled={Cell.derived(() => mode.get() === "view")}
+          >
             <Keyboard colors={colors} mode={mode} />
           </Viewer>
 
           <WPMCounter show={showWPM} />
 
-          <div class={classes.uiLayer}>
-            <div class={classes.headerActions}>
-              <button
-                type="button"
-                class={[
-                  classes.iconButton,
-                  { [classes.active]: isControlsOpen },
-                ]}
-                onClick={toggleControls}
-                title="Toggle Controls"
-              >
-                <SettingsIcon />
-              </button>
-            </div>
-
-            <div
-              class={[
-                classes.controlsPanel,
-                {
-                  [classes.controlsHidden]: isControlsHidden,
-                },
-              ]}
-            >
-              <div class={classes.scrollableContent}>
-                <div class={classes.section}>
-                  <h3>Interaction Mode</h3>
-                  <div class={classes.segmentedControl}>
-                    <button
-                      type="button"
-                      class={[
-                        classes.segmentButton,
-                        { [classes.activeSegment]: isViewMode },
-                      ]}
-                      onClick={() => mode.set("view")}
-                    >
-                      Adjust View
-                    </button>
-                    <button
-                      type="button"
-                      class={[
-                        classes.segmentButton,
-                        { [classes.activeSegment]: isTypeMode },
-                      ]}
-                      onClick={() => mode.set("type")}
-                    >
-                      Tap Keys
-                    </button>
-                  </div>
-                </div>
-
-                <div class={classes.section}>
-                  <h3>Features</h3>
-                  <div class={classes.featureGrid}>
-                    <label class={classes.featureToggle}>
-                      <input
-                        type="checkbox"
-                        checked={Cell.derived(() => showWPM.get())}
-                        onChange={(e: Event) =>
-                          showWPM.set((e.target as HTMLInputElement).checked)
-                        }
-                      />
-                      <span>Show WPM</span>
-                    </label>
-                  </div>
-                </div>
-
-                <div class={classes.section}>
-                  <h3>Sound Pack</h3>
-                  <div class={classes.segmentedControl}>
-                    <button
-                      type="button"
-                      class={[
-                        classes.segmentButton,
-                        { [classes.activeSegment]: isSwitchSound },
-                      ]}
-                      onClick={() => soundProfile.set("switch")}
-                    >
-                      Switch
-                    </button>
-                    <button
-                      type="button"
-                      class={[
-                        classes.segmentButton,
-                        { [classes.activeSegment]: isTypewriterSound },
-                      ]}
-                      onClick={() => soundProfile.set("typewriter")}
-                    >
-                      Typewriter
-                    </button>
-                    <button
-                      type="button"
-                      class={[
-                        classes.segmentButton,
-                        { [classes.activeSegment]: isBubbleSound },
-                      ]}
-                      onClick={() => soundProfile.set("bubble")}
-                    >
-                      Bubble
-                    </button>
-                  </div>
-                </div>
-
-                <div class={classes.section}>
-                  <h3>Color Theme</h3>
-                  <div class={classes.themeGrid}>
-                    <button
-                      type="button"
-                      class={[
-                        classes.themeButton,
-                        {
-                          [classes.activeTheme]: isBlueActive,
-                        },
-                      ]}
-                      onClick={() => theme.set("blue")}
-                    >
-                      <div
-                        class={classes.colorPreview}
-                        style={{ background: THEMES.blue.body }}
-                      />
-                      Blue
-                    </button>
-                    <button
-                      type="button"
-                      class={[
-                        classes.themeButton,
-                        {
-                          [classes.activeTheme]: isBlackActive,
-                        },
-                      ]}
-                      onClick={() => theme.set("black")}
-                    >
-                      <div
-                        class={classes.colorPreview}
-                        style={{ background: THEMES.black.body }}
-                      />
-                      Black
-                    </button>
-                    <button
-                      type="button"
-                      class={[
-                        classes.themeButton,
-                        {
-                          [classes.activeTheme]: isCreamActive,
-                        },
-                      ]}
-                      onClick={() => theme.set("cream")}
-                    >
-                      <div
-                        class={classes.colorPreview}
-                        style={{ background: THEMES.cream.body }}
-                      />
-                      Cream
-                    </button>
-                  </div>
-                </div>
+          <InteractionPanel mode={mode} modeOptions={MODE_OPTIONS}>
+            <div class={classes.section}>
+              <h3>Features</h3>
+              <div class={classes.featureGrid}>
+                <label class={classes.featureToggle}>
+                  <input
+                    type="checkbox"
+                    checked={Cell.derived(() => showWPM.get())}
+                    onChange={(e: Event) =>
+                      showWPM.set((e.target as HTMLInputElement).checked)
+                    }
+                  />
+                  <span>Show WPM</span>
+                </label>
               </div>
             </div>
-          </div>
+
+            <div class={classes.section}>
+              <h3>Sound Pack</h3>
+              <div class={classes.segmentedControl}>
+                {For(SOUND_OPTIONS, (option) => {
+                  const isActive = Cell.derived(
+                    () => soundProfile.get() === option.value,
+                  );
+                  return (
+                    <button
+                      type="button"
+                      class={[
+                        classes.segmentButton,
+                        { [classes.activeSegment]: isActive },
+                      ]}
+                      onClick={() =>
+                        soundProfile.set(option.value as SoundProfile)
+                      }
+                    >
+                      {option.label}
+                    </button>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div class={classes.section}>
+              <h3>Color Theme</h3>
+              <div class={classes.themeGrid}>
+                <button
+                  type="button"
+                  class={[
+                    classes.themeButton,
+                    { [classes.activeTheme]: isBlueActive },
+                  ]}
+                  onClick={() => theme.set("blue")}
+                >
+                  <div
+                    class={classes.colorPreview}
+                    style={{ background: THEMES.blue.body }}
+                  />
+                  Blue
+                </button>
+                <button
+                  type="button"
+                  class={[
+                    classes.themeButton,
+                    { [classes.activeTheme]: isBlackActive },
+                  ]}
+                  onClick={() => theme.set("black")}
+                >
+                  <div
+                    class={classes.colorPreview}
+                    style={{ background: THEMES.black.body }}
+                  />
+                  Black
+                </button>
+                <button
+                  type="button"
+                  class={[
+                    classes.themeButton,
+                    { [classes.activeTheme]: isCreamActive },
+                  ]}
+                  onClick={() => theme.set("cream")}
+                >
+                  <div
+                    class={classes.colorPreview}
+                    style={{ background: THEMES.cream.body }}
+                  />
+                  Cream
+                </button>
+              </div>
+            </div>
+          </InteractionPanel>
         </div>
       </PlaygroundLayout>
     </div>

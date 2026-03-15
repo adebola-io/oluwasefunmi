@@ -1,29 +1,70 @@
 import type { RouteComponent } from "retend/router";
 import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
 import { SITE_URL } from "@/constants";
-import { paintings } from "@/data/paintings";
-import { For } from "retend";
+import { type Painting, paintings } from "@/data/paintings";
+import { Cell, For, If } from "retend";
 import { Viewer } from "../components/Viewer/Viewer";
 import { PaintingImage } from "./Painting";
+import { InteractionPanel } from "../components/InteractionPanel/InteractionPanel";
+
+const MODE_OPTIONS = [
+  {
+    value: "select",
+    label: "Select",
+    hint: "Click on paintings to select them",
+  },
+  { value: "view", label: "Pan View", hint: "Drag to rotate the wheel view" },
+];
 
 const ImageWheel: RouteComponent = () => {
+  const selectedPainting = Cell.source<Painting | null>(null);
+  const mode = Cell.source<"view" | "select">("select");
+
+  const isViewerEnabled = Cell.derived(() => mode.get() === "view");
+  const isSelectMode = Cell.derived(() => mode.get() === "select");
+
   return (
-    <div class="w-dvw min-h-dvh bg-[#050505] text-gray-300">
+    <div class="w-dvw h-dvh overflow-hidden bg-[#050505] text-gray-400">
       <PlaygroundLayout title="Image Wheel">
-        <div class="w-dvw h-dvh flex items-center justify-center">
-          <Viewer>
-            <div
-              class={[
-                "relative grid h-[90dvh] w-[90dvw] items-center justify-center",
-                "transition-transform duration-200 transform-3d",
-                "transform-[rotate(-90deg)_rotateY(80deg)] [--offset-path:circle(40%)] max-sm:[--offset-path:circle(25%)]",
-              ]}
-            >
-              {For(paintings, (painting, index) => (
-                <PaintingImage data={painting} index={index} />
-              ))}
-            </div>
-          </Viewer>
+        <div class="relative w-full h-full">
+          {If(selectedPainting, {
+            true: (selected: Painting | null) =>
+              selected && (
+                <PaintingImage
+                  id={String(selected.id)}
+                  data={selected}
+                  index={Cell.source(0)}
+                  isSelected
+                />
+              ),
+            false: () => (
+              <>
+                <Viewer isEnabled={isViewerEnabled}>
+                  <div
+                    class={[
+                      "relative grid max-w-0 h-[90dvh] w-[90dvw] items-center justify-center",
+                      "transition-transform duration-200 transform-3d",
+                      "transform-[rotate(-90deg)_rotateY(80deg)] [--offset-path:circle(45%)] lg:[--offset-path:circle(75%)] max-sm:[--offset-path:circle(25%)]",
+                    ]}
+                  >
+                    {For(paintings, (painting, index) => {
+                      const handleSelect = () => selectedPainting.set(painting);
+                      return (
+                        <PaintingImage
+                          id={String(painting.id)}
+                          data={painting}
+                          index={index}
+                          onSelected={handleSelect}
+                          isInteractive={isSelectMode}
+                        />
+                      );
+                    })}
+                  </div>
+                </Viewer>
+                <InteractionPanel mode={mode} modeOptions={MODE_OPTIONS} />
+              </>
+            ),
+          })}
         </div>
       </PlaygroundLayout>
     </div>

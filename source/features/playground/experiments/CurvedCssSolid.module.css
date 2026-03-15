@@ -1,17 +1,39 @@
 .app {
-    composes: app from "./ExperimentShell.module.css";
+    width: 100vw;
+    height: 100dvh;
+    color: #fff;
+    font-family: "Inter", system-ui, sans-serif;
+    overflow: hidden;
+    position: relative;
+    touch-action: none;
+    user-select: none;
     background-color: #050505;
 }
 
-.immersiveContainer { composes: immersiveContainer from "./ExperimentShell.module.css"; }
-.uiLayer { composes: uiLayer from "./ExperimentShell.module.css"; }
-.headerActions { composes: headerActions from "./ExperimentShell.module.css"; }
-.iconButton { composes: iconButton from "./ExperimentShell.module.css"; }
-.active { composes: active from "./ExperimentShell.module.css"; }
-.controlsPanel { composes: controlsPanel from "./ExperimentShell.module.css"; }
-.controlsHidden { composes: controlsHidden from "./ExperimentShell.module.css"; }
-.scrollableContent { composes: scrollableContent from "./ExperimentShell.module.css"; }
-.section { composes: section from "./ExperimentShell.module.css"; }
+.immersiveContainer {
+    position: relative;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+
+.section {
+    margin-bottom: 2rem;
+}
+
+.section:last-child {
+    margin-bottom: 0;
+}
+
+.section h3 {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: rgba(255, 255, 255, 0.5);
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
 
 /* --- Presets Grid --- */
 
@@ -119,4 +141,3 @@
     border: 1px solid rgba(255, 255, 255, 0.2);
     border-radius: 8px;
 }
-
