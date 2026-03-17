@@ -71,6 +71,16 @@
     display: none;
 }
 
+.dimmed {
+    opacity: 0.2;
+    transition: opacity 0.5s var(--ease-spring);
+}
+
+.dimmed:hover,
+.dimmed:focus-within {
+    opacity: 1;
+}
+
 .scrollableContent {
     padding: 1.5rem;
     overflow-y: auto;

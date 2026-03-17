@@ -1,4 +1,5 @@
-import { Cell, For, If } from "retend";
+import { Cell, For, If, type SourceCell } from "retend";
+import type { JSX } from "retend/jsx-runtime";
 import { SettingsIcon } from "@/components/icons/settings";
 import classes from "./InteractionPanel.module.css";
 
@@ -9,7 +10,7 @@ export interface ModeOption {
 }
 
 export interface HeaderAction {
-  icon: JSX.Component<{ class?: unknown }>;
+  icon: (props: { class?: unknown }) => JSX.Element;
   title: string;
   isActive?: Cell<boolean>;
   onClick: () => void;
@@ -17,7 +18,7 @@ export interface HeaderAction {
 
 export interface InteractionPanelProps {
   /** Controlled mode state - if not provided, mode section is hidden */
-  mode?: Cell<string>;
+  mode?: SourceCell<string>;
   /** Available mode options */
   modeOptions?: ModeOption[];
   /** Optional title for the mode section */
@@ -25,11 +26,15 @@ export interface InteractionPanelProps {
   /** Optional initial open state (defaults to true) */
   initialOpen?: boolean;
   /** Optional controlled open state */
-  isOpen?: Cell<boolean>;
+  isOpen?: SourceCell<boolean>;
   /** Additional header action buttons (besides settings toggle) */
   headerActions?: HeaderAction[];
   /** Optional additional content rendered below the mode selector */
   children?: JSX.Children;
+  /** Whether the panel should be dimmed until hovered or focused */
+  dimmed?: JSX.ValueOrCell<boolean>;
+  /** Optional custom class for the UI layer */
+  class?: unknown;
 }
 
 export const InteractionPanel = (props: InteractionPanelProps) => {
@@ -41,6 +46,8 @@ export const InteractionPanel = (props: InteractionPanelProps) => {
     isOpen: controlledIsOpen,
     headerActions = [],
     children,
+    dimmed,
+    class: className,
   } = props;
 
   const internalIsOpen = Cell.source(initialOpen);
@@ -65,7 +72,7 @@ export const InteractionPanel = (props: InteractionPanelProps) => {
   const hasModeSection = mode && modeOptions.length > 0;
 
   return (
-    <div class={classes.uiLayer}>
+    <div class={[classes.uiLayer, className]}>
       <div class={classes.headerActions}>
         {For(headerActions, (action) => {
           const Icon = action.icon;
@@ -94,7 +101,13 @@ export const InteractionPanel = (props: InteractionPanelProps) => {
       </div>
 
       <div
-        class={[classes.controlsPanel, { [classes.controlsHidden]: isHidden }]}
+        class={[
+          classes.controlsPanel,
+          {
+            [classes.controlsHidden]: isHidden,
+            [classes.dimmed]: dimmed,
+          },
+        ]}
       >
         <div class={classes.scrollableContent}>
           {If(hasModeSection ?? false, {

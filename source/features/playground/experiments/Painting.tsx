@@ -1,20 +1,27 @@
 import { getPaintingImage } from "@/data/paintingImages";
 import { type Painting, paintings } from "@/data/paintings";
-import { Cell, onSetup } from "retend";
+import { Cell, onSetup, createUnique } from "retend";
+import { useRouter } from "retend/router";
+import { useDerivedValue } from "retend-utils/hooks";
+import { UniqueTransition } from "retend-utils/components";
 
 interface PaintingImageProps {
+  id?: string;
   data: Painting;
   index: Cell<number>;
-  isSelected?: boolean;
   onSelected?: () => void;
-  /** Whether hover effects and selection are enabled. Defaults to true. */
-  isInteractive?: Cell<boolean>;
+  /** Whether selection is enabled. Defaults to true. */
+  isInteractive?: boolean;
 }
 
-export const PaintingImage = (props: PaintingImageProps) => {
-  const { data, index, onSelected, isInteractive } = props;
-  const src = getPaintingImage(data.id);
-  const hovered = Cell.source(false);
+export const PaintingImage = createUnique<PaintingImageProps>((props) => {
+  const data = Cell.derived(() => props.get().data);
+  const index = Cell.derived(() => props.get().index.get());
+  const onSelected = Cell.derived(() => props.get().onSelected);
+  const isInteractive = Cell.derived(() => props.get().isInteractive);
+  const router = useRouter();
+
+  const src = Cell.derived(() => getPaintingImage(data.get().id));
 
   const loading = Cell.source(false);
   const loaded = Cell.source(false);
@@ -32,27 +39,18 @@ export const PaintingImage = (props: PaintingImageProps) => {
     return loaded.get();
   });
   const imageSrc = Cell.derived(() => {
-    if (loading.get()) return src.small;
+    if (loading.get()) return src.get().small;
   });
 
-  const canInteract = Cell.derived(() => {
-    return isInteractive?.get() ?? true;
-  });
+  const canInteract = useDerivedValue(
+    Cell.derived(() => isInteractive.get() ?? true),
+  );
 
   const handleClick = () => {
     if (!canInteract.get()) return;
-    onSelected?.();
+    onSelected.get()?.();
+    router.navigate(`/playground/painting-wheel/${data.get().id}`);
   };
-
-  const handlePointerEnter = () => {
-    hovered.set(true);
-  };
-
-  async function handlePointerLeave(this: HTMLElement) {
-    const animations = this.getAnimations();
-    await Promise.allSettled(animations.map((a) => a.finished));
-    hovered.set(false);
-  }
 
   onSetup(() => {
     const timeout = window.setTimeout(() => {
@@ -67,32 +65,32 @@ export const PaintingImage = (props: PaintingImageProps) => {
       class={[
         "relative rounded-2xl size-[17dvw] md:size-[14dvw] select-none transform-3d",
         "[-webkit-user-drag:none] [grid-area:1/1] [offset-path:var(--offset-path)]",
-        "group duration-500 transition-transform",
+        "group duration-500 transition-all",
         "animate-offset-path transform-[rotateX(-90deg)_rotateY(90deg)]",
       ]}
       style={{ "--offset-distance-end": offsetDistanceEnd, offsetDistance }}
       onClick={handleClick}
-      onPointerEnter={handlePointerEnter}
-      onPointerLeave={handlePointerLeave}
     >
       <div
-        class="size-full border-2 rounded-2xl overflow-hidden bg-center bg-cover"
-        style={{ backgroundImage: src.gradient }}
+        class="size-full border-2 border-white/10 rounded-2xl overflow-hidden bg-center bg-cover transition-colors duration-300"
+        style={{ backgroundImage: Cell.derived(() => src.get().gradient) }}
       >
-        <img
-          draggable={false}
-          class={[
-            "size-full object-cover place-self-center transition-opacity duration-300",
-            {
-              "opacity-0": Cell.derived(() => !imageVisible.get()),
-              "opacity-100": imageVisible,
-            },
-          ]}
-          src={imageSrc}
-          alt={data.title}
-          onLoad={() => loaded.set(true)}
-        />
+        <UniqueTransition transitionDuration="200ms">
+          <img
+            draggable={false}
+            class={[
+              "size-full object-cover place-self-center transition-opacity duration-300",
+              {
+                "opacity-0": Cell.derived(() => !imageVisible.get()),
+                "opacity-100": imageVisible,
+              },
+            ]}
+            src={imageSrc}
+            alt={Cell.derived(() => data.get().title)}
+            onLoad={() => loaded.set(true)}
+          />
+        </UniqueTransition>
       </div>
     </button>
   );
-};
+});
