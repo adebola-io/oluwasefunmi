@@ -2,7 +2,7 @@ import type { JSX } from "retend/jsx-runtime";
 import { CubeIcon } from "@/components/icons/cube";
 import { RippleIcon } from "@/components/icons/ripple";
 import { CarouselIcon } from "@/components/icons/carousel";
-import { ImageWheelIcon } from "@/components/icons/image-wheel";
+import { PaintingWheelIcon } from "@/components/icons/painting-wheel";
 import { ShoppingCartIcon } from "@/components/icons/shopping-cart";
 import { HaloIcon } from "@/components/icons/halo";
 import { KeyboardIcon } from "@/components/icons/keyboard";
@@ -31,12 +31,12 @@ function ExternalLink(props: { url: string; children: string }) {
 
 export const playgroundItems: PlaygroundItem[] = [
   {
-    path: "/playground/image-wheel",
-    title: "image-wheel",
+    path: "/playground/painting-wheel",
+    title: "painting-wheel",
     description: () => (
-      <>A specialized image carousel that rotates like a wheel.</>
+      <>A specialized painting carousel that rotates like a wheel.</>
     ),
-    icon: () => <ImageWheelIcon />,
+    icon: () => <PaintingWheelIcon />,
   },
   {
     path: "/playground/css-keyboard",

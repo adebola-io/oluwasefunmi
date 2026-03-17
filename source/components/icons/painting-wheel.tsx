@@ -1,6 +1,6 @@
 import type { JSX } from "retend/jsx-runtime";
 
-export const ImageWheelIcon = (props: JSX.IntrinsicElements["svg"]) => (
+export const PaintingWheelIcon = (props: JSX.IntrinsicElements["svg"]) => (
   <svg
     {...props}
     width="24"
@@ -12,7 +12,7 @@ export const ImageWheelIcon = (props: JSX.IntrinsicElements["svg"]) => (
     stroke-linecap="round"
     stroke-linejoin="round"
   >
-    <title>Image Wheel</title>
+    <title>Painting Wheel</title>
     {/* Outer rotating segments */}
     <path d="M12 2a10 10 0 0 1 10 10" stroke-opacity="0.3" />
     <path d="M22 12a10 10 0 0 1-10 10" stroke-opacity="0.6" />

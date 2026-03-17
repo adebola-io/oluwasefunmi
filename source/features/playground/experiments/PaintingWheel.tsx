@@ -16,7 +16,7 @@ const MODE_OPTIONS = [
   { value: "view", label: "Pan View", hint: "Drag to rotate the wheel view" },
 ];
 
-const ImageWheel: RouteComponent = () => {
+const PaintingWheel: RouteComponent = () => {
   const selectedPainting = Cell.source<Painting | null>(null);
   const mode = Cell.source<"view" | "select">("select");
 
@@ -25,13 +25,12 @@ const ImageWheel: RouteComponent = () => {
 
   return (
     <div class="w-dvw h-dvh overflow-hidden bg-[#050505] text-gray-400">
-      <PlaygroundLayout title="Image Wheel">
+      <PlaygroundLayout title="Painting Wheel">
         <div class="relative w-full h-full grid place-items-center">
           {If(selectedPainting, {
             true: (selected: Painting | null) =>
               selected && (
                 <PaintingImage
-                  id={String(selected.id)}
                   data={selected}
                   index={Cell.source(0)}
                   isSelected
@@ -51,7 +50,7 @@ const ImageWheel: RouteComponent = () => {
                   >
                     {For(paintings, (painting, index) => {
                       const handleSelect = () => {
-                        console.log("Hello world.");
+                        // console.log("Hello world.");
                         // selectedPainting.set(painting)
                       };
                       return (
@@ -75,16 +74,17 @@ const ImageWheel: RouteComponent = () => {
   );
 };
 
-ImageWheel.metadata = () => ({
-  title: "Image Wheel | Playground",
-  description: "A specialized image carousel that rotates like a wheel.",
-  ogTitle: "Image Wheel | Playground",
-  ogDescription: "A specialized image carousel that rotates like a wheel.",
+PaintingWheel.metadata = () => ({
+  title: "Painting Wheel | Playground",
+  description: "A specialized painting carousel that rotates like a wheel.",
+  ogTitle: "Painting Wheel | Playground",
+  ogDescription: "A specialized painting carousel that rotates like a wheel.",
   ogImage: `${SITE_URL}/og/playground.png`,
-  twitterTitle: "Image Wheel | Playground",
-  twitterDescription: "A specialized image carousel that rotates like a wheel.",
+  twitterTitle: "Painting Wheel | Playground",
+  twitterDescription:
+    "A specialized painting carousel that rotates like a wheel.",
   twitterImage: `${SITE_URL}/og/playground.png`,
   viewport: "width=device-width, initial-scale=1.0",
 });
 
-export default ImageWheel;
+export default PaintingWheel;

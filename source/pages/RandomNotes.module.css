@@ -48,8 +48,9 @@
 }
 
 .noteCard :global(.note-heading) {
-    font-size: 1.25rem;
     font-weight: 500;
+    font-size: 1.25rem;
+    width: fit-content;
     margin-bottom: 0.5rem;
 }
 
