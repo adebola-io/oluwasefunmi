@@ -13,30 +13,26 @@ interface PaintingImageProps {
 
 export const PaintingImage = (props: PaintingImageProps) => {
   const { data, index, onSelected, isInteractive } = props;
-  const isSelected = Cell.source(false);
-  const isNotSelected = Cell.derived(() => !isSelected.get());
   const src = getPaintingImage(data.id);
   const hovered = Cell.source(false);
 
   const loading = Cell.source(false);
   const loaded = Cell.source(false);
 
-  const offsetDistance = Cell.derived(() => {
+  const offsetDistanceRaw = Cell.derived(() => {
     return (index.get() / paintings.length) * -100;
   });
-  const offsetDistancePercent = Cell.derived(() => {
-    return `${offsetDistance.get()}%`;
+  const offsetDistance = Cell.derived(() => {
+    return `${offsetDistanceRaw.get()}%`;
   });
   const offsetDistanceEnd = Cell.derived(() => {
-    return `${offsetDistance.get() - 100}%`;
+    return `${offsetDistanceRaw.get() - 100}%`;
   });
   const imageVisible = Cell.derived(() => {
     return loaded.get();
   });
   const imageSrc = Cell.derived(() => {
-    if (loading.get()) {
-      return src.small;
-    }
+    if (loading.get()) return src.small;
   });
 
   const canInteract = Cell.derived(() => {
@@ -47,10 +43,6 @@ export const PaintingImage = (props: PaintingImageProps) => {
     if (!canInteract.get()) return;
     onSelected?.();
   };
-
-  const cursorClass = Cell.derived(() =>
-    canInteract.get() ? "cursor-pointer" : "cursor-default",
-  );
 
   const handlePointerEnter = () => {
     hovered.set(true);
@@ -73,32 +65,18 @@ export const PaintingImage = (props: PaintingImageProps) => {
     <button
       type="button"
       class={[
-        "relative rounded-2xl size-[18dvw] md:size-[14dvw] select-none transform-3d",
-        "[-webkit-user-drag:none]",
+        "relative rounded-2xl size-[17dvw] md:size-[14dvw] select-none transform-3d",
+        "[-webkit-user-drag:none] [grid-area:1/1] [offset-path:var(--offset-path)]",
         "group duration-500 transition-transform",
-        cursorClass,
-        {
-          "animate-offset-path transform-[rotateX(-90deg)_rotateY(90deg)]":
-            isNotSelected,
-          "translate-x-10": hovered,
-          "bg-green-200 [--offset-path:none]": isSelected,
-        },
+        "animate-offset-path transform-[rotateX(-90deg)_rotateY(90deg)]",
       ]}
-      style={{
-        "--offset-distance-end": offsetDistanceEnd,
-        offsetPath: "var(--offset-path)",
-        gridArea: "1/1",
-        offsetDistance: offsetDistancePercent,
-      }}
+      style={{ "--offset-distance-end": offsetDistanceEnd, offsetDistance }}
       onClick={handleClick}
       onPointerEnter={handlePointerEnter}
       onPointerLeave={handlePointerLeave}
     >
       <div
-        class={[
-          "size-full transition-colors border-2 rounded-2xl overflow-hidden",
-          "bg-center bg-cover",
-        ]}
+        class="size-full border-2 rounded-2xl overflow-hidden bg-center bg-cover"
         style={{ backgroundImage: src.gradient }}
       >
         <img

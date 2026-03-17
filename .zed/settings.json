@@ -1,3 +1,8 @@
 {
-  "language_servers": ["!vtsls", "tsgo", "oxlint"],
+  "language_servers": [
+    "!vtsls",
+    "tsgo",
+    "oxlint",
+    "tailwindcss-language-server",
+  ],
 }
