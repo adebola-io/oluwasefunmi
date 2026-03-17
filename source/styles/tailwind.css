@@ -5,16 +5,26 @@
 }
 
 @utility animate-offset-path {
-    animation:
-        to-offset-start 1000ms ease,
-        offset-path 8000ms linear infinite;
-    animation-composition: replace;
+    animation: to-offset-start 1300ms ease;
+}
+
+@utility animate-rotate {
+    animation: rotate 10000ms linear infinite;
 }
 
 @keyframes fade-in {
     from {
         translate: 0px 10%;
         opacity: 0;
+    }
+}
+
+@keyframes rotate {
+    from {
+        rotate: y 0deg;
+    }
+    to {
+        rotate: y 360deg;
     }
 }
 

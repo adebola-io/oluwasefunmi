@@ -26,7 +26,7 @@ const ImageWheel: RouteComponent = () => {
   return (
     <div class="w-dvw h-dvh overflow-hidden bg-[#050505] text-gray-400">
       <PlaygroundLayout title="Image Wheel">
-        <div class="relative w-full h-full">
+        <div class="relative w-full h-full grid place-items-center">
           {If(selectedPainting, {
             true: (selected: Painting | null) =>
               selected && (
@@ -39,19 +39,23 @@ const ImageWheel: RouteComponent = () => {
               ),
             false: () => (
               <>
-                <Viewer isEnabled={isViewerEnabled}>
+                <Viewer isEnabled={isViewerEnabled} initialRx={-19.57}>
                   <div
                     class={[
-                      "relative grid max-w-0 h-[90dvh] w-[90dvw] items-center justify-center",
+                      "relative grid h-[90dvh] w-[90dvw] items-center justify-center",
                       "transition-transform duration-200 transform-3d",
-                      "transform-[rotate(-90deg)_rotateY(80deg)] [--offset-path:circle(45%)] lg:[--offset-path:circle(75%)] max-sm:[--offset-path:circle(25%)]",
+                      "[--offset-path:circle(40%)] max-sm:[--offset-path:circle(25%)]",
+                      "transform-[rotate(-90deg)_rotateY(90deg)]",
+                      "animate-rotate",
                     ]}
                   >
                     {For(paintings, (painting, index) => {
-                      const handleSelect = () => selectedPainting.set(painting);
+                      const handleSelect = () => {
+                        console.log("Hello world.");
+                        // selectedPainting.set(painting)
+                      };
                       return (
                         <PaintingImage
-                          id={String(painting.id)}
                           data={painting}
                           index={index}
                           onSelected={handleSelect}
