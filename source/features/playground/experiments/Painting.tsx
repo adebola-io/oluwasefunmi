@@ -1,12 +1,69 @@
 import { getPaintingImage } from "@/data/paintingImages";
 import { type Painting, paintings } from "@/data/paintings";
-import { Cell, onSetup, createUnique } from "retend";
+import { Cell, onSetup } from "retend";
 import { useRouter } from "retend/router";
 import { useDerivedValue } from "retend-utils/hooks";
-import { UniqueTransition } from "retend-utils/components";
+import type { JSX } from "retend/jsx-runtime";
+
+interface PaintingFrameProps {
+  id: string;
+  data: Painting;
+  staggerIndex?: JSX.ValueOrCell<number>;
+}
+
+/**
+ * A frame component for displaying a painting.
+ * Handles loading state and displays the painting with a gradient background.
+ */
+export function PaintingFrame(props: PaintingFrameProps) {
+  const staggerIndexCell = useDerivedValue(props.staggerIndex ?? 0);
+
+  const src = Cell.derived(() => getPaintingImage(props.data.id));
+
+  const loading = Cell.source(false);
+  const loaded = Cell.source(false);
+  const imageVisible = Cell.derived(() => loaded.get());
+  const imageSrc = Cell.derived(() => {
+    if (loading.get()) return src.get().small;
+  });
+
+  onSetup(() => {
+    const stagger = staggerIndexCell.get();
+    const timeout = window.setTimeout(
+      () => {
+        loading.set(true);
+      },
+      stagger * 20 + 50,
+    );
+    return () => window.clearTimeout(timeout);
+  });
+
+  const gradient = Cell.derived(() => src.get().gradient);
+  const isHidden = Cell.derived(() => !imageVisible.get());
+
+  return (
+    <div
+      class="h-full w-auto aspect-square rounded-2xl overflow-hidden bg-center bg-cover transition-colors duration-300 border-2 border-white/10"
+      style={{ backgroundImage: gradient }}
+    >
+      <img
+        draggable={false}
+        class={[
+          "size-full object-cover transition-opacity duration-300",
+          {
+            "opacity-0": isHidden,
+            "opacity-100": imageVisible,
+          },
+        ]}
+        src={imageSrc}
+        alt={props.data.title}
+        onLoad={() => loaded.set(true)}
+      />
+    </div>
+  );
+}
 
 interface PaintingImageProps {
-  id?: string;
   data: Painting;
   index: Cell<number>;
   onSelected?: () => void;
@@ -14,50 +71,30 @@ interface PaintingImageProps {
   isInteractive?: boolean;
 }
 
-export const PaintingImage = createUnique<PaintingImageProps>((props) => {
-  const data = Cell.derived(() => props.get().data);
-  const index = Cell.derived(() => props.get().index.get());
-  const onSelected = Cell.derived(() => props.get().onSelected);
-  const isInteractive = Cell.derived(() => props.get().isInteractive);
+/**
+ * Wheel-specific wrapper that applies 3D transforms.
+ * Hosts the PaintingFrame component.
+ */
+export const PaintingImage = (props: PaintingImageProps) => {
+  const { data, index, onSelected, isInteractive } = props;
   const router = useRouter();
 
-  const src = Cell.derived(() => getPaintingImage(data.get().id));
-
-  const loading = Cell.source(false);
-  const loaded = Cell.source(false);
-
-  const offsetDistanceRaw = Cell.derived(() => {
-    return (index.get() / paintings.length) * -100;
-  });
   const offsetDistance = Cell.derived(() => {
-    return `${offsetDistanceRaw.get()}%`;
+    return `${(index.get() / paintings.length) * -100}%`;
   });
   const offsetDistanceEnd = Cell.derived(() => {
-    return `${offsetDistanceRaw.get() - 100}%`;
-  });
-  const imageVisible = Cell.derived(() => {
-    return loaded.get();
-  });
-  const imageSrc = Cell.derived(() => {
-    if (loading.get()) return src.get().small;
+    return `${(index.get() / paintings.length) * -100 - 100}%`;
   });
 
   const canInteract = useDerivedValue(
-    Cell.derived(() => isInteractive.get() ?? true),
+    Cell.derived(() => isInteractive ?? true),
   );
 
   const handleClick = () => {
     if (!canInteract.get()) return;
-    onSelected.get()?.();
-    router.navigate(`/playground/painting-wheel/${data.get().id}`);
+    onSelected?.();
+    router.navigate(`/playground/painting-wheel/${data.id}`);
   };
-
-  onSetup(() => {
-    const timeout = window.setTimeout(() => {
-      loading.set(true);
-    }, index.get() * 20);
-    return () => window.clearTimeout(timeout);
-  });
 
   return (
     <button
@@ -71,26 +108,11 @@ export const PaintingImage = createUnique<PaintingImageProps>((props) => {
       style={{ "--offset-distance-end": offsetDistanceEnd, offsetDistance }}
       onClick={handleClick}
     >
-      <div
-        class="size-full border-2 border-white/10 rounded-2xl overflow-hidden bg-center bg-cover transition-colors duration-300"
-        style={{ backgroundImage: Cell.derived(() => src.get().gradient) }}
-      >
-        <UniqueTransition transitionDuration="200ms">
-          <img
-            draggable={false}
-            class={[
-              "size-full object-cover place-self-center transition-opacity duration-300",
-              {
-                "opacity-0": Cell.derived(() => !imageVisible.get()),
-                "opacity-100": imageVisible,
-              },
-            ]}
-            src={imageSrc}
-            alt={Cell.derived(() => data.get().title)}
-            onLoad={() => loaded.set(true)}
-          />
-        </UniqueTransition>
-      </div>
+      <PaintingFrame
+        id={`painting-frame-${data.id}`}
+        data={data}
+        staggerIndex={index}
+      />
     </button>
   );
-});
+};

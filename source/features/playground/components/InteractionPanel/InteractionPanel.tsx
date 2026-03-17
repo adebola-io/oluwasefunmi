@@ -3,6 +3,26 @@ import type { JSX } from "retend/jsx-runtime";
 import { SettingsIcon } from "@/components/icons/settings";
 import classes from "./InteractionPanel.module.css";
 
+interface ModeOptionButtonProps {
+  option: ModeOption;
+  mode?: SourceCell<string>;
+}
+
+const ModeOptionButton = (props: ModeOptionButtonProps) => {
+  const { option, mode } = props;
+  const isActive = Cell.derived(() => mode?.get() === option.value);
+
+  return (
+    <button
+      type="button"
+      class={[classes.segmentButton, { [classes.activeSegment]: isActive }]}
+      onClick={() => mode?.set(option.value)}
+    >
+      {option.label}
+    </button>
+  );
+};
+
 export interface ModeOption {
   value: string;
   label: string;
@@ -115,23 +135,9 @@ export const InteractionPanel = (props: InteractionPanelProps) => {
               <div class={classes.section}>
                 <h3>{modeTitle}</h3>
                 <div class={classes.segmentedControl}>
-                  {For(modeOptions, (option) => {
-                    const isActive = Cell.derived(
-                      () => mode?.get() === option.value,
-                    );
-                    return (
-                      <button
-                        type="button"
-                        class={[
-                          classes.segmentButton,
-                          { [classes.activeSegment]: isActive },
-                        ]}
-                        onClick={() => mode?.set(option.value)}
-                      >
-                        {option.label}
-                      </button>
-                    );
-                  })}
+                  {For(modeOptions, (option) => (
+                    <ModeOptionButton option={option} mode={mode} />
+                  ))}
                 </div>
                 {If(currentHint, {
                   true: (hint) => <p class={classes.modeHint}>{hint}</p>,

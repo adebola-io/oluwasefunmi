@@ -154,7 +154,6 @@ interface KeyProps {
   keyDepth: Cell<number>;
 }
 
-// oxlint-disable-next-line retend/max-component-lines
 const Key = (props: KeyProps) => {
   const {
     data,
@@ -221,6 +220,17 @@ const Key = (props: KeyProps) => {
     return Math.max(3, Math.min(10, baseKeyHeight.get() * 0.12));
   });
 
+  const keyTransform = Cell.derived(() =>
+    isPressed.get()
+      ? `translateZ(-${keyDepth.get() * 0.8}px)`
+      : "translateZ(0px)",
+  );
+  const fontSizeStyle = Cell.derived(() => `${fontSize.get()}px`);
+  const borderRadiusStyle = Cell.derived(() => `${curve.get()}px`);
+  const shiftNameFontSizeStyle = Cell.derived(
+    () => `${fontSize.get() * 0.85}px`,
+  );
+
   const handlePointerDown = (e: PointerEvent) => {
     e.stopPropagation();
     isPointerPressed.set(true);
@@ -275,11 +285,7 @@ const Key = (props: KeyProps) => {
         secondaryColor={secondaryKeyColor}
         class={classes.key}
         style={{
-          transform: Cell.derived(() =>
-            isPressed.get()
-              ? `translateZ(-${keyDepth.get() * 0.8}px)`
-              : "translateZ(0px)",
-          ),
+          transform: keyTransform,
           transition:
             "transform 0.05s ease-out, background-color 0.05s ease-out",
         }}
@@ -291,15 +297,15 @@ const Key = (props: KeyProps) => {
           class="flex flex-col justify-center items-center h-full w-full px-0.5 py-1 font-medium select-none leading-none border border-[#00000025]"
           style={{
             color: textColor,
-            fontSize: Cell.derived(() => `${fontSize.get()}px`),
-            borderRadius: Cell.derived(() => `${curve.get()}px`),
+            fontSize: fontSizeStyle,
+            borderRadius: borderRadiusStyle,
           }}
         >
           {If(data.shiftName, () => (
             <span
               class="mb-0.5 opacity-80"
               style={{
-                fontSize: Cell.derived(() => `${fontSize.get() * 0.85}px`),
+                fontSize: shiftNameFontSizeStyle,
               }}
             >
               {data.shiftName}
@@ -310,6 +316,32 @@ const Key = (props: KeyProps) => {
       </Box>
     </div>
   );
+};
+
+const useKeyboardEvents = (pressedKeys: Cell<Set<string>>) => {
+  onSetup(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.repeat) return;
+      playClick();
+      const next = new Set(pressedKeys.get());
+      next.add(e.key.toLowerCase());
+      pressedKeys.set(next);
+    };
+
+    const handleKeyUp = (e: KeyboardEvent) => {
+      const next = new Set(pressedKeys.get());
+      next.delete(e.key.toLowerCase());
+      pressedKeys.set(next);
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    window.addEventListener("keyup", handleKeyUp);
+
+    return () => {
+      window.removeEventListener("keydown", handleKeyDown);
+      window.removeEventListener("keyup", handleKeyUp);
+    };
+  });
 };
 
 interface KeyboardProps {
@@ -357,36 +389,17 @@ const Keyboard = (props: KeyboardProps) => {
   const keyboardDepth = Cell.derived(() => (width.get() < 600 ? 10 : 20));
   const keyboardCurve = Cell.derived(() => (width.get() < 600 ? 8 : 20));
 
-  onSetup(() => {
-    const handleKeyDown = (e: KeyboardEvent) => {
-      if (e.repeat) return;
-      playClick();
-      const next = new Set(pressedKeys.get());
-      next.add(e.key.toLowerCase());
-      pressedKeys.set(next);
-    };
+  const paddingXStyle = Cell.derived(() => `${paddingX.get()}px`);
+  const paddingYStyle = Cell.derived(() => `${paddingY.get()}px`);
 
-    const handleKeyUp = (e: KeyboardEvent) => {
-      const next = new Set(pressedKeys.get());
-      next.delete(e.key.toLowerCase());
-      pressedKeys.set(next);
-    };
-
-    window.addEventListener("keydown", handleKeyDown);
-    window.addEventListener("keyup", handleKeyUp);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeyDown);
-      window.removeEventListener("keyup", handleKeyUp);
-    };
-  });
+  useKeyboardEvents(pressedKeys);
 
   return (
     <div
       class={classes.container}
       style={{
-        "--padding-x": Cell.derived(() => `${paddingX.get()}px`),
-        "--padding-y": Cell.derived(() => `${paddingY.get()}px`),
+        "--padding-x": paddingXStyle,
+        "--padding-y": paddingYStyle,
         "--gap": `${GAP_X}px`,
       }}
     >

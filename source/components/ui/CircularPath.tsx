@@ -8,6 +8,38 @@ interface CircularPathProps extends JSX.BaseContainerProps {
   text: JSX.ValueOrCell<string>;
 }
 
+interface LetterProps {
+  part: string;
+  index: Cell<number>;
+  text: Cell<string>;
+}
+
+const Letter = (props: LetterProps) => {
+  const { part, index, text } = props;
+  const ref = Cell.source<HTMLElement | null>(null);
+
+  text.listen(() => {
+    const div = ref.get();
+    if (!div) return;
+    const animations = div.getAnimations();
+
+    for (const animation of animations) {
+      animation.cancel();
+      animation.play();
+    }
+  });
+
+  return (
+    <div
+      ref={ref}
+      style={{ "--i": index, "--letter": `'${part}'` }}
+      class={classes.letter}
+    >
+      <div class={classes.letterMain}>{part}</div>
+    </div>
+  );
+};
+
 export const CircularPath = (props: CircularPathProps) => {
   const {
     speed = "7s",
@@ -41,30 +73,9 @@ export const CircularPath = (props: CircularPathProps) => {
       title={text}
       class={[classes.container, rest.class]}
     >
-      {For(parts, (part, i) => {
-        const ref = Cell.source<HTMLElement | null>(null);
-
-        text.listen(() => {
-          const div = ref.get();
-          if (!div) return;
-          const animations = div.getAnimations();
-
-          for (const animation of animations) {
-            animation.cancel();
-            animation.play();
-          }
-        });
-
-        return (
-          <div
-            ref={ref}
-            style={{ "--i": i, "--letter": `'${part}'` }}
-            class={classes.letter}
-          >
-            <div class={classes.letterMain}>{part}</div>
-          </div>
-        );
-      })}
+      {For(parts, (part, i) => (
+        <Letter part={part} index={i} text={text} />
+      ))}
     </div>
   );
 };

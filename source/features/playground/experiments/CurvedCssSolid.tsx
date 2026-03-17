@@ -18,7 +18,6 @@ const PRESETS = {
 
 type PresetKey = keyof typeof PRESETS;
 
-// oxlint-disable-next-line retend/max-component-lines
 const CurvedCssSolid: RouteComponent = () => {
   const rx = Cell.source(25);
   const ry = Cell.source(-35);
@@ -173,9 +172,7 @@ const CurvedCssSolid: RouteComponent = () => {
                   model={rx}
                   class={classes.slider}
                 />
-                <span class={classes.valueDisplay}>
-                  {Cell.derived(() => Math.round(rx.get()))}
-                </span>
+                <span class={classes.valueDisplay}>{rx}</span>
               </div>
               <div class={classes.controlRow}>
                 <label for="input-ry">Y</label>
@@ -187,9 +184,7 @@ const CurvedCssSolid: RouteComponent = () => {
                   model={ry}
                   class={classes.slider}
                 />
-                <span class={classes.valueDisplay}>
-                  {Cell.derived(() => Math.round(ry.get()))}
-                </span>
+                <span class={classes.valueDisplay}>{ry}</span>
               </div>
               <div class={classes.controlRow}>
                 <label for="input-rz">Z</label>
@@ -201,9 +196,7 @@ const CurvedCssSolid: RouteComponent = () => {
                   model={rz}
                   class={classes.slider}
                 />
-                <span class={classes.valueDisplay}>
-                  {Cell.derived(() => Math.round(rz.get()))}
-                </span>
+                <span class={classes.valueDisplay}>{rz}</span>
               </div>
             </div>
           </InteractionPanel>

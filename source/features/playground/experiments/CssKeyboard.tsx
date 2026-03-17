@@ -36,7 +36,7 @@ const THEMES = {
     secondaryKey: "#9e9d8c",
     text: "rgba(65, 60, 50, 0.9)",
   },
-};
+} as const;
 
 type ThemeType = keyof typeof THEMES;
 
@@ -49,9 +49,28 @@ const SOUND_OPTIONS = [
   { value: "switch", label: "Switch" },
   { value: "typewriter", label: "Typewriter" },
   { value: "bubble", label: "Bubble" },
-];
+] as const;
 
-// oxlint-disable-next-line retend/max-component-lines
+interface SoundOptionButtonProps {
+  option: (typeof SOUND_OPTIONS)[number];
+  soundProfile: Cell<SoundProfile>;
+}
+
+const SoundOptionButton = (props: SoundOptionButtonProps) => {
+  const { option, soundProfile } = props;
+  const isActive = Cell.derived(() => soundProfile.get() === option.value);
+
+  return (
+    <button
+      type="button"
+      class={[classes.segmentButton, { [classes.activeSegment]: isActive }]}
+      onClick={() => soundProfile.set(option.value as SoundProfile)}
+    >
+      {option.label}
+    </button>
+  );
+};
+
 const CssKeyboard = () => {
   const theme = Cell.source<ThemeType>("cream");
   const soundProfile = Cell.source<SoundProfile>("switch");
@@ -63,6 +82,7 @@ const CssKeyboard = () => {
   const isBlueActive = Cell.derived(() => theme.get() === "blue");
   const isBlackActive = Cell.derived(() => theme.get() === "black");
   const isCreamActive = Cell.derived(() => theme.get() === "cream");
+  const isViewMode = Cell.derived(() => mode.get() === "view");
 
   soundProfile.listen((p) => setSoundProfile(p));
 
@@ -70,11 +90,7 @@ const CssKeyboard = () => {
     <div class={classes.app}>
       <PlaygroundLayout title="CSS Keyboard">
         <div class={classes.immersiveContainer}>
-          <Viewer
-            class="animate-fade-in"
-            initialRx={9}
-            isEnabled={Cell.derived(() => mode.get() === "view")}
-          >
+          <Viewer class="animate-fade-in" initialRx={9} isEnabled={isViewMode}>
             <Keyboard colors={colors} mode={mode} />
           </Viewer>
 
@@ -87,7 +103,7 @@ const CssKeyboard = () => {
                 <label class={classes.featureToggle}>
                   <input
                     type="checkbox"
-                    checked={Cell.derived(() => showWPM.get())}
+                    checked={showWPM}
                     onChange={(e: Event) =>
                       showWPM.set((e.target as HTMLInputElement).checked)
                     }
@@ -100,25 +116,12 @@ const CssKeyboard = () => {
             <div class={classes.section}>
               <h3>Sound Pack</h3>
               <div class={classes.segmentedControl}>
-                {For(SOUND_OPTIONS, (option) => {
-                  const isActive = Cell.derived(
-                    () => soundProfile.get() === option.value,
-                  );
-                  return (
-                    <button
-                      type="button"
-                      class={[
-                        classes.segmentButton,
-                        { [classes.activeSegment]: isActive },
-                      ]}
-                      onClick={() =>
-                        soundProfile.set(option.value as SoundProfile)
-                      }
-                    >
-                      {option.label}
-                    </button>
-                  );
-                })}
+                {For(SOUND_OPTIONS, (option) => (
+                  <SoundOptionButton
+                    option={option}
+                    soundProfile={soundProfile}
+                  />
+                ))}
               </div>
             </div>
 

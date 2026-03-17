@@ -1,35 +1,24 @@
 import type { RouteComponent } from "retend/router";
-import { Outlet, useCurrentRoute } from "retend/router";
+import { Outlet } from "retend/router";
 import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
 import { SITE_URL } from "@/constants";
 import { paintings } from "@/data/paintings";
-import { For, Cell, If } from "retend";
+import { For } from "retend";
 import { Viewer } from "../components/Viewer/Viewer";
 import { PaintingImage } from "./Painting";
 import { CollectionPanel } from "./CollectionPanel";
 
 const PaintingWheel: RouteComponent = () => {
-  const currentRoute = useCurrentRoute();
-  const isDetailView = Cell.derived(() =>
-    currentRoute.get().params.has("paintingId"),
-  );
-
   return (
     <div class="w-dvw h-dvh overflow-hidden bg-[#050505] text-gray-400">
       <PlaygroundLayout title="Painting Wheel">
-        {If(isDetailView, {
-          true: () => <Outlet />,
-          false: () => (
-            <div class="relative w-full h-full flex items-center justify-center overflow-hidden">
-              <div class="relative w-full h-full grid place-items-center">
-                <Viewer initialRx={-30} initialRz={10}>
-                  <Wheel />
-                </Viewer>
-              </div>
-              <CollectionPanel />
-            </div>
-          ),
-        })}
+        <div class="grid relative w-full h-full place-items-center justify-center overflow-hidden">
+          <Viewer initialRx={-30} initialRz={10}>
+            <Wheel />
+          </Viewer>
+          <CollectionPanel />
+          <Outlet class="empty:hidden! fixed block! top-0 w-dvw h-dvh" />
+        </div>
       </PlaygroundLayout>
     </div>
   );
@@ -47,11 +36,7 @@ const Wheel = () => {
       ]}
     >
       {For(paintings, (painting, index) => (
-        <PaintingImage
-          id={`painting-${painting.id}`}
-          data={painting}
-          index={index}
-        />
+        <PaintingImage data={painting} index={index} />
       ))}
     </div>
   );

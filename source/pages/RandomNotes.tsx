@@ -35,6 +35,10 @@ export const getNotesIndex = async () => {
 const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
   const { metadata } = props;
   const notes = Cell.derived(() => metadata.get("misc"));
+  const isEmptyNotes = Cell.derived(() => {
+    const n = notes.get();
+    return !n || n.length === 0;
+  });
 
   return (
     <div class={classes.page}>
@@ -51,10 +55,7 @@ const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
 
         <div class={classes.notesList}>
           {If(
-            Cell.derived(() => {
-              const n = notes.get();
-              return !n || n.length === 0;
-            }),
+            isEmptyNotes,
             () => (
               <p class={classes.empty}>No notes yet.</p>
             ),

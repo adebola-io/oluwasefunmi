@@ -5,9 +5,48 @@ import { LayeredCard } from "@/components/ui/LayeredCard";
 import classes from "./Works.module.css";
 import { PageTitle } from "@/components/layout/PageTitle";
 import { StarShower } from "@/components/ui/StarShower";
-import { projects } from "@/data/projects";
+import { projects, type Project } from "@/data/projects";
 import { ArrowIcon } from "@/components/icons/arrow";
 import { SITE_URL } from "@/constants";
+
+interface ProjectItemProps {
+  project: Project;
+  index: Cell<number>;
+}
+
+const ProjectItem = (props: ProjectItemProps) => {
+  const { project, index } = props;
+  const animationDelay = Cell.derived(() => `${index.get() * 100}ms`);
+
+  return (
+    <li
+      key={project.id}
+      class={[classes.item, project.class]}
+      style={{ animationDelay }}
+    >
+      <LayeredCard
+        as={Link}
+        href={project.link}
+        target="_blank"
+        rel="noreferrer"
+        class={classes.projectCard}
+      >
+        <div>
+          <h2 class={classes.projectTitle}>
+            {project.name}.
+            <ArrowIcon class={classes.arrowIcon} />
+          </h2>
+          <p class={classes.projectDescription}>{project.description}</p>
+        </div>
+        <div class={classes.tags}>
+          {For(project.tags, (tag) => (
+            <span class={classes.tag}>{tag}</span>
+          ))}
+        </div>
+      </LayeredCard>
+    </li>
+  );
+};
 
 const Works: RouteComponent = () => {
   return (
@@ -25,36 +64,7 @@ const Works: RouteComponent = () => {
 
         <ul class={classes.grid}>
           {For(projects, (project, i) => (
-            <li
-              key={project.id}
-              class={[classes.item, project.class]}
-              style={Cell.derived(() => ({
-                animationDelay: `${i.get() * 100}ms`,
-              }))}
-            >
-              <LayeredCard
-                as={Link}
-                href={project.link}
-                target="_blank"
-                rel="noreferrer"
-                class={classes.projectCard}
-              >
-                <div>
-                  <h2 class={classes.projectTitle}>
-                    {project.name}.
-                    <ArrowIcon class={classes.arrowIcon} />
-                  </h2>
-                  <p class={classes.projectDescription}>
-                    {project.description}
-                  </p>
-                </div>
-                <div class={classes.tags}>
-                  {For(project.tags, (tag) => (
-                    <span class={classes.tag}>{tag}</span>
-                  ))}
-                </div>
-              </LayeredCard>
-            </li>
+            <ProjectItem project={project} index={i} />
           ))}
         </ul>
       </div>

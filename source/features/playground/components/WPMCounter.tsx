@@ -96,7 +96,7 @@ export const WPMCounter = ({ show }: WPMCounterProps) => {
           <span style={{ color: "rgba(255,255,255,0.6)", fontSize: "14px" }}>
             WPM
           </span>
-          {Cell.derived(() => wpm.get())}
+          {wpm}
         </div>
       ))}
     </>

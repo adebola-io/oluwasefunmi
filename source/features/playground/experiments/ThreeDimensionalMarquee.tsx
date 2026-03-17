@@ -9,9 +9,10 @@ import { Viewer } from "@/features/playground/components/Viewer/Viewer";
 
 const ThreeDimensionalMarquee: RouteComponent = () => {
   const isControlsOpen = Cell.source(true);
-
   const text = Cell.source("PLAYING: A KNIGHT OF THE SEVEN KINGDOMS.");
   const color = Cell.source("#c2e1ff");
+
+  const isControlsClosed = Cell.derived(() => !isControlsOpen.get());
 
   return (
     <div class="w-dvw h-dvh flex justify-center bg-[#050505] text-white font-sans overflow-hidden relative touch-none select-none">
@@ -30,7 +31,7 @@ const ThreeDimensionalMarquee: RouteComponent = () => {
               "pointer-events-auto w-85 max-w-[calc(100vw-3rem)] max-h-[70vh] bg-[#121212]/75 backdrop-blur-2xl border border-white/5 rounded-[20px] shadow-[0_10px_40px_rgba(0,0,0,0.5)] overflow-hidden transition-all duration-400 ease-[cubic-bezier(0.16,1,0.3,1)] origin-bottom-right",
               {
                 "translate-y-5 scale-95 opacity-0 pointer-events-none":
-                  Cell.derived(() => !isControlsOpen.get()),
+                  isControlsClosed,
               },
             ]}
           >
