@@ -18,14 +18,14 @@ export const CollectionPanel = () => {
   return (
     <InteractionPanel modeTitle="Collection" isOpen={isOpen}>
       <div class="flex flex-col min-h-0">
-        <div class="overflow-y-auto pr-2 flex-1 space-y-1 [scrollbar-width:thin] [scrollbar-color:rgba(255,255,255,0.1)_transparent]">
+        <div class="overflow-y-auto pr-2 flex-1 [scrollbar-width:thin] [scrollbar-color:rgba(255,255,255,0.1)_transparent]">
           {For(paintings, (painting) => (
             <button
               type="button"
               onClick={() =>
                 router.navigate(`/playground/painting-wheel/${painting.id}`)
               }
-              class="w-full text-left px-3 py-2 rounded-lg transition-all duration-200 relative cursor-pointer hover:bg-white/5"
+              class="w-full text-left px-3 py-2 mb-1 last:mb-0 rounded-lg transition-all duration-200 relative cursor-pointer hover:bg-white/5"
             >
               <PaintingTitleAndArtist
                 id={`painting-title-${painting.id}`}

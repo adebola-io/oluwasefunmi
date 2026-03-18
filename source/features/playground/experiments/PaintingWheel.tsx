@@ -17,7 +17,7 @@ const PaintingWheel: RouteComponent = () => {
             <Wheel />
           </Viewer>
           <CollectionPanel />
-          <Outlet class="empty:hidden! fixed block! top-0 w-dvw h-dvh" />
+          <Outlet class="empty:hidden! fixed block! top-0 z-[200] w-dvw h-dvh" />
         </div>
       </PlaygroundLayout>
     </div>

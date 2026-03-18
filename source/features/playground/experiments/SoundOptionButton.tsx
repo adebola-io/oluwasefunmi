@@ -1,4 +1,4 @@
-import { Cell } from "retend";
+import { Cell, SourceCell } from "retend";
 import type { SoundProfile } from "@/features/playground/components/KeyboardSounds";
 import classes from "./CssKeyboard.module.css";
 
@@ -10,7 +10,7 @@ export const SOUND_OPTIONS = [
 
 interface SoundOptionButtonProps {
   option: (typeof SOUND_OPTIONS)[number];
-  soundProfile: Cell<SoundProfile>;
+  soundProfile: SourceCell<SoundProfile>;
 }
 
 export const SoundOptionButton = (props: SoundOptionButtonProps) => {

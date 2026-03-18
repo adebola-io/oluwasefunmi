@@ -1,12 +1,12 @@
-import { Cell } from "retend";
+import { type SourceCell } from "retend";
 import { Input } from "retend-utils/components";
 import classes from "./CurvedCssSolid.module.css";
 
 interface DimensionsSectionProps {
-  height: Cell<number>;
-  width: Cell<number>;
-  depth: Cell<number>;
-  curve: Cell<number>;
+  height: SourceCell<number>;
+  width: SourceCell<number>;
+  depth: SourceCell<number>;
+  curve: SourceCell<number>;
 }
 
 export const DimensionsSection = (props: DimensionsSectionProps) => {
@@ -68,9 +68,9 @@ export const DimensionsSection = (props: DimensionsSectionProps) => {
 };
 
 interface RotationSectionProps {
-  rx: Cell<number>;
-  ry: Cell<number>;
-  rz: Cell<number>;
+  rx: SourceCell<number>;
+  ry: SourceCell<number>;
+  rz: SourceCell<number>;
 }
 
 export const RotationSection = (props: RotationSectionProps) => {

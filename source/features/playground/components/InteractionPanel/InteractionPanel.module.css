@@ -160,10 +160,16 @@
 
 @media (max-width: 600px) {
     .controlsPanel {
+        position: absolute;
         right: 1rem;
         left: 1rem;
         bottom: 1rem;
         width: auto;
         max-width: none;
+        margin-bottom: 0;
+    }
+    .headerActions {
+        top: 1rem;
+        right: 1rem;
     }
 }

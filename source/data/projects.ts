@@ -4,7 +4,7 @@ export const timeline = [
   "calc(var(--duration)*0.5)",
 ];
 
-interface Project {
+export interface Project {
   id: number;
   name: string;
   description: string;

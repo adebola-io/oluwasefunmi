@@ -16,7 +16,7 @@ const PaintingContent = (props: PaintingContentProps) => {
   const { painting, onBack } = props;
 
   return (
-    <div class="flex-1 flex flex-col md:flex-row overflow-hidden relative font-['Manrope']">
+    <div class="flex-1 flex flex-col md:flex-row relative font-['Manrope']">
       {/* Header Area - Matches PlaygroundLayout positioning */}
       <div class="fixed top-0 left-0 w-full p-[clamp(1rem,3vw,2rem)] z-50 pointer-events-none flex items-center justify-between">
         <button
@@ -34,7 +34,7 @@ const PaintingContent = (props: PaintingContentProps) => {
       </div>
 
       {/* Stage */}
-      <main class="flex-1 relative bg-black flex items-center justify-center p-12 md:p-24 overflow-hidden">
+      <main class="w-full min-h-[60dvh] md:min-h-0 md:flex-1 relative bg-black flex items-center justify-center p-12 md:p-24 overflow-hidden shrink-0">
         <div
           class="absolute inset-0 opacity-40"
           style={{
@@ -43,15 +43,15 @@ const PaintingContent = (props: PaintingContentProps) => {
           }}
         />
 
-        <div class="relative group w-full h-full max-w-full max-h-[70dvh] flex items-center justify-center">
+        <div class="relative group w-full h-full max-w-full max-h-[70dvh] pt-[clamp(3rem,8vw,5rem)] flex items-center justify-center">
           <div class="absolute -bottom-12 left-1/2 -translate-x-1/2 w-[80%] h-8 bg-black/80 blur-2xl rounded-full opacity-60" />
           <PaintingFrame id={`painting-frame-${painting.id}`} data={painting} />
         </div>
       </main>
 
       {/* Sidebar Plaque */}
-      <aside class="w-full md:w-100 border-t md:border-t-0 md:border-l border-(--border-subtle) bg-(--bg-card) z-10 flex flex-col">
-        <div class="flex-1 overflow-y-auto px-8 py-16 md:px-10 md:py-24">
+      <aside class="w-full md:w-100 border-t md:border-t-0 md:border-l border-(--border-subtle) bg-(--bg-card) z-10 flex flex-col shrink-0">
+        <div class="flex-1 px-8 py-12 md:px-10 md:py-24 md:overflow-y-auto">
           <div class="space-y-10 animate-in fade-in slide-in-from-right-4 duration-700">
             <header class="space-y-3">
               <PaintingTitleAndArtist
@@ -129,7 +129,7 @@ const PaintingDetailsPage: RouteComponent = () => {
 
   return (
     <div
-      class="size-full flex flex-col bg-[#08090a] selection:bg-[#c3cde1] selection:text-[#08090a]"
+      class="fixed inset-0 z-200 size-full flex flex-col bg-[#08090a] selection:bg-[#c3cde1] selection:text-[#08090a] overflow-y-auto md:overflow-hidden"
       style={{
         "--bg-dark": "#08090a",
         "--bg-card": "#111214",

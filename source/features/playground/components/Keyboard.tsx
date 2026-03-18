@@ -1,7 +1,7 @@
 import { Box } from "@/features/playground/experiments/Box";
 import classes from "./Keyboard.module.css";
 import { useWindowSize } from "retend-utils/hooks";
-import { Cell, For, If, onSetup } from "retend";
+import { Cell, For, If, onSetup, type SourceCell } from "retend";
 
 const KeyboardBack = () => (
   <div class={classes.keyboardBack}>
@@ -179,13 +179,13 @@ const checkIsPhysicallyPressed = (
   }
   return (
     pressedKeys.has(lowerName) ||
-    (lowerShiftName && pressedKeys.has(lowerShiftName))
+    (lowerShiftName !== undefined && pressedKeys.has(lowerShiftName))
   );
 };
 
 const useKeyPointerEvents = (
   containerRef: Cell<HTMLElement | null>,
-  isPointerPressed: Cell<boolean>,
+  isPointerPressed: SourceCell<boolean>,
   mode: Cell<"view" | "type">,
 ) => {
   const handlePointerDown = (e: PointerEvent) => {
@@ -292,7 +292,6 @@ const Key = (props: KeyProps) => {
         curve={curve}
         color={keyColor}
         secondaryColor={secondaryKeyColor}
-        class={classes.key}
         style={{
           transform: keyTransform,
           transition:
@@ -327,7 +326,7 @@ const Key = (props: KeyProps) => {
   );
 };
 
-const useKeyboardEvents = (pressedKeys: Cell<Set<string>>) => {
+const useKeyboardEvents = (pressedKeys: SourceCell<Set<string>>) => {
   onSetup(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.repeat) return;
