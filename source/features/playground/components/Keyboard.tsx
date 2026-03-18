@@ -154,83 +154,40 @@ interface KeyProps {
   keyDepth: Cell<number>;
 }
 
-const Key = (props: KeyProps) => {
-  const {
-    data,
-    rowIndex,
-    contentWidth,
-    baseKeyHeight,
-    colors,
-    mode,
-    pressedKeys,
-    keyDepth,
-  } = props;
-  const isPointerPressed = Cell.source(false);
-  const containerRef = Cell.source<HTMLDivElement | null>(null);
+const checkIsPhysicallyPressed = (
+  name: string,
+  shiftName: string | undefined,
+  pressedKeys: Set<string>,
+): boolean => {
+  const lowerName = name.toLowerCase();
+  const lowerShiftName = shiftName?.toLowerCase();
 
-  const rowMeta = Cell.derived(() => ROW_METADATA[rowIndex.get()]);
-
-  const isPhysicallyPressed = Cell.derived(() => {
-    const name = data.name.toLowerCase();
-    const shiftName = data.shiftName?.toLowerCase();
-    const set = pressedKeys.get();
-
-    if (name === "" && set.has(" ")) return true;
-    if (name === "return" && set.has("enter")) return true;
-    if (name === "delete" && set.has("backspace")) return true;
-    if (name === "esc" && set.has("escape")) return true;
-    if (name === "ctrl" && set.has("control")) return true;
-    if (name === "opt" && set.has("alt")) return true;
-    if (name === "cmd" && set.has("meta")) return true;
-    if (name === "←" && set.has("arrowleft")) return true;
-    if (name === "→" && set.has("arrowright")) return true;
-    if (name === "↑↓" && (set.has("arrowup") || set.has("arrowdown"))) {
-      return true;
-    }
-
-    return set.has(name) || (shiftName && set.has(shiftName));
-  });
-
-  const isPressed = Cell.derived(
-    () => isPointerPressed.get() || isPhysicallyPressed.get(),
+  if (lowerName === "" && pressedKeys.has(" ")) return true;
+  if (lowerName === "return" && pressedKeys.has("enter")) return true;
+  if (lowerName === "delete" && pressedKeys.has("backspace")) return true;
+  if (lowerName === "esc" && pressedKeys.has("escape")) return true;
+  if (lowerName === "ctrl" && pressedKeys.has("control")) return true;
+  if (lowerName === "opt" && pressedKeys.has("alt")) return true;
+  if (lowerName === "cmd" && pressedKeys.has("meta")) return true;
+  if (lowerName === "←" && pressedKeys.has("arrowleft")) return true;
+  if (lowerName === "→" && pressedKeys.has("arrowright")) return true;
+  if (
+    lowerName === "↑↓" &&
+    (pressedKeys.has("arrowup") || pressedKeys.has("arrowdown"))
+  ) {
+    return true;
+  }
+  return (
+    pressedKeys.has(lowerName) ||
+    (lowerShiftName && pressedKeys.has(lowerShiftName))
   );
+};
 
-  const width = Cell.derived(() => {
-    const totalGapSpace = (rowMeta.get().numKeys - 1) * GAP_X;
-    const availableForKeys = contentWidth.get() - totalGapSpace;
-    return ((data.width || 1) / rowMeta.get().totalUnits) * availableForKeys;
-  });
-
-  const height = Cell.derived(() => {
-    return (data.height || 1) * baseKeyHeight.get();
-  });
-
-  const keyColor = Cell.derived(() =>
-    isPressed.get() ? colors.get().secondaryKey : colors.get().key,
-  );
-  const secondaryKeyColor = Cell.derived(() => colors.get().secondaryKey);
-  const textColor = Cell.derived(() => colors.get().text);
-
-  const fontSize = Cell.derived(() => {
-    const base = Math.min(width.get(), height.get()) * 0.25;
-    return Math.max(7, Math.min(24, base));
-  });
-
-  const curve = Cell.derived(() => {
-    return Math.max(3, Math.min(10, baseKeyHeight.get() * 0.12));
-  });
-
-  const keyTransform = Cell.derived(() =>
-    isPressed.get()
-      ? `translateZ(-${keyDepth.get() * 0.8}px)`
-      : "translateZ(0px)",
-  );
-  const fontSizeStyle = Cell.derived(() => `${fontSize.get()}px`);
-  const borderRadiusStyle = Cell.derived(() => `${curve.get()}px`);
-  const shiftNameFontSizeStyle = Cell.derived(
-    () => `${fontSize.get() * 0.85}px`,
-  );
-
+const useKeyPointerEvents = (
+  containerRef: Cell<HTMLElement | null>,
+  isPointerPressed: Cell<boolean>,
+  mode: Cell<"view" | "type">,
+) => {
   const handlePointerDown = (e: PointerEvent) => {
     e.stopPropagation();
     isPointerPressed.set(true);
@@ -252,10 +209,10 @@ const Key = (props: KeyProps) => {
     isPointerPressed.set(false);
   };
 
-  const updateMode = (mode: "view" | "type") => {
+  const updateMode = (newMode: "view" | "type") => {
     const container = containerRef.get();
     if (!container) return;
-    if (mode === "type") {
+    if (newMode === "type") {
       container.addEventListener("pointerdown", handlePointerDown);
       container.addEventListener("pointerup", handlePointerUp);
       container.addEventListener("pointerleave", handlePointerLeave);
@@ -273,6 +230,58 @@ const Key = (props: KeyProps) => {
   });
 
   mode.listen(updateMode);
+};
+
+const Key = (props: KeyProps) => {
+  const {
+    data,
+    rowIndex,
+    contentWidth,
+    baseKeyHeight,
+    colors,
+    mode,
+    pressedKeys,
+    keyDepth,
+  } = props;
+  const isPointerPressed = Cell.source(false);
+  const containerRef = Cell.source<HTMLDivElement | null>(null);
+  const rowMeta = Cell.derived(() => ROW_METADATA[rowIndex.get()]);
+  const isPhysicallyPressed = Cell.derived(() =>
+    checkIsPhysicallyPressed(data.name, data.shiftName, pressedKeys.get()),
+  );
+  const isPressed = Cell.derived(
+    () => isPointerPressed.get() || isPhysicallyPressed.get(),
+  );
+  const width = Cell.derived(() => {
+    const totalGapSpace = (rowMeta.get().numKeys - 1) * GAP_X;
+    const availableForKeys = contentWidth.get() - totalGapSpace;
+    return ((data.width || 1) / rowMeta.get().totalUnits) * availableForKeys;
+  });
+  const height = Cell.derived(() => (data.height || 1) * baseKeyHeight.get());
+  const keyColor = Cell.derived(() =>
+    isPressed.get() ? colors.get().secondaryKey : colors.get().key,
+  );
+  const secondaryKeyColor = Cell.derived(() => colors.get().secondaryKey);
+  const textColor = Cell.derived(() => colors.get().text);
+  const fontSize = Cell.derived(() => {
+    const base = Math.min(width.get(), height.get()) * 0.25;
+    return Math.max(7, Math.min(24, base));
+  });
+  const curve = Cell.derived(() =>
+    Math.max(3, Math.min(10, baseKeyHeight.get() * 0.12)),
+  );
+  const keyTransform = Cell.derived(() =>
+    isPressed.get()
+      ? `translateZ(-${keyDepth.get() * 0.8}px)`
+      : "translateZ(0px)",
+  );
+  const fontSizeStyle = Cell.derived(() => `${fontSize.get()}px`);
+  const borderRadiusStyle = Cell.derived(() => `${curve.get()}px`);
+  const shiftNameFontSizeStyle = Cell.derived(
+    () => `${fontSize.get() * 0.85}px`,
+  );
+
+  useKeyPointerEvents(containerRef, isPointerPressed, mode);
 
   return (
     <div ref={containerRef} class={classes.keyWrapper}>

@@ -9,6 +9,8 @@ import {
   type SoundProfile,
 } from "@/features/playground/components/KeyboardSounds";
 import { InteractionPanel } from "@/features/playground/components/InteractionPanel/InteractionPanel";
+import { SoundOptionButton, SOUND_OPTIONS } from "./SoundOptionButton";
+import { ThemeButton } from "./ThemeButton";
 import classes from "./CssKeyboard.module.css";
 
 const THEMES = {
@@ -44,32 +46,6 @@ const MODE_OPTIONS = [
   { value: "view", label: "Adjust View" },
   { value: "type", label: "Tap Keys" },
 ];
-
-const SOUND_OPTIONS = [
-  { value: "switch", label: "Switch" },
-  { value: "typewriter", label: "Typewriter" },
-  { value: "bubble", label: "Bubble" },
-] as const;
-
-interface SoundOptionButtonProps {
-  option: (typeof SOUND_OPTIONS)[number];
-  soundProfile: Cell<SoundProfile>;
-}
-
-const SoundOptionButton = (props: SoundOptionButtonProps) => {
-  const { option, soundProfile } = props;
-  const isActive = Cell.derived(() => soundProfile.get() === option.value);
-
-  return (
-    <button
-      type="button"
-      class={[classes.segmentButton, { [classes.activeSegment]: isActive }]}
-      onClick={() => soundProfile.set(option.value as SoundProfile)}
-    >
-      {option.label}
-    </button>
-  );
-};
 
 const CssKeyboard = () => {
   const theme = Cell.source<ThemeType>("cream");
@@ -128,48 +104,24 @@ const CssKeyboard = () => {
             <div class={classes.section}>
               <h3>Color Theme</h3>
               <div class={classes.themeGrid}>
-                <button
-                  type="button"
-                  class={[
-                    classes.themeButton,
-                    { [classes.activeTheme]: isBlueActive },
-                  ]}
+                <ThemeButton
+                  name="Blue"
+                  isActive={isBlueActive}
+                  color={THEMES.blue.body}
                   onClick={() => theme.set("blue")}
-                >
-                  <div
-                    class={classes.colorPreview}
-                    style={{ background: THEMES.blue.body }}
-                  />
-                  Blue
-                </button>
-                <button
-                  type="button"
-                  class={[
-                    classes.themeButton,
-                    { [classes.activeTheme]: isBlackActive },
-                  ]}
+                />
+                <ThemeButton
+                  name="Black"
+                  isActive={isBlackActive}
+                  color={THEMES.black.body}
                   onClick={() => theme.set("black")}
-                >
-                  <div
-                    class={classes.colorPreview}
-                    style={{ background: THEMES.black.body }}
-                  />
-                  Black
-                </button>
-                <button
-                  type="button"
-                  class={[
-                    classes.themeButton,
-                    { [classes.activeTheme]: isCreamActive },
-                  ]}
+                />
+                <ThemeButton
+                  name="Cream"
+                  isActive={isCreamActive}
+                  color={THEMES.cream.body}
                   onClick={() => theme.set("cream")}
-                >
-                  <div
-                    class={classes.colorPreview}
-                    style={{ background: THEMES.cream.body }}
-                  />
-                  Cream
-                </button>
+                />
               </div>
             </div>
           </InteractionPanel>

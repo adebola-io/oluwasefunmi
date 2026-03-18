@@ -8,13 +8,14 @@ import { SITE_URL } from "@/constants";
 import classes from "./CurvedCssSolid.module.css";
 import { Viewer } from "@/features/playground/components/Viewer/Viewer";
 import { InteractionPanel } from "@/features/playground/components/InteractionPanel/InteractionPanel";
+import { DimensionsSection, RotationSection } from "./CurvedCssSolidSections";
 
 const PRESETS = {
   cube: { height: 200, width: 200, depth: 200, curve: 0 },
   pill: { height: 100, width: 300, depth: 100, curve: 50 },
   card: { height: 400, width: 300, depth: 20, curve: 15 },
   tower: { height: 500, width: 150, depth: 150, curve: 10 },
-};
+} as const;
 
 type PresetKey = keyof typeof PRESETS;
 
@@ -25,7 +26,6 @@ const CurvedCssSolid: RouteComponent = () => {
   const scale = Cell.source(1);
   const isDragging = Cell.source(false);
   const isAutoRotating = Cell.source(false);
-
   const height = Cell.source(354);
   const width = Cell.source(354);
   const depth = Cell.source(110);
@@ -40,14 +40,12 @@ const CurvedCssSolid: RouteComponent = () => {
     curve.set(p.curve);
   };
 
-  const toggleAutoRotate = () => isAutoRotating.set(!isAutoRotating.get());
-
   const headerActions = [
     {
       icon: RotateIcon,
       title: "Toggle Auto-Rotate",
       isActive: isAutoRotating,
-      onClick: toggleAutoRotate,
+      onClick: () => isAutoRotating.set(!isAutoRotating.get()),
     },
   ];
 
@@ -94,58 +92,12 @@ const CurvedCssSolid: RouteComponent = () => {
               </div>
             </div>
 
-            <div class={classes.section}>
-              <h3>Dimensions</h3>
-              <div class={classes.controlRow}>
-                <label for="input-height">H</label>
-                <Input
-                  id="input-height"
-                  type="range"
-                  min="0"
-                  max="600"
-                  model={height}
-                  class={classes.slider}
-                />
-                <span class={classes.valueDisplay}>{height}</span>
-              </div>
-              <div class={classes.controlRow}>
-                <label for="input-width">W</label>
-                <Input
-                  id="input-width"
-                  type="range"
-                  min="0"
-                  max="600"
-                  model={width}
-                  class={classes.slider}
-                />
-                <span class={classes.valueDisplay}>{width}</span>
-              </div>
-              <div class={classes.controlRow}>
-                <label for="input-depth">D</label>
-                <Input
-                  id="input-depth"
-                  type="range"
-                  min="0"
-                  max="600"
-                  model={depth}
-                  class={classes.slider}
-                />
-                <span class={classes.valueDisplay}>{depth}</span>
-              </div>
-              <div class={classes.controlRow}>
-                <label for="input-curve">Curve</label>
-                <Input
-                  id="input-curve"
-                  type="range"
-                  min="0"
-                  max="100"
-                  step="0.1"
-                  model={curve}
-                  class={classes.slider}
-                />
-                <span class={classes.valueDisplay}>{curve}</span>
-              </div>
-            </div>
+            <DimensionsSection
+              height={height}
+              width={width}
+              depth={depth}
+              curve={curve}
+            />
 
             <div class={classes.section}>
               <h3>Appearance</h3>
@@ -160,45 +112,7 @@ const CurvedCssSolid: RouteComponent = () => {
               </div>
             </div>
 
-            <div class={classes.section}>
-              <h3>Rotation</h3>
-              <div class={classes.controlRow}>
-                <label for="input-rx">X</label>
-                <Input
-                  id="input-rx"
-                  type="range"
-                  min="-180"
-                  max="180"
-                  model={rx}
-                  class={classes.slider}
-                />
-                <span class={classes.valueDisplay}>{rx}</span>
-              </div>
-              <div class={classes.controlRow}>
-                <label for="input-ry">Y</label>
-                <Input
-                  id="input-ry"
-                  type="range"
-                  min="-180"
-                  max="180"
-                  model={ry}
-                  class={classes.slider}
-                />
-                <span class={classes.valueDisplay}>{ry}</span>
-              </div>
-              <div class={classes.controlRow}>
-                <label for="input-rz">Z</label>
-                <Input
-                  id="input-rz"
-                  type="range"
-                  min="-180"
-                  max="180"
-                  model={rz}
-                  class={classes.slider}
-                />
-                <span class={classes.valueDisplay}>{rz}</span>
-              </div>
-            </div>
+            <RotationSection rx={rx} ry={ry} rz={rz} />
           </InteractionPanel>
         </div>
       </PlaygroundLayout>
