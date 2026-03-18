@@ -10,7 +10,7 @@ export const CollectionPanel = () => {
   const hasSelectedPainting = Cell.derived(() => {
     return route.get().params.has("paintingId");
   });
-  const isOpen = Cell.source(!hasSelectedPainting.get());
+  const isOpen = Cell.source(false);
   hasSelectedPainting.listen((value) => {
     queueMicrotask(() => isOpen.set(!value));
   });

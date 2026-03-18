@@ -66,9 +66,8 @@ export function PaintingFrame(props: PaintingFrameProps) {
 interface PaintingImageProps {
   data: Painting;
   index: Cell<number>;
-  onSelected?: () => void;
-  /** Whether selection is enabled. Defaults to true. */
-  isInteractive?: boolean;
+  isSelected: Cell<boolean>;
+  onSelected?: (data: Painting) => void;
 }
 
 /**
@@ -76,7 +75,7 @@ interface PaintingImageProps {
  * Hosts the PaintingFrame component.
  */
 export const PaintingImage = (props: PaintingImageProps) => {
-  const { data, index, onSelected, isInteractive } = props;
+  const { data, index, isSelected, onSelected } = props;
   const router = useRouter();
 
   const offsetDistance = Cell.derived(() => {
@@ -86,13 +85,8 @@ export const PaintingImage = (props: PaintingImageProps) => {
     return `${(index.get() / paintings.length) * -100 - 100}%`;
   });
 
-  const canInteract = useDerivedValue(
-    Cell.derived(() => isInteractive ?? true),
-  );
-
   const handleClick = () => {
-    if (!canInteract.get()) return;
-    onSelected?.();
+    onSelected?.(data);
     router.navigate(`/playground/painting-wheel/${data.id}`);
   };
 
@@ -104,6 +98,7 @@ export const PaintingImage = (props: PaintingImageProps) => {
         "[-webkit-user-drag:none] [grid-area:1/1] [offset-path:var(--offset-path)]",
         "group duration-500 transition-all",
         "animate-offset-path transform-[rotateX(-90deg)_rotateY(90deg)]",
+        { "opacity-50": isSelected },
       ]}
       style={{ "--offset-distance-end": offsetDistanceEnd, offsetDistance }}
       onClick={handleClick}

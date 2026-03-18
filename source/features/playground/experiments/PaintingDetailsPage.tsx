@@ -5,7 +5,7 @@ import { paintings, type Painting } from "@/data/paintings";
 import { SITE_URL } from "@/constants";
 import { ArrowLeftIcon } from "@/components/icons/arrow-left";
 import { PaintingTitleAndArtist } from "@/features/playground/components/PaintingTitleAndArtist";
-import { PaintingFrame } from "@/features/playground/experiments/Painting";
+import { Wheel } from "./Wheel";
 
 interface PaintingContentProps {
   painting: Painting;
@@ -35,18 +35,7 @@ const PaintingContent = (props: PaintingContentProps) => {
 
       {/* Stage */}
       <main class="w-full min-h-[60dvh] md:min-h-0 md:flex-1 relative bg-black flex items-center justify-center p-12 md:p-24 overflow-hidden shrink-0">
-        <div
-          class="absolute inset-0 opacity-40"
-          style={{
-            background:
-              "radial-gradient(circle at center, rgba(195, 205, 225, 0.08) 0%, transparent 70%)",
-          }}
-        />
-
-        <div class="relative group w-full h-full max-w-full max-h-[70dvh] pt-[clamp(3rem,8vw,5rem)] flex items-center justify-center">
-          <div class="absolute -bottom-12 left-1/2 -translate-x-1/2 w-[80%] h-8 bg-black/80 blur-2xl rounded-full opacity-60" />
-          <PaintingFrame id={`painting-frame-${painting.id}`} data={painting} />
-        </div>
+        <Wheel />
       </main>
 
       {/* Sidebar Plaque */}
