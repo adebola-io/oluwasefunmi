@@ -25,7 +25,7 @@ export const CollectionPanel = () => {
               onClick={() =>
                 router.navigate(`/playground/painting-wheel/${painting.id}`)
               }
-              class="w-full text-left px-3 py-2 mb-1 last:mb-0 rounded-lg transition-all duration-200 relative cursor-pointer hover:bg-white/5"
+              class="w-full text-left min-h-[6ch] relative cursor-pointer"
             >
               <PaintingTitleAndArtist
                 id={`painting-title-${painting.id}`}

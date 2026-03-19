@@ -43,7 +43,7 @@ export function PaintingFrame(props: PaintingFrameProps) {
 
   return (
     <div
-      class="h-full w-auto aspect-square rounded-2xl overflow-hidden bg-center bg-cover transition-colors duration-300 border-2 border-white/10"
+      class="h-full w-auto aspect-square rounded-2xl overflow-hidden bg-center bg-cover transition-colors duration-300"
       style={{ backgroundImage: gradient }}
     >
       <img
@@ -66,8 +66,7 @@ export function PaintingFrame(props: PaintingFrameProps) {
 interface PaintingImageProps {
   data: Painting;
   index: Cell<number>;
-  isSelected: Cell<boolean>;
-  onSelected?: (data: Painting) => void;
+  selectedPainting: Cell<Painting | null>;
 }
 
 /**
@@ -75,7 +74,8 @@ interface PaintingImageProps {
  * Hosts the PaintingFrame component.
  */
 export const PaintingImage = (props: PaintingImageProps) => {
-  const { data, index, isSelected, onSelected } = props;
+  const { data, index, selectedPainting } = props;
+  const initialAnimation = Cell.source(true);
   const router = useRouter();
 
   const offsetDistance = Cell.derived(() => {
@@ -84,24 +84,35 @@ export const PaintingImage = (props: PaintingImageProps) => {
   const offsetDistanceEnd = Cell.derived(() => {
     return `${(index.get() / paintings.length) * -100 - 100}%`;
   });
+  const isNotSelected = Cell.derived(() => {
+    const selectedPaintingValue = selectedPainting.get();
+    return selectedPaintingValue !== null && selectedPaintingValue !== data;
+  });
 
   const handleClick = () => {
-    onSelected?.(data);
     router.navigate(`/playground/painting-wheel/${data.id}`);
+  };
+
+  const handleAnimationEnd = () => {
+    initialAnimation.set(false);
   };
 
   return (
     <button
       type="button"
       class={[
-        "relative rounded-2xl size-[17dvw] md:size-[14dvw] select-none transform-3d",
+        "relative border-2 rounded-2xl size-[17dvw] md:size-[14dvw] select-none transform-3d",
         "[-webkit-user-drag:none] [grid-area:1/1] [offset-path:var(--offset-path)]",
-        "group duration-500 transition-all",
-        "animate-offset-path transform-[rotateX(-90deg)_rotateY(90deg)]",
-        { "opacity-50": isSelected },
+        "group duration-500 origin-center transition-opacity will-change-[opacity]",
+        "transform-[rotateX(-90deg)_rotateY(90deg)]",
+        {
+          "animate-offset-path": initialAnimation,
+          "opacity-0": isNotSelected,
+        },
       ]}
       style={{ "--offset-distance-end": offsetDistanceEnd, offsetDistance }}
       onClick={handleClick}
+      onAnimationEnd={handleAnimationEnd}
     >
       <PaintingFrame
         id={`painting-frame-${data.id}`}

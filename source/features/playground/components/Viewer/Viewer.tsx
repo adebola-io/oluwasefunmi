@@ -11,7 +11,8 @@ export interface ViewerProps {
   isDragging?: SourceCell<boolean>;
   isAutoRotating?: SourceCell<boolean>;
   isEnabled?: Cell<boolean>;
-  class?: string | (string | Record<string, boolean | Cell<boolean>>)[];
+  class?: unknown;
+  sceneClass?: unknown;
   initialRx?: number;
   initialRy?: number;
   initialRz?: number;
@@ -47,6 +48,7 @@ export function Viewer(props: ViewerProps) {
 
   const handlePointerDown = (e: PointerEvent) => {
     if (!isEnabled.get()) return;
+    if (e.button !== 0) return;
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
     pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
     isDragging.set(true);
@@ -178,7 +180,7 @@ export function Viewer(props: ViewerProps) {
       onPointerLeave={handlePointerLeave}
       onWheel={handleWheel}
     >
-      <div class={classes.scene}>
+      <div class={[classes.scene, props.sceneClass]}>
         <div
           style={{
             transform,

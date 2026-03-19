@@ -5,7 +5,7 @@ import { paintings, type Painting } from "@/data/paintings";
 import { SITE_URL } from "@/constants";
 import { ArrowLeftIcon } from "@/components/icons/arrow-left";
 import { PaintingTitleAndArtist } from "@/features/playground/components/PaintingTitleAndArtist";
-import { Wheel } from "./Wheel";
+import { PaintingStage } from "./PaintingStage";
 
 interface PaintingContentProps {
   painting: Painting;
@@ -35,23 +35,21 @@ const PaintingContent = (props: PaintingContentProps) => {
 
       {/* Stage */}
       <main class="w-full min-h-[60dvh] md:min-h-0 md:flex-1 relative bg-black flex items-center justify-center p-12 md:p-24 overflow-hidden shrink-0">
-        <Wheel />
+        <PaintingStage />
       </main>
 
       {/* Sidebar Plaque */}
       <aside class="w-full md:w-100 border-t md:border-t-0 md:border-l border-(--border-subtle) bg-(--bg-card) z-10 flex flex-col shrink-0">
-        <div class="flex-1 px-8 py-12 md:px-10 md:py-24 md:overflow-y-auto">
-          <div class="space-y-10 animate-in fade-in slide-in-from-right-4 duration-700">
-            <header class="space-y-3">
-              <PaintingTitleAndArtist
-                id={`painting-title-${painting.id}`}
-                painting={painting}
-                isSelected
-              />
-            </header>
+        <div class="flex-1 animate-fade-in px-8 py-12 md:px-10 md:py-24 md:overflow-y-auto">
+          <header class="space-y-3">
+            <PaintingTitleAndArtist
+              id={`painting-title-${painting.id}`}
+              painting={painting}
+              isSelected
+            />
+          </header>
 
-            <div class="h-px bg-white/5 w-full" />
-
+          <div class="animate-fade-in [animation-fill-mode:backwards] [animation-delay:100ms] pt-32">
             <div class="grid grid-cols-2 gap-6">
               <div>
                 <h3 class="text-[10px] uppercase tracking-widest text-white/30 font-bold mb-1.5">

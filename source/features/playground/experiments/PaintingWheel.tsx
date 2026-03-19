@@ -2,20 +2,15 @@ import type { RouteComponent } from "retend/router";
 import { Outlet } from "retend/router";
 import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
 import { SITE_URL } from "@/constants";
-import { Viewer } from "../components/Viewer/Viewer";
 import { CollectionPanel } from "./CollectionPanel";
-import { Wheel } from "./Wheel";
+import { PaintingStage } from "./PaintingStage";
 
 const PaintingWheel: RouteComponent = () => {
   return (
     <div class="w-dvw h-dvh overflow-hidden bg-[#050505] text-gray-400">
       <PlaygroundLayout title="Painting Wheel">
         <div class="grid relative w-full h-full place-items-center justify-center overflow-hidden">
-          <Viewer initialRx={-30} initialRz={10}>
-            <div class="h-[90dvh] w-[90dvw] grid place-items-center transform-3d">
-              <Wheel />
-            </div>
-          </Viewer>
+          <PaintingStage />
           <CollectionPanel />
           <Outlet class="empty:hidden! fixed block! top-0 z-200 w-dvw h-dvh" />
         </div>
