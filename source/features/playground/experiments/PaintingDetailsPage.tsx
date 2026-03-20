@@ -69,7 +69,7 @@ const SidebarHeader = ({
   <header class="space-y-8 animate-fade-in">
     <div class="space-y-4">
       <div class="space-y-1">
-        <span class="text-[11px] font-bold tracking-[0.3em] uppercase text-white/40">
+        <span class="text-[11px] font-bold tracking-[0.3em] uppercase text-white/50">
           Masterpiece
         </span>
         <h1 class="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-[1.1]">
@@ -134,7 +134,7 @@ const HistoricalContent = ({ painting }: { painting: Painting }) => (
         <p class="text-[15px] leading-relaxed text-white/80 font-light">
           {painting.details}
         </p>
-        <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/5 space-y-3 group hover:bg-white/[0.04] transition-colors duration-500">
+        <div class="p-6 rounded-2xl bg-white/2 border border-white/5 space-y-3 group hover:bg-white/[0.04] transition-colors duration-500">
           <div class="flex items-center gap-2 text-white/60">
             <svg
               class="w-4 h-4"
@@ -180,28 +180,22 @@ const PaintingContent = (props: PaintingContentProps) => {
   const { painting, onBack } = props;
 
   return (
-    <div
-      class={[
-        "flex-1 flex flex-col md:flex-row relative font-['Manrope'] overflow-hidden",
-        "max-sm:overflow-y-auto",
-      ]}
-    >
+    <div class="flex-1 flex flex-col md:flex-row relative font-['Manrope'] overflow-hidden">
       <NavigationHeader painting={painting} onBack={onBack} />
 
       {/* Stage Area */}
       <main class="w-full h-[50dvh] md:h-auto md:flex-1 relative bg-[#08090a] flex items-center justify-center overflow-hidden shrink-0">
-        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)] pointer-events-none" />
+        <div
+          class="absolute inset-0 opacity-20 pointer-events-none transition-colors duration-1000"
+          style={{
+            background: `radial-gradient(circle at center, ${painting.color}, transparent 70%)`,
+          }}
+        />
         <PaintingStage />
       </main>
 
       {/* Information Sidebar */}
-      <aside
-        class={[
-          "w-full md:w-[420px] lg:w-[480px] bg-[#0c0d0e] border-t md:border-t-0 md:border-l border-white/5 z-10 flex flex-col shrink-0 custom-scrollbar selection:bg-white/10 selection:text-white",
-          "h-[50dvh] md:h-auto overflow-y-auto",
-          "max-sm:[overflow:unset]",
-        ]}
-      >
+      <aside class="w-full md:w-[420px] lg:w-[480px] bg-[#0c0d0e] border-t md:border-t-0 md:border-l border-white/5 z-10 flex flex-col shrink-0 h-[50dvh] md:h-auto overflow-y-auto custom-scrollbar selection:bg-white/10 selection:text-white">
         <div class="flex-1 p-8 md:p-14 lg:p-16 space-y-12">
           <SidebarHeader painting={painting} onBack={onBack} />
           <SpecsGrid painting={painting} />

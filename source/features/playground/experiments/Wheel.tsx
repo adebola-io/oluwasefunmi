@@ -1,6 +1,8 @@
 import { type Painting, paintings } from "@/data/paintings";
 import { Cell, For, onMove, onSetup } from "retend";
 import { PaintingImage } from "@/features/playground/experiments/Painting";
+import { preloadImages } from "@/utils/imagePreloader";
+import { getAllPaintingImages } from "@/data/paintingImages";
 
 interface WheelProps {
   selectedPainting: Cell<Painting | null>;
@@ -62,6 +64,13 @@ export function Wheel(props: WheelProps) {
     counterSpinAngle.set(`${nextAngle}deg`);
   };
 
+  onSetup(() => {
+    // Preload all high-quality images in the background
+    const allImages = getAllPaintingImages();
+    const highQualityUrls = Object.values(allImages).map((img) => img.default);
+    preloadImages(highQualityUrls);
+  });
+
   onSetup(computeCounterRotation);
 
   onMove(() => {
@@ -85,7 +94,7 @@ export function Wheel(props: WheelProps) {
         "w-[90dvw] h-[90dvh] transition-transform duration-700 ease-in-out transform-3d",
         {
           "-rotate-x-20 rotate-z-20": noPaintingSelected,
-          "scale-[2] translate-x-[50dvw] translate-y-[-5%]": selectedPainting,
+          "scale-[2.5] translate-x-[65dvw] translate-y-[-5%]": selectedPainting,
           "max-md:translate-x-[45dvw] max-sm:translate-y-0 max-md:max-h-[50dvh]":
             selectedPainting,
         },

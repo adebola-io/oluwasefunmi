@@ -8,6 +8,7 @@ interface PaintingFrameProps {
   id: string;
   data: Painting;
   staggerIndex?: JSX.ValueOrCell<number>;
+  selectedPainting?: Cell<Painting | null>;
 }
 
 /**
@@ -23,7 +24,11 @@ export function PaintingFrame(props: PaintingFrameProps) {
   const loaded = Cell.source(false);
   const imageVisible = Cell.derived(() => loaded.get());
   const imageSrc = Cell.derived(() => {
-    if (loading.get()) return src.get().small;
+    if (!loading.get()) return;
+
+    // Use high-quality image if this painting is selected
+    const isSelected = props.selectedPainting?.get()?.id === props.data.id;
+    return isSelected ? src.get().default : src.get().small;
   });
 
   onSetup(() => {
@@ -115,6 +120,7 @@ export const PaintingImage = (props: PaintingImageProps) => {
         id={`painting-frame-${data.id}`}
         data={data}
         staggerIndex={index}
+        selectedPainting={selectedPainting}
       />
     </li>
   );
