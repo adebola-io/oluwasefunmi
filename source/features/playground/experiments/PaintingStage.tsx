@@ -18,9 +18,8 @@ export const PaintingStage = createUnique(() => {
     const id = paintingId.get();
     if (!id) return null;
     return (
-      paintings.find(
-        (painting) => painting.id === Number.parseInt(id, 10),
-      ) ?? null
+      paintings.find((painting) => painting.id === Number.parseInt(id, 10)) ??
+      null
     );
   });
   const noPaintingSelected = Cell.derived(() => {

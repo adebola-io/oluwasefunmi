@@ -49,7 +49,7 @@ export function PaintingFrame(props: PaintingFrameProps) {
       <img
         draggable={false}
         class={[
-          "size-full object-cover transition-opacity duration-300",
+          "size-full pointer-events-none object-cover transition-opacity duration-300",
           {
             "opacity-0": isHidden,
             "opacity-100": imageVisible,
@@ -101,9 +101,9 @@ export const PaintingImage = (props: PaintingImageProps) => {
     <button
       type="button"
       class={[
-        "relative border-2 rounded-2xl size-[17dvw] md:size-[14dvw] select-none transform-3d",
+        "relative border-2 rounded-2xl w-[17dvw] md:w-[14dvw] select-none transform-3d",
         "[-webkit-user-drag:none] [grid-area:1/1] [offset-path:var(--offset-path)]",
-        "group duration-500 origin-center transition-opacity will-change-[opacity]",
+        "group duration-500 origin-center ease-in-out transition-opacity will-change-[opacity]",
         "transform-[rotateX(-90deg)_rotateY(90deg)]",
         {
           "animate-offset-path": initialAnimation,

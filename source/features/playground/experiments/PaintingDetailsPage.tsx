@@ -1,8 +1,6 @@
-import type { RouteComponent } from "retend/router";
 import { useRouteQuery, useRouter } from "retend/router";
 import { Cell, If } from "retend";
 import { paintings, type Painting } from "@/data/paintings";
-import { SITE_URL } from "@/constants";
 import { ArrowLeftIcon } from "@/components/icons/arrow-left";
 import { PaintingTitleAndArtist } from "@/features/playground/components/PaintingTitleAndArtist";
 import { PaintingStage } from "./PaintingStage";
@@ -95,7 +93,7 @@ const PaintingContent = (props: PaintingContentProps) => {
   );
 };
 
-const PaintingDetailsPage: RouteComponent = () => {
+const PaintingDetailsPage = () => {
   const query = useRouteQuery();
   const router = useRouter();
   const paintingId = query.get("paintingId");
@@ -128,17 +126,5 @@ const PaintingDetailsPage: RouteComponent = () => {
     </div>
   );
 };
-
-PaintingDetailsPage.metadata = () => ({
-  title: "Painting Details | Playground",
-  description: "View painting details in a curated gallery setting.",
-  ogTitle: "Painting Details | Playground",
-  ogDescription: "View painting details in a curated gallery setting.",
-  ogImage: `${SITE_URL}/og/painting-wheel.png`,
-  twitterTitle: "Painting Details | Playground",
-  twitterDescription: "View painting details in a curated gallery setting.",
-  twitterImage: `${SITE_URL}/og/painting-wheel.png`,
-  viewport: "width=device-width, initial-scale=1.0",
-});
 
 export default PaintingDetailsPage;

@@ -1,5 +1,5 @@
 import { type Painting, paintings } from "@/data/paintings";
-import { Cell, For } from "retend";
+import { Cell, For, onMove, onSetup } from "retend";
 import { PaintingImage } from "@/features/playground/experiments/Painting";
 
 interface WheelProps {
@@ -8,38 +8,81 @@ interface WheelProps {
 
 export function Wheel(props: WheelProps) {
   const { selectedPainting } = props;
+  const wheelRef = Cell.source<HTMLDivElement | null>(null);
+  const counterSpinAngle = Cell.source("0deg");
+  let liveAngle = 0;
   const noPaintingSelected = Cell.derived(() => {
     return selectedPainting.get() === null;
+  });
+
+  const computeCounterRotation = () => {
+    const selectedPaintingValue = selectedPainting.get();
+    if (!selectedPaintingValue) return;
+    const index = paintings.findIndex((p) => {
+      return p.id === selectedPaintingValue.id;
+    });
+    const offsetDistance = index / paintings.length;
+
+    const selectedAngle = offsetDistance * 360;
+    const targetAngle = liveAngle + selectedAngle - 90;
+    counterSpinAngle.set(`${targetAngle}deg`);
+  };
+
+  onSetup(computeCounterRotation);
+
+  onMove(() => {
+    const wheel = wheelRef.get();
+    if (!wheel) return;
+    const animation = wheel.getAnimations()[0] as CSSAnimation;
+    const timing = animation?.effect?.getComputedTiming();
+    if (!timing) return;
+    const duration = Number(timing.duration);
+    const currentTime = Number(animation.currentTime);
+    const loopTime = currentTime % duration;
+    const progress = loopTime / duration;
+    liveAngle = progress * 360;
+
+    return computeCounterRotation;
   });
 
   return (
     <div
       class={[
-        "w-[90dvw] h-[90dvh] transition-transform duration-500 transform-3d",
+        "w-[90dvw] h-[90dvh] transition-transform duration-700 ease-in-out transform-3d",
         {
           "-rotate-x-20 rotate-z-20": noPaintingSelected,
-          "scale-70 max-md:max-h-[50dvh]": selectedPainting,
+          "scale-[2] translate-x-[50dvw] max-md:translate-x-[45dvw] translate-y-[-10%] max-md:max-h-[50dvh]":
+            selectedPainting,
         },
       ]}
     >
       <div
+        ref={wheelRef}
         class={[
           "size-full relative grid place-items-center",
-          "transition-transform duration-200 transform-3d",
-          "[--offset-path:circle(35%)] max-sm:[--offset-path:circle(23%)]",
-          "transform-[rotate(-90deg)_rotateY(90deg)]",
+          "transform-3d transform-[rotate(-90deg)_rotateY(90deg)]",
           "animate-rotate",
+          { "[animation-play-state:paused]": selectedPainting },
         ]}
       >
-        {For(paintings, (painting, index) => {
-          return (
+        <ul
+          class={[
+            "size-full relative grid place-items-center transform-3d",
+            "duration-700 transition-transform ease-in-out",
+            "[--offset-path:circle(35%)] max-sm:[--offset-path:circle(23%)]",
+          ]}
+          style={{
+            rotate: counterSpinAngle,
+          }}
+        >
+          {For(paintings, (painting, index) => (
             <PaintingImage
               data={painting}
               index={index}
               selectedPainting={selectedPainting}
             />
-          );
-        })}
+          ))}
+        </ul>
       </div>
     </div>
   );

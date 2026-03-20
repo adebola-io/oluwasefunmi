@@ -14,7 +14,9 @@ const PaintingWheel: RouteComponent = () => {
     <div class="w-dvw h-dvh overflow-hidden bg-[#050505] text-gray-400">
       <PlaygroundLayout title="Painting Wheel">
         <div class="grid relative w-full h-full place-items-center justify-center overflow-hidden">
-          <PaintingStage />
+          {If(query.has("paintingId"), {
+            false: () => <PaintingStage />,
+          })}
           <CollectionPanel />
           {If(query.has("paintingId"), () => (
             <PaintingDetailsPage />

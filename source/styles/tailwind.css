@@ -42,9 +42,6 @@
 }
 
 @keyframes rotate {
-    from {
-        rotate: y 0deg;
-    }
     to {
         rotate: y 360deg;
     }
