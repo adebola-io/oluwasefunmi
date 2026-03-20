@@ -2,10 +2,10 @@
     width: 100%;
 }
 
-@keyframes fadeInUp {
+@keyframes fade-in-up {
     from {
         opacity: 0;
-        transform: translateY(15px);
+        transform: translateY(var(--fade-distance, 10px));
     }
     to {
         opacity: 1;
@@ -20,32 +20,11 @@
 }
 
 .backLink {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    text-decoration: none;
-    color: var(--text-secondary);
-    font-size: 0.9rem;
-    font-weight: 500;
-    transition:
-        transform 0.3s var(--ease-spring),
-        opacity 0.3s var(--ease-spring),
-        background-color 0.3s var(--ease-spring),
-        border-color 0.3s var(--ease-spring),
-        box-shadow 0.3s var(--ease-spring);
     padding: 0.5rem 1rem 0.5rem 0.5rem;
-    border-radius: 99px;
-    border: 1px solid transparent;
     margin-bottom: 2rem;
-    animation: fadeInUp 0.25s var(--ease-spring) backwards;
+    animation: fade-in-up 0.25s var(--ease-spring) backwards;
     animation-delay: 0.05s;
-}
-
-.backLink:hover {
-    color: var(--text-primary);
-    background: rgba(255, 255, 255, 0.05);
-    border-color: rgba(255, 255, 255, 0.1);
-    box-shadow: 0 0 15px rgba(255, 46, 147, 0.2);
+    --fade-distance: 15px;
 }
 
 .article {
@@ -53,11 +32,14 @@
 }
 
 .article :global(.note-heading) {
-    font-size: 2rem;
     font-weight: 600;
+    font-size: 2rem;
+    width: fit-content;
     margin-bottom: 0.5rem;
+    /*
+    width: fit-content;
     letter-spacing: -0.02em;
-    line-height: 1.3;
+    line-height: 1.3;*/
 }
 
 .article :global(.note-details) {
@@ -66,7 +48,7 @@
     margin-bottom: 2rem;
     padding-bottom: 1.5rem;
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    animation: fadeInUp 0.25s var(--ease-spring) backwards;
+    animation: fade-in-up 0.25s var(--ease-spring) backwards;
     animation-delay: 0.08s;
 }
 
@@ -74,7 +56,7 @@
     font-size: 1.05rem;
     line-height: 1.85;
     color: var(--text-primary);
-    animation: fadeInUp 0.3s var(--ease-spring) backwards;
+    animation: fade-in-up 0.3s var(--ease-spring) backwards;
     animation-delay: 0.12s;
 }
 

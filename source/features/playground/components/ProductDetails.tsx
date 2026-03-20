@@ -5,6 +5,42 @@ import { ProductInfo } from "./ProductInfo";
 import styles from "./ProductDetails.module.css";
 import { DragToDismissView } from "@/components/layout/DragToDismissView";
 
+interface ColorOptionProps {
+  color: string;
+  selectedColor: Cell<string>;
+  onColorClick: (color: string) => void;
+}
+
+const ColorOption = (props: ColorOptionProps) => {
+  const { color, selectedColor, onColorClick } = props;
+  const isSelected = Cell.derived(() => selectedColor.get() === color);
+  const optionClasses = Cell.derived(() =>
+    isSelected.get()
+      ? "py-2 px-4 rounded-full text-sm text-white/90 bg-white/15 border border-white/40 transition-all duration-200 ease-out cursor-pointer flex items-center gap-2"
+      : "py-2 px-4 rounded-full text-sm text-white/70 bg-white/5 border border-transparent transition-all duration-200 ease-out cursor-pointer hover:bg-white/10 hover:border-white/10 flex items-center gap-2",
+  );
+
+  return (
+    <button
+      type="button"
+      class={optionClasses}
+      onClick={() => onColorClick(color)}
+    >
+      <span
+        class="inline-block w-3 h-3 rounded-full shrink-0"
+        style={{
+          backgroundColor: colorMap[color] || color,
+          border:
+            color === "Orange" || color === "Ivory" || color === "Cream"
+              ? "1px solid rgba(255,255,255,0.3)"
+              : "none",
+        }}
+      />
+      {color}
+    </button>
+  );
+};
+
 interface ProductDetailsProps {
   product: Product;
   onClose: () => void;
@@ -60,38 +96,13 @@ export const ProductDetails = (props: ProductDetailsProps) => {
             Colors
           </h4>
           <div class="flex flex-wrap gap-2 md:gap-3">
-            {For(product.colors, (color) => {
-              const isSelected = Cell.derived(
-                () => selectedColor.get() === color,
-              );
-              const optionClasses = Cell.derived(() =>
-                isSelected.get()
-                  ? "py-2 px-4 rounded-full text-sm text-white/90 bg-white/15 border border-white/40 transition-all duration-200 ease-out cursor-pointer flex items-center gap-2"
-                  : "py-2 px-4 rounded-full text-sm text-white/70 bg-white/5 border border-transparent transition-all duration-200 ease-out cursor-pointer hover:bg-white/10 hover:border-white/10 flex items-center gap-2",
-              );
-
-              return (
-                <button
-                  type="button"
-                  class={optionClasses}
-                  onClick={() => handleColorClick(color)}
-                >
-                  <span
-                    class="inline-block w-3 h-3 rounded-full shrink-0"
-                    style={{
-                      backgroundColor: colorMap[color] || color,
-                      border:
-                        color === "Orange" ||
-                        color === "Ivory" ||
-                        color === "Cream"
-                          ? "1px solid rgba(255,255,255,0.3)"
-                          : "none",
-                    }}
-                  />
-                  {color}
-                </button>
-              );
-            })}
+            {For(product.colors, (color) => (
+              <ColorOption
+                color={color}
+                selectedColor={selectedColor}
+                onColorClick={handleColorClick}
+              />
+            ))}
           </div>
         </div>
 

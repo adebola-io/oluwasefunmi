@@ -43,16 +43,36 @@ export const Navigation = () => {
             <CloseIcon />
           </button>
         </div>
-        <Link href="/works" class={classes.navLink} onClick={closeMenu}>
+        <Link
+          href="/works"
+          class={classes.navLink}
+          data-pill-link
+          onClick={closeMenu}
+        >
           works
         </Link>
-        <Link href="/playground" class={classes.navLink} onClick={closeMenu}>
+        <Link
+          href="/playground"
+          class={classes.navLink}
+          data-pill-link
+          onClick={closeMenu}
+        >
           playground
         </Link>
-        <Link href="/contact" class={classes.navLink} onClick={closeMenu}>
+        <Link
+          href="/contact"
+          class={classes.navLink}
+          data-pill-link
+          onClick={closeMenu}
+        >
           contact
         </Link>
-        <Link href="/random-notes" class={classes.navLink} onClick={closeMenu}>
+        <Link
+          href="/random-notes"
+          class={classes.navLink}
+          data-pill-link
+          onClick={closeMenu}
+        >
           random notes
         </Link>
       </div>

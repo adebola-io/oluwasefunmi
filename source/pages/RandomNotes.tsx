@@ -1,8 +1,9 @@
-import { For } from "retend";
+import { For, If, Cell } from "retend";
 import type { RouteComponent } from "retend/router";
 import type { PageMeta } from "retend-server/client";
 import type { Note, NotePreviewProps } from "@/types";
 import { Link } from "retend/router";
+import { LayeredCard } from "@/components/ui/LayeredCard";
 import { PageTitle } from "@/components/layout/PageTitle";
 import { StarShower } from "@/components/ui/StarShower";
 import { NoteHeading } from "@/components/ui/typography";
@@ -32,7 +33,12 @@ export const getNotesIndex = async () => {
 };
 
 const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
-  const notes = props.metadata.get("misc");
+  const { metadata } = props;
+  const notes = Cell.derived(() => metadata.get("misc"));
+  const isEmptyNotes = Cell.derived(() => {
+    const n = notes.get();
+    return !n || n.length === 0;
+  });
 
   return (
     <div class={classes.page}>
@@ -48,19 +54,26 @@ const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
         </p>
 
         <div class={classes.notesList}>
-          {!notes || notes.length === 0 ? (
-            <p class={classes.empty}>No notes yet.</p>
-          ) : (
-            For(notes, (note) => (
-              <Link href={`/random-notes/${note.id}`} class={classes.noteCard}>
-                <NoteHeading
-                  id={`random-note-heading-${note.id}`}
-                  title={note.title}
-                />
-                <div class={classes.noteDate}>{note.dateStr}</div>
-                <p class={classes.noteSummary}>{note.description}</p>
-              </Link>
-            ))
+          {If(
+            isEmptyNotes,
+            () => (
+              <p class={classes.empty}>No notes yet.</p>
+            ),
+            () =>
+              For(notes, (note) => (
+                <LayeredCard
+                  as={Link}
+                  href={`/random-notes/${note.id}`}
+                  class={classes.noteCard}
+                >
+                  <NoteHeading
+                    id={`random-note-heading-${note.id}`}
+                    title={note.title}
+                  />
+                  <div class={classes.noteDate}>{note.dateStr}</div>
+                  <p class={classes.noteSummary}>{note.description}</p>
+                </LayeredCard>
+              )),
           )}
         </div>
       </div>

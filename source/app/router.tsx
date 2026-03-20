@@ -14,6 +14,7 @@ import ProductTransition from "@/features/playground/experiments/ProductTransiti
 import ProductDetailsPage from "@/features/playground/experiments/ProductDetailsPage";
 import ThreeDimensionalMarquee from "@/features/playground/experiments/ThreeDimensionalMarquee";
 import CssKeyboard from "@/features/playground/experiments/CssKeyboard";
+import PaintingWheel from "@/features/playground/experiments/PaintingWheel";
 
 import { RootLayout } from "@/components/layout/RootLayout";
 
@@ -22,6 +23,7 @@ const routes = defineRoutes([
     path: "/",
     component: RootLayout,
     metadata: {
+      charset: "utf-8",
       twitterCard: "summary_large_image",
       twitterSite: "@adebola_io",
       twitterCreator: "@adebola_io",
@@ -32,6 +34,10 @@ const routes = defineRoutes([
         path: "/playground",
         children: [
           { path: "/", component: Playground },
+          {
+            path: "/painting-wheel",
+            component: PaintingWheel,
+          },
           { path: "/curved-css-solid", component: CurvedCssSolid },
           { path: "/ripple-effect", component: RippleEffect },
           { path: "/blur-carousel", component: BlurCarousel },

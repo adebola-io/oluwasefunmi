@@ -1,7 +1,7 @@
-@keyframes fadeIn {
+@keyframes fade-in-up {
     from {
         opacity: 0;
-        transform: translateY(10px);
+        transform: translateY(var(--fade-distance, 10px));
     }
     to {
         opacity: 1;
@@ -48,7 +48,7 @@
     color: var(--text-secondary);
 
     opacity: 0;
-    animation: fadeIn 0.8s var(--ease-spring) 0.1s forwards;
+    animation: fade-in-up 0.8s var(--ease-spring) 0.1s forwards;
 }
 
 .intro {
@@ -60,7 +60,7 @@
     margin: 0 0 3.5rem 0;
     font-weight: 400;
     opacity: 0;
-    animation: fadeIn 0.8s var(--ease-spring) 0.2s forwards;
+    animation: fade-in-up 0.8s var(--ease-spring) 0.2s forwards;
 }
 
 @media (max-width: 600px) {
@@ -104,7 +104,7 @@
     justify-content: center;
     flex-wrap: wrap;
     opacity: 0;
-    animation: fadeIn 0.8s var(--ease-spring) 0.3s forwards;
+    animation: fade-in-up 0.8s var(--ease-spring) 0.3s forwards;
 }
 
 .primaryButton,
@@ -156,7 +156,7 @@
     width: 100%;
     margin-bottom: 6rem;
     opacity: 0;
-    animation: fadeIn 0.8s var(--ease-spring) 0.4s forwards;
+    animation: fade-in-up 0.8s var(--ease-spring) 0.4s forwards;
     text-align: left;
 }
 

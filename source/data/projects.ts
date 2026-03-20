@@ -4,7 +4,7 @@ export const timeline = [
   "calc(var(--duration)*0.5)",
 ];
 
-interface Project {
+export interface Project {
   id: number;
   name: string;
   description: string;
@@ -14,6 +14,14 @@ interface Project {
 }
 
 export const projects: Project[] = [
+  {
+    id: 2,
+    name: "retend",
+    description: "React-inspired JSX framework for fast and fluid web apps.",
+    link: "https://retend.dev",
+    class: "col-span-12 md:col-span-5 md:row-span-2",
+    tags: ["jsx", "vite", "frameworks", "dsa", "dev tools", "web"],
+  },
   {
     id: 6,
     name: "cells",
@@ -38,14 +46,6 @@ export const projects: Project[] = [
     link: "https://enjoy-your-day.pages.dev",
     class: "col-span-12 md:col-span-5",
     tags: ["pwa", "typescript", "css modules", "dexie", "localfirst", "web"],
-  },
-  {
-    id: 2,
-    name: "retend",
-    description: "React-inspired JSX framework for fast and fluid web apps.",
-    link: "https://www.npmjs.com/package/retend",
-    class: "col-span-12 md:col-span-5 md:row-span-2",
-    tags: ["jsx", "vite", "frameworks", "dsa", "dev tools", "web"],
   },
   {
     id: 3,

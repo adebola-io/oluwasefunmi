@@ -1,5 +1,5 @@
-import { Cell } from "retend";
-import { createUniqueTransition } from "retend-utils/components";
+import { Cell, createUnique } from "retend";
+import { UniqueTransition } from "retend-utils/components";
 import type { JSX } from "retend/jsx-runtime";
 
 interface NoteProps {
@@ -7,14 +7,15 @@ interface NoteProps {
   class?: unknown;
 }
 
-export const NoteHeading = createUniqueTransition<NoteProps>(
-  (props) => {
-    const title = Cell.derived(() => props.get().title);
-    const className = Cell.derived(() => props.get().class);
-    return <h1 class={[className, "note-heading"]}>{title}</h1>;
-  },
-  { transitionDuration: "300ms" },
-);
+export const NoteHeading = createUnique<NoteProps>((props) => {
+  const title = Cell.derived(() => props.get().title);
+  const className = Cell.derived(() => props.get().class);
+  return (
+    <UniqueTransition transitionDuration="300ms">
+      <h1 class={[className, "note-heading"]}>{title}</h1>
+    </UniqueTransition>
+  );
+});
 
 export function NoteContent(props: JSX.IntrinsicElements["div"]) {
   const { children, ...rest } = props;

@@ -1,3 +1,4 @@
+import { If } from "retend";
 import { formatPrice } from "@/utils";
 import { getProductById } from "@/data/products";
 
@@ -22,11 +23,11 @@ export const ProductInfo = (props: ProductInfoProps) => {
         <span class="product-price text-[1.1rem] font-semibold text-white tracking-[-0.01em] [text-shadow:0_2px_4px_rgba(0,0,0,0.3)]">
           {formatPrice(product.price)}
         </span>
-        {product.originalPrice && (
+        {If(product.originalPrice, () => (
           <span class="text-[0.9rem] text-white/60 line-through font-normal">
-            {formatPrice(product.originalPrice)}
+            {formatPrice(product.originalPrice!)}
           </span>
-        )}
+        ))}
       </div>
     </>
   );

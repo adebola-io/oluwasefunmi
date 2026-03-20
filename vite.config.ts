@@ -1,7 +1,7 @@
 import { defineConfig } from "vite";
 import path from "node:path";
 import fs from "node:fs";
-import { retend } from "retend-web/plugin";
+import { retend } from "retend-web/plugins/vite";
 import { retendSSG } from "retend-server/plugin";
 import tailwindcss from "@tailwindcss/vite";
 import mdx from "@mdx-js/rollup";
@@ -25,6 +25,7 @@ const pages = [
   "/playground/product-transitions",
   "/playground/three-dimensional-marquee",
   "/playground/css-keyboard",
+  "/playground/painting-wheel",
   "/random-notes",
   "/contact",
   "/works",
@@ -33,6 +34,9 @@ const pages = [
 ];
 
 export default defineConfig({
+  build: {
+    sourcemap: true,
+  },
   resolve: {
     alias: { "@": path.resolve(__dirname, "./source") },
   },

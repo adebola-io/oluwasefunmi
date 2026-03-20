@@ -1,23 +1,17 @@
-
-
-
 const imageModules = import.meta.glob<{ default: string }>(
-  "/source/data/images/*.webp",
+  "/source/data/images/products/*.webp",
   { eager: true },
 );
-
 
 const imageMap: Record<string, string> = {};
 
 for (const path of Object.keys(imageModules)) {
-
   const match = path.match(/\/(\d+-[^/]+)\.webp$/);
   if (match) {
     const key = match[1].toLowerCase();
     imageMap[key] = imageModules[path].default;
   }
 }
-
 
 export function getProductImage(
   productId: number,
@@ -27,7 +21,6 @@ export function getProductImage(
   const key = `${productId}-${normalizedColor}`;
   return imageMap[key];
 }
-
 
 export function getProductImages(productId: number): Record<string, string> {
   const prefix = `${productId}-`;
@@ -42,7 +35,6 @@ export function getProductImages(productId: number): Record<string, string> {
 
   return result;
 }
-
 
 export function hasProductImage(productId: number, color: string): boolean {
   return getProductImage(productId, color) !== undefined;

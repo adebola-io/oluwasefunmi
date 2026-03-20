@@ -20,7 +20,7 @@ let width = 0;
 let height = 0;
 let dpr = 1;
 let stars: Star[] = [];
-let meteors: Meteor[] = [];
+const meteors: Meteor[] = [];
 let rafId: number;
 
 function initStars() {
@@ -132,12 +132,12 @@ self.onmessage = (e: MessageEvent) => {
     dpr = payload.dpr || 1;
     canvas.width = width * dpr;
     canvas.height = height * dpr;
-    
+
     for (let i = 0; i < stars.length; i++) {
       stars[i].x = (stars[i].x / oldWidth) * width;
       stars[i].y = (stars[i].y / oldHeight) * height;
     }
-    
+
     if (stars.length === 0) initStars();
   } else if (type === "stop") {
     cancelAnimationFrame(rafId);
