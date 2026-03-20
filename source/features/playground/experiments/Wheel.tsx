@@ -18,7 +18,7 @@ export function Wheel(props: WheelProps) {
         "w-[90dvw] h-[90dvh] transition-transform duration-500 transform-3d",
         {
           "-rotate-x-20 rotate-z-20": noPaintingSelected,
-          "scale-70": selectedPainting,
+          "scale-70 max-md:max-h-[50dvh]": selectedPainting,
         },
       ]}
     >

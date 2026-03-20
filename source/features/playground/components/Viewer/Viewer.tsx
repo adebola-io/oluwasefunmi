@@ -2,12 +2,20 @@ import { Cell, type SourceCell, onSetup } from "retend";
 import type { JSX } from "retend/jsx-runtime";
 import classes from "./Viewer.module.css";
 
+export interface ViewerAnimation {
+  rx: number;
+  ry: number;
+  rz: number;
+  scale: number;
+}
+
 export interface ViewerProps {
   children?: JSX.Element;
   rx?: SourceCell<number>;
   ry?: SourceCell<number>;
   rz?: SourceCell<number>;
   scale?: SourceCell<number>;
+  animateTo?: SourceCell<ViewerAnimation | null>;
   isDragging?: SourceCell<boolean>;
   isAutoRotating?: SourceCell<boolean>;
   isEnabled?: Cell<boolean>;
@@ -35,6 +43,7 @@ export function Viewer(props: ViewerProps) {
   const ry = props.ry || Cell.source(initialRy);
   const rz = props.rz || Cell.source(initialRz);
   const scale = props.scale || Cell.source(initialScale);
+  const animateTo = props.animateTo ?? Cell.source<ViewerAnimation | null>(null);
   const isDragging = props.isDragging || Cell.source(false);
   const isAutoRotating = props.isAutoRotating || Cell.source(false);
   const isEnabled = props.isEnabled || Cell.source(true);
@@ -52,6 +61,7 @@ export function Viewer(props: ViewerProps) {
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
     pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
     isDragging.set(true);
+    animateTo.set(null);
     // Reset velocity on grab to stop existing momentum
     vx.set(0);
     vy.set(0);
@@ -144,7 +154,31 @@ export function Viewer(props: ViewerProps) {
   onSetup(() => {
     let animationFrame: number;
     const animate = () => {
-      if (isAutoRotating.get()) {
+      const target = animateTo.get();
+      if (target !== null) {
+        const nextRx = rx.get() + (target.rx - rx.get()) * 0.12;
+        const nextRy = ry.get() + (target.ry - ry.get()) * 0.12;
+        const nextRz = rz.get() + (target.rz - rz.get()) * 0.12;
+        const nextScale = scale.get() + (target.scale - scale.get()) * 0.12;
+        vx.set(0);
+        vy.set(0);
+        rx.set(nextRx);
+        ry.set(nextRy);
+        rz.set(nextRz);
+        scale.set(nextScale);
+        if (
+          Math.abs(target.rx - nextRx) < 0.1 &&
+          Math.abs(target.ry - nextRy) < 0.1 &&
+          Math.abs(target.rz - nextRz) < 0.1 &&
+          Math.abs(target.scale - nextScale) < 0.001
+        ) {
+          rx.set(target.rx);
+          ry.set(target.ry);
+          rz.set(target.rz);
+          scale.set(target.scale);
+          animateTo.set(null);
+        }
+      } else if (isAutoRotating.get()) {
         ry.set(ry.get() + 0.5);
       } else if (!isDragging.get()) {
         if (Math.abs(vx.get()) > 0.01 || Math.abs(vy.get()) > 0.01) {

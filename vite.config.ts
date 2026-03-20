@@ -16,6 +16,12 @@ const productRoutes = products.map((product) => {
   return `/playground/product-transitions/${product.id}`;
 });
 
+// Painting IDs are 1-30
+const paintingRoutes = Array.from(
+  { length: 30 },
+  (_, i) => `/playground/painting-wheel/${i + 1}`,
+);
+
 const pages = [
   "/",
   "/playground",
@@ -31,9 +37,13 @@ const pages = [
   "/works",
   ...notes,
   ...productRoutes,
+  ...paintingRoutes,
 ];
 
 export default defineConfig({
+  build: {
+    sourcemap: true,
+  },
   resolve: {
     alias: { "@": path.resolve(__dirname, "./source") },
   },

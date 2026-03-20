@@ -1,4 +1,4 @@
-import { Cell, For } from "retend";
+import { Cell, For, If } from "retend";
 import { useCurrentRoute, useRouter } from "retend/router";
 import { paintings } from "@/data/paintings";
 import { InteractionPanel } from "@/features/playground/components/InteractionPanel/InteractionPanel";
@@ -27,10 +27,14 @@ export const CollectionPanel = () => {
               }
               class="w-full text-left min-h-[6ch] relative cursor-pointer"
             >
-              <PaintingTitleAndArtist
-                id={`painting-title-${painting.id}`}
-                painting={painting}
-              />
+              {If(hasSelectedPainting, {
+                false: () => (
+                  <PaintingTitleAndArtist
+                    id={`painting-title-${painting.id}`}
+                    painting={painting}
+                  />
+                ),
+              })}
             </button>
           ))}
         </div>

@@ -24,6 +24,7 @@ const routes = defineRoutes([
     path: "/",
     component: RootLayout,
     metadata: {
+      charset: "utf-8",
       twitterCard: "summary_large_image",
       twitterSite: "@adebola_io",
       twitterCreator: "@adebola_io",
@@ -37,7 +38,9 @@ const routes = defineRoutes([
           {
             path: "/painting-wheel",
             component: PaintingWheel,
-            children: [{ path: "/:paintingId", component: PaintingDetailsPage }],
+            children: [
+              { path: "/:paintingId", component: PaintingDetailsPage },
+            ],
           },
           { path: "/curved-css-solid", component: CurvedCssSolid },
           { path: "/ripple-effect", component: RippleEffect },
