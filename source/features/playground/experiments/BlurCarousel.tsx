@@ -41,7 +41,9 @@ function Avatar(props: AvatarProps) {
         src={item.imageUrl}
         alt="Avatar"
       />
-      <div class="text-center text-lg text-white">{item.name}</div>
+      <div class={["text-center text-lg text-white", classes.name]}>
+        {item.name}
+      </div>
     </div>
   );
 }
