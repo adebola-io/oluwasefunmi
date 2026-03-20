@@ -50,8 +50,14 @@ const NavigationHeader = ({
       <span>Exit Exhibition</span>
     </button>
 
-    <div class="absolute left-1/2 -translate-x-1/2 flex items-center gap-4 bg-black/40 px-6 py-2 rounded-full border border-white/5 backdrop-blur-md pointer-events-auto">
-      <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+    <div
+      class="absolute left-1/2 -translate-x-1/2 flex items-center gap-4 bg-black/40 px-6 py-2 rounded-full border border-white/5 backdrop-blur-md pointer-events-auto"
+      style={{ borderColor: `${painting.color}22` }}
+    >
+      <div
+        class="w-1.5 h-1.5 rounded-full animate-pulse"
+        style={{ background: painting.color, boxShadow: `0 0 12px ${painting.color}` }}
+      />
       <span class="text-[10px] font-bold tracking-[0.2em] uppercase text-white/60">
         Archive Entry {painting.id.toString().padStart(3, "0")}
       </span>
@@ -77,7 +83,7 @@ const SidebarHeader = ({
         </h1>
       </div>
       <div class="flex items-center gap-3">
-        <div class="w-8 h-px bg-white/30" />
+        <div class="w-8 h-px" style={{ background: painting.color }} />
         <p class="text-lg text-white/60 font-light italic">{painting.artist}</p>
       </div>
     </div>
@@ -108,6 +114,30 @@ const SpecsGrid = ({ painting }: { painting: Painting }) => (
         value={painting.dimensions}
         delay="300ms"
       />
+      <div
+        class="space-y-1.5 animate-fade-in [animation-fill-mode:backwards]"
+        style={{ animationDelay: "350ms" }}
+      >
+        <h3 class="text-[10px] uppercase tracking-[0.2em] text-white/50 font-bold">
+          Color Study
+        </h3>
+        <div
+          class="inline-flex items-center gap-3 rounded-full border px-3 py-2"
+          style={{
+            background: `${painting.color}14`,
+            borderColor: `${painting.color}33`,
+            boxShadow: `0 0 24px ${painting.color}14`,
+          }}
+        >
+          <div
+            class="size-3 rounded-full border border-black/10 shadow-[0_0_0_4px_rgba(255,255,255,0.03)]"
+            style={{ background: painting.color }}
+          />
+          <p class="text-[13px] text-[#e0ebfd] font-medium leading-none">
+            {painting.color}
+          </p>
+        </div>
+      </div>
       <div class="col-span-2">
         <MetadataItem
           label="Current Location"
@@ -186,16 +216,19 @@ const PaintingContent = (props: PaintingContentProps) => {
       {/* Stage Area */}
       <main class="w-full h-[50dvh] md:h-auto md:flex-1 relative bg-[#08090a] flex items-center justify-center overflow-hidden shrink-0">
         <div
-          class="absolute inset-0 opacity-20 pointer-events-none transition-colors duration-1000"
+          class="absolute inset-0 opacity-80 pointer-events-none transition-colors duration-1000"
           style={{
-            background: `radial-gradient(circle at center, ${painting.color}, transparent 70%)`,
+            background: `radial-gradient(circle at center, ${painting.color} 0%, ${painting.color}aa 18%, ${painting.color}44 42%, transparent 72%)`,
           }}
         />
         <PaintingStage />
       </main>
 
       {/* Information Sidebar */}
-      <aside class="w-full md:w-[420px] lg:w-[480px] bg-[#0c0d0e] border-t md:border-t-0 md:border-l border-white/5 z-10 flex flex-col shrink-0 h-[50dvh] md:h-auto overflow-y-auto custom-scrollbar selection:bg-white/10 selection:text-white">
+      <aside
+        class="w-full md:w-[420px] lg:w-[480px] bg-[#0c0d0e] border-t md:border-t-0 md:border-l border-white/5 z-10 flex flex-col shrink-0 h-[50dvh] md:h-auto overflow-y-auto custom-scrollbar selection:bg-white/10 selection:text-white"
+        style={{ borderColor: `${painting.color}22`, boxShadow: `inset 1px 0 0 ${painting.color}22` }}
+      >
         <div class="flex-1 p-8 md:p-14 lg:p-16 space-y-12">
           <SidebarHeader painting={painting} onBack={onBack} />
           <SpecsGrid painting={painting} />
