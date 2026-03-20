@@ -32,19 +32,19 @@ export const PaintingStage = createUnique(() => {
   });
 
   return (
-    // <ClientOnly>
-    <UniqueTransition transitionDuration="500ms">
-      <Viewer
-        rx={rx}
-        ry={ry}
-        rz={rz}
-        scale={scale}
-        animateTo={animateTo}
-        isEnabled={noPaintingSelected}
-      >
-        <Wheel selectedPainting={selectedPainting} />
-      </Viewer>
-    </UniqueTransition>
-    // </ClientOnly>
+    <ClientOnly>
+      <UniqueTransition transitionDuration="500ms">
+        <Viewer
+          rx={rx}
+          ry={ry}
+          rz={rz}
+          scale={scale}
+          animateTo={animateTo}
+          isEnabled={noPaintingSelected}
+        >
+          <Wheel selectedPainting={selectedPainting} />
+        </Viewer>
+      </UniqueTransition>
+    </ClientOnly>
   );
 });
