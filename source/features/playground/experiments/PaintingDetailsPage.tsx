@@ -1,5 +1,5 @@
 import type { RouteComponent } from "retend/router";
-import { useCurrentRoute, useRouter } from "retend/router";
+import { useRouteQuery, useRouter } from "retend/router";
 import { Cell, If } from "retend";
 import { paintings, type Painting } from "@/data/paintings";
 import { SITE_URL } from "@/constants";
@@ -96,13 +96,9 @@ const PaintingContent = (props: PaintingContentProps) => {
 };
 
 const PaintingDetailsPage: RouteComponent = () => {
-  const currentRoute = useCurrentRoute();
+  const query = useRouteQuery();
   const router = useRouter();
-
-  const paintingId = Cell.derived(() => {
-    const params = currentRoute.get().params;
-    return params.get("paintingId");
-  });
+  const paintingId = query.get("paintingId");
 
   const selectedPainting = Cell.derived(() => {
     const id = paintingId.get();

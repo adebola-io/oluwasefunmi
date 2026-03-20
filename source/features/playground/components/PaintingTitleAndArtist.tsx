@@ -1,6 +1,5 @@
 import { Painting } from "@/data/paintings";
 import { Cell, createUnique } from "retend";
-import { ClientOnly } from "retend-server";
 import { UniqueTransition } from "retend-utils/components";
 
 interface PaintingTitleAndArtistProps {

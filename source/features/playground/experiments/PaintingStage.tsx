@@ -1,5 +1,5 @@
 import { Cell, createUnique } from "retend";
-import { useCurrentRoute } from "retend/router";
+import { useRouteQuery } from "retend/router";
 import { UniqueTransition } from "retend-utils/components";
 import { paintings } from "@/data/paintings";
 import { Viewer, type ViewerAnimation } from "../components/Viewer/Viewer";
@@ -7,18 +7,19 @@ import { Wheel } from "./Wheel";
 import { ClientOnly } from "retend-server";
 
 export const PaintingStage = createUnique(() => {
-  const currentRoute = useCurrentRoute();
+  const query = useRouteQuery();
   const rx = Cell.source(0);
   const ry = Cell.source(0);
   const rz = Cell.source(0);
   const scale = Cell.source(1);
   const animateTo = Cell.source<ViewerAnimation | null>(null);
+  const paintingId = query.get("paintingId");
   const selectedPainting = Cell.derived(() => {
-    const paintingId = currentRoute.get().params.get("paintingId");
-    if (!paintingId) return null;
+    const id = paintingId.get();
+    if (!id) return null;
     return (
       paintings.find(
-        (painting) => painting.id === Number.parseInt(paintingId, 10),
+        (painting) => painting.id === Number.parseInt(id, 10),
       ) ?? null
     );
   });

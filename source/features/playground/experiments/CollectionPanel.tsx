@@ -1,15 +1,13 @@
 import { Cell, For, If } from "retend";
-import { useCurrentRoute, useRouter } from "retend/router";
+import { useRouteQuery, useRouter } from "retend/router";
 import { paintings } from "@/data/paintings";
 import { InteractionPanel } from "@/features/playground/components/InteractionPanel/InteractionPanel";
 import { PaintingTitleAndArtist } from "@/features/playground/components/PaintingTitleAndArtist";
 
 export const CollectionPanel = () => {
   const router = useRouter();
-  const route = useCurrentRoute();
-  const hasSelectedPainting = Cell.derived(() => {
-    return route.get().params.has("paintingId");
-  });
+  const query = useRouteQuery();
+  const hasSelectedPainting = query.has("paintingId");
   const isOpen = Cell.source(false);
   hasSelectedPainting.listen((value) => {
     queueMicrotask(() => isOpen.set(!value));
@@ -23,7 +21,9 @@ export const CollectionPanel = () => {
             <button
               type="button"
               onClick={() =>
-                router.navigate(`/playground/painting-wheel/${painting.id}`)
+                router.navigate(
+                  `/playground/painting-wheel?paintingId=${painting.id}`,
+                )
               }
               class="w-full text-left min-h-[6ch] relative cursor-pointer"
             >

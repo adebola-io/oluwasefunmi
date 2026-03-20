@@ -1,18 +1,24 @@
 import type { RouteComponent } from "retend/router";
-import { Outlet } from "retend/router";
+import { useRouteQuery } from "retend/router";
+import { If } from "retend";
 import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
 import { SITE_URL } from "@/constants";
 import { CollectionPanel } from "./CollectionPanel";
+import PaintingDetailsPage from "./PaintingDetailsPage";
 import { PaintingStage } from "./PaintingStage";
 
 const PaintingWheel: RouteComponent = () => {
+  const query = useRouteQuery();
+
   return (
     <div class="w-dvw h-dvh overflow-hidden bg-[#050505] text-gray-400">
       <PlaygroundLayout title="Painting Wheel">
         <div class="grid relative w-full h-full place-items-center justify-center overflow-hidden">
           <PaintingStage />
           <CollectionPanel />
-          <Outlet class="empty:hidden! fixed block! top-0 z-200 w-dvw h-dvh" />
+          {If(query.has("paintingId"), () => (
+            <PaintingDetailsPage />
+          ))}
         </div>
       </PlaygroundLayout>
     </div>

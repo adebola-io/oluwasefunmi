@@ -90,7 +90,7 @@ export const PaintingImage = (props: PaintingImageProps) => {
   });
 
   const handleClick = () => {
-    router.navigate(`/playground/painting-wheel/${data.id}`);
+    router.navigate(`/playground/painting-wheel?paintingId=${data.id}`);
   };
 
   const handleAnimationEnd = () => {
