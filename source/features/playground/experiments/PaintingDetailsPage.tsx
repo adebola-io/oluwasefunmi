@@ -114,30 +114,6 @@ const SpecsGrid = ({ painting }: { painting: Painting }) => (
         value={painting.dimensions}
         delay="300ms"
       />
-      <div
-        class="space-y-1.5 animate-fade-in [animation-fill-mode:backwards]"
-        style={{ animationDelay: "350ms" }}
-      >
-        <h3 class="text-[10px] uppercase tracking-[0.2em] text-white/50 font-bold">
-          Color Study
-        </h3>
-        <div
-          class="inline-flex items-center gap-3 rounded-full border px-3 py-2"
-          style={{
-            background: `${painting.color}14`,
-            borderColor: `${painting.color}33`,
-            boxShadow: `0 0 24px ${painting.color}14`,
-          }}
-        >
-          <div
-            class="size-3 rounded-full border border-black/10 shadow-[0_0_0_4px_rgba(255,255,255,0.03)]"
-            style={{ background: painting.color }}
-          />
-          <p class="text-[13px] text-[#e0ebfd] font-medium leading-none">
-            {painting.color}
-          </p>
-        </div>
-      </div>
       <div class="col-span-2">
         <MetadataItem
           label="Current Location"

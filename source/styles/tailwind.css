@@ -5,7 +5,7 @@
 }
 
 @utility animate-offset-path {
-    animation: to-offset-start 1300ms ease;
+    animation: to-offset-start 1500ms ease;
 }
 
 @utility animate-rotate {

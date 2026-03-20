@@ -48,7 +48,7 @@ export function PaintingFrame(props: PaintingFrameProps) {
   return (
     <div
       class={[
-        "h-full w-fit border-2 rounded-md overflow-hidden bg-center bg-cover transition-colors duration-300",
+        "h-full w-fit border border-blue-200 rounded-xl overflow-hidden bg-center bg-cover transition-colors duration-300",
       ]}
       style={{
         backgroundImage: gradient,
