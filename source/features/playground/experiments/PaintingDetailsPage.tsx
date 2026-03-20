@@ -2,8 +2,174 @@ import { useRouteQuery, useRouter } from "retend/router";
 import { Cell, If } from "retend";
 import { paintings, type Painting } from "@/data/paintings";
 import { ArrowLeftIcon } from "@/components/icons/arrow-left";
-import { PaintingTitleAndArtist } from "@/features/playground/components/PaintingTitleAndArtist";
 import { PaintingStage } from "./PaintingStage";
+
+interface MetadataItemProps {
+  label: string;
+  value: string;
+  delay?: string;
+}
+
+const MetadataItem = (props: MetadataItemProps) => (
+  <div
+    class="space-y-1.5 animate-fade-in [animation-fill-mode:backwards]"
+    style={{ animationDelay: props.delay ?? "0ms" }}
+  >
+    <h3 class="text-[10px] uppercase tracking-[0.2em] text-white/50 font-bold">
+      {props.label}
+    </h3>
+    <p class="text-[13px] text-[#e0ebfd] font-medium leading-tight">
+      {props.value}
+    </p>
+  </div>
+);
+
+const SectionHeading = (props: { title: string; delay?: string }) => (
+  <h2
+    class="text-[11px] uppercase tracking-[0.25em] text-white/50 font-bold border-b border-white/5 pb-4 mb-6 animate-fade-in [animation-fill-mode:backwards]"
+    style={{ animationDelay: props.delay ?? "0ms" }}
+  >
+    {props.title}
+  </h2>
+);
+
+const NavigationHeader = ({
+  painting,
+  onBack,
+}: {
+  painting: Painting;
+  onBack: () => void;
+}) => (
+  <div class="fixed top-0 left-0 w-full p-6 md:p-10 z-50 pointer-events-none flex items-center justify-between">
+    <button
+      type="button"
+      onClick={onBack}
+      class="pointer-events-auto group flex items-center gap-3 text-[0.85rem] font-semibold text-white/70 bg-black/40 px-5 py-2.5 rounded-full border border-white/10 backdrop-blur-xl hover:border-white/30 hover:text-white hover:bg-black/60 transition-all duration-300 active:scale-95"
+    >
+      <ArrowLeftIcon class="w-4 h-4 group-hover:-translate-x-1 transition-transform" />
+      <span>Exit Exhibition</span>
+    </button>
+
+    <div class="absolute left-1/2 -translate-x-1/2 flex items-center gap-4 bg-black/40 px-6 py-2 rounded-full border border-white/5 backdrop-blur-md pointer-events-auto">
+      <div class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+      <span class="text-[10px] font-bold tracking-[0.2em] uppercase text-white/60">
+        Archive Entry {painting.id.toString().padStart(3, "0")}
+      </span>
+    </div>
+  </div>
+);
+
+const SidebarHeader = ({
+  painting,
+  onBack,
+}: {
+  painting: Painting;
+  onBack: () => void;
+}) => (
+  <header class="space-y-8 animate-fade-in">
+    <div class="space-y-4">
+      <div class="space-y-1">
+        <span class="text-[11px] font-bold tracking-[0.3em] uppercase text-white/40">
+          Masterpiece
+        </span>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-medium tracking-tight text-white leading-[1.1]">
+          {painting.title}
+        </h1>
+      </div>
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-px bg-white/30" />
+        <p class="text-lg text-white/60 font-light italic">{painting.artist}</p>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      onClick={onBack}
+      class="w-full py-4 bg-white text-black text-[13px] font-bold rounded-full hover:bg-[#e0ebfd] transition-all active:scale-[0.98] shadow-xl shadow-white/5"
+    >
+      Return to Gallery
+    </button>
+  </header>
+);
+
+const SpecsGrid = ({ painting }: { painting: Painting }) => (
+  <section>
+    <SectionHeading title="Provenance & Specs" delay="100ms" />
+    <div class="grid grid-cols-2 gap-x-8 gap-y-10">
+      <MetadataItem label="Creation Date" value={painting.year} delay="150ms" />
+      <MetadataItem label="Medium" value={painting.medium} delay="200ms" />
+      <MetadataItem
+        label="Artistic Style"
+        value={painting.style}
+        delay="250ms"
+      />
+      <MetadataItem
+        label="Dimensions"
+        value={painting.dimensions}
+        delay="300ms"
+      />
+      <div class="col-span-2">
+        <MetadataItem
+          label="Current Location"
+          value={painting.location}
+          delay="350ms"
+        />
+      </div>
+    </div>
+  </section>
+);
+
+const HistoricalContent = ({ painting }: { painting: Painting }) => (
+  <div class="space-y-12">
+    <section class="animate-fade-in [animation-fill-mode:backwards] [animation-delay:400ms]">
+      <SectionHeading title="Curator's Insight" />
+      <p class="text-[16px] md:text-[17px] leading-relaxed text-white/80 font-light">
+        {painting.description}
+      </p>
+    </section>
+
+    <section class="animate-fade-in [animation-fill-mode:backwards] [animation-delay:500ms]">
+      <SectionHeading title="Historical Narrative" />
+      <div class="space-y-6">
+        <p class="text-[15px] leading-relaxed text-white/80 font-light">
+          {painting.details}
+        </p>
+        <div class="p-6 rounded-2xl bg-white/[0.02] border border-white/5 space-y-3 group hover:bg-white/[0.04] transition-colors duration-500">
+          <div class="flex items-center gap-2 text-white/60">
+            <svg
+              class="w-4 h-4"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="2"
+            >
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            <span class="text-[10px] font-bold tracking-widest uppercase">
+              Verified Record
+            </span>
+          </div>
+          <p class="text-[13px] text-white/60 leading-relaxed italic">
+            This work is part of the global cultural heritage archive. Data
+            synchronized with major museum registries.
+          </p>
+        </div>
+      </div>
+    </section>
+  </div>
+);
+
+const SidebarFooter = () => (
+  <footer class="pt-8 border-t border-white/5 animate-fade-in [animation-fill-mode:backwards] [animation-delay:600ms]">
+    <div class="flex justify-between items-center text-[10px] text-white/50 uppercase tracking-[0.3em] font-bold">
+      <span>© 2026 Archive</span>
+      <div class="flex items-center gap-2">
+        <div class="w-1 h-1 rounded-full bg-white/30" />
+        <span>Encrypted Provenance</span>
+      </div>
+    </div>
+  </footer>
+);
 
 interface PaintingContentProps {
   painting: Painting;
@@ -14,80 +180,34 @@ const PaintingContent = (props: PaintingContentProps) => {
   const { painting, onBack } = props;
 
   return (
-    <div class="flex-1 flex flex-col md:flex-row relative font-['Manrope']">
-      {/* Header Area - Matches PlaygroundLayout positioning */}
-      <div class="fixed top-0 left-0 w-full p-[clamp(1rem,3vw,2rem)] z-50 pointer-events-none flex items-center justify-between">
-        <button
-          type="button"
-          onClick={onBack}
-          class="pointer-events-auto flex items-center gap-2 text-[0.9rem] font-medium text-[#888] bg-black/50 px-4 py-2 rounded-full border border-white/10 backdrop-blur-md hover:border-white/25 transition-all"
-        >
-          <ArrowLeftIcon />
-          <span class="max-sm:hidden">back to wheel</span>
-        </button>
+    <div
+      class={[
+        "flex-1 flex flex-col md:flex-row relative font-['Manrope'] overflow-hidden",
+        "max-sm:overflow-y-auto",
+      ]}
+    >
+      <NavigationHeader painting={painting} onBack={onBack} />
 
-        <div class="absolute left-1/2 -translate-x-1/2 text-[clamp(0.75rem,2vw,0.9rem)] font-medium tracking-[0.05em] uppercase text-white/50 pointer-events-none">
-          Exhibition No. {painting.id}
-        </div>
-      </div>
-
-      {/* Stage */}
-      <main class="w-full min-h-[60dvh] md:min-h-0 md:flex-1 relative bg-black flex items-center justify-center p-12 md:p-24 overflow-hidden shrink-0">
+      {/* Stage Area */}
+      <main class="w-full h-[50dvh] md:h-auto md:flex-1 relative bg-[#08090a] flex items-center justify-center overflow-hidden shrink-0">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.03)_0%,transparent_70%)] pointer-events-none" />
         <PaintingStage />
       </main>
 
-      {/* Sidebar Plaque */}
-      <aside class="w-full md:w-100 border-t md:border-t-0 md:border-l border-(--border-subtle) bg-(--bg-card) z-10 flex flex-col shrink-0">
-        <div class="flex-1 animate-fade-in px-8 py-12 md:px-10 md:py-24 md:overflow-y-auto">
-          <header class="space-y-3">
-            <PaintingTitleAndArtist
-              id={`painting-title-${painting.id}`}
-              painting={painting}
-              isSelected
-            />
-          </header>
-
-          <div class="animate-fade-in [animation-fill-mode:backwards] [animation-delay:100ms] pt-32">
-            <div class="grid grid-cols-2 gap-6">
-              <div>
-                <h3 class="text-[10px] uppercase tracking-widest text-white/30 font-bold mb-1.5">
-                  Year
-                </h3>
-                <p class="text-sm text-(--text-primary)">{painting.year}</p>
-              </div>
-              <div>
-                <h3 class="text-[10px] uppercase tracking-widest text-white/30 font-bold mb-1.5">
-                  Medium
-                </h3>
-                <p class="text-sm text-(--text-primary)">Oil on Canvas</p>
-              </div>
-            </div>
-
-            <div class="space-y-3">
-              <h3 class="text-[10px] uppercase tracking-widest text-white/30 font-bold">
-                Curator's Note
-              </h3>
-              <p class="text-[15px] leading-relaxed text-[#94a3b8] font-light">
-                {painting.description}
-              </p>
-            </div>
-
-            <div class="pt-6">
-              <button
-                type="button"
-                onClick={onBack}
-                class="w-full py-4 bg-[#e0ebfd]/5 text-[#e0ebfd] text-sm font-medium border border-[#e0ebfd]/10 rounded-xl hover:bg-[#e0ebfd]/10 hover:border-[#e0ebfd]/20 transition-all active:scale-[0.98] mt-4"
-              >
-                Return to Gallery
-              </button>
-            </div>
-          </div>
+      {/* Information Sidebar */}
+      <aside
+        class={[
+          "w-full md:w-[420px] lg:w-[480px] bg-[#0c0d0e] border-t md:border-t-0 md:border-l border-white/5 z-10 flex flex-col shrink-0 custom-scrollbar selection:bg-white/10 selection:text-white",
+          "h-[50dvh] md:h-auto overflow-y-auto",
+          "max-sm:[overflow:unset]",
+        ]}
+      >
+        <div class="flex-1 p-8 md:p-14 lg:p-16 space-y-12">
+          <SidebarHeader painting={painting} onBack={onBack} />
+          <SpecsGrid painting={painting} />
+          <HistoricalContent painting={painting} />
+          <SidebarFooter />
         </div>
-
-        <footer class="p-8 border-t border-white/5 flex justify-between items-center text-[10px] text-white/20 uppercase tracking-widest font-medium">
-          <span>Provenance Archive</span>
-          <span>2026 Edition</span>
-        </footer>
       </aside>
     </div>
   );
@@ -110,7 +230,7 @@ const PaintingDetailsPage = () => {
 
   return (
     <div
-      class="fixed inset-0 z-200 size-full flex flex-col bg-[#08090a] selection:bg-[#c3cde1] selection:text-[#08090a] overflow-y-auto md:overflow-hidden"
+      class="fixed inset-0 z-200 size-full flex flex-col bg-[#08090a] selection:bg-white/10 selection:text-white overflow-y-auto md:overflow-hidden"
       style={{
         "--bg-dark": "#08090a",
         "--bg-card": "#111214",

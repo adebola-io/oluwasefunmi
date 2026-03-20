@@ -92,10 +92,7 @@ export function Viewer(props: ViewerProps) {
       const deltaY = e.clientY - prev.y;
 
       const dx = deltaX * sensitivity;
-      const dy =
-        deltaY *
-        sensitivity *
-        (1 - 2 * Number(Math.cos((ry.get() * Math.PI) / 180) < 0));
+      const dy = deltaY * sensitivity;
 
       ry.set(ry.get() + dx);
       rx.set(rx.get() - dy);
@@ -195,7 +192,7 @@ export function Viewer(props: ViewerProps) {
   });
 
   const transform = Cell.derived(() => {
-    return `scale(${scale.get()}) rotateY(${ry.get()}deg) rotateX(${rx.get()}deg) rotateZ(${rz.get()}deg)`;
+    return `scale(${scale.get()}) rotateX(${rx.get()}deg) rotateY(${ry.get()}deg) rotateZ(${rz.get()}deg)`;
   });
 
   return (

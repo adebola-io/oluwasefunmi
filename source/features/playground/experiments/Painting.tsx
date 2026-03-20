@@ -1,7 +1,6 @@
 import { getPaintingImage } from "@/data/paintingImages";
 import { type Painting, paintings } from "@/data/paintings";
 import { Cell, onSetup } from "retend";
-import { useRouter } from "retend/router";
 import { useDerivedValue } from "retend-utils/hooks";
 import type { JSX } from "retend/jsx-runtime";
 
@@ -43,8 +42,12 @@ export function PaintingFrame(props: PaintingFrameProps) {
 
   return (
     <div
-      class="h-full w-auto aspect-square rounded-2xl overflow-hidden bg-center bg-cover transition-colors duration-300"
-      style={{ backgroundImage: gradient }}
+      class={[
+        "h-full w-fit border-2 rounded-md overflow-hidden bg-center bg-cover transition-colors duration-300",
+      ]}
+      style={{
+        backgroundImage: gradient,
+      }}
     >
       <img
         draggable={false}
@@ -76,7 +79,6 @@ interface PaintingImageProps {
 export const PaintingImage = (props: PaintingImageProps) => {
   const { data, index, selectedPainting } = props;
   const initialAnimation = Cell.source(true);
-  const router = useRouter();
 
   const offsetDistance = Cell.derived(() => {
     return `${(index.get() / paintings.length) * -100}%`;
@@ -89,19 +91,15 @@ export const PaintingImage = (props: PaintingImageProps) => {
     return selectedPaintingValue !== null && selectedPaintingValue !== data;
   });
 
-  const handleClick = () => {
-    router.navigate(`/playground/painting-wheel?paintingId=${data.id}`);
-  };
-
   const handleAnimationEnd = () => {
     initialAnimation.set(false);
   };
 
   return (
-    <button
-      type="button"
+    <li
       class={[
-        "relative border-2 rounded-2xl w-[17dvw] md:w-[14dvw] select-none transform-3d",
+        "grid place-items-center",
+        "relative h-[17dvw] md:h-[14dvw] w-auto aspect-square select-none transform-3d",
         "[-webkit-user-drag:none] [grid-area:1/1] [offset-path:var(--offset-path)]",
         "group duration-500 origin-center ease-in-out transition-opacity will-change-[opacity]",
         "transform-[rotateX(-90deg)_rotateY(90deg)]",
@@ -111,7 +109,6 @@ export const PaintingImage = (props: PaintingImageProps) => {
         },
       ]}
       style={{ "--offset-distance-end": offsetDistanceEnd, offsetDistance }}
-      onClick={handleClick}
       onAnimationEnd={handleAnimationEnd}
     >
       <PaintingFrame
@@ -119,6 +116,6 @@ export const PaintingImage = (props: PaintingImageProps) => {
         data={data}
         staggerIndex={index}
       />
-    </button>
+    </li>
   );
 };
