@@ -13,12 +13,12 @@
   "dependencies": {
     "@mdx-js/rollup": "^3.1.0",
     "@types/mdx": "^2.0.13",
-    "retend": "https://pkg.pr.new/resuite/retend@fb663339",
-    "retend-oxlint-plugin": "https://pkg.pr.new/resuite/retend/retend-oxlint-plugin@fb663339",
-    "retend-server": "https://pkg.pr.new/resuite/retend/retend-server@fb663339",
-    "retend-utils": "https://pkg.pr.new/resuite/retend/retend-utils@fb663339",
-    "retend-web": "https://pkg.pr.new/resuite/retend/retend-web@fb663339",
-    "retend-web-devtools": "https://pkg.pr.new/resuite/retend/retend-web-devtools@fb663339"
+    "retend": "https://pkg.pr.new/resuite/retend@e4b19e2",
+    "retend-oxlint-plugin": "https://pkg.pr.new/resuite/retend/retend-oxlint-plugin@e4b19e2",
+    "retend-server": "https://pkg.pr.new/resuite/retend/retend-server@e4b19e2",
+    "retend-utils": "https://pkg.pr.new/resuite/retend/retend-utils@e4b19e2",
+    "retend-web": "https://pkg.pr.new/resuite/retend/retend-web@e4b19e2",
+    "retend-web-devtools": "https://pkg.pr.new/resuite/retend/retend-web-devtools@e4b19e2"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.1.5",
