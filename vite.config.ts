@@ -7,6 +7,8 @@ import tailwindcss from "@tailwindcss/vite";
 import mdx from "@mdx-js/rollup";
 import { products } from "./source/data/products";
 
+import { cloudflare } from "@cloudflare/vite-plugin";
+
 const notes = fs.existsSync("./source/content/notes")
   ? fs
       .readdirSync("./source/content/notes")
@@ -48,5 +50,6 @@ export default defineConfig({
       pages,
       routerModulePath: "./source/app/router.tsx",
     }),
+    cloudflare()
   ],
 });
