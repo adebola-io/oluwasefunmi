@@ -67,7 +67,7 @@ const RippleButton = (props: BoxProps) => {
     <button
       ref={buttonRef}
       type="button"
-      style={{ backgroundColor: color }}
+      style={{ backgroundColor: colors[0] }}
       class={classes.rippleButtonContainer}
       onPointerDown={handleClick}
     />
