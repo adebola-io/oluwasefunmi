@@ -107,49 +107,53 @@
     animation: fade-in-up 0.8s var(--ease-spring) 0.3s forwards;
 }
 
-.primaryButton,
-.secondaryButton {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.75rem;
-    padding: 0.9rem 2rem;
-    font-size: 0.95rem;
-    font-weight: 500;
-    text-decoration: none;
-    border-radius: 6px;
-    transition:
-        transform 0.2s var(--ease-spring),
-        opacity 0.2s var(--ease-spring),
-        background-color 0.2s var(--ease-spring);
-    cursor: pointer;
-    letter-spacing: -0.01em;
+.floatingSocials {
+    position: absolute;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.25rem;
+    align-items: flex-end;
+    opacity: 0;
+    animation: fade-in-up 0.8s var(--ease-spring) 0.4s forwards;
+    z-index: 10;
 }
 
-.primaryButton {
-    background: transparent;
-    color: var(--text-primary);
-}
-
-.primaryButton:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-.secondaryButton {
-    background: transparent;
+.iconLink {
     color: var(--text-secondary);
+    transition:
+        color 0.2s var(--ease-spring),
+        transform 0.2s var(--ease-spring);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.primaryButton,
-.secondaryButton {
-    --layered-border-color: rgba(255, 255, 255, 0.6);
-    --layered-shadow-color: rgba(255, 255, 255, 0.3);
-    --layered-offset-x: -8px;
-    --layered-offset-y: 8px;
-}
-
-.secondaryButton:hover {
-    background: rgba(255, 255, 255, 0.1);
+.iconLink:hover {
     color: var(--text-primary);
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.15);
+}
+
+.iconLink svg {
+    width: 20px;
+    height: 20px;
+}
+
+@media (max-width: 600px) {
+    .floatingSocials {
+        position: static;
+        flex-direction: row;
+        justify-content: center;
+        margin-top: 3rem;
+    }
 }
 
 .section {
