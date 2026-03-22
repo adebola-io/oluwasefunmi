@@ -1,6 +1,7 @@
-import { Cell, For, If, onConnected } from "retend";
+import { Cell, For, If } from "retend";
 import type { RouteComponent } from "retend/router";
 import { FluidList } from "retend-utils/components";
+import { useIntersectionObserver } from "retend-utils/hooks";
 import classes from "./Bookmarks.module.css";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { StarShower } from "@/components/ui/StarShower";
@@ -8,6 +9,7 @@ import { SITE_URL } from "@/constants";
 import { BookmarkItem } from "./BookmarkItem";
 import { useBookmarks } from "./Bookmarks.hooks";
 import { bookmarks } from "@/data/bookmarks";
+import { ClientOnly } from "retend-server";
 
 const SearchIcon = () => (
   <svg
@@ -106,22 +108,17 @@ const Bookmarks: RouteComponent = () => {
   const totalItems = Cell.derived(() => state.get().totalItems);
   const showEmpty = Cell.derived(() => loaded.get() && totalItems.get() === 0);
 
-  onConnected(loadMoreRef, (element) => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (!entry.isIntersecting) return;
-        if (!loaded.get()) return;
-        if (pending.get()) return;
-        if (items.get().length === totalItems.get()) return;
-        handlePagination(1);
-      },
-      { rootMargin: "400px 0px" },
-    );
-
-    observer.observe(element);
-
-    return () => observer.disconnect();
-  });
+  useIntersectionObserver(
+    loadMoreRef,
+    ([entry]) => {
+      if (!entry.isIntersecting) return;
+      if (!loaded.get()) return;
+      if (pending.get()) return;
+      if (items.get().length === totalItems.get()) return;
+      handlePagination(1);
+    },
+    () => ({ rootMargin: "400px 0px" }),
+  );
 
   return (
     <div>
@@ -162,23 +159,27 @@ const Bookmarks: RouteComponent = () => {
             </div>
           </div>
         </div>
-        {If(showEmpty, () => (
-          <div class={classes.error}>No items found in the archive.</div>
-        ))}
-        <div class={[classes.centeredGrid, Cell.derived(() => (isRefreshing.get() ? classes.dimmed : ""))]}>
-          <FluidList
-            items={items}
-            itemKey="id"
-            class={classes.board}
-            direction="inline"
-            maxColumns={Cell.derived(() => layout.get().columns)}
-            itemWidth={Cell.derived(() => layout.get().width)}
-            gap="24px"
-            speed="300ms"
-            easing="var(--ease-spring)"
-            Template={BookmarkItem}
-          />
-        </div>
+        <ClientOnly>
+          {If(showEmpty, () => (
+            <div class={classes.error}>No items found in the archive.</div>
+          ))}
+          <div
+            class={[classes.centeredGrid, { [classes.dimmed]: isRefreshing }]}
+          >
+            <FluidList
+              items={items}
+              itemKey="id"
+              class={classes.board}
+              direction="inline"
+              maxColumns={Cell.derived(() => layout.get().columns)}
+              itemWidth={Cell.derived(() => layout.get().width)}
+              gap="24px"
+              speed="300ms"
+              easing="var(--ease-spring)"
+              Template={BookmarkItem}
+            />
+          </div>
+        </ClientOnly>
         <div ref={loadMoreRef} class={classes.loadMoreTrigger} />
       </div>
     </div>
