@@ -6,12 +6,11 @@ export interface Bookmark {
   tags: string[];
   notes: string;
   image: string;
-  backgroundGradient: string;
+  themeColor: string;
   openGraph: {
     title: string;
     description: string;
     siteName: string;
-    image: string;
   };
 }
 

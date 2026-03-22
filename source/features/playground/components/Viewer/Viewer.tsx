@@ -3,6 +3,8 @@ import type { JSX } from "retend/jsx-runtime";
 import classes from "./Viewer.module.css";
 import { useViewerControls, type ViewerAnimation } from "./useViewerControls";
 
+export type { ViewerAnimation };
+
 export interface ViewerProps {
   children?: JSX.Element;
   rx?: SourceCell<number>;

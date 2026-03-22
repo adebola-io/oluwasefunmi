@@ -7,11 +7,13 @@ export const PaintingWheelIcon = (props: JSX.IntrinsicElements["svg"]) => {
     viewBox = "0 0 24 24",
     fill = "none",
     stroke = "currentColor",
-    "stroke-width": strokeWidth = "1.5",
-    "stroke-linecap": strokeLinecap = "round",
-    "stroke-linejoin": strokeLinejoin = "round",
     ...rest
   } = props;
+
+  const propsAny = props as any;
+  const strokeWidth = propsAny["stroke-width"] || "1.5";
+  const strokeLinecap = propsAny["stroke-linecap"] || "round";
+  const strokeLinejoin = propsAny["stroke-linejoin"] || "round";
 
   return (
     <svg

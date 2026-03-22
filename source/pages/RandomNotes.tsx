@@ -4,7 +4,7 @@ import type { PageMeta } from "retend-server/client";
 import type { Note, NotePreviewProps } from "@/types";
 import { Link } from "retend/router";
 import { LayeredCard } from "@/components/ui/LayeredCard";
-import { PageTitle } from "@/components/layout/PageTitle";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { StarShower } from "@/components/ui/StarShower";
 import { NoteHeading } from "@/components/ui/typography";
 import { SITE_URL } from "@/constants";
@@ -44,14 +44,10 @@ const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
     <div class={classes.page}>
       <StarShower />
       <div class={classes.container}>
-        <div class={classes.title}>
-          <PageTitle name="Random Notes." />
-        </div>
-        <p class={classes.subtitle}>
-          Disjoint musings, incoherent rants and streams of consciousness that I
-          have decided to write down. Anything about life, technology and
-          consequence.
-        </p>
+        <PageHeader
+          title="Random Notes."
+          subtitle="Disjoint musings, incoherent rants and streams of consciousness that I have decided to write down. Anything about life, technology and consequence."
+        />
 
         <div class={classes.notesList}>
           {If(

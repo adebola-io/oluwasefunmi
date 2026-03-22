@@ -3,7 +3,7 @@ import { Link } from "retend/router";
 import type { RouteComponent } from "retend/router";
 import { LayeredCard } from "@/components/ui/LayeredCard";
 import classes from "./Works.module.css";
-import { PageTitle } from "@/components/layout/PageTitle";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { StarShower } from "@/components/ui/StarShower";
 import { projects, type Project } from "@/data/projects";
 import { ArrowIcon } from "@/components/icons/arrow";
@@ -53,14 +53,10 @@ const Works: RouteComponent = () => {
     <div class={classes.works}>
       <StarShower />
       <div class={classes.container}>
-        <div class={classes.hero}>
-          <PageTitle name="My Works." />
-        </div>
-
-        <p class={classes.intro}>
-          Here's a curated collection of my works, highlighting my past
-          achievements and current projects.
-        </p>
+        <PageHeader
+          title="My Works."
+          subtitle="Here's a curated collection of my works, highlighting my past achievements and current projects."
+        />
 
         <ul class={classes.grid}>
           {For(projects, (project, i) => (

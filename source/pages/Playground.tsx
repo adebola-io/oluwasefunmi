@@ -2,7 +2,7 @@ import { For } from "retend";
 import { Link } from "retend/router";
 import type { RouteComponent } from "retend/router";
 import classes from "./Playground.module.css";
-import { PageTitle } from "@/components/layout/PageTitle";
+import { PageHeader } from "@/components/layout/PageHeader";
 import { playgroundItems } from "@/data/playground.tsx";
 import { StarShower } from "@/components/ui/StarShower";
 import { ArrowRightIcon } from "@/components/icons/arrow-right";
@@ -20,10 +20,10 @@ const Playground: RouteComponent = () => {
     <div class={classes.page}>
       <StarShower />
       <header class={classes.header}>
-        <PageTitle name="Playground." />
-        <p class={classes.subtitle}>
-          Interactive UI experiments & visual effects
-        </p>
+        <PageHeader
+          title="Playground."
+          subtitle="Interactive UI experiments & visual effects"
+        />
       </header>
 
       <main class={classes.grid}>
