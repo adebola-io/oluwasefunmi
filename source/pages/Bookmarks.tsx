@@ -27,27 +27,27 @@ const SearchIcon = () => (
 );
 
 const TAG_COLORS: Record<string, string> = {
-  frontend: "#3b82f6",
-  design: "#ec4899",
-  fintech: "#10b981",
-  article: "#8b5cf6",
-  shaders: "#f59e0b",
-  graphics: "#ef4444",
-  product: "#06b6d4",
-  native: "#6366f1",
-  media: "#f97316",
-  web: "#14b8a6",
-  tools: "#64748b",
-  inspiration: "#d946ef",
-  dev: "#4f46e5",
-  react: "#61dafb",
-  typescript: "#3178c6",
-  css: "#1572b6",
-  animation: "#ff0080",
-  portfolio: "#10b981",
-  blog: "#f59e0b",
-  resource: "#8b5cf6",
-  interactive: "#06b6d4",
+  frontend: "#2563eb",
+  design: "#db2777",
+  fintech: "#059669",
+  article: "#7c3aed",
+  shaders: "#d97706",
+  graphics: "#dc2626",
+  product: "#0891b2",
+  native: "#4f46e5",
+  media: "#ea580c",
+  web: "#0d9488",
+  tools: "#475569",
+  inspiration: "#c026d3",
+  dev: "#4338ca",
+  react: "#0891b2",
+  typescript: "#2563eb",
+  css: "#1d4ed8",
+  animation: "#db2777",
+  portfolio: "#059669",
+  blog: "#d97706",
+  resource: "#7c3aed",
+  interactive: "#0891b2",
 };
 const ALL_TAGS = Array.from(new Set(bookmarks.flatMap((b) => b.tags))).sort();
 
@@ -56,7 +56,7 @@ const getContrastColor = (hexcolor: string) => {
     const match = hexcolor.match(/hsl\(\d+,\s*\d+%?,\s*(\d+)%?\)/);
     if (match) {
       const lightness = parseInt(match[1]);
-      return lightness > 65 ? "#000000" : "#ffffff";
+      return lightness > 55 ? "#000000" : "#ffffff";
     }
     return "#ffffff";
   }
@@ -68,7 +68,7 @@ const getContrastColor = (hexcolor: string) => {
 
   // Calculate relative luminance
   const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-  return luminance > 0.6 ? "#000000" : "#ffffff";
+  return luminance > 0.5 ? "#000000" : "#ffffff";
 };
 
 const getTagStyles = (tagName: string) => {
@@ -81,7 +81,7 @@ const getTagStyles = (tagName: string) => {
       hash = normalized.charCodeAt(i) + ((hash << 5) - hash);
     }
     const h = Math.abs(hash % 360);
-    bgColor = `hsl(${h}, 70%, 60%)`;
+    bgColor = `hsl(${h}, 65%, 42%)`;
   }
 
   return {
