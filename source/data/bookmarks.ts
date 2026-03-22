@@ -38,7 +38,7 @@ export const bookmarks = [
     notes: "",
     image:
       "https://paper.design/_next/image?url=%2Fblog%2Fmaking-cmyk-shader%2Fhero.jpg&w=640&q=75",
-    themeColor: "#ffffff",
+    themeColor: "#d29450",
     openGraph: {
       title: "Exploring retro print with CMYK Halftone",
       description:
@@ -100,32 +100,6 @@ export const bookmarks = [
       title: "Is SwiftUI finally as fast as UIKit in iOS 26?",
       description: "A scientific performance comparison. The final word.",
       siteName: "Jacob's Tech Tavern",
-    },
-  },
-  {
-    id: "judyzhou-me",
-    link: "https://judyzhou.me/",
-    tags: ["design", "portfolio", "web", "article"],
-    notes: "",
-    image: "https://judyzhou.me/_next/image?url=%2Fmeow.JPG&w=3840&q=75",
-    themeColor: "#9f9887",
-    openGraph: {
-      title: "Judy Zhou — Design Engineer",
-      description: "",
-      siteName: "Judy Zhou",
-    },
-  },
-  {
-    id: "jpeg",
-    link: "https://www.sophielwang.com/blog/jpeg",
-    tags: ["design", "media", "web", "article"],
-    notes: "",
-    image: "",
-    themeColor: "#ffffff",
-    openGraph: {
-      title: "JPEG compression",
-      description: "A post about JPEG.",
-      siteName: "Sophie Wang",
     },
   },
   {
@@ -395,20 +369,6 @@ export const bookmarks = [
     },
   },
   {
-    id: "ratelimit-algorithms",
-    link: "https://smudge.ai/blog/ratelimit-algorithms",
-    tags: ["ai", "algorithms", "backend", "engineering", "article"],
-    notes: "",
-    image: "https://smudge.ai/images/og.png",
-    themeColor: "#0ea5e9",
-    openGraph: {
-      title: "rate limiter – smudge.ai blog",
-      description:
-        "Smudge.ai is a Chrome extension that gives you ChatGPT-powered shortcuts in your right-click menu.",
-      siteName: "smudge.ai",
-    },
-  },
-  {
     id: "why-is-claude-an-electron-app",
     link: "https://www.dbreunig.com/2026/02/21/why-is-claude-an-electron-app.html",
     tags: ["html", "desktop", "native", "opinion", "article"],
@@ -438,7 +398,7 @@ export const bookmarks = [
   },
   {
     id: "2209-07663",
-    link: "https://arxiv.org/pdf/2209.07663",
+    link: "https://pbs.twimg.com/profile_images/1365352170267299840/IzvjKckL_400x400.jpg",
     tags: ["ml", "research", "systems", "article"],
     notes: "",
     image: "",
@@ -541,7 +501,7 @@ export const bookmarks = [
     tags: ["design", "craft", "web", "article"],
     notes: "",
     image: "https://rauno.me/static/craft/og-novelty.png",
-    themeColor: "#ffffff",
+    themeColor: "#fffe02",
     openGraph: {
       title: "Novelty",
       description: "February 2026",
@@ -582,7 +542,8 @@ export const bookmarks = [
     link: "https://www.makingsoftware.com/chapters/how-is-data-stored",
     tags: ["data", "databases", "systems", "reference", "article"],
     notes: "",
-    image: "",
+    image:
+      "https://www.makingsoftware.com/_next/image?url=%2Fdata-and-compression%2Fhow-is-data-stored%2Fhero.png&w=3840&q=75",
     themeColor: "#ffffff",
     openGraph: {
       title: "How Is Data Stored",

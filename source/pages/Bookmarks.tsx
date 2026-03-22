@@ -1,4 +1,4 @@
-import { Cell, If } from "retend";
+import { Cell, For, If } from "retend";
 import type { RouteComponent } from "retend/router";
 import { FluidList } from "retend-utils/components";
 import classes from "./Bookmarks.module.css";
@@ -7,13 +7,14 @@ import { StarShower } from "@/components/ui/StarShower";
 import { SITE_URL } from "@/constants";
 import { BookmarkItem } from "./BookmarkItem";
 import { useBookmarks } from "./Bookmarks.hooks";
+import { bookmarks } from "@/data/bookmarks";
 
 const SearchIcon = () => (
   <svg
     viewBox="0 0 24 24"
     fill="none"
     stroke="currentColor"
-    stroke-width="2"
+    stroke-width="2.5"
     stroke-linecap="round"
     stroke-linejoin="round"
     class={classes.searchIcon}
@@ -23,14 +24,87 @@ const SearchIcon = () => (
   </svg>
 );
 
+const TAG_COLORS: Record<string, string> = {
+  frontend: "#3b82f6",
+  design: "#ec4899",
+  fintech: "#10b981",
+  article: "#8b5cf6",
+  shaders: "#f59e0b",
+  graphics: "#ef4444",
+  product: "#06b6d4",
+  native: "#6366f1",
+  media: "#f97316",
+  web: "#14b8a6",
+  tools: "#64748b",
+  inspiration: "#d946ef",
+  dev: "#4f46e5",
+  react: "#61dafb",
+  typescript: "#3178c6",
+  css: "#1572b6",
+  animation: "#ff0080",
+  portfolio: "#10b981",
+  blog: "#f59e0b",
+  resource: "#8b5cf6",
+  interactive: "#06b6d4",
+};
+
+const getContrastColor = (hexcolor: string) => {
+  if (hexcolor.startsWith("hsl")) {
+    const match = hexcolor.match(/hsl\(\d+,\s*\d+%?,\s*(\d+)%?\)/);
+    if (match) {
+      const lightness = parseInt(match[1]);
+      return lightness > 65 ? "#000000" : "#ffffff";
+    }
+    return "#ffffff";
+  }
+
+  // Convert hex to RGB
+  const r = parseInt(hexcolor.slice(1, 3), 16);
+  const g = parseInt(hexcolor.slice(3, 5), 16);
+  const b = parseInt(hexcolor.slice(5, 7), 16);
+
+  // Calculate relative luminance
+  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
+  return luminance > 0.6 ? "#000000" : "#ffffff";
+};
+
+const getTagStyles = (tagName: string) => {
+  const normalized = tagName.toLowerCase();
+  let bgColor = TAG_COLORS[normalized];
+
+  if (!bgColor) {
+    let hash = 0;
+    for (let i = 0; i < normalized.length; i++) {
+      hash = normalized.charCodeAt(i) + ((hash << 5) - hash);
+    }
+    const h = Math.abs(hash % 360);
+    bgColor = `hsl(${h}, 70%, 60%)`;
+  }
+
+  return {
+    "--tag-color": bgColor,
+    "--tag-text": getContrastColor(bgColor),
+  };
+};
+
 const Bookmarks: RouteComponent = () => {
-  const { state, loaded, query, layout, handleSearch, handlePagination } =
-    useBookmarks();
+  const {
+    state,
+    loaded,
+    query,
+    tag,
+    layout,
+    handleSearch,
+    handleTagSelect,
+    handlePagination,
+  } = useBookmarks();
   const items = Cell.derived(() => state.get().items);
   const page = Cell.derived(() => state.get().page);
   const totalItems = Cell.derived(() => state.get().totalItems);
   const totalPages = Cell.derived(() => state.get().totalPages);
   const showEmpty = Cell.derived(() => loaded.get() && totalItems.get() === 0);
+
+  const allTags = Array.from(new Set(bookmarks.flatMap((b) => b.tags))).sort();
 
   return (
     <div>
@@ -50,6 +124,25 @@ const Bookmarks: RouteComponent = () => {
               class={classes.search}
               onInput={handleSearch}
             />
+          </div>
+          <div class={classes.tagsWrapper}>
+            <div class={classes.tagsContainer}>
+              {For(allTags, (tagName) => (
+                <button
+                  type="button"
+                  class={[
+                    classes.tagPill,
+                    Cell.derived(() =>
+                      tag.get() === tagName ? classes.active : "",
+                    ),
+                  ]}
+                  style={getTagStyles(tagName)}
+                  onClick={() => handleTagSelect(tagName)}
+                >
+                  {tagName}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
         {If(showEmpty, () => (

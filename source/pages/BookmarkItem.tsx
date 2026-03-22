@@ -34,7 +34,9 @@ export const BookmarkItem = (props: BookmarkItemProps) => {
           class={classes.image}
           loading="lazy"
           onLoad={(e) => {
-            e.currentTarget.style.opacity = "1";
+            if (e.currentTarget instanceof HTMLElement) {
+              e.currentTarget.style.opacity = "1";
+            }
           }}
           onError={(e) => {
             const target = e.currentTarget;
