@@ -1,4 +1,4 @@
-import { Cell, For, If } from "retend";
+import { Cell, For, If, onConnected } from "retend";
 import type { RouteComponent } from "retend/router";
 import { FluidList } from "retend-utils/components";
 import classes from "./Bookmarks.module.css";
@@ -47,6 +47,7 @@ const TAG_COLORS: Record<string, string> = {
   resource: "#8b5cf6",
   interactive: "#06b6d4",
 };
+const ALL_TAGS = Array.from(new Set(bookmarks.flatMap((b) => b.tags))).sort();
 
 const getContrastColor = (hexcolor: string) => {
   if (hexcolor.startsWith("hsl")) {
@@ -91,6 +92,8 @@ const Bookmarks: RouteComponent = () => {
   const {
     state,
     loaded,
+    isRefreshing,
+    pending,
     query,
     tag,
     layout,
@@ -98,13 +101,27 @@ const Bookmarks: RouteComponent = () => {
     handleTagSelect,
     handlePagination,
   } = useBookmarks();
+  const loadMoreRef = Cell.source<HTMLDivElement | null>(null);
   const items = Cell.derived(() => state.get().items);
-  const page = Cell.derived(() => state.get().page);
   const totalItems = Cell.derived(() => state.get().totalItems);
-  const totalPages = Cell.derived(() => state.get().totalPages);
   const showEmpty = Cell.derived(() => loaded.get() && totalItems.get() === 0);
 
-  const allTags = Array.from(new Set(bookmarks.flatMap((b) => b.tags))).sort();
+  onConnected(loadMoreRef, (element) => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) return;
+        if (!loaded.get()) return;
+        if (pending.get()) return;
+        if (items.get().length === totalItems.get()) return;
+        handlePagination(1);
+      },
+      { rootMargin: "400px 0px" },
+    );
+
+    observer.observe(element);
+
+    return () => observer.disconnect();
+  });
 
   return (
     <div>
@@ -127,7 +144,7 @@ const Bookmarks: RouteComponent = () => {
           </div>
           <div class={classes.tagsWrapper}>
             <div class={classes.tagsContainer}>
-              {For(allTags, (tagName) => (
+              {For(ALL_TAGS, (tagName) => (
                 <button
                   type="button"
                   class={[
@@ -148,7 +165,7 @@ const Bookmarks: RouteComponent = () => {
         {If(showEmpty, () => (
           <div class={classes.error}>No items found in the archive.</div>
         ))}
-        <div class={classes.centeredGrid}>
+        <div class={[classes.centeredGrid, Cell.derived(() => (isRefreshing.get() ? classes.dimmed : ""))]}>
           <FluidList
             items={items}
             itemKey="id"
@@ -162,27 +179,7 @@ const Bookmarks: RouteComponent = () => {
             Template={BookmarkItem}
           />
         </div>
-        <div class={classes.pagination}>
-          <button
-            type="button"
-            class={classes.paginationButton}
-            disabled={Cell.derived(() => page.get() === 1)}
-            onClick={() => handlePagination(-1)}
-          >
-            Prev
-          </button>
-          <span class={classes.pageLabel}>
-            {Cell.derived(() => `${page.get()} / ${totalPages.get()}`)}
-          </span>
-          <button
-            type="button"
-            class={classes.paginationButton}
-            disabled={Cell.derived(() => page.get() === totalPages.get())}
-            onClick={() => handlePagination(1)}
-          >
-            Next
-          </button>
-        </div>
+        <div ref={loadMoreRef} class={classes.loadMoreTrigger} />
       </div>
     </div>
   );

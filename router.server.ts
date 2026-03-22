@@ -40,13 +40,9 @@ app.get("/__api/bookmarks", (c) => {
   if (page > totalPages) {
     page = totalPages;
   }
-  const start = (page - 1) * 20;
-
   return c.json({
-    items: items.slice(start, start + 20),
-    page,
+    items: items.slice(0, page * 20),
     totalItems,
-    totalPages,
   });
 });
 
