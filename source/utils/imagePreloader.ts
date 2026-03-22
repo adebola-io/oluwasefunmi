@@ -23,6 +23,7 @@ function getWorker(): Worker {
     });
 
     worker.addEventListener("error", (error) => {
+      // oxlint-disable-next-line no-console
       console.error("Image preloader worker error:", error);
     });
   }

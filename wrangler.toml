@@ -1,5 +1,5 @@
 name = "oluwasefunmi-v2"
-compatibility_date = "2026-03-21"
+compatibility_date = "2026-03-17"
 main = "./router.server.ts"
 
 [assets]

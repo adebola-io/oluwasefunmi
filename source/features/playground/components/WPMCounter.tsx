@@ -4,7 +4,8 @@ interface WPMCounterProps {
   show: Cell<boolean>;
 }
 
-export const WPMCounter = ({ show }: WPMCounterProps) => {
+export const WPMCounter = (props: WPMCounterProps) => {
+  const { show } = props;
   const wpm = Cell.source(0);
   const startTime = Cell.source<number | null>(null);
   const charCount = Cell.source(0);

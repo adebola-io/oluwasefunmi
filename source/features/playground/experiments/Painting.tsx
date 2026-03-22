@@ -16,20 +16,23 @@ interface PaintingFrameProps {
  * Handles loading state and displays the painting with a gradient background.
  */
 export function PaintingFrame(props: PaintingFrameProps) {
-  const staggerIndexCell = useDerivedValue(props.staggerIndex ?? 0);
-
-  const src = Cell.derived(() => getPaintingImage(props.data.id));
+  const { data, staggerIndex, selectedPainting } = props;
 
   const loading = Cell.source(false);
   const loaded = Cell.source(false);
+
+  const staggerIndexCell = useDerivedValue(staggerIndex ?? 0);
+  const src = Cell.derived(() => getPaintingImage(data.id));
   const imageVisible = Cell.derived(() => loaded.get());
   const imageSrc = Cell.derived(() => {
     if (!loading.get()) return;
 
     // Use high-quality image if this painting is selected
-    const isSelected = props.selectedPainting?.get()?.id === props.data.id;
+    const isSelected = selectedPainting?.get()?.id === data.id;
     return isSelected ? src.get().default : src.get().small;
   });
+  const gradient = Cell.derived(() => src.get().gradient);
+  const isHidden = Cell.derived(() => !imageVisible.get());
 
   onSetup(() => {
     const stagger = staggerIndexCell.get();
@@ -41,9 +44,6 @@ export function PaintingFrame(props: PaintingFrameProps) {
     );
     return () => window.clearTimeout(timeout);
   });
-
-  const gradient = Cell.derived(() => src.get().gradient);
-  const isHidden = Cell.derived(() => !imageVisible.get());
 
   return (
     <div
@@ -64,7 +64,7 @@ export function PaintingFrame(props: PaintingFrameProps) {
           },
         ]}
         src={imageSrc}
-        alt={props.data.title}
+        alt={data.title}
         onLoad={() => loaded.set(true)}
       />
     </div>

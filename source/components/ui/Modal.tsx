@@ -13,6 +13,8 @@ export const Modal = (props: ModalProps) => {
   const { isOpen, onClose, children, fillScreenOnMobile } = props;
   const dialogRef = Cell.source<HTMLDialogElement | null>(null);
 
+  const handleClose = () => onClose();
+
   isOpen.listen((open) => {
     const dialog = dialogRef.get();
     if (!dialog) return;
@@ -27,8 +29,6 @@ export const Modal = (props: ModalProps) => {
   onConnected(dialogRef, (dialog) => {
     if (isOpen.get()) dialog.showModal();
   });
-
-  const handleClose = () => onClose();
 
   return (
     <dialog

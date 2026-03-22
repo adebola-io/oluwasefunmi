@@ -30,22 +30,6 @@ export function Wheel(props: WheelProps) {
     return selectedPainting.get() === null;
   });
 
-  // const handlePointerOver = () => {
-  //   const wheel = wheelRef.get();
-  //   if (!wheel) return;
-  //   const animation = wheel.getAnimations()[0];
-  //   if (!(animation instanceof CSSAnimation)) return;
-  //   animation.updatePlaybackRate(0.35);
-  // };
-
-  // const handlePointerLeave = () => {
-  //   const wheel = wheelRef.get();
-  //   if (!wheel) return;
-  //   const animation = wheel.getAnimations()[0];
-  //   if (!(animation instanceof CSSAnimation)) return;
-  //   animation.updatePlaybackRate(1);
-  // };
-
   const computeCounterRotation = () => {
     const selectedPaintingValue = selectedPainting.get();
     if (!selectedPaintingValue) return;
@@ -99,8 +83,6 @@ export function Wheel(props: WheelProps) {
             selectedPainting,
         },
       ]}
-      // onPointerEnter={handlePointerOver}
-      // onPointerLeave={handlePointerLeave}
     >
       <div
         ref={wheelRef}
