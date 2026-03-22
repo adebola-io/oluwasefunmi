@@ -15,8 +15,8 @@ export const getNotesIndex = async () => {
   const files = import.meta.glob("@/content/notes/*/page.mdx");
 
   for (const file in files) {
-    const component = files[file];
-    const markdownContent = (await component()) as Note;
+    const component = files[file] as () => Promise<Note>;
+    const markdownContent = await component();
     items.push({
       id: markdownContent.id,
       title: markdownContent.title,

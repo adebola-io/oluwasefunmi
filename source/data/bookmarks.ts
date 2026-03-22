@@ -132,21 +132,6 @@ export const bookmarks = [
     },
   },
   {
-    id: "how-we-eliminated-keyboard-animation-stutter-in-flutter-and-why-the-same-problem-haunts-react-2e15c37438b0",
-    link: "https://medium.com/@iosemagno/how-we-eliminated-keyboard-animation-stutter-in-flutter-and-why-the-same-problem-haunts-react-2e15c37438b0",
-    tags: ["react", "flutter", "engineering", "mobile", "performance"],
-    notes: "",
-    image: "",
-    themeColor: "#ffffff",
-    openGraph: {
-      title:
-        "How We Eliminated Keyboard Animation Stutter in Flutter, and Why the Same Problem Haunts React",
-      description:
-        "How keyboard animation stutter was eliminated in Flutter, and why a similar problem shows up in React.",
-      siteName: "Medium",
-    },
-  },
-  {
     id: "crdt-filesync",
     link: "https://tonsky.me/blog/crdt-filesync/",
     tags: ["crdt", "local-first", "systems", "software", "engineering"],
@@ -233,20 +218,6 @@ export const bookmarks = [
       description:
         "Anthropic is an AI safety and research company that's working to build reliable, interpretable, and steerable AI systems.",
       siteName: "Anthropic",
-    },
-  },
-  {
-    id: "pydantic-v2",
-    link: "https://www.jmduke.com/posts/pydantic-v2.html",
-    tags: ["html", "python", "engineering", "writing", "article"],
-    notes: "",
-    image: "",
-    themeColor: "#ffffff",
-    openGraph: {
-      title: "The road to Pydantic V2",
-      description:
-        "Around 18 months ago, I wrote: > Cursor did both! ...and then it choked on some more complicated feature work that spanned multiple files. Which is fine: a t...",
-      siteName: "Applied Cartography",
     },
   },
   {
@@ -479,20 +450,6 @@ export const bookmarks = [
       title: "Don't Sleep on AbortController",
       description: "Learn how to make anything abortable in JavaScript.",
       siteName: "kettanaito.com",
-    },
-  },
-  {
-    id: "components-will-kill-pages",
-    link: "https://bitsandbytes.dev/posts/components-will-kill-pages",
-    tags: ["ai", "frontend", "opinion", "article"],
-    notes: "",
-    image: "",
-    themeColor: "#ffffff",
-    openGraph: {
-      title: "Components Will Kill Pages",
-      description:
-        "Components allow users using AI applications to experience your brand when pages can't",
-      siteName: "bitsandbytes",
     },
   },
   {

@@ -11,7 +11,7 @@ const PortfolioHome: RouteComponent<PageMeta> = () => {
       <StarShower />
       <div class={classes.container}>
         <div class={classes.hero}>
-          <PageTitle name="Oluwasefunmi." />
+          <PageTitle name="oluwasefunmi." />
           <span class={classes.titleAccent}>web engineer.</span>
         </div>
 
