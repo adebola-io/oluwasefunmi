@@ -1,6 +1,7 @@
 import { defineRoutes, Router } from "retend/router";
 
 import PortfolioHome from "@/pages/PortfolioHome";
+import Bookmarks from "@/pages/Bookmarks";
 import Playground from "@/pages/Playground";
 import RandomNotes from "@/pages/RandomNotes";
 import RandomNote from "@/pages/RandomNote";
@@ -61,6 +62,7 @@ const routes = defineRoutes([
         ],
       },
       { path: "/works", component: Works },
+      { path: "/bookmarks", component: Bookmarks },
       { path: "/contact", component: Contact },
     ],
   },

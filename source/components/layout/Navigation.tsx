@@ -75,6 +75,14 @@ export const Navigation = () => {
         >
           random notes
         </Link>
+        <Link
+          href="/bookmarks"
+          class={classes.navLink}
+          data-pill-link
+          onClick={closeMenu}
+        >
+          bookmarks
+        </Link>
       </div>
     </nav>
   );
