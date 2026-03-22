@@ -163,9 +163,7 @@ const Bookmarks: RouteComponent = () => {
           {If(showEmpty, () => (
             <div class={classes.error}>No items found in the archive.</div>
           ))}
-          <div
-            class={[classes.centeredGrid, { [classes.dimmed]: isRefreshing }]}
-          >
+          <div class={classes.centeredGrid}>
             <FluidList
               items={items}
               itemKey="id"
