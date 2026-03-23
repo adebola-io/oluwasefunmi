@@ -15,6 +15,10 @@
 
     --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
 
+    --card-radius: 2rem;
+    --card-padding: 2.5rem;
+    --card-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.5);
+
     --duration: 200ms;
     --tw-duration: var(--duration);
 }
