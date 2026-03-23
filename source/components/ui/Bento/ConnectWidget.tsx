@@ -29,11 +29,11 @@ export function ConnectWidget(props: ConnectWidgetProps) {
             href={link.url}
             target="_blank"
             rel="noopener noreferrer"
-            class={classes.linkCard}
+            data-pill-link
           >
             <span class={classes.icon}>{link.icon}</span>
-            <span class={classes.name}>{link.name}</span>
-            <div class={classes.arrow}>
+            <span>{link.name}</span>
+            <span>
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
                 <path
                   d="M2 10L10 2M10 2H4M10 2V8"
@@ -43,7 +43,7 @@ export function ConnectWidget(props: ConnectWidgetProps) {
                   stroke-linejoin="round"
                 />
               </svg>
-            </div>
+            </span>
           </a>
         ))}
       </div>

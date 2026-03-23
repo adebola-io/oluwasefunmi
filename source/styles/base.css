@@ -15,9 +15,11 @@
 
     --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
 
-    --card-radius: 2rem;
-    --card-padding: 2.5rem;
-    --card-shadow: 0 12px 40px -12px rgba(0, 0, 0, 0.5);
+    /* Bento Layout Tokens - Sharp/Technical Redesign */
+    --card-radius: 12px;
+    --card-padding: 2rem;
+    --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.4);
+    --grid-gap: 1rem;
 
     --duration: 200ms;
     --tw-duration: var(--duration);
