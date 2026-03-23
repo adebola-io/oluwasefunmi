@@ -108,6 +108,7 @@ export function useBookmarks() {
 
   routeSearch.listen((value) => {
     if (value === query.get()) return;
+    window.clearTimeout(searchTimeout);
     query.set(value ?? "");
     debouncedQuery.set(value ?? "");
   });

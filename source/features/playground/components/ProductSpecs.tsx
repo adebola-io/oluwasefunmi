@@ -25,7 +25,7 @@ export const ProductSpecs = (props: ProductSpecsProps) => {
         </h4>
         <div class="flex flex-wrap gap-2 md:gap-3">
           {For(product.sizes, (size) => (
-            <span class="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center border border-white/10 rounded-full text-sm text-white/60 bg-transparent transition-all duration-200 ease-out cursor-pointer hover:border-white hover:text-white">
+            <span class="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center border border-white/10 rounded-full text-sm text-white/60 bg-transparent transition-all duration-200 ease-out">
               {size}
             </span>
           ))}

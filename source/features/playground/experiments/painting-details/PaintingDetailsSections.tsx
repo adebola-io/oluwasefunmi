@@ -6,7 +6,7 @@ export const SpecsGrid = (props: { painting: Painting }) => {
   return (
     <section>
       <SectionHeading title="Provenance & Specs" delay="100ms" />
-      <div class="grid grid-cols-2 gap-x-8 gap-y-10">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-10">
         <MetadataItem
           label="Creation Date"
           value={painting.year}
@@ -23,7 +23,7 @@ export const SpecsGrid = (props: { painting: Painting }) => {
           value={painting.dimensions}
           delay="300ms"
         />
-        <div class="col-span-2">
+        <div class="sm:col-span-2">
           <MetadataItem
             label="Current Location"
             value={painting.location}

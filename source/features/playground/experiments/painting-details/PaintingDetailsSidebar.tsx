@@ -39,7 +39,7 @@ export const SidebarHeader = (props: SidebarHeaderProps) => {
 export const SidebarFooter = () => (
   <footer class="pt-8 border-t border-white/5 animate-fade-in [animation-fill-mode:backwards] [animation-delay:600ms]">
     <div class="flex justify-between items-center text-[10px] text-white/50 uppercase tracking-[0.3em] font-bold">
-      <span>© 2026 Archive</span>
+      <span>© {new Date().getFullYear()} Archive</span>
       <div class="flex items-center gap-2">
         <div class="w-1 h-1 rounded-full bg-white/30" />
         <span>Encrypted Provenance</span>

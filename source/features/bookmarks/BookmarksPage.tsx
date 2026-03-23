@@ -8,7 +8,7 @@ import { StarShower } from "@/components/ui/StarShower";
 import { SITE_URL } from "@/constants";
 import { BookmarkItem } from "./components/BookmarkItem";
 import { useBookmarks } from "./hooks/useBookmarks";
-import { bookmarks } from "@/data/bookmarks";
+import { BOOKMARK_TAGS } from "@/data/bookmarkTags";
 import { ClientOnly } from "retend-server";
 
 const SearchIcon = () => (
@@ -49,7 +49,7 @@ const TAG_COLORS: Record<string, string> = {
   resource: "#7c3aed",
   interactive: "#0891b2",
 };
-const ALL_TAGS = Array.from(new Set(bookmarks.flatMap((b) => b.tags))).sort();
+const ALL_TAGS = BOOKMARK_TAGS;
 
 const getContrastColor = (hexcolor: string) => {
   if (hexcolor.startsWith("hsl")) {

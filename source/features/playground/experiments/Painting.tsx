@@ -16,7 +16,7 @@ interface PaintingFrameProps {
  * Handles loading state and displays the painting with a gradient background.
  */
 export function PaintingFrame(props: PaintingFrameProps) {
-  const { data, staggerIndex, selectedPainting } = props;
+  const { id, data, staggerIndex, selectedPainting } = props;
 
   const loading = Cell.source(false);
   const loaded = Cell.source(false);
@@ -47,6 +47,7 @@ export function PaintingFrame(props: PaintingFrameProps) {
 
   return (
     <div
+      id={id}
       class={[
         "h-full w-fit border border-blue-200 rounded-xl overflow-hidden bg-center bg-cover transition-colors duration-300",
       ]}

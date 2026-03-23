@@ -4,7 +4,7 @@ import { PageTitle } from "./PageTitle";
 interface PageHeaderProps {
   title: string;
   subtitle: string;
-  class?: unknown;
+  class?: string | string[];
 }
 
 export const PageHeader = (props: PageHeaderProps) => {
