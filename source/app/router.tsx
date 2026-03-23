@@ -1,21 +1,13 @@
 import { defineRoutes, Router } from "retend/router";
 
-import PortfolioHome from "@/routes/PortfolioHome";
-import Bookmarks from "@/routes/Bookmarks";
-import Playground from "@/routes/Playground";
-import RandomNotes from "@/routes/RandomNotes";
-import RandomNote from "@/routes/RandomNote";
-import Contact from "@/routes/Contact";
-import Works from "@/routes/Works";
-
-import CurvedCssSolid from "@/features/playground/experiments/CurvedCssSolid";
-import RippleEffect from "@/features/playground/experiments/RippleEffect";
-import BlurCarousel from "@/features/playground/experiments/BlurCarousel";
-import ProductTransition from "@/features/playground/experiments/ProductTransition";
-import ProductDetailsPage from "@/features/playground/experiments/ProductDetailsPage";
-import ThreeDimensionalMarquee from "@/features/playground/experiments/ThreeDimensionalMarquee";
-import CssKeyboard from "@/features/playground/experiments/CssKeyboard";
-import PaintingWheel from "@/features/playground/experiments/PaintingWheel";
+import PortfolioHome from "@/features/home/HomePage";
+import Bookmarks from "@/features/bookmarks/BookmarksPage";
+import Playground from "@/features/playground/PlaygroundPage";
+import RandomNotes from "@/features/notes/RandomNotesPage";
+import RandomNote from "@/features/notes/RandomNotePage";
+import Contact from "@/features/contact/ContactPage";
+import Works from "@/features/works/WorksPage";
+import { playgroundExperimentRoutes } from "@/features/playground/playgroundExperimentRoutes";
 
 import { RootLayout } from "@/components/layout/RootLayout";
 
@@ -35,23 +27,7 @@ const routes = defineRoutes([
         path: "/playground",
         children: [
           { path: "/", component: Playground },
-          {
-            path: "/painting-wheel",
-            component: PaintingWheel,
-          },
-          { path: "/curved-css-solid", component: CurvedCssSolid },
-          { path: "/ripple-effect", component: RippleEffect },
-          { path: "/blur-carousel", component: BlurCarousel },
-          {
-            path: "/product-transitions",
-            component: ProductTransition,
-            children: [{ path: "/:productId", component: ProductDetailsPage }],
-          },
-          {
-            path: "/three-dimensional-marquee",
-            component: ThreeDimensionalMarquee,
-          },
-          { path: "/css-keyboard", component: CssKeyboard },
+          ...playgroundExperimentRoutes,
         ],
       },
       {
