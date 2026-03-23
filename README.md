@@ -12,6 +12,7 @@ bun run dev
 ## Structure
 
 - `source/app/` - App bootstrap and route registration
+- `source/api/` - API endpoint registration and endpoint modules
 - `source/features/home/` - Home page feature
 - `source/features/bookmarks/` - Bookmarks page, hooks, and components
 - `source/features/notes/` - Notes index and note detail pages

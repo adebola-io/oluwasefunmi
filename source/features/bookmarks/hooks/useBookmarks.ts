@@ -2,6 +2,7 @@ import { Cell } from "retend";
 import { useRouteQuery, useRouter } from "retend/router";
 import { useMatchMedia } from "retend-utils/hooks";
 import type { Bookmark } from "@/types";
+import { BOOKMARKS_API_BASE_PATH } from "@/api/bookmarks";
 
 export interface BookmarksResponse {
   items: Bookmark[];
@@ -39,7 +40,7 @@ export function useBookmarks() {
     if (t) params.set("tag", t);
 
     try {
-      const response = await fetch(`/__api/bookmarks?${params.toString()}`, {
+      const response = await fetch(`${BOOKMARKS_API_BASE_PATH}?${params.toString()}`, {
         signal,
       });
       if (!response.ok) throw new Error("Failed to fetch bookmarks");
