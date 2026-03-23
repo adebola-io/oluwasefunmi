@@ -2,12 +2,12 @@ import { Cell, For, If } from "retend";
 import type { RouteComponent } from "retend/router";
 import { FluidList } from "retend-utils/components";
 import { useIntersectionObserver } from "retend-utils/hooks";
-import classes from "./Bookmarks.module.css";
+import classes from "./BookmarksPage.module.css";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { StarShower } from "@/components/ui/StarShower";
 import { SITE_URL } from "@/constants";
-import { BookmarkItem } from "./BookmarkItem";
-import { useBookmarks } from "./Bookmarks.hooks";
+import { BookmarkItem } from "./components/BookmarkItem";
+import { useBookmarks } from "./hooks/useBookmarks";
 import { bookmarks } from "@/data/bookmarks";
 import { ClientOnly } from "retend-server";
 
@@ -94,7 +94,6 @@ const Bookmarks: RouteComponent = () => {
   const {
     state,
     loaded,
-    isRefreshing,
     pending,
     query,
     tag,

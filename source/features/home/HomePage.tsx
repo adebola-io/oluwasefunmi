@@ -1,6 +1,6 @@
 import type { RouteComponent } from "retend/router";
 import type { PageMeta } from "retend-server/client";
-import classes from "./PortfolioHome.module.css";
+import classes from "./HomePage.module.css";
 import { PageTitle } from "@/components/layout/PageTitle";
 import { StarShower } from "@/components/ui/StarShower";
 import { SITE_URL } from "@/constants";

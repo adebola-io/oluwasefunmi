@@ -1,7 +1,7 @@
 import { For } from "retend";
 import { Link } from "retend/router";
 import type { RouteComponent } from "retend/router";
-import classes from "./Playground.module.css";
+import classes from "./PlaygroundPage.module.css";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { playgroundItems } from "@/data/playground.tsx";
 import { StarShower } from "@/components/ui/StarShower";

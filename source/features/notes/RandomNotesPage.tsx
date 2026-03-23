@@ -8,7 +8,7 @@ import { PageHeader } from "@/components/layout/PageHeader";
 import { StarShower } from "@/components/ui/StarShower";
 import { NoteHeading } from "@/components/ui/typography";
 import { SITE_URL } from "@/constants";
-import classes from "./RandomNotes.module.css";
+import classes from "./RandomNotesPage.module.css";
 
 export const getNotesIndex = async () => {
   const items: NotePreviewProps[] = [];

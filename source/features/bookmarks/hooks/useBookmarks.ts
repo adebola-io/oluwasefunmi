@@ -68,11 +68,6 @@ export function useBookmarks() {
     if (isDesktopSmall.get()) return { columns: 3, width: "310px" };
     return { columns: 4, width: "266px" };
   });
-  const isRefreshing = Cell.derived(() => {
-    if (query.get().trim() !== debouncedQuery.get().trim()) return true;
-    return response.pending.get();
-  });
-
   const updateUrl = (q: string, t: string) => {
     const params = new URLSearchParams();
     if (q) params.set("q", q);
@@ -122,7 +117,6 @@ export function useBookmarks() {
   return {
     state,
     loaded,
-    isRefreshing,
     pending: response.pending,
     query,
     tag,

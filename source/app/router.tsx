@@ -1,12 +1,12 @@
 import { defineRoutes, Router } from "retend/router";
 
-import PortfolioHome from "@/pages/PortfolioHome";
-import Bookmarks from "@/pages/Bookmarks";
-import Playground from "@/pages/Playground";
-import RandomNotes from "@/pages/RandomNotes";
-import RandomNote from "@/pages/RandomNote";
-import Contact from "@/pages/Contact";
-import Works from "@/pages/Works";
+import PortfolioHome from "@/routes/PortfolioHome";
+import Bookmarks from "@/routes/Bookmarks";
+import Playground from "@/routes/Playground";
+import RandomNotes from "@/routes/RandomNotes";
+import RandomNote from "@/routes/RandomNote";
+import Contact from "@/routes/Contact";
+import Works from "@/routes/Works";
 
 import CurvedCssSolid from "@/features/playground/experiments/CurvedCssSolid";
 import RippleEffect from "@/features/playground/experiments/RippleEffect";

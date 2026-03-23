@@ -1,5 +1,5 @@
 import type { RouteComponent } from "retend/router";
-import classes from "./Contact.module.css";
+import classes from "./ContactPage.module.css";
 import { StarShower } from "@/components/ui/StarShower";
 import { SITE_URL } from "@/constants";
 

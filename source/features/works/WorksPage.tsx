@@ -2,7 +2,7 @@ import { Cell, For } from "retend";
 import { Link } from "retend/router";
 import type { RouteComponent } from "retend/router";
 import { LayeredCard } from "@/components/ui/LayeredCard";
-import classes from "./Works.module.css";
+import classes from "./WorksPage.module.css";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { StarShower } from "@/components/ui/StarShower";
 import { projects, type Project } from "@/data/projects";

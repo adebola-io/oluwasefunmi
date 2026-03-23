@@ -1,7 +1,7 @@
 import { Cell } from "retend";
 import type { Bookmark } from "@/types";
 import { LayeredCard } from "@/components/ui/LayeredCard";
-import classes from "./Bookmarks.module.css";
+import classes from "../BookmarksPage.module.css";
 
 export interface BookmarkItemProps {
   item: Bookmark;
