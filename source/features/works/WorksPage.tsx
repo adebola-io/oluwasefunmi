@@ -5,9 +5,10 @@ import { LayeredCard } from "@/components/ui/LayeredCard";
 import classes from "./WorksPage.module.css";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { StarShower } from "@/components/ui/StarShower";
-import { projects, type Project } from "@/data/projects";
+import type { Project } from "@/features/works/types";
+import { projects } from "@/features/works/data/projects";
 import { ArrowIcon } from "@/components/icons/arrow";
-import { SITE_URL } from "@/constants";
+import { SITE_URL } from "@/shared/constants";
 
 interface ProjectItemProps {
   project: Project;

@@ -1,7 +1,7 @@
 import type { RouteComponent } from "retend/router";
 import classes from "./ContactPage.module.css";
 import { StarShower } from "@/components/ui/StarShower";
-import { SITE_URL } from "@/constants";
+import { SITE_URL } from "@/shared/constants";
 
 const Contact: RouteComponent = () => {
   return (

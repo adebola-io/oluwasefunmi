@@ -1,15 +1,17 @@
 {
   "name": "explorations",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite --port 5229",
-    "build": "vite build",
-    "preview": "vite preview",
+    "dev": "vp dev --port 5229",
+    "build": "vp build",
+    "preview": "vp preview",
     "deploy": "wrangler deploy",
-    "lint": "oxlint --config oxlint.json",
-    "lint:fix": "oxlint --config oxlint.json --fix"
+    "lint": "vp lint -c oxlint.json",
+    "lint:fix": "vp lint -c oxlint.json --fix",
+    "format": "vp fmt",
+    "format:check": "vp fmt --check"
   },
   "dependencies": {
     "@mdx-js/rollup": "^3.1.0",
@@ -27,10 +29,10 @@
     "@cloudflare/workers-types": "^4.20250904.0",
     "@tailwindcss/vite": "^4.1.5",
     "@types/node": "latest",
-    "oxlint": "^1.55.0",
     "tailwindcss": "^4.1.8",
     "typescript": "^5.5.2",
-    "vite": "^6.2.1",
+    "vite": "^8.0.2",
+    "vite-plus": "^0.1.13",
     "wrangler": "^4.38.0"
   }
 }

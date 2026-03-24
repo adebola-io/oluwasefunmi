@@ -1,5 +1,5 @@
 import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
-import { SITE_URL } from "@/constants";
+import { SITE_URL } from "@/shared/constants";
 import { Viewer } from "@/features/playground/components/Viewer/Viewer";
 import Keyboard from "@/features/playground/components/Keyboard";
 import { Cell, For } from "retend";

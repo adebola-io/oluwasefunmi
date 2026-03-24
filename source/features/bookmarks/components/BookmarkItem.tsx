@@ -1,5 +1,5 @@
 import { Cell } from "retend";
-import type { Bookmark } from "@/types";
+import type { Bookmark } from "@/features/bookmarks/types";
 import { LayeredCard } from "@/components/ui/LayeredCard";
 import classes from "../BookmarksPage.module.css";
 
@@ -19,8 +19,8 @@ export const BookmarkItem = (props: BookmarkItemProps) => {
       rel="noreferrer"
       class={classes.bookmarkCard}
       style={{
-        "--layered-border-color": bookmark.themeColor,
-        "--layered-shadow-color": bookmark.themeColor,
+        "--layered-border-color": `color-mix(in srgb, ${bookmark.themeColor} 60%, transparent)`,
+        "--layered-shadow-color": `color-mix(in srgb, ${bookmark.themeColor} 40%, transparent)`,
       }}
     >
       <div class={classes.imageContainer}>
@@ -48,7 +48,9 @@ export const BookmarkItem = (props: BookmarkItemProps) => {
       </div>
       <div class={classes.content}>
         <h2 class={classes.title}>{bookmark.openGraph.title}</h2>
-        <p class={classes.url}>{new URL(bookmark.link).hostname.replace(/^www\./, "")}</p>
+        <p class={classes.url}>
+          {new URL(bookmark.link).hostname.replace(/^www\./, "")}
+        </p>
       </div>
     </LayeredCard>
   );

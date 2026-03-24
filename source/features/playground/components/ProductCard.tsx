@@ -1,4 +1,4 @@
-import type { Product } from "@/data/products";
+import type { Product } from "@/features/playground/types";
 import { ProductImage } from "./ProductImage";
 import { ProductInfo } from "./ProductInfo";
 

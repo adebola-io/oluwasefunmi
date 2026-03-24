@@ -1,6 +1,6 @@
 import { Cell, If, createUnique } from "retend";
-import { getProductImage } from "@/data/productImages";
-import { getProductById } from "@/data/products";
+import { getProductImage } from "@/features/playground/data/productImages";
+import { getProductById } from "@/features/playground/data/products";
 import { UniqueTransition } from "retend-utils/components";
 import type { JSX } from "retend/jsx-runtime";
 import { useDerivedValue } from "retend-utils/hooks";
@@ -28,7 +28,7 @@ export const ProductImage = createUnique<ProductImageProps>((props) => {
   const showImage = Cell.derived(() => !!imageSrc.get());
 
   const altText = Cell.derived(
-    () => `${product.name} in ${selectedColor.get()}`,
+    () => `${product.name} in ${selectedColor.get()}`
   );
 
   return (

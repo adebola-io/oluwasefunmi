@@ -1,4 +1,4 @@
-import { type Painting } from "@/data/paintings";
+import type { Painting } from "@/features/playground/types";
 import { ArrowLeftIcon } from "@/components/icons/arrow-left";
 
 interface NavigationHeaderProps {

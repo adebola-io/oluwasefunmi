@@ -1,8 +1,8 @@
-import { type Painting, paintings } from "@/data/paintings";
+import { type Painting, paintings } from "@/features/playground/data/paintings";
 import { Cell, For, onMove, onSetup } from "retend";
 import { PaintingImage } from "@/features/playground/experiments/Painting";
-import { preloadImages } from "@/utils/imagePreloader";
-import { getAllPaintingImages } from "@/data/paintingImages";
+import { preloadImages } from "@/shared/utils/imagePreloader";
+import { getAllPaintingImages } from "@/features/playground/data/paintingImages";
 
 interface WheelProps {
   selectedPainting: Cell<Painting | null>;

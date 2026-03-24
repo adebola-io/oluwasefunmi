@@ -1,5 +1,5 @@
 import { For } from "retend";
-import type { Product } from "@/data/products";
+import type { Product } from "@/features/playground/types";
 
 interface ProductSpecsProps {
   product: Product;

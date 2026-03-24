@@ -1,4 +1,4 @@
-import { Painting } from "@/data/paintings";
+import type { Painting } from "@/features/playground/types";
 import { Cell, createUnique } from "retend";
 import { UniqueTransition } from "retend-utils/components";
 
@@ -32,5 +32,5 @@ export const PaintingTitleAndArtist = createUnique<PaintingTitleAndArtistProps>(
         </div>
       </UniqueTransition>
     );
-  },
+  }
 );

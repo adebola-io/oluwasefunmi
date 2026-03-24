@@ -1,4 +1,4 @@
-import type { Painting } from "@/data/paintings";
+import type { Painting } from "@/features/playground/types";
 
 interface SidebarHeaderProps {
   painting: Painting;
@@ -21,7 +21,9 @@ export const SidebarHeader = (props: SidebarHeaderProps) => {
         </div>
         <div class="flex items-center gap-3">
           <div class="w-8 h-px" style={{ background: painting.color }} />
-          <p class="text-lg text-white/60 font-light italic">{painting.artist}</p>
+          <p class="text-lg text-white/60 font-light italic">
+            {painting.artist}
+          </p>
         </div>
       </div>
 

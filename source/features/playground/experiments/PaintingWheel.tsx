@@ -2,7 +2,7 @@ import type { RouteComponent } from "retend/router";
 import { useRouteQuery } from "retend/router";
 import { If } from "retend";
 import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
-import { SITE_URL } from "@/constants";
+import { SITE_URL } from "@/shared/constants";
 import { CollectionPanel } from "./CollectionPanel";
 import PaintingDetailsPage from "./PaintingDetailsPage";
 import { PaintingStage } from "./PaintingStage";

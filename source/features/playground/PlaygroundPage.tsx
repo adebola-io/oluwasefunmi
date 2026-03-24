@@ -3,10 +3,10 @@ import { Link } from "retend/router";
 import type { RouteComponent } from "retend/router";
 import classes from "./PlaygroundPage.module.css";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { playgroundItems } from "@/data/playground.tsx";
+import { playgroundItems } from "@/features/playground/data/playground";
 import { StarShower } from "@/components/ui/StarShower";
 import { ArrowRightIcon } from "@/components/icons/arrow-right";
-import { SITE_URL } from "@/constants";
+import { SITE_URL } from "@/shared/constants";
 
 const Playground: RouteComponent = () => {
   const handlePointerMove = (e: PointerEvent) => {

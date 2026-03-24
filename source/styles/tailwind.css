@@ -1,60 +1,60 @@
 @import "tailwindcss";
 
 @utility animate-fade-in {
-    animation: fade-in 800ms var(--ease-spring);
+  animation: fade-in 800ms var(--ease-spring);
 }
 
 @utility animate-offset-path {
-    animation: to-offset-start 1500ms ease;
+  animation: to-offset-start 1500ms ease;
 }
 
 @utility animate-rotate {
-    animation: rotate 10000ms linear infinite;
+  animation: rotate 10000ms linear infinite;
 }
 
 @utility animate-condense-in {
-    animation: condense-in 500ms var(--ease-spring);
+  animation: condense-in 500ms var(--ease-spring);
 }
 
 @utility animate-condense-out {
-    animation: condense-out 500ms var(--ease-spring);
+  animation: condense-out 500ms var(--ease-spring);
 }
 
 @keyframes condense-in {
-    from {
-        scale: 1.1;
-        opacity: 0;
-    }
+  from {
+    scale: 1.1;
+    opacity: 0;
+  }
 }
 
 @keyframes condense-out {
-    to {
-        scale: 0.9;
-        opacity: 0;
-    }
+  to {
+    scale: 0.9;
+    opacity: 0;
+  }
 }
 
 @keyframes fade-in {
-    from {
-        translate: 0px 10%;
-        opacity: 0;
-    }
+  from {
+    translate: 0px 10%;
+    opacity: 0;
+  }
 }
 
 @keyframes rotate {
-    to {
-        rotate: y 360deg;
-    }
+  to {
+    rotate: y 360deg;
+  }
 }
 
 @keyframes to-offset-start {
-    from {
-        offset-distance: 0%;
-    }
+  from {
+    offset-distance: 0%;
+  }
 }
 
 @keyframes offset-path {
-    to {
-        offset-distance: var(--offset-distance-end, 100%);
-    }
+  to {
+    offset-distance: var(--offset-distance-end, 100%);
+  }
 }

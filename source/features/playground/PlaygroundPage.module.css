@@ -1,215 +1,213 @@
 .page {
-    width: 100%;
+  width: 100%;
 }
 
 @keyframes fade-in-up {
-    from {
-        opacity: 0;
-        transform: translateY(var(--fade-distance, 10px));
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
+  from {
+    opacity: 0;
+    transform: translateY(var(--fade-distance, 10px));
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .header {
-    margin-bottom: 0;
-    position: relative;
-    text-align: left;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 0 2rem;
-    box-sizing: border-box;
+  margin-bottom: 0;
+  position: relative;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 0;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .subtitle {
-    font-size: 1rem;
-    line-height: 1.7;
-    max-width: 500px;
-    margin: 1rem 0 4rem;
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 500px;
+  margin: 1rem 0 4rem;
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: repeat(
-        auto-fill,
-        minmax(min(340px, calc(100dvw - 4rem)), 1fr)
-    );
-    gap: 2rem;
-    width: 100%;
-    max-width: 1200px;
-    margin: 0 auto;
-    text-align: left;
-    opacity: 0;
-    --fade-distance: 20px;
-    animation: fade-in-up 0.6s var(--ease-spring) 0.2s forwards;
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fill,
+    minmax(min(340px, calc(100dvw - 4rem)), 1fr)
+  );
+  gap: 2rem;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  text-align: left;
+  opacity: 0;
+  --fade-distance: 20px;
+  animation: fade-in-up 0.6s var(--ease-spring) 0.2s forwards;
 }
 
 .card {
-    display: block;
-    text-decoration: none;
-    position: relative;
-    background: var(--bg-card);
-    border: 1px solid var(--border-subtle);
-    border-radius: 8px;
-    transition:
-        transform 0.3s var(--ease-spring),
-        border-color 0.3s var(--ease-spring),
-        box-shadow 0.3s var(--ease-spring);
-    overflow: hidden;
+  display: block;
+  text-decoration: none;
+  position: relative;
+  background: var(--bg-card);
+  border: 1px solid var(--border-subtle);
+  border-radius: 8px;
+  transition:
+    transform 0.3s var(--ease-spring),
+    border-color 0.3s var(--ease-spring),
+    box-shadow 0.3s var(--ease-spring);
+  overflow: hidden;
 }
 
 .card::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: radial-gradient(
-        600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
-        rgba(255, 255, 255, 0.12),
-        transparent 40%
-    );
-    opacity: 0;
-    transition: opacity 0.5s;
-    pointer-events: none;
-    z-index: 2;
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+    600px circle at var(--mouse-x, 50%) var(--mouse-y, 50%),
+    rgba(255, 255, 255, 0.12),
+    transparent 40%
+  );
+  opacity: 0;
+  transition: opacity 0.5s;
+  pointer-events: none;
+  z-index: 2;
 }
 
 .card:hover::before {
-    opacity: 1;
+  opacity: 1;
 }
 
 .card:hover {
-    border-color: rgba(255, 255, 255, 0.15);
-    transform: translateY(-4px);
-    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+  border-color: rgba(255, 255, 255, 0.15);
+  transform: translateY(-4px);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
 }
 
 .cardInner {
-    padding: 2.5rem;
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-    z-index: 1;
-    position: relative;
+  padding: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  z-index: 1;
+  position: relative;
 }
 
 .cardHeader {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.5rem;
 }
 
 .titleGroup {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
 }
 
 .iconWrapper {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: var(--text-primary);
-    opacity: 0.8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-primary);
+  opacity: 0.8;
 }
 
 .cardTitle {
-    font-family: var(--font-family);
-    font-size: 1.2rem;
-    font-weight: 500;
-    color: var(--text-primary);
-    margin: 0;
-    letter-spacing: -0.02em;
-    transition: color 0.3s;
+  font-family: var(--font-family);
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: var(--text-primary);
+  margin: 0;
+  letter-spacing: -0.02em;
+  transition: color 0.3s;
 }
 
 .viewButton {
-    display: flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.5rem 1rem;
-    background: rgba(255, 255, 255, 0.05);
-    border: 1px solid var(--border-subtle);
-    border-radius: 20px;
-    color: var(--text-primary);
-    font-family: var(--font-family);
-    font-size: 0.9rem;
-    text-decoration: none;
-    transition: all 0.3s var(--ease-spring);
-    z-index: 10;
-    align-self: flex-start;
-    margin-top: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid var(--border-subtle);
+  border-radius: 20px;
+  color: var(--text-primary);
+  font-family: var(--font-family);
+  font-size: 0.9rem;
+  text-decoration: none;
+  transition: all 0.3s var(--ease-spring);
+  z-index: 10;
+  align-self: flex-start;
+  margin-top: 1.5rem;
 }
 
 .viewButton:hover {
-    background: rgba(255, 255, 255, 0.1);
-    border-color: rgba(255, 255, 255, 0.3);
-    transform: translateX(2px);
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateX(2px);
 }
 
 .viewButton svg {
-    transition: transform 0.3s var(--ease-spring);
+  transition: transform 0.3s var(--ease-spring);
 }
 
 .viewButton:hover svg {
-    transform: translateX(2px);
+  transform: translateX(2px);
 }
 
 .cardDescription {
-    font-family: var(--font-family);
-    font-size: 0.95rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    margin: 0;
-    flex-grow: 1;
-    transition: color 0.3s var(--ease-spring);
+  font-family: var(--font-family);
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin: 0;
+  flex-grow: 1;
+  transition: color 0.3s var(--ease-spring);
 
-    a {
-        color: var(--text-primary);
-    }
+  a {
+    color: var(--text-primary);
+  }
 }
 
 .card:hover .cardDescription {
-    color: #ccc;
+  color: #ccc;
 }
 
 .footer {
-    margin-top: auto;
-    padding-top: 4rem;
-    text-align: center;
-    color: var(--text-secondary);
-    font-size: 0.8rem;
-    font-family: var(--font-family);
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    opacity: 0.5;
+  margin-top: auto;
+  padding-top: 4rem;
+  text-align: center;
+  color: var(--text-secondary);
+  font-size: 0.8rem;
+  font-family: var(--font-family);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  opacity: 0.5;
 }
 
 .card::after {
-    content: none;
+  content: none;
 }
 
 @media (max-width: 768px) {
-    .header {
-        margin-bottom: 0;
-        padding: 0;
-    }
+  .header {
+    margin-bottom: 0;
+    padding: 0 1.5rem;
+  }
 
-    .title {
-        font-size: 2.5rem;
-    }
+  .title {
+    font-size: 2.5rem;
+  }
 
-    .cardInner {
-        padding: 1.5rem;
-    }
+  .cardInner {
+    padding: 1.5rem;
+  }
 }

@@ -2,10 +2,10 @@ import { For, onSetup } from "retend";
 import type { RouteComponent } from "retend/router";
 import { Outlet, useRouter } from "retend/router";
 import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
-import { products } from "@/data/products";
+import { products } from "@/features/playground/data/products";
 import { ProductCard } from "@/features/playground/components/ProductCard";
 import { PageTitle } from "@/components/layout/PageTitle";
-import { SITE_URL } from "@/constants";
+import { SITE_URL } from "@/shared/constants";
 
 const ProductTransition: RouteComponent = () => {
   const router = useRouter();

@@ -1,6 +1,6 @@
 import { If } from "retend";
-import { formatPrice } from "@/utils";
-import { getProductById } from "@/data/products";
+import { formatPrice } from "@/shared/utils";
+import { getProductById } from "@/features/playground/data/products";
 
 interface ProductInfoProps {
   productId: number;
