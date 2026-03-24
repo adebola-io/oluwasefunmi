@@ -3,15 +3,6 @@ import classes from "./Keyboard.module.css";
 import { useWindowSize } from "retend-utils/hooks";
 import { Cell, For, If, onSetup, type SourceCell } from "retend";
 
-const KeyboardBack = () => (
-  <div class={classes.keyboardBack}>
-    <div style={{ gridArea: "c" }} class={classes.backInfo}>
-      <p>RETEND KEYBOARD</p>
-      <p>Designed in Neverland</p>
-      <p>Model A1234</p>
-    </div>
-  </div>
-);
 import { playClick } from "./KeyboardSounds";
 
 interface KeyData {
@@ -420,7 +411,15 @@ const Keyboard = (props: KeyboardProps) => {
         secondaryColor={secondaryBodyColor}
         class={classes.keyboardSolid}
         frontClass={classes.keyboardSolidFront}
-        back={KeyboardBack}
+        back={() => (
+          <div class={classes.keyboardBack}>
+            <div style={{ gridArea: "c" }} class={classes.backInfo}>
+              <p>RETEND KEYBOARD</p>
+              <p>Designed in Neverland</p>
+              <p>Model A1234</p>
+            </div>
+          </div>
+        )}
       />
       <div class={classes.keyboard}>
         {For(KEYS, (row, rowIndex) => (

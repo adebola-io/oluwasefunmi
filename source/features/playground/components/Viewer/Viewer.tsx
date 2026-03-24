@@ -1,13 +1,9 @@
-import { Cell, type SourceCell, onSetup } from "retend";
+import { Cell, type SourceCell } from "retend";
 import type { JSX } from "retend/jsx-runtime";
 import classes from "./Viewer.module.css";
+import { useViewerControls, type ViewerAnimation } from "./useViewerControls";
 
-export interface ViewerAnimation {
-  rx: number;
-  ry: number;
-  rz: number;
-  scale: number;
-}
+export type { ViewerAnimation };
 
 export interface ViewerProps {
   children?: JSX.Element;
@@ -31,168 +27,63 @@ export interface ViewerProps {
 }
 
 export function Viewer(props: ViewerProps) {
-  const initialRx = props.initialRx ?? 0;
-  const initialRy = props.initialRy ?? 0;
-  const initialRz = props.initialRz ?? 0;
-  const initialScale = props.initialScale ?? 1;
-  const sensitivity = props.sensitivity ?? 0.4;
-  const zoomSensitivity = props.zoomSensitivity ?? 0.001;
-  const damping = props.damping ?? 0.92;
+  const {
+    children,
+    rx: propsRx,
+    ry: propsRy,
+    rz: propsRz,
+    scale: propsScale,
+    animateTo: propsAnimateTo,
+    isDragging: propsIsDragging,
+    isAutoRotating: propsIsAutoRotating,
+    isEnabled: propsIsEnabled,
+    class: propsClass,
+    sceneClass,
+    initialRx = 0,
+    initialRy = 0,
+    initialRz = 0,
+    initialScale = 1,
+    sensitivity = 0.4,
+    zoomSensitivity = 0.001,
+    damping = 0.92,
+  } = props;
 
-  const rx = props.rx || Cell.source(initialRx);
-  const ry = props.ry || Cell.source(initialRy);
-  const rz = props.rz || Cell.source(initialRz);
-  const scale = props.scale || Cell.source(initialScale);
-  const animateTo = props.animateTo ?? Cell.source<ViewerAnimation | null>(null);
-  const isDragging = props.isDragging || Cell.source(false);
-  const isAutoRotating = props.isAutoRotating || Cell.source(false);
-  const isEnabled = props.isEnabled || Cell.source(true);
+  const rx = propsRx || Cell.source(initialRx);
+  const ry = propsRy || Cell.source(initialRy);
+  const rz = propsRz || Cell.source(initialRz);
+  const scale = propsScale || Cell.source(initialScale);
+  const animateTo = propsAnimateTo ?? Cell.source<ViewerAnimation | null>(null);
+  const isDragging = propsIsDragging || Cell.source(false);
+  const isAutoRotating = propsIsAutoRotating || Cell.source(false);
+  const isEnabled = propsIsEnabled || Cell.source(true);
 
   const vx = Cell.source(0);
   const vy = Cell.source(0);
 
-  const pointers = new Map<number, { x: number; y: number }>();
-  let lastPinchDist = 0;
-  let lastMoveTime = 0;
-
-  const handlePointerDown = (e: PointerEvent) => {
-    if (!isEnabled.get()) return;
-    if (e.button !== 0) return;
-    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
-    pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
-    isDragging.set(true);
-    animateTo.set(null);
-    // Reset velocity on grab to stop existing momentum
-    vx.set(0);
-    vy.set(0);
-    lastMoveTime = Date.now();
-
-    if (pointers.size === 2) {
-      const points = Array.from(pointers.values());
-      const p1 = points[0];
-      const p2 = points[1];
-      if (p1 && p2) {
-        lastPinchDist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
-      }
-    }
-  };
-
-  const handlePointerMove = (e: PointerEvent) => {
-    if (!isEnabled.get()) return;
-    if (!pointers.has(e.pointerId)) return;
-
-    // Track time of last move to avoid "fling after hold"
-    lastMoveTime = Date.now();
-
-    if (pointers.size === 1) {
-      const prev = pointers.get(e.pointerId);
-      if (!prev) return;
-
-      const deltaX = e.clientX - prev.x;
-      const deltaY = e.clientY - prev.y;
-
-      const dx = deltaX * sensitivity;
-      const dy = deltaY * sensitivity;
-
-      ry.set(ry.get() + dx);
-      rx.set(rx.get() - dy);
-
-      vx.set(dy);
-      vy.set(dx);
-
-      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
-    } else if (pointers.size === 2) {
-      pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
-
-      const points = Array.from(pointers.values());
-      const p1 = points[0];
-      const p2 = points[1];
-
-      if (p1 && p2) {
-        const dist = Math.hypot(p1.x - p2.x, p1.y - p2.y);
-        const delta = dist - lastPinchDist;
-        scale.set(Math.max(0.2, Math.min(3, scale.get() + delta * 0.01)));
-        lastPinchDist = dist;
-      }
-    }
-  };
-
-  const handlePointerUp = (e: PointerEvent) => {
-    if (!isEnabled.get()) return;
-    pointers.delete(e.pointerId);
-    (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
-
-    if (pointers.size === 0) {
-      isDragging.set(false);
-      // If user held the pointer still for >50ms before releasing, kill momentum
-      if (Date.now() - lastMoveTime > 50) {
-        vx.set(0);
-        vy.set(0);
-      }
-    }
-    lastPinchDist = 0;
-  };
-
-  const handlePointerLeave = (e: PointerEvent) => {
-    if (!isEnabled.get()) return;
-    if (pointers.has(e.pointerId)) {
-      handlePointerUp(e);
-    }
-  };
-
-  const handleWheel = (e: WheelEvent) => {
-    if (!isEnabled.get()) return;
-    e.preventDefault();
-    scale.set(
-      Math.max(0.2, Math.min(3, scale.get() - e.deltaY * zoomSensitivity)),
-    );
-  };
-
-  onSetup(() => {
-    let animationFrame: number;
-    const animate = () => {
-      const target = animateTo.get();
-      if (target !== null) {
-        const nextRx = rx.get() + (target.rx - rx.get()) * 0.12;
-        const nextRy = ry.get() + (target.ry - ry.get()) * 0.12;
-        const nextRz = rz.get() + (target.rz - rz.get()) * 0.12;
-        const nextScale = scale.get() + (target.scale - scale.get()) * 0.12;
-        vx.set(0);
-        vy.set(0);
-        rx.set(nextRx);
-        ry.set(nextRy);
-        rz.set(nextRz);
-        scale.set(nextScale);
-        if (
-          Math.abs(target.rx - nextRx) < 0.1 &&
-          Math.abs(target.ry - nextRy) < 0.1 &&
-          Math.abs(target.rz - nextRz) < 0.1 &&
-          Math.abs(target.scale - nextScale) < 0.001
-        ) {
-          rx.set(target.rx);
-          ry.set(target.ry);
-          rz.set(target.rz);
-          scale.set(target.scale);
-          animateTo.set(null);
-        }
-      } else if (isAutoRotating.get()) {
-        ry.set(ry.get() + 0.5);
-      } else if (!isDragging.get()) {
-        if (Math.abs(vx.get()) > 0.01 || Math.abs(vy.get()) > 0.01) {
-          rx.set(rx.get() - vx.get());
-          ry.set(ry.get() + vy.get());
-          vx.set(vx.get() * damping);
-          vy.set(vy.get() * damping);
-        }
-      }
-      animationFrame = requestAnimationFrame(animate);
-    };
-    animate();
-    return () => cancelAnimationFrame(animationFrame);
-  });
-
   const transform = Cell.derived(() => {
     return `scale(${scale.get()}) rotateX(${rx.get()}deg) rotateY(${ry.get()}deg) rotateZ(${rz.get()}deg)`;
+  });
+
+  const {
+    handlePointerDown,
+    handlePointerMove,
+    handlePointerUp,
+    handlePointerLeave,
+    handleWheel,
+  } = useViewerControls({
+    rx,
+    ry,
+    rz,
+    scale,
+    vx,
+    vy,
+    isDragging,
+    animateTo,
+    isAutoRotating,
+    isEnabled,
+    sensitivity,
+    zoomSensitivity,
+    damping,
   });
 
   return (
@@ -203,7 +94,7 @@ export function Viewer(props: ViewerProps) {
           [classes.viewerDragging]: isDragging,
           [classes.draggable]: isEnabled,
         },
-        props.class,
+        propsClass,
       ]}
       onPointerDown={handlePointerDown}
       onPointerMove={handlePointerMove}
@@ -211,7 +102,7 @@ export function Viewer(props: ViewerProps) {
       onPointerLeave={handlePointerLeave}
       onWheel={handleWheel}
     >
-      <div class={[classes.scene, props.sceneClass]}>
+      <div class={[classes.scene, sceneClass]}>
         <div
           style={{
             transform,
@@ -219,7 +110,7 @@ export function Viewer(props: ViewerProps) {
             willChange: "transform",
           }}
         >
-          {props.children}
+          {children}
         </div>
       </div>
     </div>

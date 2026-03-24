@@ -1,6 +1,7 @@
 import { defineConfig } from "vite";
 import path from "node:path";
 import fs from "node:fs";
+import { cloudflare } from "@cloudflare/vite-plugin";
 import { retend } from "retend-web/plugins/vite";
 import { retendSSG } from "retend-server/plugin";
 import tailwindcss from "@tailwindcss/vite";
@@ -34,9 +35,6 @@ const pages = [
 ];
 
 export default defineConfig({
-  build: {
-    sourcemap: true,
-  },
   resolve: {
     alias: { "@": path.resolve(__dirname, "./source") },
   },
@@ -48,5 +46,6 @@ export default defineConfig({
       pages,
       routerModulePath: "./source/app/router.tsx",
     }),
+    cloudflare(),
   ],
 });

@@ -3,7 +3,7 @@ import { useRouter, Link } from "retend/router";
 import type { PageMeta } from "retend-server/client";
 import type { Note } from "@/types";
 import { SITE_URL } from "@/constants";
-import classes from "./RandomNote.module.css";
+import classes from "./RandomNotePage.module.css";
 
 const RandomNote: RouteComponent<PageMeta<Note>> = () => {
   const router = useRouter();

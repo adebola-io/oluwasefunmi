@@ -74,6 +74,13 @@ export const InteractionPanel = (props: InteractionPanelProps) => {
   const isOpen = controlledIsOpen ?? internalIsOpen;
   const isHidden = Cell.derived(() => !isOpen.get());
 
+  const currentHint = Cell.derived(() => {
+    if (!mode || !modeOptions) return null;
+    const currentMode = mode.get();
+    const option = modeOptions.find((opt) => opt.value === currentMode);
+    return option?.hint ?? null;
+  });
+
   const toggleOpen = () => {
     if (controlledIsOpen) {
       controlledIsOpen.set(!controlledIsOpen.get());
@@ -81,13 +88,6 @@ export const InteractionPanel = (props: InteractionPanelProps) => {
       internalIsOpen.set(!internalIsOpen.get());
     }
   };
-
-  const currentHint = Cell.derived(() => {
-    if (!mode || !modeOptions) return null;
-    const currentMode = mode.get();
-    const option = modeOptions.find((opt) => opt.value === currentMode);
-    return option?.hint ?? null;
-  });
 
   const hasModeSection = mode && modeOptions.length > 0;
 

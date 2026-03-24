@@ -13,8 +13,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
     flex: 1;
     position: relative;
     z-index: 1;
@@ -40,7 +40,7 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .hero {
@@ -49,15 +49,10 @@
 }
 
 .intro {
-    font-family: var(--font-family);
-    font-size: 1.15rem;
-    color: var(--text-secondary);
-    line-height: 1.6;
-    max-width: 700px;
-    margin: 0 auto 2.5rem auto;
-    font-weight: 400;
-    opacity: 0;
-    animation: fade-in-up 0.8s var(--ease-spring) 0.2s forwards;
+    font-size: 1rem;
+    line-height: 1.7;
+    max-width: 500px;
+    margin: 0 0 4rem;
 }
 
 .grid {

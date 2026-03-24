@@ -13,8 +13,8 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-    text-align: center;
+    align-items: flex-start;
+    text-align: left;
     flex: 1;
     position: relative;
     z-index: 1;
@@ -22,13 +22,13 @@
 
 .container {
     max-width: 1000px;
-    margin: 0 auto;
+    margin: 0 auto 0 0;
     width: 100%;
     padding: 0 2rem;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
 }
 
 .hero {

@@ -52,7 +52,7 @@ async function preloadImage(url: string): Promise<boolean> {
     } as StatusMessage);
 
     return true;
-  } catch (error) {
+  } catch {
     self.postMessage({
       type: "error",
       url,
@@ -82,12 +82,15 @@ async function preloadImages(urls: string[]): Promise<void> {
 }
 
 // Listen for messages from main thread
-self.addEventListener("message", async (event: MessageEvent<PreloadMessage>) => {
-  const { type, urls } = event.data;
+self.addEventListener(
+  "message",
+  async (event: MessageEvent<PreloadMessage>) => {
+    const { type, urls } = event.data;
 
-  if (type === "preload" && urls.length > 0) {
-    await preloadImages(urls);
-  }
-});
+    if (type === "preload" && urls.length > 0) {
+      await preloadImages(urls);
+    }
+  },
+);
 
 export type { PreloadMessage, StatusMessage };

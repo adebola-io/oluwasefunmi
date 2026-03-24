@@ -7,12 +7,12 @@ export const Navigation = () => {
   const isMenuOpen = Cell.source(false);
   const router = useRouter();
 
+  const toggleMenu = () => isMenuOpen.set(!isMenuOpen.get());
+  const closeMenu = () => isMenuOpen.set(false);
+
   router.getCurrentRoute().listen(() => {
     isMenuOpen.set(false);
   });
-
-  const toggleMenu = () => isMenuOpen.set(!isMenuOpen.get());
-  const closeMenu = () => isMenuOpen.set(false);
 
   return (
     <nav class={classes.nav}>
@@ -74,6 +74,14 @@ export const Navigation = () => {
           onClick={closeMenu}
         >
           random notes
+        </Link>
+        <Link
+          href="/bookmarks"
+          class={classes.navLink}
+          data-pill-link
+          onClick={closeMenu}
+        >
+          bookmarks
         </Link>
       </div>
     </nav>

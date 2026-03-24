@@ -21,43 +21,6 @@ export function DragToDismissView(props: DragToDismissViewProps) {
   const innerScrollDisabled = Cell.source(false);
   let thresholdReached = false;
 
-  const dismissObserverOptions = (): IntersectionObserverInit => ({
-    root: containerRef.peek(),
-    threshold,
-  });
-  const dismissCallback: IntersectionObserverCallback = ([entry]) => {
-    if (!isTouchDevice.get()) return;
-    thresholdReached = !entry.isIntersecting;
-  };
-  const innerScrollBlockOptions = (): IntersectionObserverInit => ({
-    root: containerRef.peek(),
-    threshold: 0.99,
-  });
-  const innerScrollBlockCallback: IntersectionObserverCallback = ([entry]) => {
-    if (!isTouchDevice.get()) return;
-    innerScrollDisabled.set(!entry.isIntersecting);
-  };
-
-  useIntersectionObserver(contentRef, dismissCallback, dismissObserverOptions);
-  useIntersectionObserver(
-    contentRef,
-    innerScrollBlockCallback,
-    innerScrollBlockOptions,
-  );
-
-  onConnected(contentRef, (content) => {
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
-        enableDismiss.set(true);
-        content.scrollIntoView({
-          behavior: "instant",
-          block: "start",
-          inline: "start",
-        });
-      });
-    });
-  });
-
   const handleTouchEnd = () => {
     if (thresholdReached) onDismiss?.();
     else {
@@ -76,6 +39,36 @@ export function DragToDismissView(props: DragToDismissViewProps) {
       });
     }
   };
+
+  useIntersectionObserver(
+    contentRef,
+    ([entry]) => {
+      if (!isTouchDevice.get()) return;
+      thresholdReached = !entry.isIntersecting;
+    },
+    () => ({ root: containerRef.peek(), threshold }),
+  );
+  useIntersectionObserver(
+    contentRef,
+    ([entry]) => {
+      if (!isTouchDevice.get()) return;
+      innerScrollDisabled.set(!entry.isIntersecting);
+    },
+    () => ({ root: containerRef.peek(), threshold: 0.99 }),
+  );
+
+  onConnected(contentRef, (content) => {
+    requestAnimationFrame(() => {
+      requestAnimationFrame(() => {
+        enableDismiss.set(true);
+        content.scrollIntoView({
+          behavior: "instant",
+          block: "start",
+          inline: "start",
+        });
+      });
+    });
+  });
 
   return (
     <div

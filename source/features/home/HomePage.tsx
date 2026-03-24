@@ -1,6 +1,6 @@
 import type { RouteComponent } from "retend/router";
 import type { PageMeta } from "retend-server/client";
-import classes from "./PortfolioHome.module.css";
+import classes from "./HomePage.module.css";
 import { PageTitle } from "@/components/layout/PageTitle";
 import { StarShower } from "@/components/ui/StarShower";
 import { SITE_URL } from "@/constants";
@@ -11,7 +11,7 @@ const PortfolioHome: RouteComponent<PageMeta> = () => {
       <StarShower />
       <div class={classes.container}>
         <div class={classes.hero}>
-          <PageTitle name="Oluwasefunmi." />
+          <PageTitle name="oluwasefunmi." />
           <span class={classes.titleAccent}>web engineer.</span>
         </div>
 
