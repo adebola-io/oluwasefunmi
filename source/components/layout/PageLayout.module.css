@@ -1,4 +1,6 @@
 .layout {
+  --page-gutter: clamp(1rem, 4vw, 3rem);
+
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -12,8 +14,7 @@
 }
 
 .header {
-  max-width: 1200px;
-  width: 100%;
+  width: min(1200px, calc(100% - (var(--page-gutter) * 2)));
   margin: 0 auto;
 }
 
@@ -23,14 +24,13 @@
   flex-direction: column;
   position: relative;
   z-index: 1;
-  width: 100%;
-  max-width: 1200px;
+  width: min(1200px, calc(100% - (var(--page-gutter) * 2)));
   margin: 0 auto;
   padding: 8rem 0 4rem;
 }
 
 @media (max-width: 768px) {
   .main {
-    padding: 6rem 1.5rem 3rem;
+    padding: 6rem 0 3rem;
   }
 }
