@@ -77,13 +77,6 @@
     max-width: 900px;
 }
 
-.slash {
-    font-family: monospace;
-    color: var(--accent-color);
-    opacity: 0.5;
-    margin-right: 0.25rem;
-}
-
 .current {
     color: var(--accent-color);
     opacity: 0.6;
@@ -92,11 +85,6 @@
 
 .hero:hover .current {
     opacity: 1;
-}
-
-.previous {
-    color: var(--text-secondary);
-    font-weight: 400;
 }
 
 .bio {

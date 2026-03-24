@@ -1,4 +1,4 @@
-import { Cell, For } from "retend";
+import { For } from "retend";
 import type { JSX } from "retend/jsx-runtime";
 import classes from "./ConnectWidget.module.css";
 
@@ -12,10 +12,8 @@ interface ConnectWidgetProps {
   links: SocialLink[];
 }
 
-
 export function ConnectWidget(props: ConnectWidgetProps) {
   const { links } = props;
-  const linksCell = Cell.source(links);
 
   return (
     <div class={classes.widget}>
@@ -24,7 +22,7 @@ export function ConnectWidget(props: ConnectWidgetProps) {
       </div>
 
       <div class={classes.links}>
-        {For(linksCell, (link: SocialLink) => (
+        {For(links, (link: SocialLink) => (
           <a
             href={link.url}
             target="_blank"

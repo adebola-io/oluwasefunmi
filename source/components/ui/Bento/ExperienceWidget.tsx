@@ -1,4 +1,4 @@
-import { Cell, For, If } from "retend";
+import { For } from "retend";
 import classes from "./ExperienceWidget.module.css";
 
 interface ExperienceItem {
@@ -12,8 +12,6 @@ interface ExperienceWidgetProps {
 
 export function ExperienceWidget(props: ExperienceWidgetProps) {
   const { items } = props;
-  const itemsCell = Cell.source(items);
-  const limit = items.length - 1;
 
   return (
     <div class={classes.widget}>
@@ -22,20 +20,11 @@ export function ExperienceWidget(props: ExperienceWidgetProps) {
       </div>
 
       <div class={classes.timeline}>
-        {For(itemsCell, (item: ExperienceItem, index: Cell<number>) => (
+        {For(items, (item: ExperienceItem) => (
           <div class={classes.item}>
             <div class={classes.markerWrapper}>
-              <div
-                class={[
-                  classes.marker,
-                  { [classes.active]: Cell.derived(() => index.get() === 0) },
-                ]}
-              />
-              {If(
-                Cell.derived(() => index.get() < limit),
-                () => <div class={classes.line} />,
-                () => null
-              )}
+              <div class={classes.marker} />
+              <div class={classes.line} />
             </div>
             <div class={classes.itemContent}>
               <span class={classes.year}>{item.year}</span>

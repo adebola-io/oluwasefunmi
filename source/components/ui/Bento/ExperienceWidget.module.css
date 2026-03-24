@@ -48,7 +48,7 @@
   z-index: 2;
 }
 
-.marker.active {
+.item:first-child .marker {
     background-color: var(--accent-color);
     box-shadow: 0 0 10px var(--accent-color);
     animation: markerPulse 2s infinite;
@@ -71,6 +71,10 @@
   background-color: var(--border-subtle);
   flex: 1;
   min-height: 20px;
+}
+
+.item:last-child .line {
+  display: none;
 }
 
 .itemContent {

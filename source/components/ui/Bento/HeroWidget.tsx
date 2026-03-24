@@ -29,17 +29,16 @@ export function HeroWidget(props: HeroWidgetProps) {
         <div class={classes.avatarWrapper}>
           <img ref={imgRef} src={avatar} alt={name} class={classes.avatar} />
         </div>
-        <StatusPill text="Available for Work" type="success" />
+        <StatusPill text="Available for Work" />
       </header>
 
       <div class={classes.content}>
         <h1 class={classes.headline}>
-          oluwasefunmi, <br/>
+          {name}, <br />
           <span class={classes.current}>software engineer.</span>
         </h1>
         <p class={classes.bio}>{bio}</p>
       </div>
-
     </div>
   );
 }

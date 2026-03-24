@@ -15,10 +15,10 @@
 .dot {
   width: 8px;
   height: 8px;
-  background-color: var(--accent-color);
+  background-color: #22c55e;
   border-radius: 50%;
   position: relative;
-  box-shadow: 0 0 10px var(--accent-color);
+  box-shadow: 0 0 10px #22c55e;
 }
 
 .dot::after {
@@ -28,7 +28,7 @@
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: var(--accent-color);
+  background-color: #22c55e;
   border-radius: 50%;
   animation: pulse 2s infinite ease-out;
   opacity: 0.4;
@@ -48,13 +48,3 @@
 .text {
   letter-spacing: 0.02em;
 }
-
-.success .dot {
-  background-color: #22c55e;
-  box-shadow: 0 0 10px #22c55e;
-}
-
-.success .dot::after {
-  background-color: #22c55e;
-}
-

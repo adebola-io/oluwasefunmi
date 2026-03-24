@@ -1,4 +1,4 @@
-import { Cell, For } from "retend";
+import { For } from "retend";
 import classes from "./StackWidget.module.css";
 
 interface StackWidgetProps {
@@ -7,7 +7,6 @@ interface StackWidgetProps {
 
 export function StackWidget(props: StackWidgetProps) {
   const { techs } = props;
-  const techsCell = Cell.source(techs);
 
   return (
     <div class={classes.widget}>
@@ -18,7 +17,7 @@ export function StackWidget(props: StackWidgetProps) {
       <div class={classes.content}>
         <h2 class={classes.title}>Preferred Technologies</h2>
         <div class={classes.tags}>
-          {For(techsCell, (tech: string) => (
+          {For(techs, (tech: string) => (
             <span class={classes.tag}>{tech}</span>
           ))}
         </div>

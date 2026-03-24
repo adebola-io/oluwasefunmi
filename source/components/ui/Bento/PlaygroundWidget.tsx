@@ -1,4 +1,4 @@
-import { Cell, For } from "retend";
+import { For } from "retend";
 import classes from "./PlaygroundWidget.module.css";
 import { type PlaygroundItem } from "@/data/playground";
 
@@ -8,7 +8,6 @@ interface PlaygroundWidgetProps {
 
 export function PlaygroundWidget(props: PlaygroundWidgetProps) {
   const { projects } = props;
-  const projectsCell = Cell.source(projects);
 
   return (
     <div class={classes.widget}>
@@ -17,11 +16,8 @@ export function PlaygroundWidget(props: PlaygroundWidgetProps) {
       </div>
 
       <div class={classes.list}>
-        {For(projectsCell, (project: PlaygroundItem) => (
-          <a
-            href={project.path}
-            class={classes.projectLink}
-          >
+        {For(projects, (project: PlaygroundItem) => (
+          <a href={project.path} class={classes.projectLink}>
             <span class={classes.name}>{project.title}</span>
             <span class={classes.arrow}>↗</span>
           </a>
