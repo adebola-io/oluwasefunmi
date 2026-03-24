@@ -3,8 +3,8 @@ import type { RouteComponent } from "retend/router";
 import { useWindowSize } from "retend-utils/hooks";
 import { ClientOnly } from "retend-server";
 import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
-import { AsyncQueue } from "@/utils";
-import { SITE_URL } from "@/constants";
+import { AsyncQueue } from "@/shared/utils";
+import { SITE_URL } from "@/shared/constants";
 import classes from "./RippleEffect.module.css";
 
 interface BoxProps {

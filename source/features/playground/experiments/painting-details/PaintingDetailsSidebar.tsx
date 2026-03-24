@@ -1,4 +1,4 @@
-import type { Painting } from "@/data/paintings";
+import type { Painting } from "@/features/playground/types";
 
 interface SidebarHeaderProps {
   painting: Painting;

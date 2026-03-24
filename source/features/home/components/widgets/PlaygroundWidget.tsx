@@ -1,6 +1,6 @@
 import { For } from "retend";
 import classes from "./PlaygroundWidget.module.css";
-import { type PlaygroundItem } from "@/data/playground";
+import type { PlaygroundItem } from "@/features/playground/types";
 
 interface PlaygroundWidgetProps {
   projects: PlaygroundItem[];

@@ -1,5 +1,6 @@
 import { Cell, For } from "retend";
-import { colorMap, type Product } from "@/data/products";
+import type { Product } from "@/features/playground/types";
+import { colorMap } from "@/features/playground/data/products";
 import { ProductImage } from "./ProductImage";
 import { ProductInfo } from "./ProductInfo";
 import { ProductSpecs } from "./ProductSpecs";

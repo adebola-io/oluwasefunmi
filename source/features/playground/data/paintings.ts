@@ -1,19 +1,5 @@
+import type { Painting } from "@/features/playground/types";
 import { getPaintingImage } from "./paintingImages";
-
-export interface Painting {
-  id: number;
-  title: string;
-  artist: string;
-  year: string;
-  filename: string;
-  description: string;
-  medium: string;
-  dimensions: string;
-  location: string;
-  style: string;
-  details: string;
-  color: string;
-}
 
 export const paintings: Painting[] = [
   {

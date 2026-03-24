@@ -1,15 +1,4 @@
-export interface Product {
-  id: number;
-  name: string;
-  price: number;
-  originalPrice?: number;
-  height: "short" | "medium" | "tall";
-  description: string;
-  material: string;
-  care: string[];
-  sizes: string[];
-  colors: string[];
-}
+import type { Product } from "@/features/playground/types";
 
 export const colorMap: Record<string, string> = {
   Charcoal: "#36454F",

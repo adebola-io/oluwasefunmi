@@ -1,6 +1,7 @@
 import { useRouteQuery, useRouter } from "retend/router";
 import { Cell, If } from "retend";
-import { paintings, type Painting } from "@/data/paintings";
+import type { Painting } from "@/features/playground/types";
+import { paintings } from "@/features/playground/data/paintings";
 import { PaintingStage } from "./PaintingStage";
 import { NavigationHeader } from "./painting-details/PaintingDetailsNav";
 import {
@@ -37,7 +38,7 @@ const PaintingContent = (props: PaintingContentProps) => {
 
       {/* Information Sidebar */}
       <aside
-        class="w-full md:w-[420px] lg:w-[480px] bg-[#0c0d0e] border-t md:border-t-0 md:border-l border-white/5 z-10 flex flex-col shrink-0 h-[50dvh] md:h-auto overflow-y-auto custom-scrollbar selection:bg-white/10 selection:text-white"
+        class="w-full md:w-105 lg:w-120 bg-[#0c0d0e] border-t md:border-t-0 md:border-l border-white/5 z-10 flex flex-col shrink-0 h-[50dvh] md:h-auto overflow-y-auto custom-scrollbar selection:bg-white/10 selection:text-white"
         style={{
           borderColor: `${painting.color}22`,
           boxShadow: `inset 1px 0 0 ${painting.color}22`,

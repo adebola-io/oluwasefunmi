@@ -1,5 +1,6 @@
-import { getPaintingImage } from "@/data/paintingImages";
-import { type Painting, paintings } from "@/data/paintings";
+import { getPaintingImage } from "@/features/playground/data/paintingImages";
+import type { Painting } from "@/features/playground/types";
+import { paintings } from "@/features/playground/data/paintings";
 import { Cell, onSetup } from "retend";
 import { useDerivedValue } from "retend-utils/hooks";
 import type { JSX } from "retend/jsx-runtime";

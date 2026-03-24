@@ -1,17 +1,10 @@
+import type { Project } from "@/features/works/types";
+
 export const timeline = [
   "0ms",
   "calc(var(--duration)*0.25)",
   "calc(var(--duration)*0.5)",
 ];
-
-export interface Project {
-  id: number;
-  name: string;
-  description: string;
-  link: string;
-  class?: string;
-  tags: string[];
-}
 
 export const projects: Project[] = [
   {

@@ -1,4 +1,4 @@
-import type { JSX } from "retend/jsx-runtime";
+import type { PlaygroundItem } from "@/features/playground/types";
 import { CubeIcon } from "@/components/icons/cube";
 import { RippleIcon } from "@/components/icons/ripple";
 import { CarouselIcon } from "@/components/icons/carousel";
@@ -6,13 +6,6 @@ import { PaintingWheelIcon } from "@/components/icons/painting-wheel";
 import { ShoppingCartIcon } from "@/components/icons/shopping-cart";
 import { HaloIcon } from "@/components/icons/halo";
 import { KeyboardIcon } from "@/components/icons/keyboard";
-
-export interface PlaygroundItem {
-  path: string;
-  title: string;
-  description: () => JSX.Element;
-  icon: () => JSX.Element;
-}
 
 function ExternalLink(props: { url: string; children: string }) {
   const { url, children } = props;

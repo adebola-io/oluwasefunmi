@@ -1,7 +1,7 @@
 const imageModules = import.meta.glob<{ default: string }>(
   [
-    "/source/data/images/paintings/*.webp",
-    "/source/data/images/paintings-small/*.webp",
+    "/source/features/playground/data/images/paintings/*.webp",
+    "/source/features/playground/data/images/paintings-small/*.webp",
   ],
   { eager: true }
 );

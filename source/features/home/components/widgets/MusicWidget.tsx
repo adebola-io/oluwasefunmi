@@ -1,7 +1,7 @@
 import { Cell, For, onSetup } from "retend";
 import { useLocalStorage } from "retend-utils/hooks";
 import { ClientOnly } from "retend-server";
-import { songs } from "@/data/music";
+import { songs } from "@/features/playground/data/music";
 import classes from "./MusicWidget.module.css";
 
 const BARS = Array.from({ length: 30 }, (_, i) => i);

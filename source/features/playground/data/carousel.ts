@@ -1,4 +1,4 @@
-import { getAllAvatarImages } from "./avatarImages";
+import { getAllAvatarImages } from "@/features/home/data/avatarImages";
 
 export interface CarouselItem {
   name: string;

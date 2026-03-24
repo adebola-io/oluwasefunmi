@@ -1,13 +1,13 @@
 import { For, If, Cell } from "retend";
 import type { RouteComponent } from "retend/router";
 import type { PageMeta } from "retend-server/client";
-import type { Note, NotePreviewProps } from "@/types";
+import type { Note, NotePreviewProps } from "@/shared/types";
 import { Link } from "retend/router";
 import { LayeredCard } from "@/components/ui/LayeredCard";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { StarShower } from "@/components/ui/StarShower";
 import { NoteHeading } from "@/components/ui/typography";
-import { SITE_URL } from "@/constants";
+import { SITE_URL } from "@/shared/constants";
 import classes from "./RandomNotesPage.module.css";
 
 export const getNotesIndex = async () => {

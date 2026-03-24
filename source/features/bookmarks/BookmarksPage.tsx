@@ -5,10 +5,10 @@ import { useIntersectionObserver } from "retend-utils/hooks";
 import classes from "./BookmarksPage.module.css";
 import { PageHeader } from "@/components/layout/PageHeader";
 import { StarShower } from "@/components/ui/StarShower";
-import { SITE_URL } from "@/constants";
+import { SITE_URL } from "@/shared/constants";
 import { BookmarkItem } from "./components/BookmarkItem";
 import { useBookmarks } from "./hooks/useBookmarks";
-import { BOOKMARK_TAGS } from "@/data/bookmarkTags";
+import { BOOKMARK_TAGS } from "@/features/bookmarks/data/bookmarkTags";
 import { ClientOnly } from "retend-server";
 
 const SearchIcon = () => (

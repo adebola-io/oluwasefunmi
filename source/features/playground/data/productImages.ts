@@ -1,5 +1,5 @@
 const imageModules = import.meta.glob<{ default: string }>(
-  "/source/data/images/products/*.webp",
+  "/source/features/playground/data/images/products/*.webp",
   { eager: true }
 );
 

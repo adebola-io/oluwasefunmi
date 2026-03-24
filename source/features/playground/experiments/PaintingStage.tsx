@@ -1,7 +1,7 @@
 import { Cell, createUnique } from "retend";
 import { useRouteQuery } from "retend/router";
 import { UniqueTransition } from "retend-utils/components";
-import { paintings } from "@/data/paintings";
+import { paintings } from "@/features/playground/data/paintings";
 import { Viewer, type ViewerAnimation } from "../components/Viewer/Viewer";
 import { Wheel } from "./Wheel";
 import { ClientOnly } from "retend-server";

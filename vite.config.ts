@@ -6,14 +6,14 @@ import { retend } from "retend-web/plugins/vite";
 import { retendSSG } from "retend-server/plugin";
 import tailwindcss from "@tailwindcss/vite";
 import mdx from "@mdx-js/rollup";
-import { products } from "./source/data/products";
+import { products } from "./source/features/playground/data/products";
 
 const notes = fs.existsSync("./source/content/notes")
   ? fs
       .readdirSync("./source/content/notes")
       .map((name) => `/random-notes/${name}`)
   : [];
-const productRoutes = products.map((product) => {
+const productRoutes = products.map((product: (typeof products)[number]) => {
   return `/playground/product-transitions/${product.id}`;
 });
 

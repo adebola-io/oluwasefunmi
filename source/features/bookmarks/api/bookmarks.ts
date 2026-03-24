@@ -1,5 +1,5 @@
 import type { Hono } from "hono";
-import { bookmarks } from "@/data/bookmarks";
+import { bookmarks } from "@/features/bookmarks/data/bookmarks";
 
 const BOOKMARKS_PAGE_SIZE = 20;
 

@@ -1,6 +1,6 @@
 import { Cell, For, If } from "retend";
 import { useRouteQuery, useRouter } from "retend/router";
-import { paintings } from "@/data/paintings";
+import { paintings } from "@/features/playground/data/paintings";
 import { InteractionPanel } from "@/features/playground/components/InteractionPanel/InteractionPanel";
 import { PaintingTitleAndArtist } from "@/features/playground/components/PaintingTitleAndArtist";
 

@@ -1,5 +1,5 @@
 import { Cell } from "retend";
-import type { Bookmark } from "@/types";
+import type { Bookmark } from "@/features/bookmarks/types";
 import { LayeredCard } from "@/components/ui/LayeredCard";
 import classes from "../BookmarksPage.module.css";
 

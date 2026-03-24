@@ -4,7 +4,7 @@ import { Input } from "retend-utils/components";
 import { Box } from "./Box";
 import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
 import { RotateIcon } from "@/components/icons/rotate";
-import { SITE_URL } from "@/constants";
+import { SITE_URL } from "@/shared/constants";
 import classes from "./CurvedCssSolid.module.css";
 import { Viewer } from "@/features/playground/components/Viewer/Viewer";
 import { InteractionPanel } from "@/features/playground/components/InteractionPanel/InteractionPanel";

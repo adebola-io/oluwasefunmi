@@ -1,4 +1,4 @@
-import type { Painting } from "@/data/paintings";
+import type { Painting } from "@/features/playground/types";
 import { MetadataItem, SectionHeading } from "./PaintingDetailsShared";
 
 export const SpecsGrid = (props: { painting: Painting }) => {
@@ -52,7 +52,7 @@ export const HistoricalContent = (props: { painting: Painting }) => {
           <p class="text-[15px] leading-relaxed text-white/80 font-light">
             {painting.details}
           </p>
-          <div class="p-6 rounded-2xl bg-white/2 border border-white/5 space-y-3 group hover:bg-white/[0.04] transition-colors duration-500">
+          <div class="p-6 rounded-2xl bg-white/2 border border-white/5 space-y-3 group hover:bg-white/4 transition-colors duration-500">
             <div class="flex items-center gap-2 text-white/60">
               <svg
                 class="w-4 h-4"
