@@ -10,6 +10,7 @@ import { ReadingWidget } from "@/components/ui/Bento/ReadingWidget";
 import { StackWidget } from "@/components/ui/Bento/StackWidget";
 import { ConnectWidget } from "@/components/ui/Bento/ConnectWidget";
 import { PlaygroundWidget } from "@/components/ui/Bento/PlaygroundWidget";
+import { GitHubWidget } from "@/components/ui/Bento/GitHubWidget";
 import { SITE_URL } from "@/constants";
 import { playgroundItems } from "@/data/playground";
 
@@ -112,11 +113,15 @@ const PortfolioHome: RouteComponent<PageMeta> = () => {
           </BentoCard>
 
           <BentoCard span={1} rowSpan={3}>
-            <MusicWidget title="Midnight Melodies" artist="Vibe Master" />
+            <MusicWidget />
           </BentoCard>
 
-          <BentoCard span={2} rowSpan={3}>
+          <BentoCard span={1} rowSpan={3}>
             <ExperienceWidget items={EXPERIENCES} />
+          </BentoCard>
+
+          <BentoCard span={1} rowSpan={3}>
+            <GitHubWidget />
           </BentoCard>
 
           <BentoCard span={2} rowSpan={2}>
