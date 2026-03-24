@@ -19,8 +19,8 @@ export const BookmarkItem = (props: BookmarkItemProps) => {
       rel="noreferrer"
       class={classes.bookmarkCard}
       style={{
-        "--layered-border-color": bookmark.themeColor,
-        "--layered-shadow-color": bookmark.themeColor,
+        "--layered-border-color": `color-mix(in srgb, ${bookmark.themeColor} 60%, transparent)`,
+        "--layered-shadow-color": `color-mix(in srgb, ${bookmark.themeColor} 40%, transparent)`,
       }}
     >
       <div class={classes.imageContainer}>

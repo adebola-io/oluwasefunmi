@@ -1,5 +1,21 @@
 export const bookmarks = [
   {
+    id: "mozilla-browser-engine-competition",
+    link: "https://blog.mozilla.org/netpolicy/2026/03/23/competition-innovation-and-the-future-of-the-web/",
+    tags: ["browser", "web", "competition", "gecko", "mozilla", "article"],
+    notes: "",
+    image:
+      "https://blog.mozilla.org/netpolicy/files/2019/12/browsefreely-03-1000x563-1.png",
+    themeColor: "#FF6611",
+    openGraph: {
+      title:
+        "Competition, Innovation, and the Future of the Web – Why Independent Browser Engines Matter",
+      description:
+        "Gecko matters because it ensures there's an independent voice shaping how the internet evolves. Without Gecko, the landscape would be dominated by Apple and Google alone.",
+      siteName: "Mozilla Blog",
+    },
+  },
+  {
     id: "signal-push-pull-algorithm",
     link: "https://willybrauner.com/journal/signal-the-push-pull-based-algorithm",
     tags: ["javascript", "reactivity", "algorithms", "frontend", "article"],
