@@ -45,8 +45,21 @@
   border-bottom: none;
 }
 
+.projectLink:hover {
+  text-decoration: underline;
+  text-decoration-color: var(--accent-color);
+  text-underline-offset: 4px;
+}
+
 .arrow {
   font-family: sans-serif;
   opacity: 0.5;
   font-size: 0.9rem;
+  transition: transform 0.3s var(--ease-spring), opacity 0.3s var(--ease-spring);
+}
+
+.projectLink:hover .arrow {
+  opacity: 1;
+  transform: translate(2px, -2px);
+  color: var(--accent-color);
 }

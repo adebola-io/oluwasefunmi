@@ -1,4 +1,4 @@
-
+import { Cell, onSetup } from "retend";
 import classes from "./HeroWidget.module.css";
 import { StatusPill } from "./StatusPill";
 
@@ -10,12 +10,24 @@ interface HeroWidgetProps {
 
 export function HeroWidget(props: HeroWidgetProps) {
   const { name, avatar, bio } = props;
+  const imgRef = Cell.source<HTMLImageElement | null>(null);
+
+  onSetup(() => {
+    const img = imgRef.peek();
+    if (!img) return;
+    const reveal = () => img.classList.add(classes.loaded);
+    if (img.complete) {
+      reveal();
+    } else {
+      img.addEventListener("load", reveal, { once: true });
+    }
+  });
 
   return (
     <div class={classes.hero}>
       <header class={classes.header}>
         <div class={classes.avatarWrapper}>
-          <img src={avatar} alt={name} class={classes.avatar} />
+          <img ref={imgRef} src={avatar} alt={name} class={classes.avatar} />
         </div>
         <StatusPill text="Available for Work" type="success" />
       </header>

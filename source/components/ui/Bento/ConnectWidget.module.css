@@ -31,3 +31,14 @@
   align-items: center;
   justify-content: center;
 }
+
+.iconArrow {
+  opacity: 0.5;
+  transition: transform 0.3s var(--ease-spring), opacity 0.3s var(--ease-spring);
+}
+
+:global([data-pill-link]):hover .iconArrow {
+  opacity: 1;
+  transform: translate(2px, -2px);
+  color: var(--accent-color);
+}

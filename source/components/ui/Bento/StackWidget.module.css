@@ -45,5 +45,12 @@
   font-size: 0.9rem;
   color: var(--text-primary);
   font-weight: 500;
+  transition: transform 0.2s var(--ease-spring), border-color 0.2s var(--ease-spring), color 0.2s var(--ease-spring);
   cursor: default;
+}
+
+.tag:hover {
+  transform: translateY(-2px);
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #fff;
 }

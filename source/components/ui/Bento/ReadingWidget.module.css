@@ -49,8 +49,14 @@
     border-radius: 4px;
     overflow: hidden;
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-    transform: perspective(600px) rotateY(-10deg);
+    transform: perspective(600px) rotateY(-15deg) rotateX(5deg);
     flex-shrink: 0;
+    transition: transform 0.4s var(--ease-spring), box-shadow 0.4s var(--ease-spring);
+}
+
+.widget:hover .coverWrapper {
+    transform: perspective(600px) rotateY(0deg) rotateX(0deg) scale(1.1);
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
 }
 
 .cover {
