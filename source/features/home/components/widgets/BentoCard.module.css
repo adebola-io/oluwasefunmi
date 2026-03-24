@@ -45,7 +45,6 @@
 .content {
   position: relative;
   z-index: 2;
-  height: 100%;
 }
 
 @media (max-width: 768px) {

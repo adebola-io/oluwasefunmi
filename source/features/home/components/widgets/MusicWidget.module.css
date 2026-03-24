@@ -2,7 +2,6 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
-  height: 100%;
 }
 
 .header {
@@ -25,10 +24,37 @@
 .artwork {
   width: 80px;
   height: 80px;
-  border-radius: 12px;
+  border-radius: 50%;
   overflow: hidden;
   background-color: var(--accent-color);
   flex-shrink: 0;
+  position: relative;
+  animation: spin 4s linear infinite;
+  outline: 3px solid var(--text-primary);
+  outline-offset: -1px;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.artwork::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--bg-card);
+  z-index: 2;
+  box-shadow: 0 0 2px rgba(0, 0, 0, 0.3);
 }
 
 .artwork img {
@@ -50,7 +76,7 @@
 }
 
 .title {
-  font-size: 1.25rem;
+  font-size: 1rem;
   font-weight: 600;
   color: var(--text-primary);
   margin: 0;
@@ -74,6 +100,7 @@
   display: flex;
   align-items: center;
   overflow: hidden;
+  width: 100%;
 }
 
 .waveform {
@@ -81,7 +108,9 @@
   align-items: center;
   gap: 3px;
   height: 100%;
+  width: 100%;
   opacity: 0.6;
+  justify-content: space-between;
 }
 
 .bar {

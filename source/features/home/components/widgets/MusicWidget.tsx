@@ -155,7 +155,7 @@ export function MusicWidget() {
 
   return (
     <div class={classes.widget}>
-      <div class={classes.header}>What I'm listening</div>
+      <div class={classes.header}>What I'm listening to:</div>
 
       <ClientOnly>
         <div class={classes.main}>

@@ -124,4 +124,12 @@ export const songs: Song[] = [
       imageModules["/source/features/playground/data/images/music/14.webp"]
         .default,
   },
+  {
+    title: "LEVII'S JEANS",
+    artist: "Beyonce & Post Malone",
+    durationMs: 257699,
+    image:
+      imageModules["/source/features/playground/data/images/music/15.webp"]
+        .default,
+  },
 ];
