@@ -1,4 +1,5 @@
 import { For } from "retend";
+import { Link } from "retend/router";
 import classes from "./PlaygroundWidget.module.css";
 import type { PlaygroundItem } from "@/features/playground/types";
 
@@ -15,10 +16,10 @@ export function PlaygroundWidget(props: PlaygroundWidgetProps) {
 
       <div class={classes.list}>
         {For(projects, (project) => (
-          <a href={project.path} class={classes.projectLink}>
+          <Link href={project.path} class={classes.projectLink}>
             <span>{project.title}</span>
             <span class={classes.arrow}>↗</span>
-          </a>
+          </Link>
         ))}
       </div>
     </div>
