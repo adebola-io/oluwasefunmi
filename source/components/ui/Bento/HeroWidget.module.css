@@ -130,11 +130,6 @@
 .current {
   color: var(--accent-color);
   opacity: 0.6;
-  transition: opacity 0.3s ease;
-}
-
-.hero:hover .current {
-  opacity: 1;
 }
 
 .bio {

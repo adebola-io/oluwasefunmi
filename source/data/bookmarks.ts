@@ -1,5 +1,19 @@
 export const bookmarks = [
   {
+    id: "signal-push-pull-algorithm",
+    link: "https://willybrauner.com/journal/signal-the-push-pull-based-algorithm",
+    tags: ["javascript", "reactivity", "algorithms", "frontend", "article"],
+    notes: "",
+    image: "https://willybrauner.com/assets/signal-cover-meta.webp",
+    themeColor: "#4a5568",
+    openGraph: {
+      title: "Signals, the push-pull based algorithm",
+      description:
+        "We have been using Signals in production for years via several modern front-end frameworks like Solid, Vue, and others, but few of us are able to explain how they work internally.",
+      siteName: "Willy Brauner",
+    },
+  },
+  {
     id: "building-ng-stocks-growth-strategy",
     link: "https://inside.cowrywise.com/article/building-ng-stocks-growth-strategy",
     tags: ["frontend", "fintech", "marketing", "article"],
@@ -598,6 +612,20 @@ export const bookmarks = [
       description:
         "When developers say that CSS is hard, they're usually talking about CSS layout. What often gets omitted though is that developers are assumed to understand and…",
       siteName: "polypane.app",
+    },
+  },
+  {
+    id: "ai-will-not-eat-ui",
+    link: "https://www.aidenybai.com/blog/ai-will-not-eat-ui",
+    tags: ["ai", "ui", "development", "future", "article"],
+    notes: "",
+    image: "https://aidenbai.com/aiden-logo.webp",
+    themeColor: "#6366f1",
+    openGraph: {
+      title: "AI Will Not Eat UI",
+      description:
+        "AI will not eat UI. In fact, UI will become more important. Here's why.",
+      siteName: "Aiden Bai",
     },
   },
 ];

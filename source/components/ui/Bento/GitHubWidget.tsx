@@ -1,9 +1,9 @@
 import { Cell, For, Await } from "retend";
+import { ClientOnly } from "retend-server";
 import classes from "./GitHubWidget.module.css";
 
 const USERNAME = "adebola-io";
-const WEEKS = 12;
-const TOTAL_DAYS = WEEKS * 7;
+const TOTAL_DAYS = 30;
 
 interface DayCell {
   date: string;
@@ -76,15 +76,17 @@ export function GitHubWidget() {
         </a>
       </div>
 
-      <Await
-        fallback={
-          <div class={classes.skeleton}>
-            <div class={classes.skeletonGrid} />
-          </div>
-        }
-      >
-        <GitHubHeatmap />
-      </Await>
+      <ClientOnly>
+        <Await
+          fallback={
+            <div class={classes.skeleton}>
+              <div class={classes.skeletonGrid} />
+            </div>
+          }
+        >
+          <GitHubHeatmap />
+        </Await>
+      </ClientOnly>
     </div>
   );
 }
@@ -106,7 +108,7 @@ function GitHubHeatmap() {
         <span class={classes.count}>
           {Cell.derivedAsync(async (get) => `${await get(totalCell)} events`)}
         </span>
-        <span class={classes.period}>last {WEEKS} weeks</span>
+        <span class={classes.period}>last month</span>
       </div>
     </div>
   );

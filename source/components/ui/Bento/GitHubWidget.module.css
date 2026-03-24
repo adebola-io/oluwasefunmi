@@ -46,11 +46,12 @@
   display: grid;
   grid-template-rows: repeat(7, 1fr);
   grid-auto-flow: column;
-  grid-auto-columns: 1fr;
+  grid-auto-columns: 1.6rem;
   gap: 3px;
 }
 
 .cell {
+  width: 1.6rem;
   aspect-ratio: 1;
   border-radius: 2px;
   background-color: rgba(255, 255, 255, 0.04);
@@ -58,19 +59,19 @@
 }
 
 .cell[data-level="1"] {
-  background-color: rgba(195, 205, 225, 0.15);
+  background-color: #0e4429;
 }
 
 .cell[data-level="2"] {
-  background-color: rgba(195, 205, 225, 0.3);
+  background-color: #006d32;
 }
 
 .cell[data-level="3"] {
-  background-color: rgba(195, 205, 225, 0.55);
+  background-color: #26a641;
 }
 
 .cell[data-level="4"] {
-  background-color: var(--accent-color);
+  background-color: #39d353;
 }
 
 .footer {
