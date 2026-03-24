@@ -132,4 +132,20 @@ export const songs: Song[] = [
       imageModules["/source/features/playground/data/images/music/15.webp"]
         .default,
   },
+  {
+    title: "The Night King",
+    artist: "Ramin Djawadi",
+    durationMs: 530532,
+    image:
+      imageModules["/source/features/playground/data/images/music/16.webp"]
+        .default,
+  },
+  {
+    title: "Forever",
+    artist: "Labrinth",
+    durationMs: 202536,
+    image:
+      imageModules["/source/features/playground/data/images/music/17.webp"]
+        .default,
+  },
 ];

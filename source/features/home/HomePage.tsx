@@ -26,9 +26,9 @@ const PortfolioHome: RouteComponent<PageMeta> = () => {
         <BentoGrid>
           <BentoCard span={2} rowSpan={5}>
             <HeroWidget
-              name="oluwasefunmi"
+              name="Oluwasefunmi"
               avatar="https://github.com/adebola-io.png"
-              bio="I am a full-stack software engineer focused on creating interactive digital experiences and tackling complex design challenges."
+              bio="I build web products that feel good to use, and I like turning messy ideas into clear, useful experiences."
             />
           </BentoCard>
 
@@ -58,8 +58,9 @@ const PortfolioHome: RouteComponent<PageMeta> = () => {
 
           <BentoCard span={1} rowSpan={2}>
             <ReadingWidget
-              title="The Design of Everything"
-              author="Don Norman"
+              title="The Black Prism"
+              author="Brent Weeks"
+              image="https://covers.openlibrary.org/b/isbn/9780316075558-L.jpg"
             />
           </BentoCard>
         </BentoGrid>

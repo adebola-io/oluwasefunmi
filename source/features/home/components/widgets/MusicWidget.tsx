@@ -1,10 +1,8 @@
-import { Cell, For, onSetup } from "retend";
+import { Cell, onSetup } from "retend";
 import { useLocalStorage } from "retend-utils/hooks";
 import { ClientOnly } from "retend-server";
 import { songs } from "@/features/playground/data/music";
 import classes from "./MusicWidget.module.css";
-
-const BARS = Array.from({ length: 30 }, (_, i) => i);
 
 interface ListeningSession {
   [key: string]: number;
@@ -117,20 +115,22 @@ export function MusicWidget() {
   const title = Cell.derived(() => song.get().title);
   const artist = Cell.derived(() => song.get().artist);
   const image = Cell.derived(() => song.get().image);
-  const time = Cell.derived(() => {
+  const currentTimeMs = Cell.derived(() => {
     const currentSession = session.get();
-    let currentTime = 0;
     if (currentSession !== null) {
-      currentTime = now.get() - currentSession.startedAt;
-      if (currentTime < 0) {
-        currentTime = 0;
-      }
-      if (currentTime > currentSession.durationMs) {
-        currentTime = currentSession.durationMs;
-      }
+      const time = now.get() - currentSession.startedAt;
+      return Math.max(0, Math.min(time, currentSession.durationMs));
     }
-    return `${formatTime(currentTime)} / ${formatTime(song.get().durationMs)}`;
+    return 0;
   });
+
+  const progressPercentage = Cell.derived(() => {
+    const total = song.get().durationMs;
+    return total > 0 ? (currentTimeMs.get() / total) * 100 : 0;
+  });
+
+  const elapsedTime = Cell.derived(() => formatTime(currentTimeMs.get()));
+  const totalTime = Cell.derived(() => formatTime(song.get().durationMs));
 
   onSetup(() => {
     const update = () => {
@@ -159,8 +159,11 @@ export function MusicWidget() {
 
       <ClientOnly>
         <div class={classes.main}>
-          <div class={classes.artwork}>
-            <img src={image} alt={title} />
+          <div class={classes.vinylRecord}>
+            <div class={classes.artworkContainer}>
+              <img src={image} alt={title} />
+            </div>
+            <div class={classes.recordHole} />
           </div>
 
           <div class={classes.info}>
@@ -170,20 +173,16 @@ export function MusicWidget() {
         </div>
 
         <div class={classes.player}>
-          <div class={classes.waveWrapper}>
-            <div class={classes.waveform}>
-              {For(BARS, (i: number) => (
-                <div
-                  class={classes.bar}
-                  style={{
-                    height: `${Math.random() * 80 + 20}%`,
-                    animationDelay: `${i * 0.1}s`,
-                  }}
-                />
-              ))}
-            </div>
+          <div class={classes.progressWrapper}>
+            <div
+              class={classes.progressFill}
+              style={{ width: `${progressPercentage}%` }}
+            />
           </div>
-          <div class={classes.controls}>{time}</div>
+          <div class={classes.controls}>
+            <span>{elapsedTime}</span>
+            <span>{totalTime}</span>
+          </div>
         </div>
       </ClientOnly>
     </div>

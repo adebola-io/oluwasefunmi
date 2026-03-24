@@ -22,16 +22,25 @@ export function ReadingWidget(props: ReadingWidgetProps) {
           <span class={classes.author}>{author}</span>
         </div>
 
-        <div class={classes.coverWrapper}>
-          {If(
-            image,
-            () => (
-              <img src={image} alt={title} class={classes.cover} />
-            ),
-            () => (
-              <div class={classes.placeholderCover} />
-            )
-          )}
+        <div class={classes.bookContainer}>
+          <div class={classes.book}>
+            <div class={[classes.bookFace, classes.bookFront]}>
+              {If(
+                image,
+                () => (
+                  <img src={image} alt={title} class={classes.cover} />
+                ),
+                () => (
+                  <div class={classes.placeholderCover} />
+                )
+              )}
+            </div>
+            <div class={[classes.bookFace, classes.bookBack]} />
+            <div class={[classes.bookFace, classes.bookSpine]} />
+            <div class={[classes.bookFace, classes.bookRight]} />
+            <div class={[classes.bookFace, classes.bookTop]} />
+            <div class={[classes.bookFace, classes.bookBottom]} />
+          </div>
         </div>
       </div>
     </div>

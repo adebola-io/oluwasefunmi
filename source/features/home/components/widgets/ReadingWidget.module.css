@@ -2,6 +2,8 @@
   display: flex;
   flex-direction: column;
   gap: 1.5rem;
+  height: 100%;
+  justify-content: space-between;
 }
 
 .head {
@@ -18,6 +20,7 @@
 .content {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   gap: 1rem;
 }
 
@@ -29,7 +32,7 @@
 }
 
 .title {
-  font-size: 1.5rem;
+  font-size: 1.4rem;
   font-weight: 700;
   line-height: 1.2;
   color: var(--text-primary);
@@ -42,22 +45,116 @@
   font-weight: 500;
 }
 
-.coverWrapper {
-  width: 60px;
-  height: 90px;
-  border-radius: 4px;
-  overflow: hidden;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-  transform: perspective(600px) rotateY(-15deg) rotateX(5deg);
+.bookContainer {
+  perspective: 1200px;
+  width: 100px;
+  height: 150px;
   flex-shrink: 0;
-  transition:
-    transform 0.4s var(--ease-spring),
-    box-shadow 0.4s var(--ease-spring);
+  margin-right: 1rem;
+  transform: translateY(-5px);
 }
 
-.widget:hover .coverWrapper {
-  transform: perspective(600px) rotateY(0deg) rotateX(0deg) scale(1.1);
-  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.5);
+.book {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  transform-style: preserve-3d;
+  transform: rotateY(-30deg) rotateX(15deg) rotateZ(-4deg);
+  transition: transform 0.6s var(--ease-spring);
+}
+
+.widget:hover .book {
+  transform: rotateY(-15deg) rotateX(5deg) rotateZ(0deg) scale(1.08);
+}
+
+.bookFace {
+  position: absolute;
+}
+
+.bookFront {
+  width: 100%;
+  height: 100%;
+  transform: translateZ(12px);
+  border-radius: 2px 4px 4px 2px;
+  overflow: hidden;
+}
+
+.bookFront::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.4) 0%,
+    rgba(255, 255, 255, 0) 4%,
+    rgba(0, 0, 0, 0.1) 6%,
+    rgba(255, 255, 255, 0.1) 12%,
+    transparent 100%
+  );
+  pointer-events: none;
+}
+
+.bookBack {
+  width: 100%;
+  height: 100%;
+  transform: translateZ(-12px) rotateY(180deg);
+  background-color: #0c1522;
+  border-radius: 4px 2px 2px 4px;
+  box-shadow:
+    15px 15px 30px rgba(0, 0, 0, 0.6),
+    5px 5px 10px rgba(0, 0, 0, 0.4);
+}
+
+.bookSpine {
+  width: 24px;
+  height: 100%;
+  left: -12px;
+  transform: rotateY(-90deg);
+  background-color: #08121a;
+  background-image: linear-gradient(
+    to right,
+    rgba(255, 255, 255, 0.1),
+    rgba(0, 0, 0, 0.4) 40%,
+    rgba(255, 255, 255, 0.15)
+  );
+  border-radius: 3px;
+}
+
+.bookRight {
+  width: 22px;
+  height: 96%;
+  right: -11px;
+  top: 2%;
+  transform: rotateY(90deg);
+  background-color: #e4e2df;
+  background-image: repeating-linear-gradient(
+    to right,
+    transparent 0px,
+    transparent 2px,
+    rgba(0, 0, 0, 0.05) 2px,
+    rgba(0, 0, 0, 0.05) 4px
+  );
+}
+
+.bookTop {
+  width: 96%;
+  height: 22px;
+  right: 1%;
+  top: -11px;
+  transform: rotateX(90deg);
+  background-color: #e4e2df;
+}
+
+.bookBottom {
+  width: 96%;
+  height: 22px;
+  right: 1%;
+  bottom: -11px;
+  transform: rotateX(-90deg);
+  background-color: #cac8c5;
 }
 
 .cover {
