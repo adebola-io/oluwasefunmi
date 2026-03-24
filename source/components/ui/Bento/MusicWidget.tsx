@@ -27,7 +27,7 @@ export function MusicWidget(props: MusicWidgetProps) {
             ),
             () => (
               <div class={classes.placeholder} />
-            ),
+            )
           )}
         </div>
 

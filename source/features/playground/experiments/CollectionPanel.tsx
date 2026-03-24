@@ -22,7 +22,7 @@ export const CollectionPanel = () => {
               type="button"
               onClick={() =>
                 router.navigate(
-                  `/playground/painting-wheel?paintingId=${painting.id}`,
+                  `/playground/painting-wheel?paintingId=${painting.id}`
                 )
               }
               class="w-full text-left min-h-[6ch] relative cursor-pointer"

@@ -11,14 +11,12 @@ export function PlaygroundWidget(props: PlaygroundWidgetProps) {
 
   return (
     <div class={classes.widget}>
-      <div class={classes.header}>
-        <span class={classes.label}>Playground</span>
-      </div>
+      <div class={classes.header}>Playground</div>
 
       <div class={classes.list}>
-        {For(projects, (project: PlaygroundItem) => (
+        {For(projects, (project) => (
           <a href={project.path} class={classes.projectLink}>
-            <span class={classes.name}>{project.title}</span>
+            <span>{project.title}</span>
             <span class={classes.arrow}>↗</span>
           </a>
         ))}

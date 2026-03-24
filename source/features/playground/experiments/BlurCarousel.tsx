@@ -71,7 +71,7 @@ function BlurCarousel<Item>(props: BlurCarouselProps<Item>) {
           }
         }
       },
-      { threshold: 0.5, root: containerRef.peek() },
+      { threshold: 0.5, root: containerRef.peek() }
     );
 
     for (const child of ul.children) {

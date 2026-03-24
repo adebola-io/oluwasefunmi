@@ -1,6 +1,6 @@
 const imageModules = import.meta.glob<{ default: string }>(
   "/source/data/images/avatars/*.{webp,jpg,jpeg,png}",
-  { eager: true },
+  { eager: true }
 );
 
 export interface AvatarImage {

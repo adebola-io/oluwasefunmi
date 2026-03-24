@@ -148,7 +148,7 @@ interface KeyProps {
 const checkIsPhysicallyPressed = (
   name: string,
   shiftName: string | undefined,
-  pressedKeys: Set<string>,
+  pressedKeys: Set<string>
 ): boolean => {
   const lowerName = name.toLowerCase();
   const lowerShiftName = shiftName?.toLowerCase();
@@ -177,7 +177,7 @@ const checkIsPhysicallyPressed = (
 const useKeyPointerEvents = (
   containerRef: Cell<HTMLElement | null>,
   isPointerPressed: SourceCell<boolean>,
-  mode: Cell<"view" | "type">,
+  mode: Cell<"view" | "type">
 ) => {
   const handlePointerDown = (e: PointerEvent) => {
     e.stopPropagation();
@@ -238,10 +238,10 @@ const Key = (props: KeyProps) => {
   const containerRef = Cell.source<HTMLDivElement | null>(null);
   const rowMeta = Cell.derived(() => ROW_METADATA[rowIndex.get()]);
   const isPhysicallyPressed = Cell.derived(() =>
-    checkIsPhysicallyPressed(data.name, data.shiftName, pressedKeys.get()),
+    checkIsPhysicallyPressed(data.name, data.shiftName, pressedKeys.get())
   );
   const isPressed = Cell.derived(
-    () => isPointerPressed.get() || isPhysicallyPressed.get(),
+    () => isPointerPressed.get() || isPhysicallyPressed.get()
   );
   const width = Cell.derived(() => {
     const totalGapSpace = (rowMeta.get().numKeys - 1) * GAP_X;
@@ -250,7 +250,7 @@ const Key = (props: KeyProps) => {
   });
   const height = Cell.derived(() => (data.height || 1) * baseKeyHeight.get());
   const keyColor = Cell.derived(() =>
-    isPressed.get() ? colors.get().secondaryKey : colors.get().key,
+    isPressed.get() ? colors.get().secondaryKey : colors.get().key
   );
   const secondaryKeyColor = Cell.derived(() => colors.get().secondaryKey);
   const textColor = Cell.derived(() => colors.get().text);
@@ -259,17 +259,17 @@ const Key = (props: KeyProps) => {
     return Math.max(7, Math.min(24, base));
   });
   const curve = Cell.derived(() =>
-    Math.max(3, Math.min(10, baseKeyHeight.get() * 0.12)),
+    Math.max(3, Math.min(10, baseKeyHeight.get() * 0.12))
   );
   const keyTransform = Cell.derived(() =>
     isPressed.get()
       ? `translateZ(-${keyDepth.get() * 0.8}px)`
-      : "translateZ(0px)",
+      : "translateZ(0px)"
   );
   const fontSizeStyle = Cell.derived(() => `${fontSize.get()}px`);
   const borderRadiusStyle = Cell.derived(() => `${curve.get()}px`);
   const shiftNameFontSizeStyle = Cell.derived(
-    () => `${fontSize.get() * 0.85}px`,
+    () => `${fontSize.get() * 0.85}px`
   );
 
   useKeyPointerEvents(containerRef, isPointerPressed, mode);
@@ -375,7 +375,7 @@ const Keyboard = (props: KeyboardProps) => {
   const keyboardHeight = Cell.derived(() => {
     const totalRowHeights = ROW_METADATA.reduce(
       (sum, meta) => sum + meta.rowHeight * baseKeyHeight.get(),
-      0,
+      0
     );
     const totalRowGaps = (KEYS.length - 1) * GAP_Y;
     return totalRowHeights + totalRowGaps + 2 * paddingY.get();

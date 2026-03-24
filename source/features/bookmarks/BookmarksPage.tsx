@@ -116,7 +116,7 @@ const Bookmarks: RouteComponent = () => {
       if (items.get().length === totalItems.get()) return;
       handlePagination(1);
     },
-    () => ({ rootMargin: "400px 0px" }),
+    () => ({ rootMargin: "400px 0px" })
   );
 
   return (
@@ -146,7 +146,7 @@ const Bookmarks: RouteComponent = () => {
                   class={[
                     classes.tagPill,
                     Cell.derived(() =>
-                      tag.get() === tagName ? classes.active : "",
+                      tag.get() === tagName ? classes.active : ""
                     ),
                   ]}
                   style={getTagStyles(tagName)}

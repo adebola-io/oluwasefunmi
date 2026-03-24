@@ -16,10 +16,6 @@
   letter-spacing: 0.1em;
 }
 
-.label {
-  font-family: ui-monospace, SFMono-Regular, monospace;
-}
-
 .list {
   display: flex;
   flex-direction: column;
@@ -55,7 +51,9 @@
   font-family: sans-serif;
   opacity: 0.5;
   font-size: 0.9rem;
-  transition: transform 0.3s var(--ease-spring), opacity 0.3s var(--ease-spring);
+  transition:
+    transform 0.3s var(--ease-spring),
+    opacity 0.3s var(--ease-spring);
 }
 
 .projectLink:hover .arrow {

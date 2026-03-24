@@ -1,7 +1,7 @@
 {
   "name": "explorations",
-  "private": true,
   "version": "0.0.0",
+  "private": true,
   "type": "module",
   "scripts": {
     "dev": "vp dev --port 5229",
@@ -9,7 +9,9 @@
     "preview": "vp preview",
     "deploy": "wrangler deploy",
     "lint": "vp lint -c oxlint.json",
-    "lint:fix": "vp lint -c oxlint.json --fix"
+    "lint:fix": "vp lint -c oxlint.json --fix",
+    "format": "vp fmt",
+    "format:check": "vp fmt --check"
   },
   "dependencies": {
     "@mdx-js/rollup": "^3.1.0",

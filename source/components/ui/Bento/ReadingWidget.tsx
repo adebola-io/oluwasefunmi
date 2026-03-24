@@ -25,8 +25,12 @@ export function ReadingWidget(props: ReadingWidgetProps) {
         <div class={classes.coverWrapper}>
           {If(
             image,
-            () => <img src={image} alt={title} class={classes.cover} />,
-            () => <div class={classes.placeholderCover} />
+            () => (
+              <img src={image} alt={title} class={classes.cover} />
+            ),
+            () => (
+              <div class={classes.placeholderCover} />
+            )
           )}
         </div>
       </div>

@@ -49,21 +49,21 @@
 }
 
 .item:first-child .marker {
-    background-color: var(--accent-color);
-    box-shadow: 0 0 10px var(--accent-color);
-    animation: markerPulse 2s infinite;
+  background-color: var(--accent-color);
+  box-shadow: 0 0 10px var(--accent-color);
+  animation: markerPulse 2s infinite;
 }
 
 @keyframes markerPulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(195, 205, 225, 0.4);
-    }
-    70% {
-        box-shadow: 0 0 0 10px rgba(195, 205, 225, 0);
-    }
-    100% {
-        box-shadow: 0 0 0 0 rgba(195, 205, 225, 0);
-    }
+  0% {
+    box-shadow: 0 0 0 0 rgba(195, 205, 225, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 10px rgba(195, 205, 225, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(195, 205, 225, 0);
+  }
 }
 
 .line {

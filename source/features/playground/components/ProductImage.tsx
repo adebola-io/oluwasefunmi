@@ -28,7 +28,7 @@ export const ProductImage = createUnique<ProductImageProps>((props) => {
   const showImage = Cell.derived(() => !!imageSrc.get());
 
   const altText = Cell.derived(
-    () => `${product.name} in ${selectedColor.get()}`,
+    () => `${product.name} in ${selectedColor.get()}`
   );
 
   return (

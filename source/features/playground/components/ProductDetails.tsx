@@ -18,7 +18,7 @@ const ColorOption = (props: ColorOptionProps) => {
   const optionClasses = Cell.derived(() =>
     isSelected.get()
       ? "py-2 px-4 rounded-full text-sm text-white/90 bg-white/15 border border-white/40 transition-all duration-200 ease-out cursor-pointer flex items-center gap-2"
-      : "py-2 px-4 rounded-full text-sm text-white/70 bg-white/5 border border-transparent transition-all duration-200 ease-out cursor-pointer hover:bg-white/10 hover:border-white/10 flex items-center gap-2",
+      : "py-2 px-4 rounded-full text-sm text-white/70 bg-white/5 border border-transparent transition-all duration-200 ease-out cursor-pointer hover:bg-white/10 hover:border-white/10 flex items-center gap-2"
   );
 
   return (

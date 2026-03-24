@@ -1,70 +1,70 @@
 .box {
-    position: relative;
-    display: grid;
-    grid: 1fr / 1fr;
-    place-items: center;
+  position: relative;
+  display: grid;
+  grid: 1fr / 1fr;
+  place-items: center;
+  transform-style: preserve-3d;
+  container: box inline-size;
+  --box-height-px: calc(var(--box-height) * 1px);
+  --box-width-px: calc(var(--box-width) * 1px);
+  --box-depth-px: calc(var(--box-depth) * 1px);
+  --box-curve-px: calc(var(--box-curve) * 1px);
+  --box-stroke-px: calc(var(--box-stroke) * 1px);
+
+  --c-opp: var(--box-width);
+  --c-adj: var(--box-height);
+  --c-hyp: calc(sqrt(pow(var(--c-opp), 2) + pow(var(--c-adj), 2)));
+  --c-oh: calc(var(--c-opp) / var(--c-hyp));
+  --c-angle: asin(var(--c-oh));
+  --c-diff: 1.245;
+
+  --cs-opp: calc((var(--box-width) - var(--box-curve)));
+  --cs-adj: var(--box-height);
+  --cs-hyp: calc(sqrt(pow(var(--cs-opp), 2) + pow(var(--cs-adj), 2)));
+  --cs-oh: calc(var(--cs-opp) / var(--cs-hyp));
+  --cs-angle: asin(var(--cs-oh));
+
+  --ce-opp: var(--box-width);
+  --ce-adj: calc((var(--box-height) - var(--box-curve)));
+  --ce-hyp: calc(sqrt(pow(var(--ce-opp), 2) + pow(var(--ce-adj), 2)));
+  --ce-oh: calc(var(--ce-opp) / var(--ce-hyp));
+  --ce-angle: asin(var(--ce-oh));
+
+  & > * {
+    grid-area: 1 / 1;
+    background: var(--surface);
     transform-style: preserve-3d;
-    container: box inline-size;
-    --box-height-px: calc(var(--box-height) * 1px);
-    --box-width-px: calc(var(--box-width) * 1px);
-    --box-depth-px: calc(var(--box-depth) * 1px);
-    --box-curve-px: calc(var(--box-curve) * 1px);
-    --box-stroke-px: calc(var(--box-stroke) * 1px);
 
-    --c-opp: var(--box-width);
-    --c-adj: var(--box-height);
-    --c-hyp: calc(sqrt(pow(var(--c-opp), 2) + pow(var(--c-adj), 2)));
-    --c-oh: calc(var(--c-opp) / var(--c-hyp));
-    --c-angle: asin(var(--c-oh));
-    --c-diff: 1.245;
-
-    --cs-opp: calc((var(--box-width) - var(--box-curve)));
-    --cs-adj: var(--box-height);
-    --cs-hyp: calc(sqrt(pow(var(--cs-opp), 2) + pow(var(--cs-adj), 2)));
-    --cs-oh: calc(var(--cs-opp) / var(--cs-hyp));
-    --cs-angle: asin(var(--cs-oh));
-
-    --ce-opp: var(--box-width);
-    --ce-adj: calc((var(--box-height) - var(--box-curve)));
-    --ce-hyp: calc(sqrt(pow(var(--ce-opp), 2) + pow(var(--ce-adj), 2)));
-    --ce-oh: calc(var(--ce-opp) / var(--ce-hyp));
-    --ce-angle: asin(var(--ce-oh));
-
-    & > * {
-        grid-area: 1 / 1;
-        background: var(--surface);
-        transform-style: preserve-3d;
-
-        &:is(.front, .back) {
-            backface-visibility: hidden;
-        }
-
-        &:not(.front, .back) {
-            filter: brightness(0.69);
-        }
+    &:is(.front, .back) {
+      backface-visibility: hidden;
     }
 
-    &[data-has-secondary-color] {
-        & > *:not(.front, .back) {
-            background: var(--secondary-surface);
-            filter: unset;
-        }
+    &:not(.front, .back) {
+      filter: brightness(0.69);
     }
+  }
+
+  &[data-has-secondary-color] {
+    & > *:not(.front, .back) {
+      background: var(--secondary-surface);
+      filter: unset;
+    }
+  }
 }
 
 .front,
 .back {
-    border: var(--box-stroke-px) solid;
+  border: var(--box-stroke-px) solid;
 }
 
 .front,
 .frontBehind,
 .back,
 .backBehind {
-    height: var(--box-height-px);
-    width: var(--box-width-px);
-    border-radius: var(--box-curve-px);
-    overflow: hidden;
+  height: var(--box-height-px);
+  width: var(--box-width-px);
+  border-radius: var(--box-curve-px);
+  overflow: hidden;
 }
 
 .left,
@@ -76,84 +76,84 @@
 .diagonalLeftToRightCurveStart,
 .diagonalRightToLeftCurveStart,
 .diagonalLeftToRightCurveEnd {
-    height: 1px;
-    width: 1px;
+  height: 1px;
+  width: 1px;
 }
 
 .front {
-    transform: translateZ(calc(var(--box-depth-px) / 2));
+  transform: translateZ(calc(var(--box-depth-px) / 2));
 }
 
 .frontBehind {
-    transform: translateZ(calc(var(--box-depth-px) / 2 - 1px));
+  transform: translateZ(calc(var(--box-depth-px) / 2 - 1px));
 }
 
 .back {
-    transform: translateZ(calc(var(--box-depth-px) / -2)) rotateY(180deg);
+  transform: translateZ(calc(var(--box-depth-px) / -2)) rotateY(180deg);
 }
 
 .backBehind {
-    transform: translateZ(calc(var(--box-depth-px) / -2 + 1px));
+  transform: translateZ(calc(var(--box-depth-px) / -2 + 1px));
 }
 
 .left {
-    transform: rotateY(-90deg) translateZ(calc(var(--box-width-px) / 2))
-        scale(var(--box-depth), calc(var(--box-height) - var(--box-curve) * 2));
+  transform: rotateY(-90deg) translateZ(calc(var(--box-width-px) / 2))
+    scale(var(--box-depth), calc(var(--box-height) - var(--box-curve) * 2));
 }
 
 .right {
-    transform: rotateY(90deg) translateZ(calc(var(--box-width-px) / 2))
-        scale(var(--box-depth), calc(var(--box-height) - var(--box-curve) * 2));
+  transform: rotateY(90deg) translateZ(calc(var(--box-width-px) / 2))
+    scale(var(--box-depth), calc(var(--box-height) - var(--box-curve) * 2));
 }
 
 .top {
-    transform: rotateX(90deg) translateZ(calc(var(--box-height-px) / 2))
-        scale(calc(var(--box-width) - var(--box-curve) * 2), var(--box-depth));
+  transform: rotateX(90deg) translateZ(calc(var(--box-height-px) / 2))
+    scale(calc(var(--box-width) - var(--box-curve) * 2), var(--box-depth));
 }
 
 .bottom {
-    transform: rotateX(-90deg) translateZ(calc(var(--box-height-px) / 2))
-        scale(calc(var(--box-width) - var(--box-curve) * 2), var(--box-depth));
+  transform: rotateX(-90deg) translateZ(calc(var(--box-height-px) / 2))
+    scale(calc(var(--box-width) - var(--box-curve) * 2), var(--box-depth));
 }
 
 .centerX {
-    transform: rotateX(90deg) scale(var(--box-width), var(--box-depth));
+  transform: rotateX(90deg) scale(var(--box-width), var(--box-depth));
 }
 
 .centerY {
-    transform: rotateY(-90deg) scale(var(--box-depth), var(--box-height));
+  transform: rotateY(-90deg) scale(var(--box-depth), var(--box-height));
 }
 
 .diagonalRightToLeftCurveStart {
-    /*background-color: greenyellow;*/
-    transform: rotateY(-90deg) rotateX(var(--c-angle))
-        scale(
-            var(--box-depth),
-            calc(var(--c-hyp) - var(--box-curve) / var(--c-diff))
-        );
+  /*background-color: greenyellow;*/
+  transform: rotateY(-90deg) rotateX(var(--c-angle))
+    scale(
+      var(--box-depth),
+      calc(var(--c-hyp) - var(--box-curve) / var(--c-diff))
+    );
 }
 
 .diagonalLeftToRightCurveStart {
-    /*background-color: slateblue;*/
-    transform: rotateY(-90deg) rotateX(calc(-1 * var(--c-angle)))
-        scale(
-            var(--box-depth),
-            calc(var(--c-hyp) - var(--box-curve) / var(--c-diff))
-        );
+  /*background-color: slateblue;*/
+  transform: rotateY(-90deg) rotateX(calc(-1 * var(--c-angle)))
+    scale(
+      var(--box-depth),
+      calc(var(--c-hyp) - var(--box-curve) / var(--c-diff))
+    );
 }
 
 .diagonalRightToLeftCurveEnd {
-    /*background-color: lightpink;*/
-    transform: rotateY(-90deg) rotateX(var(--cs-angle))
-        scale(var(--box-depth), calc(var(--cs-hyp) - var(--box-curve) / 4));
+  /*background-color: lightpink;*/
+  transform: rotateY(-90deg) rotateX(var(--cs-angle))
+    scale(var(--box-depth), calc(var(--cs-hyp) - var(--box-curve) / 4));
 }
 
 .diagonalLeftToRightCurveEnd {
-    /*background-color: lightsalmon;*/
-    height: 1px;
-    width: 1px;
-    transform: rotateY(-90deg) rotateX(calc(-1 * var(--ce-angle)))
-        scale(var(--box-depth), calc(var(--ce-hyp) - var(--box-curve) / 4));
+  /*background-color: lightsalmon;*/
+  height: 1px;
+  width: 1px;
+  transform: rotateY(-90deg) rotateX(calc(-1 * var(--ce-angle)))
+    scale(var(--box-depth), calc(var(--ce-hyp) - var(--box-curve) / 4));
 }
 
 /*.

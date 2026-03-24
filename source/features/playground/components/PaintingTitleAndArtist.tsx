@@ -32,5 +32,5 @@ export const PaintingTitleAndArtist = createUnique<PaintingTitleAndArtistProps>(
         </div>
       </UniqueTransition>
     );
-  },
+  }
 );

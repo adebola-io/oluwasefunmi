@@ -69,7 +69,7 @@ const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
                   <div class={classes.noteDate}>{note.dateStr}</div>
                   <p class={classes.noteSummary}>{note.description}</p>
                 </LayeredCard>
-              )),
+              ))
           )}
         </div>
       </div>

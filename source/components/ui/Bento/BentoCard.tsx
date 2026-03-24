@@ -1,4 +1,3 @@
-
 import type { JSX } from "retend/jsx-runtime";
 import classes from "./BentoCard.module.css";
 
@@ -15,10 +14,12 @@ export function BentoCard(props: BentoCardProps) {
   return (
     <div
       class={[classes.card, className]}
-      style={{
-        gridColumn: `span ${span}`,
-        gridRow: `span ${rowSpan}`,
-      } as JSX.CSSProperties}
+      style={
+        {
+          gridColumn: `span ${span}`,
+          gridRow: `span ${rowSpan}`,
+        } as JSX.CSSProperties
+      }
     >
       <div class={classes.content}>{children}</div>
     </div>

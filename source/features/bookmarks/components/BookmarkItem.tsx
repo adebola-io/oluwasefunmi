@@ -48,7 +48,9 @@ export const BookmarkItem = (props: BookmarkItemProps) => {
       </div>
       <div class={classes.content}>
         <h2 class={classes.title}>{bookmark.openGraph.title}</h2>
-        <p class={classes.url}>{new URL(bookmark.link).hostname.replace(/^www\./, "")}</p>
+        <p class={classes.url}>
+          {new URL(bookmark.link).hostname.replace(/^www\./, "")}
+        </p>
       </div>
     </LayeredCard>
   );

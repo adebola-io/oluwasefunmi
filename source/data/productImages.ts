@@ -1,6 +1,6 @@
 const imageModules = import.meta.glob<{ default: string }>(
   "/source/data/images/products/*.webp",
-  { eager: true },
+  { eager: true }
 );
 
 const imageMap: Record<string, string> = {};
@@ -15,7 +15,7 @@ for (const path of Object.keys(imageModules)) {
 
 export function getProductImage(
   productId: number,
-  color: string,
+  color: string
 ): string | undefined {
   const normalizedColor = color.toLowerCase().replace(/\s+/g, "-");
   const key = `${productId}-${normalizedColor}`;

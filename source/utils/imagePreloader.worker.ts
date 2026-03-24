@@ -90,7 +90,7 @@ self.addEventListener(
     if (type === "preload" && urls.length > 0) {
       await preloadImages(urls);
     }
-  },
+  }
 );
 
 export type { PreloadMessage, StatusMessage };

@@ -1,23 +1,23 @@
 .viewer {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
 }
 
 .draggable {
-    cursor: grab;
-    touch-action: none;
+  cursor: grab;
+  touch-action: none;
 }
 
 .viewerDragging {
-    cursor: grabbing;
+  cursor: grabbing;
 }
 
 .scene {
-    position: relative;
-    transform-style: preserve-3d;
-    /* Center the box */
-    display: grid;
-    place-items: center;
+  position: relative;
+  transform-style: preserve-3d;
+  /* Center the box */
+  display: grid;
+  place-items: center;
 }

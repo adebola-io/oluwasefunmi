@@ -40,9 +40,12 @@ export function useBookmarks() {
     if (t) params.set("tag", t);
 
     try {
-      const response = await fetch(`${BOOKMARKS_API_BASE_PATH}?${params.toString()}`, {
-        signal,
-      });
+      const response = await fetch(
+        `${BOOKMARKS_API_BASE_PATH}?${params.toString()}`,
+        {
+          signal,
+        }
+      );
       if (!response.ok) throw new Error("Failed to fetch bookmarks");
       return (await response.json()) as BookmarksResponse;
     } catch {

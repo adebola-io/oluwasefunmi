@@ -46,7 +46,7 @@ export function DragToDismissView(props: DragToDismissViewProps) {
       if (!isTouchDevice.get()) return;
       thresholdReached = !entry.isIntersecting;
     },
-    () => ({ root: containerRef.peek(), threshold }),
+    () => ({ root: containerRef.peek(), threshold })
   );
   useIntersectionObserver(
     contentRef,
@@ -54,7 +54,7 @@ export function DragToDismissView(props: DragToDismissViewProps) {
       if (!isTouchDevice.get()) return;
       innerScrollDisabled.set(!entry.isIntersecting);
     },
-    () => ({ root: containerRef.peek(), threshold: 0.99 }),
+    () => ({ root: containerRef.peek(), threshold: 0.99 })
   );
 
   onConnected(contentRef, (content) => {

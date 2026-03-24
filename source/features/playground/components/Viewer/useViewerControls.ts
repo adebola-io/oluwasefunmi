@@ -31,7 +31,9 @@ interface ViewerHandlers {
   handleWheel: (e: WheelEvent) => void;
 }
 
-export function useViewerControls(params: UseViewerControlsParams): ViewerHandlers {
+export function useViewerControls(
+  params: UseViewerControlsParams
+): ViewerHandlers {
   const {
     rx,
     ry,
@@ -138,7 +140,7 @@ export function useViewerControls(params: UseViewerControlsParams): ViewerHandle
     if (!isEnabled.get()) return;
     e.preventDefault();
     scale.set(
-      Math.max(0.2, Math.min(3, scale.get() - e.deltaY * zoomSensitivity)),
+      Math.max(0.2, Math.min(3, scale.get() - e.deltaY * zoomSensitivity))
     );
   };
 

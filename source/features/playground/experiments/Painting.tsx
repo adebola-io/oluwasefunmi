@@ -40,7 +40,7 @@ export function PaintingFrame(props: PaintingFrameProps) {
       () => {
         loading.set(true);
       },
-      stagger * 20 + 50,
+      stagger * 20 + 50
     );
     return () => window.clearTimeout(timeout);
   });

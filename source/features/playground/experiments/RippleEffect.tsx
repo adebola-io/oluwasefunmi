@@ -32,7 +32,7 @@ const RippleButton = (props: BoxProps) => {
   const euclidDistanceFromClick = Cell.derived(() => {
     const [clickedRow, clickedCol] = clicked.get();
     return Math.floor(
-      Math.sqrt((row.get() - clickedRow) ** 2 + (col.get() - clickedCol) ** 2),
+      Math.sqrt((row.get() - clickedRow) ** 2 + (col.get() - clickedCol) ** 2)
     );
   });
 

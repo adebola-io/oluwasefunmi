@@ -3,7 +3,7 @@ const imageModules = import.meta.glob<{ default: string }>(
     "/source/data/images/paintings/*.webp",
     "/source/data/images/paintings-small/*.webp",
   ],
-  { eager: true },
+  { eager: true }
 );
 
 const gradientMap: Record<number, string> = {

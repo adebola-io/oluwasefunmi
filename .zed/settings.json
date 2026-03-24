@@ -3,6 +3,6 @@
     "vtsls",
     "!tsgo",
     "oxlint",
-    "tailwindcss-language-server",
-  ],
+    "tailwindcss-language-server"
+  ]
 }

@@ -10,7 +10,10 @@
   flex-direction: column;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
   transform: translateZ(0); /* hardware acceleration */
-  transition: transform 0.4s var(--ease-spring), box-shadow 0.4s var(--ease-spring), border-color 0.4s var(--ease-spring);
+  transition:
+    transform 0.4s var(--ease-spring),
+    box-shadow 0.4s var(--ease-spring),
+    border-color 0.4s var(--ease-spring);
   will-change: transform;
 }
 
@@ -31,7 +34,12 @@
   left: 0;
   right: 0;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.1),
+    transparent
+  );
 }
 
 .content {
@@ -46,4 +54,3 @@
     border-radius: calc(var(--card-radius) * 0.75);
   }
 }
-

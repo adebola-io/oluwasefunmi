@@ -8,9 +8,9 @@
   justify-content: space-between;
   align-items: center;
   z-index: 100;
+  max-width: calc(1200px + 6rem);
+  margin: 0 auto;
 }
-
-
 
 .logo {
   font-family: var(--font-family);
@@ -23,7 +23,7 @@
 }
 
 .logo::after {
-  content: '.';
+  content: ".";
   color: var(--accent-pink);
   font-size: 1.5em;
   line-height: 0;
@@ -56,7 +56,10 @@
   width: 24px;
   height: 2px;
   background-color: var(--text-primary);
-  transition: transform 0.3s var(--ease-spring), opacity 0.3s var(--ease-spring), background-color 0.3s var(--ease-spring);
+  transition:
+    transform 0.3s var(--ease-spring),
+    opacity 0.3s var(--ease-spring),
+    background-color 0.3s var(--ease-spring);
 }
 
 .backdrop {
@@ -82,7 +85,7 @@
     justify-content: space-between;
     background: transparent;
   }
-  
+
   .menuToggle {
     display: flex;
   }
@@ -99,21 +102,21 @@
     right: 0;
     height: 100vh;
     width: 280px;
-    background: var(--bg-card); 
+    background: var(--bg-card);
     flex-direction: column;
     align-items: flex-start;
     padding: 2rem;
     gap: 2rem;
-    box-shadow: -10px 0 30px rgba(0,0,0,0.5);
-    transform: translateX(100%); 
+    box-shadow: -10px 0 30px rgba(0, 0, 0, 0.5);
+    transform: translateX(100%);
     transition: transform 0.4s var(--ease-spring);
-    z-index: 201; 
+    z-index: 201;
   }
 
   .navLinksOpen {
     transform: translateX(0);
   }
-  
+
   .sidebarHeader {
     display: flex;
     justify-content: space-between;
@@ -123,7 +126,7 @@
     padding-bottom: 1rem;
     border-bottom: 1px solid var(--border-subtle);
   }
-  
+
   .sidebarTitle {
     font-weight: 600;
     color: var(--text-secondary);
@@ -131,7 +134,7 @@
     text-transform: uppercase;
     letter-spacing: 0.05em;
   }
-  
+
   .closeButton {
     background: none;
     border: none;

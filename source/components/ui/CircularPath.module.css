@@ -1,70 +1,70 @@
 @property --letter {
-    syntax: "<string>";
-    initial-value: "";
-    inherits: true;
+  syntax: "<string>";
+  initial-value: "";
+  inherits: true;
 }
 
 .container {
-    --width: min(2000px, 90dvw);
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
-    transform-style: preserve-3d;
-    transform: rotateX(-90deg);
-    font-family: monospace;
-    font-size: calc(var(--width) / (max(var(--circ-count), 25) * 0.25));
-    font-weight: bold;
-    user-select: none;
-    width: var(--width);
-    white-space: pre;
-    opacity: 1;
+  --width: min(2000px, 90dvw);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  transform-style: preserve-3d;
+  transform: rotateX(-90deg);
+  font-family: monospace;
+  font-size: calc(var(--width) / (max(var(--circ-count), 25) * 0.25));
+  font-weight: bold;
+  user-select: none;
+  width: var(--width);
+  white-space: pre;
+  opacity: 1;
 }
 
 .letter {
-    display: grid;
-    pointer-events: none;
-    grid-template-columns: 1fr;
-    grid-template-rows: 1fr;
+  display: grid;
+  pointer-events: none;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  transform-style: preserve-3d;
+  aspect-ratio: 2.7;
+  offset-path: shape(
+    from 18.41% 0%,
+    hline to 81.59%,
+    curve to 100% 50% with 91.77% 0%/100% 22.43%,
+    curve to 81.59% 100% with 100% 77.57%/91.77% 100%,
+    hline to 18.41%,
+    curve to 0% 50% with 8.23% 100%/0% 77.57%,
+    curve to 18.41% 0% with 0% 22.43%/8.23% 0%,
+    close
+  );
+
+  animation: rotate-text var(--circ-path-speed) infinite linear;
+  animation-delay: calc(
+    (var(--circ-path-speed) / var(--circ-count)) *
+      (var(--circ-count) - var(--i)) * -1
+  );
+  transform: rotateX(90deg);
+  grid-area: 1/1;
+  align-self: center;
+  justify-self: start;
+
+  &::before {
+    content: var(--letter);
+    display: block;
+    grid-area: 1 / 1;
+    filter: brightness(0.25) hue-rotate(20deg);
+    transform: translateZ(-1px);
     transform-style: preserve-3d;
-    aspect-ratio: 2.7;
-    offset-path: shape(
-        from 18.41% 0%,
-        hline to 81.59%,
-        curve to 100% 50% with 91.77% 0%/100% 22.43%,
-        curve to 81.59% 100% with 100% 77.57%/91.77% 100%,
-        hline to 18.41%,
-        curve to 0% 50% with 8.23% 100%/0% 77.57%,
-        curve to 18.41% 0% with 0% 22.43%/8.23% 0%,
-        close
-    );
-
-    animation: rotate-text var(--circ-path-speed) infinite linear;
-    animation-delay: calc(
-        (var(--circ-path-speed) / var(--circ-count)) *
-            (var(--circ-count) - var(--i)) * -1
-    );
-    transform: rotateX(90deg);
-    grid-area: 1/1;
-    align-self: center;
-    justify-self: start;
-
-    &::before {
-        content: var(--letter);
-        display: block;
-        grid-area: 1 / 1;
-        filter: brightness(0.25) hue-rotate(20deg);
-        transform: translateZ(-1px);
-        transform-style: preserve-3d;
-    }
+  }
 }
 
 .letterMain {
-    grid-area: 1/1;
-    backface-visibility: hidden;
+  grid-area: 1/1;
+  backface-visibility: hidden;
 }
 
 @keyframes rotate-text {
-    to {
-        offset-distance: -100%;
-    }
+  to {
+    offset-distance: -100%;
+  }
 }

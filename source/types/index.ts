@@ -1,4 +1,4 @@
-import type { MDXModule } from 'mdx/types';
+import type { MDXModule } from "mdx/types";
 
 export interface Bookmark {
   id: string;
@@ -21,7 +21,7 @@ export interface Note {
   description: string;
   dateStr: string;
   ogImage: string;
-  default: MDXModule['default'];
+  default: MDXModule["default"];
 }
 
 export interface NotePreviewProps {

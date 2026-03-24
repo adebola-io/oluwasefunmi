@@ -124,7 +124,10 @@ const PortfolioHome: RouteComponent<PageMeta> = () => {
           </BentoCard>
 
           <BentoCard span={1} rowSpan={2}>
-            <ReadingWidget title="The Design of Everything" author="Don Norman" />
+            <ReadingWidget
+              title="The Design of Everything"
+              author="Don Norman"
+            />
           </BentoCard>
         </BentoGrid>
       </div>
