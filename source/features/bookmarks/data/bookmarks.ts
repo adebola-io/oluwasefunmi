@@ -14,13 +14,36 @@ export const bookmarks = [
     },
   },
   {
+    id: "figma-webgpu-rendering",
+    link: "https://www.figma.com/blog/figma-rendering-powered-by-webgpu/",
+    tags: [
+      "webgpu",
+      "webgl",
+      "graphics",
+      "rendering",
+      "performance",
+      "engineering",
+      "article",
+    ],
+    notes: "",
+    image:
+      "https://cdn.sanity.io/images/599r6htc/regionalized/4ccef32222f789dab9554fa51665d905a2c168c9-2560x1440.png?w=1200&q=70&fit=max&auto=format",
+    themeColor: "#FF6B35",
+    openGraph: {
+      title: "Figma rendering: Powered by WebGPU",
+      description:
+        "How Figma migrated from WebGL to WebGPU, unlocking new performance optimization opportunities and solving challenges around shader processing, uniform buffers, and device compatibility.",
+      siteName: "Figma Blog",
+    },
+  },
+  {
     id: "mozilla-browser-engine-competition",
     link: "https://blog.mozilla.org/netpolicy/2026/03/23/competition-innovation-and-the-future-of-the-web/",
     tags: ["browser", "web", "competition", "gecko", "mozilla", "article"],
     notes: "",
     image:
       "https://blog.mozilla.org/netpolicy/files/2019/12/browsefreely-03-1000x563-1.png",
-    themeColor: "#FF6611",
+    themeColor: "#9333EA",
     openGraph: {
       title:
         "Competition, Innovation, and the Future of the Web – Why Independent Browser Engines Matter",
