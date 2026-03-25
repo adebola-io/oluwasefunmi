@@ -1,4 +1,5 @@
-import { type Painting, paintings } from "@/features/playground/data/paintings";
+import type { Painting } from "@/features/playground/types";
+import { paintings } from "@/features/playground/data/paintings";
 import { Cell, For, onMove, onSetup } from "retend";
 import { PaintingImage } from "@/features/playground/experiments/Painting";
 import { preloadImages } from "@/shared/utils/imagePreloader";

@@ -1,8 +1,10 @@
-const imageModules = import.meta.glob<{ default: string }>(
-  [
-    "/source/features/playground/data/images/paintings/*.webp",
-    "/source/features/playground/data/images/paintings-small/*.webp",
-  ],
+const paintingsImages = import.meta.glob<{ default: string }>(
+  "/source/features/playground/data/images/paintings/*.webp",
+  { eager: true }
+);
+
+const paintingsSmallImages = import.meta.glob<{ default: string }>(
+  "/source/features/playground/data/images/paintings-small/*.webp",
   { eager: true }
 );
 
@@ -44,18 +46,27 @@ const imageMap: Record<
   { default: string; small: string; gradient: string }
 > = {};
 
-for (const path of Object.keys(imageModules)) {
+// Process full-size paintings
+for (const path of Object.keys(paintingsImages)) {
   const match = path.match(/\/(\d+)_([^/]+)\.webp$/);
   if (match) {
     const id = parseInt(match[1], 10);
     if (!imageMap[id]) {
       imageMap[id] = { default: "", small: "", gradient: gradientMap[id] };
     }
-    if (path.includes("/paintings-small/")) {
-      imageMap[id].small = imageModules[path].default;
-    } else {
-      imageMap[id].default = imageModules[path].default;
+    imageMap[id].default = paintingsImages[path].default;
+  }
+}
+
+// Process small paintings
+for (const path of Object.keys(paintingsSmallImages)) {
+  const match = path.match(/\/(\d+)_([^/]+)\.webp$/);
+  if (match) {
+    const id = parseInt(match[1], 10);
+    if (!imageMap[id]) {
+      imageMap[id] = { default: "", small: "", gradient: gradientMap[id] };
     }
+    imageMap[id].small = paintingsSmallImages[path].default;
   }
 }
 
