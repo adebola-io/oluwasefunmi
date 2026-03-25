@@ -1,5 +1,19 @@
 export const bookmarks = [
   {
+    id: "antfu-async-sync-in-between",
+    link: "https://antfu.me/posts/async-sync-in-between",
+    tags: ["javascript", "async", "sync", "generators", "article"],
+    notes: "",
+    image: "https://antfu.me/og.png",
+    themeColor: "#8B5CF6",
+    openGraph: {
+      title: "Async, Sync, in Between",
+      description:
+        "The function coloring problem in JavaScript - dealing with synchronous and asynchronous code. Introduces quansync, a library that allows functions to work both synchronously and asynchronously.",
+      siteName: "antfu.me",
+    },
+  },
+  {
     id: "mozilla-browser-engine-competition",
     link: "https://blog.mozilla.org/netpolicy/2026/03/23/competition-innovation-and-the-future-of-the-web/",
     tags: ["browser", "web", "competition", "gecko", "mozilla", "article"],
