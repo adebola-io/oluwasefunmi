@@ -6,6 +6,7 @@ import { PaintingWheelIcon } from "@/components/icons/painting-wheel";
 import { ShoppingCartIcon } from "@/components/icons/shopping-cart";
 import { HaloIcon } from "@/components/icons/halo";
 import { KeyboardIcon } from "@/components/icons/keyboard";
+import { GlassesIcon } from "@/components/icons/glasses";
 
 function ExternalLink(props: { url: string; children: string }) {
   const { url, children } = props;
@@ -23,6 +24,12 @@ function ExternalLink(props: { url: string; children: string }) {
 }
 
 export const playgroundItems: PlaygroundItem[] = [
+  {
+    path: "/playground/glasses",
+    title: "glasses",
+    description: () => <> </>,
+    icon: () => <GlassesIcon />,
+  },
   {
     path: "/playground/painting-wheel",
     title: "painting-wheel",
