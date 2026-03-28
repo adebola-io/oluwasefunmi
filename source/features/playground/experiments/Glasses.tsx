@@ -6,9 +6,11 @@ const Glasses = () => {
   return (
     <PlaygroundLayout title="Glasses">
       <div class="w-screen h-screen grid place-items-center">
-        <Viewer>
-          <Glass />
-        </Viewer>
+        <div class="w-300 h-100 grid place-items-center">
+          <Viewer>
+            <Glass />
+          </Viewer>
+        </div>
       </div>
     </PlaygroundLayout>
   );
