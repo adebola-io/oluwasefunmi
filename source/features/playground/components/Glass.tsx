@@ -7,7 +7,7 @@ export function Glass() {
       class={[
         "grid place-items-center transform-3d",
         "*:[grid-area:1/1] *:h-full *:w-full",
-        "[--color:#2b1b13] [--secondary-color:#151515]",
+        "[--color:#2b1b13] [--secondary-color:#121010]",
       ]}
       style={{
         width: "500px",
@@ -27,9 +27,8 @@ export function Glass() {
       ))}
       <div class={classes.lens} />
       <div class={classes.hinges} />
-      <div class={classes.ridge} />
 
-      <div class={classes.templeRight} />
+      <div class={[classes.templeRight, classes.templeOutside]} />
       {For(Array.from({ length: 10 }), (_, index) => (
         <div
           class={[classes.templeRight, classes.templeRightBehind]}
@@ -39,7 +38,7 @@ export function Glass() {
           }}
         />
       ))}
-      <div class={classes.templeLeft} />
+      <div class={[classes.templeLeft, classes.templeOutside]} />
       {For(Array.from({ length: 10 }), (_, index) => (
         <div
           class={[classes.templeLeft, classes.templeRightBehind]}
