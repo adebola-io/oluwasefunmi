@@ -27,6 +27,7 @@ const pages = [
   "/playground/three-dimensional-marquee",
   "/playground/css-keyboard",
   "/playground/painting-wheel",
+  "/playground/stickers",
   "/random-notes",
   "/contact",
   "/works",

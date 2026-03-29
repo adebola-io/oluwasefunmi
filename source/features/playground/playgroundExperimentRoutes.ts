@@ -51,4 +51,8 @@ export const playgroundExperimentRoutes = [
       () => import("@/features/playground/experiments/CssKeyboard")
     ),
   },
+  {
+    path: "/stickers",
+    component: lazy(() => import("@/features/playground/experiments/Stickers")),
+  },
 ];

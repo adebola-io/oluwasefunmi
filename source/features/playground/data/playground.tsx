@@ -24,6 +24,12 @@ function ExternalLink(props: { url: string; children: string }) {
 
 export const playgroundItems: PlaygroundItem[] = [
   {
+    path: "/playground/stickers",
+    title: "stickers",
+    description: () => <></>,
+    icon: () => <HaloIcon />,
+  },
+  {
     path: "/playground/painting-wheel",
     title: "painting-wheel",
     description: () => (
