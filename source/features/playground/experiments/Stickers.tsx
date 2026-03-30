@@ -1,15 +1,196 @@
 import type { RouteComponent } from "retend/router";
 import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
-import { For } from "retend";
+import { For, Cell } from "retend";
+import { useWindowSize } from "retend-utils/hooks";
 import { stickers } from "../data/stickers";
 import { Sticker } from "../components/Sticker";
 
+interface Point {
+  x: number;
+  y: number;
+}
+
+function getRandomPointInAnnulus(center: Point, minRadius: number): Point {
+  const angle = Math.random() * 2 * Math.PI;
+  const radius = minRadius + Math.random() * minRadius;
+  return {
+    x: center.x + Math.cos(angle) * radius,
+    y: center.y + Math.sin(angle) * radius,
+  };
+}
+
+function isWithinBounds(point: Point, width: number, height: number): boolean {
+  return point.x >= 0 && point.x < width && point.y >= 0 && point.y < height;
+}
+
+function isFarEnough(
+  point: Point,
+  grid: (Point | null)[],
+  gridWidth: number,
+  gridHeight: number,
+  minDistance: number,
+  cellSize: number
+): boolean {
+  const cellX = Math.floor(point.x / cellSize);
+  const cellY = Math.floor(point.y / cellSize);
+  const searchRadius = Math.ceil(minDistance / cellSize);
+
+  for (let dy = -searchRadius; dy <= searchRadius; dy++) {
+    for (let dx = -searchRadius; dx <= searchRadius; dx++) {
+      const nx = cellX + dx;
+      const ny = cellY + dy;
+
+      if (nx < 0 || nx >= gridWidth || ny < 0 || ny >= gridHeight) continue;
+
+      const neighbor = grid[ny * gridWidth + nx];
+      if (neighbor === null) continue;
+
+      const distSq = (point.x - neighbor.x) ** 2 + (point.y - neighbor.y) ** 2;
+      if (distSq < minDistance * minDistance) return false;
+    }
+  }
+  return true;
+}
+
+function poissonDiskSampling(
+  width: number,
+  height: number,
+  minDistance: number,
+  maxAttempts = 30
+): Point[] {
+  const cellSize = minDistance / Math.sqrt(2);
+  const gridWidth = Math.ceil(width / cellSize);
+  const gridHeight = Math.ceil(height / cellSize);
+  const grid: (Point | null)[] = Array.from(
+    { length: gridWidth * gridHeight },
+    () => null
+  );
+
+  const points: Point[] = [];
+  const active: Point[] = [];
+
+  const start: Point = {
+    x: width / 2 + (Math.random() - 0.5) * minDistance,
+    y: height / 2 + (Math.random() - 0.5) * minDistance,
+  };
+
+  points.push(start);
+  active.push(start);
+  grid[
+    Math.floor(start.y / cellSize) * gridWidth + Math.floor(start.x / cellSize)
+  ] = start;
+
+  while (active.length > 0 && points.length < 1000) {
+    const idx = Math.floor(Math.random() * active.length);
+    const point = active[idx];
+    let found = false;
+
+    for (let i = 0; i < maxAttempts; i++) {
+      const candidate = getRandomPointInAnnulus(point, minDistance);
+
+      if (!isWithinBounds(candidate, width, height)) continue;
+
+      if (
+        isFarEnough(
+          candidate,
+          grid,
+          gridWidth,
+          gridHeight,
+          minDistance,
+          cellSize
+        )
+      ) {
+        points.push(candidate);
+        active.push(candidate);
+        grid[
+          Math.floor(candidate.y / cellSize) * gridWidth +
+            Math.floor(candidate.x / cellSize)
+        ] = candidate;
+        found = true;
+        break;
+      }
+    }
+
+    if (!found) active.splice(idx, 1);
+  }
+
+  return points;
+}
+
+function generateTransforms(
+  count: number,
+  width: number,
+  height: number,
+  minDistance: number,
+  stickerWidth: number,
+  stickerHeight: number
+): string[] {
+  const points = poissonDiskSampling(
+    width - stickerWidth,
+    height - stickerHeight,
+    minDistance
+  ).slice(0, count);
+  const cx = width / 2;
+  const cy = height / 2;
+
+  return points.map(
+    (p) =>
+      `translate(${p.x + stickerWidth / 2 - cx}px, ${p.y + stickerHeight / 2 - cy}px) rotate(${Math.random() * 24 - 12}deg)`
+  );
+}
+
+function createStickerTransforms(width: number, height: number) {
+  const stickerHeight = Math.min(height * 0.25, width * 0.28);
+  const stickerWidth = stickerHeight * 0.8;
+  let minDistance = Math.hypot(stickerWidth, stickerHeight);
+  let transforms = generateTransforms(
+    stickers.length,
+    width,
+    height,
+    minDistance,
+    stickerWidth,
+    stickerHeight
+  );
+
+  while (transforms.length < stickers.length) {
+    minDistance *= 0.9;
+    transforms = generateTransforms(
+      stickers.length,
+      width,
+      height,
+      minDistance,
+      stickerWidth,
+      stickerHeight
+    );
+  }
+
+  return new Map(stickers.map((s, i) => [s.name, transforms[i]]));
+}
+
 const Stickers: RouteComponent = () => {
+  const { width, height } = useWindowSize();
+
+  const stickerTransforms = Cell.derived(() => {
+    let w = width.get();
+    let h = height.get();
+
+    if (!w) w = 1200;
+    if (!h) h = 800;
+
+    return createStickerTransforms(w, h);
+  });
+
   return (
     <PlaygroundLayout title="Stickers">
       <div class="w-screen h-screen grid place-items-center *:[grid-area:1/1]">
         {For(stickers, (sticker, index) => {
-          return <Sticker index={index} {...sticker} />;
+          const transform = Cell.derived<string>(() => {
+            const transforms = stickerTransforms.get();
+            return transforms.get(sticker.name)!;
+          });
+          return (
+            <Sticker index={index} {...sticker} initialTransform={transform} />
+          );
         })}
       </div>
     </PlaygroundLayout>

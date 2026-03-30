@@ -5,14 +5,14 @@ import classes from "./Sticker.module.css";
 
 interface StickerProps extends StickerType {
   index: Cell<number>;
-  initialTransform: [string, string];
+  initialTransform: Cell<string>;
 }
 
 export const Sticker = (props: StickerProps) => {
-  const { name, imageUrl } = props;
+  const { name, imageUrl, initialTransform } = props;
 
   return (
-    <div class={classes.sticker}>
+    <div class={classes.sticker} style={{ transform: initialTransform }}>
       <div class={classes.clip}>
         <div class={classes.content}>
           <img

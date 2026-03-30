@@ -6,7 +6,6 @@ const imageModules = import.meta.glob<{ default: string }>(
 export interface Sticker {
   name: string;
   imageUrl: string;
-  initialTransform: [string, string];
 }
 
 export const stickers: Sticker[] = [

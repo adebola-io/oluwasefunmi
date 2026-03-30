@@ -1,5 +1,5 @@
 .sticker {
-  --height: 25dvh;
+  --height: min(25dvh, 28dvw);
 
   display: grid;
   width: auto;
