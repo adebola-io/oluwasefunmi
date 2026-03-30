@@ -10,7 +10,9 @@
   transform-origin: center;
   transition: scale 300ms var(--ease-spring);
   animation-name: from-initial;
-  animation-duration: calc(350ms + ((var(--index) + 1) * 50ms));
+  animation-duration: calc(
+    350ms + ((var(--index) + 1) * (var(--index) * 1ms + 50ms))
+  );
   animation-timing-function: var(--ease-spring);
 
   --clip: shape(
