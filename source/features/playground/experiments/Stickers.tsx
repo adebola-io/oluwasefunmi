@@ -135,14 +135,20 @@ function generateTransforms(
 
   return points.map(
     (p) =>
-      `translate(${p.x + stickerWidth / 2 - cx}px, ${p.y + stickerHeight / 2 - cy}px) rotate(${Math.random() * 24 - 12}deg)`
+      `translate(${p.x + stickerWidth / 2 - cx}px, ${p.y + stickerHeight / 2 - cy}px) rotate(${Math.random() * 40 - 20}deg)`
   );
 }
 
 function createStickerTransforms(width: number, height: number) {
-  const stickerHeight = Math.min(height * 0.25, width * 0.28);
+  const stickerHeight = Math.max(
+    Math.min(
+      Math.sqrt((width * height * 0.36) / (stickers.length * 0.8)),
+      Math.min(height * 0.25, width * 0.28)
+    ),
+    Math.min(width, height) * 0.16
+  );
   const stickerWidth = stickerHeight * 0.8;
-  let minDistance = Math.hypot(stickerWidth, stickerHeight);
+  let minDistance = Math.hypot(stickerWidth, stickerHeight) * 0.9;
   let transforms = generateTransforms(
     stickers.length,
     width,
@@ -164,13 +170,16 @@ function createStickerTransforms(width: number, height: number) {
     );
   }
 
-  return new Map(stickers.map((s, i) => [s.name, transforms[i]]));
+  return {
+    stickerHeight: `${stickerHeight}px`,
+    transforms: new Map(stickers.map((s, i) => [s.name, transforms[i]])),
+  };
 }
 
 const Stickers: RouteComponent = () => {
   const { width, height } = useWindowSize();
 
-  const stickerTransforms = Cell.derived(() => {
+  const stickerLayout = Cell.derived(() => {
     let w = width.get();
     let h = height.get();
 
@@ -179,17 +188,22 @@ const Stickers: RouteComponent = () => {
 
     return createStickerTransforms(w, h);
   });
+  const stickerHeight = Cell.derived(() => stickerLayout.get().stickerHeight);
 
   return (
     <PlaygroundLayout title="Stickers">
       <div class="w-screen h-screen grid place-items-center *:[grid-area:1/1]">
         {For(stickers, (sticker, index) => {
           const transform = Cell.derived<string>(() => {
-            const transforms = stickerTransforms.get();
-            return transforms.get(sticker.name)!;
+            return stickerLayout.get().transforms.get(sticker.name)!;
           });
           return (
-            <Sticker index={index} {...sticker} initialTransform={transform} />
+            <Sticker
+              index={index}
+              {...sticker}
+              initialTransform={transform}
+              height={stickerHeight}
+            />
           );
         })}
       </div>

@@ -6,13 +6,17 @@ import classes from "./Sticker.module.css";
 interface StickerProps extends StickerType {
   index: Cell<number>;
   initialTransform: Cell<string>;
+  height: Cell<string>;
 }
 
 export const Sticker = (props: StickerProps) => {
-  const { name, imageUrl, initialTransform } = props;
+  const { name, imageUrl, initialTransform, height } = props;
 
   return (
-    <div class={classes.sticker} style={{ transform: initialTransform }}>
+    <div
+      class={classes.sticker}
+      style={{ transform: initialTransform, "--height": height }}
+    >
       <div class={classes.clip}>
         <div class={classes.content}>
           <img

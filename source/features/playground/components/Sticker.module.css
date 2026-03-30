@@ -5,6 +5,7 @@
   width: auto;
   height: var(--height);
   aspect-ratio: 0.8;
+  user-select: none;
 
   --clip: shape(
     evenodd from 0.916372% 0.036568%,
