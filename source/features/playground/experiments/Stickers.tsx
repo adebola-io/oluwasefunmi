@@ -148,7 +148,7 @@ function createStickerTransforms(width: number, height: number) {
     Math.min(width, height) * 0.16
   );
   const stickerWidth = stickerHeight * 0.8;
-  let minDistance = Math.hypot(stickerWidth, stickerHeight) * 0.9;
+  let minDistance = Math.hypot(stickerWidth, stickerHeight) * 0.98;
   let transforms = generateTransforms(
     stickers.length,
     width,
