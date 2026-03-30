@@ -1,5 +1,20 @@
 export const bookmarks = [
   {
+    id: "how-to-get-element-bounds-without-reflow",
+    link: "https://toruskit.com/blog/how-to-get-element-bounds-without-reflow",
+    tags: ["javascript", "performance", "web", "rendering", "article"],
+    notes: "",
+    image:
+      "https://toruskit.com/blog/how-to-get-element-bounds-without-reflow/get-element-bounds-without-reflow-intersection-observer.webp",
+    themeColor: "#05060f",
+    openGraph: {
+      title: "How to get element bounds without forcing a reflow",
+      description:
+        "Get element size and position without hurting performance using IntersectionObserver to avoid forced browser reflows.",
+      siteName: "TorusKit Blog",
+    },
+  },
+  {
     id: "antfu-async-sync-in-between",
     link: "https://antfu.me/posts/async-sync-in-between",
     tags: ["javascript", "async", "sync", "generators", "article"],

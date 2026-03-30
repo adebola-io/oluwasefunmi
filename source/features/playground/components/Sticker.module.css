@@ -4,11 +4,12 @@
   display: grid;
   width: auto;
   height: var(--height);
-  aspect-ratio: 0.8;
+  aspect-ratio: 0.75;
   user-select: none;
   touch-action: none;
   transform-origin: center;
   transition: scale 300ms var(--ease-spring);
+  will-change: translate, scale;
   animation-name: from-initial;
   animation-duration: calc(
     350ms + ((var(--index) + 1) * (var(--index) * 1ms + 50ms))
@@ -451,6 +452,7 @@
 
 @keyframes from-initial {
   from {
-    transform: none;
+    translate: 0;
+    rotate: 0;
   }
 }

@@ -1,6 +1,6 @@
 import type { RouteComponent } from "retend/router";
 import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
-import { For, Cell } from "retend";
+import { For } from "retend";
 import { useWindowSize } from "retend-utils/hooks";
 import { stickers } from "../data/stickers";
 import { Sticker } from "../components/Sticker";
@@ -124,7 +124,7 @@ function generateTransforms(
   minDistance: number,
   stickerWidth: number,
   stickerHeight: number
-): string[] {
+) {
   const points = poissonDiskSampling(
     width - stickerWidth,
     height - stickerHeight,
@@ -133,10 +133,13 @@ function generateTransforms(
   const cx = width / 2;
   const cy = height / 2;
 
-  return points.map(
-    (p) =>
-      `translate(${p.x + stickerWidth / 2 - cx}px, ${p.y + stickerHeight / 2 - cy}px) rotate(${Math.random() * 40 - 20}deg)`
-  );
+  return points.map((p) => {
+    return {
+      tx: p.x + stickerWidth / 2 - cx,
+      ty: p.y + stickerHeight / 2 - cy,
+      rotate: Math.random() * 40 - 20,
+    };
+  });
 }
 
 function createStickerTransforms(width: number, height: number) {
@@ -148,7 +151,7 @@ function createStickerTransforms(width: number, height: number) {
     Math.min(width, height) * 0.16
   );
   const stickerWidth = stickerHeight * 0.8;
-  let minDistance = Math.hypot(stickerWidth, stickerHeight) * 0.98;
+  let minDistance = Math.hypot(stickerWidth, stickerHeight);
   let transforms = generateTransforms(
     stickers.length,
     width,
@@ -171,52 +174,29 @@ function createStickerTransforms(width: number, height: number) {
   }
 
   return {
-    stickerHeight: `${stickerHeight}px`,
-    transforms: new Map(stickers.map((s, i) => [s.name, transforms[i]])),
+    stickerHeight,
+    transforms,
   };
 }
 
 const Stickers: RouteComponent = () => {
   const { width, height } = useWindowSize();
-  const initialWidth = Cell.source(width.get());
-  const initialHeight = Cell.source(height.get());
-
-  const stickerLayout = Cell.derived(() => {
-    let w = initialWidth.get();
-    let h = initialHeight.get();
-
-    if (!w) w = 1200;
-    if (!h) h = 800;
-
-    return createStickerTransforms(w, h);
-  });
-  const stickerHeight = Cell.derived(() => stickerLayout.get().stickerHeight);
-
-  width.listen((value) => {
-    if (initialWidth.get()) return;
-    if (!value) return;
-    initialWidth.set(value);
-  });
-
-  height.listen((value) => {
-    if (initialHeight.get()) return;
-    if (!value) return;
-    initialHeight.set(value);
-  });
+  const w = width.get();
+  const h = height.get();
+  const layout = createStickerTransforms(w, h);
 
   return (
     <PlaygroundLayout title="Stickers">
-      <div class="w-screen h-screen grid place-items-center *:[grid-area:1/1]">
+      <div class="w-screen h-screen overflow-hidden grid place-items-center *:[grid-area:1/1]">
         {For(stickers, (sticker, index) => {
-          const transform = Cell.derived<string>(() => {
-            return stickerLayout.get().transforms.get(sticker.name)!;
-          });
+          const transform = layout.transforms[index.peek()];
           return (
             <Sticker
+              id={sticker.name}
               index={index}
               {...sticker}
               initialTransform={transform}
-              height={stickerHeight}
+              height={layout.stickerHeight}
             />
           );
         })}

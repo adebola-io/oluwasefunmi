@@ -6,6 +6,7 @@ import { PaintingWheelIcon } from "@/components/icons/painting-wheel";
 import { ShoppingCartIcon } from "@/components/icons/shopping-cart";
 import { HaloIcon } from "@/components/icons/halo";
 import { KeyboardIcon } from "@/components/icons/keyboard";
+import { StickersIcon } from "@/components/icons/stickers";
 
 function ExternalLink(props: { url: string; children: string }) {
   const { url, children } = props;
@@ -26,8 +27,10 @@ export const playgroundItems: PlaygroundItem[] = [
   {
     path: "/playground/stickers",
     title: "stickers",
-    description: () => <></>,
-    icon: () => <HaloIcon />,
+    description: () => (
+      <>Draggable and peelable stickers scattered across the page.</>
+    ),
+    icon: () => <StickersIcon />,
   },
   {
     path: "/playground/painting-wheel",
