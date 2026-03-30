@@ -1,8 +1,9 @@
 {
   "language_servers": [
     "vtsls",
-    "!tsgo",
     "oxlint",
-    "tailwindcss-language-server"
+    "oxfmt",
+    "tailwindcss-language-server",
+    "vscode-css-language-server"
   ]
 }
