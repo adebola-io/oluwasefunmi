@@ -2,6 +2,7 @@ import { Cell } from "retend";
 
 import type { Sticker as StickerType } from "../data/stickers";
 import classes from "./Sticker.module.css";
+import { ClientOnly } from "retend-server";
 
 interface StickerProps extends StickerType {
   index: Cell<number>;
@@ -67,24 +68,26 @@ export const Sticker = (props: StickerProps) => {
   };
 
   return (
-    <div
-      class={classes.sticker}
-      style={style}
-      onPointerDown={handlePointerDown}
-      onPointerMove={handlePointerMove}
-      onPointerUp={handlePointerUp}
-      onPointerCancel={handlePointerUp}
-    >
-      <div class={classes.clip}>
-        <div class={classes.content}>
-          <img
-            draggable="false"
-            src={imageUrl}
-            alt={name}
-            class={classes.image}
-          />
+    <ClientOnly>
+      <div
+        class={classes.sticker}
+        style={style}
+        onPointerDown={handlePointerDown}
+        onPointerMove={handlePointerMove}
+        onPointerUp={handlePointerUp}
+        onPointerCancel={handlePointerUp}
+      >
+        <div class={classes.clip}>
+          <div class={classes.content}>
+            <img
+              draggable="false"
+              src={imageUrl}
+              alt={name}
+              class={classes.image}
+            />
+          </div>
         </div>
       </div>
-    </div>
+    </ClientOnly>
   );
 };
