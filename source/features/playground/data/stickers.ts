@@ -95,4 +95,23 @@ export const stickers: Sticker[] = [
       imageModules["/source/features/playground/data/images/stickers/jack.webp"]
         .default,
   },
+  {
+    name: "Allamanda",
+    imageUrl:
+      imageModules[
+        "/source/features/playground/data/images/stickers/allamanda.webp"
+      ].default,
+  },
+  {
+    name: "City",
+    imageUrl:
+      imageModules["/source/features/playground/data/images/stickers/city.webp"]
+        .default,
+  },
+  {
+    name: "Desk",
+    imageUrl:
+      imageModules["/source/features/playground/data/images/stickers/desk.webp"]
+        .default,
+  },
 ];

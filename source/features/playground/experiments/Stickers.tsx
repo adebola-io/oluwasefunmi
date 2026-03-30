@@ -178,10 +178,12 @@ function createStickerTransforms(width: number, height: number) {
 
 const Stickers: RouteComponent = () => {
   const { width, height } = useWindowSize();
+  const initialWidth = Cell.source(width.get());
+  const initialHeight = Cell.source(height.get());
 
   const stickerLayout = Cell.derived(() => {
-    let w = width.get();
-    let h = height.get();
+    let w = initialWidth.get();
+    let h = initialHeight.get();
 
     if (!w) w = 1200;
     if (!h) h = 800;
@@ -189,6 +191,18 @@ const Stickers: RouteComponent = () => {
     return createStickerTransforms(w, h);
   });
   const stickerHeight = Cell.derived(() => stickerLayout.get().stickerHeight);
+
+  width.listen((value) => {
+    if (initialWidth.get()) return;
+    if (!value) return;
+    initialWidth.set(value);
+  });
+
+  height.listen((value) => {
+    if (initialHeight.get()) return;
+    if (!value) return;
+    initialHeight.set(value);
+  });
 
   return (
     <PlaygroundLayout title="Stickers">
