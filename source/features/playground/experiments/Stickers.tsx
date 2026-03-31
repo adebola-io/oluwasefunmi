@@ -219,8 +219,9 @@ const Stickers: RouteComponent = () => {
           </div>
           <div
             class={[
-              "grid place-items-center z-20 *:[grid-area:1/1]",
-              "before:block before:[grid-area:1/1] before:size-full before:bg-black before:opacity-0 before:transition-opacity before:duration-300",
+              "grid place-items-center z-99 *:[grid-area:1/1]",
+              "before:block before:[grid-area:1/1] before:size-full before:bg-black",
+              "before:opacity-0 before:transition-opacity before:duration-300",
               { "before:opacity-80": selectedSticker },
               { "pointer-events-none": noSelectedSticker },
             ]}
