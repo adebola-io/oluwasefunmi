@@ -9,9 +9,9 @@
   touch-action: none;
   pointer-events: all;
   transform-origin: center;
-  transition: 400ms var(--ease-spring);
+  transition: 500ms var(--ease-spring);
   transition-property: scale, rotate, translate, opacity;
-  will-change: scale, rotate;
+  will-change: scale, rotate, translate, opacity;
 
   --clip: shape(
     evenodd from 0.916372% 0.036568%,

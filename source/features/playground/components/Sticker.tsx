@@ -52,7 +52,7 @@ export const Sticker = (props: StickerProps) => {
 
   const scale = Cell.derived(() => {
     if (isSelected.get()) return 3.25;
-    return drag.isDragging.get() ? 1.3 : 1;
+    return drag.isDragging.get() && drag.hasMoved.get() ? 1.3 : 1;
   });
 
   const style = {
@@ -61,6 +61,7 @@ export const Sticker = (props: StickerProps) => {
     cursor: drag.cursor,
     zIndex: drag.zIndex,
     translate,
+    transitionProperty: drag.transitionProperty,
     "--height": height,
     "--index": index?.get() || 0,
   };
@@ -83,7 +84,6 @@ export const Sticker = (props: StickerProps) => {
         {
           [classes.animated]: notLoaded,
           [classes.inactive]: isNotSelected,
-          [classes.selected]: isSelected,
         },
       ]}
       style={style}

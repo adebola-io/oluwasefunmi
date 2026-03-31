@@ -6,18 +6,6 @@ interface Transform {
   rotate: number;
 }
 
-interface DragGestureResult {
-  tx: Cell<number>;
-  ty: Cell<number>;
-  isDragging: Cell<boolean>;
-  hasMoved: Cell<boolean>;
-  zIndex: Cell<number>;
-  cursor: Cell<string>;
-  handlePointerDown: (e: PointerEvent) => void;
-  handlePointerMove: (e: PointerEvent) => void;
-  handlePointerUp: (e: PointerEvent) => void;
-}
-
 let topZIndex = 0;
 
 function clampPosition(value: number, max: number): number {
@@ -27,7 +15,7 @@ function clampPosition(value: number, max: number): number {
 export function useDragGesture(
   initialTransform: Transform | undefined,
   isSelected: Cell<boolean>
-): DragGestureResult {
+) {
   const tx = Cell.source(initialTransform?.tx ?? 0);
   const ty = Cell.source(initialTransform?.ty ?? 0);
   const isDragging = Cell.source(false);
@@ -40,6 +28,11 @@ export function useDragGesture(
   const zIndex = Cell.derived(() => {
     if (isSelected.get()) return 99;
     return isDragging.get() ? 98 : zIndexHandle.get();
+  });
+  const transitionProperty = Cell.derived(() => {
+    return isDragging.get()
+      ? "scale, rotate, opacity"
+      : "scale, translate, rotate, opacity";
   });
 
   let pointerId = -1;
@@ -159,6 +152,7 @@ export function useDragGesture(
     hasMoved,
     zIndex,
     cursor,
+    transitionProperty,
     handlePointerDown,
     handlePointerMove,
     handlePointerUp,
