@@ -56,6 +56,8 @@ export const Sticker = createUnique<StickerProps>((props) => {
   };
 
   const handleClick = () => {
+    // Don't select if the user was dragging
+    if (drag.hasMoved.get()) return;
     onSelect?.(props.get());
   };
 

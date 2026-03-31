@@ -10,6 +10,7 @@ interface DragGestureResult {
   tx: Cell<number>;
   ty: Cell<number>;
   isDragging: Cell<boolean>;
+  hasMoved: Cell<boolean>;
   zIndex: Cell<number>;
   cursor: Cell<string>;
   handlePointerDown: (e: PointerEvent) => void;
@@ -30,7 +31,10 @@ export function useDragGesture(
   const tx = Cell.source(initialTransform?.tx ?? 0);
   const ty = Cell.source(initialTransform?.ty ?? 0);
   const isDragging = Cell.source(false);
+  const hasMoved = Cell.source(false);
   const zIndexHandle = Cell.source(0);
+
+  const DRAG_THRESHOLD = 5; // pixels
 
   const cursor = Cell.derived(() => (isDragging.get() ? "grabbing" : "grab"));
   const zIndex = Cell.derived(() =>
@@ -94,11 +98,21 @@ export function useDragGesture(
     velocityY = 0;
 
     isDragging.set(true);
+    hasMoved.set(false);
     (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
   };
 
   const handlePointerMove = (e: PointerEvent) => {
     if (!isDragging.get() || e.pointerId !== pointerId) return;
+
+    // Check if movement exceeds threshold
+    const dx = e.clientX - startX;
+    const dy = e.clientY - startY;
+    const distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance > DRAG_THRESHOLD) {
+      hasMoved.set(true);
+    }
 
     const now = performance.now();
     const elapsed = now - lastMoveTime;
@@ -141,6 +155,7 @@ export function useDragGesture(
     tx,
     ty,
     isDragging,
+    hasMoved,
     zIndex,
     cursor,
     handlePointerDown,
