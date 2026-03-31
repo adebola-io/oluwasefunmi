@@ -1,4 +1,4 @@
-import { Cell, createUnique } from "retend";
+import { Cell } from "retend";
 
 import type { Sticker as StickerType } from "../data/stickers";
 import { useDragGesture } from "./useDragGesture";
@@ -14,23 +14,33 @@ interface StickerProps extends StickerType {
   index?: Cell<number>;
   initialTransform?: Transform;
   height: string;
-  isSelected?: boolean;
+  selectedSticker?: Cell<StickerType | null>;
   onSelect?: (item: StickerType) => void;
 }
 
-export const Sticker = createUnique<StickerProps>((props) => {
+export const Sticker = (props: StickerProps) => {
   const {
-    name,
-    imageUrl,
     initialTransform: init,
     index,
     onSelect,
-  } = props.get();
-  const isSelected = Cell.derived(() => Boolean(props.get().isSelected));
-  const height = Cell.derived(() => props.get().height);
+    selectedSticker,
+    height,
+    ...sticker
+  } = props;
+
   const txdeg = Cell.source(init ? `${init.rotate}deg` : "0deg");
-  const drag = useDragGesture(init, isSelected);
   const loaded = Cell.source(false);
+
+  const isSelected = Cell.derived(() => {
+    return selectedSticker?.get()?.name === sticker.name;
+  });
+  const hasSelectedSticker = Cell.derived(() => {
+    return selectedSticker?.get() !== null;
+  });
+  const isNotSelected = Cell.derived(() => {
+    return hasSelectedSticker.get() && !isSelected.get();
+  });
+  const drag = useDragGesture(init, isSelected);
   const notLoaded = Cell.derived(() => !loaded.get());
 
   const translate = Cell.derived(() => {
@@ -41,7 +51,7 @@ export const Sticker = createUnique<StickerProps>((props) => {
   });
 
   const scale = Cell.derived(() => {
-    if (isSelected.get()) return 3;
+    if (isSelected.get()) return 3.25;
     return drag.isDragging.get() ? 1.3 : 1;
   });
 
@@ -58,7 +68,7 @@ export const Sticker = createUnique<StickerProps>((props) => {
   const handleClick = () => {
     // Don't select if the user was dragging
     if (drag.hasMoved.get()) return;
-    onSelect?.(props.get());
+    onSelect?.(props);
   };
 
   const handleInitialLoad = () => {
@@ -68,7 +78,14 @@ export const Sticker = createUnique<StickerProps>((props) => {
   return (
     <button
       type="button"
-      class={[classes.sticker, { [classes.animated]: notLoaded }]}
+      class={[
+        classes.sticker,
+        {
+          [classes.animated]: notLoaded,
+          [classes.inactive]: isNotSelected,
+          [classes.selected]: isSelected,
+        },
+      ]}
       style={style}
       onPointerDown={drag.handlePointerDown}
       onPointerMove={drag.handlePointerMove}
@@ -82,12 +99,12 @@ export const Sticker = createUnique<StickerProps>((props) => {
         <div class={classes.content}>
           <img
             draggable="false"
-            src={imageUrl}
-            alt={name}
+            src={sticker.imageUrl}
+            alt={sticker.name}
             class={classes.image}
           />
         </div>
       </div>
     </button>
   );
-});
+};

@@ -37,9 +37,10 @@ export function useDragGesture(
   const DRAG_THRESHOLD = 5; // pixels
 
   const cursor = Cell.derived(() => (isDragging.get() ? "grabbing" : "grab"));
-  const zIndex = Cell.derived(() =>
-    isDragging.get() ? 99 : zIndexHandle.get()
-  );
+  const zIndex = Cell.derived(() => {
+    if (isSelected.get()) return 99;
+    return isDragging.get() ? 98 : zIndexHandle.get();
+  });
 
   let pointerId = -1;
   let animationFrame = 0;

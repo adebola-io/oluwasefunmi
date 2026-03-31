@@ -10,7 +10,7 @@
   pointer-events: all;
   transform-origin: center;
   transition: 400ms var(--ease-spring);
-  transition-property: scale, rotate;
+  transition-property: scale, rotate, translate, opacity;
   will-change: scale, rotate;
 
   --clip: shape(
@@ -384,6 +384,27 @@
     curve to 0.916372% 0.036568% with 0.423933% 0.106268% / 0.67387% 0.075774%,
     close
   );
+}
+
+.animated {
+  animation: from-initial
+    calc(400ms + ((var(--index) + 1) * (var(--index) * 1ms + 50ms)))
+    var(--ease-spring);
+}
+
+.inactive {
+  opacity: 0.1;
+  pointer-events: none;
+}
+
+.clip {
+  height: var(--height);
+  width: 100%;
+  display: grid;
+  grid-area: 1 / 1;
+  clip-path: var(--clip);
+  background-color: var(--color-yellow-50);
+  place-items: center;
 
   &::before,
   &::after {
@@ -412,26 +433,11 @@
   }
 }
 
-.animated {
-  animation: from-initial
-    calc(400ms + ((var(--index) + 1) * (var(--index) * 1ms + 50ms)))
-    var(--ease-spring);
-}
-
-.clip {
-  height: var(--height);
-  width: 100%;
-  display: grid;
-  grid-area: 1 / 1;
-  clip-path: var(--clip);
-  background-color: var(--color-yellow-50);
-  place-items: center;
-}
-
 .content {
   height: calc(var(--height) * 0.9);
   width: 90%;
   display: grid;
+  grid-area: 1 / 1;
   grid-template-rows: 80% auto;
   clip-path: var(--clip);
   background-color: lightblue;

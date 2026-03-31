@@ -1,6 +1,6 @@
 import { useRouteQuery, type RouteComponent } from "retend/router";
 import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
-import { Cell, For, If } from "retend";
+import { Cell, For } from "retend";
 import { useWindowSize } from "retend-utils/hooks";
 import { stickers } from "../data/stickers";
 import { Sticker } from "../components/Sticker";
@@ -189,9 +189,8 @@ const Stickers: RouteComponent = () => {
   const selectedStickerName = query.get("Selected");
   const selectedSticker = Cell.derived(() => {
     if (!selectedStickerName.get()) return null;
-    return stickers.find((s) => s.name === selectedStickerName.get());
+    return stickers.find((s) => s.name === selectedStickerName.get()) || null;
   });
-  const noSelectedSticker = Cell.derived(() => !selectedStickerName.get());
 
   const handleSelect = (sticker: (typeof stickers)[number]) => {
     query.set("Selected", sticker.name);
@@ -204,38 +203,22 @@ const Stickers: RouteComponent = () => {
   return (
     <PlaygroundLayout title="Stickers">
       <ClientOnly>
-        <div class="w-screen h-screen grid grid-cols-1 grid-rows-1 *:[grid-area:1/1]">
-          <div class="overflow-hidden grid place-items-center *:[grid-area:1/1]">
-            {For(stickers, (sticker, index) => (
+        <div
+          class="w-screen h-screen overflow-hidden grid place-items-center *:[grid-area:1/1]"
+          onClick--self={handleOutsideClick}
+        >
+          {For(stickers, (sticker, index) => {
+            return (
               <Sticker
-                id={sticker.name}
                 index={index}
                 {...sticker}
                 initialTransform={layout.transforms[index.peek()]}
                 height={`${layout.stickerHeight}px`}
                 onSelect={handleSelect}
+                selectedSticker={selectedSticker}
               />
-            ))}
-          </div>
-          <div
-            class={[
-              "grid place-items-center z-99 *:[grid-area:1/1]",
-              "before:block before:[grid-area:1/1] before:size-full before:bg-black",
-              "before:opacity-0 before:transition-opacity before:duration-300",
-              { "before:opacity-80": selectedSticker },
-              { "pointer-events-none": noSelectedSticker },
-            ]}
-            onClick--self={handleOutsideClick}
-          >
-            {If(selectedSticker, (sticker) => (
-              <Sticker
-                id={sticker.name}
-                {...sticker}
-                height={`${layout.stickerHeight}px`}
-                isSelected
-              />
-            ))}
-          </div>
+            );
+          })}
         </div>
       </ClientOnly>
     </PlaygroundLayout>
