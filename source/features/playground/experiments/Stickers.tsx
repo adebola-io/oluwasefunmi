@@ -4,6 +4,7 @@ import { Cell, For, If } from "retend";
 import { useWindowSize } from "retend-utils/hooks";
 import { stickers } from "../data/stickers";
 import { Sticker } from "../components/Sticker";
+import { ClientOnly } from "retend-server";
 
 interface Point {
   x: number;
@@ -181,8 +182,8 @@ function createStickerTransforms(width: number, height: number) {
 
 const Stickers: RouteComponent = () => {
   const { width, height } = useWindowSize();
-  const w = width.get();
-  const h = height.get();
+  const w = width.get() || 1200;
+  const h = height.get() || 800;
   const layout = createStickerTransforms(w, h);
   const query = useRouteQuery();
   const selectedStickerName = query.get("Selected");
@@ -202,38 +203,40 @@ const Stickers: RouteComponent = () => {
 
   return (
     <PlaygroundLayout title="Stickers">
-      <div class="w-screen h-screen grid grid-cols-1 grid-rows-1 *:[grid-area:1/1]">
-        <div class="overflow-hidden grid place-items-center *:[grid-area:1/1]">
-          {For(stickers, (sticker, index) => (
-            <Sticker
-              id={sticker.name}
-              index={index}
-              {...sticker}
-              initialTransform={layout.transforms[index.peek()]}
-              height={`${layout.stickerHeight}px`}
-              onSelect={handleSelect}
-            />
-          ))}
+      <ClientOnly>
+        <div class="w-screen h-screen grid grid-cols-1 grid-rows-1 *:[grid-area:1/1]">
+          <div class="overflow-hidden grid place-items-center *:[grid-area:1/1]">
+            {For(stickers, (sticker, index) => (
+              <Sticker
+                id={sticker.name}
+                index={index}
+                {...sticker}
+                initialTransform={layout.transforms[index.peek()]}
+                height={`${layout.stickerHeight}px`}
+                onSelect={handleSelect}
+              />
+            ))}
+          </div>
+          <div
+            class={[
+              "grid place-items-center z-20 *:[grid-area:1/1]",
+              "before:block before:[grid-area:1/1] before:size-full before:bg-black before:opacity-0 before:transition-opacity before:duration-300",
+              { "before:opacity-80": selectedSticker },
+              { "pointer-events-none": noSelectedSticker },
+            ]}
+            onClick--self={handleOutsideClick}
+          >
+            {If(selectedSticker, (sticker) => (
+              <Sticker
+                id={sticker.name}
+                {...sticker}
+                height={`${layout.stickerHeight}px`}
+                isSelected
+              />
+            ))}
+          </div>
         </div>
-        <div
-          class={[
-            "grid place-items-center z-20 *:[grid-area:1/1]",
-            "before:block before:[grid-area:1/1] before:size-full before:bg-black before:opacity-0 before:transition-opacity before:duration-300",
-            { "before:opacity-80": selectedSticker },
-            { "pointer-events-none": noSelectedSticker },
-          ]}
-          onClick--self={handleOutsideClick}
-        >
-          {If(selectedSticker, (sticker) => (
-            <Sticker
-              id={sticker.name}
-              {...sticker}
-              height={`${layout.stickerHeight}px`}
-              isSelected
-            />
-          ))}
-        </div>
-      </div>
+      </ClientOnly>
     </PlaygroundLayout>
   );
 };
