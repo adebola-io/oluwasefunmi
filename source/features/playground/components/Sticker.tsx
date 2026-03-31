@@ -3,7 +3,6 @@ import { Cell, createUnique } from "retend";
 import type { Sticker as StickerType } from "../data/stickers";
 import { useDragGesture } from "./useDragGesture";
 import classes from "./Sticker.module.css";
-import { UniqueTransition } from "retend-utils/components";
 
 interface Transform {
   tx: number;
@@ -27,11 +26,12 @@ export const Sticker = createUnique<StickerProps>((props) => {
     index,
     onSelect,
   } = props.get();
-  const rootRef = Cell.source<HTMLElement | null>(null);
   const isSelected = Cell.derived(() => Boolean(props.get().isSelected));
   const height = Cell.derived(() => props.get().height);
   const txdeg = Cell.source(init ? `${init.rotate}deg` : "0deg");
   const drag = useDragGesture(init, isSelected);
+  const loaded = Cell.source(false);
+  const notLoaded = Cell.derived(() => !loaded.get());
 
   const translate = Cell.derived(() => {
     return isSelected.get() ? "0px" : `${drag.tx.get()}px ${drag.ty.get()}px`;
@@ -50,50 +50,42 @@ export const Sticker = createUnique<StickerProps>((props) => {
     scale,
     cursor: drag.cursor,
     zIndex: drag.zIndex,
+    translate,
     "--height": height,
+    "--index": index?.get() || 0,
   };
-
-  const containerStyles = { translate, "--index": index?.get() || 0 };
 
   const handleClick = () => {
     onSelect?.(props.get());
   };
 
+  const handleInitialLoad = () => {
+    loaded.set(true);
+  };
+
   return (
-    <UniqueTransition
-      transitionDuration="300ms"
-      transitionTimingFunction="var(--ease-spring)"
+    <button
+      type="button"
+      class={[classes.sticker, { [classes.animated]: notLoaded }]}
+      style={style}
+      onPointerDown={drag.handlePointerDown}
+      onPointerMove={drag.handlePointerMove}
+      onPointerUp={drag.handlePointerUp}
+      onPointerCancel={drag.handlePointerUp}
+      onClick={handleClick}
+      onAnimationEnd={handleInitialLoad}
+      onAnimationCancel={handleInitialLoad}
     >
-      <div
-        ref={rootRef}
-        class={[
-          classes.stickerContainer,
-          { [classes.selectedSticker]: isSelected },
-        ]}
-        style={containerStyles}
-      >
-        <button
-          type="button"
-          class={classes.sticker}
-          style={style}
-          onPointerDown={drag.handlePointerDown}
-          onPointerMove={drag.handlePointerMove}
-          onPointerUp={drag.handlePointerUp}
-          onPointerCancel={drag.handlePointerUp}
-          onClick={handleClick}
-        >
-          <div class={classes.clip}>
-            <div class={classes.content}>
-              <img
-                draggable="false"
-                src={imageUrl}
-                alt={name}
-                class={classes.image}
-              />
-            </div>
-          </div>
-        </button>
+      <div class={classes.clip}>
+        <div class={classes.content}>
+          <img
+            draggable="false"
+            src={imageUrl}
+            alt={name}
+            class={classes.image}
+          />
+        </div>
       </div>
-    </UniqueTransition>
+    </button>
   );
 });
