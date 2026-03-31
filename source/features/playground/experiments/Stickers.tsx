@@ -190,38 +190,47 @@ const Stickers: RouteComponent = () => {
     if (!selectedStickerName.get()) return null;
     return stickers.find((s) => s.name === selectedStickerName.get());
   });
+  const noSelectedSticker = Cell.derived(() => !selectedStickerName.get());
 
   const handleSelect = (sticker: (typeof stickers)[number]) => {
     query.set("Selected", sticker.name);
+  };
+
+  const handleOutsideClick = () => {
+    query.delete("Selected");
   };
 
   return (
     <PlaygroundLayout title="Stickers">
       <div class="w-screen h-screen grid grid-cols-1 grid-rows-1 *:[grid-area:1/1]">
         <div class="overflow-hidden grid place-items-center *:[grid-area:1/1]">
-          {For(stickers, (sticker, index) => {
-            const transform = layout.transforms[index.peek()];
-            return (
-              <Sticker
-                id={sticker.name}
-                index={index}
-                {...sticker}
-                initialTransform={transform}
-                height={`${layout.stickerHeight}px`}
-                onSelect={handleSelect}
-              />
-            );
-          })}
+          {For(stickers, (sticker, index) => (
+            <Sticker
+              id={sticker.name}
+              index={index}
+              {...sticker}
+              initialTransform={layout.transforms[index.peek()]}
+              height={`${layout.stickerHeight}px`}
+              onSelect={handleSelect}
+            />
+          ))}
         </div>
         <div
           class={[
-            "grid place-items-center z-20 *:[grid-area:1/1] pointer-events-none",
-            "before:block before:[grid-area:1/1] before:size-full before:bg-black before:opacity-0",
-            { "before:opacity-40": selectedSticker },
+            "grid place-items-center z-20 *:[grid-area:1/1]",
+            "before:block before:[grid-area:1/1] before:size-full before:bg-black before:opacity-0 before:transition-opacity before:duration-300",
+            { "before:opacity-80": selectedSticker },
+            { "pointer-events-none": noSelectedSticker },
           ]}
+          onClick--self={handleOutsideClick}
         >
           {If(selectedSticker, (sticker) => (
-            <Sticker id={sticker.name} {...sticker} height="40vw" isSelected />
+            <Sticker
+              id={sticker.name}
+              {...sticker}
+              height={`${layout.stickerHeight}px`}
+              isSelected
+            />
           ))}
         </div>
       </div>

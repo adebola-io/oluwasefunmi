@@ -1,9 +1,9 @@
 .stickerContainer {
   will-change: translate;
-  transition: translate 300ms var(--ease-spring);
+  transition: translate 400ms var(--ease-spring);
   transform-origin: top left;
   animation: from-initial
-    calc(350ms + ((var(--index) + 1) * (var(--index) * 1ms + 50ms)))
+    calc(400ms + ((var(--index) + 1) * (var(--index) * 1ms + 50ms)))
     var(--ease-spring);
 }
 
@@ -22,7 +22,7 @@
   touch-action: none;
   pointer-events: all;
   transform-origin: center;
-  transition: 300ms var(--ease-spring);
+  transition: 400ms var(--ease-spring);
   transition-property: scale, rotate;
   will-change: scale, rotate;
   animation: inherit;

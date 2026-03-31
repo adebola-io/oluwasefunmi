@@ -28,10 +28,10 @@ export const Sticker = createUnique<StickerProps>((props) => {
     onSelect,
   } = props.get();
   const rootRef = Cell.source<HTMLElement | null>(null);
-  const isSelected = Cell.derived(() => props.get().isSelected);
+  const isSelected = Cell.derived(() => Boolean(props.get().isSelected));
   const height = Cell.derived(() => props.get().height);
   const txdeg = Cell.source(init ? `${init.rotate}deg` : "0deg");
-  const drag = useDragGesture(init);
+  const drag = useDragGesture(init, isSelected);
 
   const translate = Cell.derived(() => {
     return isSelected.get() ? "0px" : `${drag.tx.get()}px ${drag.ty.get()}px`;
@@ -40,7 +40,10 @@ export const Sticker = createUnique<StickerProps>((props) => {
     return isSelected.get() ? "0deg" : txdeg.get();
   });
 
-  const scale = Cell.derived(() => (drag.isDragging.get() ? 1.3 : 1));
+  const scale = Cell.derived(() => {
+    if (isSelected.get()) return 3;
+    return drag.isDragging.get() ? 1.3 : 1;
+  });
 
   const style = {
     rotate,
@@ -57,7 +60,10 @@ export const Sticker = createUnique<StickerProps>((props) => {
   };
 
   return (
-    <UniqueTransition transitionDuration="3s">
+    <UniqueTransition
+      transitionDuration="300ms"
+      transitionTimingFunction="var(--ease-spring)"
+    >
       <div
         ref={rootRef}
         class={[
@@ -68,7 +74,7 @@ export const Sticker = createUnique<StickerProps>((props) => {
       >
         <button
           type="button"
-          class={[classes.sticker]}
+          class={classes.sticker}
           style={style}
           onPointerDown={drag.handlePointerDown}
           onPointerMove={drag.handlePointerMove}

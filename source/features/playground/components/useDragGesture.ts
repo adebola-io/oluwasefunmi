@@ -24,7 +24,8 @@ function clampPosition(value: number, max: number): number {
 }
 
 export function useDragGesture(
-  initialTransform?: Transform
+  initialTransform: Transform | undefined,
+  isSelected: Cell<boolean>
 ): DragGestureResult {
   const tx = Cell.source(initialTransform?.tx ?? 0);
   const ty = Cell.source(initialTransform?.ty ?? 0);
@@ -78,6 +79,7 @@ export function useDragGesture(
 
   const handlePointerDown = (e: PointerEvent) => {
     if (e.button !== 0) return;
+    if (isSelected.get()) return;
 
     cancelAnimationFrame(animationFrame);
     pointerId = e.pointerId;
