@@ -34,60 +34,203 @@
   background-color: var(--cobalt);
   background-image:
     radial-gradient(
-      circle 12px at 52% 75%,
-      var(--carrot) 0%,
-      var(--carrot) 40%,
-      transparent 60%
+      18% 18% at 76% 60%,
+      #041d8076 0%,
+      #041d8042 36%,
+      #00000000 78%
     ),
     radial-gradient(
-      circle 6px at 38% 51%,
-      var(--carrot) 0%,
-      var(--carrot) 35%,
-      transparent 50%
+      18% 18% at 22% 58%,
+      #22227a76 0%,
+      #22227a42 36%,
+      #00000000 78%
     ),
     radial-gradient(
-      circle 5px at 62% 48%,
-      var(--carrot) 0%,
-      var(--carrot) 40%,
-      transparent 55%
+      18% 18% at 99% 73%,
+      #04197c76 0%,
+      #04197c42 36%,
+      #00000000 78%
     ),
     radial-gradient(
-      ellipse 60px 70px at 50% 88%,
-      var(--egyptian) 0%,
-      var(--klein) 45%,
-      transparent 55%
+      19% 19% at 99% 1%,
+      #0463fc80 0%,
+      #0463fc48 36%,
+      #00000000 78%
     ),
     radial-gradient(
-      ellipse 50px 60px at 15% 75%,
-      var(--egyptian) 0%,
-      var(--egyptian) 45%,
-      transparent 55%
+      19% 19% at 84% 1%,
+      #0366fa84 0%,
+      #0366fa4a 36%,
+      #00000000 78%
     ),
     radial-gradient(
-      ellipse 70px 80px at 90% 85%,
-      var(--klein) 0%,
-      var(--klein) 50%,
-      transparent 60%
+      19% 19% at 33% 67%,
+      #13207285 0%,
+      #1320724a 36%,
+      #00000000 78%
     ),
     radial-gradient(
-      ellipse 100px 40px at 50% 45%,
-      var(--klein) 0%,
-      var(--cobalt) 40%,
-      transparent 48%
+      19% 19% at 23% 17%,
+      #0465fc8c 0%,
+      #0465fc4e 36%,
+      #00000000 78%
     ),
     radial-gradient(
-      ellipse 120px 50px at 50% 28%,
-      var(--lavender) 0%,
-      var(--majorelle) 40%,
-      transparent 65%
+      19% 19% at 73% 33%,
+      #435bf38c 0%,
+      #435bf34f 36%,
+      #00000000 78%
     ),
-    linear-gradient(
-      to bottom,
-      var(--spectrum) 0%,
-      var(--royal) 20%,
-      var(--majorelle) 35%,
-      transparent 50%
-    );
+    radial-gradient(
+      19% 19% at 6% 20%,
+      #0168fd8d 0%,
+      #0168fd4f 36%,
+      #00000000 78%
+    ),
+    radial-gradient(
+      20% 20% at 70% 6%,
+      #0667ff8f 0%,
+      #0667ff50 36%,
+      #00000000 78%
+    ),
+    radial-gradient(
+      20% 20% at 52% 13%,
+      #0565fe90 0%,
+      #0565fe51 36%,
+      #00000000 78%
+    ),
+    radial-gradient(
+      20% 20% at 99% 19%,
+      #5c58ec93 0%,
+      #5c58ec52 36%,
+      #00000000 78%
+    ),
+    radial-gradient(
+      20% 20% at 38% 17%,
+      #0367ff95 0%,
+      #0367ff53 36%,
+      #00000000 78%
+    ),
+    radial-gradient(
+      20% 20% at 24% 99%,
+      #01126a95 0%,
+      #01126a54 36%,
+      #00000000 78%
+    ),
+    radial-gradient(
+      20% 20% at 85% 23%,
+      #5f58ed9d 0%,
+      #5f58ed58 36%,
+      #00000000 78%
+    ),
+    radial-gradient(
+      20% 20% at 2% 66%,
+      #051362a0 0%,
+      #0513625a 36%,
+      #00000000 78%
+    ),
+    radial-gradient(
+      22% 22% at 60% 26%,
+      #725ce0b7 0%,
+      #725ce066 36%,
+      #00000000 78%
+    ),
+    radial-gradient(
+      24% 24% at 45% 31%,
+      #8b5bd6dd 0%,
+      #8b5bd67c 36%,
+      #00000000 78%
+    ),
+    radial-gradient(
+      24% 24% at 65% 49%,
+      #7c5968eb 0%,
+      #7c596884 36%,
+      #00000000 78%
+    ),
+    radial-gradient(
+      25% 25% at 31% 34%,
+      #9959d1ef 0%,
+      #9959d185 36%,
+      #00000000 78%
+    ),
+    radial-gradient(
+      27% 27% at 41% 51%,
+      #8c4952f0 0%,
+      #8c495285 36%,
+      #00000000 78%
+    ),
+    radial-gradient(
+      29% 29% at 91% 42%,
+      #aa5448f0 0%,
+      #aa544885 36%,
+      #00000000 78%
+    ),
+    radial-gradient(
+      31% 31% at 22% 81%,
+      #bf4e2ff0 0%,
+      #bf4e2f85 36%,
+      #00000000 78%
+    ),
+    radial-gradient(
+      32% 32% at 53% 72%,
+      #fa4d04f0 0%,
+      #fa4d0485 36%,
+      #00000000 78%
+    ),
+    radial-gradient(
+      36% 23% at 88% 38%,
+      #1537ac47 0%,
+      #1537ac18 46%,
+      #00000000 100%
+    ),
+    radial-gradient(
+      36% 23% at 13% 38%,
+      #1042b540 0%,
+      #1042b516 46%,
+      #00000000 100%
+    ),
+    radial-gradient(
+      75% 24% at 38% 88%,
+      #112f9579 0%,
+      #112f9529 46%,
+      #00000000 100%
+    ),
+    radial-gradient(
+      24% 57% at 88% 75%,
+      #03229289 0%,
+      #0322922f 46%,
+      #00000000 100%
+    ),
+    radial-gradient(
+      75% 24% at 38% 63%,
+      #1538986d 0%,
+      #15389825 46%,
+      #00000000 100%
+    ),
+    radial-gradient(
+      57% 24% at 50% 38%,
+      #3747c371 0%,
+      #3747c327 46%,
+      #00000000 100%
+    ),
+    radial-gradient(
+      57% 24% at 75% 13%,
+      #325af5ac 0%,
+      #325af53b 46%,
+      #00000000 100%
+    ),
+    radial-gradient(
+      57% 24% at 25% 13%,
+      #0b5ef0a3 0%,
+      #0b5ef037 46%,
+      #00000000 100%
+    ),
+    linear-gradient(180deg, #2758e8ff 0%, #183fb6f0 48%, #0f2f94ff 100%),
+    linear-gradient(90deg, #0f3fb280 0%, #183fb629 50%, #1739b680 100%),
+    radial-gradient(70% 70% at 18% 18%, #1851d494 0%, #00000000 72%),
+    radial-gradient(70% 70% at 82% 18%, #2c4dd894 0%, #00000000 72%),
+    radial-gradient(70% 70% at 18% 82%, #0c329894 0%, #00000000 72%),
+    radial-gradient(70% 70% at 82% 82%, #112d9394 0%, #00000000 72%);
   background-repeat: no-repeat;
 }
 

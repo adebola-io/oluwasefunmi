@@ -1,3 +1,16 @@
+.stickerContainer {
+  will-change: translate;
+  transition: translate 300ms var(--ease-spring);
+  transform-origin: top left;
+  animation: from-initial
+    calc(350ms + ((var(--index) + 1) * (var(--index) * 1ms + 50ms)))
+    var(--ease-spring);
+}
+
+.selectedSticker {
+  animation: none;
+}
+
 .sticker {
   --height: min(25dvh, 28dvw);
 
@@ -7,14 +20,12 @@
   aspect-ratio: 0.75;
   user-select: none;
   touch-action: none;
+  pointer-events: all;
   transform-origin: center;
-  transition: scale 300ms var(--ease-spring);
-  will-change: translate, scale;
-  animation-name: from-initial;
-  animation-duration: calc(
-    350ms + ((var(--index) + 1) * (var(--index) * 1ms + 50ms))
-  );
-  animation-timing-function: var(--ease-spring);
+  transition: 300ms var(--ease-spring);
+  transition-property: scale, rotate;
+  will-change: scale, rotate;
+  animation: inherit;
 
   --clip: shape(
     evenodd from 0.916372% 0.036568%,
@@ -436,6 +447,7 @@
 
 .image {
   height: 100%;
+  width: 100%;
   object-fit: cover;
   grid-area: 1 / 1 / 3 / 3;
 }

@@ -1,7 +1,9 @@
 import { Cell, createUnique } from "retend";
 
 import type { Sticker as StickerType } from "../data/stickers";
+import { useDragGesture } from "./useDragGesture";
 import classes from "./Sticker.module.css";
+import { UniqueTransition } from "retend-utils/components";
 
 interface Transform {
   tx: number;
@@ -10,106 +12,82 @@ interface Transform {
 }
 
 interface StickerProps extends StickerType {
-  index: Cell<number>;
-  initialTransform: Transform;
-  height: number;
+  index?: Cell<number>;
+  initialTransform?: Transform;
+  height: string;
   isSelected?: boolean;
   onSelect?: (item: StickerType) => void;
 }
 
-let topZIndex = 0;
-
 export const Sticker = createUnique<StickerProps>((props) => {
-  const { name, imageUrl, initialTransform, height, index } = props.get();
+  const {
+    name,
+    imageUrl,
+    initialTransform: init,
+    index,
+    onSelect,
+  } = props.get();
+  const rootRef = Cell.source<HTMLElement | null>(null);
   const isSelected = Cell.derived(() => props.get().isSelected);
-  const tx = Cell.source(initialTransform.tx);
-  const ty = Cell.source(initialTransform.ty);
-  const rotate = Cell.source(`${initialTransform.rotate}deg`);
+  const height = Cell.derived(() => props.get().height);
+  const txdeg = Cell.source(init ? `${init.rotate}deg` : "0deg");
+  const drag = useDragGesture(init);
 
   const translate = Cell.derived(() => {
-    if (isSelected.get()) return "0px";
-
-    return `${tx.get()}px ${ty.get()}px`;
+    return isSelected.get() ? "0px" : `${drag.tx.get()}px ${drag.ty.get()}px`;
+  });
+  const rotate = Cell.derived(() => {
+    return isSelected.get() ? "0deg" : txdeg.get();
   });
 
-  const isDragging = Cell.source(false);
-  const scale = Cell.derived(() => {
-    return isDragging.get() ? 1.1 : 1;
-  });
-  const cursor = Cell.derived(() => {
-    return isDragging.get() ? "grabbing" : "grab";
-  });
-  const zIndexHandle = Cell.source(0);
-  const zIndex = Cell.derived(() => {
-    return isDragging.get() ? 99 : zIndexHandle.get();
-  });
+  const scale = Cell.derived(() => (drag.isDragging.get() ? 1.3 : 1));
 
   const style = {
-    translate,
     rotate,
     scale,
-    cursor,
-    zIndex,
-    "--height": `${height}px`,
-    "--index": index.get(),
-  };
-  let pointerId = -1;
-  let startX = 0;
-  let startY = 0;
-  let baseX = 0;
-  let baseY = 0;
-
-  const handlePointerDown = (e: PointerEvent) => {
-    if (e.button !== 0) return;
-
-    pointerId = e.pointerId;
-    startX = e.clientX;
-    startY = e.clientY;
-    baseX = tx.get();
-    baseY = ty.get();
-
-    isDragging.set(true);
-    (e.currentTarget as HTMLElement).setPointerCapture(e.pointerId);
+    cursor: drag.cursor,
+    zIndex: drag.zIndex,
+    "--height": height,
   };
 
-  const handlePointerMove = (e: PointerEvent) => {
-    if (!isDragging.get() || e.pointerId !== pointerId) return;
+  const containerStyles = { translate, "--index": index?.get() || 0 };
 
-    Cell.batch(() => {
-      tx.set(baseX + e.clientX - startX);
-      ty.set(baseY + e.clientY - startY);
-    });
-  };
-
-  const handlePointerUp = (e: PointerEvent) => {
-    if (e.pointerId !== pointerId) return;
-
-    isDragging.set(false);
-    zIndexHandle.set(++topZIndex);
-    (e.currentTarget as HTMLElement).releasePointerCapture(e.pointerId);
-    pointerId = -1;
+  const handleClick = () => {
+    onSelect?.(props.get());
   };
 
   return (
-    <button
-      type="button"
-      class={classes.sticker}
-      style={style}
-      onPointerDown={handlePointerDown}
-      onPointerMove={handlePointerMove}
-      onPointerUp={handlePointerUp}
-      onPointerCancel={handlePointerUp}
-    >
-      <div class={classes.clip}>
-        <div class={classes.content}>
-          <img
-            draggable="false"
-            src={imageUrl}
-            alt={name}
-            class={classes.image}
-          />
-        </div>
+    <UniqueTransition transitionDuration="3s">
+      <div
+        ref={rootRef}
+        class={[
+          classes.stickerContainer,
+          { [classes.selectedSticker]: isSelected },
+        ]}
+        style={containerStyles}
+      >
+        <button
+          type="button"
+          class={[classes.sticker]}
+          style={style}
+          onPointerDown={drag.handlePointerDown}
+          onPointerMove={drag.handlePointerMove}
+          onPointerUp={drag.handlePointerUp}
+          onPointerCancel={drag.handlePointerUp}
+          onClick={handleClick}
+        >
+          <div class={classes.clip}>
+            <div class={classes.content}>
+              <img
+                draggable="false"
+                src={imageUrl}
+                alt={name}
+                class={classes.image}
+              />
+            </div>
+          </div>
+        </button>
       </div>
-    </button>
+    </UniqueTransition>
   );
 });
