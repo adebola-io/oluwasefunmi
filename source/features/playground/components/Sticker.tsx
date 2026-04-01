@@ -55,8 +55,8 @@ export const Sticker = (props: StickerProps) => {
   });
 
   const scale = Cell.derived(() => {
-    if (isSelected.get()) return 1;
-    return drag.isDragging.get() && drag.hasMoved.get() ? 1.3 / 2.5 : 1 / 2.5;
+    if (isSelected.get()) return 2.5;
+    return drag.isDragging.get() && drag.hasMoved.get() ? 1.3 : 1;
   });
 
   const style = {
