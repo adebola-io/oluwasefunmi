@@ -144,22 +144,23 @@ function generateTransforms(
 }
 
 function createStickerTransforms(width: number, height: number) {
-  const stickerHeight = Math.max(
-    Math.min(
-      Math.sqrt((width * height * 0.5) / (stickers.length * 0.8)),
-      Math.min(height * 0.25, width * 0.28)
-    ),
-    Math.min(width, height) * 0.16
-  );
-  const stickerWidth = stickerHeight * 0.8;
-  let minDistance = Math.hypot(stickerWidth, stickerHeight);
+  const stickerHeight =
+    Math.max(
+      Math.min(
+        Math.sqrt((width * height * 0.5) / (stickers.length * 0.8)),
+        Math.min(height * 0.25, width * 0.28)
+      ),
+      Math.min(width, height) * 0.16
+    ) * 2.5;
+  const stickerWidth = (stickerHeight * 0.8) / 2.5;
+  let minDistance = Math.hypot(stickerWidth, stickerHeight / 2.5);
   let transforms = generateTransforms(
     stickers.length,
     width,
     height,
     minDistance,
     stickerWidth,
-    stickerHeight
+    stickerHeight / 2.5
   );
 
   while (transforms.length < stickers.length) {
@@ -170,7 +171,7 @@ function createStickerTransforms(width: number, height: number) {
       height,
       minDistance,
       stickerWidth,
-      stickerHeight
+      stickerHeight / 2.5
     );
   }
 

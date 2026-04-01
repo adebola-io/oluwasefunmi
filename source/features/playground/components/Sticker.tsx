@@ -55,8 +55,8 @@ export const Sticker = (props: StickerProps) => {
   });
 
   const scale = Cell.derived(() => {
-    if (isSelected.get()) return 3.25;
-    return drag.isDragging.get() && drag.hasMoved.get() ? 1.3 : 1;
+    if (isSelected.get()) return 1;
+    return drag.isDragging.get() && drag.hasMoved.get() ? 1.3 / 2.5 : 1 / 2.5;
   });
 
   const style = {
@@ -97,10 +97,13 @@ export const Sticker = (props: StickerProps) => {
       onAnimationCancel={handleInitialLoad}
     >
       <div class={classes.clip}>
-        <div class={classes.content}>
+        <div
+          class={classes.content}
+          style={{ backgroundImage: sticker.placeholderGradient }}
+        >
           <img
             draggable="false"
-            src={sticker.imageUrl}
+            // src={sticker.imageUrl}
             alt={sticker.name}
             class={classes.image}
           />
