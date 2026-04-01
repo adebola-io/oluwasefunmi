@@ -14,9 +14,12 @@ interface StickerProps extends StickerType {
   index?: Cell<number>;
   initialTransform?: Transform;
   height: string;
+  shouldLoadImages?: Cell<boolean>;
   selectedSticker?: Cell<StickerType | null>;
   onSelect?: (item: StickerType) => void;
   onDismiss?: () => void;
+  onInitialAnimationEnd?: () => void;
+  isFinalSticker?: boolean;
 }
 
 export const Sticker = (props: StickerProps) => {
@@ -26,48 +29,47 @@ export const Sticker = (props: StickerProps) => {
     selectedSticker,
     onSelect,
     onDismiss,
+    shouldLoadImages,
+    onInitialAnimationEnd,
+    isFinalSticker,
     height,
     ...sticker
   } = props;
 
-  const txdeg = Cell.source(init ? `${init.rotate}deg` : "0deg");
   const loaded = Cell.source(false);
+  const imageLoaded = Cell.source(false);
 
   const isSelected = Cell.derived(() => {
     return selectedSticker?.get()?.name === sticker.name;
   });
-  const hasSelectedSticker = Cell.derived(() => {
-    return selectedSticker?.get() !== null;
-  });
   const isNotSelected = Cell.derived(() => {
-    return hasSelectedSticker.get() && !isSelected.get();
+    const selected = selectedSticker?.get();
+    return selected !== null && selected?.name !== sticker.name;
   });
   const drag = useDragGesture(init, isSelected, onDismiss);
-  const notLoaded = Cell.derived(() => !loaded.get());
-
-  const translate = Cell.derived(() => {
-    return isSelected.get()
-      ? `${drag.dismissTx.get()}px ${drag.dismissTy.get()}px`
-      : `${drag.tx.get()}px ${drag.ty.get()}px`;
-  });
-  const rotate = Cell.derived(() => {
-    return isSelected.get() ? "0deg" : txdeg.get();
-  });
-
-  const scale = Cell.derived(() => {
-    if (isSelected.get()) return 2.5;
-    return drag.isDragging.get() && drag.hasMoved.get() ? 1.3 : 1;
+  const imageSrc = Cell.derived(() => {
+    if (!shouldLoadImages!.get()) return;
+    return sticker.imageUrl;
   });
 
   const style = {
-    rotate,
-    scale,
+    rotate: Cell.derived(() =>
+      isSelected.get() ? "0deg" : `${init!.rotate}deg`
+    ),
+    scale: Cell.derived(() => {
+      if (isSelected.get()) return 2.5;
+      return drag.isDragging.get() && drag.hasMoved.get() ? 1.3 : 1;
+    }),
     cursor: drag.cursor,
     zIndex: drag.zIndex,
-    translate,
+    translate: Cell.derived(() => {
+      return isSelected.get()
+        ? `${drag.dismissTx.get()}px ${drag.dismissTy.get()}px`
+        : `${drag.tx.get()}px ${drag.ty.get()}px`;
+    }),
     transitionProperty: drag.transitionProperty,
     "--height": height,
-    "--index": index?.get() || 0,
+    "--index": index!.get(),
   };
 
   const handleClick = () => {
@@ -76,16 +78,15 @@ export const Sticker = (props: StickerProps) => {
     onSelect?.(props);
   };
 
-  const handleInitialLoad = () => {
-    loaded.set(true);
-  };
-
   return (
     <button
       type="button"
       class={[
         classes.sticker,
-        { [classes.animated]: notLoaded, [classes.inactive]: isNotSelected },
+        {
+          [classes.animated]: Cell.derived(() => !loaded.get()),
+          [classes.inactive]: isNotSelected,
+        },
       ]}
       style={style}
       onPointerDown={drag.handlePointerDown}
@@ -93,8 +94,14 @@ export const Sticker = (props: StickerProps) => {
       onPointerUp={drag.handlePointerUp}
       onPointerCancel={drag.handlePointerUp}
       onClick={handleClick}
-      onAnimationEnd={handleInitialLoad}
-      onAnimationCancel={handleInitialLoad}
+      onAnimationEnd={() => {
+        loaded.set(true);
+        if (isFinalSticker) onInitialAnimationEnd?.();
+      }}
+      onAnimationCancel={() => {
+        loaded.set(true);
+        if (isFinalSticker) onInitialAnimationEnd?.();
+      }}
     >
       <div class={classes.clip}>
         <div
@@ -103,9 +110,15 @@ export const Sticker = (props: StickerProps) => {
         >
           <img
             draggable="false"
-            // src={sticker.imageUrl}
+            src={imageSrc}
             alt={sticker.name}
             class={classes.image}
+            style={{
+              opacity: Cell.derived(() =>
+                imageLoaded.get() && isSelected.get() ? 1 : 0
+              ),
+            }}
+            onLoad={() => imageLoaded.set(true)}
           />
         </div>
       </div>

@@ -12,6 +12,7 @@
   transition-duration: 500ms, 500ms, 500ms, 600ms;
   transition-timing-function: var(--ease-spring);
   will-change: scale, rotate, translate, opacity;
+  contain: strict;
 
   --clip: shape(
     evenodd from 0.916372% 0.036568%,
@@ -434,6 +435,7 @@
   width: 100%;
   object-fit: cover;
   grid-area: 1 / 1 / 3 / 3;
+  transition: opacity 300ms ease;
 }
 
 .text {

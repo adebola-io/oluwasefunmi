@@ -187,6 +187,7 @@ const Stickers: RouteComponent = () => {
   const layout = createStickerTransforms(w, h);
   const query = useRouteQuery();
   const selectedStickerName = query.get("Selected");
+  const shouldLoadImages = Cell.source(false);
   const selectedSticker = Cell.derived(() => {
     if (!selectedStickerName.get()) return null;
     return stickers.find((s) => s.name === selectedStickerName.get()) || null;
@@ -198,6 +199,10 @@ const Stickers: RouteComponent = () => {
 
   const handleOutsideClick = () => {
     query.delete("Selected");
+  };
+
+  const handleInitialAnimationEnd = () => {
+    shouldLoadImages.set(true);
   };
 
   return (
@@ -214,8 +219,11 @@ const Stickers: RouteComponent = () => {
                 {...sticker}
                 initialTransform={layout.transforms[index.peek()]}
                 height={`${layout.stickerHeight}px`}
+                shouldLoadImages={shouldLoadImages}
                 onSelect={handleSelect}
                 onDismiss={handleOutsideClick}
+                onInitialAnimationEnd={handleInitialAnimationEnd}
+                isFinalSticker={index.peek() === stickers.length - 1}
                 selectedSticker={selectedSticker}
               />
             );
