@@ -16,14 +16,16 @@ interface StickerProps extends StickerType {
   height: string;
   selectedSticker?: Cell<StickerType | null>;
   onSelect?: (item: StickerType) => void;
+  onDismiss?: () => void;
 }
 
 export const Sticker = (props: StickerProps) => {
   const {
     initialTransform: init,
     index,
-    onSelect,
     selectedSticker,
+    onSelect,
+    onDismiss,
     height,
     ...sticker
   } = props;
@@ -40,11 +42,13 @@ export const Sticker = (props: StickerProps) => {
   const isNotSelected = Cell.derived(() => {
     return hasSelectedSticker.get() && !isSelected.get();
   });
-  const drag = useDragGesture(init, isSelected);
+  const drag = useDragGesture(init, isSelected, onDismiss);
   const notLoaded = Cell.derived(() => !loaded.get());
 
   const translate = Cell.derived(() => {
-    return isSelected.get() ? "0px" : `${drag.tx.get()}px ${drag.ty.get()}px`;
+    return isSelected.get()
+      ? `${drag.dismissTx.get()}px ${drag.dismissTy.get()}px`
+      : `${drag.tx.get()}px ${drag.ty.get()}px`;
   });
   const rotate = Cell.derived(() => {
     return isSelected.get() ? "0deg" : txdeg.get();
@@ -81,10 +85,7 @@ export const Sticker = (props: StickerProps) => {
       type="button"
       class={[
         classes.sticker,
-        {
-          [classes.animated]: notLoaded,
-          [classes.inactive]: isNotSelected,
-        },
+        { [classes.animated]: notLoaded, [classes.inactive]: isNotSelected },
       ]}
       style={style}
       onPointerDown={drag.handlePointerDown}

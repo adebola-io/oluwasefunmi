@@ -146,7 +146,7 @@ function generateTransforms(
 function createStickerTransforms(width: number, height: number) {
   const stickerHeight = Math.max(
     Math.min(
-      Math.sqrt((width * height * 0.36) / (stickers.length * 0.8)),
+      Math.sqrt((width * height * 0.5) / (stickers.length * 0.8)),
       Math.min(height * 0.25, width * 0.28)
     ),
     Math.min(width, height) * 0.16
@@ -215,6 +215,7 @@ const Stickers: RouteComponent = () => {
                 initialTransform={layout.transforms[index.peek()]}
                 height={`${layout.stickerHeight}px`}
                 onSelect={handleSelect}
+                onDismiss={handleOutsideClick}
                 selectedSticker={selectedSticker}
               />
             );

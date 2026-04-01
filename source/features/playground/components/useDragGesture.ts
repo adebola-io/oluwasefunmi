@@ -14,10 +14,13 @@ function clampPosition(value: number, max: number): number {
 
 export function useDragGesture(
   initialTransform: Transform | undefined,
-  isSelected: Cell<boolean>
+  isSelected: Cell<boolean>,
+  onDismiss?: () => void
 ) {
   const tx = Cell.source(initialTransform?.tx ?? 0);
   const ty = Cell.source(initialTransform?.ty ?? 0);
+  const dismissTx = Cell.source(0);
+  const dismissTy = Cell.source(0);
   const isDragging = Cell.source(false);
   const hasMoved = Cell.source(false);
   const zIndexHandle = Cell.source(0);
@@ -46,6 +49,7 @@ export function useDragGesture(
   let lastX = 0;
   let lastY = 0;
   let lastMoveTime = 0;
+  let dismissVelocityY = 0;
 
   const animateMomentum = (element: HTMLElement) => {
     const animate = () => {
@@ -77,7 +81,6 @@ export function useDragGesture(
 
   const handlePointerDown = (e: PointerEvent) => {
     if (e.button !== 0) return;
-    if (isSelected.get()) return;
 
     cancelAnimationFrame(animationFrame);
     pointerId = e.pointerId;
@@ -90,6 +93,7 @@ export function useDragGesture(
     lastMoveTime = performance.now();
     velocityX = 0;
     velocityY = 0;
+    dismissVelocityY = 0;
 
     isDragging.set(true);
     hasMoved.set(false);
@@ -99,7 +103,6 @@ export function useDragGesture(
   const handlePointerMove = (e: PointerEvent) => {
     if (!isDragging.get() || e.pointerId !== pointerId) return;
 
-    // Check if movement exceeds threshold
     const dx = e.clientX - startX;
     const dy = e.clientY - startY;
     const distance = Math.sqrt(dx * dx + dy * dy);
@@ -111,6 +114,7 @@ export function useDragGesture(
     const now = performance.now();
     const elapsed = now - lastMoveTime;
     if (elapsed > 0) {
+      dismissVelocityY = (e.clientY - lastY) / elapsed;
       velocityX = ((e.clientX - lastX) / elapsed) * 8;
       velocityY = ((e.clientY - lastY) / elapsed) * 8;
     }
@@ -118,6 +122,12 @@ export function useDragGesture(
     lastX = e.clientX;
     lastY = e.clientY;
     lastMoveTime = now;
+
+    if (isSelected.get()) {
+      dismissTx.set(dx * 0.35);
+      dismissTy.set(dy);
+      return;
+    }
 
     const rect = (e.currentTarget as HTMLElement).getBoundingClientRect();
     const maxX = Math.max((window.innerWidth - rect.width) / 2, 0);
@@ -133,11 +143,21 @@ export function useDragGesture(
     if (e.pointerId !== pointerId) return;
 
     isDragging.set(false);
-    zIndexHandle.set(++topZIndex);
     const element = e.currentTarget as HTMLElement;
     element.releasePointerCapture(e.pointerId);
     pointerId = -1;
 
+    if (isSelected.get()) {
+      const shouldDismiss =
+        Math.abs(dismissTy.get()) > window.innerHeight * 0.3 ||
+        Math.abs(dismissVelocityY) > 1;
+      dismissTx.set(0);
+      dismissTy.set(0);
+      if (shouldDismiss) onDismiss?.();
+      return;
+    }
+
+    zIndexHandle.set(++topZIndex);
     animateMomentum(element);
   };
 
@@ -148,6 +168,8 @@ export function useDragGesture(
   return {
     tx,
     ty,
+    dismissTx,
+    dismissTy,
     isDragging,
     hasMoved,
     zIndex,
