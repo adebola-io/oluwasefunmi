@@ -39,27 +39,29 @@ export const Sticker = (props: StickerProps) => {
   const loaded = Cell.source(false);
   const imageLoaded = Cell.source(false);
 
-  const isSelected = Cell.derived(() => {
-    return selectedSticker?.get()?.name === sticker.name;
-  });
+  const isSelected = Cell.derived(
+    () => selectedSticker?.get()?.name === sticker.name
+  );
   const isNotSelected = Cell.derived(() => {
     const selected = selectedSticker?.get();
     return selected !== null && selected?.name !== sticker.name;
   });
   const drag = useDragGesture(init, isSelected, onDismiss);
-  const imageSrc = Cell.derived(() => {
-    if (!shouldLoadImages!.get()) return;
-    return sticker.imageUrl;
-  });
+  const imageSrc = Cell.derived(() =>
+    shouldLoadImages!.get() ? sticker.imageUrl : undefined
+  );
 
   const style = {
     rotate: Cell.derived(() =>
       isSelected.get() ? "0deg" : `${init!.rotate}deg`
     ),
-    scale: Cell.derived(() => {
-      if (isSelected.get()) return 2.5;
-      return drag.isDragging.get() && drag.hasMoved.get() ? 1.3 : 1;
-    }),
+    scale: Cell.derived(() =>
+      isSelected.get()
+        ? 2.5
+        : drag.isDragging.get() && drag.hasMoved.get()
+          ? 1.3
+          : 1
+    ),
     cursor: drag.cursor,
     zIndex: drag.zIndex,
     translate: Cell.derived(() => {
@@ -72,8 +74,8 @@ export const Sticker = (props: StickerProps) => {
     "--index": index!.get(),
   };
 
-  const handleClick = () => {
-    // Don't select if the user was dragging
+  const handlePointerUp = (e: PointerEvent) => {
+    drag.handlePointerUp(e);
     if (drag.hasMoved.get()) return;
     onSelect?.(props);
   };
@@ -91,9 +93,8 @@ export const Sticker = (props: StickerProps) => {
       style={style}
       onPointerDown={drag.handlePointerDown}
       onPointerMove={drag.handlePointerMove}
-      onPointerUp={drag.handlePointerUp}
+      onPointerUp={handlePointerUp}
       onPointerCancel={drag.handlePointerUp}
-      onClick={handleClick}
       onAnimationEnd={() => {
         loaded.set(true);
         if (isFinalSticker) onInitialAnimationEnd?.();
