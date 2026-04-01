@@ -209,7 +209,14 @@ const Stickers: RouteComponent = () => {
     <PlaygroundLayout title="Stickers">
       <ClientOnly>
         <div
-          class="w-screen h-screen overflow-hidden grid place-items-center *:[grid-area:1/1]"
+          class={[
+            "w-screen h-screen overflow-hidden grid place-items-center *:[grid-area:1/1]",
+            "before:bg-black before:z-95 before:absolute before:top-0 before:left-0 before:size-full before:opacity-0",
+            "before:duration-500 before:transition-opacity before:pointer-events-none",
+            {
+              "before:opacity-80 before:pointer-events-auto!": selectedSticker,
+            },
+          ]}
           onClick--self={handleOutsideClick}
         >
           {For(stickers, (sticker, index) => {
