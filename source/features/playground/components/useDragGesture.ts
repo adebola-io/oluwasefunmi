@@ -33,7 +33,6 @@ export function useDragGesture(
     return isDragging.get() ? 98 : zIndexHandle.get();
   });
   const transitionProperty = Cell.derived(() => {
-    if (isSelected.get()) return "scale, translate, rotate, opacity";
     return isDragging.get()
       ? "scale, rotate, opacity"
       : "scale, translate, rotate, opacity";
