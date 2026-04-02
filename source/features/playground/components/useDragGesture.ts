@@ -29,13 +29,7 @@ export function useDragGesture(
 
   const cursor = Cell.derived(() => (isDragging.get() ? "grabbing" : "grab"));
   const zIndex = Cell.derived(() => {
-    if (isSelected.get()) return 99;
     return isDragging.get() ? 98 : zIndexHandle.get();
-  });
-  const transitionProperty = Cell.derived(() => {
-    return isDragging.get()
-      ? "scale, rotate, opacity"
-      : "scale, translate, rotate, opacity";
   });
 
   let pointerId = -1;
@@ -129,7 +123,6 @@ export function useDragGesture(
     hasMoved,
     zIndex,
     cursor,
-    transitionProperty,
     handlePointerDown,
     handlePointerMove,
     handlePointerUp,

@@ -187,8 +187,7 @@ const Stickers: RouteComponent = () => {
   const layout = createStickerTransforms(w, h);
   const query = useRouteQuery();
   const selectedStickerName = query.get("Selected");
-  const shouldLoadImages = Cell.source(false);
-  const selectedSticker = Cell.derived(() => {
+  const selected = Cell.derived(() => {
     if (!selectedStickerName.get()) return null;
     return stickers.find((s) => s.name === selectedStickerName.get()) || null;
   });
@@ -201,10 +200,6 @@ const Stickers: RouteComponent = () => {
     query.delete("Selected");
   };
 
-  const handleInitialAnimationEnd = () => {
-    shouldLoadImages.set(true);
-  };
-
   return (
     <PlaygroundLayout title="Stickers">
       <ClientOnly>
@@ -213,9 +208,7 @@ const Stickers: RouteComponent = () => {
             "w-screen h-screen overflow-hidden grid place-items-center *:[grid-area:1/1]",
             "before:bg-black before:z-95 before:absolute before:top-0 before:left-0 before:size-full before:opacity-0",
             "before:duration-500 before:transition-opacity before:pointer-events-none",
-            {
-              "before:opacity-80 before:pointer-events-auto!": selectedSticker,
-            },
+            { "before:opacity-80 before:pointer-events-auto!": selected },
           ]}
           onClick--self={handleOutsideClick}
         >
@@ -226,12 +219,9 @@ const Stickers: RouteComponent = () => {
                 {...sticker}
                 initialTransform={layout.transforms[index.peek()]}
                 height={`${layout.stickerHeight}px`}
-                shouldLoadImages={shouldLoadImages}
                 onSelect={handleSelect}
                 onDismiss={handleOutsideClick}
-                onInitialAnimationEnd={handleInitialAnimationEnd}
-                isFinalSticker={index.peek() === stickers.length - 1}
-                selectedSticker={selectedSticker}
+                selectedSticker={selected}
               />
             );
           })}

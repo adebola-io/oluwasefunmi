@@ -9,7 +9,7 @@
   touch-action: none;
   pointer-events: all;
   transform-origin: center;
-  transition-duration: 500ms, 500ms, 500ms, 600ms;
+  transition-duration: 500ms;
   transition-timing-function: var(--ease-spring);
   contain: strict;
 
@@ -387,11 +387,8 @@
 }
 
 .animated {
-  animation: from-initial 280ms var(--ease-spring) both;
-}
-
-.selected {
-  /* */
+  animation: from-initial calc(700ms + ((var(--index) + 1) * 20ms))
+    var(--ease-spring);
 }
 
 .clip {
@@ -414,14 +411,6 @@
   background-color: lightblue;
 }
 
-.image {
-  height: 100%;
-  width: 100%;
-  object-fit: cover;
-  grid-area: 1 / 1 / 3 / 3;
-  transition: opacity 500ms var(--ease-spring);
-}
-
 .text {
   text-align: center;
   grid-area: 2 / 1;
@@ -434,7 +423,12 @@
 
 @keyframes from-initial {
   from {
-    translate: 0;
-    rotate: 0;
+    translate: 0 50%;
+    rotate: 0deg;
+  }
+
+  40% {
+    translate: 0 0;
+    rotate: 0deg;
   }
 }
