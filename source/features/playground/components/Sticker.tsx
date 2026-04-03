@@ -2,6 +2,7 @@ import { Cell } from "retend";
 import type { Sticker as StickerType } from "../data/stickers";
 import { useDragGesture } from "./useDragGesture";
 import classes from "./Sticker.module.css";
+import type { JSX } from "retend/jsx-runtime";
 
 interface Transform {
   tx: number;
@@ -13,98 +14,92 @@ interface StickerProps extends StickerType {
   index?: Cell<number>;
   initialTransform?: Transform;
   height: string;
-  selectedSticker?: Cell<StickerType | null>;
+  selected?: Cell<StickerType | null>;
   onSelect?: (item: StickerType) => void;
   onDismiss?: () => void;
 }
 
 function createStyle(
   drag: ReturnType<typeof useDragGesture>,
-  isSelected: Cell<boolean>,
-  init: Transform | undefined,
-  height: string,
-  index: Cell<number> | undefined
+  props: StickerProps,
+  isSelected: Cell<boolean>
 ) {
-  return {
-    rotate: Cell.derived(() => {
-      return isSelected.get() ? "0deg" : `${init?.rotate ?? 0}deg`;
-    }),
-    scale: Cell.derived(() => {
-      if (isSelected.get()) return 2.5;
-      return drag.isDragging.get() && drag.hasMoved.get() ? 1.3 : 1;
-    }),
-    cursor: drag.cursor,
-    zIndex: isSelected.get() ? 99 : drag.zIndex,
-    translate: Cell.derived(() => {
-      return isSelected.get()
-        ? `${drag.dismissTx.get()}px ${drag.dismissTy.get()}px`
-        : `${drag.tx.get()}px ${drag.ty.get()}px`;
-    }),
-    transitionProperty: Cell.derived(() => {
-      return drag.isDragging.get()
-        ? "scale, rotate, opacity"
-        : "scale, translate, rotate, opacity";
-    }),
-    "--height": height,
-    "--index": index?.get() ?? 0,
-  };
+  const { initialTransform, height, index } = props;
+
+  return Cell.derived((): JSX.StyleValue => {
+    const transitionProperty = drag.isDragging.get()
+      ? "scale, rotate, opacity"
+      : "scale, translate, rotate, opacity";
+
+    if (isSelected.get()) {
+      return {
+        "--height": height,
+        rotate: "0deg",
+        scale: 2.5,
+        cursor: drag.cursor,
+        zIndex: 99,
+        translate: `${drag.dismissTx.get()}px ${drag.dismissTy.get()}px`,
+        transitionProperty,
+        transitionTimingFunction: "var(--ease-spring)",
+        "--index": index?.get() ?? 0,
+      };
+    }
+
+    return {
+      "--height": height,
+      rotate: `${initialTransform?.rotate ?? 0}deg`,
+      scale: drag.isDragging.get() && drag.hasMoved.get() ? 1.3 : 1,
+      cursor: drag.cursor,
+      zIndex: drag.zIndex,
+      translate: `${drag.tx.get()}px ${drag.ty.get()}px`,
+      transitionProperty,
+      transitionTimingFunction: "ease",
+      "--index": index?.get() ?? 0,
+    };
+  });
 }
 
 export function Sticker(props: StickerProps) {
-  const {
-    initialTransform,
-    index,
-    selectedSticker,
-    onSelect,
-    onDismiss,
-    height,
-    ...sticker
-  } = props;
-  const loaded = Cell.source(false);
-  const isSelected = Cell.derived(() => {
-    return selectedSticker?.get()?.name === sticker.name;
-  });
-  const drag = useDragGesture(initialTransform, isSelected, onDismiss);
-  const style = createStyle(drag, isSelected, initialTransform, height, index);
-  const notLoaded = Cell.derived(() => !loaded.get());
+  const { initialTransform, selected, onSelect, onDismiss, ...sticker } = props;
 
-  const handleAnimationEnd = () => {
-    loaded.set(true);
-  };
+  const ref = Cell.source<HTMLElement | null>(null);
+  const isSelected = Cell.derived(() => {
+    return selected?.get()?.name === sticker.name;
+  });
+
+  const drag = useDragGesture(initialTransform, isSelected, onDismiss);
+  const style = createStyle(drag, props, isSelected);
+  const imageOpacity = Cell.derived(() => (isSelected.get() ? 1 : 0));
 
   const handleClick = () => {
+    if (drag.hasMoved.get()) return;
     onSelect?.(sticker);
   };
 
-  function matchZIndexState(this: HTMLElement, event: TransitionEvent) {
-    if (isSelected.get() && event.type === "transitionstart") {
-      this.style.zIndex = "99";
-    } else if (!isSelected.get() && event.type === "transitionend") {
-      this.style.zIndex = "0";
-    }
-  }
-
   return (
     <button
+      ref={ref}
       type="button"
-      class={[classes.sticker, { [classes.animated]: notLoaded }]}
+      class={classes.sticker}
       style={style}
+      onClick={handleClick}
       onPointerDown={drag.handlePointerDown}
       onPointerMove={drag.handlePointerMove}
       onPointerUp={drag.handlePointerUp}
-      onClick={handleClick}
       onPointerCancel={drag.handlePointerUp}
-      onAnimationEnd={handleAnimationEnd}
-      onAnimationCancel={handleAnimationEnd}
-      onTransitionStart={matchZIndexState}
-      onTransitionEnd={matchZIndexState}
-      onTransitionCancel={matchZIndexState}
     >
       <div class={classes.clip}>
         <div
           class={classes.content}
           style={{ backgroundImage: sticker.placeholderGradient }}
-        />
+        >
+          <img
+            class={classes.image}
+            src={sticker.imageUrl}
+            alt={sticker.name}
+            style={{ opacity: imageOpacity }}
+          />
+        </div>
       </div>
     </button>
   );

@@ -1,58 +1,45 @@
-import { lazy } from "retend/router";
+import PaintingWheel from "@/features/playground/experiments/PaintingWheel";
+import CurvedCssSolid from "@/features/playground/experiments/CurvedCssSolid";
+import RippleEffect from "@/features/playground/experiments/RippleEffect";
+import BlurCarouselDemo from "@/features/playground/experiments/BlurCarousel";
+import ProductTransition from "@/features/playground/experiments/ProductTransition";
+import ProductDetailsPage from "@/features/playground/experiments/ProductDetailsPage";
+import ThreeDimensionalMarquee from "@/features/playground/experiments/ThreeDimensionalMarquee";
+import CssKeyboard from "@/features/playground/experiments/CssKeyboard";
+import Stickers from "@/features/playground/experiments/Stickers";
 
 export const playgroundExperimentRoutes = [
   {
     path: "/painting-wheel",
-    component: lazy(
-      () => import("@/features/playground/experiments/PaintingWheel")
-    ),
+    component: PaintingWheel,
   },
   {
     path: "/curved-css-solid",
-    component: lazy(
-      () => import("@/features/playground/experiments/CurvedCssSolid")
-    ),
+    component: CurvedCssSolid,
   },
   {
     path: "/ripple-effect",
-    component: lazy(
-      () => import("@/features/playground/experiments/RippleEffect")
-    ),
+    component: RippleEffect,
   },
   {
     path: "/blur-carousel",
-    component: lazy(
-      () => import("@/features/playground/experiments/BlurCarousel")
-    ),
+    component: BlurCarouselDemo,
   },
   {
     path: "/product-transitions",
-    component: lazy(
-      () => import("@/features/playground/experiments/ProductTransition")
-    ),
-    children: [
-      {
-        path: "/:productId",
-        component: lazy(
-          () => import("@/features/playground/experiments/ProductDetailsPage")
-        ),
-      },
-    ],
+    component: ProductTransition,
+    children: [{ path: "/:productId", component: ProductDetailsPage }],
   },
   {
     path: "/three-dimensional-marquee",
-    component: lazy(
-      () => import("@/features/playground/experiments/ThreeDimensionalMarquee")
-    ),
+    component: ThreeDimensionalMarquee,
   },
   {
     path: "/css-keyboard",
-    component: lazy(
-      () => import("@/features/playground/experiments/CssKeyboard")
-    ),
+    component: CssKeyboard,
   },
   {
     path: "/stickers",
-    component: lazy(() => import("@/features/playground/experiments/Stickers")),
+    component: Stickers,
   },
 ];

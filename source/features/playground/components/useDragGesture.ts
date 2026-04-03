@@ -15,7 +15,7 @@ function clampPosition(value: number, max: number): number {
 export function useDragGesture(
   initialTransform: Transform | undefined,
   isSelected: Cell<boolean>,
-  onDismiss?: () => void
+  onDismiss: (() => void) | undefined
 ) {
   const tx = Cell.source(initialTransform?.tx ?? 0);
   const ty = Cell.source(initialTransform?.ty ?? 0);
@@ -103,7 +103,7 @@ export function useDragGesture(
 
     if (isSelected.get()) {
       const shouldDismiss =
-        Math.abs(dismissTy.get()) > window.innerHeight * 0.3 ||
+        Math.abs(dismissTy.get()) > window.innerHeight * 0.2 ||
         Math.abs(dismissVelocityY) > 1;
       dismissTx.set(0);
       dismissTy.set(0);

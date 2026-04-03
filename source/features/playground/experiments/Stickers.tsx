@@ -207,7 +207,7 @@ const Stickers: RouteComponent = () => {
           class={[
             "w-screen h-screen overflow-hidden grid place-items-center *:[grid-area:1/1]",
             "before:bg-black before:z-95 before:absolute before:top-0 before:left-0 before:size-full before:opacity-0",
-            "before:duration-500 before:transition-opacity before:pointer-events-none",
+            "before:will-change-[opacity] before:pointer-events-none",
             { "before:opacity-80 before:pointer-events-auto!": selected },
           ]}
           onClick--self={handleOutsideClick}
@@ -221,7 +221,7 @@ const Stickers: RouteComponent = () => {
                 height={`${layout.stickerHeight}px`}
                 onSelect={handleSelect}
                 onDismiss={handleOutsideClick}
-                selectedSticker={selected}
+                selected={selected}
               />
             );
           })}

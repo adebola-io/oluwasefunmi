@@ -9,9 +9,13 @@
   touch-action: none;
   pointer-events: all;
   transform-origin: center;
-  transition-duration: 500ms;
-  transition-timing-function: var(--ease-spring);
+  container-name: sticker;
+  container-type: size;
   contain: strict;
+  transition-duration: 500ms;
+  will-change: scale, translate, rotate;
+  animation: from-initial calc(700ms + ((var(--index) + 1) * 20ms))
+    var(--ease-spring);
 
   --clip: shape(
     evenodd from 0.916372% 0.036568%,
@@ -386,11 +390,6 @@
   );
 }
 
-.animated {
-  animation: from-initial calc(700ms + ((var(--index) + 1) * 20ms))
-    var(--ease-spring);
-}
-
 .clip {
   height: var(--height);
   width: 100%;
@@ -411,14 +410,11 @@
   background-color: lightblue;
 }
 
-.text {
-  text-align: center;
-  grid-area: 2 / 1;
-  color: var(--color-amber-950);
-  font-weight: light;
-  font-style: italic;
-  font-family: sans-serif;
-  width: 85%;
+.image {
+  height: var(--height);
+  width: 100%;
+  pointer-events: none;
+  object-fit: cover;
 }
 
 @keyframes from-initial {
