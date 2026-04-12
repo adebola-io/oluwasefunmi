@@ -1,12 +1,6 @@
 import { For } from "retend";
-import type { JSX } from "retend/jsx-runtime";
 import classes from "./ConnectWidget.module.css";
-
-interface SocialLink {
-  name: string;
-  url: string;
-  icon: JSX.Element;
-}
+import type { SocialLink } from "../../data/socialLinks";
 
 interface ConnectWidgetProps {
   links: SocialLink[];
@@ -29,7 +23,9 @@ export function ConnectWidget(props: ConnectWidgetProps) {
             rel="noopener noreferrer"
             data-pill-link
           >
-            <span class={classes.icon}>{link.icon}</span>
+            <span class={classes.icon}>
+              <link.icon />
+            </span>
             <span>{link.name}</span>
             <span class={classes.iconArrow}>
               <svg width="12" height="12" viewBox="0 0 12 12" fill="none">
