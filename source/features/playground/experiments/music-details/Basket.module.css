@@ -1,0 +1,154 @@
+.basket {
+  --base-depth: 205px;
+  --base-width: 250px;
+  --base-height: 200px;
+  --base-inset: 15px;
+
+  --depth: var(--base-depth);
+  --width: var(--base-width);
+  --height: var(--base-height);
+  --inset: var(--base-inset);
+
+  --inset-width: calc(var(--inset) * sqrt(2));
+  --double-inset: calc(var(--inset) * 2);
+  --half-depth: calc(var(--depth) / 2);
+  --half-width: calc(var(--width) / 2);
+  --half-height: calc(var(--height) / 2);
+
+  --base-color: brown;
+  --color: var(--base-color);
+  --shade-color: color-mix(in srgb, var(--base-color) 50%, black);
+
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  place-items: center;
+  width: var(--width);
+  height: var(--height);
+  color: #000;
+  /*pointer-events: none;*/
+  user-select: none;
+  transform-style: preserve-3d;
+}
+
+.face,
+.side,
+.base,
+.curve {
+  grid-area: 1 / 1;
+  background: var(--color);
+
+  &:not(.bottom, .curve) {
+    -webkit-mask-image: url("basket-holes.svg"), linear-gradient(black, black);
+    mask-image: url("basket-holes.svg"), linear-gradient(black, black);
+    -webkit-mask-repeat: no-repeat;
+    mask-repeat: no-repeat;
+    mask-size: 100%;
+    mask-position: center;
+
+    -webkit-mask-composite: destination-out; /* Safari/Older Chrome */
+    mask-composite: exclude; /* Modern Standard */
+  }
+}
+
+.face {
+  width: calc(var(--width) - var(--double-inset));
+  height: var(--height);
+}
+
+.back {
+  transform: translateZ(calc(var(--half-depth) * -1)) rotateY(180deg);
+}
+
+.front {
+  transform: translateZ(var(--half-depth));
+}
+
+.side {
+  width: calc(var(--depth) - var(--double-inset));
+  height: var(--height);
+}
+
+.left {
+  transform: rotateY(-90deg) translateZ(var(--half-width));
+}
+
+.right {
+  transform: rotateY(90deg) translateZ(var(--half-width));
+}
+
+.base {
+  width: var(--width);
+  height: var(--depth);
+}
+
+.bottom {
+  transform: rotateX(-90deg) translateZ(var(--half-height));
+  clip-path: polygon(
+    var(--inset) 0,
+    calc(100% - var(--inset)) 0,
+    100% var(--inset),
+    100% calc(100% - var(--inset)),
+    calc(100% - var(--inset)) 100%,
+    var(--inset) 100%,
+    0 calc(100% - var(--inset)),
+    0 var(--inset)
+  );
+  background-color: color-mix(in srgb, var(--color) 70%, black);
+}
+
+.curve {
+  width: calc(var(--inset-width) + 1px);
+  height: var(--height);
+  background-image: linear-gradient(
+    to right,
+    transparent,
+    color-mix(in srgb, var(--color) 85%, black),
+    transparent
+  );
+}
+
+.frontLeft {
+  transform-origin: left;
+  justify-self: start;
+  transform: translateZ(calc(var(--half-depth) - var(--inset))) rotateY(-45deg);
+}
+
+.backLeft {
+  transform-origin: left;
+  justify-self: start;
+  transform: translateZ(calc((var(--half-depth) * -1) + var(--inset)))
+    rotateY(45deg);
+}
+
+.frontRight {
+  transform-origin: right;
+  justify-self: end;
+  transform: translateZ(calc(var(--half-depth) - var(--inset))) rotateY(45deg);
+}
+
+.backRight {
+  transform-origin: right;
+  justify-self: end;
+  transform: translateZ(calc((var(--half-depth) * -1) + var(--inset)))
+    rotateY(-45deg);
+}
+
+.shading {
+  grid-area: 1 / 1;
+  --width: calc(var(--base-width) * 0.98);
+  --height: calc(var(--base-height) * 0.98);
+  --depth: calc(var(--base-depth) * 0.98);
+  --inset: calc(var(--base-inset) * 0.98);
+  --color: var(--shade-color);
+
+  .face,
+  .side,
+  .curve {
+    scale: 1 1.03;
+  }
+
+  .bottom {
+    transform: rotateX(-90deg) translateZ(calc(var(--half-height) * 0.95));
+  }
+}
