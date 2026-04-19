@@ -51,4 +51,10 @@ export const playgroundExperimentRoutes = [
       () => import("@/features/playground/experiments/CssKeyboard")
     ),
   },
+  {
+    path: "/music-player",
+    component: lazy(
+      () => import("@/features/playground/experiments/MusicPlayer")
+    ),
+  },
 ];

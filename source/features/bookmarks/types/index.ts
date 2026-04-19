@@ -1,3 +1,9 @@
+export interface BookmarkOpenGraph {
+  title: string;
+  description: string;
+  siteName: string;
+}
+
 export interface Bookmark {
   id: string;
   link: string;
@@ -5,9 +11,5 @@ export interface Bookmark {
   notes: string;
   image: string;
   themeColor: string;
-  openGraph: {
-    title: string;
-    description: string;
-    siteName: string;
-  };
+  openGraph: BookmarkOpenGraph;
 }

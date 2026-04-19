@@ -1,4 +1,6 @@
-const imageModules = import.meta.glob<{ default: string }>(
+import type { ImageModule } from "@/shared/types";
+
+const imageModules = import.meta.glob<ImageModule>(
   "/source/features/playground/data/images/music/*.webp",
   { eager: true }
 );

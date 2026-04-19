@@ -1,9 +1,17 @@
-const paintingsImages = import.meta.glob<{ default: string }>(
+import type { ImageModule } from "@/shared/types";
+
+interface PaintingImage {
+  default: string;
+  small: string;
+  gradient: string;
+}
+
+const paintingsImages = import.meta.glob<ImageModule>(
   "/source/features/playground/data/images/paintings/*.webp",
   { eager: true }
 );
 
-const paintingsSmallImages = import.meta.glob<{ default: string }>(
+const paintingsSmallImages = import.meta.glob<ImageModule>(
   "/source/features/playground/data/images/paintings-small/*.webp",
   { eager: true }
 );
@@ -41,10 +49,13 @@ const gradientMap: Record<number, string> = {
   30: "radial-gradient(circle at 20% 20%, rgb(144 116 97) 0, transparent 45%), radial-gradient(circle at 80% 20%, rgb(101 87 70) 0, transparent 45%), radial-gradient(circle at 20% 80%, rgb(115 104 95) 0, transparent 45%), radial-gradient(circle at 80% 80%, rgb(121 106 96) 0, transparent 45%), linear-gradient(180deg, rgb(109 93 80), rgb(115 104 95))",
 };
 
-const imageMap: Record<
-  number,
-  { default: string; small: string; gradient: string }
-> = {};
+interface PaintingImage {
+  default: string;
+  small: string;
+  gradient: string;
+}
+
+const imageMap: Record<number, PaintingImage> = {};
 
 // Process full-size paintings
 for (const path of Object.keys(paintingsImages)) {
@@ -70,18 +81,11 @@ for (const path of Object.keys(paintingsSmallImages)) {
   }
 }
 
-export function getPaintingImage(id: number): {
-  default: string;
-  small: string;
-  gradient: string;
-} {
+export function getPaintingImage(id: number): PaintingImage {
   return imageMap[id];
 }
 
-export function getAllPaintingImages(): Record<
-  number,
-  { default: string; small: string; gradient: string }
-> {
+export function getAllPaintingImages(): Record<number, PaintingImage> {
   return { ...imageMap };
 }
 

@@ -6,8 +6,14 @@ import { PaintingWheelIcon } from "@/components/icons/painting-wheel";
 import { ShoppingCartIcon } from "@/components/icons/shopping-cart";
 import { HaloIcon } from "@/components/icons/halo";
 import { KeyboardIcon } from "@/components/icons/keyboard";
+import { MusicIcon } from "@/components/icons/music";
 
-function ExternalLink(props: { url: string; children: string }) {
+interface ExternalLinkProps {
+  url: string;
+  children: string;
+}
+
+function ExternalLink(props: ExternalLinkProps) {
   const { url, children } = props;
   return (
     <a
@@ -23,6 +29,14 @@ function ExternalLink(props: { url: string; children: string }) {
 }
 
 export const playgroundItems: PlaygroundItem[] = [
+  {
+    path: "/playground/music-player",
+    title: "music-player",
+    description: () => (
+      <>A sleek music player with animated album artwork and smooth playback.</>
+    ),
+    icon: () => <MusicIcon />,
+  },
   {
     path: "/playground/painting-wheel",
     title: "painting-wheel",

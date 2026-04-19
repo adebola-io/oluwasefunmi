@@ -1,5 +1,9 @@
 import type { MDXModule } from "mdx/types";
 
+export interface ImageModule {
+  default: string;
+}
+
 export interface Note {
   id: string;
   title: string;

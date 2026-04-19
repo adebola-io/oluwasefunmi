@@ -1,11 +1,14 @@
 let audioCtx: AudioContext | null = null;
 
+interface WebkitWindow {
+  webkitAudioContext: typeof AudioContext;
+}
+
 const initAudio = () => {
   if (!audioCtx && typeof window !== "undefined") {
     const AudioContextClass =
       window.AudioContext ||
-      (window as unknown as { webkitAudioContext: typeof AudioContext })
-        .webkitAudioContext;
+      (window as unknown as WebkitWindow).webkitAudioContext;
     audioCtx = new AudioContextClass();
   }
   return audioCtx;

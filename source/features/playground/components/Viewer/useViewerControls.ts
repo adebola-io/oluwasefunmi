@@ -50,7 +50,12 @@ export function useViewerControls(
     damping,
   } = params;
 
-  const pointers = new Map<number, { x: number; y: number }>();
+  interface PointerPosition {
+    x: number;
+    y: number;
+  }
+
+  const pointers = new Map<number, PointerPosition>();
   let lastPinchDist = 0;
   let lastMoveTime = 0;
 
