@@ -1,8 +1,10 @@
 .basket {
-  --base-depth: 205px;
-  --base-width: 250px;
-  --base-height: 200px;
-  --base-inset: 15px;
+  --size: min(16dvh, 25dvw);
+
+  --base-depth: calc(var(--size) * 2);
+  --base-width: calc(var(--size) * 2.35);
+  --base-height: calc(var(--size) * 2);
+  --base-inset: 12px;
 
   --depth: var(--base-depth);
   --width: var(--base-width);
@@ -15,9 +17,10 @@
   --half-width: calc(var(--width) / 2);
   --half-height: calc(var(--height) / 2);
 
-  --base-color: brown;
+  --base-color: var(--color-violet-600);
   --color: var(--base-color);
   --shade-color: color-mix(in srgb, var(--base-color) 50%, black);
+  --light-color: color-mix(in srgb, var(--base-color) 35%, #ffffff60);
 
   display: grid;
   grid-template-columns: 1fr;
@@ -25,10 +28,21 @@
   place-items: center;
   width: var(--width);
   height: var(--height);
-  color: #000;
-  /*pointer-events: none;*/
   user-select: none;
   transform-style: preserve-3d;
+}
+
+.content {
+  display: grid;
+  grid-area: 1 / 1;
+  max-height: var(--height);
+  transform-style: preserve-3d;
+  translate: 0 -3% calc(var(--depth) / -2.5);
+
+  & > * {
+    grid-area: 1/1;
+    align-self: end;
+  }
 }
 
 .face,
@@ -37,31 +51,55 @@
 .curve {
   grid-area: 1 / 1;
   background: var(--color);
-
-  &:not(.bottom, .curve) {
-    -webkit-mask-image: url("basket-holes.svg"), linear-gradient(black, black);
-    mask-image: url("basket-holes.svg"), linear-gradient(black, black);
-    -webkit-mask-repeat: no-repeat;
-    mask-repeat: no-repeat;
-    mask-size: 100%;
-    mask-position: center;
-
-    -webkit-mask-composite: destination-out; /* Safari/Older Chrome */
-    mask-composite: exclude; /* Modern Standard */
-  }
 }
 
 .face {
   width: calc(var(--width) - var(--double-inset));
   height: var(--height);
+
+  &:not(.shading > &) {
+    box-shadow: 15px 10px 8px 0 inset var(--light-color);
+  }
+}
+
+.side {
+  background-color: color-mix(in srgb, var(--base-color) 62%, black);
+}
+
+.face,
+.side {
+  -webkit-mask-image: url(./basket-holes.svg), linear-gradient(black, black);
+  mask-image: url(./basket-holes.svg), linear-gradient(black, black);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  mask-size: 100%;
+  mask-position: center;
+
+  -webkit-mask-composite: destination-out; /* Safari/Older Chrome */
+  mask-composite: exclude; /* Modern Standard */
 }
 
 .back {
   transform: translateZ(calc(var(--half-depth) * -1)) rotateY(180deg);
+
+  &:not(.shading > &) {
+    display: none;
+  }
 }
 
 .front {
   transform: translateZ(var(--half-depth));
+  display: grid;
+
+  &:not(.shading > &)::before {
+    display: block;
+    content: "";
+    background-image: linear-gradient(
+      to left top,
+      color-mix(in srgb, var(--color) 80%, black),
+      var(--color)
+    );
+  }
 }
 
 .side {
@@ -98,12 +136,13 @@
 }
 
 .curve {
+  display: grid;
   width: calc(var(--inset-width) + 1px);
   height: var(--height);
   background-image: linear-gradient(
     to right,
-    transparent,
-    color-mix(in srgb, var(--color) 85%, black),
+    color-mix(in srgb, var(--color) 60%, black),
+    color-mix(in srgb, var(--color) 60%, black),
     transparent
   );
 }
@@ -136,19 +175,33 @@
 
 .shading {
   grid-area: 1 / 1;
-  --width: calc(var(--base-width) * 0.98);
-  --height: calc(var(--base-height) * 0.98);
-  --depth: calc(var(--base-depth) * 0.98);
-  --inset: calc(var(--base-inset) * 0.98);
+  --scale-factor: 0.97;
+  --width: calc(var(--base-width) * var(--scale-factor));
+  --height: calc(var(--base-height) * var(--scale-factor));
+  --depth: calc(var(--base-depth) * var(--scale-factor));
+  --inset: calc(var(--base-inset) * var(--scale-factor));
   --color: var(--shade-color);
 
   .face,
   .side,
   .curve {
-    scale: 1 1.03;
+    translate: 0 -2.25%;
+  }
+
+  .front.face {
+    background-color: color-mix(in srgb, var(--color) 60%, black);
+  }
+
+  .curve {
+    background-image: none;
+  }
+
+  .side {
+    background-color: color-mix(in srgb, var(--color) 60%, black);
   }
 
   .bottom {
+    background-color: color-mix(in srgb, var(--color) 50%, black);
     transform: rotateX(-90deg) translateZ(calc(var(--half-height) * 0.95));
   }
 }

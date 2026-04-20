@@ -10,7 +10,7 @@ const MusicPlayer: RouteComponent = () => {
     <div class={classes.app}>
       <PlaygroundLayout title="Music Player">
         <div class="h-screen w-screen grid place-items-center">
-          <Viewer>
+          <Viewer initialRx={-20.1357} initialRy={36.994}>
             <ArtistBasket />
           </Viewer>
         </div>
