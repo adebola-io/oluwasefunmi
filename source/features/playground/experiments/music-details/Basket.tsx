@@ -2,14 +2,15 @@ import type { JSX } from "retend/jsx-runtime";
 import classes from "./Basket.module.css";
 
 interface BasketProps {
+  color?: JSX.ValueOrCell<string>;
   children?: JSX.Children;
 }
 
 export function Basket(props: BasketProps) {
-  const { children } = props;
+  const { children, color = "var(--color-sky-500)" } = props;
 
   return (
-    <div class={classes.basket}>
+    <div class={classes.basket} style={{ "--base-color": color }}>
       <BasketSides />
       <div class={[classes.basket, classes.shading]}>
         <BasketSides />

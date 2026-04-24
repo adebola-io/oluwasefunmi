@@ -1,8 +1,8 @@
 import { For } from "retend";
-import { artists } from "../../data/music-project";
-import { ArtistFolder } from "./ArtistFolder";
+import { albums } from "../../data/music-project";
+import { AlbumCover } from "./AlbumCover";
 
-export function ArtistGrid() {
+export function AlbumGrid() {
   return (
     <div
       class={[
@@ -10,8 +10,8 @@ export function ArtistGrid() {
         "max-xl:grid-cols-4 max-md:grid-cols-3 max-sm:grid-cols-2",
       ]}
     >
-      {For(artists, (artist) => {
-        return <ArtistFolder artist={artist} />;
+      {For(albums, (album) => {
+        return <AlbumCover album={album} />;
       })}
     </div>
   );

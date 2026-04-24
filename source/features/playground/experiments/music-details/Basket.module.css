@@ -1,5 +1,5 @@
 .basket {
-  --size: min(14dvh, 25dvw);
+  --size: min(10dvh, 20dvw);
 
   --base-depth: calc(var(--size) * 2);
   --base-width: calc(var(--size) * 2.35);
@@ -17,7 +17,6 @@
   --half-width: calc(var(--width) / 2);
   --half-height: calc(var(--height) / 2);
 
-  --base-color: var(--color-orange-400);
   --color: var(--base-color);
   --shade-color: color-mix(in srgb, var(--base-color) 50%, black);
   --light-color: color-mix(in srgb, var(--base-color) 35%, #ffffff60);
@@ -46,7 +45,7 @@
   grid-area: 1 / 1;
   align-self: end;
   transform-style: preserve-3d;
-  transform: translateY(calc(-100% + var(--height))) rotateX(10deg)
+  transform: translateY(calc(-100% + var(--height))) rotateX(5deg)
     translateZ(calc(var(--depth) * var(--index)))
     translateY(calc(3px * var(--index)));
 }
@@ -62,14 +61,10 @@
 .face {
   width: calc(var(--width) - var(--double-inset));
   height: var(--height);
-
-  &:not(.shading > &) {
-    box-shadow: 15px 10px 8px 0 inset var(--light-color);
-  }
 }
 
 .side {
-  background-color: color-mix(in srgb, var(--base-color) 62%, black);
+  background-color: color-mix(in srgb, var(--base-color) 60%, black);
 }
 
 .face,
@@ -88,10 +83,7 @@
 
 .back {
   transform: translateZ(calc(var(--half-depth) * -1)) rotateY(180deg);
-
-  &:not(.shading > &) {
-    display: none;
-  }
+  background-color: color-mix(in srgb, var(--base-color) 60%, black);
 }
 
 .front {
@@ -99,18 +91,23 @@
   transform: translateZ(var(--half-depth));
   display: grid;
 
+  &:not(.shading > &) {
+    box-shadow: 15px 10px 8px 0 inset var(--light-color);
+  }
+
   &:not(.shading > &)::before {
     display: block;
     content: "";
     background-size: 100%;
+    background-color: var(--base-color);
     background-position: center;
     background-repeat: no-repeat;
     background-image:
       var(--basket-hole-highlights),
       linear-gradient(
-        to left top,
-        color-mix(in srgb, var(--color) 80%, black),
-        var(--color)
+        35deg,
+        color-mix(in srgb, var(--base-color) 75%, #ffffff) 4%,
+        transparent 8%
       );
   }
 }
@@ -152,18 +149,18 @@
   display: grid;
   width: calc(var(--inset-width) + 1px);
   height: var(--height);
-  background-image: linear-gradient(
-    to right,
-    color-mix(in srgb, var(--color) 60%, black),
-    color-mix(in srgb, var(--color) 60%, black),
-    transparent
-  );
 }
 
 .frontLeft {
   transform-origin: left;
   justify-self: start;
   transform: translateZ(calc(var(--half-depth) - var(--inset))) rotateY(-45deg);
+  background-image: linear-gradient(
+    to right,
+    color-mix(in srgb, var(--color) 60%, black),
+    color-mix(in srgb, var(--color) 50%, black),
+    transparent
+  );
 }
 
 .backLeft {
@@ -171,12 +168,19 @@
   justify-self: start;
   transform: translateZ(calc((var(--half-depth) * -1) + var(--inset)))
     rotateY(45deg);
+  background-color: color-mix(in srgb, var(--base-color) 60%, black);
 }
 
 .frontRight {
   transform-origin: right;
   justify-self: end;
   transform: translateZ(calc(var(--half-depth) - var(--inset))) rotateY(45deg);
+  background-image: linear-gradient(
+    to left,
+    color-mix(in srgb, var(--color) 60%, black),
+    color-mix(in srgb, var(--color) 50%, black),
+    transparent
+  );
 }
 
 .backRight {
@@ -184,6 +188,7 @@
   justify-self: end;
   transform: translateZ(calc((var(--half-depth) * -1) + var(--inset)))
     rotateY(-45deg);
+  background-color: color-mix(in srgb, var(--base-color) 60%, black);
 }
 
 .shading {
@@ -205,8 +210,9 @@
     background-color: color-mix(in srgb, var(--color) 60%, black);
   }
 
-  .curve {
+  .curve:is(.curve) {
     background-image: none;
+    background-color: color-mix(in srgb, var(--color) 60%, black);
   }
 
   .side {
@@ -214,7 +220,7 @@
   }
 
   .bottom {
-    background-color: color-mix(in srgb, var(--color) 50%, black);
+    background-color: color-mix(in srgb, var(--color) 80%, black);
     transform: rotateX(-90deg) translateZ(calc(var(--half-height) * 0.95));
   }
 }
