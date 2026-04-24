@@ -14,7 +14,8 @@ export function ArtistFolder(props: ArtistFolderProps) {
       class="grid grid-cols-1 group perspective-midrange rounded-lg"
     >
       <div
-        class="z-[-1] bg-white rounded-lg overflow-hidden outline-1 outline-[#ffffff70]"
+        data-back
+        class="z-[-1] w-auto aspect-square bg-white rounded-lg overflow-hidden outline-1 outline-[#ffffff70]"
         style={{ gridArea: "1/1" }}
       >
         <div
@@ -25,8 +26,9 @@ export function ArtistFolder(props: ArtistFolderProps) {
         ></div>
       </div>
       <div
+        data-front
         class={[
-          "h-45 w-auto aspect-[0.8] rounded-lg overflow-hidden outline-1 outline-[#ffffff70]",
+          "w-auto aspect-square rounded-lg overflow-hidden outline-1 outline-[#ffffff70]",
           "group-hover:-rotate-y-35 duration-350 ease-(--ease-spring) transition-transform perspective-origin-left origin-left",
         ]}
         style={{
