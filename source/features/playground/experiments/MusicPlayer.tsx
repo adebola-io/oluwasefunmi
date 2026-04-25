@@ -3,6 +3,7 @@ import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLay
 import { SITE_URL } from "@/shared/constants";
 import classes from "./MusicPlayer.module.css";
 import { AlbumBasket, AlbumBasketProps } from "./music-details/AlbumBasket";
+import { AlbumSelectionScope } from "./music-details/AlbumSelectionScope";
 import { AlbumList } from "./music-details/AlbumList";
 import { GridPlaceholders } from "./music-details/GridPlaceholders";
 import {
@@ -36,27 +37,29 @@ const MusicPlayer: RouteComponent = () => {
       ]}
     >
       <PlaygroundLayout title="Music Player">
-        <div
-          class={[
-            "h-screen w-screen",
-            "grid grid-cols-[repeat(var(--cols),calc(var(--size)*2))] grid-rows-[repeat(var(--rows),var(--album-row-height))]",
-            "justify-center content-start md:content-center gap-x-[10dvw] pt-50",
-          ]}
-          style={{
-            "--cols": cols,
-            "--rows": rows,
-            gridTemplateAreas,
-            pointerEvents,
-          }}
-        >
-          <GridPlaceholders />
-          <AlbumList selected={selected} />
-        </div>
-        <div class="fixed w-screen h-screen flex justify-center items-center inset-0 pointer-events-none pt-50">
-          {If(selected, (decade) => (
-            <AlbumBasket {...decade} isSelected />
-          ))}
-        </div>
+        <AlbumSelectionScope.Provider value={selected}>
+          <div
+            class={[
+              "h-screen w-screen",
+              "grid grid-cols-[repeat(var(--cols),calc(var(--size)*2))] grid-rows-[repeat(var(--rows),var(--album-row-height))]",
+              "justify-center content-start md:content-center gap-x-[10dvw] pt-50",
+            ]}
+            style={{
+              "--cols": cols,
+              "--rows": rows,
+              gridTemplateAreas,
+              pointerEvents,
+            }}
+          >
+            <GridPlaceholders />
+            <AlbumList />
+          </div>
+          <div class="fixed w-screen h-screen flex justify-center items-center inset-0 pointer-events-none pt-50">
+            {If(selected, (decade) => (
+              <AlbumBasket {...decade} isSelected />
+            ))}
+          </div>
+        </AlbumSelectionScope.Provider>
       </PlaygroundLayout>
     </div>
   );

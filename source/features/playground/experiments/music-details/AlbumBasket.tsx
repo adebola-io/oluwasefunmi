@@ -1,7 +1,8 @@
-import { Cell, createUnique, For } from "retend";
+import { Cell, createUnique, For, useScopeContext } from "retend";
 import type { JSX } from "retend/jsx-runtime";
 import { Album } from "../../data/music-project";
 import { AlbumCover } from "./AlbumCover";
+import { AlbumSelectionScope } from "./AlbumSelectionScope";
 import { Basket } from "./Basket";
 import { BasketItem } from "./BasketItem";
 import { UniqueTransition } from "retend-utils/components";
@@ -13,7 +14,6 @@ export interface AlbumBasketProps {
   albums: Album[];
   index: JSX.ValueOrCell<number>;
   isSelected?: boolean;
-  selected?: Cell<AlbumBasketProps | null>;
   onSelect?: (props: AlbumBasketProps) => void;
 }
 
@@ -24,15 +24,17 @@ export const AlbumBasket = createUnique<AlbumBasketProps>((props) => {
     albums = [],
     color,
     onSelect,
-    selected,
     index,
   } = props.get();
+
+  const selected = useScopeContext(AlbumSelectionScope);
 
   const isSelected = Cell.derived(() => Boolean(props.get().isSelected));
   const text = `${albums.length} ${albums.length === 1 ? "album" : "albums"}`;
   const hovered = Cell.source(false);
+  const basketContainer = Cell.source<HTMLDivElement | null>(null);
   const hidden = Cell.derived(() => {
-    return Boolean(selected?.get()?.id && selected.get()?.id !== id);
+    return Boolean(selected.get()?.id && selected.get()?.id !== id);
   });
   const gridArea = Cell.derived(() => {
     const resolvedIndex = index instanceof Cell ? index.get() : index;
@@ -44,6 +46,7 @@ export const AlbumBasket = createUnique<AlbumBasketProps>((props) => {
   });
 
   const handleMouseEnter = () => {
+    if (!isSelected.get()) return;
     hovered.set(true);
   };
 
@@ -51,8 +54,16 @@ export const AlbumBasket = createUnique<AlbumBasketProps>((props) => {
     hovered.set(false);
   };
 
-  const handleClick = () => {
-    onSelect?.(props.get());
+  const handleClick = async () => {
+    const div = basketContainer.get();
+    if (div) {
+      const animations = div.getAnimations({ subtree: true });
+      await Promise.all(animations.map((animation) => animation.finished));
+    }
+    Cell.batch(() => {
+      hovered.set(false);
+      onSelect?.(props.get());
+    });
   };
 
   return (
@@ -76,13 +87,14 @@ export const AlbumBasket = createUnique<AlbumBasketProps>((props) => {
         onClick={handleClick}
       >
         <div
+          ref={basketContainer}
           class={[
             "transform-3d transition-transform duration-500 ease-(--ease-spring)",
             "transform-[rotateX(-20.1357deg)_rotateY(36.994deg)] translate-[0_35%]",
-            { "transform-[rotateX(-5.1357deg)_rotateY(5deg)]!": focused },
+            { "transform-[rotateX(2deg)_rotateY(5deg)]!": focused },
           ]}
         >
-          <Basket color={color}>
+          <Basket color={color} hovered={hovered} selected={isSelected}>
             {For(albums, (album, index) => (
               <BasketItem index={index} depth="min(10px,1.5dvw)">
                 <AlbumCover album={album} />
