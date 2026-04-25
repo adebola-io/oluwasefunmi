@@ -2,40 +2,60 @@ import type { RouteComponent } from "retend/router";
 import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
 import { SITE_URL } from "@/shared/constants";
 import classes from "./MusicPlayer.module.css";
-import { AlbumBasket } from "./music-details/AlbumBasket";
-import { albumDecades } from "../data/music-project";
+import { AlbumBasket, AlbumBasketProps } from "./music-details/AlbumBasket";
+import { AlbumList } from "./music-details/AlbumList";
+import { GridPlaceholders } from "./music-details/GridPlaceholders";
+import {
+  getAlbumGridColumns,
+  getAlbumGridRows,
+  getAlbumGridTemplateAreas,
+} from "./music-details/albumGrid";
+import { Cell, If } from "retend";
+import { useMatchMedia } from "retend-utils/hooks";
 
 const MusicPlayer: RouteComponent = () => {
+  const selected = Cell.source<AlbumBasketProps | null>(null);
+  const isTablet = useMatchMedia("(min-width: 768px)");
+  const isDesktop = useMatchMedia("(min-width: 1024px)");
+  const pointerEvents = Cell.derived(() => (selected.get() ? "none" : "auto"));
+
+  const cols = Cell.derived(() => {
+    return getAlbumGridColumns(isTablet.get(), isDesktop.get());
+  });
+  const rows = Cell.derived(() => getAlbumGridRows(cols.get()));
+  const gridTemplateAreas = Cell.derived(() => {
+    return getAlbumGridTemplateAreas(cols.get());
+  });
+
   return (
-    <div class={classes.app}>
+    <div
+      class={[
+        classes.app,
+        "[--size:min(12dvh,20dvw)] max-md:[--size:min(10dvh,15dvw)]",
+        "[--album-row-height:calc(var(--size)*4.75)] md:[--album-row-height:calc(var(--size)*3.75)]",
+      ]}
+    >
       <PlaygroundLayout title="Music Player">
         <div
           class={[
-            "group/baskets h-screen w-screen flex flex-col md:justify-center gap-x-[10dvw]",
-            "pt-70 items-center md:flex-row md:flex-wrap",
+            "h-screen w-screen",
+            "grid grid-cols-[repeat(var(--cols),calc(var(--size)*2))] grid-rows-[repeat(var(--rows),var(--album-row-height))]",
+            "justify-center content-start md:content-center gap-x-[10dvw] pt-50",
           ]}
+          style={{
+            "--cols": cols,
+            "--rows": rows,
+            gridTemplateAreas,
+            pointerEvents,
+          }}
         >
-          <AlbumBasket
-            id="2000s"
-            title="2000s"
-            color="color-mix(in srgb, var(--color-blue-500) 90%, black)"
-            albums={albumDecades["2000s"]}
-            index={0}
-          />
-          <AlbumBasket
-            id="2010s"
-            title="2010s"
-            color="color-mix(in srgb, var(--color-red-500) 90%, black)"
-            albums={albumDecades["2010s"]}
-            index={1}
-          />
-          <AlbumBasket
-            id="2020s"
-            title="2020s"
-            color="color-mix(in srgb, var(--color-green-500) 90%, black)"
-            albums={albumDecades["2020s"]}
-            index={2}
-          />
+          <GridPlaceholders />
+          <AlbumList selected={selected} />
+        </div>
+        <div class="fixed w-screen h-screen flex justify-center items-center inset-0 pointer-events-none pt-50">
+          {If(selected, (decade) => (
+            <AlbumBasket {...decade} isSelected />
+          ))}
         </div>
       </PlaygroundLayout>
     </div>
