@@ -44,8 +44,8 @@
   .side,
   .base,
   .curve {
-    transition: translate 800ms var(--ease-spring);
-    translate: 0 50dvw;
+    transition: translate 500ms var(--ease-spring);
+    translate: 0 35dvw;
   }
 }
 

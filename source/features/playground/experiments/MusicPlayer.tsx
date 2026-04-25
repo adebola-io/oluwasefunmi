@@ -9,6 +9,7 @@ import {
   getAlbumGridColumns,
   getAlbumGridRows,
   getAlbumGridTemplateAreas,
+  SIZING_CLASSES,
 } from "./music-details/albumGrid";
 import { Cell } from "retend";
 import { useMatchMedia } from "retend-utils/hooks";
@@ -27,13 +28,7 @@ const MusicPlayer: RouteComponent = () => {
   });
 
   return (
-    <div
-      class={[
-        classes.app,
-        "[--size:min(12dvh,20dvw)] max-md:[--size:min(10dvh,15dvw)]",
-        "[--album-row-height:calc(var(--size)*4.75)] md:[--album-row-height:calc(var(--size)*3.75)]",
-      ]}
-    >
+    <div class={[classes.app, SIZING_CLASSES]}>
       <PlaygroundLayout title="Music Player">
         <AlbumSelectionScope.Provider value={selected}>
           <AlbumGridView
