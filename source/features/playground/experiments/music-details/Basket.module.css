@@ -1,5 +1,5 @@
 .basket {
-  --size: min(10dvh, 20dvw);
+  --size: min(12dvh, 20dvw);
 
   --base-depth: calc(var(--size) * 2);
   --base-width: calc(var(--size) * 2.35);
@@ -37,17 +37,30 @@
   height: var(--height);
   width: 93%;
   align-items: end;
+  transition: translate 500ms var(--ease-spring);
   transform-style: preserve-3d;
-  translate: 0 -20px calc(var(--depth) / -2.5);
+  translate: 0 -15% calc(var(--depth) / -3);
+
+  .basket:hover & {
+    translate: 0 0 calc(var(--depth) / -3);
+  }
 }
 
 .basketItem {
   grid-area: 1 / 1;
   align-self: end;
+  transition: transform 500ms var(--ease-spring);
   transform-style: preserve-3d;
-  transform: translateY(calc(-100% + var(--height))) rotateX(5deg)
+  transform: translateY(calc(-100% + var(--height)))
+    rotateX(var(--item-rest, 10deg))
     translateZ(calc(var(--depth) * var(--index)))
-    translateY(calc(3px * var(--index)));
+    translateY(calc(var(--depth) * var(--index) / 2.5));
+
+  .basket:hover & {
+    transform: translateY(calc(-100% + var(--height)))
+      translateZ(calc(var(--depth) * var(--index)))
+      translateY(calc(var(--depth) * var(--index) / 5 * -1));
+  }
 }
 
 .face,

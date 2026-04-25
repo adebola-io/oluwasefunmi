@@ -9,34 +9,46 @@ interface AlbumBasketProps {
   title: string;
   color: string;
   albums: Album[];
+  index?: number;
 }
 
 export function AlbumBasket(props: AlbumBasketProps) {
-  const { title = "Collection", albums = [], color } = props;
+  const { title = "Collection", albums = [], color, index = 0 } = props;
   const text = `${albums.length} ${albums.length === 1 ? "album" : "albums"}`;
+  const animationDelay = `${index * 150}ms`;
+  const initialDisplay = `${index * 10}%`;
 
   return (
     <Link
-      class="transform-3d text-center animate-fade-in"
+      class={[
+        "transform-3d text-center",
+        "[--size:min(12dvh,20dvw)]",
+        "max-md:[--size:min(10dvh,15dvw)]",
+      ]}
       href="#"
       style={{ "--color": color }}
     >
       <div
-        class={[
-          "transform-3d transition-transform duration-500 ease-(--ease-spring)",
-          "transform-[rotateX(-20.1357deg)_rotateY(36.994deg)]",
-          "hover:transform-[rotateX(-35.1357deg)_rotateY(10deg)_scale(1.075)]",
-        ]}
+        class="animate-fade-in [animation-fill-mode:backwards]"
+        style={{ animationDelay, "--initial-display": initialDisplay }}
       >
-        <Basket color={color}>
-          {For(albums, (album, index) => {
-            return (
-              <BasketItem index={index} depth="min(12px,1.5dvw)">
-                <AlbumCover album={album} />
-              </BasketItem>
-            );
-          })}
-        </Basket>
+        <div
+          class={[
+            "transform-3d transition-transform duration-500 ease-(--ease-spring) group",
+            "transform-[rotateX(-20.1357deg)_rotateY(36.994deg)] translate-[0_35%] [--rotateX:15deg]",
+            "hover:transform-[rotateX(-5.1357deg)_rotateY(5deg)_scale(1.075)] hover:[--rotateX:0deg]",
+          ]}
+        >
+          <Basket color={color}>
+            {For(albums, (album, index) => {
+              return (
+                <BasketItem index={index} depth="min(10px,1.5dvw)">
+                  <AlbumCover album={album} />
+                </BasketItem>
+              );
+            })}
+          </Basket>
+        </div>
       </div>
       <h2 class="mt-[25%]! text-3xl">{title}</h2>
       <h3

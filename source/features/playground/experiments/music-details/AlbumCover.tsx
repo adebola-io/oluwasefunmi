@@ -22,7 +22,7 @@ export function AlbumCover(props: AlbumCoverProps) {
         data-front
         class={[
           "w-auto aspect-square rounded-lg overflow-hidden outline-1 outline-[#ffffff70]",
-          "group-hover:-rotate-y-35 duration-350 ease-(--ease-spring) transition-transform perspective-origin-left origin-left",
+          "duration-350 ease-(--ease-spring) transition-transform perspective-origin-left origin-left",
         ]}
         style={{ gridArea: "1/1" }}
       >

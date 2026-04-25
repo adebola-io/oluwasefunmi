@@ -11,24 +11,27 @@ const MusicPlayer: RouteComponent = () => {
       <PlaygroundLayout title="Music Player">
         <div
           class={[
-            "group/baskets h-screen w-screen flex flex-wrap justify-center pt-30 gap-[10dvw]",
-            "md:items-center",
+            "group/baskets h-screen w-screen flex flex-col md:justify-center gap-x-[10dvw]",
+            "pt-70 items-center md:flex-row md:flex-wrap",
           ]}
         >
           <AlbumBasket
             title="2000s"
-            color="var(--color-blue-400)"
+            color="color-mix(in srgb, var(--color-blue-500) 90%, black)"
             albums={albumDecades["2000s"]}
+            index={0}
           />
           <AlbumBasket
             title="2010s"
-            color="var(--color-pink-400)"
+            color="color-mix(in srgb, var(--color-red-500) 90%, black)"
             albums={albumDecades["2010s"]}
+            index={1}
           />
           <AlbumBasket
             title="2020s"
-            color="var(--color-green-400)"
+            color="color-mix(in srgb, var(--color-green-500) 90%, black)"
             albums={albumDecades["2020s"]}
+            index={2}
           />
         </div>
       </PlaygroundLayout>
