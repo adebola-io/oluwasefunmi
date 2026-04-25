@@ -49,6 +49,8 @@
 .basketItem {
   grid-area: 1 / 1;
   align-self: end;
+  width: 100%;
+  aspect-ratio: 1;
   transition: transform 500ms var(--ease-spring);
   transform-style: preserve-3d;
   transform: translateY(calc(-100% + var(--height)))
