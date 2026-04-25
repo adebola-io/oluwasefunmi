@@ -1,9 +1,10 @@
-import { For } from "retend";
+import { createUnique, For } from "retend";
 import { Album } from "../../data/music-project";
 import { AlbumCover } from "./AlbumCover";
 import { Basket } from "./Basket";
 import { BasketItem } from "./BasketItem";
 import { Link } from "retend/router";
+import { UniqueTransition } from "retend-utils/components";
 
 interface AlbumBasketProps {
   title: string;
@@ -12,8 +13,8 @@ interface AlbumBasketProps {
   index?: number;
 }
 
-export function AlbumBasket(props: AlbumBasketProps) {
-  const { title = "Collection", albums = [], color, index = 0 } = props;
+export const AlbumBasket = createUnique<AlbumBasketProps>((props) => {
+  const { title = "Collection", albums = [], color, index = 0 } = props.get();
   const text = `${albums.length} ${albums.length === 1 ? "album" : "albums"}`;
   const animationDelay = `${index * 150}ms`;
   const initialDisplay = `${index * 10}%`;
@@ -39,15 +40,17 @@ export function AlbumBasket(props: AlbumBasketProps) {
             "hover:transform-[rotateX(-5.1357deg)_rotateY(5deg)_scale(1.075)] hover:[--rotateX:0deg]",
           ]}
         >
-          <Basket color={color}>
-            {For(albums, (album, index) => {
-              return (
-                <BasketItem index={index} depth="min(10px,1.5dvw)">
-                  <AlbumCover album={album} />
-                </BasketItem>
-              );
-            })}
-          </Basket>
+          <UniqueTransition>
+            <Basket color={color}>
+              {For(albums, (album, index) => {
+                return (
+                  <BasketItem index={index} depth="min(10px,1.5dvw)">
+                    <AlbumCover album={album} />
+                  </BasketItem>
+                );
+              })}
+            </Basket>
+          </UniqueTransition>
         </div>
       </div>
       <h2 class="mt-[25%]! text-3xl">{title}</h2>
@@ -59,4 +62,4 @@ export function AlbumBasket(props: AlbumBasketProps) {
       </h3>
     </Link>
   );
-}
+});

@@ -27,97 +27,6 @@ export interface Track {
 export const albumDecades = {
   "2000s": [
     {
-      name: "Graduation",
-      artist: "Kanye West",
-      imageUrl: getAlbumImageUrl("01"),
-      tracks: [
-        {
-          name: "Good Morning",
-          duration: 195093,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/cb/09/59/cb0959cd-fcc5-66a3-c293-ed58a7ad9c43/mzaf_7396332483720740039.plus.aac.p.m4a",
-        },
-        {
-          name: "Champion",
-          duration: 167533,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/c6/b0/c4/c6b0c48e-ee0d-adaf-2de2-2eb3030e207c/mzaf_12936690838015566050.plus.aac.p.m4a",
-        },
-        {
-          name: "Stronger",
-          duration: 312027,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/96/f2/25/96f225f2-cd07-3639-4133-0910aa9725c0/mzaf_13857358519708863745.plus.aac.p.m4a",
-        },
-        {
-          name: "I Wonder",
-          duration: 243440,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/03/f4/d5/03f4d5de-1c09-33eb-7852-279a71ac989f/mzaf_15614695934438135653.plus.aac.p.m4a",
-        },
-        {
-          name: "Good Life (feat. T-Pain)",
-          duration: 206867,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/86/ee/43/86ee4336-6faf-b797-ea65-d5d7b50a1448/mzaf_2392976759773928581.plus.aac.p.m4a",
-        },
-        {
-          name: "Can't Tell Me Nothing",
-          duration: 271760,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/91/68/6d/91686d7a-3032-d619-bc96-6d47a638923e/mzaf_2195214387826453312.plus.aac.p.m4a",
-        },
-        {
-          name: "Barry Bonds (feat. Lil Wayne)",
-          duration: 204333,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/3e/69/70/3e6970d9-6046-a3a6-6ab9-d4293109d6bc/mzaf_18025088118585018750.plus.aac.p.m4a",
-        },
-        {
-          name: "Drunk and Hot Girls (feat. Mos Def)",
-          duration: 313267,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/6b/2b/ba/6b2bbad6-0c70-c500-c1c8-17a009488260/mzaf_11406950899012790617.plus.aac.p.m4a",
-        },
-        {
-          name: "Flashing Lights",
-          duration: 237440,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/c3/c6/c6/c3c6c652-2f19-1511-c8e9-e9caf9b6b4ac/mzaf_8110172512846397285.plus.aac.p.m4a",
-        },
-        {
-          name: "Everything I Am (feat. DJ Premier)",
-          duration: 227400,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/1f/22/c8/1f22c8ad-ee46-556a-4954-fc6e144e8cdd/mzaf_6785579153574032848.plus.aac.p.m4a",
-        },
-        {
-          name: "The Glory",
-          duration: 212667,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/cf/ee/44/cfee448d-dd18-4b41-4601-9dc79ec96cef/mzaf_1154119131438340276.plus.aac.p.m4a",
-        },
-        {
-          name: "Homecoming (feat. Chris Martin)",
-          duration: 204027,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/a0/b6/ac/a0b6ac24-9509-19e7-85a7-0be507d17c02/mzaf_5643812388289006313.plus.aac.p.m4a",
-        },
-        {
-          name: "Big Brother",
-          duration: 288067,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/47/63/22/476322c7-71c7-5f1a-ed9a-fd54d32a11a3/mzaf_1148386998108314560.plus.aac.p.m4a",
-        },
-        {
-          name: "Good Night",
-          duration: 186360,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/c7/e8/f2/c7e8f291-b671-568e-1542-882afce7649c/mzaf_16540076069964760748.plus.aac.p.m4a",
-        },
-      ],
-    },
-    {
       name: "The Blueprint",
       artist: "JAY-Z",
       imageUrl: getAlbumImageUrl("02"),
@@ -1069,6 +978,97 @@ export const albumDecades = {
         },
       ],
     },
+    {
+      name: "Graduation",
+      artist: "Kanye West",
+      imageUrl: getAlbumImageUrl("01"),
+      tracks: [
+        {
+          name: "Good Morning",
+          duration: 195093,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/cb/09/59/cb0959cd-fcc5-66a3-c293-ed58a7ad9c43/mzaf_7396332483720740039.plus.aac.p.m4a",
+        },
+        {
+          name: "Champion",
+          duration: 167533,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/c6/b0/c4/c6b0c48e-ee0d-adaf-2de2-2eb3030e207c/mzaf_12936690838015566050.plus.aac.p.m4a",
+        },
+        {
+          name: "Stronger",
+          duration: 312027,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/96/f2/25/96f225f2-cd07-3639-4133-0910aa9725c0/mzaf_13857358519708863745.plus.aac.p.m4a",
+        },
+        {
+          name: "I Wonder",
+          duration: 243440,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/03/f4/d5/03f4d5de-1c09-33eb-7852-279a71ac989f/mzaf_15614695934438135653.plus.aac.p.m4a",
+        },
+        {
+          name: "Good Life (feat. T-Pain)",
+          duration: 206867,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/86/ee/43/86ee4336-6faf-b797-ea65-d5d7b50a1448/mzaf_2392976759773928581.plus.aac.p.m4a",
+        },
+        {
+          name: "Can't Tell Me Nothing",
+          duration: 271760,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/91/68/6d/91686d7a-3032-d619-bc96-6d47a638923e/mzaf_2195214387826453312.plus.aac.p.m4a",
+        },
+        {
+          name: "Barry Bonds (feat. Lil Wayne)",
+          duration: 204333,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/3e/69/70/3e6970d9-6046-a3a6-6ab9-d4293109d6bc/mzaf_18025088118585018750.plus.aac.p.m4a",
+        },
+        {
+          name: "Drunk and Hot Girls (feat. Mos Def)",
+          duration: 313267,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/6b/2b/ba/6b2bbad6-0c70-c500-c1c8-17a009488260/mzaf_11406950899012790617.plus.aac.p.m4a",
+        },
+        {
+          name: "Flashing Lights",
+          duration: 237440,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/c3/c6/c6/c3c6c652-2f19-1511-c8e9-e9caf9b6b4ac/mzaf_8110172512846397285.plus.aac.p.m4a",
+        },
+        {
+          name: "Everything I Am (feat. DJ Premier)",
+          duration: 227400,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/1f/22/c8/1f22c8ad-ee46-556a-4954-fc6e144e8cdd/mzaf_6785579153574032848.plus.aac.p.m4a",
+        },
+        {
+          name: "The Glory",
+          duration: 212667,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/cf/ee/44/cfee448d-dd18-4b41-4601-9dc79ec96cef/mzaf_1154119131438340276.plus.aac.p.m4a",
+        },
+        {
+          name: "Homecoming (feat. Chris Martin)",
+          duration: 204027,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/a0/b6/ac/a0b6ac24-9509-19e7-85a7-0be507d17c02/mzaf_5643812388289006313.plus.aac.p.m4a",
+        },
+        {
+          name: "Big Brother",
+          duration: 288067,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview125/v4/47/63/22/476322c7-71c7-5f1a-ed9a-fd54d32a11a3/mzaf_1148386998108314560.plus.aac.p.m4a",
+        },
+        {
+          name: "Good Night",
+          duration: 186360,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/c7/e8/f2/c7e8f291-b671-568e-1542-882afce7649c/mzaf_16540076069964760748.plus.aac.p.m4a",
+        },
+      ],
+    },
   ],
   "2010s": [
     {
@@ -1873,79 +1873,6 @@ export const albumDecades = {
       ],
     },
     {
-      name: "Melodrama",
-      artist: "Lorde",
-      imageUrl: getAlbumImageUrl("21"),
-      tracks: [
-        {
-          name: "Green Light",
-          duration: 234653,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/29/1b/9c/291b9c00-c22f-83ff-4fe4-a42297eead29/mzaf_5824383652092511652.plus.aac.p.m4a",
-        },
-        {
-          name: "Sober",
-          duration: 197236,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/ec/77/36/ec7736e7-63f0-a269-0fbb-b98275071b40/mzaf_12862813556262448108.plus.aac.p.m4a",
-        },
-        {
-          name: "Homemade Dynamite",
-          duration: 189796,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/d5/2a/13/d52a1355-f58a-4fb4-379d-606463f24b94/mzaf_1028541608472805804.plus.aac.p.m4a",
-        },
-        {
-          name: "The Louvre",
-          duration: 271088,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/19/b9/dc/19b9dcdf-3214-48b8-4b86-0d2b0106bce7/mzaf_1528395909501949213.plus.aac.p.m4a",
-        },
-        {
-          name: "Liability",
-          duration: 171728,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/eb/a5/a7/eba5a771-34be-6326-4ee3-35e2dcf79594/mzaf_13889878111103243556.plus.aac.p.m4a",
-        },
-        {
-          name: "Hard Feelings/Loveless",
-          duration: 367391,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/7a/4d/c6/7a4dc61b-ac28-a6c5-d3f0-1bf5cd5fcc78/mzaf_11761535767805828865.plus.aac.p.m4a",
-        },
-        {
-          name: "Sober II (Melodrama)",
-          duration: 178639,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/97/1a/41/971a41de-83f7-0f09-71f0-83e509074b9e/mzaf_14348690236120292879.plus.aac.p.m4a",
-        },
-        {
-          name: "Writer In the Dark",
-          duration: 216611,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/b2/13/e8/b213e8a5-e2c1-951f-ed8a-d2acd83f11cf/mzaf_1974630579722186108.plus.aac.p.m4a",
-        },
-        {
-          name: "Supercut",
-          duration: 277506,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/8e/06/72/8e0672bf-bb7b-4f27-6cb2-4de39c51cd6b/mzaf_15211968924383781373.plus.aac.p.m4a",
-        },
-        {
-          name: "Liability (Reprise)",
-          duration: 136020,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/ff/f1/39/fff1399b-c3c5-7c1a-a031-eb20e5024d8a/mzaf_16312003558341740244.plus.aac.p.m4a",
-        },
-        {
-          name: "Perfect Places",
-          duration: 221874,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/da/f8/b5/daf8b548-1407-6f93-e05b-087f6411262c/mzaf_8348554146620787558.plus.aac.p.m4a",
-        },
-      ],
-    },
-    {
       name: "Ctrl",
       artist: "SZA",
       imageUrl: getAlbumImageUrl("22"),
@@ -2033,6 +1960,79 @@ export const albumDecades = {
           duration: 198160,
           previewUrl:
             "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview115/v4/6b/90/79/6b9079f5-6d17-9dda-0bc1-bd0f015044a0/mzaf_15484345961487981148.plus.aac.p.m4a",
+        },
+      ],
+    },
+    {
+      name: "Melodrama",
+      artist: "Lorde",
+      imageUrl: getAlbumImageUrl("21"),
+      tracks: [
+        {
+          name: "Green Light",
+          duration: 234653,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/29/1b/9c/291b9c00-c22f-83ff-4fe4-a42297eead29/mzaf_5824383652092511652.plus.aac.p.m4a",
+        },
+        {
+          name: "Sober",
+          duration: 197236,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/ec/77/36/ec7736e7-63f0-a269-0fbb-b98275071b40/mzaf_12862813556262448108.plus.aac.p.m4a",
+        },
+        {
+          name: "Homemade Dynamite",
+          duration: 189796,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/d5/2a/13/d52a1355-f58a-4fb4-379d-606463f24b94/mzaf_1028541608472805804.plus.aac.p.m4a",
+        },
+        {
+          name: "The Louvre",
+          duration: 271088,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/19/b9/dc/19b9dcdf-3214-48b8-4b86-0d2b0106bce7/mzaf_1528395909501949213.plus.aac.p.m4a",
+        },
+        {
+          name: "Liability",
+          duration: 171728,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/eb/a5/a7/eba5a771-34be-6326-4ee3-35e2dcf79594/mzaf_13889878111103243556.plus.aac.p.m4a",
+        },
+        {
+          name: "Hard Feelings/Loveless",
+          duration: 367391,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/7a/4d/c6/7a4dc61b-ac28-a6c5-d3f0-1bf5cd5fcc78/mzaf_11761535767805828865.plus.aac.p.m4a",
+        },
+        {
+          name: "Sober II (Melodrama)",
+          duration: 178639,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/97/1a/41/971a41de-83f7-0f09-71f0-83e509074b9e/mzaf_14348690236120292879.plus.aac.p.m4a",
+        },
+        {
+          name: "Writer In the Dark",
+          duration: 216611,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/b2/13/e8/b213e8a5-e2c1-951f-ed8a-d2acd83f11cf/mzaf_1974630579722186108.plus.aac.p.m4a",
+        },
+        {
+          name: "Supercut",
+          duration: 277506,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/8e/06/72/8e0672bf-bb7b-4f27-6cb2-4de39c51cd6b/mzaf_15211968924383781373.plus.aac.p.m4a",
+        },
+        {
+          name: "Liability (Reprise)",
+          duration: 136020,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/ff/f1/39/fff1399b-c3c5-7c1a-a031-eb20e5024d8a/mzaf_16312003558341740244.plus.aac.p.m4a",
+        },
+        {
+          name: "Perfect Places",
+          duration: 221874,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/da/f8/b5/daf8b548-1407-6f93-e05b-087f6411262c/mzaf_8348554146620787558.plus.aac.p.m4a",
         },
       ],
     },
@@ -2138,115 +2138,6 @@ export const albumDecades = {
           duration: 273998,
           previewUrl:
             "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/ed/51/b3/ed51b3d7-dfa8-4391-1309-887eec2ac887/mzaf_1695099044747843698.plus.aac.p.m4a",
-        },
-      ],
-    },
-    {
-      name: "THIS MUSIC MAY CONTAIN HOPE.",
-      artist: "RAYE",
-      imageUrl: getAlbumImageUrl("24"),
-      tracks: [
-        {
-          name: "Intro: Girl Under The Grey Cloud.",
-          duration: 73249,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/cc/16/a1/cc16a1d1-b967-4e2f-e3bc-a543c81211d0/mzaf_14681683103604779769.plus.aac.p.m4a",
-        },
-        {
-          name: "I Will Overcome.",
-          duration: 294646,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/9d/60/36/9d60368e-299a-905c-320f-5378166d4346/mzaf_5020014186772064675.plus.aac.p.m4a",
-        },
-        {
-          name: "Beware.. The South London Lover Boy.",
-          duration: 206122,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/89/1b/22/891b22a5-31f4-e7f7-67d4-c5080de11652/mzaf_427124371567913496.plus.aac.p.m4a",
-        },
-        {
-          name: "The WhatsApp Shakespeare.",
-          duration: 235512,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/44/21/b6/4421b627-cd98-fa0c-56ab-e49001de638d/mzaf_6826110573771962905.plus.aac.p.m4a",
-        },
-        {
-          name: "Winter Woman.",
-          duration: 260070,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/96/d8/2e/96d82ee0-4e10-6568-8355-50d009a999a8/mzaf_18137193457084195324.plus.aac.p.m4a",
-        },
-        {
-          name: "Click Clack Symphony. (feat. Hans Zimmer)",
-          duration: 301674,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/41/39/61/413961ee-def9-785d-142f-85c117a2aa82/mzaf_17854222635151302774.plus.aac.p.m4a",
-        },
-        {
-          name: "I Know You're Hurting.",
-          duration: 377004,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/68/1a/47/681a478e-633c-04d5-f36d-8f5281dd9ef7/mzaf_8870719946852444532.plus.aac.p.m4a",
-        },
-        {
-          name: "Life Boat.",
-          duration: 255639,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/9d/d2/ab/9dd2ab58-8b59-7cec-ee95-11cc6ee3d0f3/mzaf_13996022258156094991.plus.aac.p.m4a",
-        },
-        {
-          name: "I Hate The Way I Look Today.",
-          duration: 208543,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/ce/9c/6a/ce9c6a06-9535-e694-3c6f-78ee1eb144b9/mzaf_12046907020976272579.plus.aac.p.m4a",
-        },
-        {
-          name: "Goodbye Henry. (feat. Al Green)",
-          duration: 320434,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/7c/0b/47/7c0b47a1-cc7b-ac60-5803-424fc80ba6b9/mzaf_5878545869822927883.plus.aac.p.m4a",
-        },
-        {
-          name: "Nightingale Lane.",
-          duration: 302624,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/42/99/90/4299908e-a5b9-2cad-68da-5a56addfce6c/mzaf_17073899823068205928.plus.aac.p.m4a",
-        },
-        {
-          name: "Skin & Bones.",
-          duration: 194670,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/e4/09/f5/e409f553-2085-2fbd-d16f-7ded54cc9967/mzaf_13338978957264433016.plus.aac.p.m4a",
-        },
-        {
-          name: "WHERE IS MY HUSBAND!",
-          duration: 197143,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f2/f9/4c/f2f94ca8-03eb-1283-42a3-d011a96ccd39/mzaf_9601548674983344066.plus.aac.p.m4a",
-        },
-        {
-          name: "Fields. (feat. Grandad Michael)",
-          duration: 250955,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/c7/ba/77/c7ba7734-93d7-2784-7ee1-eff568c40925/mzaf_18335528018931660698.plus.aac.p.m4a",
-        },
-        {
-          name: "Joy.",
-          duration: 263934,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/bf/b4/36/bfb43678-ec2f-92e1-ea8c-ee93982290d4/mzaf_10617967012126135327.plus.aac.p.m4a",
-        },
-        {
-          name: "Happier Times Ahead.",
-          duration: 270152,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/6b/cd/41/6bcd41fc-55ea-53a3-16d3-6042e484b587/mzaf_11790596826047629621.plus.aac.p.m4a",
-        },
-        {
-          name: "Fin.",
-          duration: 387413,
-          previewUrl:
-            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/91/e4/f9/91e4f954-4c80-ed1b-317d-7f22ab977810/mzaf_3007414188303616344.plus.aac.p.m4a",
         },
       ],
     },
@@ -3240,6 +3131,115 @@ export const albumDecades = {
           duration: 71765,
           previewUrl:
             "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/87/96/5b/87965b49-9c52-1f93-a9c6-0061290b8b45/mzaf_16525788677316107053.plus.aac.p.m4a",
+        },
+      ],
+    },
+    {
+      name: "THIS MUSIC MAY CONTAIN HOPE.",
+      artist: "RAYE",
+      imageUrl: getAlbumImageUrl("24"),
+      tracks: [
+        {
+          name: "Intro: Girl Under The Grey Cloud.",
+          duration: 73249,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/cc/16/a1/cc16a1d1-b967-4e2f-e3bc-a543c81211d0/mzaf_14681683103604779769.plus.aac.p.m4a",
+        },
+        {
+          name: "I Will Overcome.",
+          duration: 294646,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/9d/60/36/9d60368e-299a-905c-320f-5378166d4346/mzaf_5020014186772064675.plus.aac.p.m4a",
+        },
+        {
+          name: "Beware.. The South London Lover Boy.",
+          duration: 206122,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/89/1b/22/891b22a5-31f4-e7f7-67d4-c5080de11652/mzaf_427124371567913496.plus.aac.p.m4a",
+        },
+        {
+          name: "The WhatsApp Shakespeare.",
+          duration: 235512,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/44/21/b6/4421b627-cd98-fa0c-56ab-e49001de638d/mzaf_6826110573771962905.plus.aac.p.m4a",
+        },
+        {
+          name: "Winter Woman.",
+          duration: 260070,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/96/d8/2e/96d82ee0-4e10-6568-8355-50d009a999a8/mzaf_18137193457084195324.plus.aac.p.m4a",
+        },
+        {
+          name: "Click Clack Symphony. (feat. Hans Zimmer)",
+          duration: 301674,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/41/39/61/413961ee-def9-785d-142f-85c117a2aa82/mzaf_17854222635151302774.plus.aac.p.m4a",
+        },
+        {
+          name: "I Know You're Hurting.",
+          duration: 377004,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/68/1a/47/681a478e-633c-04d5-f36d-8f5281dd9ef7/mzaf_8870719946852444532.plus.aac.p.m4a",
+        },
+        {
+          name: "Life Boat.",
+          duration: 255639,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/9d/d2/ab/9dd2ab58-8b59-7cec-ee95-11cc6ee3d0f3/mzaf_13996022258156094991.plus.aac.p.m4a",
+        },
+        {
+          name: "I Hate The Way I Look Today.",
+          duration: 208543,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/ce/9c/6a/ce9c6a06-9535-e694-3c6f-78ee1eb144b9/mzaf_12046907020976272579.plus.aac.p.m4a",
+        },
+        {
+          name: "Goodbye Henry. (feat. Al Green)",
+          duration: 320434,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/7c/0b/47/7c0b47a1-cc7b-ac60-5803-424fc80ba6b9/mzaf_5878545869822927883.plus.aac.p.m4a",
+        },
+        {
+          name: "Nightingale Lane.",
+          duration: 302624,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/42/99/90/4299908e-a5b9-2cad-68da-5a56addfce6c/mzaf_17073899823068205928.plus.aac.p.m4a",
+        },
+        {
+          name: "Skin & Bones.",
+          duration: 194670,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/e4/09/f5/e409f553-2085-2fbd-d16f-7ded54cc9967/mzaf_13338978957264433016.plus.aac.p.m4a",
+        },
+        {
+          name: "WHERE IS MY HUSBAND!",
+          duration: 197143,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/f2/f9/4c/f2f94ca8-03eb-1283-42a3-d011a96ccd39/mzaf_9601548674983344066.plus.aac.p.m4a",
+        },
+        {
+          name: "Fields. (feat. Grandad Michael)",
+          duration: 250955,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/c7/ba/77/c7ba7734-93d7-2784-7ee1-eff568c40925/mzaf_18335528018931660698.plus.aac.p.m4a",
+        },
+        {
+          name: "Joy.",
+          duration: 263934,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/bf/b4/36/bfb43678-ec2f-92e1-ea8c-ee93982290d4/mzaf_10617967012126135327.plus.aac.p.m4a",
+        },
+        {
+          name: "Happier Times Ahead.",
+          duration: 270152,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview211/v4/6b/cd/41/6bcd41fc-55ea-53a3-16d3-6042e484b587/mzaf_11790596826047629621.plus.aac.p.m4a",
+        },
+        {
+          name: "Fin.",
+          duration: 387413,
+          previewUrl:
+            "https://audio-ssl.itunes.apple.com/itunes-assets/AudioPreview221/v4/91/e4/f9/91e4f954-4c80-ed1b-317d-7f22ab977810/mzaf_3007414188303616344.plus.aac.p.m4a",
         },
       ],
     },
