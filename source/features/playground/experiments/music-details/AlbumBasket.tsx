@@ -13,7 +13,6 @@ export interface AlbumBasketProps {
   color: string;
   albums: Album[];
   index: JSX.ValueOrCell<number>;
-  isSelected?: boolean;
   onSelect?: (props: AlbumBasketProps) => void;
 }
 
@@ -29,13 +28,17 @@ export const AlbumBasket = createUnique<AlbumBasketProps>((props) => {
 
   const selected = useScopeContext(AlbumSelectionScope);
 
-  const isSelected = Cell.derived(() => Boolean(props.get().isSelected));
+  const isSelected = Cell.derived(() => {
+    const selectedValue = selected.get();
+    return selectedValue ? selectedValue.id === id : false;
+  });
+  const isHidden = Cell.derived(() => {
+    const selectedValue = selected.get();
+    return selectedValue ? selectedValue.id !== id : false;
+  });
   const text = `${albums.length} ${albums.length === 1 ? "album" : "albums"}`;
   const hovered = Cell.source(false);
   const basketContainer = Cell.source<HTMLDivElement | null>(null);
-  const hidden = Cell.derived(() => {
-    return Boolean(selected.get()?.id && selected.get()?.id !== id);
-  });
   const gridArea = Cell.derived(() => {
     const resolvedIndex = index instanceof Cell ? index.get() : index;
     return `basket-${resolvedIndex}`;
@@ -46,7 +49,7 @@ export const AlbumBasket = createUnique<AlbumBasketProps>((props) => {
   });
 
   const handleMouseEnter = () => {
-    if (!isSelected.get()) return;
+    if (isSelected.get()) return;
     hovered.set(true);
   };
 
@@ -60,10 +63,8 @@ export const AlbumBasket = createUnique<AlbumBasketProps>((props) => {
       const animations = div.getAnimations({ subtree: true });
       await Promise.all(animations.map((animation) => animation.finished));
     }
-    Cell.batch(() => {
-      hovered.set(false);
-      onSelect?.(props.get());
-    });
+    onSelect?.(props.get());
+    hovered.set(false);
   };
 
   return (
@@ -78,10 +79,9 @@ export const AlbumBasket = createUnique<AlbumBasketProps>((props) => {
           "grid place-items-center place-content-center transform-3d text-center cursor-pointer",
           "w-[calc(var(--size)*2)] min-h-(--album-row-height)",
           "transition-[opacity,scale] duration-500 ease-(--ease-spring)",
-          { "opacity-0 scale-75 pointer-events-none": hidden },
+          { hidden: isHidden },
         ]}
         style={{ "--color": color, gridArea }}
-        ariaHidden={hidden}
         onPointerEnter={handleMouseEnter}
         onPointerLeave={handleMouseLeave}
         onClick={handleClick}

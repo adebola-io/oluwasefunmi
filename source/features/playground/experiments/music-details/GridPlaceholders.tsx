@@ -8,7 +8,7 @@ export function GridPlaceholders() {
     return (
       <div
         aria-hidden="true"
-        class="pointer-events-none invisible min-h-[var(--album-row-height)]"
+        class="pointer-events-none invisible min-h-(--album-row-height)"
         style={{ gridArea }}
       />
     );
