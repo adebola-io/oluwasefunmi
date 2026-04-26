@@ -44,8 +44,11 @@
   .side,
   .base,
   .curve {
-    transition: translate 500ms var(--ease-spring);
-    translate: 0 35dvw;
+    transition:
+      opacity 500ms var(--ease-spring),
+      translate 500ms var(--ease-spring);
+    opacity: 0;
+    translate: 0 100% 0;
   }
 }
 
@@ -78,7 +81,6 @@
 .side,
 .base,
 .curve {
-  transition: translate 500ms var(--ease-spring);
   grid-area: 1 / 1;
   background: var(--color);
 }

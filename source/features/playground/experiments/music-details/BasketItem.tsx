@@ -17,6 +17,7 @@ export function BasketItem(props: BasketItemProps) {
       style={{
         "--index": index,
         "--depth": depth,
+        "--album-cover-size": "100%",
       }}
     >
       {children}

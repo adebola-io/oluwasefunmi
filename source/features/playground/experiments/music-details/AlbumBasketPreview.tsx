@@ -41,7 +41,12 @@ export function AlbumBasketPreview(props: AlbumBasketPreviewProps) {
         <Basket color={color} hovered={hovered} selected={selected}>
           {For(albums, (album, index) => (
             <BasketItem index={index} depth="min(10px,1.5dvw)">
-              <AlbumCover index={index} id={album.imageId} album={album} />
+              <AlbumCover
+                index={index}
+                id={album.imageId}
+                album={album}
+                interactive={false}
+              />
             </BasketItem>
           ))}
         </Basket>

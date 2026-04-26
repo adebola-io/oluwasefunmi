@@ -106,6 +106,14 @@ const Bookmarks: RouteComponent = () => {
   const items = Cell.derived(() => state.get().items);
   const totalItems = Cell.derived(() => state.get().totalItems);
   const showEmpty = Cell.derived(() => loaded.get() && totalItems.get() === 0);
+  const maxColumns = Cell.derived(() => layout.get().columns);
+  const itemWidth = Cell.derived(() => layout.get().width);
+  const activeTagClasses = Object.fromEntries(
+    ALL_TAGS.map((tagName) => [
+      tagName,
+      Cell.derived(() => (tag.get() === tagName ? classes.active : "")),
+    ])
+  );
 
   useIntersectionObserver(
     loadMoreRef,
@@ -143,12 +151,7 @@ const Bookmarks: RouteComponent = () => {
               {For(ALL_TAGS, (tagName) => (
                 <button
                   type="button"
-                  class={[
-                    classes.tagPill,
-                    Cell.derived(() =>
-                      tag.get() === tagName ? classes.active : ""
-                    ),
-                  ]}
+                  class={[classes.tagPill, activeTagClasses[tagName]]}
                   style={getTagStyles(tagName)}
                   onClick={() => handleTagSelect(tagName)}
                 >
@@ -168,8 +171,8 @@ const Bookmarks: RouteComponent = () => {
               itemKey="id"
               class={classes.board}
               direction="inline"
-              maxColumns={Cell.derived(() => layout.get().columns)}
-              itemWidth={Cell.derived(() => layout.get().width)}
+              maxColumns={maxColumns}
+              itemWidth={itemWidth}
               gap="24px"
               speed="300ms"
               easing="var(--ease-spring)"

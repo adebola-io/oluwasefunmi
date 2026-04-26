@@ -38,7 +38,7 @@ export function AlbumGridView(props: AlbumGridViewProps) {
   return (
     <div
       class={[
-        "h-screen w-screen",
+        "h-screen w-screen animate-fade-in",
         "grid grid-cols-[repeat(var(--cols),calc(var(--size)*2))] grid-rows-[repeat(var(--rows),var(--album-row-height))]",
         "justify-center content-start md:content-center gap-x-[10dvw] pt-50",
       ]}
