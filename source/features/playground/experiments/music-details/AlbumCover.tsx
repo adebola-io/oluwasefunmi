@@ -26,6 +26,7 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
     if (!loading.get()) return;
     return imageUrl.get();
   });
+  const recordImage = Cell.derived(() => `url(${imageSrc.get()})`);
   const duration = 375 + index.get() * 12;
   const interactive = Cell.derivedAsync(async (get) => {
     return new Promise<boolean>((resolve) => {
@@ -48,12 +49,14 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
       <Link
         ref={ref}
         href="#"
-        class={[
-          classes.coverLink,
-          { [classes.coverLinkInteractive]: interactive },
-        ]}
-        style={{ "--index": index, "--cover-color": themeColor }}
+        class={[classes.coverLink, { [classes.interactive]: interactive }]}
+        style={{
+          "--index": index,
+          "--cover-color": themeColor,
+          "--record-image": recordImage,
+        }}
       >
+        <div class={classes.record} />
         <img src={imageSrc} alt={altText} class={classes.coverImage} />
       </Link>
     </UniqueTransition>

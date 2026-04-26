@@ -1,11 +1,59 @@
 .coverLink {
   position: relative;
+  perspective: 800px;
   display: grid;
   grid-template-columns: 1fr;
   width: var(--album-cover-size);
   height: var(--album-cover-size);
   border-radius: 0.5rem;
-  transition: opacity 180ms ease;
+  --cover-transition-duration: 250ms;
+  transition: opacity var(--cover-transition-duration) ease;
+  background-color: var(--cover-color);
+
+  &.interactive {
+    *:has(> :hover) > &:not(:hover) {
+      opacity: 0.5;
+    }
+  }
+}
+
+.record {
+  grid-area: 1 / 1;
+  place-self: center;
+  width: 78%;
+  height: 78%;
+  display: none;
+  border-radius: 50%;
+  background-color: #151515;
+  background-image:
+    linear-gradient(to right, transparent, #ffffff20, transparent),
+    linear-gradient(to bottom, transparent, #ffffff10, transparent),
+    repeating-radial-gradient(circle, #00000050 0px 1px, transparent 1px 10px);
+  border: 1px solid color-mix(in srgb, var(--cover-color) 60%, white);
+  box-shadow: 0 0.75rem 1.5rem rgb(0 0 0 / 18%);
+
+  .coverLink.interactive & {
+    display: grid;
+    transition: translate calc(var(--cover-transition-duration) + 100ms) ease;
+    animation: recordSpin 3s linear infinite;
+  }
+
+  .coverLink.interactive:hover & {
+    translate: 40%;
+  }
+
+  &::after {
+    content: "";
+    grid-area: 1 / 1;
+    place-self: center;
+    width: 40%;
+    height: 40%;
+    border: 1px solid color-mix(in srgb, var(--cover-color) 60%, white);
+    border-radius: 50%;
+    background-image: var(--record-image);
+    background-position: center;
+    background-size: cover;
+  }
 }
 
 .coverImage {
@@ -13,10 +61,22 @@
   height: 100%;
   grid-area: 1 / 1;
   object-fit: cover;
+  isolation: isolate;
   border-radius: inherit;
   pointer-events: none;
   color: transparent;
-  background-color: var(--cover-color);
-  outline: 2px solid color-mix(in srgb, var(--cover-color) 20%, black);
+  transform-origin: left;
+  transition: transform var(--cover-transition-duration) ease;
+  outline: 2px solid color-mix(in srgb, var(--cover-color) 70%, black);
   border: 1px solid color-mix(in srgb, var(--cover-color) 60%, white);
+
+  .coverLink.interactive:hover & {
+    transform: rotateY(-35deg);
+  }
+}
+
+@keyframes recordSpin {
+  to {
+    transform: rotate(360deg);
+  }
 }
