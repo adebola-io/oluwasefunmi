@@ -26,11 +26,10 @@
   border-radius: 50%;
   background-color: #151515;
   background-image:
-    linear-gradient(to right, transparent, #ffffff20, transparent),
-    linear-gradient(to bottom, transparent, #ffffff10, transparent),
+    linear-gradient(to right, transparent, #ffffff10, transparent),
+    linear-gradient(to bottom, transparent, #ffffff05, transparent),
     repeating-radial-gradient(circle, #00000050 0px 1px, transparent 1px 10px);
-  border: 1px solid color-mix(in srgb, var(--cover-color) 60%, white);
-  box-shadow: 0 0.75rem 1.5rem rgb(0 0 0 / 18%);
+  border: 1px solid color-mix(in srgb, var(--cover-color) 30%, transparent);
 
   .coverLink.interactive & {
     display: grid;
