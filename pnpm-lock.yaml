@@ -18,23 +18,23 @@ importers:
         specifier: ^4.10.2
         version: 4.12.8
       retend:
-        specifier: https://pkg.pr.new/resuite/retend@7fd3baa
-        version: https://pkg.pr.new/resuite/retend@7fd3baa
+        specifier: https://pkg.pr.new/resuite/retend@f487b3f
+        version: https://pkg.pr.new/resuite/retend@f487b3f
       retend-oxlint-plugin:
-        specifier: https://pkg.pr.new/resuite/retend/retend-oxlint-plugin@7fd3baa
-        version: https://pkg.pr.new/resuite/retend/retend-oxlint-plugin@7fd3baa
+        specifier: https://pkg.pr.new/resuite/retend/retend-oxlint-plugin@f487b3f
+        version: https://pkg.pr.new/resuite/retend/retend-oxlint-plugin@f487b3f
       retend-server:
-        specifier: https://pkg.pr.new/resuite/retend/retend-server@7fd3baa
-        version: https://pkg.pr.new/resuite/retend/retend-server@7fd3baa(retend-web@https://pkg.pr.new/resuite/retend/retend-web@7fd3baa(retend@https://pkg.pr.new/resuite/retend@7fd3baa))(retend@https://pkg.pr.new/resuite/retend@7fd3baa)(vite@8.0.2(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1))
+        specifier: https://pkg.pr.new/resuite/retend/retend-server@f487b3f
+        version: https://pkg.pr.new/resuite/retend/retend-server@f487b3f(retend-web@https://pkg.pr.new/resuite/retend/retend-web@f487b3f(retend@https://pkg.pr.new/resuite/retend@f487b3f))(retend@https://pkg.pr.new/resuite/retend@f487b3f)(vite@8.0.2(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1))
       retend-utils:
-        specifier: https://pkg.pr.new/resuite/retend/retend-utils@7fd3baa
-        version: https://pkg.pr.new/resuite/retend/retend-utils@7fd3baa(retend-web@https://pkg.pr.new/resuite/retend/retend-web@7fd3baa(retend@https://pkg.pr.new/resuite/retend@7fd3baa))(retend@https://pkg.pr.new/resuite/retend@7fd3baa)
+        specifier: https://pkg.pr.new/resuite/retend/retend-utils@f487b3f
+        version: https://pkg.pr.new/resuite/retend/retend-utils@f487b3f(retend-web@https://pkg.pr.new/resuite/retend/retend-web@f487b3f(retend@https://pkg.pr.new/resuite/retend@f487b3f))(retend@https://pkg.pr.new/resuite/retend@f487b3f)
       retend-web:
-        specifier: https://pkg.pr.new/resuite/retend/retend-web@7fd3baa
-        version: https://pkg.pr.new/resuite/retend/retend-web@7fd3baa(retend@https://pkg.pr.new/resuite/retend@7fd3baa)
+        specifier: https://pkg.pr.new/resuite/retend/retend-web@f487b3f
+        version: https://pkg.pr.new/resuite/retend/retend-web@f487b3f(retend@https://pkg.pr.new/resuite/retend@f487b3f)
       retend-web-devtools:
-        specifier: https://pkg.pr.new/resuite/retend/retend-web-devtools@7fd3baa
-        version: https://pkg.pr.new/resuite/retend/retend-web-devtools@7fd3baa(retend-web@https://pkg.pr.new/resuite/retend/retend-web@7fd3baa(retend@https://pkg.pr.new/resuite/retend@7fd3baa))(retend@https://pkg.pr.new/resuite/retend@7fd3baa)(vite@8.0.2(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1))
+        specifier: https://pkg.pr.new/resuite/retend/retend-web-devtools@f487b3f
+        version: https://pkg.pr.new/resuite/retend/retend-web-devtools@f487b3f(retend-web@https://pkg.pr.new/resuite/retend/retend-web@f487b3f(retend@https://pkg.pr.new/resuite/retend@f487b3f))(retend@https://pkg.pr.new/resuite/retend@f487b3f)(vite@8.0.2(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1))
     devDependencies:
       '@cloudflare/vite-plugin':
         specifier: ^1.12.2
@@ -1957,40 +1957,40 @@ packages:
   remark-rehype@11.1.2:
     resolution: {integrity: sha512-Dh7l57ianaEoIpzbp0PC9UKAdCSVklD8E5Rpw7ETfbTl3FqcOOgq5q2LVDhgGCkaBv7p24JXikPdvhhmHvKMsw==}
 
-  retend-oxlint-plugin@https://pkg.pr.new/resuite/retend/retend-oxlint-plugin@7fd3baa:
-    resolution: {tarball: https://pkg.pr.new/resuite/retend/retend-oxlint-plugin@7fd3baa}
+  retend-oxlint-plugin@https://pkg.pr.new/resuite/retend/retend-oxlint-plugin@f487b3f:
+    resolution: {tarball: https://pkg.pr.new/resuite/retend/retend-oxlint-plugin@f487b3f}
     version: 0.0.28
 
-  retend-server@https://pkg.pr.new/resuite/retend/retend-server@7fd3baa:
-    resolution: {tarball: https://pkg.pr.new/resuite/retend/retend-server@7fd3baa}
+  retend-server@https://pkg.pr.new/resuite/retend/retend-server@f487b3f:
+    resolution: {tarball: https://pkg.pr.new/resuite/retend/retend-server@f487b3f}
     version: 0.0.28
     peerDependencies:
       retend: '*'
       retend-web: '*'
       vite: '*'
 
-  retend-utils@https://pkg.pr.new/resuite/retend/retend-utils@7fd3baa:
-    resolution: {tarball: https://pkg.pr.new/resuite/retend/retend-utils@7fd3baa}
+  retend-utils@https://pkg.pr.new/resuite/retend/retend-utils@f487b3f:
+    resolution: {tarball: https://pkg.pr.new/resuite/retend/retend-utils@f487b3f}
     version: 0.0.28
     peerDependencies:
       retend: '*'
       retend-web: '*'
 
-  retend-web-devtools@https://pkg.pr.new/resuite/retend/retend-web-devtools@7fd3baa:
-    resolution: {tarball: https://pkg.pr.new/resuite/retend/retend-web-devtools@7fd3baa}
+  retend-web-devtools@https://pkg.pr.new/resuite/retend/retend-web-devtools@f487b3f:
+    resolution: {tarball: https://pkg.pr.new/resuite/retend/retend-web-devtools@f487b3f}
     version: 0.0.28
     peerDependencies:
       retend: '*'
       retend-web: '*'
 
-  retend-web@https://pkg.pr.new/resuite/retend/retend-web@7fd3baa:
-    resolution: {tarball: https://pkg.pr.new/resuite/retend/retend-web@7fd3baa}
+  retend-web@https://pkg.pr.new/resuite/retend/retend-web@f487b3f:
+    resolution: {tarball: https://pkg.pr.new/resuite/retend/retend-web@f487b3f}
     version: 0.0.28
     peerDependencies:
       retend: '*'
 
-  retend@https://pkg.pr.new/resuite/retend@7fd3baa:
-    resolution: {tarball: https://pkg.pr.new/resuite/retend@7fd3baa}
+  retend@https://pkg.pr.new/resuite/retend@f487b3f:
+    resolution: {tarball: https://pkg.pr.new/resuite/retend@f487b3f}
     version: 0.0.28
 
   rolldown@1.0.0-rc.11:
@@ -3989,9 +3989,9 @@ snapshots:
       unified: 11.0.5
       vfile: 6.0.3
 
-  retend-oxlint-plugin@https://pkg.pr.new/resuite/retend/retend-oxlint-plugin@7fd3baa: {}
+  retend-oxlint-plugin@https://pkg.pr.new/resuite/retend/retend-oxlint-plugin@f487b3f: {}
 
-  retend-server@https://pkg.pr.new/resuite/retend/retend-server@7fd3baa(retend-web@https://pkg.pr.new/resuite/retend/retend-web@7fd3baa(retend@https://pkg.pr.new/resuite/retend@7fd3baa))(retend@https://pkg.pr.new/resuite/retend@7fd3baa)(vite@8.0.2(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)):
+  retend-server@https://pkg.pr.new/resuite/retend/retend-server@f487b3f(retend-web@https://pkg.pr.new/resuite/retend/retend-web@f487b3f(retend@https://pkg.pr.new/resuite/retend@f487b3f))(retend@https://pkg.pr.new/resuite/retend@f487b3f)(vite@8.0.2(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)):
     dependencies:
       acorn: 8.16.0
       domhandler: 5.0.3
@@ -4000,30 +4000,30 @@ snapshots:
       magic-string: 0.30.21
       oxc-parser: 0.115.0
       oxc-walker: 0.2.5(oxc-parser@0.115.0)
-      retend: https://pkg.pr.new/resuite/retend@7fd3baa
-      retend-web: https://pkg.pr.new/resuite/retend/retend-web@7fd3baa(retend@https://pkg.pr.new/resuite/retend@7fd3baa)
+      retend: https://pkg.pr.new/resuite/retend@f487b3f
+      retend-web: https://pkg.pr.new/resuite/retend/retend-web@f487b3f(retend@https://pkg.pr.new/resuite/retend@f487b3f)
       vite: 8.0.2(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)
 
-  retend-utils@https://pkg.pr.new/resuite/retend/retend-utils@7fd3baa(retend-web@https://pkg.pr.new/resuite/retend/retend-web@7fd3baa(retend@https://pkg.pr.new/resuite/retend@7fd3baa))(retend@https://pkg.pr.new/resuite/retend@7fd3baa):
+  retend-utils@https://pkg.pr.new/resuite/retend/retend-utils@f487b3f(retend-web@https://pkg.pr.new/resuite/retend/retend-web@f487b3f(retend@https://pkg.pr.new/resuite/retend@f487b3f))(retend@https://pkg.pr.new/resuite/retend@f487b3f):
     dependencies:
-      retend: https://pkg.pr.new/resuite/retend@7fd3baa
-      retend-web: https://pkg.pr.new/resuite/retend/retend-web@7fd3baa(retend@https://pkg.pr.new/resuite/retend@7fd3baa)
+      retend: https://pkg.pr.new/resuite/retend@f487b3f
+      retend-web: https://pkg.pr.new/resuite/retend/retend-web@f487b3f(retend@https://pkg.pr.new/resuite/retend@f487b3f)
 
-  retend-web-devtools@https://pkg.pr.new/resuite/retend/retend-web-devtools@7fd3baa(retend-web@https://pkg.pr.new/resuite/retend/retend-web@7fd3baa(retend@https://pkg.pr.new/resuite/retend@7fd3baa))(retend@https://pkg.pr.new/resuite/retend@7fd3baa)(vite@8.0.2(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)):
+  retend-web-devtools@https://pkg.pr.new/resuite/retend/retend-web-devtools@f487b3f(retend-web@https://pkg.pr.new/resuite/retend/retend-web@f487b3f(retend@https://pkg.pr.new/resuite/retend@f487b3f))(retend@https://pkg.pr.new/resuite/retend@f487b3f)(vite@8.0.2(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1)):
     dependencies:
       html-to-image: 1.11.13
-      retend: https://pkg.pr.new/resuite/retend@7fd3baa
-      retend-web: https://pkg.pr.new/resuite/retend/retend-web@7fd3baa(retend@https://pkg.pr.new/resuite/retend@7fd3baa)
+      retend: https://pkg.pr.new/resuite/retend@f487b3f
+      retend-web: https://pkg.pr.new/resuite/retend/retend-web@f487b3f(retend@https://pkg.pr.new/resuite/retend@f487b3f)
       vite-plugin-css-injected-by-js: 4.0.1(vite@8.0.2(@types/node@25.3.2)(esbuild@0.27.3)(jiti@2.6.1))
     transitivePeerDependencies:
       - vite
 
-  retend-web@https://pkg.pr.new/resuite/retend/retend-web@7fd3baa(retend@https://pkg.pr.new/resuite/retend@7fd3baa):
+  retend-web@https://pkg.pr.new/resuite/retend/retend-web@f487b3f(retend@https://pkg.pr.new/resuite/retend@f487b3f):
     dependencies:
       csstype: 3.2.3
-      retend: https://pkg.pr.new/resuite/retend@7fd3baa
+      retend: https://pkg.pr.new/resuite/retend@f487b3f
 
-  retend@https://pkg.pr.new/resuite/retend@7fd3baa:
+  retend@https://pkg.pr.new/resuite/retend@f487b3f:
     dependencies:
       '@adbl/cells': https://pkg.pr.new/adebola-io/cells/@adbl/cells@9fb5142
       csstype: 3.2.3
