@@ -35,11 +35,16 @@
   .side,
   .base,
   .curve {
+    transition: translate 600ms ease 300ms;
+    translate: 0 40dvw 0;
+  }
+
+  .basketItem {
     transition:
-      opacity 300ms ease,
-      translate 300ms var(--ease-spring);
-    opacity: 0;
-    translate: 0 15dvw 0;
+      translate 300ms ease 300ms,
+      rotate 300ms ease 300ms;
+    translate: 0 calc(-45% + (var(--index) * -10px)) calc(var(--depth) / -2);
+    rotate: 0deg;
   }
 }
 
@@ -47,7 +52,7 @@
   display: grid;
   grid-area: 1 / 1;
   height: var(--height);
-  width: 90%;
+  width: 95%;
   align-items: end;
   transition: translate 500ms var(--ease-spring);
   transform-style: preserve-3d;
@@ -59,10 +64,9 @@
   align-self: end;
   width: 100%;
   aspect-ratio: 1;
-  transition: translate 500ms var(--ease-spring);
   transform-style: preserve-3d;
+  rotate: x 10deg;
   transform: translateY(calc(-100% + var(--height)))
-    rotateX(var(--item-rest, 10deg))
     translateZ(calc(var(--depth) * var(--index)))
     translateY(calc(var(--depth) * var(--index) / 2.5));
 }

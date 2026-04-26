@@ -4,38 +4,25 @@ import { SITE_URL } from "@/shared/constants";
 import classes from "./MusicPlayer.module.css";
 import type { AlbumBasketProps } from "./music-details/AlbumBasket";
 import { AlbumSelectionScope } from "./music-details/AlbumSelectionScope";
-import { AlbumGridView } from "./MusicPlayerViews";
-import {
-  getAlbumGridColumns,
-  getAlbumGridRows,
-  getAlbumGridTemplateAreas,
-  SIZING_CLASSES,
-} from "./music-details/albumGrid";
+import { SIZING_CLASSES } from "./music-details/albumGrid";
 import { Cell } from "retend";
-import { useMatchMedia } from "retend-utils/hooks";
+import { AlbumList } from "./music-details/AlbumList";
 
 const MusicPlayer: RouteComponent = () => {
   const selected = Cell.source<AlbumBasketProps | null>(null);
-  const isTablet = useMatchMedia("(min-width: 768px)");
-  const isDesktop = useMatchMedia("(min-width: 1024px)");
-
-  const cols = Cell.derived(() => {
-    return getAlbumGridColumns(isTablet.get(), isDesktop.get());
-  });
-  const rows = Cell.derived(() => getAlbumGridRows(cols.get()));
-  const gridTemplateAreas = Cell.derived(() => {
-    return getAlbumGridTemplateAreas(cols.get());
-  });
 
   return (
     <div class={[classes.app, SIZING_CLASSES]}>
       <PlaygroundLayout title="Music Player">
         <AlbumSelectionScope.Provider value={selected}>
-          <AlbumGridView
-            cols={cols}
-            rows={rows}
-            gridTemplateAreas={gridTemplateAreas}
-          />
+          <div
+            class={[
+              "h-screen w-screen max-w-280 px-10 animate-fade-in",
+              "grid place-items-center m-auto pt-50 md:grid-cols-2 lg:grid-cols-3",
+            ]}
+          >
+            <AlbumList />
+          </div>
         </AlbumSelectionScope.Provider>
       </PlaygroundLayout>
     </div>

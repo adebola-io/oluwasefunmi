@@ -10,7 +10,7 @@ export function AlbumList() {
     selected.set(decade);
   };
 
-  return For(albumGroups, (group, index) => (
-    <AlbumBasket {...group} index={index} onSelect={handleAlbumDecadeSelect} />
+  return For(albumGroups, (group) => (
+    <AlbumBasket {...group} onSelect={handleAlbumDecadeSelect} />
   ));
 }

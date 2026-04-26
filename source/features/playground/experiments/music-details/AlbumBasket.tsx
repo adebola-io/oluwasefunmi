@@ -1,29 +1,19 @@
 import { Cell, If, useScopeContext } from "retend";
-import type { JSX } from "retend/jsx-runtime";
 import { Album } from "../../data/music-project";
 import { AlbumSelectionScope } from "./AlbumSelectionScope";
 import { AlbumBasketPreview } from "./AlbumBasketPreview";
 import { AlbumGridOverlay } from "./AlbumGridOverlay";
-import { Viewer } from "../../components/Viewer/Viewer";
 
 export interface AlbumBasketProps {
   id: string;
   title: string;
   color: string;
   albums: Album[];
-  index: JSX.ValueOrCell<number>;
   onSelect?: (props: AlbumBasketProps) => void;
 }
 
 export const AlbumBasket = (props: AlbumBasketProps) => {
-  const {
-    id,
-    title = "Collection",
-    albums = [],
-    color,
-    onSelect,
-    index,
-  } = props;
+  const { id, title = "Collection", albums = [], color, onSelect } = props;
 
   const selected = useScopeContext(AlbumSelectionScope);
   const basketContainer = Cell.source<HTMLElement | null>(null);
@@ -37,10 +27,6 @@ export const AlbumBasket = (props: AlbumBasketProps) => {
     const selectedValue = selected.get();
     return selectedValue ? selectedValue.id !== id : false;
   });
-  const gridArea = Cell.derived(() => {
-    const resolvedIndex = index instanceof Cell ? index.get() : index;
-    return `basket-${resolvedIndex}`;
-  });
   const text = `${albums.length} ${albums.length === 1 ? "album" : "albums"}`;
 
   const handleClick = async () => {
@@ -48,20 +34,26 @@ export const AlbumBasket = (props: AlbumBasketProps) => {
     const el = basketContainer.get();
     if (!el) return;
     const animations = el.getAnimations({ subtree: true });
-    await Promise.allSettled(animations.map((anim) => anim.finished));
+    const waitingForAnimations = Promise.allSettled(
+      animations.map((anim) => anim.finished)
+    );
+    const timeout = new Promise((resolve) => setTimeout(resolve, 550));
+    await Promise.race([waitingForAnimations, timeout]);
     isGridState.set(true);
   };
 
   return (
-    <Viewer
+    <button
+      type="button"
       ref={basketContainer}
+      ariaHidden={isHidden}
       class={[
         "grid place-items-center place-content-center transform-3d text-center cursor-pointer",
         "w-[calc(var(--size)*2)] min-h-(--album-row-height)",
-        "transition-[opacity,scale] duration-500 ease-(--ease-spring)",
-        { hidden: isHidden },
+        "transition-[opacity,scale] duration-800 ease-(--ease-spring)",
+        { "opacity-0 scale-50 pointer-events-none": isHidden },
       ]}
-      style={{ "--color": color, gridArea }}
+      style={{ "--color": color }}
       onClick={handleClick}
     >
       {If(isGridState, {
@@ -76,6 +68,6 @@ export const AlbumBasket = (props: AlbumBasketProps) => {
           />
         ),
       })}
-    </Viewer>
+    </button>
   );
 };

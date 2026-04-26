@@ -15,7 +15,6 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
   const index = Cell.derived(() => props.get().index.get());
   const ref = Cell.source<HTMLAnchorElement | null>(null);
   const loading = Cell.source(false);
-  const loaded = Cell.source(false);
   const interactiveRaw = Cell.derived(() => props.get().interactive);
 
   const themeColor = Cell.derived(() => album.get().themeColor);
@@ -27,21 +26,15 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
     if (!loading.get()) return;
     return imageUrl.get();
   });
-  const discImage = Cell.derived(() => {
-    if (!loading.get()) return;
-    return `url(${imageUrl.get()})`;
-  });
-  const duration = 375 + index.get() * 10;
+  const duration = 375 + index.get() * 12;
   const interactive = Cell.derivedAsync(async (get) => {
     return new Promise<boolean>((resolve) => {
       setTimeout(() => resolve(get(interactiveRaw)), duration + 200);
     });
   });
   onSetup(() => {
-    const timeout = window.setTimeout(
-      () => {
-        loading.set(true);
-      },
+    const timeout = setTimeout(
+      () => loading.set(true),
       duration + index.get() * 30
     );
     return () => window.clearTimeout(timeout);
@@ -49,7 +42,7 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
 
   return (
     <UniqueTransition
-      transitionTimingFunction="cubic-bezier(0, 0.2, 0.3, 1.6)"
+      transitionTimingFunction="ease-in-out"
       transitionDuration={`${duration}ms`}
     >
       <Link
@@ -59,40 +52,9 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
           classes.coverLink,
           { [classes.coverLinkInteractive]: interactive },
         ]}
-        style={{ "--index": index, "--color": themeColor }}
+        style={{ "--index": index, "--cover-color": themeColor }}
       >
-        <div data-back class={classes.coverBack} />
-        <div
-          aria-hidden="true"
-          class={[
-            classes.discShell,
-            { [classes.discShellInteractive]: interactive },
-          ]}
-        >
-          <div
-            class={[classes.record, { [classes.recordSpinning]: interactive }]}
-          />
-          <span
-            class={[classes.recordLabel, { [classes.artLoaded]: loaded }]}
-            style={{ backgroundImage: discImage }}
-          />
-          <span class={classes.recordHole} />
-        </div>
-        <div
-          data-front
-          class={[
-            classes.coverFront,
-            { [classes.coverFrontInteractive]: interactive },
-          ]}
-          style={{ backgroundColor: themeColor }}
-        >
-          <img
-            src={imageSrc}
-            alt={altText}
-            class={[classes.coverImage, { [classes.artLoaded]: loaded }]}
-            onLoad={() => loaded.set(true)}
-          />
-        </div>
+        <img src={imageSrc} alt={altText} class={classes.coverImage} />
       </Link>
     </UniqueTransition>
   );
