@@ -1,5 +1,4 @@
-import { Link } from "retend/router";
-import { Album } from "../../data/music-project";
+import type { Album } from "../../data/music-project";
 import { Cell, createUnique, onSetup } from "retend";
 import { UniqueTransition } from "retend-utils/components";
 import classes from "./AlbumCover.module.css";
@@ -33,11 +32,15 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
       setTimeout(() => resolve(get(interactiveRaw)), duration + 200);
     });
   });
+
+  const handleClick = () => {
+    if (!interactiveRaw.get()) return;
+    console.log("hsjdk");
+  };
+
   onSetup(() => {
-    const timeout = setTimeout(
-      () => loading.set(true),
-      duration + index.get() * 30
-    );
+    const wait = duration + index.get() * 30;
+    const timeout = setTimeout(() => loading.set(true), wait);
     return () => window.clearTimeout(timeout);
   });
 
@@ -46,19 +49,16 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
       transitionTimingFunction="ease-in-out"
       transitionDuration={`${duration}ms`}
     >
-      <Link
+      <button
         ref={ref}
-        href="#"
+        type="button"
         class={[classes.coverLink, { [classes.interactive]: interactive }]}
-        style={{
-          "--index": index,
-          "--cover-color": themeColor,
-          "--record-image": recordImage,
-        }}
+        style={{ "--cover-color": themeColor, "--record-image": recordImage }}
+        onClick={handleClick}
       >
         <div class={classes.record} />
         <img src={imageSrc} alt={altText} class={classes.coverImage} />
-      </Link>
+      </button>
     </UniqueTransition>
   );
 });

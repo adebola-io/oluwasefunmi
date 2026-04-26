@@ -15,7 +15,7 @@ export interface AlbumBasketProps {
 export const AlbumBasket = (props: AlbumBasketProps) => {
   const { id, title = "Collection", albums = [], color, onSelect } = props;
 
-  const selected = useScopeContext(AlbumSelectionScope);
+  const { decade: selected } = useScopeContext(AlbumSelectionScope);
   const basketContainer = Cell.source<HTMLElement | null>(null);
   const isGridState = Cell.source(false);
 

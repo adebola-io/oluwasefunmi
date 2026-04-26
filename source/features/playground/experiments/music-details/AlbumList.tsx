@@ -4,7 +4,7 @@ import { AlbumSelectionScope } from "./AlbumSelectionScope";
 import { albumGroups } from "./albumGroups";
 
 export function AlbumList() {
-  const selected = useScopeContext(AlbumSelectionScope);
+  const { decade: selected } = useScopeContext(AlbumSelectionScope);
 
   const handleAlbumDecadeSelect = (decade: AlbumBasketProps) => {
     selected.set(decade);

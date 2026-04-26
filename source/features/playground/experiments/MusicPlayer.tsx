@@ -3,18 +3,27 @@ import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLay
 import { SITE_URL } from "@/shared/constants";
 import classes from "./MusicPlayer.module.css";
 import type { AlbumBasketProps } from "./music-details/AlbumBasket";
-import { AlbumSelectionScope } from "./music-details/AlbumSelectionScope";
+import {
+  AlbumSelectionContext,
+  AlbumSelectionScope,
+} from "./music-details/AlbumSelectionScope";
 import { SIZING_CLASSES } from "./music-details/albumGrid";
 import { Cell } from "retend";
 import { AlbumList } from "./music-details/AlbumList";
+import type { Album } from "../data/music-project";
 
 const MusicPlayer: RouteComponent = () => {
   const selected = Cell.source<AlbumBasketProps | null>(null);
+  const selectedAlbum = Cell.source<Album | null>(null);
+  const value: AlbumSelectionContext = {
+    decade: selected,
+    album: selectedAlbum,
+  };
 
   return (
     <div class={[classes.app, SIZING_CLASSES]}>
       <PlaygroundLayout title="Music Player">
-        <AlbumSelectionScope.Provider value={selected}>
+        <AlbumSelectionScope.Provider value={value}>
           <div
             class={[
               "h-screen w-screen max-w-280 px-10 animate-fade-in",
