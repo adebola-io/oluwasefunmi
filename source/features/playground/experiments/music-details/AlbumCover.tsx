@@ -1,7 +1,9 @@
 import type { Album } from "../../data/music-project";
-import { Cell, createUnique, onSetup } from "retend";
+import { Cell, createUnique, onSetup, useScopeContext } from "retend";
 import { UniqueTransition } from "retend-utils/components";
 import classes from "./AlbumCover.module.css";
+import { AlbumSelectionScope } from "./AlbumSelectionScope";
+import { AlbumRecord } from "./AlbumRecord";
 
 interface AlbumCoverProps {
   album: Album;
@@ -10,6 +12,7 @@ interface AlbumCoverProps {
 }
 
 export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
+  const { album: selectedAlbum } = useScopeContext(AlbumSelectionScope);
   const album = Cell.derived(() => props.get().album);
   const index = Cell.derived(() => props.get().index.get());
   const ref = Cell.source<HTMLAnchorElement | null>(null);
@@ -18,6 +21,7 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
 
   const themeColor = Cell.derived(() => album.get().themeColor);
   const imageUrl = Cell.derived(() => album.get().imageUrl);
+  const recordImage = Cell.derived(() => `url(${imageUrl.get()})`);
   const altText = Cell.derived(() => {
     return `${album.get().name} by ${album.get().artist}`;
   });
@@ -25,8 +29,8 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
     if (!loading.get()) return;
     return imageUrl.get();
   });
-  const recordImage = Cell.derived(() => `url(${imageSrc.get()})`);
   const duration = 375 + index.get() * 12;
+  const recordId = `record-${album.get().imageId}`;
   const interactive = Cell.derivedAsync(async (get) => {
     return new Promise<boolean>((resolve) => {
       setTimeout(() => resolve(get(interactiveRaw)), duration + 200);
@@ -35,7 +39,7 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
 
   const handleClick = () => {
     if (!interactiveRaw.get()) return;
-    console.log("hsjdk");
+    selectedAlbum.set(album.get());
   };
 
   onSetup(() => {
@@ -53,10 +57,15 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
         ref={ref}
         type="button"
         class={[classes.coverLink, { [classes.interactive]: interactive }]}
-        style={{ "--cover-color": themeColor, "--record-image": recordImage }}
+        style={{ "--cover-color": themeColor }}
         onClick={handleClick}
       >
-        <div class={classes.record} />
+        <AlbumRecord
+          id={recordId}
+          class={classes.record}
+          themeColor={themeColor}
+          imageUrl={recordImage}
+        />
         <img src={imageSrc} alt={altText} class={classes.coverImage} />
       </button>
     </UniqueTransition>

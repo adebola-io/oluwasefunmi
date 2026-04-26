@@ -9,11 +9,10 @@ export interface AlbumBasketProps {
   title: string;
   color: string;
   albums: Album[];
-  onSelect?: (props: AlbumBasketProps) => void;
 }
 
 export const AlbumBasket = (props: AlbumBasketProps) => {
-  const { id, title = "Collection", albums = [], color, onSelect } = props;
+  const { id, title = "Collection", albums = [], color } = props;
 
   const { decade: selected } = useScopeContext(AlbumSelectionScope);
   const basketContainer = Cell.source<HTMLElement | null>(null);
@@ -30,7 +29,7 @@ export const AlbumBasket = (props: AlbumBasketProps) => {
   const text = `${albums.length} ${albums.length === 1 ? "album" : "albums"}`;
 
   const handleClick = async () => {
-    onSelect?.(props);
+    selected.set(props);
     const el = basketContainer.get();
     if (!el) return;
     const animations = el.getAnimations({ subtree: true });

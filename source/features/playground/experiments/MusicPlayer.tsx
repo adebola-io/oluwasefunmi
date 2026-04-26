@@ -2,19 +2,23 @@ import type { RouteComponent } from "retend/router";
 import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
 import { SITE_URL } from "@/shared/constants";
 import classes from "./MusicPlayer.module.css";
-import type { AlbumBasketProps } from "./music-details/AlbumBasket";
+import {
+  AlbumBasket,
+  type AlbumBasketProps,
+} from "./music-details/AlbumBasket";
 import {
   AlbumSelectionContext,
   AlbumSelectionScope,
 } from "./music-details/AlbumSelectionScope";
 import { SIZING_CLASSES } from "./music-details/albumGrid";
-import { Cell } from "retend";
-import { AlbumList } from "./music-details/AlbumList";
+import { Cell, For, If } from "retend";
 import type { Album } from "../data/music-project";
+import { albumGroups } from "./music-details/albumGroups";
+import { AlbumPlayerView } from "./music-details/AlbumPlayerView";
 
 const MusicPlayer: RouteComponent = () => {
   const selected = Cell.source<AlbumBasketProps | null>(null);
-  const selectedAlbum = Cell.source<Album | null>(null);
+  const selectedAlbum = Cell.source<Album | null>(albumGroups[0].albums[0]);
   const value: AlbumSelectionContext = {
     decade: selected,
     album: selectedAlbum,
@@ -23,16 +27,21 @@ const MusicPlayer: RouteComponent = () => {
   return (
     <div class={[classes.app, SIZING_CLASSES]}>
       <PlaygroundLayout title="Music Player">
-        <AlbumSelectionScope.Provider value={value}>
-          <div
-            class={[
-              "h-screen w-screen max-w-280 px-10 animate-fade-in",
-              "grid place-items-center m-auto pt-50 md:grid-cols-2 lg:grid-cols-3",
-            ]}
-          >
-            <AlbumList />
-          </div>
-        </AlbumSelectionScope.Provider>
+        <div class="h-screen w-screen max-w-280 px-10 grid place-items-center m-auto">
+          <AlbumSelectionScope.Provider value={value}>
+            {If(selectedAlbum, {
+              true: () => <AlbumPlayerView />,
+              false: () => (
+                <div class="size-full animate-fade-in grid place-items-center pt-50 md:grid-cols-2 lg:grid-cols-3">
+                  {For(albumGroups, (group) => (
+                    <AlbumBasket {...group} />
+                  ))}
+                  ,
+                </div>
+              ),
+            })}
+          </AlbumSelectionScope.Provider>
+        </div>
       </PlaygroundLayout>
     </div>
   );
