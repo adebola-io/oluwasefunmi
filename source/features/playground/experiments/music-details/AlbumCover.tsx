@@ -8,6 +8,7 @@ interface AlbumCoverProps {
   album: Album;
   index: Cell<number>;
   interactive: boolean;
+  onOpen?: (album: Album) => void;
 }
 
 export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
@@ -16,7 +17,9 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
   const ref = Cell.source<HTMLAnchorElement | null>(null);
   const loading = Cell.source(false);
   const loaded = Cell.source(false);
+  const canOpen = Cell.source(false);
   const interactiveRaw = Cell.derived(() => props.get().interactive);
+  const onOpen = Cell.derived(() => props.get().onOpen);
 
   const themeColor = Cell.derived(() => album.get().themeColor);
   const imageUrl = Cell.derived(() => album.get().imageUrl);
@@ -37,6 +40,7 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
       setTimeout(() => resolve(get(interactiveRaw)), duration + 200);
     });
   });
+  const href = Cell.derived(() => `#${album.get().imageId}`);
 
   onSetup(() => {
     const timeout = window.setTimeout(
@@ -48,6 +52,26 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
     return () => window.clearTimeout(timeout);
   });
 
+  onSetup(() => {
+    interactive.get().then((nextCanOpen) => canOpen.set(nextCanOpen));
+  });
+
+  onSetup(() => {
+    const link = ref.get();
+    if (!link) return;
+    const handleBeforeNavigate = (event: Event) => {
+      if (!canOpen.get()) {
+        event.preventDefault();
+        return;
+      }
+      onOpen.get()?.(album.get());
+    };
+    link.addEventListener("beforenavigate", handleBeforeNavigate);
+    return () => {
+      link.removeEventListener("beforenavigate", handleBeforeNavigate);
+    };
+  });
+
   return (
     <UniqueTransition
       transitionTimingFunction="cubic-bezier(0, 0.5, 0.6, 1.3)"
@@ -55,7 +79,7 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
     >
       <Link
         ref={ref}
-        href="#"
+        href={href}
         class={[
           classes.coverLink,
           { [classes.coverLinkInteractive]: interactive },
