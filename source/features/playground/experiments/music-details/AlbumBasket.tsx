@@ -4,6 +4,7 @@ import { Album } from "../../data/music-project";
 import { AlbumSelectionScope } from "./AlbumSelectionScope";
 import { AlbumBasketPreview } from "./AlbumBasketPreview";
 import { AlbumGridOverlay } from "./AlbumGridOverlay";
+import { Viewer } from "../../components/Viewer/Viewer";
 
 export interface AlbumBasketProps {
   id: string;
@@ -25,8 +26,7 @@ export const AlbumBasket = (props: AlbumBasketProps) => {
   } = props;
 
   const selected = useScopeContext(AlbumSelectionScope);
-  const hovered = Cell.source(false);
-  const basketContainer = Cell.source<HTMLDivElement | null>(null);
+  const basketContainer = Cell.source<HTMLElement | null>(null);
   const isGridState = Cell.source(false);
 
   const isSelected = Cell.derived(() => {
@@ -41,34 +41,20 @@ export const AlbumBasket = (props: AlbumBasketProps) => {
     const resolvedIndex = index instanceof Cell ? index.get() : index;
     return `basket-${resolvedIndex}`;
   });
-  const focused = Cell.derived(() => {
-    return isSelected.get() || hovered.get();
-  });
   const text = `${albums.length} ${albums.length === 1 ? "album" : "albums"}`;
 
-  const handleMouseEnter = () => {
-    if (isSelected.get()) return;
-    hovered.set(true);
-  };
-
-  const handleMouseLeave = () => {
-    hovered.set(false);
-  };
-
   const handleClick = async () => {
-    const div = basketContainer.get();
-    if (!div) return;
-    const hoverAnimations = div.getAnimations({ subtree: true });
-    await Promise.all(hoverAnimations.map((animation) => animation.finished));
     onSelect?.(props);
-    hovered.set(false);
-    setTimeout(() => {
-      isGridState.set(true);
-    }, 300);
+    const el = basketContainer.get();
+    if (!el) return;
+    const animations = el.getAnimations({ subtree: true });
+    await Promise.allSettled(animations.map((anim) => anim.finished));
+    isGridState.set(true);
   };
 
   return (
-    <button
+    <Viewer
+      ref={basketContainer}
       class={[
         "grid place-items-center place-content-center transform-3d text-center cursor-pointer",
         "w-[calc(var(--size)*2)] min-h-(--album-row-height)",
@@ -76,8 +62,6 @@ export const AlbumBasket = (props: AlbumBasketProps) => {
         { hidden: isHidden },
       ]}
       style={{ "--color": color, gridArea }}
-      onPointerEnter={handleMouseEnter}
-      onPointerLeave={handleMouseLeave}
       onClick={handleClick}
     >
       {If(isGridState, {
@@ -85,16 +69,13 @@ export const AlbumBasket = (props: AlbumBasketProps) => {
         false: () => (
           <AlbumBasketPreview
             albums={albums}
-            basketContainer={basketContainer}
             color={color}
-            focused={focused}
-            hovered={hovered}
             selected={isSelected}
             text={text}
             title={title}
           />
         ),
       })}
-    </button>
+    </Viewer>
   );
 };

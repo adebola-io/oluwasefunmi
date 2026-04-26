@@ -1,5 +1,5 @@
 import { preloadImages } from "@/shared/utils/imagePreloader";
-import { Cell, For, onSetup } from "retend";
+import { For, onSetup } from "retend";
 import type { JSX } from "retend/jsx-runtime";
 import type { Album } from "../../data/music-project";
 import { AlbumCover } from "./AlbumCover";
@@ -8,26 +8,14 @@ import { BasketItem } from "./BasketItem";
 
 interface AlbumBasketPreviewProps {
   albums: Album[];
-  basketContainer: Cell<HTMLDivElement | null>;
   color: string;
-  focused: JSX.ValueOrCell<boolean>;
-  hovered: JSX.ValueOrCell<boolean>;
   selected: JSX.ValueOrCell<boolean>;
   text: string;
   title: string;
 }
 
 export function AlbumBasketPreview(props: AlbumBasketPreviewProps) {
-  const {
-    albums,
-    basketContainer,
-    color,
-    focused,
-    hovered,
-    selected,
-    text,
-    title,
-  } = props;
+  const { albums, color, selected, text, title } = props;
 
   onSetup(() => {
     preloadImages(albums.map((album) => album.imageUrl));
@@ -36,14 +24,13 @@ export function AlbumBasketPreview(props: AlbumBasketPreviewProps) {
   return (
     <>
       <div
-        ref={basketContainer}
         class={[
           "transform-3d transition-transform duration-500 ease-(--ease-spring)",
           "transform-[rotateX(-20.1357deg)_rotateY(36.994deg)] translate-[0_35%]",
-          { "transform-[rotateX(0deg)_rotateY(0deg)]!": focused },
+          { "transform-[rotateX(0deg)_rotateY(0deg)]!": selected },
         ]}
       >
-        <Basket color={color} hovered={hovered} selected={selected}>
+        <Basket color={color} selected={selected}>
           {For(albums, (album, index) => (
             <BasketItem index={index} depth="min(10px,1.5dvw)">
               <AlbumCover

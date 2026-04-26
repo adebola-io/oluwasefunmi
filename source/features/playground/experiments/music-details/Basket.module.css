@@ -19,6 +19,7 @@
   --shade-color: color-mix(in srgb, var(--base-color) 50%, black);
   --light-color: color-mix(in srgb, var(--base-color) 35%, #ffffff60);
 
+  position: relative;
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: 1fr;
@@ -29,35 +30,24 @@
   transform-style: preserve-3d;
 }
 
-.basket[data-hovered] {
-  .content {
-    translate: 0 0 calc(var(--depth) / -3);
-  }
-
-  .basketItem {
-    translate: 0 calc(var(--height) * -0.85);
-  }
-}
-
 .basket[data-selected] {
   .face,
   .side,
   .base,
   .curve {
     transition:
-      opacity 500ms var(--ease-spring),
-      translate 500ms var(--ease-spring);
+      opacity 300ms ease,
+      translate 300ms var(--ease-spring);
     opacity: 0;
-    translate: 0 100% 0;
+    translate: 0 15dvw 0;
   }
 }
 
 .content {
-  z-index: -1;
   display: grid;
   grid-area: 1 / 1;
   height: var(--height);
-  width: 93%;
+  width: 90%;
   align-items: end;
   transition: translate 500ms var(--ease-spring);
   transform-style: preserve-3d;
@@ -81,6 +71,7 @@
 .side,
 .base,
 .curve {
+  z-index: 99;
   grid-area: 1 / 1;
   background: var(--color);
 }

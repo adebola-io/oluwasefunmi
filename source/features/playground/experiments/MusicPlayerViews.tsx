@@ -2,7 +2,6 @@ import type { JSX } from "retend/jsx-runtime";
 import classes from "./MusicPlayer.module.css";
 import { AlbumBasket, AlbumBasketProps } from "./music-details/AlbumBasket";
 import { AlbumList } from "./music-details/AlbumList";
-import { GridPlaceholders } from "./music-details/GridPlaceholders";
 
 interface SelectedAlbumViewProps {
   decade: AlbumBasketProps;
@@ -44,7 +43,6 @@ export function AlbumGridView(props: AlbumGridViewProps) {
       ]}
       style={{ "--cols": cols, "--rows": rows, gridTemplateAreas }}
     >
-      <GridPlaceholders />
       <AlbumList />
     </div>
   );

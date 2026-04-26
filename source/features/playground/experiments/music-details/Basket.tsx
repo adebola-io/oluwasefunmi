@@ -3,26 +3,24 @@ import classes from "./Basket.module.css";
 
 interface BasketProps {
   color?: JSX.ValueOrCell<string>;
-  hovered?: JSX.ValueOrCell<boolean>;
   children?: JSX.Children;
   selected?: JSX.ValueOrCell<boolean>;
 }
 
 export function Basket(props: BasketProps) {
-  const { children, selected, color = "var(--color-sky-500)", hovered } = props;
+  const { children, selected, color = "var(--color-sky-500)" } = props;
 
   return (
     <div
       class={classes.basket}
-      data-hovered={hovered}
       data-selected={selected}
       style={{ "--base-color": color }}
     >
-      <BasketSides />
+      <div class={classes.content}>{children}</div>
       <div class={[classes.basket, classes.shading]}>
         <BasketSides />
       </div>
-      <div class={classes.content}>{children}</div>
+      <BasketSides />
     </div>
   );
 }
