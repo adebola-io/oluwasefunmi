@@ -35,7 +35,7 @@
   }
 
   .basketItem {
-    translate: 0 calc(var(--height) * -0.5);
+    translate: 0 calc(var(--height) * -0.85);
   }
 }
 

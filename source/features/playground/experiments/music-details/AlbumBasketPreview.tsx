@@ -1,4 +1,5 @@
-import { Cell, For } from "retend";
+import { preloadImages } from "@/shared/utils/imagePreloader";
+import { Cell, For, onSetup } from "retend";
 import type { JSX } from "retend/jsx-runtime";
 import type { Album } from "../../data/music-project";
 import { AlbumCover } from "./AlbumCover";
@@ -28,6 +29,10 @@ export function AlbumBasketPreview(props: AlbumBasketPreviewProps) {
     title,
   } = props;
 
+  onSetup(() => {
+    preloadImages(albums.map((album) => album.imageUrl));
+  });
+
   return (
     <>
       <div
@@ -35,7 +40,7 @@ export function AlbumBasketPreview(props: AlbumBasketPreviewProps) {
         class={[
           "transform-3d transition-transform duration-500 ease-(--ease-spring)",
           "transform-[rotateX(-20.1357deg)_rotateY(36.994deg)] translate-[0_35%]",
-          { "transform-[rotateX(2deg)_rotateY(5deg)]!": focused },
+          { "transform-[rotateX(0deg)_rotateY(0deg)]!": focused },
         ]}
       >
         <Basket color={color} hovered={hovered} selected={selected}>

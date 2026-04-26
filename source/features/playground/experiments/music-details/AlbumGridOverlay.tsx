@@ -1,4 +1,5 @@
-import { For } from "retend";
+import { preloadImages } from "@/shared/utils/imagePreloader";
+import { For, onSetup } from "retend";
 import { Teleport } from "retend-web";
 import type { Album } from "../../data/music-project";
 import { AlbumCover } from "./AlbumCover";
@@ -11,6 +12,10 @@ interface AlbumGridOverlayProps {
 
 export function AlbumGridOverlay(props: AlbumGridOverlayProps) {
   const { albums } = props;
+
+  onSetup(() => {
+    preloadImages(albums.map((album) => album.imageUrl));
+  });
 
   return (
     <Teleport to="body" class={SIZING_CLASSES}>

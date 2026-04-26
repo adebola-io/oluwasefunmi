@@ -1,6 +1,6 @@
 import { Link } from "retend/router";
 import { Album } from "../../data/music-project";
-import { Cell, createUnique } from "retend";
+import { Cell, createUnique, onSetup } from "retend";
 import { UniqueTransition } from "retend-utils/components";
 import classes from "./AlbumCover.module.css";
 
@@ -14,6 +14,7 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
   const album = Cell.derived(() => props.get().album);
   const index = Cell.derived(() => props.get().index.get());
   const ref = Cell.source<HTMLAnchorElement | null>(null);
+  const loading = Cell.source(false);
   const loaded = Cell.source(false);
   const interactiveRaw = Cell.derived(() => props.get().interactive);
 
@@ -22,12 +23,29 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
   const altText = Cell.derived(() => {
     return `${album.get().name} by ${album.get().artist}`;
   });
-  const discImage = Cell.derived(() => `url(${imageUrl.get()})`);
-  const duration = 300;
+  const imageSrc = Cell.derived(() => {
+    if (!loading.get()) return;
+    return imageUrl.get();
+  });
+  const discImage = Cell.derived(() => {
+    if (!loading.get()) return;
+    return `url(${imageUrl.get()})`;
+  });
+  const duration = 350;
   const interactive = Cell.derivedAsync(async (get) => {
     return new Promise<boolean>((resolve) => {
       setTimeout(() => resolve(get(interactiveRaw)), duration + 200);
     });
+  });
+
+  onSetup(() => {
+    const timeout = window.setTimeout(
+      () => {
+        loading.set(true);
+      },
+      duration + index.get() * 30
+    );
+    return () => window.clearTimeout(timeout);
   });
 
   return (
@@ -70,7 +88,7 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
           style={{ backgroundColor: themeColor }}
         >
           <img
-            src={imageUrl}
+            src={imageSrc}
             alt={altText}
             class={[classes.coverImage, { [classes.artLoaded]: loaded }]}
             onLoad={() => loaded.set(true)}
