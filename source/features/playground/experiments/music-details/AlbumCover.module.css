@@ -5,20 +5,29 @@
   grid-template-columns: 1fr;
   width: var(--album-cover-size);
   height: var(--album-cover-size);
-  border-radius: 0.5rem;
+  border-radius: 0.2rem 0.5rem 0.5rem 0.2rem;
   --cover-transition-duration: 250ms;
   transition: opacity var(--cover-transition-duration) ease;
   background-color: var(--cover-color);
 
-  &.interactive {
+  &.interactive:not(.open) {
     *:has(> :hover) > &:not(:hover) {
       opacity: 0.5;
     }
   }
+
+  *:has(> &.open) > &:is(&):not(.open) {
+    opacity: 0;
+  }
+}
+
+.recordWrapper {
+  grid-area: 1/1;
 }
 
 .record {
   transition: translate 300ms ease;
+
   &:is(&) {
     display: none;
     width: 78%;
@@ -31,6 +40,10 @@
 
   .coverLink.interactive:hover & {
     translate: 40%;
+  }
+
+  .coverLink.interactive.open & {
+    translate: 0%;
   }
 }
 
@@ -50,5 +63,9 @@
 
   .coverLink.interactive:hover & {
     transform: rotateY(-35deg);
+  }
+
+  .coverLink.interactive.open & {
+    transform: rotateY(-90deg);
   }
 }

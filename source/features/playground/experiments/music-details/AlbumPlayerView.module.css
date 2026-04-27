@@ -101,11 +101,14 @@
   }
 }
 
+.recordWrapper {
+  grid-area: 1 / 1;
+}
+
 .record {
   height: 94%;
   width: auto;
   aspect-ratio: 1;
-  grid-area: 1 / 1;
 }
 
 .powerControl {

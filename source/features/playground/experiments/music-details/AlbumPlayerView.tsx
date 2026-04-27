@@ -4,7 +4,6 @@ import { AlbumSelectionScope } from "./AlbumSelectionScope";
 import { AlbumRecord } from "./AlbumRecord";
 import classes from "./AlbumPlayerView.module.css";
 import { Box } from "../Box";
-import { Viewer } from "../../components/Viewer/Viewer";
 import { AlbumToneArm } from "./AlbumToneArm";
 
 export function AlbumPlayerView() {
@@ -36,52 +35,51 @@ export function AlbumPlayerView() {
   );
 
   return (
-    <Viewer>
-      <div class={classes.player}>
-        <Box
-          class={classes.deck}
-          frontClass={classes.deckFront}
-          width={deckWidth}
-          height={deckHeight}
-          depth={deckDepth}
-          curve={18}
-          color={albumData.themeColor}
-          secondaryColor={`color-mix(${albumData.themeColor} 60%, black)`}
-          style={{ "--cover-color": albumData.themeColor }}
-        >
-          <div class={classes.card}>
-            <span>{albumData.name}</span>
-            <small>{albumData.artist}</small>
+    <div class={[classes.player, "animate-fade-in"]}>
+      <Box
+        class={classes.deck}
+        frontClass={classes.deckFront}
+        width={deckWidth}
+        height={deckHeight}
+        depth={deckDepth}
+        curve={18}
+        color={albumData.themeColor}
+        secondaryColor={`color-mix(${albumData.themeColor} 60%, black)`}
+        style={{ "--cover-color": albumData.themeColor }}
+      >
+        <div class={classes.card}>
+          <span>{albumData.name}</span>
+          <small>{albumData.artist}</small>
+        </div>
+        <div class={classes.recordContainer}>
+          <AlbumRecord
+            id={recordId}
+            class={classes.record}
+            containerClass={classes.recordWrapper}
+            themeColor={albumData.themeColor}
+            imageUrl={recordImage}
+          />
+        </div>
+        <div class={classes.tonearm}>
+          <div class={classes.arm}>
+            <AlbumToneArm />
           </div>
-          <div class={classes.recordContainer}>
-            <AlbumRecord
-              id={recordId}
-              class={classes.record}
-              themeColor={albumData.themeColor}
-              imageUrl={recordImage}
-            />
-          </div>
-          <div class={classes.tonearm}>
-            <div class={classes.arm}>
-              <AlbumToneArm />
-            </div>
-            <div class={classes.pivot} />
-          </div>
-          <div class={classes.powerControl} aria-hidden="true">
-            <span class={classes.powerLight} />
-            <span class={classes.powerKnob} />
-            <small>Off</small>
-            <small>On</small>
-          </div>
-          <div class={classes.speedControl} aria-hidden="true">
-            <span>33</span>
-            <span class={classes.speedSlot}>
-              <span />
-            </span>
-            <span>45</span>
-          </div>
-        </Box>
-      </div>
-    </Viewer>
+          <div class={classes.pivot} />
+        </div>
+        <div class={classes.powerControl} aria-hidden="true">
+          <span class={classes.powerLight} />
+          <span class={classes.powerKnob} />
+          <small>Off</small>
+          <small>On</small>
+        </div>
+        <div class={classes.speedControl} aria-hidden="true">
+          <span>33</span>
+          <span class={classes.speedSlot}>
+            <span />
+          </span>
+          <span>45</span>
+        </div>
+      </Box>
+    </div>
   );
 }

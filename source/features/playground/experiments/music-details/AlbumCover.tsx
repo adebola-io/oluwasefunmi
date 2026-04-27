@@ -13,10 +13,12 @@ interface AlbumCoverProps {
 
 export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
   const { album: selectedAlbum } = useScopeContext(AlbumSelectionScope);
+  const open = Cell.source(false);
   const album = Cell.derived(() => props.get().album);
   const index = Cell.derived(() => props.get().index.get());
   const ref = Cell.source<HTMLAnchorElement | null>(null);
   const loading = Cell.source(false);
+  const imageRef = Cell.source<HTMLElement | null>(null);
   const interactiveRaw = Cell.derived(() => props.get().interactive);
 
   const themeColor = Cell.derived(() => album.get().themeColor);
@@ -37,8 +39,17 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
     });
   });
 
-  const handleClick = () => {
+  const handleClick = async () => {
     if (!interactiveRaw.get()) return;
+    open.set(true);
+    const image = imageRef.get();
+    if (!image) return;
+    const animations = image.getAnimations();
+    await Promise.allSettled(
+      animations.map((animation) => {
+        return animation.finished;
+      })
+    );
     selectedAlbum.set(album.get());
   };
 
@@ -56,17 +67,26 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
       <button
         ref={ref}
         type="button"
-        class={[classes.coverLink, { [classes.interactive]: interactive }]}
+        class={[
+          classes.coverLink,
+          { [classes.interactive]: interactive, [classes.open]: open },
+        ]}
         style={{ "--cover-color": themeColor }}
         onClick={handleClick}
       >
         <AlbumRecord
           id={recordId}
+          containerClass={classes.recordWrapper}
           class={classes.record}
           themeColor={themeColor}
           imageUrl={recordImage}
         />
-        <img src={imageSrc} alt={altText} class={classes.coverImage} />
+        <img
+          ref={imageRef}
+          src={imageSrc}
+          alt={altText}
+          class={classes.coverImage}
+        />
       </button>
     </UniqueTransition>
   );
