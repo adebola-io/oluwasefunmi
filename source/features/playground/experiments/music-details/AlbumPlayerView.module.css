@@ -19,7 +19,7 @@
   background-image: linear-gradient(
     to bottom right,
     transparent,
-    color-mix(in srgb, var(--cover-color) 10%, black)
+    color-mix(in srgb, var(--cover-color) 30%, black)
   );
   background-color: color-mix(var(--cover-color) 80%, black);
   box-shadow: 2px 2px 2px 2px inset #ffffff40;
@@ -136,11 +136,15 @@
   width: 3cqw;
   aspect-ratio: 1;
   border-radius: 50%;
-  background: linear-gradient(135deg, #3f443d, #10120f 75%);
+  background: linear-gradient(
+    135deg,
+    color-mix(in srgb, var(--cover-color) 68%, white 14%),
+    color-mix(in srgb, var(--cover-color) 64%, black) 75%
+  );
   box-shadow:
-    0 0 0 1px #0009,
-    0 1px 2px #ffffff35 inset,
-    0 7px 12px #0008;
+    0 0 0 1px color-mix(in srgb, var(--cover-color) 25%, black),
+    0 1px 2px color-mix(in srgb, var(--cover-color) 70%, white 18%) inset,
+    0 7px 12px color-mix(in srgb, var(--cover-color) 28%, black);
 }
 
 .speedControl {
@@ -163,10 +167,10 @@
   width: 100%;
   height: 6.5cqw;
   border-radius: 5px;
-  background: #111411;
+  background: color-mix(in srgb, var(--cover-color) 42%, black);
   box-shadow:
-    0 0 0 1px #ffffff14 inset,
-    0 5px 10px #0008;
+    0 0 0 1px color-mix(in srgb, var(--cover-color) 12%, white) inset,
+    0 5px 10px color-mix(in srgb, var(--cover-color) 28%, black);
 
   span {
     display: block;
@@ -174,8 +178,13 @@
     height: 36%;
     margin: 36% auto 0;
     border-radius: 3px;
-    background: linear-gradient(180deg, #3b4039, #151714);
-    box-shadow: 0 1px 1px #ffffff30 inset;
+    background: linear-gradient(
+      180deg,
+      color-mix(in srgb, var(--cover-color) 72%, white 16%),
+      color-mix(in srgb, var(--cover-color) 68%, black)
+    );
+    box-shadow: 0 1px 1px color-mix(in srgb, var(--cover-color) 70%, white 18%)
+      inset;
   }
 }
 
@@ -222,11 +231,11 @@
   place-self: center;
   z-index: 1;
   display: grid;
-  height: 50%;
+  height: 40%;
   width: auto;
   aspect-ratio: 1;
   border-radius: 50%;
-  background-color: color-mix(in srgb, var(--cover-color) 30%, black);
+  background-color: color-mix(in srgb, var(--cover-color) 20%, black);
   box-shadow:
     -1px 3px 8px 0 black,
     0.5px 0.5px 2px color-mix(in srgb, var(--cover-color) 50%, white) inset;
@@ -238,7 +247,7 @@
     place-self: center;
     width: auto;
     aspect-ratio: 1;
-    height: 60%;
+    height: 70%;
     border-radius: inherit;
     background-color: color-mix(in srgb, var(--cover-color) 50%, black);
     box-shadow: inherit;
@@ -259,5 +268,5 @@
   position: absolute;
   display: block;
   height: 445%;
-  translate: -18% -10%;
+  translate: -20% -9%;
 }
