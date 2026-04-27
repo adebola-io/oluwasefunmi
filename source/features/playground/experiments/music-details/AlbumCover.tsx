@@ -31,7 +31,7 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
     if (!loading.get()) return;
     return imageUrl.get();
   });
-  const duration = 375 + index.get() * 12;
+  const duration = 350 + index.get() * 12;
   const recordId = `record-${album.get().imageId}`;
   const interactive = Cell.derivedAsync(async (get) => {
     return new Promise<boolean>((resolve) => {

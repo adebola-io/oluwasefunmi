@@ -35,14 +35,14 @@
   .side,
   .base,
   .curve {
-    transition: translate 600ms ease 300ms;
+    transition: translate 300ms ease 100ms;
     translate: 0 40dvw 0;
   }
 
   .basketItem {
     transition:
-      translate 300ms ease 100ms,
-      rotate 300ms ease 100ms;
+      translate 300ms ease 50ms,
+      rotate 300ms ease 50ms;
     translate: 0 calc(-45% + (var(--index) * -10px)) calc(var(--depth) / -2);
     rotate: 0deg;
   }

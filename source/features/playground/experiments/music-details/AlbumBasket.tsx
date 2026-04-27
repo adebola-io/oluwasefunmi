@@ -36,7 +36,7 @@ export const AlbumBasket = (props: AlbumBasketProps) => {
     const waitingForAnimations = Promise.allSettled(
       animations.map((anim) => anim.finished)
     );
-    const timeout = new Promise((resolve) => setTimeout(resolve, 550));
+    const timeout = new Promise((resolve) => setTimeout(resolve, 300));
     await Promise.race([waitingForAnimations, timeout]);
     isGridState.set(true);
   };
