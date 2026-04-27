@@ -1,5 +1,7 @@
-import { Cell, For } from "retend";
+import { Cell, For, useScopeContext } from "retend";
 import type { Album, Track } from "../../data/music-project";
+import { AlbumPlaybackScope } from "./AlbumPlaybackScope";
+import { formatTrackDuration } from "./formatTrackDuration";
 import classes from "./AlbumTrackList.module.css";
 
 interface AlbumTrackListProps {
@@ -11,19 +13,14 @@ interface AlbumTrackProps {
   track: Track;
 }
 
-function formatTrackDuration(duration: number) {
-  const minutes = Math.floor(duration / 60000);
-  const seconds = Math.floor((duration % 60000) / 1000);
-
-  return `${minutes}:${seconds.toString().padStart(2, "0")}`;
-}
-
 function AlbumTrack(props: AlbumTrackProps) {
   const { index, track } = props;
+  const { player } = useScopeContext(AlbumPlaybackScope);
   const trackNumber = Cell.derived(() => index.get() + 1);
+  const active = Cell.derived(() => index.get() === player.trackIndex.get());
 
   return (
-    <li class={classes.track}>
+    <li class={[classes.track, { [classes.active]: active }]}>
       <span class={classes.trackNumber}>{trackNumber}</span>
       <strong class={classes.trackName}>{track.name}</strong>
       <time class={classes.trackDuration}>

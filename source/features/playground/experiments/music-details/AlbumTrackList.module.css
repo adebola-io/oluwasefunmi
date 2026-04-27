@@ -66,6 +66,17 @@
   white-space: nowrap;
 }
 
+.active .trackName {
+  color: color-mix(in srgb, var(--cover-color) 6%, white);
+  font-weight: 850;
+}
+
+.active .trackNumber,
+.active .trackDuration {
+  color: color-mix(in srgb, var(--cover-color) 18%, white);
+  font-weight: 800;
+}
+
 @media (max-width: 72rem) {
   .trackList {
     width: min(100%, 680px);

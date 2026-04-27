@@ -1,0 +1,102 @@
+.controls {
+  display: grid;
+  gap: 10px;
+  padding-top: 14px;
+  border-top: 1px solid color-mix(in srgb, var(--cover-color) 32%, transparent);
+  color: color-mix(in srgb, var(--cover-color) 18%, white);
+}
+
+.eyebrow {
+  margin: 0;
+  color: color-mix(in srgb, var(--cover-color) 46%, white);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.currentTrack {
+  display: grid;
+  min-width: 0;
+}
+
+.currentTrack strong {
+  min-width: 0;
+  overflow: hidden;
+  color: color-mix(in srgb, var(--cover-color) 12%, white);
+  font-size: clamp(13px, 1.2vw, 16px);
+  line-height: 1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.progress {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 8px;
+}
+
+.progress time {
+  color: color-mix(in srgb, var(--cover-color) 44%, white);
+  font-size: 9px;
+  font-variant-numeric: tabular-nums;
+}
+
+.progressTrack {
+  position: relative;
+  display: block;
+  height: 3px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--cover-color) 25%, transparent);
+}
+
+.progressFill {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform-origin: left;
+  background: color-mix(in srgb, var(--cover-color) 18%, white);
+}
+
+.buttons {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.buttons button {
+  display: grid;
+  place-items: center;
+  width: 34px;
+  aspect-ratio: 1;
+  border: 1px solid color-mix(in srgb, var(--cover-color) 38%, transparent);
+  border-radius: 50%;
+  color: color-mix(in srgb, var(--cover-color) 16%, white);
+  background: color-mix(in srgb, var(--cover-color) 18%, transparent);
+  font: inherit;
+  font-size: 10px;
+  font-weight: 750;
+  cursor: pointer;
+  transition:
+    border-color 160ms ease,
+    background-color 160ms ease,
+    color 160ms ease,
+    transform 160ms ease;
+}
+
+.buttons button:hover {
+  border-color: color-mix(in srgb, var(--cover-color) 58%, white);
+  background: color-mix(in srgb, var(--cover-color) 30%, transparent);
+  transform: translateY(-1px);
+}
+
+.buttons button:active {
+  transform: translateY(0) scale(0.96);
+}
+
+.playButton:is(.playButton) {
+  width: 42px;
+  color: color-mix(in srgb, var(--cover-color) 6%, white);
+  background: color-mix(in srgb, var(--cover-color) 40%, black);
+}
