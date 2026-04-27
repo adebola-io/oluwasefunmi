@@ -1,22 +1,28 @@
-import { albumDecades } from "../../data/music-project";
+import { albumCollections } from "../../data/music-project";
 
 export const albumGroups = [
   {
-    id: "2000s",
-    title: "2000s",
+    id: "hip-hop-rap",
+    title: "Hip-Hop / Rap",
     color: "color-mix(in srgb, var(--color-blue-500) 90%, black)",
-    albums: albumDecades["2000s"],
+    albums: albumCollections["Hip-Hop / Rap"],
   },
   {
-    id: "2010s",
-    title: "2010s",
+    id: "r-and-b-soul",
+    title: "R&B / Soul",
+    color: "color-mix(in srgb, var(--color-purple-500) 90%, black)",
+    albums: albumCollections["R&B / Soul"],
+  },
+  {
+    id: "pop",
+    title: "Pop",
     color: "color-mix(in srgb, var(--color-red-500) 90%, black)",
-    albums: albumDecades["2010s"],
+    albums: albumCollections["Pop"],
   },
   {
-    id: "2020s",
-    title: "2020s",
+    id: "electronic-dance",
+    title: "Electronic / Dance",
     color: "color-mix(in srgb, var(--color-green-500) 90%, black)",
-    albums: albumDecades["2020s"],
+    albums: albumCollections["Electronic / Dance"],
   },
 ];

@@ -60,7 +60,7 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
   });
 
   onSetup(() => {
-    const wait = duration + index.get() * 30;
+    const wait = duration + index.get() * 10;
     const timeout = setTimeout(() => loading.set(true), wait);
     return () => window.clearTimeout(timeout);
   });

@@ -22,7 +22,7 @@ const MusicPlayer: RouteComponent = () => {
   const selectedAlbum = Cell.source<Album | null>(null);
   const back = Cell.source<(() => void | Promise<void>) | null>(null);
   const value: AlbumSelectionContext = {
-    decade: selected,
+    collection: selected,
     album: selectedAlbum,
     back,
   };
@@ -48,9 +48,9 @@ const MusicPlayer: RouteComponent = () => {
           backLabel={backLabel}
           onBack={handleBack}
         >
-          <div class="h-screen w-screen max-w-280 px-10 grid place-items-center m-auto">
+          <div class="h-screen w-screen max-w-340 px-10 grid place-items-center m-auto">
             <AlbumSelectionScope.Provider value={value}>
-              <div class="size-full animate-fade-in grid place-items-center pt-50 md:grid-cols-2 lg:grid-cols-3">
+              <div class="size-full animate-fade-in grid place-items-center pt-50 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {For(albumGroups, (group) => (
                   <AlbumBasket {...group} />
                 ))}

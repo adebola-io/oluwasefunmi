@@ -1,5 +1,5 @@
 import type { ImageModule } from "@/shared/types";
-import albumDecadesData from "./albums.json";
+import albumCollectionsData from "./albums.json";
 
 const imageModules = import.meta.glob<ImageModule>(
   "/source/features/playground/data/images/music-project/*.webp",
@@ -30,14 +30,14 @@ export interface Track {
   previewUrl: string;
 }
 
-const albumDecadeEntries = Object.entries(albumDecadesData) as Array<
+const albumCollectionEntries = Object.entries(albumCollectionsData) as Array<
   [string, AlbumSource[]]
 >;
 
-export const albumDecades = Object.fromEntries(
-  albumDecadeEntries.map(([decade, albums]) => {
+export const albumCollections = Object.fromEntries(
+  albumCollectionEntries.map(([collection, albums]) => {
     return [
-      decade,
+      collection,
       albums.map((album) => {
         return {
           ...album,
@@ -48,4 +48,4 @@ export const albumDecades = Object.fromEntries(
   })
 ) as Record<string, Album[]>;
 
-export const albums = Object.values(albumDecades).flat();
+export const albums = Object.values(albumCollections).flat();

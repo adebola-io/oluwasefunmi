@@ -4,7 +4,7 @@ import type { AlbumBasketProps } from "./AlbumBasket";
 import type { Album } from "../../data/music-project";
 
 export interface AlbumSelectionContext {
-  decade: SourceCell<AlbumBasketProps | null>;
+  collection: SourceCell<AlbumBasketProps | null>;
   album: SourceCell<Album | null>;
   back: SourceCell<(() => void | Promise<void>) | null>;
 }

@@ -32,7 +32,7 @@ export function AlbumBasketPreview(props: AlbumBasketPreviewProps) {
       >
         <Basket color={color} selected={selected}>
           {For(albums, (album, index) => (
-            <BasketItem index={index} depth="min(10px,1.5dvw)">
+            <BasketItem index={index} depth="min(5px,1dvw)">
               <AlbumCover
                 index={index}
                 id={album.imageId}
@@ -43,7 +43,7 @@ export function AlbumBasketPreview(props: AlbumBasketPreviewProps) {
           ))}
         </Basket>
       </div>
-      <h2 class="mt-[25%]! text-3xl">{title}</h2>
+      <h2 class="mt-[25%]! text-2xl md:text-3xl">{title}</h2>
       <h3
         class="text-sm"
         style={{ color: "color-mix(in srgb, var(--color), white)" }}

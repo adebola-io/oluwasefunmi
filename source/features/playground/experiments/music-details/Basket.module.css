@@ -35,12 +35,13 @@
   .side,
   .base,
   .curve {
-    translate: 0 40dvw 0;
+    translate: 0 40dvh 0;
+    opacity: 0;
     transition-timing-function: ease;
   }
 
   .basketItem {
-    translate: 0 calc(-45% + (var(--index) * -10px)) calc(var(--depth) / -2);
+    translate: 0 calc(-45% + (var(--index) * -10px)) calc(var(--depth) / -2.35);
     rotate: 0deg;
   }
 }
@@ -78,7 +79,7 @@
   z-index: 99;
   grid-area: 1 / 1;
   background: var(--color);
-  transition-property: translate;
+  transition-property: translate, opacity;
   transition-timing-function: var(--ease-spring);
   transition-duration: 700ms;
   transition-delay: 100ms;
