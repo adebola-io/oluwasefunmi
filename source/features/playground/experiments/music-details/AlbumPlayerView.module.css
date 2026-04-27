@@ -12,13 +12,14 @@
 }
 
 .deckFront:is(.deckFront) {
+  position: relative;
   display: grid;
   place-items: center;
   overflow: visible;
   background-image: linear-gradient(
     to bottom right,
     transparent,
-    color-mix(in srgb, var(--cover-color) 30%, black)
+    color-mix(in srgb, var(--cover-color) 10%, black)
   );
   background-color: color-mix(var(--cover-color) 80%, black);
   box-shadow: 2px 2px 2px 2px inset #ffffff40;
@@ -42,40 +43,220 @@
   left: 6.8%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: flex-start;
+  gap: max(3px, 0.42cqw);
   width: 19%;
-  height: 12%;
+  min-height: 12%;
+  height: auto;
   padding: 2.2% 3%;
   border-radius: 2px;
-  background: color-mix(in srgb, var(--cover-color) 55%, black);
+  background: color-mix(in srgb, var(--cover-color) 75%, black);
   box-shadow:
-    -12px 16px 20px #0004,
+    0px 16px 20px #0004,
     0 1px 2px color-mix(in srgb, var(--cover-color) 45%, white) inset,
     0 -1px 2px #0008 inset;
-  color: color-mix(in srgb, var(--cover-color) 22%, white);
-  font-size: 3px;
+  color: color-mix(in srgb, var(--cover-color) 42%, white);
   font-weight: 700;
+  line-height: 1.02;
   text-transform: uppercase;
+  z-index: 4;
+
+  > span {
+    font-size: clamp(7px, 0.84cqw, 13px);
+    text-wrap: balance;
+  }
 
   small {
-    align-self: flex-end;
-    font-size: 3px;
+    align-self: flex-start;
+    font-size: clamp(5px, 0.66cqw, 10px);
+    line-height: 1.05;
+    text-wrap: balance;
   }
 }
 
 .recordContainer {
+  z-index: 2;
+  display: grid;
   grid-area: 1 / 1;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
   place-self: center;
-  width: 50%;
+  width: 60%;
   height: auto;
   aspect-ratio: 1;
   border-radius: 50%;
-  box-shadow:
-    0 0 25px 20px #00000085,
-    0 0 7px 7px #00000090;
+  background-color: color-mix(in srgb, var(--cover-color) 45%, black);
+  box-shadow: 0 6px 5px 0 color-mix(in srgb, var(--cover-color) 92%, white);
+
+  &::before {
+    content: "";
+    grid-area: 1 / 1;
+    place-self: center;
+    width: 95%;
+    height: auto;
+    aspect-ratio: 1;
+    border-radius: inherit;
+    box-shadow: 2px 2px 4px 0 color-mix(in srgb, var(--cover-color) 80%, white)
+      inset;
+  }
 }
 
 .record {
+  height: 94%;
+  width: auto;
+  aspect-ratio: 1;
+  grid-area: 1 / 1;
+}
+
+.powerControl {
+  position: absolute;
+  left: 7.5%;
+  bottom: 10%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  justify-items: center;
+  gap: 0.2cqw 0.8cqw;
+  color: color-mix(in srgb, var(--cover-color) 18%, white);
+  font-size: max(5px, 0.55cqw);
+  text-transform: uppercase;
+  z-index: 4;
+}
+
+.powerLight {
+  grid-column: 1 / -1;
+  width: 0.6cqw;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: color-mix(in srgb, var(--cover-color) 35%, white);
+  box-shadow: 0 0 6px color-mix(in srgb, var(--cover-color) 45%, white);
+}
+
+.powerKnob {
+  grid-column: 1 / -1;
+  width: 3cqw;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #3f443d, #10120f 75%);
+  box-shadow:
+    0 0 0 1px #0009,
+    0 1px 2px #ffffff35 inset,
+    0 7px 12px #0008;
+}
+
+.speedControl {
+  position: absolute;
+  right: 7.8%;
+  bottom: 9.5%;
+  display: grid;
+  grid-template-columns: auto 2.2cqw;
+  align-items: center;
+  gap: 0.4cqw;
+  color: color-mix(in srgb, var(--cover-color) 20%, white);
+  font-size: max(5px, 0.55cqw);
+  z-index: 4;
+}
+
+.speedSlot {
+  grid-row: 1 / span 2;
+  grid-column: 2;
+  display: block;
   width: 100%;
+  height: 6.5cqw;
+  border-radius: 5px;
+  background: #111411;
+  box-shadow:
+    0 0 0 1px #ffffff14 inset,
+    0 5px 10px #0008;
+
+  span {
+    display: block;
+    width: 76%;
+    height: 36%;
+    margin: 36% auto 0;
+    border-radius: 3px;
+    background: linear-gradient(180deg, #3b4039, #151714);
+    box-shadow: 0 1px 1px #ffffff30 inset;
+  }
+}
+
+.tonearm {
+  z-index: 99;
+  position: absolute;
+  right: 5%;
+  top: 10%;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  height: 17%;
+  width: auto;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background-image: linear-gradient(
+    to bottom right,
+    transparent,
+    color-mix(in srgb, var(--cover-color) 50%, black)
+  );
+  box-shadow:
+    0 3px 6px 0 black,
+    1px 1px 3px color-mix(in srgb, var(--cover-color) 50%, white) inset;
+
+  &::before {
+    display: block;
+    content: "";
+    background-color: inherit;
+    background-image: inherit;
+    grid-area: 1 / 1;
+    place-self: center;
+    border-radius: inherit;
+    height: 60%;
+    width: 60%;
+    box-shadow:
+      0 4px 6px black,
+      0.5px 0.5px 2px color-mix(in srgb, var(--cover-color) 50%, white) inset;
+  }
+}
+
+.pivot {
+  grid-area: 1 / 1;
+  place-self: center;
+  z-index: 1;
+  display: grid;
+  width: 30%;
+  height: 30%;
+  border-radius: 50%;
+  background-color: color-mix(in srgb, var(--cover-color) 20%, black);
+  box-shadow:
+    -1px 3px 8px 0 black,
+    0.5px 0.5px 2px color-mix(in srgb, var(--cover-color) 50%, white) inset;
+
+  &::before {
+    content: "";
+    display: block;
+    grid-area: 1 / 1;
+    place-self: center;
+    width: 60%;
+    height: 60%;
+    border-radius: inherit;
+    background-color: color-mix(in srgb, var(--cover-color) 50%, black);
+    box-shadow: inherit;
+  }
+}
+
+.arm {
+  grid-area: 1 / 1;
+  place-self: center;
   height: 100%;
+  rotate: 30deg;
+}
+
+.stick {
+  height: 370%;
+  width: 6px;
+  justify-self: center;
+  transform-origin: 0 0;
+  background-image: linear-gradient(
+    to right,
+    color-mix(in srgb, var(--cover-color) 50%, white),
+    color-mix(in srgb, var(--cover-color) 30%, black) 40%
+  );
 }
