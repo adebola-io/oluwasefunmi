@@ -54,6 +54,11 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
     selectedAlbum.set(album.get());
   };
 
+  selectedAlbum.listen(async (selectedAlbum) => {
+    await new Promise((r) => setTimeout(r, 200));
+    if (!selectedAlbum) open.set(false);
+  });
+
   onSetup(() => {
     const wait = duration + index.get() * 30;
     const timeout = setTimeout(() => loading.set(true), wait);
@@ -70,7 +75,11 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
         type="button"
         class={[
           classes.coverLink,
-          { [classes.interactive]: interactive, [classes.open]: open },
+          {
+            [classes.interactive]: interactive,
+            [classes.open]: open,
+            [classes.hasSelected]: selectedAlbum,
+          },
         ]}
         style={{ "--cover-color": themeColor }}
         onClick={handleClick}

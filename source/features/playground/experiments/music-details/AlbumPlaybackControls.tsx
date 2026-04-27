@@ -65,7 +65,7 @@ export function AlbumPlaybackControls() {
         <TransportButton
           action={player.previous}
           label="Previous track"
-          symbol="◀◀"
+          symbol="⏮"
         />
         <TransportButton
           action={player.toggle}
@@ -73,7 +73,7 @@ export function AlbumPlaybackControls() {
           symbol={playSymbol}
           variant="primary"
         />
-        <TransportButton action={player.next} label="Next track" symbol="▶▶" />
+        <TransportButton action={player.next} label="Next track" symbol="⏭" />
       </div>
     </section>
   );

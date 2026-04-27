@@ -19,6 +19,10 @@
   *:has(> &.open) > &:is(&):not(.open) {
     opacity: 0;
   }
+
+  &.hasSelected {
+    opacity: 0;
+  }
 }
 
 .recordWrapper {

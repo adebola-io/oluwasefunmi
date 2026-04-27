@@ -14,7 +14,7 @@ export interface AlbumBasketProps {
 export const AlbumBasket = (props: AlbumBasketProps) => {
   const { id, title = "Collection", albums = [], color } = props;
 
-  const { decade: selected } = useScopeContext(AlbumSelectionScope);
+  const { decade: selected, back } = useScopeContext(AlbumSelectionScope);
   const basketContainer = Cell.source<HTMLElement | null>(null);
   const selectedValue = selected.get();
   const isInitSelected = selectedValue ? selectedValue.id === id : false;
@@ -46,12 +46,14 @@ export const AlbumBasket = (props: AlbumBasketProps) => {
     selected.set(props);
     await animations();
     isGridState.set(true);
+    back.set(handleReturnFromGrid);
   };
 
   const handleReturnFromGrid = async () => {
     isGridState.set(false);
     await animations(450);
     selected.set(null);
+    back.set(null);
   };
 
   return (
@@ -72,9 +74,7 @@ export const AlbumBasket = (props: AlbumBasketProps) => {
       onClick={handleClick}
     >
       {If(isGridState, {
-        true: () => (
-          <AlbumGridOverlay albums={albums} onReturn={handleReturnFromGrid} />
-        ),
+        true: () => <AlbumGridOverlay albums={albums} />,
         false: () => (
           <AlbumBasketPreview
             albums={albums}

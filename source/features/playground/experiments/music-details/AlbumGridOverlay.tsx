@@ -1,18 +1,20 @@
 import { preloadImages } from "@/shared/utils/imagePreloader";
-import { For, onSetup } from "retend";
+import { For, If, onSetup, useScopeContext } from "retend";
 import { Teleport } from "retend-web";
 import type { Album } from "../../data/music-project";
 import { AlbumCover } from "./AlbumCover";
 import classes from "./AlbumCover.module.css";
 import { SIZING_CLASSES } from "./albumGrid";
+import { AlbumPlayerView } from "./AlbumPlayerView";
+import { AlbumSelectionScope } from "./AlbumSelectionScope";
 
 interface AlbumGridOverlayProps {
   albums: Album[];
-  onReturn?: () => void;
 }
 
 export function AlbumGridOverlay(props: AlbumGridOverlayProps) {
-  const { albums, onReturn } = props;
+  const { albums } = props;
+  const { album: selectedAlbum } = useScopeContext(AlbumSelectionScope);
 
   onSetup(() => {
     preloadImages(albums.map((album) => album.imageUrl));
@@ -35,16 +37,15 @@ export function AlbumGridOverlay(props: AlbumGridOverlayProps) {
               interactive={true}
             />
           ))}
+          {If(selectedAlbum, () => (
+            <Teleport
+              to="body"
+              class="fixed top-0 left-0 w-screen h-screen overflow-y-auto flex! items-center justify-center"
+            >
+              <AlbumPlayerView />,
+            </Teleport>
+          ))}
         </div>
-      </div>
-      <div class="fixed w-full bottom-5 grid place-items-center">
-        <button
-          class="inline-flex min-h-10 items-center justify-center rounded-full border border-white/15 bg-white/6 px-5 py-2.5 text-sm font-medium text-[#f5efe6] backdrop-blur-[10px] transition-[transform,background-color,border-color,box-shadow] duration-300 ease-(--ease-spring) hover:-translate-y-px hover:border-white/30 hover:bg-white/10 hover:shadow-[0_0_15px_rgba(255,46,147,0.2)] active:scale-96"
-          type="button"
-          onClick={onReturn}
-        >
-          Back to Collections
-        </button>
       </div>
     </Teleport>
   );

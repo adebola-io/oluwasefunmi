@@ -34,7 +34,6 @@ export const AlbumRecord = createUnique<AlbumRecordProps>((props) => {
   const setPlayingState = (isPlaying: boolean) => {
     const div = ref.get();
     if (!div) return;
-    console.log(div);
     div.classList.toggle(classes.playing, isPlaying);
   };
 

@@ -6,6 +6,7 @@ import type { Album } from "../../data/music-project";
 export interface AlbumSelectionContext {
   decade: SourceCell<AlbumBasketProps | null>;
   album: SourceCell<Album | null>;
+  back: SourceCell<(() => void | Promise<void>) | null>;
 }
 
 export const AlbumSelectionScope = createScope<AlbumSelectionContext>(

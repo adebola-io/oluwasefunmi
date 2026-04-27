@@ -80,7 +80,7 @@
   background: var(--color);
   transition-property: translate;
   transition-timing-function: var(--ease-spring);
-  transition-duration: 500ms;
+  transition-duration: 700ms;
   transition-delay: 100ms;
 }
 
