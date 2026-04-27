@@ -1,0 +1,74 @@
+.trackList {
+  display: grid;
+  gap: 16px;
+  max-height: min(500px, 68vh);
+  padding-block: 14px;
+  overflow: auto;
+  color: color-mix(in srgb, var(--cover-color) 18%, white);
+}
+
+.header {
+  display: grid;
+  gap: 3px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--cover-color) 38%, transparent);
+}
+
+.artist {
+  color: color-mix(in srgb, var(--cover-color) 42%, white);
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+}
+
+.title {
+  color: color-mix(in srgb, var(--cover-color) 16%, white);
+  font-size: clamp(18px, 2vw, 28px);
+  line-height: 0.92;
+  letter-spacing: -0.04em;
+}
+
+.tracks {
+  display: grid;
+  min-width: 0;
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.track {
+  display: grid;
+  grid-template-columns: 2ch minmax(0, 1fr) auto;
+  align-items: baseline;
+  gap: 10px;
+  min-width: 0;
+  padding: 7px 0;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--cover-color) 26%, transparent);
+  font-size: clamp(10px, 0.95vw, 12px);
+}
+
+.trackNumber,
+.trackDuration {
+  color: color-mix(in srgb, var(--cover-color) 44%, white);
+  font-size: 0.78em;
+  font-variant-numeric: tabular-nums;
+}
+
+.trackName {
+  min-width: 0;
+  overflow: hidden;
+  color: color-mix(in srgb, var(--cover-color) 18%, white);
+  font-weight: 650;
+  letter-spacing: -0.02em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+@media (max-width: 72rem) {
+  .trackList {
+    width: min(100%, 680px);
+    max-height: 280px;
+  }
+}

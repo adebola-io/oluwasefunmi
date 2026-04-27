@@ -41,8 +41,8 @@
 
   .basketItem {
     transition:
-      translate 300ms ease 300ms,
-      rotate 300ms ease 300ms;
+      translate 300ms ease 100ms,
+      rotate 300ms ease 100ms;
     translate: 0 calc(-45% + (var(--index) * -10px)) calc(var(--depth) / -2);
     rotate: 0deg;
   }

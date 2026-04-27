@@ -1,0 +1,14 @@
+.view {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(210px, 280px);
+  align-items: center;
+  gap: clamp(18px, 3vw, 40px);
+  width: min(100%, 1080px);
+}
+
+@media (max-width: 72rem) {
+  .view {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+  }
+}

@@ -8,7 +8,7 @@
 
 .deck {
   transform-style: preserve-3d;
-  transform: scale(1) rotateX(8.3125deg) rotateY(-0.321875deg) rotateZ(0deg);
+  transform: scale(1) rotateX(8.3125deg) rotateY(-3.321875deg) rotateZ(0deg);
 }
 
 .deckFront:is(.deckFront) {
@@ -265,6 +265,7 @@
   width: auto;
   aspect-ratio: 1;
   rotate: 25deg;
+  animation: startVinyl 900ms ease 300ms backwards;
 }
 
 .armSvg {
@@ -272,4 +273,13 @@
   display: block;
   height: 445%;
   translate: -20% -9%;
+}
+
+@keyframes startVinyl {
+  from {
+    rotate: 0deg;
+  }
+  to {
+    rotate: 25deg;
+  }
 }
