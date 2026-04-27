@@ -208,8 +208,9 @@
     grid-area: 1 / 1;
     place-self: center;
     border-radius: inherit;
-    height: 60%;
-    width: 60%;
+    height: 70%;
+    width: auto;
+    aspect-ratio: 1;
     box-shadow:
       0 4px 6px black,
       0.5px 0.5px 2px color-mix(in srgb, var(--cover-color) 50%, white) inset;
@@ -221,10 +222,11 @@
   place-self: center;
   z-index: 1;
   display: grid;
-  width: 30%;
-  height: 30%;
+  height: 50%;
+  width: auto;
+  aspect-ratio: 1;
   border-radius: 50%;
-  background-color: color-mix(in srgb, var(--cover-color) 20%, black);
+  background-color: color-mix(in srgb, var(--cover-color) 30%, black);
   box-shadow:
     -1px 3px 8px 0 black,
     0.5px 0.5px 2px color-mix(in srgb, var(--cover-color) 50%, white) inset;
@@ -234,7 +236,8 @@
     display: block;
     grid-area: 1 / 1;
     place-self: center;
-    width: 60%;
+    width: auto;
+    aspect-ratio: 1;
     height: 60%;
     border-radius: inherit;
     background-color: color-mix(in srgb, var(--cover-color) 50%, black);
@@ -243,20 +246,18 @@
 }
 
 .arm {
+  position: relative;
   grid-area: 1 / 1;
   place-self: center;
   height: 100%;
-  rotate: 30deg;
+  width: auto;
+  aspect-ratio: 1;
+  rotate: 25deg;
 }
 
-.stick {
-  height: 370%;
-  width: 6px;
-  justify-self: center;
-  transform-origin: 0 0;
-  background-image: linear-gradient(
-    to right,
-    color-mix(in srgb, var(--cover-color) 50%, white),
-    color-mix(in srgb, var(--cover-color) 30%, black) 40%
-  );
+.armSvg {
+  position: absolute;
+  display: block;
+  height: 445%;
+  translate: -18% -10%;
 }

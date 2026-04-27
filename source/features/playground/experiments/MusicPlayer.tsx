@@ -18,7 +18,7 @@ import { AlbumPlayerView } from "./music-details/AlbumPlayerView";
 
 const MusicPlayer: RouteComponent = () => {
   const selected = Cell.source<AlbumBasketProps | null>(null);
-  const selectedAlbum = Cell.source<Album | null>(albumGroups[0].albums[3]);
+  const selectedAlbum = Cell.source<Album | null>(null);
   const value: AlbumSelectionContext = {
     decade: selected,
     album: selectedAlbum,

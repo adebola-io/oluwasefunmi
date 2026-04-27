@@ -5,6 +5,7 @@ import { AlbumRecord } from "./AlbumRecord";
 import classes from "./AlbumPlayerView.module.css";
 import { Box } from "../Box";
 import { Viewer } from "../../components/Viewer/Viewer";
+import { AlbumToneArm } from "./AlbumToneArm";
 
 export function AlbumPlayerView() {
   const { album } = useScopeContext(AlbumSelectionScope);
@@ -62,7 +63,7 @@ export function AlbumPlayerView() {
           </div>
           <div class={classes.tonearm}>
             <div class={classes.arm}>
-              <div class={classes.stick} />
+              <AlbumToneArm />
             </div>
             <div class={classes.pivot} />
           </div>
