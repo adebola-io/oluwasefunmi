@@ -1,6 +1,6 @@
 // @ts-nocheck
 // oxlint-disable retend/max-component-lines
-import classes from "./AlbumPlayerView.module.css";
+import classes from "./AlbumVinylPlayer.module.css";
 
 export function AlbumToneArm() {
   return (
