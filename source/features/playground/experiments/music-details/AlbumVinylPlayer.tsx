@@ -37,7 +37,7 @@ export function AlbumVinylPlayer() {
   );
 
   return (
-    <div class={[classes.player, "animate-fade-in"]}>
+    <div class={classes.player}>
       <Box
         class={classes.deck}
         frontClass={classes.deckFront}

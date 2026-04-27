@@ -4,6 +4,16 @@
   padding-top: 14px;
   border-top: 1px solid color-mix(in srgb, var(--cover-color) 32%, transparent);
   color: color-mix(in srgb, var(--cover-color) 18%, white);
+
+  @media (min-width: 1024px) {
+    animation: slide-right 600ms var(--ease-spring) 300ms backwards;
+  }
+}
+@keyframes slide-right {
+  from {
+    translate: -100%;
+    opacity: 0;
+  }
 }
 
 .eyebrow {

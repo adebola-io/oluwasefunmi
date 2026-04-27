@@ -25,7 +25,7 @@ export function AlbumPlayerView() {
   });
 
   return (
-    <div class={classes.view}>
+    <div class={[classes.view, "animate-fade-in"]}>
       <AlbumPlaybackScope.Provider value={{ player }}>
         <AlbumVinylPlayer />
         <div
