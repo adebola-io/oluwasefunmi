@@ -17,4 +17,16 @@
     grid-template-columns: minmax(0, 1fr);
     justify-items: center;
   }
+
+  .details {
+    grid-template-columns: minmax(0, 1fr) minmax(190px, 240px);
+    align-items: end;
+    width: min(100%, 680px);
+  }
+}
+
+@media (max-width: 40rem) {
+  .details {
+    grid-template-columns: minmax(0, 1fr);
+  }
 }
