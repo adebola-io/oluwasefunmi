@@ -26,7 +26,7 @@ const MusicPlayer: RouteComponent = () => {
 
   return (
     <div class={[classes.app, SIZING_CLASSES]}>
-      <PlaygroundLayout title="Music Player">
+      <PlaygroundLayout title="Vinyl Player">
         <div class="h-screen w-screen max-w-280 px-10 grid place-items-center m-auto">
           <AlbumSelectionScope.Provider value={value}>
             {If(selectedAlbum, {
@@ -48,17 +48,17 @@ const MusicPlayer: RouteComponent = () => {
 };
 
 MusicPlayer.metadata = () => ({
-  title: "Music Player | Playground",
+  title: "Vinyl Player | Playground",
   description:
-    "A sleek music player with animated album artwork and smooth playback.",
-  ogTitle: "Music Player | Playground",
+    "A tactile vinyl player with animated record artwork and smooth playback.",
+  ogTitle: "Vinyl Player | Playground",
   ogDescription:
-    "A sleek music player with animated album artwork and smooth playback.",
-  ogImage: `${SITE_URL}/og/music-player.png`,
-  twitterTitle: "Music Player | Playground",
+    "A tactile vinyl player with animated record artwork and smooth playback.",
+  ogImage: `${SITE_URL}/og/vinyl-player.png`,
+  twitterTitle: "Vinyl Player | Playground",
   twitterDescription:
-    "A sleek music player with animated album artwork and smooth playback.",
-  twitterImage: `${SITE_URL}/og/music-player.png`,
+    "A tactile vinyl player with animated record artwork and smooth playback.",
+  twitterImage: `${SITE_URL}/og/vinyl-player.png`,
   viewport: "width=device-width, initial-scale=1.0",
 });
 

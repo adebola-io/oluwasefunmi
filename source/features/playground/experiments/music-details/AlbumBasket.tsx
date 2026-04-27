@@ -16,29 +16,42 @@ export const AlbumBasket = (props: AlbumBasketProps) => {
 
   const { decade: selected } = useScopeContext(AlbumSelectionScope);
   const basketContainer = Cell.source<HTMLElement | null>(null);
-  const isGridState = Cell.source(false);
+  const selectedValue = selected.get();
+  const isInitSelected = selectedValue ? selectedValue.id === id : false;
+  const isGridState = Cell.source(isInitSelected);
 
   const isSelected = Cell.derived(() => {
     const selectedValue = selected.get();
     return selectedValue ? selectedValue.id === id : false;
   });
+
   const isHidden = Cell.derived(() => {
     const selectedValue = selected.get();
     return selectedValue ? selectedValue.id !== id : false;
   });
   const text = `${albums.length} ${albums.length === 1 ? "album" : "albums"}`;
 
-  const handleClick = async () => {
-    selected.set(props);
+  const animations = async (maxDuration = 300) => {
     const el = basketContainer.get();
     if (!el) return;
     const animations = el.getAnimations({ subtree: true });
     const waitingForAnimations = Promise.allSettled(
       animations.map((anim) => anim.finished)
     );
-    const timeout = new Promise((resolve) => setTimeout(resolve, 300));
+    const timeout = new Promise((resolve) => setTimeout(resolve, maxDuration));
     await Promise.race([waitingForAnimations, timeout]);
+  };
+
+  const handleClick = async () => {
+    selected.set(props);
+    await animations();
     isGridState.set(true);
+  };
+
+  const handleReturnFromGrid = async () => {
+    isGridState.set(false);
+    await animations(450);
+    selected.set(null);
   };
 
   return (
@@ -49,14 +62,19 @@ export const AlbumBasket = (props: AlbumBasketProps) => {
       class={[
         "grid place-items-center place-content-center transform-3d text-center cursor-pointer",
         "w-[calc(var(--size)*2)] min-h-(--album-row-height)",
-        "transition-[opacity,scale] duration-800 ease-(--ease-spring)",
-        { "opacity-0 scale-50 pointer-events-none": isHidden },
+        "[transition:opacity_800ms,scale_800ms] ease-(--ease-spring) will-change-[opacity,scale]",
+        {
+          "opacity-0 invisible scale-50 pointer-events-none [transition:opacity_800ms,scale_800ms,visibility_1ms_800ms]!":
+            isHidden,
+        },
       ]}
       style={{ "--color": color }}
       onClick={handleClick}
     >
       {If(isGridState, {
-        true: () => <AlbumGridOverlay albums={albums} />,
+        true: () => (
+          <AlbumGridOverlay albums={albums} onReturn={handleReturnFromGrid} />
+        ),
         false: () => (
           <AlbumBasketPreview
             albums={albums}

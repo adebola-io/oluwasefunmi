@@ -52,7 +52,7 @@ export const playgroundExperimentRoutes = [
     ),
   },
   {
-    path: "/music-player",
+    path: "/vinyl-player",
     component: lazy(
       () => import("@/features/playground/experiments/MusicPlayer")
     ),

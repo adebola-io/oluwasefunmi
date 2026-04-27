@@ -30,10 +30,12 @@ function ExternalLink(props: ExternalLinkProps) {
 
 export const playgroundItems: PlaygroundItem[] = [
   {
-    path: "/playground/music-player",
-    title: "music-player",
+    path: "/playground/vinyl-player",
+    title: "vinyl-player",
     description: () => (
-      <>A sleek music player with animated album artwork and smooth playback.</>
+      <>
+        A tactile vinyl player with animated record artwork and smooth playback.
+      </>
     ),
     icon: () => <MusicIcon />,
   },

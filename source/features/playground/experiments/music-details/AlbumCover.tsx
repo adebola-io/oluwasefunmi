@@ -13,8 +13,8 @@ interface AlbumCoverProps {
 
 export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
   const { album: selectedAlbum } = useScopeContext(AlbumSelectionScope);
-  const open = Cell.source(false);
   const album = Cell.derived(() => props.get().album);
+  const open = Cell.source(selectedAlbum.get() === album.get());
   const index = Cell.derived(() => props.get().index.get());
   const ref = Cell.source<HTMLAnchorElement | null>(null);
   const loading = Cell.source(false);
@@ -31,9 +31,10 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
     if (!loading.get()) return;
     return imageUrl.get();
   });
-  const duration = 350 + index.get() * 12;
+  const duration = 380 + index.get() * 12;
   const recordId = `record-${album.get().imageId}`;
   const interactive = Cell.derivedAsync(async (get) => {
+    if (get(open)) return true;
     return new Promise<boolean>((resolve) => {
       setTimeout(() => resolve(get(interactiveRaw)), duration + 300);
     });
@@ -61,7 +62,7 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
 
   return (
     <UniqueTransition
-      transitionTimingFunction="ease-in-out"
+      transitionTimingFunction="cubic-bezier(0.42, 0, 0.58, 1.2)"
       transitionDuration={`${duration}ms`}
     >
       <button
