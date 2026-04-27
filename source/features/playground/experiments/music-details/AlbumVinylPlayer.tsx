@@ -5,9 +5,11 @@ import { AlbumRecord } from "./AlbumRecord";
 import classes from "./AlbumVinylPlayer.module.css";
 import { Box } from "../Box";
 import { AlbumToneArm } from "./AlbumToneArm";
+import { AlbumPlaybackScope } from "./AlbumPlaybackScope";
 
 export function AlbumVinylPlayer() {
   const { album } = useScopeContext(AlbumSelectionScope);
+  const { player } = useScopeContext(AlbumPlaybackScope);
   const isPhone = useMatchMedia("(max-width: 30rem)");
   const isSmallTablet = useMatchMedia("(max-width: 40rem)");
   const isTablet = useMatchMedia("(max-width: 56rem)");
@@ -58,6 +60,7 @@ export function AlbumVinylPlayer() {
             containerClass={classes.recordWrapper}
             themeColor={albumData.themeColor}
             imageUrl={recordImage}
+            playing={player.isPlaying}
           />
         </div>
         <div class={classes.tonearm}>

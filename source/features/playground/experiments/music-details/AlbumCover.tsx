@@ -80,6 +80,7 @@ export const AlbumCover = createUnique<AlbumCoverProps>((props) => {
           class={classes.record}
           themeColor={themeColor}
           imageUrl={recordImage}
+          playing
         />
         <img
           ref={imageRef}

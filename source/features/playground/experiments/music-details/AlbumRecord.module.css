@@ -20,6 +20,10 @@
   border: 2px solid color-mix(in srgb, var(--cover-color) 50%, transparent);
   animation: recordSpin 3s linear infinite;
 
+  &:not(.playing) {
+    animation-play-state: paused;
+  }
+
   &::after {
     content: "";
     grid-area: 1 / 1;

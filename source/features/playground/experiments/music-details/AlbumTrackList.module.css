@@ -38,15 +38,26 @@
 }
 
 .track {
+  min-width: 0;
+  border-bottom: 1px solid
+    color-mix(in srgb, var(--cover-color) 26%, transparent);
+}
+
+.trackButton {
   display: grid;
   grid-template-columns: 2ch minmax(0, 1fr) auto;
   align-items: baseline;
   gap: 10px;
+  width: 100%;
   min-width: 0;
   padding: 7px 0;
-  border-bottom: 1px solid
-    color-mix(in srgb, var(--cover-color) 26%, transparent);
+  border: 0;
+  color: inherit;
+  background: transparent;
+  font: inherit;
   font-size: clamp(10px, 0.95vw, 12px);
+  text-align: left;
+  cursor: pointer;
 }
 
 .trackNumber,
@@ -64,6 +75,16 @@
   letter-spacing: -0.02em;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+.trackButton:hover .trackName,
+.trackButton:focus-visible .trackName {
+  color: color-mix(in srgb, var(--cover-color) 10%, white);
+}
+
+.trackButton:focus-visible {
+  outline: 1px solid color-mix(in srgb, var(--cover-color) 42%, white);
+  outline-offset: 3px;
 }
 
 .active .trackName {

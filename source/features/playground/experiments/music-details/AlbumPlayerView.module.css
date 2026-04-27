@@ -6,6 +6,12 @@
   width: min(100%, 1080px);
 }
 
+.details {
+  display: grid;
+  gap: 18px;
+  width: 100%;
+}
+
 @media (max-width: 72rem) {
   .view {
     grid-template-columns: minmax(0, 1fr);

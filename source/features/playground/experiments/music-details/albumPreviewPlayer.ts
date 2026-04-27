@@ -12,6 +12,7 @@ export interface AlbumPreviewPlayer {
   next: () => void;
   pause: () => void;
   play: () => void;
+  playTrack: (index: number) => void;
   previous: () => void;
   toggle: () => void;
 }
@@ -61,9 +62,8 @@ export function createAlbumPreviewPlayer(album: Album): AlbumPreviewPlayer {
       .catch(() => isPlaying.set(false));
   };
 
-  const setTrack = (index: number) => {
+  const setTrack = (index: number, shouldPlay = isPlaying.get()) => {
     const nextIndex = (index + album.tracks.length) % album.tracks.length;
-    const shouldResume = isPlaying.get();
 
     destroyAudio();
     trackIndex.set(nextIndex);
@@ -71,7 +71,7 @@ export function createAlbumPreviewPlayer(album: Album): AlbumPreviewPlayer {
     duration.set(album.tracks[nextIndex].duration);
     isPlaying.set(false);
 
-    if (shouldResume) play();
+    if (shouldPlay) play();
   };
 
   function next() {
@@ -80,6 +80,10 @@ export function createAlbumPreviewPlayer(album: Album): AlbumPreviewPlayer {
 
   const previous = () => {
     setTrack(trackIndex.get() - 1);
+  };
+
+  const playTrack = (index: number) => {
+    setTrack(index, true);
   };
 
   const pause = () => {
@@ -115,6 +119,7 @@ export function createAlbumPreviewPlayer(album: Album): AlbumPreviewPlayer {
     next,
     pause,
     play,
+    playTrack,
     previous,
     toggle,
     trackIndex,

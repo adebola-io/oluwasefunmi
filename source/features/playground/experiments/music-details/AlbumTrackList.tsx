@@ -19,13 +19,19 @@ function AlbumTrack(props: AlbumTrackProps) {
   const trackNumber = Cell.derived(() => index.get() + 1);
   const active = Cell.derived(() => index.get() === player.trackIndex.get());
 
+  const handleClick = () => {
+    player.playTrack(index.get());
+  };
+
   return (
     <li class={[classes.track, { [classes.active]: active }]}>
-      <span class={classes.trackNumber}>{trackNumber}</span>
-      <strong class={classes.trackName}>{track.name}</strong>
-      <time class={classes.trackDuration}>
-        {formatTrackDuration(track.duration)}
-      </time>
+      <button type="button" class={classes.trackButton} onClick={handleClick}>
+        <span class={classes.trackNumber}>{trackNumber}</span>
+        <strong class={classes.trackName}>{track.name}</strong>
+        <time class={classes.trackDuration}>
+          {formatTrackDuration(track.duration)}
+        </time>
+      </button>
     </li>
   );
 }
