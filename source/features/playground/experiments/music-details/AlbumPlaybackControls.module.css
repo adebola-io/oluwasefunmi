@@ -1,0 +1,167 @@
+.controls {
+  display: grid;
+  min-width: 0;
+  gap: 12px;
+  padding-block: 14px 2px;
+  border-top: 1px solid color-mix(in srgb, var(--cover-color) 32%, transparent);
+  color: color-mix(in srgb, var(--cover-color) 18%, white);
+
+  @media (min-width: 1024px) {
+    animation: slide-right 600ms var(--ease-spring) 380ms backwards;
+  }
+}
+
+@keyframes slide-right {
+  from {
+    translate: -100%;
+    opacity: 0;
+  }
+}
+
+.eyebrow {
+  margin: 0;
+  color: color-mix(in srgb, var(--cover-color) 46%, white);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.currentTrack {
+  display: grid;
+  min-width: 0;
+  padding-bottom: 2px;
+}
+
+.currentTrack strong {
+  min-width: 0;
+  overflow: hidden;
+  color: color-mix(in srgb, var(--cover-color) 12%, white);
+  font-size: clamp(16px, 1.4vw, 20px);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.progress {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px;
+}
+
+.progress time {
+  color: color-mix(in srgb, var(--cover-color) 44%, white);
+  font-size: 10px;
+  font-variant-numeric: tabular-nums;
+}
+
+.progressTrack {
+  position: relative;
+  display: block;
+  height: 5px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--cover-color) 24%, black);
+}
+
+.progressFill {
+  position: absolute;
+  inset: 0;
+  display: block;
+  transform-origin: left;
+  background: color-mix(in srgb, var(--cover-color) 18%, white);
+}
+
+.buttons {
+  display: grid;
+  grid-template-columns: 44px 56px 44px;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding-top: 2px;
+}
+
+.buttons button {
+  display: grid;
+  place-items: center;
+  width: 44px;
+  aspect-ratio: 1;
+  border: 1px solid color-mix(in srgb, var(--cover-color) 38%, transparent);
+  border-radius: 50%;
+  color: color-mix(in srgb, var(--cover-color) 16%, white);
+  background: transparent;
+  font: inherit;
+  font-size: 14px;
+  font-weight: 750;
+  cursor: pointer;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease,
+    scale 160ms ease,
+    translate 160ms ease;
+}
+
+.buttons button:hover {
+  background: color-mix(in srgb, var(--cover-color) 18%, transparent);
+  translate: 0 -1px;
+}
+
+.buttons button:active {
+  scale: 0.96;
+  translate: 0;
+}
+
+.playButton:is(.playButton) {
+  width: 56px;
+  color: color-mix(in srgb, var(--cover-color) 6%, white);
+  background: color-mix(in srgb, var(--cover-color) 28%, transparent);
+  border-color: color-mix(in srgb, var(--cover-color) 46%, white);
+  font-size: 16px;
+}
+
+@media (max-width: 72rem) {
+  .controls {
+    align-self: stretch;
+  }
+}
+
+@media (max-width: 48rem) {
+  .controls {
+    position: fixed;
+    right: 72px;
+    bottom: calc(16px + env(safe-area-inset-bottom));
+    left: 12px;
+    z-index: 210;
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    gap: 5px 10px;
+    padding-top: 10px;
+    background: linear-gradient(to top, #000 72%, transparent);
+  }
+
+  .eyebrow,
+  .currentTrack,
+  .progress {
+    grid-column: 1;
+  }
+
+  .buttons {
+    grid-row: 1 / span 3;
+    grid-column: 2;
+    grid-template-columns: 36px 48px 36px;
+    gap: 8px;
+    padding-top: 0;
+  }
+
+  .buttons button {
+    width: 36px;
+    font-size: 12px;
+  }
+
+  .playButton:is(.playButton) {
+    width: 48px;
+    font-size: 14px;
+  }
+}

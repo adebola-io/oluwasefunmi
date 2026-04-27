@@ -1,0 +1,75 @@
+.coverLink {
+  position: relative;
+  perspective: 800px;
+  display: grid;
+  grid-template-columns: 1fr;
+  width: var(--album-cover-size);
+  height: var(--album-cover-size);
+  border-radius: 0.2rem 0.5rem 0.5rem 0.2rem;
+  --cover-transition-duration: 250ms;
+  transition: opacity var(--cover-transition-duration) ease;
+  background-color: var(--cover-color);
+
+  &.interactive:not(.open) {
+    *:has(> :hover) > &:not(:hover) {
+      opacity: 0.5;
+    }
+  }
+
+  *:has(> &.open) > &:is(&):not(.open) {
+    opacity: 0;
+  }
+
+  &.hasSelected {
+    opacity: 0;
+  }
+}
+
+.recordWrapper {
+  grid-area: 1/1;
+}
+
+.record {
+  transition: translate 300ms ease;
+
+  &:is(&) {
+    display: none;
+    width: 78%;
+    height: 78%;
+  }
+
+  .coverLink.interactive & {
+    display: grid;
+  }
+
+  .coverLink.interactive:hover & {
+    translate: 40%;
+  }
+
+  .coverLink.interactive.open & {
+    translate: 0%;
+  }
+}
+
+.coverImage {
+  width: 100%;
+  height: 100%;
+  grid-area: 1 / 1;
+  object-fit: cover;
+  isolation: isolate;
+  border-radius: inherit;
+  pointer-events: none;
+  color: transparent;
+  transform-origin: left;
+  transition: transform var(--cover-transition-duration) ease;
+  outline: 2px solid color-mix(in srgb, var(--cover-color) 70%, black);
+  border: 1px solid color-mix(in srgb, var(--cover-color) 60%, white);
+
+  .coverLink.interactive:hover & {
+    transform: rotateY(-35deg);
+  }
+
+  .coverLink.interactive.open & {
+    transform: rotateY(-90deg);
+  }
+}

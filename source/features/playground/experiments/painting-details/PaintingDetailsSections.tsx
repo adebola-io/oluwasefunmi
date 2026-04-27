@@ -1,7 +1,11 @@
 import type { Painting } from "@/features/playground/types";
 import { MetadataItem, SectionHeading } from "./PaintingDetailsShared";
 
-export const SpecsGrid = (props: { painting: Painting }) => {
+interface SpecsGridProps {
+  painting: Painting;
+}
+
+export const SpecsGrid = (props: SpecsGridProps) => {
   const { painting } = props;
   return (
     <section>
@@ -35,7 +39,11 @@ export const SpecsGrid = (props: { painting: Painting }) => {
   );
 };
 
-export const HistoricalContent = (props: { painting: Painting }) => {
+interface HistoricalContentProps {
+  painting: Painting;
+}
+
+export const HistoricalContent = (props: HistoricalContentProps) => {
   const { painting } = props;
   return (
     <div class="space-y-12">

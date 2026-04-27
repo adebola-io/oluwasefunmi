@@ -1,0 +1,38 @@
+.app {
+  width: 100vw;
+  min-height: 100dvh;
+  color: #f5efe6;
+  background: #050505;
+}
+
+.backButton {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 40px;
+  padding: 0.65rem 1.2rem;
+  color: var(--text-primary);
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 99px;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition:
+    transform 0.3s var(--ease-spring),
+    background-color 0.3s var(--ease-spring),
+    border-color 0.3s var(--ease-spring),
+    box-shadow 0.3s var(--ease-spring);
+}
+
+.backButton:hover {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 15px rgba(255, 46, 147, 0.2);
+  transform: translateY(-1px);
+}
+
+.backButton:active {
+  transform: scale(0.96);
+}

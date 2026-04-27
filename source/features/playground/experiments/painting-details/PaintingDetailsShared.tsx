@@ -21,7 +21,12 @@ export const MetadataItem = (props: MetadataItemProps) => {
   );
 };
 
-export const SectionHeading = (props: { title: string; delay?: string }) => {
+interface SectionHeadingProps {
+  title: string;
+  delay?: string;
+}
+
+export const SectionHeading = (props: SectionHeadingProps) => {
   const { title, delay } = props;
   return (
     <h2

@@ -1,9 +1,11 @@
 import type { JSX } from "retend/jsx-runtime";
 
-type NoteMetadataProps = JSX.IntrinsicElements["div"] & {
+interface NoteMetadataExtra {
   date: string;
   category?: string;
-};
+}
+
+type NoteMetadataProps = JSX.IntrinsicElements["div"] & NoteMetadataExtra;
 
 export function NoteMetadata(props: NoteMetadataProps) {
   const { date, category = "General", ...rest } = props;
