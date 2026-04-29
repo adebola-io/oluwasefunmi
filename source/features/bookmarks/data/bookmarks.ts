@@ -1,5 +1,20 @@
 export const bookmarks = [
   {
+    id: "tools-the-vercel-product-design-team-actually-uses",
+    link: "https://www.hannahhearth.com/posts/tools-the-vercel-product-design-team-actually-uses",
+    tags: ["design", "tools", "vercel", "article"],
+    notes: "",
+    image:
+      "https://www.hannahhearth.com/posts/tools-the-vercel-product-design-team-actually-uses/opengraph-image?82bb6bec0c85d4be",
+    themeColor: "#f5f2ed",
+    openGraph: {
+      title: "Tools the Vercel Product Design Team Actually Uses",
+      description:
+        "A snapshot of the tools Vercel's product design team is using for AI-assisted design workflows, concurrent threads, production-first design, Figma MCP, and non-AI debugging tools.",
+      siteName: "Hannah Hearth",
+    },
+  },
+  {
     id: "antfu-async-sync-in-between",
     link: "https://antfu.me/posts/async-sync-in-between",
     tags: ["javascript", "async", "sync", "generators", "article"],
