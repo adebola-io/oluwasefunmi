@@ -1,5 +1,6 @@
 import type { PlaygroundItem } from "@/features/playground/types";
 import { CubeIcon } from "@/components/icons/cube";
+import { GlassesIcon } from "@/components/icons/glasses";
 import { RippleIcon } from "@/components/icons/ripple";
 import { CarouselIcon } from "@/components/icons/carousel";
 import { PaintingWheelIcon } from "@/components/icons/painting-wheel";
@@ -29,6 +30,12 @@ function ExternalLink(props: ExternalLinkProps) {
 }
 
 export const playgroundItems: PlaygroundItem[] = [
+  {
+    path: "/playground/glasses",
+    title: "glasses",
+    description: () => <>A glasses playground project.</>,
+    icon: () => <GlassesIcon />,
+  },
   {
     path: "/playground/vinyl-player",
     title: "vinyl-player",

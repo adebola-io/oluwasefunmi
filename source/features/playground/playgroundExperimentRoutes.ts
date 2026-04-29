@@ -57,4 +57,8 @@ export const playgroundExperimentRoutes = [
       () => import("@/features/playground/experiments/MusicPlayer")
     ),
   },
+  {
+    path: "/glasses",
+    component: lazy(() => import("@/features/playground/experiments/Glasses")),
+  },
 ];
