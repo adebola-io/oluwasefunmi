@@ -1,6 +1,6 @@
-.container {
+:root {
   /* Lifted from Figma. */
-  --frame-clip: shape(
+  --glass-frame-clip: shape(
     evenodd from 70.448557% 0%,
     curve to 93.721562% 5.320154% with 78.306112% -1.790793% / 86.035654%
       0.631221%,
@@ -189,61 +189,52 @@
       17.091058%,
     close
   );
-  --temple-clip: shape(
-    evenodd from 24.179542% 0%,
-    curve to 47.37292% 0.134317% with 31.909423% -0.720293% /
-      39.643888% -0.675415%,
-    curve to 54.278438% 0.918683% with 49.665195% 0.374366% / 51.987691%
-      0.431854%,
-    curve to 56.837521% 1.486512% with 54.880645% 1.046683% / 56.303056%
-      1.201488%,
-    curve to 63.067742% 5.007146% with 58.310102% 1.747488% / 61.759932%
-      3.486854%,
-    curve to 63.623599% 5.516146% with 63.259338% 5.106634% / 63.439304%
-      5.317951%,
-    curve to 73.607046% 23.814146% with 67.274363% 9.449707% / 70.448302%
-      16.64561%,
-    curve to 78.56893% 35.199024% with 75.26927% 27.568049% / 76.92326%
-      31.363171%,
-    curve to 81.987182% 43.79% with 79.349576% 37.018293% / 81.520968%
-      41.750488%,
-    curve to 80.18489% 57.633902% with 82.960441% 48.497317% / 81.797453%
-      56.748049%,
-    curve to 77.305008% 54.068049% with 79.085314% 58.859756% / 77.967657%
-      57.103902%,
-    curve to 76.223005% 50.464146% with 77.026146% 53.340976% / 76.488285%
-      51.388293%,
-    line to 74.32674% 43.862927%,
-    curve to 65.906621% 19.044634% with 71.780475% 35.071951% / 69% 25.641707%,
-    curve to 63.59584% 15.015244% with 65.201528% 17.54122% / 64.354075%
-      16.207829%,
-    curve to 52.670374% 9.877561% with 60.086503% 9.79022% / 56.432343%
-      9.576415%,
-    curve to 44.83438% 11.43078% with 50.053396% 10.068829% / 47.439728%
-      10.586927%,
-    curve to 37.079287% 14.379756% with 42.232003% 12.227659% / 39.664431%
-      12.969659%,
-    curve to 33.157725% 16.161146% with 35.77326% 15.092122% / 34.481324%
-      15.89261%,
-    curve to 26.419864% 17.072195% with 30.910526% 16.601463% / 28.667997%
-      16.836585%,
-    curve to 18.114092% 18.157073% with 23.650509% 17.36561% / 20.881834%
-      17.727561%,
-    line to 7.321817% 20.120488%,
-    curve to 1.480925% 21.39561% with 5.380798% 20.526341% / 3.432317%
-      21.138293%,
-    line to 0% 21.808537%,
-    vline to 2.418293%,
-    line to 3.633098% 2.042683%,
-    curve to 9.559083% 1.253098% with 5.606825% 1.654195% / 7.582513% 1.391024%,
-    curve to 18.207131% 0.517561% with 12.314941% 0.991146% / 15.480221%
-      0.421683%,
-    curve to 20.221307% 0.292244% with 18.798048% 0.326634% / 19.610611%
-      0.33622%,
-    curve to 24.179542% 0% with 21.540917% 0.239195% / 22.860441% 0.141683%,
+  --glass-temple-clip: shape(
+    from 24.159% 8.0695%,
+    curve to 47.3327% 8.2039% with 31.8824% 7.3492% / 39.6103% 7.3941%,
+    curve to 54.2324% 8.9882% with 49.6231% 8.4439% / 51.9436% 8.5014%,
+    curve to 56.7893% 9.556% with 54.8341% 9.1162% / 56.2553% 9.271%,
+    curve to 63.0142% 13.0767% with 58.2606% 9.817% / 61.7075% 11.5564%,
+    curve to 63.5696% 13.5857% with 63.2057% 13.1762% / 63.3855% 13.3875%,
+    curve to 73.5446% 31.8837% with 67.2173% 17.5192% / 70.3885% 24.7151%,
+    curve to 78.5023% 43.2685% with 75.2054% 35.6376% / 76.858% 39.4329%,
+    curve to 81.9176% 51.8595% with 79.2823% 45.0878% / 81.4518% 49.82%,
+    curve to 80.1169% 65.7034% with 82.8901% 56.5668% / 81.7281% 64.8176%,
+    curve to 77.2394% 62.1376% with 79.0182% 66.9295% / 77.9015% 65.1734%,
+    curve to 76.1584% 58.5337% with 76.9608% 61.4105% / 76.4234% 59.4578%,
+    line to 74.2637% 51.9324%,
+    curve to 65.8507% 27.1141% with 71.7196% 43.1415% / 68.9415% 33.7112%,
+    curve to 63.5419% 23.0848% with 65.1462% 25.611% / 64.2995% 24.2774%,
+    curve to 52.6257% 17.9471% with 60.0355% 17.8598% / 56.3845% 17.646%,
+    curve to 44.7964% 19.5003% with 50.0109% 18.1384% / 47.3995% 18.6565%,
+    curve to 37.0478% 22.4493% with 42.1962% 20.2972% / 39.6308% 21.0392%,
+    curve to 33.1296% 24.2307% with 35.7429% 23.1617% / 34.4521% 23.9621%,
+    curve to 26.3975% 25.1417% with 30.8843% 24.671% / 28.6437% 24.9061%,
+    curve to 18.0987% 26.2266% with 23.6304% 25.4351% / 20.8641% 25.7971%,
+    line to 7.3156% 28.19%,
+    curve to 1.4797% 29.4651% with 5.3762% 28.5959% / 3.4294% 29.208%,
+    line to 0% 29.878%,
+    vline to 10.4878%,
+    line to 3.63% 10.1122%,
+    curve to 9.551% 9.3226% with 5.6021% 9.7237% / 7.5761% 9.4606%,
+    curve to 18.1917% 8.5871% with 12.3045% 9.0607% / 15.4671% 8.4912%,
+    curve to 20.2042% 8.3618% with 18.7821% 8.3962% / 19.594% 8.4058%,
+    curve to 24.159% 8.0695% with 21.5226% 8.3087% / 22.8411% 8.2112%,
+    close,
+    move to 5.1315% 17.0732%,
+    curve to 4.4953% 18.9025% with 4.7801% 17.0732% / 4.4953% 17.8922%,
+    curve to 5.1315% 20.7317% with 4.4953% 19.9128% / 4.7801% 20.7317%,
+    curve to 5.7676% 18.9025% with 5.4828% 20.7317% / 5.7676% 19.9128%,
+    curve to 5.1315% 17.0732% with 5.7676% 17.8922% / 5.4828% 17.0732%,
+    close,
+    move to 6.9126% 17.0732%,
+    curve to 6.2765% 18.9025% with 6.5613% 17.0732% / 6.2765% 17.8922%,
+    curve to 6.9126% 20.7317% with 6.2765% 19.9128% / 6.5613% 20.7317%,
+    curve to 7.5488% 18.9025% with 7.264% 20.7317% / 7.5488% 19.9128%,
+    curve to 6.9126% 17.0732% with 7.5488% 17.8922% / 7.264% 17.0732%,
     close
   );
-  --lenses-clip: shape(
+  --glass-lenses-clip: shape(
     from 20.5047% 7.9501%,
     curve to 31.9946% 9.3319% with 24.6298% 6.4056% / 27.9165% 7.3308%,
     curve to 40.032% 20.3937% with 34.9559% 10.785% / 38.1665% 13.2514%,
@@ -282,67 +273,198 @@
     line to 78.8734% 8.4527%,
     close
   );
-  --temple-displacement-y: 7.5%;
-  --glass-color: yellow;
+  --glass-temple-displacement-y: 0%;
+  --glass-color: pink;
+  --glass-width: 25dvw;
+  --glass-z: max(1.5px, calc(var(--glass-width) / 150));
+  --glass-artifact-avoidance: -1px;
+  --glass-easing: cubic-bezier(0.25, 0.1, 0.25, 1);
+}
 
+.transform {
   transform-style: preserve-3d;
-  display: grid;
-  width: 30dvw;
-  height: auto;
-  aspect-ratio: 2.895395;
-  transition: transform 800ms ease;
+  transition: transform 900ms var(--glass-easing);
+  pointer-events: none;
+  animation: var(--hovering) 3s ease infinite;
 
   &[data-expanded] {
     transition-delay: 350ms;
-    transform: scale(12.5) translate(25%);
+    transform: scale(15) translate(25%);
+
+    @media (aspect-ratio <= 1) {
+      transform: scale(25) translate(25%);
+    }
   }
+}
+
+.container {
+  transform-style: preserve-3d;
+  display: grid;
+  place-items: center;
+  width: var(--glass-width);
+  height: auto;
+  aspect-ratio: 2.895395;
 
   & > * {
     grid-area: 1 / 1;
+    isolation: isolate;
+    width: 100%;
+    height: 100%;
+
+    &:not(svg)::before {
+      grid-area: 1 / 1;
+      display: block;
+      content: "";
+      width: 100%;
+      height: 100%;
+    }
   }
 }
 
 .front {
-  &::before {
-    display: block;
-    content: "";
-    width: 100%;
-    height: 100%;
+  &::before,
+  &::after {
+    z-index: -1;
+    clip-path: var(--glass-frame-clip);
     background-color: var(--glass-color);
-    clip-path: var(--frame-clip);
+  }
+
+  svg {
+    grid-area: 1/1;
+  }
+
+  &:not(.shade) {
+    display: grid;
+
+    &::after {
+      grid-area: 1 / 1;
+      width: 100%;
+      height: 100%;
+      display: block;
+      content: "";
+      background-color: var(--glass-color);
+      clip-path: var(--glass-lenses-clip);
+      opacity: 0.2;
+    }
   }
 }
 
 .lens {
-  background-color: color-mix(var(--glass-color) 20%, transparent);
-  clip-path: var(--lenses-clip);
+  height: 100dvh;
+  width: 100dvw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  display: none;
+
+  &::before {
+    display: block;
+    content: "";
+    width: var(--glass-width);
+    height: auto;
+    aspect-ratio: 2.895395;
+    background-color: color-mix(in srgb, var(--glass-color) 20%, transparent);
+    clip-path: var(--glass-lenses-clip);
+  }
 }
 
 .temple {
   transform-origin: left;
 
-  &::before {
-    display: block;
-    content: "";
-    width: 100%;
-    height: 100%;
+  &:not(.shade) {
+    display: grid;
+  }
+
+  &::before,
+  &::after {
+    clip-path: var(--glass-temple-clip);
+    background-color: color-mix(in srgb, var(--glass-color) 85%, black);
   }
 
   &.right {
-    transform: translate(100%, var(--temple-displacement-y)) rotateY(90deg);
+    transform: translate(100%, var(--glass-temple-displacement-y))
+      rotateY(90deg);
 
-    &::before {
-      background-color: var(--glass-color);
-      clip-path: var(--temple-clip);
+    .transform:not([data-expanded]) & {
+      transform: translate(100%, var(--glass-temple-displacement-y))
+        rotateY(90deg);
     }
   }
 
   &.left {
-    transform: translateY(var(--temple-displacement-y)) rotateY(90deg);
+    transform: translateY(var(--glass-temple-displacement-y)) rotateY(90deg);
+  }
+
+  svg {
+    grid-area: 1/1;
+    isolation: isolate;
+
+    * {
+      fill: var(--glass-color);
+    }
+  }
+}
+
+/* y = [z * (2x - 1), z * 2x] */
+
+.shade {
+  --2x: calc(var(--frame-thickness-index) * 2);
+  --y1: calc(var(--glass-z) * (var(--2x) - 1));
+  --y2: calc(var(--glass-z) * var(--2x));
+
+  display: contents;
+
+  &::before,
+  &::after {
+    grid-area: 1 / 1;
+    display: block;
+    content: "";
+    width: 100%;
+    height: 100%;
+    transform-origin: inherit;
+    transform: inherit;
+  }
+
+  &.front {
+    &::before,
+    &::after {
+      width: 99%;
+    }
 
     &::before {
-      background-color: var(--glass-color);
-      clip-path: var(--temple-clip);
+      translate: 0 0 calc(var(--y1) * -1);
     }
+
+    &::after {
+      translate: 0 0 calc(var(--y2) * -1);
+    }
+  }
+
+  &.left {
+    &::before {
+      translate: var(--y1) 0 var(--glass-artifact-avoidance);
+    }
+
+    &::after {
+      translate: var(--y2) 0 var(--glass-artifact-avoidance);
+    }
+  }
+
+  &.right {
+    &::before {
+      translate: calc(var(--y1) * -1) 0 var(--glass-artifact-avoidance);
+    }
+
+    &::after {
+      translate: calc(var(--y2) * -1) 0 var(--glass-artifact-avoidance);
+    }
+  }
+
+  &::before,
+  &::after {
+    background-color: color-mix(in srgb, var(--glass-color) 45%, black);
   }
 }

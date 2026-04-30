@@ -36,6 +36,7 @@ body {
 
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  --hovering: hovering;
 
   &:has(dialog[open]) {
     overflow: hidden;
@@ -97,4 +98,10 @@ h6 {
   background: rgba(255, 255, 255, 0.05);
   border-color: rgba(255, 255, 255, 0.1);
   box-shadow: 0 0 15px rgba(255, 46, 147, 0.2);
+}
+
+@keyframes hovering {
+  50% {
+    translate: 0 20px;
+  }
 }
