@@ -1,3 +1,5 @@
+// @ts-nocheck
+
 export function GlassMarks() {
   return (
     <svg viewBox="0 0 1179 410" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -30,12 +32,12 @@ export function GlassMarks() {
             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
             result="hardAlpha"
           />
-          <feOffset dx="-5" dy="9" />
+          <feOffset dx="-5" dy="15" />
           <feGaussianBlur stdDeviation="2.5" />
           <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
           <feColorMatrix
             type="matrix"
-            values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.6 0"
+            values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.3 0"
           />
           <feBlend
             mode="normal"

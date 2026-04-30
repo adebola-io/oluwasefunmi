@@ -274,7 +274,7 @@
     close
   );
   --glass-temple-displacement-y: 0%;
-  --glass-color: pink;
+  --glass-color: #11569e;
   --glass-width: 25dvw;
   --glass-z: max(1.5px, calc(var(--glass-width) / 150));
   --glass-artifact-avoidance: -1px;
@@ -465,6 +465,6 @@
 
   &::before,
   &::after {
-    background-color: color-mix(in srgb, var(--glass-color) 45%, black);
+    background-color: color-mix(in srgb, var(--glass-color) 70%, black);
   }
 }
