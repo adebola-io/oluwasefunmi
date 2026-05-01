@@ -3,33 +3,22 @@ import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLay
 import { Glass } from "./glasses/Glass";
 import { Cell } from "retend";
 import { Viewer } from "../components/Viewer/Viewer";
+import { JSX } from "retend/jsx-runtime";
 
 const Glasses: RouteComponent = () => {
   const state = Cell.source<"expanded" | "collapsed">("collapsed");
-  const animationCell = Cell.source({ rx: 0, ry: 0, rz: 0, scale: 1 });
-  const style = Cell.derived(() => {
-    if (state.get() === "expanded") {
-      return {
-        transform: `rotateY(180deg)`,
-      };
-    }
-    return {
-      transform: `rotateY(-15deg) rotateX(15deg)`,
-      transitionDelay: "300ms",
-    };
+  const style = Cell.derived((): JSX.StyleValue => {
+    return state.get() === "expanded"
+      ? { transform: "rotateY(180deg)" }
+      : {
+          transform: `rotateY(-15deg) rotateX(15deg)`,
+          transitionDelay: "300ms",
+        };
   });
 
   const toggleState = () => {
-    console.log("toggle");
-    Cell.batch(() => {
-      const nextState = state.get() === "expanded" ? "collapsed" : "expanded";
-      state.set(nextState);
-      if (nextState === "expanded") {
-        animationCell.set({ rx: 0, ry: 180, rz: 0, scale: 1 });
-      } else {
-        animationCell.set({ rx: 0, ry: 0, rz: 0, scale: 1 });
-      }
-    });
+    const nextState = state.get() === "expanded" ? "collapsed" : "expanded";
+    state.set(nextState);
   };
 
   return (
@@ -39,7 +28,7 @@ const Glasses: RouteComponent = () => {
           <Viewer>
             <div
               style={style}
-              class="duration-800 ease-(--glass-easing) transform-3d w-fit h-fit"
+              class="duration-800 ease transform-3d w-fit h-fit"
             >
               <Glass state={state} />
             </div>

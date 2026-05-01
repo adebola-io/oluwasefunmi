@@ -1,15 +1,12 @@
 import { Cell, For } from "retend";
 import classes from "./Glass.module.css";
 import { JSX } from "retend/jsx-runtime";
-import { Teleport } from "retend-web";
 import { GlassMarks } from "./GlassMarks";
 import { GlassRidge } from "./GlassRidge";
 
 interface GlassProps {
   state: Cell<"expanded" | "collapsed">;
 }
-
-const thickness = Array.from({ length: 2 }, (_, i) => i + 1);
 
 export function Glass(props: GlassProps) {
   const { state } = props;
@@ -20,13 +17,10 @@ export function Glass(props: GlassProps) {
   return (
     <div data-expanded={expanded} class={classes.transform}>
       <div class={classes.container}>
-        <Teleport to="body">
-          <div data-expanded={expanded} class={classes.lens} />
-        </Teleport>
         <div class={classes.front} data-front>
           <GlassRidge />
         </div>
-        <Thickness class={[classes.front, classes.shade]} />
+        <Thickness amount={3} class={[classes.front, classes.shade]} />
         <div class={[classes.temple, classes.left]} data-left>
           <GlassMarks />
         </div>
@@ -34,18 +28,22 @@ export function Glass(props: GlassProps) {
         <div class={[classes.temple, classes.right]} data-right>
           <GlassMarks />
         </div>
-        <Thickness class={[classes.temple, classes.right, classes.shade]} />
       </div>
     </div>
   );
 }
 
-interface ThicknessProps extends JSX.BaseContainerProps {}
+interface ThicknessProps extends JSX.BaseContainerProps {
+  amount?: number;
+}
 
 function Thickness(props: ThicknessProps) {
+  const { amount = 1, ...rest } = props;
+
+  const thickness = Array.from({ length: amount }, (_, i) => i + 1);
   return For(thickness, (i) => (
     <div
-      {...props}
+      {...rest}
       style={{ "--frame-thickness-index": i }}
       data-thickness-shading
     />
