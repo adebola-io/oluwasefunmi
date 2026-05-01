@@ -1685,9 +1685,9 @@
     close
   );
 
-  --glass-bg-url: url("https://images.pexels.com/photos/36780813/pexels-photo-36780813.jpeg");
+  --glass-bg-url: url("../../data/images/glassviews/colorized.webp");
   --glass-height: calc(var(--glass-width) / 2.895395);
-  --glass-color: green;
+  --glass-color: gray;
   --glass-width: 25dvw;
   --glass-height: calc(var(--glass-width) / 2.895395);
   --glass-z: max(2px, calc(var(--glass-width) / 150));
@@ -1703,12 +1703,11 @@
   animation: var(--hovering) 3s ease infinite;
 
   &[data-expanded] {
-    --hover-y: 10px;
-    animation: none;
+    --hover-y: 2px;
   }
 
   @media (aspect-ratio <= 1) {
-    --glass-expanded-scale: 20;
+    --glass-expanded-scale: 30;
   }
 }
 
