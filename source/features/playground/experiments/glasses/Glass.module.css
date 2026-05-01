@@ -1,4 +1,6 @@
-.transform {
+.glass {
+  display: grid;
+
   /* Lifted from Figma. */
   --glass-frame-clip: shape(
     evenodd from 70.448557% 0%,
@@ -235,129 +237,1548 @@
     close
   );
   --glass-lenses-clip: shape(
-    from 20.5047% 7.9501%,
-    curve to 31.9946% 9.3319% with 24.6298% 6.4056% / 27.9165% 7.3308%,
-    curve to 40.032% 20.3937% with 34.9559% 10.785% / 38.1665% 13.2514%,
-    curve to 40.4465% 22.0262% with 40.1247% 20.7487% / 40.3606% 21.7768%,
-    curve to 41.2831% 49.7771% with 42.0839% 31.6956% / 41.9128% 39.4049%,
-    curve to 40.8014% 55.8222% with 41.1673% 51.6841% / 40.8999% 54.0495%,
-    curve to 34.9863% 84.8293% with 39.8113% 65.9476% / 38.2415% 78.9571%,
-    curve to 16.6206% 89.2976% with 30.0118% 91.6661% / 21.8596% 92.9983%,
-    curve to 14.577% 86.7751% with 16.0548% 88.8973% / 15.0718% 87.7056%,
-    curve to 12.9846% 83.5761% with 13.996% 85.8685% / 13.4765% 84.8559%,
-    curve to 8.4735% 44.8246% with 10.0031% 75.8237% / 8.6664% 56.218%,
-    curve to 8.5019% 31.7851% with 8.3371% 43.7712% / 8.406% 33.2444%,
-    curve to 11.647% 15.6247% with 8.931% 25.2517% / 9.723% 19.6165%,
-    curve to 18.9338% 8.4081% with 13.9249% 10.8991% / 16.2168% 9.5874%,
-    curve to 20.5047% 7.9501% with 19.4382% 8.1892% / 19.9636% 7.7061%,
+    from 20.5047% 7.9503%,
+    curve to 31.9946% 9.3318% with 24.6298% 6.4058% / 27.9165% 7.3307%,
+    curve to 40.032% 20.3938% with 34.9559% 10.7849% / 38.1665% 13.2515%,
+    curve to 40.4465% 22.0261% with 40.1247% 20.7489% / 40.3606% 21.7766%,
+    curve to 41.2831% 49.7768% with 42.0839% 31.6956% / 41.9128% 39.4049%,
+    curve to 40.8014% 55.8224% with 41.1673% 51.6841% / 40.8999% 54.0498%,
+    curve to 34.9863% 84.829% with 39.8114% 65.9478% / 38.2415% 78.9571%,
+    curve to 16.6206% 89.2976% with 30.0117% 91.6661% / 21.8596% 92.9983%,
+    curve to 14.577% 86.7751% with 16.0548% 88.8973% / 15.0718% 87.7054%,
+    curve to 12.9846% 83.5763% with 13.996% 85.8685% / 13.4765% 84.8561%,
+    curve to 8.4735% 44.8249% with 10.0031% 75.8239% / 8.6664% 56.2183%,
+    curve to 8.5019% 31.7851% with 8.337% 43.772% / 8.406% 33.2444%,
+    curve to 11.6471% 15.6246% with 8.931% 25.2517% / 9.723% 19.6164%,
+    curve to 18.9338% 8.4083% with 13.9249% 10.899% / 16.2168% 9.5875%,
+    curve to 20.5047% 7.9503% with 19.4382% 8.1894% / 19.9636% 7.7063%,
     close,
-    move to 78.8734% 8.4527%,
-    curve to 84.9601% 10.8107% with 79.9412% 7.673% / 83.8045% 9.9471%,
-    curve to 84.8227% 11.0801% with 84.916% 10.8887% / 84.8533% 10.9789%,
-    curve to 84.6427% 11.2261% with 84.7176% 11.2151% / 84.7559% 11.1922%,
-    line to 84.6193% 11.3064%,
-    curve to 87.9279% 15.4335% with 85.944% 12.4923% / 86.7303% 13.2068%,
-    curve to 91.1858% 34.14% with 90.0975% 20.5035% / 90.922% 25.9551%,
-    curve to 87.598% 80.3776% with 91.6268% 47.8015% / 90.4784% 69.371%,
-    curve to 72.8993% 90.7344% with 84.8032% 91.0615% / 77.1258% 91.5824%,
-    curve to 63.2079% 78.7617% with 69.5548% 90.0622% / 65.2411% 87.2173%,
-    curve to 62.1422% 74.1976% with 63.1414% 78.4854% / 62.1093% 74.1354%,
-    curve to 61.9854% 74.0585% with 62.0897% 74.1512% / 62.0373% 74.1049%,
-    curve to 61.064% 68.7944% with 61.6281% 72.8415% / 61.3165% 70.1222%,
+    move to 78.8734% 8.4529%,
+    curve to 84.9601% 10.8107% with 79.9411% 7.6732% / 83.8045% 9.947%,
+    curve to 84.8227% 11.0803% with 84.916% 10.8886% / 84.8533% 10.979%,
+    curve to 84.6427% 11.2261% with 84.7176% 11.2153% / 84.7559% 11.1922%,
+    line to 84.6193% 11.3063%,
+    curve to 87.9279% 15.4334% with 85.944% 12.4922% / 86.7303% 13.2067%,
+    curve to 91.1858% 34.14% with 90.0975% 20.5034% / 90.922% 25.9551%,
+    curve to 87.598% 80.3773% with 91.6268% 47.8012% / 90.4784% 69.371%,
+    curve to 72.8993% 90.7341% with 84.8032% 91.0615% / 77.1258% 91.5824%,
+    curve to 63.208% 78.7615% with 69.5548% 90.0622% / 65.2411% 87.2173%,
+    curve to 62.1422% 74.1976% with 63.1415% 78.4854% / 62.1085% 74.132%,
+    curve to 61.9854% 74.0588% with 62.0898% 74.1515% / 62.0373% 74.1051%,
+    curve to 61.064% 68.7944% with 61.6281% 72.8417% / 61.3165% 70.1222%,
     line to 61.0407% 68.6734%,
-    curve to 60.9051% 68.4507% with 61.007% 68.6346% / 60.9254% 68.5837%,
-    curve to 58.7016% 37.8785% with 59.4987% 59.0929% / 58.6003% 48.0939%,
-    curve to 60.1023% 23.992% with 58.739% 34.1044% / 59.2225% 26.3007%,
-    curve to 61.5336% 18.8062% with 60.4855% 22.0653% / 60.968% 20.3168%,
-    curve to 78.5182% 8.7183% with 65.2769% 8.8459% / 73.6545% 8.1612%,
-    line to 78.8734% 8.4527%,
+    curve to 60.9051% 68.451% with 61.007% 68.6346% / 60.9254% 68.5839%,
+    curve to 58.7016% 37.8783% with 59.4987% 59.0932% / 58.6003% 48.0939%,
+    curve to 60.1022% 23.9919% with 58.739% 34.1044% / 59.2225% 26.3005%,
+    curve to 61.5335% 18.8061% with 60.4855% 22.0652% / 60.9679% 20.3167%,
+    curve to 78.5182% 8.7182% with 65.2769% 8.8459% / 73.6545% 8.1611%,
+    line to 78.8734% 8.4529%,
+    close
+  );
+  --glass-screen-x: calc((100dvw - var(--glass-width)) / 2);
+  --glass-screen-y: calc((100dvh - var(--glass-height)) / 2);
+  --glass-screen-center-x: calc(var(--glass-screen-x) + var(--glass-width) / 2);
+  --glass-screen-center-y: calc(
+    var(--glass-screen-y) + var(--glass-height) / 2
+  );
+  --glass-lenses-clip-screen: shape(
+    from calc(var(--glass-screen-x) + var(--glass-width) * 0.205047)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.079503),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.319946)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.093318) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.246298)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.064058) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.279165)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.073307),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.40032)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.203938) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.349559)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.107849) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.381665)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.132515),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.404465)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.220261) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.401247)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.207489) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.403606)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.217766),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.412831)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.497768) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.420839)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.316956) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.419128)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.394049),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.408014)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.558224) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.411673)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.516841) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.408999)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.540498),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.349863)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.84829) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.398114)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.659478) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.382415)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.789571),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.166206)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.892976) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.300117)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.916661) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.218596)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.929983),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.14577)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.867751) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.160548)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.888973) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.150718)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.877054),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.129846)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.835763) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.13996)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.858685) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.134765)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.848561),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.084735)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.448249) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.100031)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.758239) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.086664)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.562183),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.085019)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.317851) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.08337)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.43772) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.08406)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.332444),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.116471)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.156246) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.08931)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.252517) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.09723)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.196164),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.189338)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.084083) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.139249)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.10899) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.162168)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.095875),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.205047)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.079503) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.194382)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.081894) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.199636)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.077063),
+    close,
+    move to calc(var(--glass-screen-x) + var(--glass-width) * 0.788734)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.084529),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.849601)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.108107) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.799411)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.076732) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.838045)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.09947),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.848227)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.110803) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.84916)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.108886) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.848533)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.10979),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.846427)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.112261) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.847176)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.112153) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.847559)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.111922),
+    line to calc(var(--glass-screen-x) + var(--glass-width) * 0.846193)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.113063),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.879279)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.154334) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.85944)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.124922) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.867303)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.132067),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.911858)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.3414) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.900975)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.205034) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.90922)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.259551),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.87598)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.803773) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.916268)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.478012) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.904784)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.69371),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.728993)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.907341) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.848032)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.910615) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.771258)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.915824),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.63208)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.787615) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.695548)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.900622) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.652411)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.872173),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.621422)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.741976) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.631415)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.784854) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.621085)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.74132),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.619854)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.740588) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.620898)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.741515) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.620373)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.741051),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.61064)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.687944) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.616281)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.728417) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.613165)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.701222),
+    line to calc(var(--glass-screen-x) + var(--glass-width) * 0.610407)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.686734),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.609051)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.68451) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.61007)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.686346) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.609254)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.685839),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.587016)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.378783) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.594987)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.590932) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.586003)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.480939),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.601022)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.239919) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.58739)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.341044) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.592225)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.263005),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.615335)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.188061) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.604855)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.220652) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.609679)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.203167),
+    curve to calc(var(--glass-screen-x) + var(--glass-width) * 0.785182)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.087182) with
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.652769)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.088459) /
+      calc(var(--glass-screen-x) + var(--glass-width) * 0.736545)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.081611),
+    line to calc(var(--glass-screen-x) + var(--glass-width) * 0.788734)
+      calc(var(--glass-screen-y) + var(--glass-height) * 0.084529),
+    close
+  );
+  --glass-lenses-clip-screen-expanded: shape(
+    from
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.205047 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.079503 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.319946 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.093318 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.246298 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.064058 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.279165 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.073307 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.40032 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.203938 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.349559 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.107849 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.381665 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.132515 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.404465 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.220261 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.401247 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.207489 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.403606 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.217766 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.412831 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.497768 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.420839 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.316956 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.419128 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.394049 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.408014 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.558224 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.411673 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.516841 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.408999 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.540498 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.349863 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.84829 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.398114 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.659478 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.382415 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.789571 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.166206 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.892976 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.300117 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.916661 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.218596 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.929983 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.14577 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.867751 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.160548 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.888973 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.150718 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.877054 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.129846 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.835763 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.13996 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.858685 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.134765 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.848561 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.084735 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.448249 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.100031 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.758239 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.086664 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.562183 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.085019 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.317851 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.08337 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.43772 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.08406 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.332444 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.116471 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.156246 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.08931 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.252517 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.09723 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.196164 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.189338 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.084083 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.139249 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.10899 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.162168 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.095875 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.205047 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.079503 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.194382 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.081894 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.199636 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.077063 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    close,
+    move to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.788734 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.084529 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.849601 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.108107 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.799411 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.076732 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.838045 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.09947 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.848227 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.110803 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.84916 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.108886 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.848533 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.10979 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.846427 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.112261 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.847176 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.112153 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.847559 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.111922 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    line to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.846193 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.113063 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.879279 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.154334 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.85944 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.124922 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.867303 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.132067 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.911858 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.3414 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.900975 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.205034 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.90922 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.259551 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.87598 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.803773 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.916268 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.478012 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.904784 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.69371 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.728993 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.907341 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.848032 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.910615 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.771258 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.915824 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.63208 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.787615 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.695548 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.900622 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.652411 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.872173 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.621422 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.741976 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.631415 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.784854 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.621085 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.74132 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.619854 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.740588 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.620898 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.741515 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.620373 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.741051 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.61064 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.687944 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.616281 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.728417 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.613165 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.701222 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    line to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.610407 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.686734 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.609051 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.68451 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.61007 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.686346 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.609254 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.685839 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.587016 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.378783 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.594987 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.590932 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.586003 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.480939 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.601022 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.239919 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.58739 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.341044 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.592225 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.263005 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.615335 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.188061 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.604855 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.220652 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.609679 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.203167 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    curve to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.785182 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.087182 - 0.5) *
+          var(--glass-expanded-scale)
+      )
+      with
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.652769 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.088459 - 0.5) *
+          var(--glass-expanded-scale)
+      ) /
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.736545 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.081611 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
+    line to
+      calc(
+        var(--glass-screen-center-x) +
+          (
+            var(--glass-width) * (0.788734 - 0.5) +
+              var(--glass-expanded-translate-x)
+          ) *
+          var(--glass-expanded-scale)
+      )
+      calc(
+        var(--glass-screen-center-y) + var(--glass-height) * (0.084529 - 0.5) *
+          var(--glass-expanded-scale)
+      ),
     close
   );
 
+  --glass-bg-url: url("https://images.pexels.com/photos/37193108/pexels-photo-37193108.jpeg");
   --glass-height: calc(var(--glass-width) / 2.895395);
-  --glass-color: #11569e;
-  --glass-width: 30dvw;
+  --glass-color: #564636;
+  --glass-width: 40dvw;
   --glass-height: calc(var(--glass-width) / 2.895395);
-  --glass-z: max(1.5px, calc(var(--glass-width) / 150));
+  --glass-z: max(2px, calc(var(--glass-width) / 150));
   --glass-artifact-avoidance: -1px;
-  --glass-easing: cubic-bezier(0.25, 0.1, 0.25, 1);
-  --glass-bg-url: url("https://i.pinimg.com/1200x/29/ec/d7/29ecd7c5498471707797160b79d98914.jpg");
-  --glass-expanded-scale: 15;
+  --glass-easing: ease;
+  --glass-easing-reciprocal: ease-in-out;
+  --glass-expanded-scale: 12;
   --glass-expanded-translate-x: calc(var(--glass-width) * 0.25);
-  --glass-expanded-duration: 500ms;
-  --glass-expanded-delay: 350ms;
+  --glass-expanded-duration: 700ms;
+  --glass-expanded-delay: calc(var(--glass-expanded-duration) * 0.5);
 
   @media (aspect-ratio <= 1) {
-    --glass-expanded-scale: 24;
-  }
-
-  @media (aspect-ratio <= 0.5) {
-    --glass-expanded-scale: 30;
+    --glass-expanded-scale: 20;
   }
 }
 
-.transform {
+.scale {
+  grid-area: 1/1;
+  display: grid;
   transform-style: preserve-3d;
-  transition: transform var(--glass-expanded-duration) var(--glass-easing);
-  pointer-events: none;
-  animation: var(--hovering) 3s ease infinite;
+  transition-property: scale;
+  transition-timing-function: var(--glass-easing);
+  transition-duration: var(--glass-expanded-duration);
+  will-change: scale;
+
+  .glass[data-expanded] & {
+    transition-delay: var(--glass-expanded-delay);
+    scale: var(--glass-expanded-scale);
+  }
+}
+
+.rotate {
+  transform-style: preserve-3d;
+  transition-property: transform;
+  transition-timing-function: var(--glass-easing);
+  transition-duration: var(--glass-expanded-duration);
+  transition-delay: var(--glass-expanded-delay);
+  transform: rotateX(10deg) rotateY(-15deg);
   will-change: transform;
 
-  &[data-expanded] {
-    animation: none;
-    transition-delay: var(--glass-expanded-delay);
-    transform: scale(var(--glass-expanded-scale))
-      translate(var(--glass-expanded-translate-x));
+  .glass[data-expanded] & {
+    transform: rotateY(-180deg) translate(var(--glass-expanded-translate-x));
+    transition-delay: 0ms;
   }
 }
 
-/*.view {
-    z-index: -1;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
-    width: 100%;
-    max-width: var(--glass-width);
-    max-height: var(--glass-height);
-    clip-path: var(--glass-lenses-clip);
-    transform-style: preserve-3d;
-    background-color: green;
-    overflow: hidden;
-    isolation: isolate;
-
-    &::before {
-        position: absolute;
-        display: block;
-        content: "";
-        background-color: green;
-        height: 100dvh;
-        width: 100dvw;
-        transform: rotateY(180deg);
-        background-image: var(--glass-bg-url);
-        background-size: cover;
-        background-position: center;
-        background-repeat: no-repeat;
-        transition-property: scale, translate;
-        transition-duration: var(--glass-expanded-duration);
-        transition-timing-function: var(--glass-easing);
-        will-change: scale, translate;
-    }
-
-    .transform[data-expanded] &::before {
-        transition-delay: var(--glass-expanded-delay);
-        scale: calc(1 / var(--glass-expanded-scale));
-        translate: calc(var(--glass-expanded-translate-x) * -1);
-    }
-}*/
-
-.container {
-  transform-style: preserve-3d;
+.view {
   display: grid;
-  place-items: center;
+  place-content: center;
+  grid-area: 1/1;
   width: var(--glass-width);
   height: auto;
   aspect-ratio: 2.895395;
+  max-width: var(--glass-width);
+  max-height: var(--glass-height);
+
+  .img {
+    display: block;
+    content: "";
+    height: 100dvh;
+    width: 100dvw;
+    min-height: 100dvh;
+    min-width: 100dvw;
+    transform: scaleX(-1);
+    background-size: cover;
+    background-image: var(--glass-bg-url);
+    background-repeat: no-repeat;
+    background-position: center;
+    clip-path: var(--glass-lenses-clip-screen);
+    transition-property: clip-path, translate;
+    transition-duration: var(--glass-expanded-duration);
+    transition-timing-function: var(--glass-easing);
+
+    .glass[data-expanded] & {
+      transition-delay: var(--glass-expanded-delay);
+      clip-path: var(--glass-lenses-clip-screen-expanded);
+      translate: calc(var(--glass-expanded-translate-x) * -1);
+    }
+  }
+}
+
+.container {
+  display: grid;
+  place-items: center;
+  grid-area: 1/1;
+  width: var(--glass-width);
+  height: auto;
+  aspect-ratio: 2.895395;
+  pointer-events: none;
+  will-change: transform;
+  transform-style: preserve-3d;
 
   & > * {
     grid-area: 1 / 1;
@@ -483,6 +1904,6 @@
 
   &::before,
   &::after {
-    background-color: color-mix(in srgb, var(--glass-color) 70%, black);
+    background-color: color-mix(in srgb, var(--glass-color) 40%, black);
   }
 }

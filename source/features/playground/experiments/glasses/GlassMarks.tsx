@@ -32,12 +32,12 @@ export function GlassMarks() {
             values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0"
             result="hardAlpha"
           />
-          <feOffset dx="-5" dy="15" />
+          <feOffset dx="-5" dy="9" />
           <feGaussianBlur stdDeviation="2.5" />
           <feComposite in2="hardAlpha" operator="arithmetic" k2="-1" k3="1" />
           <feColorMatrix
             type="matrix"
-            values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.3 0"
+            values="0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.7 0"
           />
           <feBlend
             mode="normal"
