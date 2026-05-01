@@ -7,7 +7,10 @@
 }
 
 .deck {
-  transform-style: preserve-3d;
+  container: box inline-size;
+  height: calc(var(--deck-height) * 1px);
+  width: calc(var(--deck-width) * 1px);
+  border-radius: 18px;
   transform: scale(1) rotateX(8.3125deg) rotateY(-3.321875deg) rotateZ(0deg);
 }
 
