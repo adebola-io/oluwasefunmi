@@ -1685,19 +1685,27 @@
     close
   );
 
-  --glass-bg-url: url("https://i.pinimg.com/originals/79/ea/55/79ea55eddd16d9f50305bb9a028c3a85.gif");
+  --glass-bg-url: url("https://images.pexels.com/photos/36780813/pexels-photo-36780813.jpeg");
   --glass-height: calc(var(--glass-width) / 2.895395);
   --glass-color: green;
-  --glass-width: 40dvw;
+  --glass-width: 25dvw;
   --glass-height: calc(var(--glass-width) / 2.895395);
   --glass-z: max(2px, calc(var(--glass-width) / 150));
   --glass-artifact-avoidance: -1px;
   --glass-easing: ease;
   --glass-easing-reciprocal: ease-in-out;
-  --glass-expanded-scale: 12;
+  --glass-expanded-scale: 15;
   --glass-expanded-translate-x: calc(var(--glass-width) * 0.25);
-  --glass-expanded-duration: 700ms;
+  --glass-expanded-duration: 500ms;
   --glass-expanded-delay: calc(var(--glass-expanded-duration) * 0.5);
+  --hover-y: 20px;
+
+  animation: var(--hovering) 3s ease infinite;
+
+  &[data-expanded] {
+    --hover-y: 10px;
+    animation: none;
+  }
 
   @media (aspect-ratio <= 1) {
     --glass-expanded-scale: 20;
@@ -1745,35 +1753,24 @@
   max-height: var(--glass-height);
   transform-style: preserve-3d;
 
-  /*&::after {
-        display: block;
-        content: "";
-        grid-area: 1/1;
-        background-color: red;
-        width: var(--glass-width);
-        height: var(--glass-height);
-        place-self: center;
-        background-color: black;
-        clip-path: var(--glass-lenses-clip);
-    }*/
-
   .img {
     grid-area: 1/1;
     height: 100dvh;
     width: 100dvw;
     min-height: 100dvh;
     min-width: 100dvw;
-    transform: scaleX(-1) translateZ(-10px);
+    transform: scaleX(-1);
     background-size: cover;
     background-image: var(--glass-bg-url);
     background-repeat: no-repeat;
     background-position: center;
     clip-path: var(--glass-lenses-clip-screen);
+    will-change: clip-path, translate, opacity;
     opacity: 0;
     transition:
       clip-path var(--glass-expanded-duration) var(--glass-easing),
       translate var(--glass-expanded-duration) var(--glass-easing),
-      opacity 1ms calc(var(--glass-expanded-duration) - 100ms)
+      opacity 50ms calc(var(--glass-expanded-duration) - 100ms)
         var(--glass-easing);
 
     .glass[data-expanded] & {
@@ -1782,7 +1779,7 @@
           var(--glass-easing),
         translate var(--glass-expanded-duration) var(--glass-expanded-delay)
           var(--glass-easing),
-        opacity 1ms calc(var(--glass-expanded-delay) - 100ms)
+        opacity 50ms calc(var(--glass-expanded-delay) - 100ms)
           var(--glass-easing);
       opacity: 1;
       clip-path: var(--glass-lenses-clip-screen-expanded);
