@@ -1704,7 +1704,7 @@
   );
 
   --glass-height: calc(var(--glass-width) / 2.895395);
-  --glass-width: 25dvw;
+  --glass-width: 34dvw;
   --glass-height: calc(var(--glass-width) / 2.895395);
   --glass-z: max(2px, calc(var(--glass-width) / 150));
   --glass-artifact-avoidance: -1px;
@@ -1731,8 +1731,7 @@
 
   &:not([data-selected]) {
     opacity: 0.35;
-    scale: 0.5;
-    z-index: -1;
+    scale: 0.35;
   }
 
   @media (aspect-ratio <= 1) {
@@ -1761,7 +1760,7 @@
   transition-timing-function: var(--glass-easing);
   transition-duration: var(--glass-expanded-duration);
   transition-delay: var(--glass-expanded-delay);
-  transform: rotateX(10deg) rotateY(-15deg);
+  transform: rotateX(15deg) rotateY(-25deg);
   will-change: transform;
 
   .glass[data-expanded] & {

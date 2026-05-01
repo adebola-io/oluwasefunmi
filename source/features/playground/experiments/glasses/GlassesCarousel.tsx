@@ -21,8 +21,9 @@ export function GlassesCarousel(props: GlassesCarouselProps) {
     );
     const closestGlassView = glassViews[closestIndex];
 
-    if (closestGlassView.id !== selected.peek().id)
+    if (closestGlassView.id !== selected.peek().id) {
       selected.set(closestGlassView);
+    }
   };
 
   return (
@@ -30,8 +31,8 @@ export function GlassesCarousel(props: GlassesCarouselProps) {
       ref={ref}
       class={[
         "flex w-screen h-screen items-center overflow-scroll gap-15 snap-always snap-x snap-mandatory scroll-smooth",
-        "before:block before:-mr-15 before:h-full before:min-w-[37.5dvw] before:snap-start",
-        "after:block after:-mr-15 after:h-full after:min-w-[37.5dvw] before:snap-end",
+        "before:block before:-mr-15 before:h-full before:min-w-[33dvw] before:snap-start",
+        "after:block after:-mr-15 after:h-full after:min-w-[33dvw] before:snap-end",
       ]}
       onScroll={handleScroll}
     >

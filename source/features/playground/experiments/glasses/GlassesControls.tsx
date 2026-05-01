@@ -11,18 +11,18 @@ export function GlassesControls(props: GlassesControlsProps) {
 
   return (
     <div class="fixed bottom-15 w-full grid place-items-center">
-      <div class="grid grid-cols-[auto_1fr_auto] items-end gap-8">
-        <CarouselButton direction="previous" onClick={() => onMove(-1)} />
-        <div class="grid place-items-center">
-          <h2 class="text-4xl pb-15">{name}</h2>
+      <div class="grid place-items-center">
+        <h2 class="text-4xl pb-15">{name}</h2>
+        <div class="flex items-center justify-center gap-8">
+          <CarouselButton direction="previous" onClick={() => onMove(-1)} />
           <button
             class="px-3 py-2 border border-[#ffffff80] cursor-pointer rounded-3xl"
             onClick={onToggleWear}
           >
-            Wear
+            Try On
           </button>
+          <CarouselButton direction="next" onClick={() => onMove(1)} />
         </div>
-        <CarouselButton direction="next" onClick={() => onMove(1)} />
       </div>
     </div>
   );
