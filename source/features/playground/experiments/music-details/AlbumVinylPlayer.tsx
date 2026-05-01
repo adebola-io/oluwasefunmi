@@ -3,7 +3,6 @@ import { useMatchMedia } from "retend-utils/hooks";
 import { AlbumSelectionScope } from "./AlbumSelectionScope";
 import { AlbumRecord } from "./AlbumRecord";
 import classes from "./AlbumVinylPlayer.module.css";
-import { Box } from "../Box";
 import { AlbumToneArm } from "./AlbumToneArm";
 import { AlbumPlaybackScope } from "./AlbumPlaybackScope";
 
@@ -32,22 +31,16 @@ export function AlbumVinylPlayer() {
   const deckHeight = Cell.derived(() =>
     Math.round(deckWidth.get() * (566 / 780))
   );
-  const deckDepth = Cell.derived(() =>
-    Math.round(deckWidth.get() * (60 / 780))
-  );
 
   return (
     <div class={classes.player}>
-      <Box
-        class={classes.deck}
-        frontClass={classes.deckFront}
-        width={deckWidth}
-        height={deckHeight}
-        depth={deckDepth}
-        curve={18}
-        color={albumData.themeColor}
-        secondaryColor={`color-mix(${albumData.themeColor} 60%, black)`}
-        style={{ "--cover-color": albumData.themeColor }}
+      <div
+        class={[classes.deck, classes.deckFront]}
+        style={{
+          "--deck-width": deckWidth,
+          "--deck-height": deckHeight,
+          "--cover-color": albumData.themeColor,
+        }}
       >
         <div class={classes.card}>
           <span>{albumData.name}</span>
@@ -82,7 +75,7 @@ export function AlbumVinylPlayer() {
           </span>
           <span>45</span>
         </div>
-      </Box>
+      </div>
     </div>
   );
 }
