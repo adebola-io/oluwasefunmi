@@ -1685,9 +1685,7 @@
     close
   );
 
-  --glass-bg-url: url("../../data/images/glassviews/colorized.webp");
   --glass-height: calc(var(--glass-width) / 2.895395);
-  --glass-color: gray;
   --glass-width: 25dvw;
   --glass-height: calc(var(--glass-width) / 2.895395);
   --glass-z: max(2px, calc(var(--glass-width) / 150));
@@ -1704,6 +1702,12 @@
 
   &[data-expanded] {
     --hover-y: 2px;
+  }
+
+  &:not([data-selected]) {
+    opacity: 0.25;
+    scale: 0.5;
+    z-index: -1;
   }
 
   @media (aspect-ratio <= 1) {

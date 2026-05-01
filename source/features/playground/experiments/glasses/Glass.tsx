@@ -1,25 +1,39 @@
+import type { Glassview } from "@/features/playground/data/glassViews";
 import { Cell, For } from "retend";
 import classes from "./Glass.module.css";
 import { JSX } from "retend/jsx-runtime";
-import { GlassRidge } from "./GlassRidge";
 import { GlassMarks } from "./GlassMarks";
 
 interface GlassProps {
-  state: Cell<"expanded" | "collapsed">;
+  selected: Cell<Glassview>;
+  expanded: Cell<boolean>;
+  glassView: Glassview;
 }
 
 export function Glass(props: GlassProps) {
-  const { state } = props;
-  const expanded = Cell.derived(() => state.get() === "expanded");
+  const { glassView, selected, expanded } = props;
+  const isSelected = Cell.derived(() => {
+    const selectedVal = selected.get();
+    return selectedVal.id === glassView.id;
+  });
+  const isExpanded = Cell.derived(() => {
+    return isSelected.get() && expanded.get();
+  });
 
   return (
-    <div data-expanded={expanded} class={classes.glass}>
+    <div
+      data-expanded={isExpanded}
+      data-selected={isSelected}
+      class={classes.glass}
+      style={{
+        "--glass-bg-url": `url(${glassView.imageUrl})`,
+        "--glass-color": glassView.themeColor,
+      }}
+    >
       <div class={classes.scale}>
         <div class={classes.rotate}>
           <div class={classes.container}>
-            <div class={classes.front} data-front>
-              <GlassRidge />
-            </div>
+            <div class={classes.front} data-front />
             <Thickness amount={2} class={[classes.front, classes.shade]} />
             <div class={[classes.temple, classes.left]} data-left>
               <GlassMarks />
