@@ -1,47 +1,62 @@
-import { Cell, For } from "retend";
+import { Cell } from "retend";
 import { Glassview, glassViews } from "../../data/glassViews";
-import { Glass } from "./Glass";
+import { GlassesCarousel } from "./GlassesCarousel";
+import { GlassesControls } from "./GlassesControls";
 
 export function GlassesList() {
   const isExpanded = Cell.source(false);
   const selected = Cell.source<Glassview>(glassViews[0]);
-  const selectedGlassviewName = Cell.derived(() => {
-    return selected.get().name;
-  });
+  const scrollContainer = Cell.source<HTMLOListElement | null>(null);
+  const selectedGlassviewName = Cell.derived(() => selected.get().name);
 
-  const toggleState = () => {
-    isExpanded.set(!isExpanded.get());
+  const getSelectedIndex = () => getSelectedGlassViewIndex(selected);
+  const selectIndex = (index: number) => {
+    selected.set(glassViews[index]);
+    scrollToGlassView(scrollContainer.peek(), index);
+  };
+  const moveSelection = (direction: -1 | 1) => {
+    selectIndex(clampIndex(getSelectedIndex() + direction));
+  };
+  const toggleWear = () => {
+    isExpanded.set(!isExpanded.peek());
   };
 
   return (
     <>
-      <ol
-        class={[
-          "flex w-screen h-screen items-center overflow-scroll gap-15 snap-always snap-x snap-mandatory",
-          "before:block before:-mr-15 before:h-full before:min-w-[37.5dvw] before:snap-start",
-        ]}
-      >
-        {For(glassViews, (glassView) => {
-          return (
-            <li class="snap-start">
-              <Glass
-                selected={selected}
-                expanded={isExpanded}
-                glassView={glassView}
-              />
-            </li>
-          );
-        })}
-      </ol>
-      <div class="fixed bottom-15 w-full grid place-items-center">
-        <h2 class="text-2xl pb-10">{selectedGlassviewName}</h2>
-        <button
-          class="px-3 py-2 border border-[#ffffff80] cursor-pointer rounded-3xl"
-          onClick={toggleState}
-        >
-          Wear
-        </button>
-      </div>
+      <GlassesCarousel
+        expanded={isExpanded}
+        selected={selected}
+        ref={scrollContainer}
+        getSelectedIndex={getSelectedIndex}
+      />
+      <GlassesControls
+        name={selectedGlassviewName}
+        onMove={moveSelection}
+        onToggleWear={toggleWear}
+      />
     </>
   );
+}
+
+function clampIndex(index: number) {
+  return Math.min(glassViews.length - 1, Math.max(0, index));
+}
+
+function getSelectedGlassViewIndex(selected: Cell<Glassview>) {
+  return Math.max(
+    0,
+    glassViews.findIndex((glassView) => glassView.id === selected.get().id)
+  );
+}
+
+function scrollToGlassView(container: HTMLOListElement | null, index: number) {
+  const target = container?.querySelector<HTMLElement>(
+    `[data-glass-view-index="${index}"]`
+  );
+
+  target?.scrollIntoView({
+    behavior: "smooth",
+    block: "nearest",
+    inline: "center",
+  });
 }

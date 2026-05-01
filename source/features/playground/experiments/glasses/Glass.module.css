@@ -1,3 +1,21 @@
+@keyframes glass-item-enter {
+  from {
+    opacity: 0;
+    translate: 0 24px;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+.carouselItem {
+  opacity: 0;
+  animation: glass-item-enter 600ms ease forwards;
+  animation-delay: calc(var(--glass-item-index) * 80ms);
+}
+
 .glass {
   display: grid;
 
@@ -1696,16 +1714,23 @@
   --glass-expanded-translate-x: calc(var(--glass-width) * 0.25);
   --glass-expanded-duration: 500ms;
   --glass-expanded-delay: calc(var(--glass-expanded-duration) * 0.5);
-  --hover-y: 20px;
+  --hover-y: 10px;
 
   animation: var(--hovering) 3s ease infinite;
+  transition-property: opacity, scale;
+  transition-duration: 700ms;
+  transition-timing-function: var(--ease-spring);
 
   &[data-expanded] {
     --hover-y: 2px;
   }
 
+  ol:has([data-expanded]) &:not([data-expanded]) {
+    visibility: hidden;
+  }
+
   &:not([data-selected]) {
-    opacity: 0.25;
+    opacity: 0.35;
     scale: 0.5;
     z-index: -1;
   }
@@ -1828,13 +1853,20 @@
     background-color: var(--glass-color);
   }
 
-  svg,
-  .view {
+  svg {
     grid-area: 1/1;
   }
 
   &:not(.shade) {
     display: grid;
+
+    &::after {
+      grid-area: 1/1;
+      display: block;
+      content: "";
+      clip-path: var(--glass-lenses-clip);
+      opacity: 0.25;
+    }
   }
 }
 

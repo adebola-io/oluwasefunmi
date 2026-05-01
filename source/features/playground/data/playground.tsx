@@ -33,7 +33,9 @@ export const playgroundItems: PlaygroundItem[] = [
   {
     path: "/playground/glasses",
     title: "glasses",
-    description: () => <>A glasses playground project.</>,
+    description: () => (
+      <>Clipped path glasses-like transitions with CSS transforms.</>
+    ),
     icon: () => <GlassesIcon />,
   },
   {
