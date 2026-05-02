@@ -32,7 +32,11 @@ export function Glass(props: GlassProps) {
       <div class={classes.scale}>
         <div class={classes.rotate}>
           <div class={classes.container}>
-            <div class={classes.front} data-front />
+            <div class={classes.front} data-front>
+              <div class={classes.view}>
+                <div class={classes.img} />
+              </div>
+            </div>
             <div class={[classes.temple, classes.left]} data-left>
               <GlassMarks />
             </div>
@@ -41,9 +45,6 @@ export function Glass(props: GlassProps) {
             </div>
           </div>
         </div>
-      </div>
-      <div class={[classes.view, classes.rotate]}>
-        <div class={classes.img} />
       </div>
     </div>
   );
