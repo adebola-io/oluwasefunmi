@@ -31,6 +31,7 @@ export function GlassesList() {
       />
       <GlassesControls
         name={selectedGlassviewName}
+        isWorn={isExpanded}
         onMove={moveSelection}
         onToggleWear={toggleWear}
       />
