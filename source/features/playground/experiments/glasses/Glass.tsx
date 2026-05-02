@@ -1,7 +1,8 @@
 import type { Glassview } from "@/features/playground/data/glassViews";
-import { Cell } from "retend";
+import { Cell, If } from "retend";
 import classes from "./Glass.module.css";
 import { GlassMarks } from "./GlassMarks";
+import { Teleport } from "retend-web";
 
 interface GlassProps {
   selected: Cell<Glassview>;
@@ -35,6 +36,18 @@ export function Glass(props: GlassProps) {
             <div class={classes.front} data-front>
               <div class={classes.view}>
                 <div class={classes.img} />
+                {If(isExpanded, () => {
+                  return (
+                    <Teleport to="ol">
+                      <div
+                        class={classes.fallback}
+                        style={{
+                          "--glass-bg-url": `url(${glassView.imageUrl})`,
+                        }}
+                      />
+                    </Teleport>
+                  );
+                })}
               </div>
             </div>
             <div class={[classes.temple, classes.left]} data-left>

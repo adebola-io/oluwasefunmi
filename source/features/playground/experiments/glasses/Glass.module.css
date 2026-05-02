@@ -16,9 +16,10 @@
   animation-delay: calc(var(--glass-item-index) * 80ms);
 }
 
-.glass {
-  display: grid;
-
+/* needs to be available after teleport */
+:root {
+  --glass-expanded-duration: 500ms;
+  --glass-expanded-delay: calc(var(--glass-expanded-duration) * 0.5);
   /* Lifted from Figma. */
   --glass-frame-clip: shape(
     evenodd from 70.448557% 0%,
@@ -428,9 +429,11 @@
   );
   --glass-expanded-scale: 15;
   --glass-expanded-translate-x: calc(var(--glass-width) * 0.25);
-  --glass-expanded-duration: 500ms;
-  --glass-expanded-delay: calc(var(--glass-expanded-duration) * 0.5);
   --hover-y: 10px;
+}
+
+.glass {
+  display: grid;
 
   animation: var(--hovering) 3s ease infinite;
   transition-property: opacity, scale;
@@ -537,6 +540,66 @@
       opacity: 1;
       scale: calc(1 / var(--glass-expanded-scale));
       translate: calc(var(--glass-expanded-translate-x) * -1);
+    }
+  }
+}
+
+@-moz-document url-prefix() {
+  .img {
+    display: grid;
+    place-items: center;
+    animation: force-layer-promotion 0.1ms infinite;
+
+    .glass[data-expanded] &::before {
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: block;
+      content: "";
+      background-color: red;
+      height: 100dvh;
+      width: 100dvw;
+      background-size: cover;
+      background-image: var(--glass-bg-url);
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+}
+
+.fallback {
+  display: none;
+}
+
+@-moz-document url-prefix() {
+  .glass[data-expanded] {
+    opacity: 0;
+    transition-property: opacity;
+    transition-delay: var(--glass-expanded-duration);
+    transition-duration: 1ms;
+    transition-timing-function: var(--glass-easing);
+  }
+
+  .fallback {
+    position: fixed;
+    display: block;
+    top: 0;
+    left: 0;
+    background-color: green;
+    width: 100dvw;
+    height: 100dvh;
+    background-size: cover;
+    background-image: var(--glass-bg-url);
+    background-repeat: no-repeat;
+    background-position: center;
+    transition-property: visibility;
+    transition-behavior: allow-discrete;
+    transition-delay: var(--glass-expanded-duration);
+    transition-duration: 1ms;
+    transition-timing-function: var(--glass-easing);
+
+    @starting-style {
+      visibility: hidden;
     }
   }
 }

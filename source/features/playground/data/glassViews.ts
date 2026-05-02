@@ -39,6 +39,12 @@ const glassViewSources: GlassviewSource[] = [
     themeColor: "#f66b3e",
   },
   {
+    id: 4,
+    imageId: "anime",
+    name: "Anime",
+    themeColor: "#f08ab8",
+  },
+  {
     id: 5,
     imageId: "hand-drawn",
     name: "Hand Drawn",
@@ -61,6 +67,12 @@ const glassViewSources: GlassviewSource[] = [
     imageId: "pixar",
     name: "Pixar",
     themeColor: "#6ea7ff",
+  },
+  {
+    id: 9,
+    imageId: "renaissance",
+    name: "Renaissance",
+    themeColor: "#b9793f",
   },
 ];
 
