@@ -3,10 +3,8 @@ import { useCurrentRoute, useRouter } from "retend/router";
 import { Cell, If } from "retend";
 import { Modal } from "@/components/ui/Modal";
 import { ProductDetails } from "@/features/playground/components/ProductDetails";
-import {
-  getProductById,
-  type Product,
-} from "@/features/playground/data/products";
+import { getProductById } from "@/features/playground/data/products";
+import type { Product } from "@/features/playground/types";
 import { SITE_URL } from "@/shared/constants";
 
 const ProductDetailsPage: RouteComponent = () => {
