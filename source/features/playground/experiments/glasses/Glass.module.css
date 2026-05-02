@@ -593,7 +593,7 @@
     transition: opacity var(--glass-easing) var(--glass-expanded-duration);
   }
 
-  .glasses[data-expanded] &::after {
+  .glass[data-expanded] &::after {
     opacity: 0;
   }
 }
