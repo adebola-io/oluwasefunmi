@@ -298,7 +298,52 @@
   --glass-width: 34dvw;
   --glass-height: calc(var(--glass-width) / 2.895395);
   --glass-easing: ease;
-  --glass-easing-reciprocal: ease-in-out;
+  --glass-easing-reciprocal-in: linear(
+    0,
+    0.338 5%,
+    0.611 10%,
+    0.774 15%,
+    0.863 20%,
+    0.912 25%,
+    0.941 30%,
+    0.958 35%,
+    0.97 40%,
+    0.978 45%,
+    0.984 50%,
+    0.988 55%,
+    0.991 60%,
+    0.994 65%,
+    0.996 70%,
+    0.997 75%,
+    0.998 80%,
+    0.999 85%,
+    1 90%,
+    1 95%,
+    1
+  );
+  --glass-easing-reciprocal-out: linear(
+    0,
+    0.004 5%,
+    0.009 10%,
+    0.016 15%,
+    0.024 20%,
+    0.034 25%,
+    0.047 30%,
+    0.063 35%,
+    0.083 40%,
+    0.109 45%,
+    0.143 50%,
+    0.188 55%,
+    0.25 60%,
+    0.338 65%,
+    0.474 70%,
+    0.611 75%,
+    0.724 80%,
+    0.818 85%,
+    0.897 90%,
+    0.964 95%,
+    1
+  );
   --glass-expanded-scale: 15;
   --glass-expanded-translate-x: calc(var(--glass-width) * 0.25);
   --glass-expanded-duration: 500ms;
@@ -393,17 +438,18 @@
     will-change: scale, translate, opacity;
     opacity: 0;
     transition:
-      scale var(--glass-expanded-duration) var(--glass-easing),
-      translate var(--glass-expanded-duration) var(--glass-easing),
+      scale var(--glass-expanded-duration) var(--glass-easing-reciprocal-out),
+      translate var(--glass-expanded-duration)
+        var(--glass-easing-reciprocal-out),
       opacity 50ms calc(var(--glass-expanded-duration) - 100ms)
         var(--glass-easing);
 
     .glass[data-expanded] & {
       transition:
         scale var(--glass-expanded-duration) var(--glass-expanded-delay)
-          var(--glass-easing),
+          var(--glass-easing-reciprocal-in),
         translate var(--glass-expanded-duration) var(--glass-expanded-delay)
-          var(--glass-easing),
+          var(--glass-easing-reciprocal-in),
         opacity 50ms calc(var(--glass-expanded-delay) - 100ms)
           var(--glass-easing);
       opacity: 1;
