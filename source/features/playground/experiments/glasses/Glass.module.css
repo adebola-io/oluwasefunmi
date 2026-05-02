@@ -523,7 +523,7 @@
       scale var(--glass-expanded-duration) var(--glass-easing-reciprocal-out),
       translate var(--glass-expanded-duration)
         var(--glass-easing-reciprocal-out),
-      opacity 50ms calc(var(--glass-expanded-duration) - 100ms)
+      opacity 50ms calc(var(--glass-expanded-duration) - 50ms)
         var(--glass-easing);
 
     .glass[data-expanded] & {
@@ -532,7 +532,7 @@
           var(--glass-easing-reciprocal-in),
         translate var(--glass-expanded-duration) var(--glass-expanded-delay)
           var(--glass-easing-reciprocal-in),
-        opacity 50ms calc(var(--glass-expanded-delay) - 100ms)
+        opacity 50ms calc(var(--glass-expanded-delay) - 50ms)
           var(--glass-easing);
       opacity: 1;
       scale: calc(1 / var(--glass-expanded-scale));

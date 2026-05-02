@@ -6,12 +6,14 @@ import { GlassesControls } from "./GlassesControls";
 export function GlassesList() {
   const isExpanded = Cell.source(false);
   const selected = Cell.source<Glassview>(glassViews[0]);
+  const programmaticScrollTarget = Cell.source<number | null>(null);
   const scrollContainer = Cell.source<HTMLOListElement | null>(null);
   const selectedGlassviewName = Cell.derived(() => selected.get().name);
 
   const getSelectedIndex = () => getSelectedGlassViewIndex(selected);
   const selectIndex = (index: number) => {
     selected.set(glassViews[index]);
+    programmaticScrollTarget.set(index);
     scrollToGlassView(scrollContainer.peek(), index);
   };
   const moveSelection = (direction: -1 | 1) => {
@@ -26,6 +28,7 @@ export function GlassesList() {
       <GlassesCarousel
         expanded={isExpanded}
         selected={selected}
+        programmaticScrollTarget={programmaticScrollTarget}
         ref={scrollContainer}
         getSelectedIndex={getSelectedIndex}
       />

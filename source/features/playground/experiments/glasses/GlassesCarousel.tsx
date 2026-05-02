@@ -7,18 +7,34 @@ import classes from "./Glass.module.css";
 interface GlassesCarouselProps {
   expanded: Cell<boolean>;
   selected: SourceCell<Glassview>;
+  programmaticScrollTarget: SourceCell<number | null>;
   ref: Cell<HTMLOListElement | null>;
   getSelectedIndex: () => number;
 }
 
 export function GlassesCarousel(props: GlassesCarouselProps) {
-  const { expanded, selected, ref, getSelectedIndex } = props;
+  const {
+    expanded,
+    selected,
+    programmaticScrollTarget,
+    ref,
+    getSelectedIndex,
+  } = props;
   const handleScroll = (event: Event) => {
     const container = event.currentTarget as HTMLOListElement;
     const closestIndex = getClosestGlassViewIndex(
       container,
       getSelectedIndex()
     );
+    const scrollTarget = programmaticScrollTarget.peek();
+    if (scrollTarget !== null) {
+      if (closestIndex === scrollTarget) {
+        programmaticScrollTarget.set(null);
+      }
+
+      return;
+    }
+
     const closestGlassView = glassViews[closestIndex];
 
     if (closestGlassView.id !== selected.peek().id) {
