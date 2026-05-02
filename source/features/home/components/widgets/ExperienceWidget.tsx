@@ -21,8 +21,8 @@ export function ExperienceWidget(props: ExperienceWidgetProps) {
       </div>
 
       <div class={classes.timeline}>
-        {For(items, (item: ExperienceItem, index: number) => (
-          <div class={classes.item} style={{ "--stagger": String(index) }}>
+        {For(items, (item: ExperienceItem, index) => (
+          <div class={classes.item} style={{ "--stagger": index }}>
             <div class={classes.markerWrapper}>
               <div class={classes.markerRing}>
                 <div class={classes.marker} />

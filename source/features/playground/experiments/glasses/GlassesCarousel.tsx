@@ -1,12 +1,12 @@
 import type { Glassview } from "@/features/playground/data/glassViews";
-import { Cell, For } from "retend";
+import { Cell, For, type SourceCell } from "retend";
 import { glassViews } from "../../data/glassViews";
 import { Glass } from "./Glass";
 import classes from "./Glass.module.css";
 
 interface GlassesCarouselProps {
   expanded: Cell<boolean>;
-  selected: Cell<Glassview>;
+  selected: SourceCell<Glassview>;
   ref: Cell<HTMLOListElement | null>;
   getSelectedIndex: () => number;
 }
@@ -30,7 +30,7 @@ export function GlassesCarousel(props: GlassesCarouselProps) {
     <ol
       ref={ref}
       class={[
-        "flex w-screen h-screen items-center overflow-scroll gap-15 snap-always snap-x snap-mandatory scroll-smooth",
+        "flex w-screen h-screen items-center overflow-x-scroll gap-15 snap-always snap-x snap-mandatory scroll-smooth",
         "before:block before:-mr-15 before:h-full before:min-w-[33dvw] before:snap-start",
         "after:block after:-mr-15 after:h-full after:min-w-[33dvw] before:snap-end",
       ]}

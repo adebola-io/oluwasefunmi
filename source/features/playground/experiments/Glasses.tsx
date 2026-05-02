@@ -6,7 +6,7 @@ const Glasses: RouteComponent = () => {
   return (
     <div class="w-dvw h-dvh bg-black text-white">
       <PlaygroundLayout title="Glasses">
-        <div class="w-screen h-screen grid place-items-center overflow-clip">
+        <div class="w-screen h-screen grid place-items-center overflow-hidden">
           <GlassesList />
         </div>
       </PlaygroundLayout>

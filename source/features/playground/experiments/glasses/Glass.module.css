@@ -1706,8 +1706,6 @@
   --glass-height: calc(var(--glass-width) / 2.895395);
   --glass-width: 34dvw;
   --glass-height: calc(var(--glass-width) / 2.895395);
-  --glass-z: max(2px, calc(var(--glass-width) / 150));
-  --glass-artifact-avoidance: -1px;
   --glass-easing: ease;
   --glass-easing-reciprocal: ease-in-out;
   --glass-expanded-scale: 15;
@@ -1856,25 +1854,21 @@
     grid-area: 1/1;
   }
 
-  &:not(.shade) {
-    display: grid;
+  display: grid;
 
-    &::after {
-      grid-area: 1/1;
-      display: block;
-      content: "";
-      clip-path: var(--glass-lenses-clip);
-      opacity: 0.25;
-    }
+  &::after {
+    grid-area: 1/1;
+    display: block;
+    content: "";
+    clip-path: var(--glass-lenses-clip);
+    opacity: 0.25;
   }
 }
 
 .temple {
   transform-origin: left;
 
-  &:not(.shade) {
-    display: grid;
-  }
+  display: grid;
 
   &::before,
   &::after {
@@ -1897,66 +1891,5 @@
     * {
       fill: var(--glass-color);
     }
-  }
-}
-
-/* y = [z * (2x - 1), z * 2x] */
-
-.shade {
-  --2x: calc(var(--frame-thickness-index) * 2);
-  --y1: calc(var(--glass-z) * (var(--2x) - 1));
-  --y2: calc(var(--glass-z) * var(--2x));
-
-  display: contents;
-
-  &::before,
-  &::after {
-    grid-area: 1 / 1;
-    display: block;
-    content: "";
-    width: 100%;
-    height: 100%;
-    transform-origin: inherit;
-    transform: inherit;
-  }
-
-  &.front {
-    &::before,
-    &::after {
-      width: 99%;
-    }
-
-    &::before {
-      translate: 0 0 calc(var(--y1) * -1);
-    }
-
-    &::after {
-      translate: 0 0 calc(var(--y2) * -1);
-    }
-  }
-
-  &.left {
-    &::before {
-      translate: var(--y1) 0 var(--glass-artifact-avoidance);
-    }
-
-    &::after {
-      translate: var(--y2) 0 var(--glass-artifact-avoidance);
-    }
-  }
-
-  &.right {
-    &::before {
-      translate: calc(var(--y1) * -1) 0 var(--glass-artifact-avoidance);
-    }
-
-    &::after {
-      translate: calc(var(--y2) * -1) 0 var(--glass-artifact-avoidance);
-    }
-  }
-
-  &::before,
-  &::after {
-    background-color: color-mix(in srgb, var(--glass-color) 40%, black);
   }
 }
