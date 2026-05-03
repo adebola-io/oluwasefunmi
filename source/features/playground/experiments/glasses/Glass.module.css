@@ -430,6 +430,10 @@
   --glass-expanded-scale: 15;
   --glass-expanded-translate-x: calc(var(--glass-width) * 0.25);
   --hover-y: 10px;
+
+  @media (aspect-ratio <= 1) {
+    --glass-expanded-scale: 30;
+  }
 }
 
 .glass {
@@ -451,10 +455,6 @@
   &:not([data-selected]) {
     opacity: 0.35;
     scale: 0.35;
-  }
-
-  @media (aspect-ratio <= 1) {
-    --glass-expanded-scale: 30;
   }
 }
 
