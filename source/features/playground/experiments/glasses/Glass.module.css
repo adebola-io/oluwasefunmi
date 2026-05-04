@@ -1,0 +1,691 @@
+@keyframes glass-item-enter {
+  from {
+    opacity: 0;
+    translate: 0 24px;
+  }
+
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+.carouselItem {
+  opacity: 0;
+  animation: glass-item-enter 600ms ease forwards;
+  animation-delay: calc(var(--glass-item-index) * 80ms);
+}
+
+/* needs to be available after teleport */
+:root {
+  --glass-expanded-duration: 500ms;
+  --glass-expanded-delay: calc(var(--glass-expanded-duration) * 0.5);
+  /* Lifted from Figma. */
+  --glass-frame-clip: shape(
+    evenodd from 70.448557% 0%,
+    curve to 93.721562% 5.320154% with 78.306112% -1.790793% / 86.035654%
+      0.631221%,
+    curve to 99.173175% 9.371125% with 94.813243% 5.986012% / 98.334465%
+      8.043044%,
+    curve to 99.27674% 9.535889% with 99.209677% 9.423828% / 99.243633%
+      9.478889%,
+    line to 100% 9.96903%,
+    vline to 15.800748%,
+    curve to 100% 22.127469% with 100.034805% 17.744735% / 100.035654%
+      20.031807%,
+    vline to 29.493144%,
+    line to 98.933786% 29.918499%,
+    curve to 97.758913% 31.601503% with 98.529711% 30.502995% / 98.067912%
+      30.959049%,
+    curve to 96.327674% 36.874241% with 97.105263% 32.962788% / 96.662988%
+      34.773741%,
+    curve to 94.669779% 52.543632% with 95.550085% 41.743727% / 95.166384%
+      47.375268%,
+    curve to 88.497453% 90.358035% with 93.570458% 63.997779% / 91.58489%
+      82.26179%,
+    curve to 84.061715% 97.139901% with 87.245331% 93.642261% / 85.670628%
+      95.770021%,
+    curve to 75.552377% 100% with 81.333871% 99.460201% / 78.379966% 99.954812%,
+    curve to 63.671138% 93.887356% with 71.626995% 100.061642% / 67.199406%
+      99.44522%,
+    curve to 60.802462% 87.446854% with 62.60399% 92.189618% / 61.635654%
+      90.015196%,
+    curve to 54.217827% 49.706128% with 57.866214% 78.325286% / 55.451783%
+      61.544863%,
+    curve to 53.615365% 40.783485% with 54.031664% 47.918014% / 53.479711%
+      42.447578%,
+    curve to 53.828947% 33.262894% with 53.654329% 37.804031% / 54.450594%
+      36.636023%,
+    curve to 46.825722% 31.792814% with 52.640238% 28.791013% / 48.414346%
+      29.177074%,
+    curve to 46.25781% 40.563931% with 45.442105% 34.071364% / 45.98455%
+      37.130142%,
+    curve to 46.160611% 44.100128% with 46.337776% 41.568379% / 46.258319%
+      43.101574%,
+    curve to 38.7191% 88.415201% with 44.927589% 57.657722% / 42.102886%
+      78.283045%,
+    curve to 36.598302% 93.246867% with 38.09202% 90.29934% / 37.378438%
+      91.925121%,
+    curve to 32.886757% 97.667912% with 35.439643% 95.221135% / 34.189983%
+      96.708406%,
+    curve to 16.456197% 97.559363% with 28.484975% 100.960979% / 20.827929%
+      100.86471%,
+    curve to 11.552547% 90.579062% with 14.684041% 96.219689% / 12.951019%
+      94.063196%,
+    curve to 5.207284% 52.243035% with 8.20775% 82.247055% / 6.317436%
+      64.266942%,
+    curve to 3.691121% 36.953566% with 4.750238% 47.292751% / 4.420789%
+      41.603743%,
+    curve to 2.124482% 31.297467% with 3.341053% 34.722659% / 2.830543%
+      32.686012%,
+    curve to 1.153973% 29.830825% with 1.843311% 30.744406% / 1.487598%
+      30.324945%,
+    line to 0% 29.370351%,
+    vline to 9.846237%,
+    line to 0.883633% 9.31717%,
+    curve to 1.408718% 8.718799% with 1.026494% 9.078706% / 1.254559% 8.826046%,
+    curve to 33.329796% 0.816142% with 11.815705% 1.474245% /
+      22.635059% -2.887712%,
+    curve to 39.606197% 5.434548% with 35.183871% 1.458247% / 37.989813%
+      2.970114%,
+    curve to 44.333871% 14.961579% with 41.389049% 7.530186% / 42.695161%
+      12.207648%,
+    curve to 47.208489% 14.857008% with 45.472326% 15.676137% / 46.051019%
+      15.163034%,
+    curve to 49.639049% 14.409255% with 47.989304% 14.650544% / 48.856791%
+      14.439782%,
+    curve to 52.203141% 14.570409% with 50.494058% 14.370748% / 51.349151%
+      14.424703%,
+    curve to 56.09584% 14.715035% with 53.329032% 14.76651% / 55.084295%
+      15.828401%,
+    curve to 57.863582% 10.842482% with 56.632767% 14.124474% / 57.383277%
+      11.930282%,
+    curve to 62.708489% 3.560528% with 59.430221% 7.298033% / 60.782683%
+      5.154482%,
+    curve to 70.448557% 0% with 65.26893% 1.441322% / 67.807046% 0.602094%,
+    close,
+    move to 32.021732% 8.805122%,
+    curve to 20.522071% 7.413876% with 27.940153% 6.790283% / 24.650679%
+      5.858725%,
+    curve to 18.94983% 7.875062% with 19.98056% 7.168167% / 19.454669% 7.654624%,
+    curve to 11.656876% 15.141447% with 16.23056% 9.062423% / 13.936672%
+      10.383187%,
+    curve to 8.509083% 31.413384% with 9.731154% 19.160786% / 8.93854%
+      24.834862%,
+    curve to 8.480671% 44.54292% with 8.413158% 32.882972% / 8.344143%
+      43.482233%,
+    curve to 12.995586% 83.561924% with 8.673769% 56.014995% / 10.011545%
+      75.755962%,
+    curve to 14.589389% 86.783034% with 13.487946% 84.850515% / 14.007895%
+      85.870435%,
+    curve to 16.63472% 89.322888% with 15.08455% 87.719946% / 16.068421%
+      88.919881%,
+    curve to 35.016044% 84.823746% with 21.878183% 93.04917% / 30.037267%
+      91.707777%,
+    curve to 40.835993% 55.616409% with 38.273939% 78.91101% / 39.845076%
+      65.81168%,
+    curve to 41.318166% 49.529551% with 40.93455% 53.831487% / 41.202207%
+      51.449791%,
+    curve to 40.480815% 21.58713% with 41.948387% 39.085746% / 42.11961%
+      31.323253%,
+    curve to 40.065959% 19.943347% with 40.394907% 21.335969% / 40.158744%
+      20.300798%,
+    curve to 32.021732% 8.805122% with 38.198896% 12.751744% / 34.985569%
+      10.268277%,
+    close,
+    move to 85.032258% 10.294235%,
+    curve to 78.940323% 7.919907% with 83.875637% 9.424639% / 80.009083%
+      7.134914%,
+    line to 78.584805% 8.187326%,
+    curve to 61.585739% 18.344875% with 73.716978% 7.626431% / 65.332343%
+      8.315841%,
+    curve to 60.153226% 23.566458% with 61.019694% 19.865889% / 60.536842%
+      21.626498%,
+    curve to 58.751443% 37.548867% with 59.27275% 25.891129% / 58.788879%
+      33.748664%,
+    curve to 60.956791% 68.332133% with 58.650085% 47.835005% / 59.549236%
+      58.909967%,
+    curve to 61.09253% 68.556598% with 60.97708% 68.465977% / 61.058744%
+      68.517305%,
+    line to 61.115874% 68.678409%,
+    curve to 62.038031% 73.978899% with 61.368506% 70.015136% / 61.68039%
+      72.753178%,
+    curve to 62.194907% 74.118638% with 62.089983% 74.025315% / 62.142445%
+      74.071976%,
+    curve to 63.261545% 78.714295% with 62.161969% 74.056013% / 63.194992%
+      78.436291%,
+    curve to 72.961205% 90.769637% with 65.29652% 87.228282% / 69.613837%
+      90.092801%,
+    curve to 87.672326% 80.341305% with 77.191256% 91.623787% / 84.875212%
+      91.098969%,
+    curve to 91.263158% 33.784765% with 90.555178% 69.25873% / 91.704584%
+      47.540302%,
+    curve to 88.002547% 14.948858% with 90.999151% 25.543133% / 90.174024%
+      20.053886%,
+    curve to 84.691171% 10.793316% with 86.803905% 12.706802% / 86.016978%
+      11.98743%,
+    line to 84.714601% 10.712493%,
+    curve to 84.894737% 10.565485% with 84.827844% 10.678381% / 84.789474%
+      10.701417%,
+    curve to 85.032258% 10.294235% with 84.925297% 10.463567% / 84.988115%
+      10.372725%,
+    close,
+    move to 3.692699% 17.091034%,
+    curve to 3.056027% 18.932931% with 3.341078% 17.091034% / 3.056027%
+      17.915688%,
+    curve to 3.692699% 20.774829% with 3.056044% 19.95015% / 3.341087%
+      20.774829%,
+    curve to 4.329372% 18.932931% with 4.044304% 20.774804% / 4.329355%
+      19.950125%,
+    curve to 3.692699% 17.091034% with 4.329372% 17.915688% / 4.044321%
+      17.091058%,
+    close,
+    move to 5.475382% 17.091034%,
+    curve to 4.83871% 18.932931% with 5.123761% 17.091034% / 4.83871% 17.915688%,
+    curve to 5.475382% 20.774829% with 4.838727% 19.95015% / 5.123769%
+      20.774829%,
+    curve to 6.112054% 18.932931% with 5.826986% 20.774804% / 6.112037%
+      19.950125%,
+    curve to 5.475382% 17.091034% with 6.112054% 17.915688% / 5.827003%
+      17.091058%,
+    close,
+    move to 94.524618% 17.091034%,
+    curve to 93.887946% 18.932931% with 94.173175% 17.091034% / 93.887946%
+      17.915688%,
+    curve to 94.524618% 20.774829% with 93.887946% 19.95015% / 94.173175%
+      20.774829%,
+    curve to 95.16129% 18.932931% with 94.876061% 20.774804% / 95.16129%
+      19.950125%,
+    curve to 94.524618% 17.091034% with 95.16129% 17.915688% / 94.876061%
+      17.091058%,
+    close,
+    move to 96.307301% 17.091034%,
+    curve to 95.670628% 18.932931% with 95.955857% 17.091034% / 95.670628%
+      17.915688%,
+    curve to 96.307301% 20.774829% with 95.670628% 19.95015% / 95.955857%
+      20.774829%,
+    curve to 96.943973% 18.932931% with 96.658744% 20.774804% / 96.943973%
+      19.950125%,
+    curve to 96.307301% 17.091034% with 96.943973% 17.915688% / 96.658744%
+      17.091058%,
+    close
+  );
+  --glass-temple-clip: shape(
+    from 24.159% 8.0695%,
+    curve to 47.3327% 8.2039% with 31.8824% 7.3492% / 39.6103% 7.3941%,
+    curve to 54.2324% 8.9882% with 49.6231% 8.4439% / 51.9436% 8.5014%,
+    curve to 56.7893% 9.556% with 54.8341% 9.1162% / 56.2553% 9.271%,
+    curve to 63.0142% 13.0767% with 58.2606% 9.817% / 61.7075% 11.5564%,
+    curve to 63.5696% 13.5857% with 63.2057% 13.1762% / 63.3855% 13.3875%,
+    curve to 73.5446% 31.8837% with 67.2173% 17.5192% / 70.3885% 24.7151%,
+    curve to 78.5023% 43.2685% with 75.2054% 35.6376% / 76.858% 39.4329%,
+    curve to 81.9176% 51.8595% with 79.2823% 45.0878% / 81.4518% 49.82%,
+    curve to 80.1169% 65.7034% with 82.8901% 56.5668% / 81.7281% 64.8176%,
+    curve to 77.2394% 62.1376% with 79.0182% 66.9295% / 77.9015% 65.1734%,
+    curve to 76.1584% 58.5337% with 76.9608% 61.4105% / 76.4234% 59.4578%,
+    line to 74.2637% 51.9324%,
+    curve to 65.8507% 27.1141% with 71.7196% 43.1415% / 68.9415% 33.7112%,
+    curve to 63.5419% 23.0848% with 65.1462% 25.611% / 64.2995% 24.2774%,
+    curve to 52.6257% 17.9471% with 60.0355% 17.8598% / 56.3845% 17.646%,
+    curve to 44.7964% 19.5003% with 50.0109% 18.1384% / 47.3995% 18.6565%,
+    curve to 37.0478% 22.4493% with 42.1962% 20.2972% / 39.6308% 21.0392%,
+    curve to 33.1296% 24.2307% with 35.7429% 23.1617% / 34.4521% 23.9621%,
+    curve to 26.3975% 25.1417% with 30.8843% 24.671% / 28.6437% 24.9061%,
+    curve to 18.0987% 26.2266% with 23.6304% 25.4351% / 20.8641% 25.7971%,
+    line to 7.3156% 28.19%,
+    curve to 1.4797% 29.4651% with 5.3762% 28.5959% / 3.4294% 29.208%,
+    line to 0% 29.878%,
+    vline to 10.4878%,
+    line to 3.63% 10.1122%,
+    curve to 9.551% 9.3226% with 5.6021% 9.7237% / 7.5761% 9.4606%,
+    curve to 18.1917% 8.5871% with 12.3045% 9.0607% / 15.4671% 8.4912%,
+    curve to 20.2042% 8.3618% with 18.7821% 8.3962% / 19.594% 8.4058%,
+    curve to 24.159% 8.0695% with 21.5226% 8.3087% / 22.8411% 8.2112%,
+    close,
+    move to 5.1315% 17.0732%,
+    curve to 4.4953% 18.9025% with 4.7801% 17.0732% / 4.4953% 17.8922%,
+    curve to 5.1315% 20.7317% with 4.4953% 19.9128% / 4.7801% 20.7317%,
+    curve to 5.7676% 18.9025% with 5.4828% 20.7317% / 5.7676% 19.9128%,
+    curve to 5.1315% 17.0732% with 5.7676% 17.8922% / 5.4828% 17.0732%,
+    close,
+    move to 6.9126% 17.0732%,
+    curve to 6.2765% 18.9025% with 6.5613% 17.0732% / 6.2765% 17.8922%,
+    curve to 6.9126% 20.7317% with 6.2765% 19.9128% / 6.5613% 20.7317%,
+    curve to 7.5488% 18.9025% with 7.264% 20.7317% / 7.5488% 19.9128%,
+    curve to 6.9126% 17.0732% with 7.5488% 17.8922% / 7.264% 17.0732%,
+    close
+  );
+  --glass-lenses-clip: shape(
+    from 20.5047% 7.9503%,
+    curve to 31.9946% 9.3318% with 24.6298% 6.4058% / 27.9165% 7.3307%,
+    curve to 40.032% 20.3938% with 34.9559% 10.7849% / 38.1665% 13.2515%,
+    curve to 40.4465% 22.0261% with 40.1247% 20.7489% / 40.3606% 21.7766%,
+    curve to 41.2831% 49.7768% with 42.0839% 31.6956% / 41.9128% 39.4049%,
+    curve to 40.8014% 55.8224% with 41.1673% 51.6841% / 40.8999% 54.0498%,
+    curve to 34.9863% 84.829% with 39.8114% 65.9478% / 38.2415% 78.9571%,
+    curve to 16.6206% 89.2976% with 30.0117% 91.6661% / 21.8596% 92.9983%,
+    curve to 14.577% 86.7751% with 16.0548% 88.8973% / 15.0718% 87.7054%,
+    curve to 12.9846% 83.5763% with 13.996% 85.8685% / 13.4765% 84.8561%,
+    curve to 8.4735% 44.8249% with 10.0031% 75.8239% / 8.6664% 56.2183%,
+    curve to 8.5019% 31.7851% with 8.337% 43.772% / 8.406% 33.2444%,
+    curve to 11.6471% 15.6246% with 8.931% 25.2517% / 9.723% 19.6164%,
+    curve to 18.9338% 8.4083% with 13.9249% 10.899% / 16.2168% 9.5875%,
+    curve to 20.5047% 7.9503% with 19.4382% 8.1894% / 19.9636% 7.7063%,
+    close,
+    move to 78.8734% 8.4529%,
+    curve to 84.9601% 10.8107% with 79.9411% 7.6732% / 83.8045% 9.947%,
+    curve to 84.8227% 11.0803% with 84.916% 10.8886% / 84.8533% 10.979%,
+    curve to 84.6427% 11.2261% with 84.7176% 11.2153% / 84.7559% 11.1922%,
+    line to 84.6193% 11.3063%,
+    curve to 87.9279% 15.4334% with 85.944% 12.4922% / 86.7303% 13.2067%,
+    curve to 91.1858% 34.14% with 90.0975% 20.5034% / 90.922% 25.9551%,
+    curve to 87.598% 80.3773% with 91.6268% 47.8012% / 90.4784% 69.371%,
+    curve to 72.8993% 90.7341% with 84.8032% 91.0615% / 77.1258% 91.5824%,
+    curve to 63.208% 78.7615% with 69.5548% 90.0622% / 65.2411% 87.2173%,
+    curve to 62.1422% 74.1976% with 63.1415% 78.4854% / 62.1085% 74.132%,
+    curve to 61.9854% 74.0588% with 62.0898% 74.1515% / 62.0373% 74.1051%,
+    curve to 61.064% 68.7944% with 61.6281% 72.8417% / 61.3165% 70.1222%,
+    line to 61.0407% 68.6734%,
+    curve to 60.9051% 68.451% with 61.007% 68.6346% / 60.9254% 68.5839%,
+    curve to 58.7016% 37.8783% with 59.4987% 59.0932% / 58.6003% 48.0939%,
+    curve to 60.1022% 23.9919% with 58.739% 34.1044% / 59.2225% 26.3005%,
+    curve to 61.5335% 18.8061% with 60.4855% 22.0652% / 60.9679% 20.3167%,
+    curve to 78.5182% 8.7182% with 65.2769% 8.8459% / 73.6545% 8.1611%,
+    line to 78.8734% 8.4529%,
+    close
+  );
+
+  --glass-height: calc(var(--glass-width) / 2.895395);
+  --glass-width: 34dvw;
+  --glass-height: calc(var(--glass-width) / 2.895395);
+  --glass-easing: linear(
+    0,
+    0.0002 2.5%,
+    0.0012 5%,
+    0.0038 7.5%,
+    0.0086 10%,
+    0.0161 12.5%,
+    0.0266 15%,
+    0.0405 17.5%,
+    0.0579 20%,
+    0.0789 22.5%,
+    0.1035 25%,
+    0.1316 27.5%,
+    0.1631 30%,
+    0.1977 32.5%,
+    0.2352 35%,
+    0.2752 37.5%,
+    0.3174 40%,
+    0.3615 42.5%,
+    0.4069 45%,
+    0.4532 47.5%,
+    0.5 50%,
+    0.5468 52.5%,
+    0.5931 55%,
+    0.6385 57.5%,
+    0.6826 60%,
+    0.7248 62.5%,
+    0.7648 65%,
+    0.8023 67.5%,
+    0.8369 70%,
+    0.8684 72.5%,
+    0.8965 75%,
+    0.9211 77.5%,
+    0.9421 80%,
+    0.9595 82.5%,
+    0.9734 85%,
+    0.9839 87.5%,
+    0.9914 90%,
+    0.9962 92.5%,
+    0.9988 95%,
+    0.9998 97.5%,
+    1
+  );
+  --glass-easing-reciprocal-in: linear(
+    0,
+    0.0023 2.5%,
+    0.0171 5%,
+    0.0536 7.5%,
+    0.1147 10%,
+    0.1966 12.5%,
+    0.2908 15%,
+    0.3877 17.5%,
+    0.4798 20%,
+    0.5624 22.5%,
+    0.634 25%,
+    0.6945 27.5%,
+    0.7451 30%,
+    0.7871 32.5%,
+    0.8218 35%,
+    0.8506 37.5%,
+    0.8746 40%,
+    0.8946 42.5%,
+    0.9114 45%,
+    0.9256 47.5%,
+    0.9375 50%,
+    0.9476 52.5%,
+    0.9563 55%,
+    0.9636 57.5%,
+    0.9699 60%,
+    0.9753 62.5%,
+    0.9799 65%,
+    0.9838 67.5%,
+    0.9872 70%,
+    0.99 72.5%,
+    0.9924 75%,
+    0.9943 77.5%,
+    0.9959 80%,
+    0.9972 82.5%,
+    0.9982 85%,
+    0.9989 87.5%,
+    0.9994 90%,
+    0.9997 92.5%,
+    0.9999 95%,
+    1 97.5%,
+    1
+  );
+  --glass-easing-reciprocal-out: linear(
+    0,
+    0 2.5%,
+    0.0001 5%,
+    0.0003 7.5%,
+    0.0006 10%,
+    0.0011 12.5%,
+    0.0018 15%,
+    0.0028 17.5%,
+    0.0041 20%,
+    0.0057 22.5%,
+    0.0076 25%,
+    0.01 27.5%,
+    0.0128 30%,
+    0.0162 32.5%,
+    0.0201 35%,
+    0.0247 37.5%,
+    0.0301 40%,
+    0.0364 42.5%,
+    0.0437 45%,
+    0.0524 47.5%,
+    0.0625 50%,
+    0.0744 52.5%,
+    0.0886 55%,
+    0.1054 57.5%,
+    0.1254 60%,
+    0.1494 62.5%,
+    0.1782 65%,
+    0.2129 67.5%,
+    0.2549 70%,
+    0.3055 72.5%,
+    0.366 75%,
+    0.4376 77.5%,
+    0.5202 80%,
+    0.6123 82.5%,
+    0.7092 85%,
+    0.8034 87.5%,
+    0.8853 90%,
+    0.9464 92.5%,
+    0.9829 95%,
+    0.9977 97.5%,
+    1
+  );
+  --glass-expanded-scale: 15;
+  --glass-expanded-translate-x: calc(var(--glass-width) * 0.25);
+  --hover-y: 10px;
+}
+
+.glass {
+  display: grid;
+
+  animation: var(--hovering) 3s ease infinite;
+  transition-property: opacity, scale;
+  transition-duration: 700ms;
+  transition-timing-function: var(--ease-spring);
+
+  &[data-expanded] {
+    --hover-y: 1px;
+  }
+
+  ol:has([data-expanded]) &:not([data-expanded]) {
+    visibility: hidden;
+  }
+
+  &:not([data-selected]) {
+    opacity: 0.35;
+    scale: 0.35;
+  }
+
+  @media (aspect-ratio <= 1) {
+    --glass-expanded-scale: 30;
+  }
+}
+
+.scale {
+  grid-area: 1/1;
+  display: grid;
+  transform-style: preserve-3d;
+  transition-property: scale;
+  transition-timing-function: var(--glass-easing);
+  transition-duration: var(--glass-expanded-duration);
+  will-change: scale;
+
+  .glass[data-expanded] & {
+    transition-delay: var(--glass-expanded-delay);
+    scale: var(--glass-expanded-scale);
+  }
+}
+
+.rotate {
+  transform-style: preserve-3d;
+  transition-property: transform;
+  transition-timing-function: var(--glass-easing);
+  transition-duration: var(--glass-expanded-duration);
+  transition-delay: var(--glass-expanded-delay);
+  transform: rotateX(15deg) rotateY(-25deg);
+  will-change: transform;
+
+  .glass[data-expanded] & {
+    transform: rotateY(-180deg) translate(var(--glass-expanded-translate-x));
+    transition-delay: 0ms;
+  }
+}
+
+@-moz-document url-prefix() {
+  .rotate {
+    /* Firefix is interpreting a diff rotation direction, for reasons unknown to man. */
+    .glass[data-expanded] & {
+      transform: rotateY(180deg) translate(var(--glass-expanded-translate-x));
+    }
+  }
+}
+
+.view {
+  display: grid;
+  place-content: center;
+  grid-area: 1/1;
+  width: var(--glass-width);
+  height: auto;
+  aspect-ratio: 2.895395;
+  max-width: var(--glass-width);
+  max-height: var(--glass-height);
+  transform-style: preserve-3d;
+  clip-path: var(--glass-lenses-clip);
+
+  .img {
+    grid-area: 1/1;
+    height: 100dvh;
+    width: 100dvw;
+    min-height: 100dvh;
+    min-width: 100dvw;
+    transform: scaleX(-1);
+    background-size: cover;
+    background-image: var(--glass-bg-url);
+    background-repeat: no-repeat;
+    background-position: center;
+    will-change: scale, translate, opacity;
+    opacity: 0;
+    transition:
+      scale var(--glass-expanded-duration) var(--glass-easing-reciprocal-out),
+      translate var(--glass-expanded-duration)
+        var(--glass-easing-reciprocal-out),
+      opacity 50ms calc(var(--glass-expanded-duration) - 50ms)
+        var(--glass-easing);
+
+    .glass[data-expanded] & {
+      transition:
+        scale var(--glass-expanded-duration) var(--glass-expanded-delay)
+          var(--glass-easing-reciprocal-in),
+        translate var(--glass-expanded-duration) var(--glass-expanded-delay)
+          var(--glass-easing-reciprocal-in),
+        opacity 50ms calc(var(--glass-expanded-delay) - 50ms)
+          var(--glass-easing);
+      opacity: 1;
+      scale: calc(1 / var(--glass-expanded-scale));
+      translate: calc(var(--glass-expanded-translate-x) * -1);
+    }
+  }
+}
+
+@-moz-document url-prefix() {
+  .img {
+    display: grid;
+    place-items: center;
+    animation: force-layer-promotion 0.1ms infinite;
+
+    .glass[data-expanded] &::before {
+      position: fixed;
+      top: 0;
+      left: 0;
+      display: block;
+      content: "";
+      background-color: red;
+      height: 100dvh;
+      width: 100dvw;
+      background-size: cover;
+      background-image: var(--glass-bg-url);
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+  }
+}
+
+.fallback {
+  display: none;
+}
+
+@-moz-document url-prefix() {
+  .glass[data-expanded] {
+    opacity: 0;
+    transition-property: opacity;
+    transition-delay: var(--glass-expanded-duration);
+    transition-duration: 1ms;
+    transition-timing-function: var(--glass-easing);
+  }
+
+  .fallback {
+    position: fixed;
+    display: block;
+    top: 0;
+    left: 0;
+    background-color: green;
+    width: 100dvw;
+    height: 100dvh;
+    background-size: cover;
+    background-image: var(--glass-bg-url);
+    background-repeat: no-repeat;
+    background-position: center;
+    transition-property: visibility;
+    transition-behavior: allow-discrete;
+    transition-delay: var(--glass-expanded-duration);
+    transition-duration: 1ms;
+    transition-timing-function: var(--glass-easing);
+
+    @starting-style {
+      visibility: hidden;
+    }
+  }
+}
+
+.container {
+  display: grid;
+  place-items: center;
+  grid-area: 1/1;
+  width: var(--glass-width);
+  height: auto;
+  aspect-ratio: 2.895395;
+  pointer-events: none;
+  will-change: transform;
+  transform-style: preserve-3d;
+
+  & > * {
+    grid-area: 1 / 1;
+    isolation: isolate;
+    width: 100%;
+    height: 100%;
+
+    &:not(svg)::before {
+      grid-area: 1 / 1;
+      display: block;
+      content: "";
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.front {
+  transform-style: preserve-3d;
+
+  &::before,
+  &::after {
+    z-index: -1;
+    clip-path: var(--glass-frame-clip);
+    background-color: var(--glass-color);
+  }
+
+  svg {
+    grid-area: 1/1;
+  }
+
+  display: grid;
+
+  &::after {
+    grid-area: 1/1;
+    display: block;
+    content: "";
+    clip-path: var(--glass-lenses-clip);
+    opacity: 0.25;
+    transition: opacity var(--glass-easing) var(--glass-expanded-duration);
+  }
+
+  .glass[data-expanded] &::after {
+    opacity: 0;
+  }
+}
+
+.temple {
+  transform-origin: left;
+
+  display: grid;
+
+  &::before,
+  &::after {
+    clip-path: var(--glass-temple-clip);
+    background-color: color-mix(in srgb, var(--glass-color) 85%, black);
+  }
+
+  &.right {
+    transform: translate(100%) rotateY(90deg);
+  }
+
+  &.left {
+    transform: rotateY(90deg);
+  }
+
+  svg {
+    grid-area: 1/1;
+    isolation: isolate;
+
+    * {
+      fill: color-mix(in srgb, var(--glass-color) 65%, black);
+    }
+  }
+}

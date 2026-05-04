@@ -28,6 +28,7 @@ const pages = [
   "/playground/css-keyboard",
   "/playground/vinyl-player",
   "/playground/painting-wheel",
+  "/playground/glasses",
   "/random-notes",
   "/contact",
   "/works",
