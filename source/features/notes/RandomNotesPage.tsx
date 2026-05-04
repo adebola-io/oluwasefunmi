@@ -5,7 +5,6 @@ import type { Note, NotePreviewProps } from "@/shared/types";
 import { Link } from "retend/router";
 import { LayeredCard } from "@/components/ui/LayeredCard";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { StarShower } from "@/components/ui/StarShower";
 import { NoteHeading } from "@/components/ui/typography";
 import { SITE_URL } from "@/shared/constants";
 import classes from "./RandomNotesPage.module.css";
@@ -42,7 +41,6 @@ const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
 
   return (
     <div class={classes.page}>
-      <StarShower />
       <div class={classes.container}>
         <PageHeader
           title="Random Notes."

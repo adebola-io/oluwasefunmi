@@ -1,12 +1,10 @@
 import type { RouteComponent } from "retend/router";
 import classes from "./ContactPage.module.css";
-import { StarShower } from "@/components/ui/StarShower";
 import { SITE_URL } from "@/shared/constants";
 
 const Contact: RouteComponent = () => {
   return (
     <div class={classes.page}>
-      <StarShower />
       <div class={classes.container}>
         <p class={classes.intro}>
           Got a cool idea or a big dream? Don't just sit on it! Hit me up, and

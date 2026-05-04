@@ -123,9 +123,10 @@
 
 .progressFill {
   height: 100%;
-  width: 0%;
+  width: 100%;
   background-color: var(--text-primary);
   border-radius: 4px;
+  transform-origin: left;
 }
 
 .controls {

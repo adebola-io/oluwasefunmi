@@ -32,7 +32,6 @@
   font-size: 0.95rem;
   font-weight: 500;
   color: var(--text-primary);
-  transition: color 0.2s;
 }
 
 .projectLink:last-child {
