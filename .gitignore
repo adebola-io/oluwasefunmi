@@ -6,3 +6,5 @@ dist
 .wrangler
 .dev.vars
 worker-configuration.d.ts
+.env
+ideas
