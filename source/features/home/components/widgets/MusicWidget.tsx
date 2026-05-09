@@ -128,6 +128,9 @@ export function MusicWidget() {
     const total = song.get().durationMs;
     return total > 0 ? (currentTimeMs.get() / total) * 100 : 0;
   });
+  const progressScale = Cell.derived(
+    () => `scaleX(${progressPercentage.get() / 100})`
+  );
 
   const elapsedTime = Cell.derived(() => formatTime(currentTimeMs.get()));
   const totalTime = Cell.derived(() => formatTime(song.get().durationMs));
@@ -176,7 +179,7 @@ export function MusicWidget() {
           <div class={classes.progressWrapper}>
             <div
               class={classes.progressFill}
-              style={{ width: `${progressPercentage}%` }}
+              style={{ transform: progressScale }}
             />
           </div>
           <div class={classes.controls}>

@@ -28,9 +28,7 @@
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   outline: 3px solid var(--accent-color);
   outline-offset: -1px;
-  transition:
-    transform 0.5s var(--ease-spring),
-    box-shadow 0.5s var(--ease-spring);
+  transition: transform 0.5s var(--ease-spring);
   background-color: var(--cobalt);
   background-image:
     radial-gradient(
@@ -93,7 +91,6 @@
 
 .avatarWrapper:hover {
   transform: scale(1.05) rotate(3deg);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
 .avatar {
@@ -101,16 +98,16 @@
   height: 100%;
   object-fit: cover;
   border-radius: var(--avatar-radius);
-  filter: blur(12px);
   opacity: 0;
+  transform: scale(0.98);
   transition:
-    filter 0.6s var(--ease-spring),
-    opacity 0.4s var(--ease-spring);
+    opacity 0.4s var(--ease-spring),
+    transform 0.4s var(--ease-spring);
 }
 
 .avatar.loaded {
-  filter: blur(0px);
   opacity: 1;
+  transform: scale(1);
 }
 
 .content {
