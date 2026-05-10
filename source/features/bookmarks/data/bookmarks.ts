@@ -1,5 +1,35 @@
 export const bookmarks = [
   {
+    id: "projecting-react",
+    link: "https://tannerlinsley.com/posts/projecting-react",
+    tags: ["react", "performance", "ai", "article"],
+    notes: "",
+    image:
+      "https://tannerlinsley.com/api/og/projecting-react.png?title=Projecting+React&excerpt=An+AI-generated+projection+of+React%27s+public+API%2C+shaped+around+what+a+TanStack+Start+app+needs.+%7E9KB+client%2C+2%E2%80%933%C3%97+faster+on+our+workloads.+Powers+this+blog+to%E2%80%A6&date=May+2026",
+    themeColor: "#ffffff",
+    openGraph: {
+      title: "Projecting React",
+      description:
+        "An AI-generated projection of React's public API, shaped around what a TanStack Start app needs. ~9KB client, 2-3x faster on Tanner Linsley's workloads.",
+      siteName: "Tanner Linsley",
+    },
+  },
+  {
+    id: "when-life-gives-you-lemons-write-better-error-messages-46c5223e1a2f",
+    link: "https://wix-ux.com/when-life-gives-you-lemons-write-better-error-messages-46c5223e1a2f",
+    tags: ["ui", "writing", "design", "article"],
+    notes: "",
+    image:
+      "https://miro.medium.com/v2/resize:fit:1200/1*H556AiiYD3gl1wveoWgR1w.png",
+    themeColor: "#ffffff",
+    openGraph: {
+      title: "When life gives you lemons, write better error messages",
+      description:
+        "How Wix reviewed and improved thousands of error messages by making them clearer, more reassuring, more empathetic, and more actionable for users.",
+      siteName: "Wix UX",
+    },
+  },
+  {
     id: "tools-the-vercel-product-design-team-actually-uses",
     link: "https://www.hannahhearth.com/posts/tools-the-vercel-product-design-team-actually-uses",
     tags: ["design", "tools", "vercel", "article"],
