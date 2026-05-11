@@ -18,7 +18,6 @@
   background-color: #22c55e;
   border-radius: 50%;
   position: relative;
-  box-shadow: 0 0 10px #22c55e;
 }
 
 .dot::after {

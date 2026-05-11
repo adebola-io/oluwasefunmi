@@ -23,18 +23,13 @@ function matchesQuery(bookmark: (typeof bookmarks)[number], query: string) {
     bookmark.notes.toLowerCase().includes(query) ||
     bookmark.openGraph.title.toLowerCase().includes(query) ||
     bookmark.openGraph.description.toLowerCase().includes(query) ||
-    bookmark.openGraph.siteName.toLowerCase().includes(query) ||
-    bookmark.tags.some((item) => item.toLowerCase().includes(query))
+    bookmark.openGraph.siteName.toLowerCase().includes(query)
   );
 }
 
-function queryBookmarks(page: number, tag?: string, query?: string) {
+function queryBookmarks(page: number, query?: string) {
   let currentPage = normalizePage(page);
   let items = bookmarks;
-
-  if (tag) {
-    items = items.filter((bookmark) => bookmark.tags.includes(tag));
-  }
 
   const normalizedQuery = query?.trim().toLowerCase();
   if (normalizedQuery) {
@@ -55,11 +50,10 @@ function queryBookmarks(page: number, tag?: string, query?: string) {
 
 export function registerBookmarksApi(app: Hono) {
   app.get(BOOKMARKS_API_BASE_PATH, (c) => {
-    const tag = c.req.query("tag");
     const query = c.req.query("q");
     const page = Number(c.req.query("page"));
 
-    return c.json(queryBookmarks(page, tag, query));
+    return c.json(queryBookmarks(page, query));
   });
 
   app.get(`${BOOKMARKS_API_BASE_PATH}/:id`, (c) => {

@@ -7,7 +7,6 @@ export interface BookmarkOpenGraph {
 export interface Bookmark {
   id: string;
   link: string;
-  tags: string[];
   notes: string;
   image: string;
   themeColor: string;

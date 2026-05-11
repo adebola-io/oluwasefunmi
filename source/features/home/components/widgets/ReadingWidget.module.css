@@ -103,9 +103,6 @@
   transform: translateZ(-12px) rotateY(180deg);
   background-color: #0c1522;
   border-radius: 4px 2px 2px 4px;
-  box-shadow:
-    15px 15px 30px rgba(0, 0, 0, 0.6),
-    5px 5px 10px rgba(0, 0, 0, 0.4);
 }
 
 .bookSpine {

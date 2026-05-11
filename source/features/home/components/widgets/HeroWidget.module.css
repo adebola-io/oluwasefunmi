@@ -25,7 +25,6 @@
   height: 96px;
   border-radius: var(--avatar-radius);
   padding: 4px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
   outline: 3px solid var(--accent-color);
   outline-offset: -1px;
   transition: transform 0.5s var(--ease-spring);
@@ -91,7 +90,6 @@
 
 .avatarWrapper:hover {
   transform: scale(1.05) rotate(3deg);
-  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
 }
 
 .avatar {

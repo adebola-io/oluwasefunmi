@@ -2,7 +2,6 @@ export const bookmarks = [
   {
     id: "projecting-react",
     link: "https://tannerlinsley.com/posts/projecting-react",
-    tags: ["react", "performance", "ai", "article"],
     notes: "",
     image:
       "https://tannerlinsley.com/api/og/projecting-react.png?title=Projecting+React&excerpt=An+AI-generated+projection+of+React%27s+public+API%2C+shaped+around+what+a+TanStack+Start+app+needs.+%7E9KB+client%2C+2%E2%80%933%C3%97+faster+on+our+workloads.+Powers+this+blog+to%E2%80%A6&date=May+2026",
@@ -17,7 +16,6 @@ export const bookmarks = [
   {
     id: "when-life-gives-you-lemons-write-better-error-messages-46c5223e1a2f",
     link: "https://wix-ux.com/when-life-gives-you-lemons-write-better-error-messages-46c5223e1a2f",
-    tags: ["ui", "writing", "design", "article"],
     notes: "",
     image:
       "https://miro.medium.com/v2/resize:fit:1200/1*H556AiiYD3gl1wveoWgR1w.png",
@@ -32,7 +30,6 @@ export const bookmarks = [
   {
     id: "tools-the-vercel-product-design-team-actually-uses",
     link: "https://www.hannahhearth.com/posts/tools-the-vercel-product-design-team-actually-uses",
-    tags: ["design", "tools", "vercel", "article"],
     notes: "",
     image:
       "https://www.hannahhearth.com/posts/tools-the-vercel-product-design-team-actually-uses/opengraph-image?82bb6bec0c85d4be",
@@ -47,7 +44,6 @@ export const bookmarks = [
   {
     id: "antfu-async-sync-in-between",
     link: "https://antfu.me/posts/async-sync-in-between",
-    tags: ["javascript", "async", "sync", "generators", "article"],
     notes: "",
     image: "https://antfu.me/og.png",
     themeColor: "#8B5CF6",
@@ -61,15 +57,6 @@ export const bookmarks = [
   {
     id: "figma-webgpu-rendering",
     link: "https://www.figma.com/blog/figma-rendering-powered-by-webgpu/",
-    tags: [
-      "webgpu",
-      "webgl",
-      "graphics",
-      "rendering",
-      "performance",
-      "engineering",
-      "article",
-    ],
     notes: "",
     image:
       "https://cdn.sanity.io/images/599r6htc/regionalized/4ccef32222f789dab9554fa51665d905a2c168c9-2560x1440.png?w=1200&q=70&fit=max&auto=format",
@@ -84,7 +71,6 @@ export const bookmarks = [
   {
     id: "mozilla-browser-engine-competition",
     link: "https://blog.mozilla.org/netpolicy/2026/03/23/competition-innovation-and-the-future-of-the-web/",
-    tags: ["browser", "web", "competition", "gecko", "mozilla", "article"],
     notes: "",
     image:
       "https://blog.mozilla.org/netpolicy/files/2019/12/browsefreely-03-1000x563-1.png",
@@ -100,7 +86,6 @@ export const bookmarks = [
   {
     id: "signal-push-pull-algorithm",
     link: "https://willybrauner.com/journal/signal-the-push-pull-based-algorithm",
-    tags: ["javascript", "reactivity", "algorithms", "frontend", "article"],
     notes: "",
     image: "https://willybrauner.com/assets/signal-cover-meta.webp",
     themeColor: "#4a5568",
@@ -114,7 +99,6 @@ export const bookmarks = [
   {
     id: "building-ng-stocks-growth-strategy",
     link: "https://inside.cowrywise.com/article/building-ng-stocks-growth-strategy",
-    tags: ["frontend", "fintech", "marketing", "article"],
     notes: "",
     image:
       "https://cowrywise.com/cortana/wp-content/uploads/2026/01/Cowrywise_Engineering_Blog_StocksWaitlist.png",
@@ -130,7 +114,6 @@ export const bookmarks = [
   {
     id: "gavin-nelson",
     link: "https://spaces.is/loversmagazine/interviews/gavin-nelson",
-    tags: ["design", "native", "interview", "product", "article"],
     notes: "",
     image:
       "https://spaces.is/media/pages/loversmagazine/interviews/gavin-nelson/7560737522-1741085674/gavin-nelson-new-1200x630-crop.jpg",
@@ -146,7 +129,6 @@ export const bookmarks = [
   {
     id: "retro-print-cmyk-halftone-shader",
     link: "https://paper.design/blog/retro-print-cmyk-halftone-shader",
-    tags: ["design", "shaders", "graphics", "media", "web"],
     notes: "",
     image:
       "https://paper.design/_next/image?url=%2Fblog%2Fmaking-cmyk-shader%2Fhero.jpg&w=640&q=75",
@@ -161,7 +143,6 @@ export const bookmarks = [
   {
     id: "three-pillars-of-javascript-bloat",
     link: "https://43081j.com/2026/03/three-pillars-of-javascript-bloat",
-    tags: ["javascript", "performance", "web", "article"],
     notes: "",
     image: "https://43081j.com/assets/images/is-string-graph.png",
     themeColor: "#ffffff",
@@ -175,7 +156,6 @@ export const bookmarks = [
   {
     id: "decade-slug",
     link: "https://terathon.com/blog/decade-slug.html",
-    tags: ["html", "algorithms", "graphics", "web", "article"],
     notes: "",
     image: "https://terathon.com/blog/decade-slug/slug_algorithm.svg",
     themeColor: "#e0e0e0",
@@ -188,7 +168,6 @@ export const bookmarks = [
   {
     id: "transparent-video-for-websites",
     link: "https://hellohill.com/notes/transparent-video-for-websites/",
-    tags: ["web", "video", "media", "reference", "article"],
     notes: "",
     image:
       "https://res.cloudinary.com/dl4btvfxp/image/upload/f_auto/v1693931486/ogimage-transparent-video-230905-121505_b1hhvi.png",
@@ -203,7 +182,6 @@ export const bookmarks = [
   {
     id: "swiftui-vs-uikit",
     link: "https://blog.jacobstechtavern.com/p/swiftui-vs-uikit",
-    tags: ["performance", "ios", "mobile", "article"],
     notes: "",
     image:
       "https://substackcdn.com/image/fetch/$s_!1Jn9!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2Fec517517-fbc1-4640-a984-33b4b9a0ade4_1680x1200.gif",
@@ -217,7 +195,6 @@ export const bookmarks = [
   {
     id: "two-react-design-choices-developers-dont-like-but-cant-avoid-d6g",
     link: "https://dev.to/playfulprogramming/two-react-design-choices-developers-dont-like-but-cant-avoid-d6g",
-    tags: ["react", "design", "frontend", "web", "engineering"],
     notes: "",
     image:
       "https://media2.dev.to/dynamic/image/width=1200,height=627,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Ft2psvszp16uk132dqwg7.png",
@@ -232,7 +209,6 @@ export const bookmarks = [
   {
     id: "react-to-svelte",
     link: "https://strawberrybrowser.com/blog/react-to-svelte",
-    tags: ["react", "svelte", "frontend", "performance", "article"],
     notes: "",
     image: "https://strawberrybrowser.com/images/blog/svelte-rewrite.png",
     themeColor: "#fffcf9",
@@ -246,7 +222,6 @@ export const bookmarks = [
   {
     id: "crdt-filesync",
     link: "https://tonsky.me/blog/crdt-filesync/",
-    tags: ["crdt", "local-first", "systems", "software", "engineering"],
     notes: "",
     image:
       "https://dynogee.com/gen?id=24m2qx9uethuw6p&title=Local%2C+first%2C+forever",
@@ -261,7 +236,6 @@ export const bookmarks = [
   {
     id: "fall-of-native",
     link: "https://tonsky.me/blog/fall-of-native/",
-    tags: ["desktop", "native", "systems", "software", "engineering"],
     notes: "",
     image:
       "https://dynogee.com/gen?id=24m2qx9uethuw6p&title=Claude+is+an+Electron+App+because+we%E2%80%99ve+lost+native",
@@ -276,7 +250,6 @@ export const bookmarks = [
   {
     id: "details-that-make-interfaces-feel-better",
     link: "https://jakub.kr/writing/details-that-make-interfaces-feel-better",
-    tags: ["ui", "writing", "design", "article"],
     notes: "",
     image:
       "https://jakub.kr/api/og?pageTitle=Details%20That%20Make%20Interfaces%20Feel%20Better&category=Writing",
@@ -291,7 +264,6 @@ export const bookmarks = [
   {
     id: "diataxis-fr",
     link: "https://diataxis.fr/",
-    tags: ["docs", "writing", "reference", "article"],
     notes: "",
     image: "https://diataxis.fr/_static/diataxis-white-416.png",
     themeColor: "#ffffff",
@@ -305,7 +277,6 @@ export const bookmarks = [
   {
     id: "react-native-web-with-vite-1jg5",
     link: "https://dev.to/dannyhw/react-native-web-with-vite-1jg5",
-    tags: ["react-native", "react", "vite", "web", "native"],
     notes: "",
     image:
       "https://media2.dev.to/dynamic/image/width=1000,height=500,fit=cover,gravity=auto,format=auto/https%3A%2F%2Fdev-to-uploads.s3.amazonaws.com%2Fuploads%2Farticles%2Fkgkss85ek5i2uc0t533w.png",
@@ -320,7 +291,6 @@ export const bookmarks = [
   {
     id: "ai-assistance-coding-skills",
     link: "https://www.anthropic.com/research/AI-assistance-coding-skills",
-    tags: ["ai", "research", "engineering", "article"],
     notes: "",
     image:
       "https://www.anthropic.com/api/opengraph-illustration?name=Hand%20Abacus&backgroundColor=sky",
@@ -335,7 +305,6 @@ export const bookmarks = [
   {
     id: "spa-vs-hypermedia-real-world-performance-under-load",
     link: "https://zweiundeins.gmbh/en/methodology/spa-vs-hypermedia-real-world-performance-under-load",
-    tags: ["web", "performance", "architecture", "article"],
     notes: "",
     image:
       "https://zweiundeins.gmbh/cache/images/2/20260107-175336-2-logo_1000.jpg?v=3574655340963",
@@ -350,7 +319,6 @@ export const bookmarks = [
   {
     id: "hacking-cloudflare-vinext",
     link: "https://www.hacktron.ai/blog/hacking-cloudflare-vinext",
-    tags: ["nextjs", "cloudflare", "ai", "security", "article"],
     notes: "",
     image: "https://www.hacktron.ai/_astro/cover.B7hQMs7G.png",
     themeColor: "#847d77",
@@ -364,7 +332,6 @@ export const bookmarks = [
   {
     id: "we-ralph-wiggumed-webstreams-to-make-them-10x-faster",
     link: "https://vercel.com/blog/we-ralph-wiggumed-webstreams-to-make-them-10x-faster",
-    tags: ["nextjs", "webstreams", "performance", "article"],
     notes: "",
     image:
       "https://assets.vercel.com/image/upload/contentful/image/e5382hct74si/3pnusGEIcqx1TjOphCfavS/b7251390104a9152205422aa7f7d3f48/image.png",
@@ -379,7 +346,6 @@ export const bookmarks = [
   {
     id: "how-we-built-the-v0-ios-app",
     link: "https://vercel.com/blog/how-we-built-the-v0-ios-app",
-    tags: ["ios", "mobile", "design", "vercel", "article"],
     notes: "",
     image:
       "https://assets.vercel.com/image/upload/contentful/image/e5382hct74si/715y4Jcu9Jea4F2UVDB83N/d371c79bdbdc36a448f125506ba104f3/v0_mobile_blog_post_OG.png",
@@ -394,7 +360,6 @@ export const bookmarks = [
   {
     id: "guia-practica-elemento-img",
     link: "https://joanleon.dev/en/guia-practica-elemento-img/",
-    tags: ["performance", "media", "reference", "html", "article"],
     notes: "",
     image:
       "https://res.cloudinary.com/nucliweb/image/upload/f_auto,q_auto/v1771762165/joanleon.dev/assets/guia-practica-elemento-img/image-addy-osmani.jpg",
@@ -409,7 +374,6 @@ export const bookmarks = [
   {
     id: "vinext",
     link: "https://blog.cloudflare.com/vinext/",
-    tags: ["vite", "nextjs", "cloudflare", "performance", "ai"],
     notes: "",
     image:
       "https://cf-assets.www.cloudflare.com/zkvhlag99gkb/720QQcrdICiSJXrr9VoixA/4934fffd05d1ca10cc661238b381308e/BLOG-3194_OG.png",
@@ -424,7 +388,6 @@ export const bookmarks = [
   {
     id: "clear-segmented-picker",
     link: "https://www.sabesh.space/musings/engineering/clear-segmented-picker",
-    tags: ["ios", "native", "ui", "design", "article"],
     notes: "",
     image:
       "https://musings-sabesh.vercel.app/api/og?slug=engineering%2Fclear-segmented-picker",
@@ -439,7 +402,6 @@ export const bookmarks = [
   {
     id: "which-rich-text-editor-framework-should-you-choose-in-2025",
     link: "https://liveblocks.io/blog/which-rich-text-editor-framework-should-you-choose-in-2025",
-    tags: ["javascript", "editor", "collaboration", "web", "article"],
     notes: "",
     image:
       "https://liveblocks.io/images/blog/social-images/choosing-the-right-text-editor-for-your-app.jpg",
@@ -454,7 +416,6 @@ export const bookmarks = [
   {
     id: "why-is-claude-an-electron-app",
     link: "https://www.dbreunig.com/2026/02/21/why-is-claude-an-electron-app.html",
-    tags: ["html", "desktop", "native", "opinion", "article"],
     notes: "",
     image: "https://www.dbreunig.com/img/sf_beach_og.jpg",
     themeColor: "#d5cab7",
@@ -467,7 +428,6 @@ export const bookmarks = [
   {
     id: "not-sql",
     link: "https://stack.convex.dev/not-sql",
-    tags: ["databases", "data", "systems", "article"],
     notes: "",
     image:
       "https://cdn.sanity.io/images/ts10onj4/production/5617377944cda1bd61a183edb29d14cbbbe6450a-5760x3840.jpg",
@@ -482,7 +442,6 @@ export const bookmarks = [
   {
     id: "2209-07663",
     link: "https://pbs.twimg.com/profile_images/1365352170267299840/IzvjKckL_400x400.jpg",
-    tags: ["ml", "research", "systems", "article"],
     notes: "",
     image: "",
     themeColor: "#ffffff",
@@ -497,7 +456,6 @@ export const bookmarks = [
   {
     id: "14-more-lessons",
     link: "https://addyosmani.com/blog/14-more-lessons/",
-    tags: ["writing", "engineering", "career", "article"],
     notes: "",
     image: "https://addyosmani.com/assets/14-lessons.jpg",
     themeColor: "#7f7b6d",
@@ -511,7 +469,6 @@ export const bookmarks = [
   {
     id: "childs-play-sam-kriss-ai-startup-roy-lee",
     link: "https://harpers.org/archive/2026/03/childs-play-sam-kriss-ai-startup-roy-lee/",
-    tags: ["ai", "essay", "culture", "article"],
     notes: "",
     image:
       "https://wp.harpers.org/wp-content/uploads/2026/02/CUT-12-scaled.jpg",
@@ -525,7 +482,6 @@ export const bookmarks = [
   {
     id: "watch",
     link: "https://www.youtube.com/watch?v=iVS2DqDhfUI",
-    tags: ["design", "ios", "video", "opinion", "article"],
     notes: "",
     image: "https://i.ytimg.com/vi/iVS2DqDhfUI/maxresdefault.jpg",
     themeColor: "#e6e0dc",
@@ -539,7 +495,6 @@ export const bookmarks = [
   {
     id: "why-im-not-worried-about-ai-job-loss",
     link: "https://davidoks.blog/p/why-im-not-worried-about-ai-job-loss",
-    tags: ["ai", "career", "essay", "article"],
     notes: "",
     image:
       "https://substackcdn.com/image/fetch/$s_!DcWh!,w_1200,h_675,c_fill,f_jpg,q_auto:good,fl_progressive:steep,g_auto/https%3A%2F%2Fsubstack-post-media.s3.amazonaws.com%2Fpublic%2Fimages%2F7cb35e39-2374-4258-99b1-431087baaa8a_1600x1286.png",
@@ -554,7 +509,6 @@ export const bookmarks = [
   {
     id: "dont-sleep-on-abort-controller",
     link: "https://kettanaito.com/blog/dont-sleep-on-abort-controller",
-    tags: ["javascript", "web", "reference", "article"],
     notes: "",
     image: "https://kettanaito.com/blog/dont-sleep-on-abort-controller.jpg",
     themeColor: "#f5f6f8",
@@ -567,7 +521,6 @@ export const bookmarks = [
   {
     id: "novelty",
     link: "https://rauno.me/craft/novelty",
-    tags: ["design", "craft", "web", "article"],
     notes: "",
     image: "https://rauno.me/static/craft/og-novelty.png",
     themeColor: "#fffe02",
@@ -580,7 +533,6 @@ export const bookmarks = [
   {
     id: "one-way-to-format-everywhere",
     link: "https://www.marcelochaman.ca/repository/one-way-to-format-everywhere",
-    tags: ["design", "formatting", "tooling", "article"],
     notes: "",
     image:
       "https://marcelochaman.ca/repository/opengraph-image.png?opengraph-image.74a1cab6.png",
@@ -594,7 +546,6 @@ export const bookmarks = [
   {
     id: "shades-of-halftone",
     link: "https://blog.maximeheckel.com/posts/shades-of-halftone/",
-    tags: ["shaders", "graphics", "web", "article"],
     notes: "",
     image:
       "https://blog.maximeheckel.com/static/og/87476d3b0871838ae8917d401ba03be5.png?v1",
@@ -609,7 +560,6 @@ export const bookmarks = [
   {
     id: "how-is-data-stored",
     link: "https://www.makingsoftware.com/chapters/how-is-data-stored",
-    tags: ["data", "databases", "systems", "reference", "article"],
     notes: "",
     image:
       "https://www.makingsoftware.com/_next/image?url=%2Fdata-and-compression%2Fhow-is-data-stored%2Fhero.png&w=3840&q=75",
@@ -623,7 +573,6 @@ export const bookmarks = [
   {
     id: "migrating-off-nextjs-tanstack-start",
     link: "https://www.inngest.com/blog/migrating-off-nextjs-tanstack-start",
-    tags: ["nextjs", "tanstack", "performance", "article"],
     notes: "",
     image:
       "https://www.inngest.com/assets/blog/migrating-off-nextjs-tanstack-start/featured-image.png",
@@ -639,7 +588,6 @@ export const bookmarks = [
   {
     id: "1116",
     link: "https://github.com/WICG/webcomponents/issues/1116",
-    tags: ["standards", "web-components", "discussion", "article"],
     notes: "",
     image:
       "https://opengraph.githubassets.com/79920a0dbdef3c601cdf0e9eb9171515f35e961fdcc8a906df589902dc588bfe/WICG/webcomponents/issues/1116",
@@ -655,7 +603,6 @@ export const bookmarks = [
   {
     id: "behind-the-scenes-of-react-native-multithreading-vision-camera-v5-x-react-native-worklets-a102c37b32ae",
     link: "https://blog.swmansion.com/behind-the-scenes-of-react-native-multithreading-vision-camera-v5-x-react-native-worklets-a102c37b32ae",
-    tags: ["react-native", "react", "native", "mobile", "performance"],
     notes: "",
     image:
       "https://miro.medium.com/v2/resize:fit:1200/1*4KAuH716fi9DUScwVQ3iGg.png",
@@ -671,7 +618,6 @@ export const bookmarks = [
   {
     id: "dynamic-features-static-site",
     link: "https://simonwillison.net/2026/Jan/28/dynamic-features-static-site/",
-    tags: ["cloudflare", "web", "caching", "architecture", "article"],
     notes: "",
     image: "https://static.simonwillison.net/static/2026/edit-toggle.jpg",
     themeColor: "#ffffff",
@@ -685,7 +631,6 @@ export const bookmarks = [
   {
     id: "web-frameworks-2025-year-in-review",
     link: "https://www.netlify.com/blog/web-frameworks-2025-year-in-review/",
-    tags: ["web", "security", "frameworks", "industry", "article"],
     notes: "",
     image:
       "https://cdn.sanity.io/images/o0o2tn5x/production/35ffb23bb8b011795578273ec971305c69d120de-1200x675.png",
@@ -700,7 +645,6 @@ export const bookmarks = [
   {
     id: "understanding-the-fundamentals-of-css-layout",
     link: "https://polypane.app/blog/understanding-the-fundamentals-of-css-layout/",
-    tags: ["css", "layout", "reference", "article"],
     notes: "",
     image:
       "https://polypane.app/og-images/understanding-the-fundamentals-of-css-layout.png",
@@ -715,7 +659,6 @@ export const bookmarks = [
   {
     id: "ai-will-not-eat-ui",
     link: "https://www.aidenybai.com/blog/ai-will-not-eat-ui",
-    tags: ["ai", "ui", "development", "future", "article"],
     notes: "",
     image: "https://aidenbai.com/aiden-logo.webp",
     themeColor: "#6366f1",
