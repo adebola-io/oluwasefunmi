@@ -805,7 +805,11 @@
   transform: rotateY(45deg);
   width: calc(100% / 3);
   background-color: var(--wallet-color-shade);
-  background-image: var(--front-flap-gradient-1);
+  background-image: var(--wallet-texture), var(--front-flap-gradient-1);
+  background-size:
+    5px 4px,
+    7px 6px,
+    auto;
 }
 
 .flapConnectorMiddle {
@@ -815,13 +819,18 @@
   transform: translateZ(calc(var(--flap-depth) / 4));
   background-color: var(--wallet-color);
   background-image:
-    var(--front-flap-gradient-1),
+    var(--wallet-texture), var(--front-flap-gradient-1),
     linear-gradient(
       to right,
       var(--wallet-color-shade),
       color-mix(var(--wallet-color-shade), transparent),
       var(--wallet-color-shade)
     );
+  background-size:
+    5px 4px,
+    7px 6px,
+    auto,
+    auto;
 }
 
 .flapConnectorLeft {
@@ -830,7 +839,11 @@
   width: calc(100% / 3);
   transform-origin: right;
   background-color: var(--wallet-color-shade);
-  background-image: var(--front-flap-gradient-1);
+  background-image: var(--wallet-texture), var(--front-flap-gradient-1);
+  background-size:
+    5px 4px,
+    7px 6px,
+    auto;
   transform-origin: left;
   transform: rotateY(-45deg);
 }
