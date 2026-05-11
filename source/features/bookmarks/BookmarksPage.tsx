@@ -3,7 +3,6 @@ import type { RouteComponent } from "retend/router";
 import { useIntersectionObserver } from "retend-utils/hooks";
 import classes from "./BookmarksPage.module.css";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { StarShower } from "@/components/ui/StarShower";
 import { SITE_URL } from "@/shared/constants";
 import { BookmarkItem } from "./components/BookmarkItem";
 import { useBookmarks } from "./hooks/useBookmarks";
@@ -45,7 +44,6 @@ const Bookmarks: RouteComponent = () => {
 
   return (
     <div>
-      <StarShower />
       <div class={classes.container}>
         <PageHeader
           title="Bookmarks."

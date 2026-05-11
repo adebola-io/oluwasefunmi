@@ -11,7 +11,6 @@ import { StackWidget } from "@/features/home/components/widgets/StackWidget";
 import { ConnectWidget } from "@/features/home/components/widgets/ConnectWidget";
 import { PlaygroundWidget } from "@/features/home/components/widgets/PlaygroundWidget";
 import { LocationWidget } from "@/features/home/components/widgets/LocationWidget";
-import { StarShower } from "@/components/ui/StarShower";
 import { SITE_URL } from "@/shared/constants";
 import { playgroundItems } from "@/features/playground/data/playground";
 import { EXPERIENCES } from "@/features/home/data/experiences";
@@ -21,7 +20,6 @@ import { TECHNOLOGIES } from "@/features/home/data/technologies";
 const PortfolioHome: RouteComponent<PageMeta> = () => {
   return (
     <div class={classes.home}>
-      <StarShower />
       <div class={classes.container}>
         <BentoGrid>
           <BentoCard span={2} rowSpan={5}>
