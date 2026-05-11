@@ -65,7 +65,6 @@
   justify-content: center;
   border: 1.5px solid var(--border-subtle);
   flex-shrink: 0;
-  transition: border-color 0.3s ease;
 }
 
 .marker {
@@ -73,9 +72,6 @@
   height: 8px;
   border-radius: 50%;
   background-color: var(--border-subtle);
-  transition:
-    background-color 0.3s ease,
-    box-shadow 0.3s ease;
 }
 
 .item:first-child .markerRing {
@@ -84,19 +80,6 @@
 
 .item:first-child .marker {
   background-color: var(--accent-color);
-  box-shadow: 0 0 8px color-mix(in srgb, var(--accent-color) 50%, transparent);
-  animation: marker-pulse 2.5s ease-in-out infinite;
-}
-
-@keyframes marker-pulse {
-  0%,
-  100% {
-    box-shadow: 0 0 4px color-mix(in srgb, var(--accent-color) 30%, transparent);
-  }
-  50% {
-    box-shadow: 0 0 12px
-      color-mix(in srgb, var(--accent-color) 60%, transparent);
-  }
 }
 .line {
   width: 1px;

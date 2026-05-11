@@ -58,8 +58,7 @@
   background-color: var(--text-primary);
   transition:
     transform 0.3s var(--ease-spring),
-    opacity 0.3s var(--ease-spring),
-    background-color 0.3s var(--ease-spring);
+    opacity 0.3s var(--ease-spring);
 }
 
 .backdrop {
