@@ -6,7 +6,7 @@
   --flap-visible-inner-width: 1.5px;
   --flap-roundness: 10%;
   --flap-sewing-thickness: 3px;
-  --wallet-color: #3a3e3a;
+  --wallet-color: teal;
   --wallet-sewing-color: color-mix(in srgb, white 40%, var(--wallet-color));
   --wallet-texture:
     radial-gradient(
@@ -19,7 +19,7 @@
       rgb(0 0 0 / 45%) 0 0.8px,
       transparent 1.4px
     );
-  --wallet-color-shade: color-mix(in srgb, black 30%, var(--wallet-color));
+  --wallet-color-shade: color-mix(in srgb, black 25%, var(--wallet-color));
   --wallet-color-shade-dark: color-mix(
     in srgb,
     black 10%,
@@ -29,6 +29,11 @@
     in srgb,
     black 60%,
     var(--wallet-color-shade)
+  );
+  --wallet-color-light-tip: color-mix(
+    in srgb,
+    color-mix(in srgb, white 80%, var(--wallet-color)),
+    transparent 70%
   );
   --wallet-open-angle: -15deg;
   --flap-sewing: shape(
@@ -633,11 +638,7 @@
   );
   --front-flap-gradient-1: linear-gradient(
     to bottom,
-    color-mix(
-      in srgb,
-      color-mix(in srgb, white 80%, var(--wallet-color)),
-      transparent 70%
-    ),
+    var(--wallet-color-light-tip),
     transparent 1.5%
   );
   --front-flap-gradient-2: linear-gradient(
@@ -750,6 +751,7 @@
 
   &::after {
     transform: translateZ(var(--flap-visible-inner-width));
+    background-color: color-mix(black 25%, var(--wallet-color-light-tip));
   }
 }
 
@@ -779,6 +781,20 @@
       clip-path: var(--flap-connector-sewing);
       background-color: var(--wallet-sewing-color);
     }
+
+    &::after {
+      display: block;
+      content: "";
+      grid-area: 1/1;
+      height: 95%;
+      width: 100%;
+      align-self: center;
+      justify-self: center;
+      border-style: solid;
+      border-color: var(--wallet-color-shade-darker);
+      border-width: 5px 0 5px 0;
+      background-color: transparent;
+    }
   }
 }
 
@@ -787,7 +803,7 @@
   transform-origin: right;
   transform: rotateY(45deg);
   width: calc(100% / 3);
-  background-color: var(--wallet-color-shade-dark);
+  background-color: var(--wallet-color-shade);
   background-image: var(--front-flap-gradient-1);
 }
 
@@ -797,12 +813,14 @@
   justify-self: center;
   transform: translateZ(calc(var(--flap-depth) / 4));
   background-color: var(--wallet-color);
-  background-image: linear-gradient(
-    to right,
-    var(--wallet-color-shade-dark),
-    transparent,
-    var(--wallet-color-shade-dark)
-  );
+  background-image:
+    var(--front-flap-gradient-1),
+    linear-gradient(
+      to right,
+      var(--wallet-color-shade),
+      color-mix(var(--wallet-color-shade), transparent),
+      var(--wallet-color-shade)
+    );
 }
 
 .flapConnectorLeft {
@@ -810,7 +828,8 @@
   grid-area: 1 / 1;
   width: calc(100% / 3);
   transform-origin: right;
-  background-color: var(--wallet-color-shade-dark);
+  background-color: var(--wallet-color-shade);
+  background-image: var(--front-flap-gradient-1);
   transform-origin: left;
   transform: rotateY(-45deg);
 }
