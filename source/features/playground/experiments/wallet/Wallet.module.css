@@ -1,7 +1,7 @@
 .wallet {
   --flap-width: 350px;
   --flap-height: calc(var(--flap-width) / 1.15);
-  --flap-depth: 30px;
+  --flap-depth: 40px;
   --flap-thickness: calc(var(--flap-depth) / 3);
   --flap-visible-inner-width: 1.5px;
   --flap-roundness: 10%;
@@ -35,7 +35,7 @@
     color-mix(in srgb, white 80%, var(--wallet-color)),
     transparent 70%
   );
-  --wallet-open-angle: -15deg;
+  --wallet-open-angle: -5deg;
   --flap-sewing: shape(
     from 27.3471% 98.7193%,
     curve to 29.4807% 98.8939% with 27.8444% 98.7103% / 29.1484% 98.5895%,
@@ -683,6 +683,7 @@
     border-radius: inherit;
     grid-area: 1/1;
     background-color: var(--wallet-color-shade);
+    filter: brightness(0.6);
     background-image:
       var(--wallet-texture),
       linear-gradient(
