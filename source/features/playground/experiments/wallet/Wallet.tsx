@@ -5,7 +5,8 @@ export function Wallet() {
     <div class={classes.wallet}>
       <div class={classes.flapConnector}>
         <div class={classes.flapConnectorRight} />
-        <div class={classes.flapConnectorJoin} />
+        <div class={classes.flapConnectorMiddle} />
+        <div class={classes.flapConnectorLeft} />
       </div>
       <div class={[classes.flap, classes.backFlap]} />
       <div class={[classes.flap, classes.frontFlap]}>
