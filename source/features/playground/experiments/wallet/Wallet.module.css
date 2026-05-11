@@ -1,0 +1,163 @@
+.wallet {
+  --flap-width: 400px;
+  --flap-height: calc(var(--flap-width) / 1.2);
+  --flap-depth: 30px;
+  --flap-thickness: calc(var(--flap-depth) / 3);
+  --flap-visible-inner-width: 1.5px;
+  --flap-roundness: 10%;
+  --flap-sewing-thickness: 3px;
+  --wallet-color: gray;
+  --wallet-color-shade: color-mix(in srgb, black 30%, var(--wallet-color));
+  --wallet-color-shade-darker: color-mix(
+    in srgb,
+    black 60%,
+    var(--wallet-color-shade)
+  );
+  --wallet-open-angle: -5deg;
+
+  display: grid;
+  grid: 1fr / 1fr 1fr;
+  place-items: center;
+  height: var(--flap-height);
+  width: var(--flap-width);
+  user-select: none;
+  transform-style: preserve-3d;
+
+  & > * {
+    grid-area: 1 / 1;
+  }
+}
+
+.flap {
+  display: grid;
+  grid: 1fr / 1fr;
+  height: var(--flap-height);
+  width: var(--flap-width);
+  background-color: var(--wallet-color);
+  transform-origin: left;
+  border-radius: 0 var(--flap-roundness) var(--flap-roundness) 0;
+  transform-style: preserve-3d;
+
+  &::before {
+    display: block;
+    content: "";
+    border-width: inherit;
+    border-radius: inherit;
+    grid-area: 1/1;
+    background-color: var(--wallet-color-shade);
+    background-image: linear-gradient(
+      to right,
+      var(--wallet-color),
+      var(--wallet-color-shade),
+      var(--wallet-color-shade),
+      var(--wallet-color-shade),
+      color-mix(
+        in srgb,
+        var(--wallet-color-shade),
+        var(--wallet-color-shade-darker)
+      )
+    );
+  }
+
+  &::after {
+    display: block;
+    content: "";
+    background-color: var(--wallet-color-shade-darker);
+    grid-area: 1/1;
+    border-radius: inherit;
+  }
+}
+
+.frontFlap {
+  transform-origin: left;
+  transform: translateZ(var(--flap-depth)) rotateY(var(--wallet-open-angle));
+
+  &::before {
+    transform: translateZ(calc(var(--flap-thickness) * -1));
+  }
+
+  &::after {
+    transform: translateZ(calc(var(--flap-visible-inner-width) * -1));
+  }
+}
+
+.backFlap {
+  &::before {
+    transform: translateZ(var(--flap-thickness));
+  }
+
+  &::after {
+    transform: translateZ(var(--flap-visible-inner-width));
+  }
+}
+
+.flapConnector {
+  display: grid;
+  grid: 1fr / 1fr;
+  height: 100%;
+  width: var(--flap-depth);
+  justify-self: start;
+  transform-origin: left;
+  transform: rotateY(-90deg);
+  transform-style: preserve-3d;
+
+  .flapConnectorJoin {
+    background-color: var(--wallet-color);
+    grid-area: 1 / 1;
+    width: calc(100% / 1.7);
+    height: 100%;
+    justify-self: center;
+    transform: translateZ(calc(var(--flap-depth) / 4));
+  }
+
+  &::after {
+    display: block;
+    content: "";
+    grid-area: 1 / 1;
+    width: calc(100% / 3);
+    transform-origin: right;
+    background-color: var(--wallet-color);
+  }
+
+  &::after {
+    transform-origin: left;
+    transform: rotateY(-45deg);
+  }
+}
+
+.flapConnectorRight {
+  display: grid;
+  justify-self: end;
+  transform-origin: right;
+  transform: rotateY(45deg);
+  grid-area: 1 / 1;
+  width: calc(100% / 3);
+  background-color: var(--wallet-color);
+
+  &::before {
+    display: block;
+    content: "";
+    grid-area: 1/1;
+    height: 95%;
+    width: 50%;
+    align-self: center;
+    justify-self: center;
+    border-style: dashed;
+    border-color: black;
+    border-width: var(--flap-sewing-thickness) 0px var(--flap-sewing-thickness)
+      0px;
+  }
+}
+
+.flapSewing {
+  grid-area: 1/1;
+  height: 95%;
+  width: 98%;
+  align-self: center;
+  justify-self: start;
+  border-radius: inherit;
+  border-style: dashed;
+  border-color: black;
+  border-width: var(--flap-sewing-thickness) var(--flap-sewing-thickness)
+    var(--flap-sewing-thickness) 0px;
+}

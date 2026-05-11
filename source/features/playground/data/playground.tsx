@@ -8,6 +8,7 @@ import { ShoppingCartIcon } from "@/components/icons/shopping-cart";
 import { HaloIcon } from "@/components/icons/halo";
 import { KeyboardIcon } from "@/components/icons/keyboard";
 import { MusicIcon } from "@/components/icons/music";
+import { WalletCardsIcon } from "@/components/icons/wallet-cards";
 
 interface ExternalLinkProps {
   url: string;
@@ -30,6 +31,12 @@ function ExternalLink(props: ExternalLinkProps) {
 }
 
 export const playgroundItems: PlaygroundItem[] = [
+  {
+    path: "/playground/wallet-cards",
+    title: "wallet-cards",
+    description: () => <>Wallet cards interaction and layout experiment.</>,
+    icon: () => <WalletCardsIcon />,
+  },
   {
     path: "/playground/glasses",
     title: "glasses",
@@ -76,12 +83,6 @@ export const playgroundItems: PlaygroundItem[] = [
       </>
     ),
     icon: () => <HaloIcon />,
-  },
-  {
-    path: "/playground/wallet-cards",
-    title: "wallet-cards",
-    description: () => <>Wallet cards interaction and layout experiment.</>,
-    icon: () => <ShoppingCartIcon />,
   },
   {
     path: "/playground/product-transitions",

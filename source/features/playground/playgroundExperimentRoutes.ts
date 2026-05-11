@@ -1,5 +1,7 @@
 import { lazy } from "retend/router";
 import Glasses from "@/features/playground/experiments/Glasses";
+import WalletCards from "./experiments/WalletCards";
+import MusicPlayer from "./experiments/MusicPlayer";
 
 export const playgroundExperimentRoutes = [
   {
@@ -54,15 +56,11 @@ export const playgroundExperimentRoutes = [
   },
   {
     path: "/vinyl-player",
-    component: lazy(
-      () => import("@/features/playground/experiments/MusicPlayer")
-    ),
+    component: MusicPlayer,
   },
   {
     path: "/wallet-cards",
-    component: lazy(
-      () => import("@/features/playground/experiments/WalletCards")
-    ),
+    component: WalletCards,
   },
   {
     path: "/glasses",
