@@ -9,6 +9,7 @@ export function Wallet() {
       </div>
       <div class={[classes.flap, classes.backFlap]} />
       <div class={[classes.flap, classes.frontFlap]}>
+        <div class={classes.flapSewingShade} />
         <div class={classes.flapSewing} />
       </div>
     </div>
