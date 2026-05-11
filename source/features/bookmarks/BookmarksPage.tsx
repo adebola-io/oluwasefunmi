@@ -1,6 +1,5 @@
-import { Cell, If } from "retend";
+import { Cell, For, If } from "retend";
 import type { RouteComponent } from "retend/router";
-import { FluidList } from "retend-utils/components";
 import { useIntersectionObserver } from "retend-utils/hooks";
 import classes from "./BookmarksPage.module.css";
 import { PageHeader } from "@/components/layout/PageHeader";
@@ -26,21 +25,12 @@ const SearchIcon = () => (
 );
 
 const Bookmarks: RouteComponent = () => {
-  const {
-    state,
-    loaded,
-    pending,
-    query,
-    layout,
-    handleSearch,
-    handlePagination,
-  } = useBookmarks();
+  const { state, loaded, pending, query, handleSearch, handlePagination } =
+    useBookmarks();
   const loadMoreRef = Cell.source<HTMLDivElement | null>(null);
   const items = Cell.derived(() => state.get().items);
   const totalItems = Cell.derived(() => state.get().totalItems);
   const showEmpty = Cell.derived(() => loaded.get() && totalItems.get() === 0);
-  const maxColumns = Cell.derived(() => layout.get().columns);
-  const itemWidth = Cell.derived(() => layout.get().width);
   useIntersectionObserver(
     loadMoreRef,
     ([entry]) => {
@@ -77,20 +67,13 @@ const Bookmarks: RouteComponent = () => {
           {If(showEmpty, () => (
             <div class={classes.error}>No items found in the archive.</div>
           ))}
-          <div class={classes.centeredGrid}>
-            <FluidList
-              items={items}
-              itemKey="id"
-              class={classes.board}
-              direction="inline"
-              maxColumns={maxColumns}
-              itemWidth={itemWidth}
-              gap="24px"
-              speed="300ms"
-              easing="var(--ease-spring)"
-              Template={BookmarkItem}
-            />
-          </div>
+          <ul class={classes.board}>
+            {For(items, (item, index) => (
+              <li class={classes.item}>
+                <BookmarkItem item={item} index={index} />
+              </li>
+            ))}
+          </ul>
         </ClientOnly>
         <div ref={loadMoreRef} class={classes.loadMoreTrigger} />
       </div>

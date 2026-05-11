@@ -1,6 +1,5 @@
 import { Cell } from "retend";
 import { useRouteQuery, useRouter } from "retend/router";
-import { useMatchMedia } from "retend-utils/hooks";
 import type { Bookmark } from "@/features/bookmarks/types";
 import { BOOKMARKS_API_BASE_PATH } from "@/features/bookmarks/api/bookmarks";
 
@@ -24,10 +23,6 @@ export function useBookmarks() {
   const loaded = Cell.source(false);
   const state = Cell.source(emptyBookmarksState);
   let searchTimeout = 0;
-
-  const isMobile = useMatchMedia("(max-width: 768px)");
-  const isTablet = useMatchMedia("(max-width: 1024px)");
-  const isDesktopSmall = useMatchMedia("(max-width: 1160px)");
 
   const response = Cell.derivedAsync(async (get, signal) => {
     const params = new URLSearchParams();
@@ -60,13 +55,6 @@ export function useBookmarks() {
         loaded.set(true);
       });
     }
-  });
-
-  const layout = Cell.derived(() => {
-    if (isMobile.get()) return { columns: 1, width: "100%" };
-    if (isTablet.get()) return { columns: 2, width: "340px" };
-    if (isDesktopSmall.get()) return { columns: 3, width: "310px" };
-    return { columns: 4, width: "266px" };
   });
   const updateUrl = (q: string) => {
     const params = new URLSearchParams();
@@ -108,7 +96,6 @@ export function useBookmarks() {
     loaded,
     pending: response.pending,
     query,
-    layout,
     handleSearch,
     handlePagination,
   };

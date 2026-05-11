@@ -127,13 +127,6 @@
   letter-spacing: 0.02em;
 }
 
-.centeredGrid {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  transition: opacity 0.2s var(--ease-spring);
-}
-
 .dimmed {
   opacity: 0.35;
 }
@@ -144,9 +137,17 @@
 }
 
 .board {
-  width: fit-content;
-  max-width: 100%;
-  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(266px, 100%), 1fr));
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  min-width: 0;
 }
 
 .bookmarkCard {
@@ -330,11 +331,5 @@
 
   .pagination {
     justify-content: space-between;
-  }
-
-  .board {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
   }
 }
