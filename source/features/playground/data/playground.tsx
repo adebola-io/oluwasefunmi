@@ -78,6 +78,12 @@ export const playgroundItems: PlaygroundItem[] = [
     icon: () => <HaloIcon />,
   },
   {
+    path: "/playground/wallet-cards",
+    title: "wallet-cards",
+    description: () => <>Wallet cards interaction and layout experiment.</>,
+    icon: () => <ShoppingCartIcon />,
+  },
+  {
     path: "/playground/product-transitions",
     title: "product-transitions",
     description: () => (

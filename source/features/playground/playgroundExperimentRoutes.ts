@@ -59,6 +59,12 @@ export const playgroundExperimentRoutes = [
     ),
   },
   {
+    path: "/wallet-cards",
+    component: lazy(
+      () => import("@/features/playground/experiments/WalletCards")
+    ),
+  },
+  {
     path: "/glasses",
     component: Glasses,
   },
