@@ -11,30 +11,25 @@
   transform: translateZ(0); /* hardware acceleration */
   transition: transform 0.4s var(--ease-spring);
   will-change: transform;
-}
 
-.card:hover {
-  transform: translateY(-4px) scale(1.01);
-  border-color: rgba(255, 255, 255, 0.15);
-}
+  &:active {
+    transform: scale(0.98);
+  }
 
-.card:active {
-  transform: scale(0.98);
-}
-
-.card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    rgba(255, 255, 255, 0.1),
-    transparent
-  );
+  &::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+  }
 }
 
 .content {

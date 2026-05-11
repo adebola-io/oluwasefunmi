@@ -20,10 +20,10 @@
 
 .section {
   margin-bottom: 2rem;
-}
 
-.section:last-child {
-  margin-bottom: 0;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .section h3 {
@@ -57,11 +57,11 @@
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
   font-weight: 500;
-}
 
-.segmentButton:hover {
-  color: #ccc;
-  background: rgba(255, 255, 255, 0.05);
+  &:hover {
+    color: #ccc;
+    background: rgba(255, 255, 255, 0.05);
+  }
 }
 
 .segmentButton.activeSegment {
@@ -91,12 +91,12 @@
   flex-direction: column;
   align-items: center;
   gap: 6px;
-}
 
-.themeButton:hover {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.2);
-  color: #fff;
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.2);
+    color: #fff;
+  }
 }
 
 .themeButton.activeTheme {
@@ -135,12 +135,12 @@
   font-size: 0.85rem;
   color: #ccc;
   font-weight: 500;
-}
 
-.featureToggle:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  border-color: rgba(255, 255, 255, 0.15);
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    border-color: rgba(255, 255, 255, 0.15);
+  }
 }
 
 .featureToggle input {

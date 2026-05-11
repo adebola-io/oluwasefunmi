@@ -77,13 +77,13 @@
     background 0.3s var(--ease-spring),
     border-color 0.3s var(--ease-spring),
     transform 0.3s var(--ease-spring);
-}
 
-.search:focus {
-  outline: none;
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.4);
-  transform: translateY(-1px);
+  &:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-1px);
+  }
 }
 
 .pagination {
@@ -104,20 +104,20 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s var(--ease-spring);
-}
 
-.paginationButton:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.3);
-}
+  &:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
 
-.paginationButton:active:not(:disabled) {
-  transform: scale(0.96);
-}
+  &:active:not(:disabled) {
+    transform: scale(0.96);
+  }
 
-.paginationButton:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
 }
 
 .pageLabel {
@@ -162,17 +162,17 @@
   border-width: 1px;
   border-color: var(--layered-border-color);
   transition: border-color 0.3s var(--ease-spring);
-}
 
-.bookmarkCard::before {
-  border-radius: 12px;
-}
+  &::before {
+    border-radius: 12px;
+  }
 
-.bookmarkCard:hover,
-.bookmarkCard:hover::before,
-.bookmarkCard:active,
-.bookmarkCard:active::before {
-  transform: none;
+  &:hover,
+  &:hover::before,
+  &:active,
+  &:active::before {
+    transform: none;
+  }
 }
 
 .imageContainer {

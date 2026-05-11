@@ -252,7 +252,7 @@ export const bookmarks = [
     link: "https://jakub.kr/writing/details-that-make-interfaces-feel-better",
     notes: "",
     image:
-      "https://jakub.kr/api/og?pageTitle=Details%20That%20Make%20Interfaces%20Feel%20Better&category=Writing",
+      "https://oiszjiwtfc65cwa2.public.blob.vercel-storage.com/og-images/details-that-make-interfaces-feel-better.png?v=2",
     themeColor: "#fafafa",
     openGraph: {
       title: "Details That Make Interfaces Feel Better",
@@ -320,7 +320,7 @@ export const bookmarks = [
     id: "hacking-cloudflare-vinext",
     link: "https://www.hacktron.ai/blog/hacking-cloudflare-vinext",
     notes: "",
-    image: "https://www.hacktron.ai/_astro/cover.B7hQMs7G.png",
+    image: "https://www.hacktron.ai/_astro/B7hQMs7G_Z5dmII.webp",
     themeColor: "#847d77",
     openGraph: {
       title: "vinext: Vibe-Hacking Cloudflare's Vibe-Coded Next.js Replacement",
@@ -437,20 +437,6 @@ export const bookmarks = [
       description:
         "SQL has been a part of computing for a very long time, and SQL-based database systems underly most of the world's applications. But recently, develope...",
       siteName: "Convex",
-    },
-  },
-  {
-    id: "2209-07663",
-    link: "https://pbs.twimg.com/profile_images/1365352170267299840/IzvjKckL_400x400.jpg",
-    notes: "",
-    image: "",
-    themeColor: "#ffffff",
-    openGraph: {
-      title:
-        "Monolith: Real Time Recommendation System With Collisionless Embedding Table",
-      description:
-        "A paper on building a scalable, real-time recommendation system with a collisionless embedding table.",
-      siteName: "arXiv",
     },
   },
   {

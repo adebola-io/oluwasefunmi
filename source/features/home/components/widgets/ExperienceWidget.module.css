@@ -34,6 +34,18 @@
   opacity: var(--item-opacity);
   animation: item-enter 0.5s var(--ease-spring) backwards;
   animation-delay: calc(var(--stagger, 0) * 80ms + 100ms);
+
+  &:first-child .markerRing {
+    border-color: var(--accent-color);
+  }
+
+  &:first-child .marker {
+    background-color: var(--accent-color);
+  }
+
+  &:last-child .line {
+    display: none;
+  }
 }
 
 @keyframes item-enter {
@@ -74,22 +86,11 @@
   background-color: var(--border-subtle);
 }
 
-.item:first-child .markerRing {
-  border-color: var(--accent-color);
-}
-
-.item:first-child .marker {
-  background-color: var(--accent-color);
-}
 .line {
   width: 1px;
   flex: 1;
   min-height: 8px;
   background: linear-gradient(to bottom, var(--border-subtle), transparent);
-}
-
-.item:last-child .line {
-  display: none;
 }
 
 .itemContent {

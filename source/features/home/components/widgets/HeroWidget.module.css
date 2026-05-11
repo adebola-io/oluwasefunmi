@@ -86,10 +86,10 @@
       transparent 50%
     );
   background-repeat: no-repeat;
-}
 
-.avatarWrapper:hover {
-  transform: scale(1.05) rotate(3deg);
+  &:hover {
+    transform: scale(1.05) rotate(3deg);
+  }
 }
 
 .avatar {

@@ -32,16 +32,22 @@
   font-size: 0.95rem;
   font-weight: 500;
   color: var(--text-primary);
-}
 
-.projectLink:last-child {
-  border-bottom: none;
-}
+  &:last-child {
+    border-bottom: none;
+  }
 
-.projectLink:hover {
-  text-decoration: underline;
-  text-decoration-color: var(--accent-color);
-  text-underline-offset: 4px;
+  &:hover {
+    text-decoration: underline;
+    text-decoration-color: var(--accent-color);
+    text-underline-offset: 4px;
+  }
+
+  &:hover .arrow {
+    opacity: 1;
+    transform: translate(2px, -2px);
+    color: var(--accent-color);
+  }
 }
 
 .arrow {
@@ -51,10 +57,4 @@
   transition:
     transform 0.3s var(--ease-spring),
     opacity 0.3s var(--ease-spring);
-}
-
-.projectLink:hover .arrow {
-  opacity: 1;
-  transform: translate(2px, -2px);
-  color: var(--accent-color);
 }

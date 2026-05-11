@@ -101,16 +101,16 @@
     color 160ms ease,
     scale 160ms ease,
     translate 160ms ease;
-}
 
-.buttons button:hover {
-  background: color-mix(in srgb, var(--cover-color) 18%, transparent);
-  translate: 0 -1px;
-}
+  &:hover {
+    background: color-mix(in srgb, var(--cover-color) 18%, transparent);
+    translate: 0 -1px;
+  }
 
-.buttons button:active {
-  scale: 0.96;
-  translate: 0;
+  &:active {
+    scale: 0.96;
+    translate: 0;
+  }
 }
 
 .playButton:is(.playButton) {

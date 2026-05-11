@@ -29,12 +29,12 @@
   transition:
     transform 0.1s var(--ease-spring),
     background-color 0.2s;
-}
 
-.rippleButtonContainer:hover {
-  background-color: rgba(255, 255, 255, 0.15);
-}
+  &:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+  }
 
-.rippleButtonContainer:active {
-  transform: scale(0.9);
+  &:active {
+    transform: scale(0.9);
+  }
 }

@@ -88,12 +88,12 @@ h6 {
   padding: 0.5rem 1rem;
   border-radius: 99px;
   border: 1px solid transparent;
-}
 
-[data-pill-link]:hover {
-  color: var(--text-primary);
-  background: rgba(255, 255, 255, 0.05);
-  border-color: rgba(255, 255, 255, 0.1);
+  &:hover {
+    color: var(--text-primary);
+    background: rgba(255, 255, 255, 0.05);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
 }
 
 @keyframes hovering {
