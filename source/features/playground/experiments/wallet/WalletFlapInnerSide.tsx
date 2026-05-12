@@ -7,12 +7,14 @@ interface WalletFlapInnerSideProps {
 }
 
 export function WalletFlapInnerSide(props: WalletFlapInnerSideProps) {
-  const { children } = props;
+  const { children: _children } = props;
 
   return (
     <div class={classes.flapInnerSide}>
       <WalletFlapSewing />
-      <div class={classes.flapInnerSideContent}>{children}</div>
+      <div class={classes.flapInnerSideContent}>
+        <div class={classes.innerSideMainPocket} />
+      </div>
     </div>
   );
 }

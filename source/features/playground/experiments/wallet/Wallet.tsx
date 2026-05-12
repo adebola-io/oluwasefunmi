@@ -18,8 +18,8 @@ export function Wallet() {
         <div class={classes.flapConnectorMiddle} />
         <div class={classes.flapConnectorLeft} />
         <div class={[classes.flap, classes.frontFlap]}>
-          <WalletFlapInnerSide>Hello!</WalletFlapInnerSide>
           <WalletFlapSewing />
+          <WalletFlapInnerSide />
         </div>
       </div>
       <div class={[classes.flap, classes.backFlap]}>
