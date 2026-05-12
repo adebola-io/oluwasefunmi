@@ -65,25 +65,47 @@
       rgb(0 0 0 / 16%) 9px 10px,
       transparent 10px 18px
     );
-  --wallet-texture: var(--wallet-windowpane-stitch-texture);
+  --wallet-texture: var(--wallet-fine-canvas-texture);
   --wallet-texture-size: 15px 15px;
 }
 
-.wallet {
-  --wallet-open-angle: -80;
+/* -(5 / 18) * x */
 
-  --wallet-flap-width: min(350px, 50dvw);
+.wallet {
+  --wallet-open-angle: -10;
+
+  &[data-open] {
+    --wallet-open-angle: -170;
+  }
+
+  --wallet-open-angle-deg: calc(var(--wallet-open-angle) * 1deg);
+  --wallet-flap-connector: calc((var(--wallet-open-angle) * 0.5deg) - 90deg);
+  --wallet-center-shift: calc((-5 / 18) * var(--wallet-open-angle) * 1%);
+  --wallet-flap-connector-inner-sewing-height: 93.5%;
+  --wallet-flap-connector-inner-sewing-width: 50%;
+
+  --wallet-flap-width: min(300px, 40dvw, 60dvh);
   --wallet-flap-height: calc(var(--wallet-flap-width) / 1.2);
-  --wallet-flap-depth: 40px;
-  --wallet-flap-thickness: calc(var(--wallet-flap-depth) / 3);
+  --wallet-flap-depth: calc(var(--wallet-flap-width) / 8);
+  --wallet-flap-depth-neg: calc(var(--wallet-flap-depth) * -1);
+  --wallet-flap-thickness: calc(var(--wallet-flap-depth) / 5);
   --wallet-flap-visible-inner-width: 1.5px;
   --wallet-flap-roundness: 10%;
-  --wallet-color: #af5faf;
+  /*--wallet-color: #af5faf;*/
+  /*--wallet-color: #514180;*/
+  --wallet-color: #546353;
+  --wallet-duration: 500ms;
+  --wallet-easing: ease-in-out;
   --wallet-sewing-color: color-mix(in srgb, white 40%, var(--wallet-color));
   --wallet-color-shade: color-mix(in srgb, black 25%, var(--wallet-color));
   --wallet-color-shade-dark: color-mix(
     in srgb,
     black 10%,
+    var(--wallet-color-shade)
+  );
+  --wallet-color-shade-bit-darker: color-mix(
+    in srgb,
+    black 30%,
     var(--wallet-color-shade)
   );
   --wallet-color-shade-darker: color-mix(
@@ -96,6 +118,7 @@
     color-mix(in srgb, white 80%, var(--wallet-color)),
     transparent 70%
   );
+  /* Lifted from Figma. */
   --wallet-flap-sewing: shape(
     from 27.3471% 98.7193%,
     curve to 29.4807% 98.8939% with 27.8444% 98.7103% / 29.1484% 98.5895%,
@@ -696,6 +719,10 @@
     line to 60.0115% 0.0212%,
     close
   );
+
+  --wallet-flap-connector-width: calc(
+    var(--wallet-flap-depth) + var(--wallet-flap-width)
+  );
   --wallet-tip-highlight: linear-gradient(
     to bottom,
     var(--wallet-color-light-tip),
@@ -708,9 +735,15 @@
     var(--wallet-color-shade) 95%,
     transparent
   );
-  --wallet-front-flap-forward-translate: 0px;
-  --wallet-front-flap-sideways-shift: 0px;
+  --wallet-front-flap-rotation: calc(
+    90deg + calc(var(--wallet-open-angle-deg) / 2)
+  );
+  --wallet-flap-connecter-inner-join-translate: calc(
+    var(--wallet-flap-depth-neg) / 5
+  );
+}
 
+.wallet {
   display: grid;
   grid: 1fr / 1fr 1fr;
   place-items: center;
@@ -718,9 +751,15 @@
   width: var(--wallet-flap-width);
   user-select: none;
   transform-style: preserve-3d;
+  transform: translate(var(--wallet-center-shift));
+  transition: transform var(--wallet-duration) var(--wallet-easing);
 
   & > * {
     grid-area: 1 / 1;
+  }
+
+  @media (orientation: portrait) {
+    transform: translate(var(--wallet-center-shift));
   }
 }
 
@@ -735,31 +774,6 @@
   border-radius: 0 var(--wallet-flap-roundness) var(--wallet-flap-roundness) 0;
   transform-style: preserve-3d;
 
-  &::before {
-    display: block;
-    content: "";
-    border-width: inherit;
-    border-radius: inherit;
-    grid-area: 1/1;
-    background-color: var(--wallet-color-shade);
-    filter: brightness(0.6);
-    background-image:
-      var(--wallet-texture),
-      linear-gradient(
-        to right,
-        var(--wallet-color),
-        var(--wallet-color-shade),
-        var(--wallet-color-shade),
-        var(--wallet-color-shade),
-        color-mix(
-          in srgb,
-          var(--wallet-color-shade),
-          var(--wallet-color-shade-darker)
-        )
-      );
-    background-size: inherit;
-  }
-
   &::after {
     display: block;
     content: "";
@@ -770,16 +784,15 @@
 }
 
 .frontFlap {
+  grid-area: 1 / 2;
   transform-origin: left;
-  transform: rotateY(calc(var(--wallet-open-angle) * 1deg))
-    translateZ(var(--wallet-front-flap-forward-translate))
-    translateX(var(--wallet-front-flap-sideways-shift));
+  transform: rotateY(var(--wallet-front-flap-rotation));
   background-image:
     var(--wallet-texture), var(--wallet-tip-highlight),
     var(--front-flap-gradient-2),
     radial-gradient(
       160% 60% at 50% 100%,
-      var(--wallet-color-shade),
+      var(--wallet-color-shade-dark),
       transparent,
       transparent
     ),
@@ -790,9 +803,14 @@
       transparent 25%
     );
   background-size: var(--wallet-texture-size), auto, auto, auto, auto;
+  transition: transform var(--wallet-duration) var(--wallet-easing);
 
-  &::before {
+  .flapInnerSide {
     transform: translateZ(calc(var(--wallet-flap-thickness) * -1));
+  }
+
+  .flapInnerSideContent {
+    transform: scaleX(-1);
   }
 
   &::after {
@@ -801,33 +819,67 @@
 }
 
 .backFlap {
-  &::before {
+  justify-self: start;
+  background-color: color-mix(black 25%, var(--wallet-color-light-tip));
+
+  .flapInnerSide {
     transform: translateZ(var(--wallet-flap-thickness));
   }
 
   &::after {
-    transform: translateZ(var(--wallet-flap-visible-inner-width));
-    background-color: color-mix(black 25%, var(--wallet-color-light-tip));
+    display: none;
   }
 }
 
-/* const y = x / 2 - (90 - x); */
-
 .flapConnector {
-  --wallet-flap-connector: calc((var(--wallet-open-angle) * 0.5deg) - 90deg);
   display: grid;
-  grid: 1fr / 1fr;
+  grid: 1fr / 1fr 1fr;
   height: 100%;
-  width: var(--wallet-flap-depth);
+  width: var(--wallet-flap-connector-width);
   justify-self: start;
   transform-origin: left;
   transform: rotateY(var(--wallet-flap-connector));
   transform-style: preserve-3d;
+  transition: transform var(--wallet-duration) var(--wallet-easing);
 
-  & > * {
+  &::before {
+    display: block;
+    content: "";
+    grid-area: 1 / 1;
+    transform: translateZ(var(--wallet-flap-connecter-inner-join-translate));
+    background-color: var(--wallet-color-shade-bit-darker);
+    background-image:
+      linear-gradient(
+        to bottom,
+        transparent 2.5%,
+        var(--wallet-color-shade-darker) 2.5% 4%,
+        transparent 4% 95.5%,
+        var(--wallet-color-shade-darker) 95.5% 97%,
+        transparent 97%
+      ),
+      var(--wallet-texture);
+    background-size: inherit;
+  }
+
+  &::after {
+    display: block;
+    content: "";
+    grid-area: 1/1;
+    height: var(--wallet-flap-connector-inner-sewing-height);
+    width: var(--wallet-flap-connector-inner-sewing-width);
+    align-self: center;
+    background-color: var(--wallet-sewing-color);
+    transform: translateZ(var(--wallet-flap-connecter-inner-join-translate));
+    clip-path: var(--wallet-flap-connector-sewing);
+  }
+
+  & > *:not(.flap) {
     display: grid;
     grid: 1fr / 1fr;
     grid-area: 1 / 1;
+    background-color: var(--wallet-color-shade-dark);
+    background-image: var(--wallet-texture), var(--wallet-tip-highlight);
+    background-size: var(--wallet-texture-size), auto, auto;
 
     &::before {
       display: block;
@@ -840,20 +892,6 @@
       clip-path: var(--wallet-flap-connector-sewing);
       background-color: var(--wallet-sewing-color);
     }
-
-    &::after {
-      display: block;
-      content: "";
-      grid-area: 1/1;
-      height: 95%;
-      width: 100%;
-      align-self: center;
-      justify-self: center;
-      border-style: solid;
-      border-color: var(--wallet-color-shade-darker);
-      border-width: 4px 0 4px 0;
-      background-color: transparent;
-    }
   }
 }
 
@@ -862,9 +900,6 @@
   transform-origin: right;
   transform: rotateY(45deg);
   width: calc(100% / 3);
-  background-color: var(--wallet-color-shade);
-  background-image: var(--wallet-texture), var(--wallet-tip-highlight);
-  background-size: var(--wallet-texture-size), auto;
 }
 
 .flapConnectorMiddle {
@@ -872,26 +907,26 @@
   height: 100%;
   justify-self: center;
   transform: translateZ(calc(var(--wallet-flap-depth) / 4));
-  background-color: var(--wallet-color);
-  background-image:
-    var(--wallet-texture), var(--wallet-tip-highlight),
-    linear-gradient(
-      to right,
-      var(--wallet-color-shade),
-      color-mix(var(--wallet-color-shade), transparent),
-      var(--wallet-color-shade)
-    );
-  background-size: var(--wallet-texture-size), auto, auto;
+  transform-style: preserve-3d;
+
+  &::after {
+    display: block;
+    content: "";
+    grid-area: 1 / 1;
+    height: var(--wallet-flap-connector-inner-sewing-height);
+    width: 100%;
+    align-self: center;
+    background: var(--wallet-sewing-color);
+    transform: translateZ(calc(var(--wallet-flap-depth-neg) / 2.2))
+      translate(45%);
+    clip-path: var(--wallet-flap-connector-sewing);
+  }
 }
 
 .flapConnectorLeft {
   display: grid;
   grid-area: 1 / 1;
   width: calc(100% / 3);
-  transform-origin: right;
-  background-color: var(--wallet-color-shade);
-  background-image: var(--wallet-texture), var(--wallet-tip-highlight);
-  background-size: var(--wallet-texture-size), auto;
   transform-origin: left;
   transform: rotateY(-45deg);
 }
@@ -914,4 +949,20 @@
   justify-self: start;
   background-color: var(--wallet-color-shade-darker);
   clip-path: var(--wallet-flap-sewing-shade);
+}
+
+.flapInnerSide {
+  display: grid;
+  border-width: inherit;
+  border-radius: inherit;
+  grid-area: 1/1;
+  background-color: var(--wallet-color-shade-bit-darker);
+  background-image: var(--wallet-texture);
+  background-size: inherit;
+}
+
+.flapInnerSideContent {
+  display: grid;
+  grid-area: 1 / 1;
+  place-content: center;
 }
