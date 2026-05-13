@@ -12,11 +12,17 @@ export function Wallet() {
   };
 
   return (
-    <div class={classes.wallet} data-open={open}>
+    <div data-wallet class={classes.wallet} data-open={open}>
       <div class={classes.flapConnector}>
         <div class={classes.flapConnectorRight} />
         <div class={classes.flapConnectorMiddle} />
         <div class={classes.flapConnectorLeft} />
+        <div class={classes.flapConnectorInner}>
+          <div class={classes.flapConnectorInnerMainSewing} />
+          <div class={classes.flapConnectorInnerSmallerSewingContainer}>
+            <div class={classes.flapConnectorInnerSmallerSewing} />
+          </div>
+        </div>
         <div class={[classes.flap, classes.frontFlap]}>
           <WalletFlapSewing />
           <WalletFlapInnerSide />
