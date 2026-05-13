@@ -13,6 +13,11 @@ export function WalletFlapInnerSide(props: WalletFlapInnerSideProps) {
     <div class={classes.flapInnerSide}>
       <WalletFlapSewing />
       <div class={classes.flapInnerSideContent}>
+        <div class={classes.innerSideSubPockets}>
+          <div class={[classes.pocket, classes.innerSideSecondPocket]} />
+          <div class={[classes.pocket, classes.innerSideThirdPocket]} />
+          <div class={[classes.pocket, classes.innerSideFourthPocket]} />
+        </div>
         <div class={classes.innerSideMainPocket} />
       </div>
     </div>

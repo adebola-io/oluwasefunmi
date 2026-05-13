@@ -65,7 +65,7 @@
       rgb(0 0 0 / 16%) 9px 10px,
       transparent 10px 18px
     );
-  --wallet-texture: var(--wallet-herringbone-twill-texture);
+  --wallet-texture: var(--wallet-brushed-leather-texture);
   --wallet-texture-size: 15px 15px;
 }
 
@@ -93,8 +93,9 @@
   --wallet-flap-roundness: 10%;
   /*--wallet-color: #af5faf;*/
   /*--wallet-color: #514180;*/
-  --wallet-color: #546353;
+  /*--wallet-color: #546353;*/
   /*--wallet-color: maroon;*/
+  --wallet-color: rebeccapurple;
   --wallet-duration: 500ms;
   --wallet-easing: ease-in-out;
   --wallet-sewing-color: color-mix(in srgb, white 40%, var(--wallet-color));
@@ -119,10 +120,25 @@
     color-mix(in srgb, white 80%, var(--wallet-color)),
     transparent 70%
   );
-
   --wallet-flap-connector-width: calc(
     var(--wallet-flap-depth) + var(--wallet-flap-width)
   );
+  --wallet-flap-connector-inner-gradient:
+    linear-gradient(
+      to bottom,
+      transparent 2.5%,
+      var(--wallet-color-shade-darker) 2.5% 4%,
+      transparent 4% 95.5%,
+      var(--wallet-color-shade-darker) 95.5% 97%,
+      transparent 97%
+    ),
+    linear-gradient(
+      to left,
+      transparent,
+      color-mix(in srgb, var(--wallet-color-shade-dark) 92%, white),
+      transparent
+    ),
+    var(--wallet-texture);
   --wallet-tip-highlight: linear-gradient(
     to bottom,
     var(--wallet-color-light-tip),
@@ -236,22 +252,7 @@
     grid-area: 1 / 1;
     transform: translateZ(var(--wallet-flap-connecter-inner-join-translate));
     background-color: var(--wallet-color-shade-bit-darker);
-    background-image:
-      linear-gradient(
-        to bottom,
-        transparent 2.5%,
-        var(--wallet-color-shade-darker) 2.5% 4%,
-        transparent 4% 95.5%,
-        var(--wallet-color-shade-darker) 95.5% 97%,
-        transparent 97%
-      ),
-      linear-gradient(
-        to left,
-        transparent,
-        color-mix(in srgb, var(--wallet-color-shade-dark) 92%, white),
-        transparent
-      ),
-      var(--wallet-texture);
+    background-image: var(--wallet-flap-connector-inner-gradient);
     background-size: inherit;
   }
 
@@ -357,6 +358,22 @@
     var(--wallet-color-light-tip),
     transparent 2%
   );
+  --wallet-pocket-shading:
+    var(--wallet-texture), var(--wallet-pocket-tip-highlight),
+    linear-gradient(
+      to bottom,
+      transparent 1%,
+      var(--wallet-color-shade-bit-darker) 2%,
+      transparent 5%
+    );
+  --wallet-pocket-lighting: radial-gradient(
+    40% 120% at 95% 50%,
+    color-mix(var(--wallet-color-shade-dark) 95%, white),
+    transparent 50%
+  );
+}
+
+.flapInnerSide {
   display: grid;
   border-width: inherit;
   border-radius: inherit;
@@ -408,19 +425,8 @@
   display: grid;
   grid: 1fr / 1fr;
   height: 92%;
-  background-image:
-    var(--wallet-texture), var(--wallet-pocket-tip-highlight),
-    linear-gradient(
-      to bottom,
-      transparent 1%,
-      var(--wallet-color-shade-bit-darker) 2%,
-      transparent 5%
-    ),
-    radial-gradient(
-      40% 120% at 95% 50%,
-      color-mix(var(--wallet-color-shade-dark) 90%, white),
-      transparent 50%
-    );
+  grid-area: 1 / 1;
+  background-image: var(--wallet-pocket-shading);
   background-size: inherit;
   align-self: end;
 
@@ -446,7 +452,10 @@
 
   &::before {
     height: 94%;
-    background-color: color-mix(var(--wallet-color-shade-darker), transparent);
+    background-color: color-mix(
+      var(--wallet-color-shade-darker) 60%,
+      transparent
+    );
     clip-path: var(--wallet-pocket-sewing-shade);
   }
 
@@ -455,4 +464,95 @@
     background-color: var(--wallet-sewing-color);
     clip-path: var(--wallet-pocket-sewing);
   }
+}
+
+.innerSideSubPockets {
+  display: grid;
+  grid-area: 1 / 1;
+  height: 88%;
+  width: 100%;
+  align-self: end;
+  margin-bottom: 2%;
+  clip-path: var(--wallet-pocket-cutout);
+  background-color: var(--wallet-color-shade-dark);
+
+  .frontFlap & {
+    display: none;
+  }
+
+  &::after {
+    z-index: 3;
+    display: block;
+    content: "";
+    grid-area: 1 / 1;
+    background-color: var(--wallet-sewing-color);
+    align-self: end;
+    height: 100%;
+    margin-bottom: -36%;
+    clip-path: var(--wallet-subpocket-sewing);
+  }
+}
+
+.pocket {
+  display: grid;
+  grid: 1fr / 1fr;
+  grid-area: 1 / 1;
+
+  &::before {
+    display: block;
+    content: "";
+    grid-area: 1 / 1;
+    background-image: linear-gradient(
+      to bottom,
+      transparent calc(98% - var(--pocket-height)),
+      var(--wallet-color-shade-darker) calc(100% - var(--pocket-height)),
+      transparent calc(100% - var(--pocket-height))
+    );
+  }
+
+  &::after {
+    z-index: 1;
+    display: block;
+    content: "";
+    grid-area: 1 / 1;
+    align-self: end;
+    height: var(--pocket-height);
+    background-image:
+      var(--wallet-pocket-lighting),
+      linear-gradient(var(--wallet-color) 1px, transparent 2px),
+      linear-gradient(
+        transparent 2px,
+        var(--wallet-color-shade-dark) 3px,
+        transparent 4px
+      ),
+      linear-gradient(
+        transparent 4px,
+        var(--wallet-color-shade-bit-darker) 6px,
+        transparent 8px
+      ),
+      linear-gradient(
+        transparent 9px,
+        var(--wallet-color) 9px,
+        transparent 11px
+      ),
+      radial-gradient(
+        500% 20% at 80% 0%,
+        color-mix(var(--wallet-sewing-color) 85%, black) 3%,
+        transparent 10%
+      );
+  }
+}
+
+.innerSideSecondPocket {
+  --pocket-height: 85%;
+}
+
+.innerSideThirdPocket {
+  --pocket-height: 70%;
+  z-index: 1;
+}
+
+.innerSideFourthPocket {
+  --pocket-height: 55%;
+  z-index: 2;
 }
