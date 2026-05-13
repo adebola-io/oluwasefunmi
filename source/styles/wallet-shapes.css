@@ -653,6 +653,10 @@
     from 59.7609% 99.3132%,
     var(--wallet-flap-connector-sewing-upper-path)
   );
+  --wallet-flap-connector-sewing-lower: shape(
+    from 59.7609% 99.3132%,
+    var(--wallet-flap-connector-sewing-lower-path)
+  );
   --wallet-flap-connector-sewing-shade: shape(
     from 95.5882% 98.9064%,
     curve to 100% 99.4532% with 98.0248% 98.9064% / 100% 99.1513%,

@@ -32,9 +32,11 @@ export function Wallet() {
         <WalletFlapInnerSide>World!</WalletFlapInnerSide>
       </div>
       <Teleport to="body">
-        <button class="fixed bottom-0" type="button" onClick={handleClick}>
-          Toggle
-        </button>
+        <div class="fixed bottom-10 w-full flex justify-center">
+          <button type="button" onClick={handleClick}>
+            Toggle
+          </button>
+        </div>
       </Teleport>
     </div>
   );
