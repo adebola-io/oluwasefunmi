@@ -65,8 +65,149 @@
       rgb(0 0 0 / 16%) 9px 10px,
       transparent 10px 18px
     );
-  --wallet-texture: var(--wallet-brushed-leather-texture);
-  --wallet-texture-size: 15px 15px;
+  --wallet-crocodile-glaze-texture:
+    radial-gradient(
+      34% 42% at 18% 28%,
+      rgb(255 255 255 / 24%) 0 2px,
+      transparent 6px 100%
+    ),
+    radial-gradient(
+      46% 58% at 74% 68%,
+      transparent 0 58%,
+      rgb(0 0 0 / 26%) 60% 62%,
+      transparent 64% 100%
+    ),
+    repeating-radial-gradient(
+      ellipse at 42% 45%,
+      transparent 0 10px,
+      rgb(255 255 255 / 10%) 11px 12px,
+      rgb(0 0 0 / 18%) 13px 14px,
+      transparent 15px 24px
+    );
+  --wallet-saffiano-leather-texture:
+    repeating-linear-gradient(
+      42deg,
+      rgb(255 255 255 / 14%) 0 1px,
+      transparent 1px 5px,
+      rgb(0 0 0 / 16%) 5px 6px,
+      transparent 6px 11px
+    ),
+    repeating-linear-gradient(
+      -42deg,
+      rgb(0 0 0 / 12%) 0 1px,
+      transparent 1px 5px,
+      rgb(255 255 255 / 9%) 5px 6px,
+      transparent 6px 11px
+    );
+  --wallet-burnished-patina-texture:
+    radial-gradient(
+      90% 55% at 18% 24%,
+      rgb(255 255 255 / 14%),
+      transparent 28%
+    ),
+    radial-gradient(70% 80% at 88% 78%, rgb(0 0 0 / 18%), transparent 35%),
+    repeating-radial-gradient(
+      circle at 40% 45%,
+      rgb(255 255 255 / 7%) 0 1px,
+      transparent 1px 6px,
+      rgb(0 0 0 / 10%) 6px 7px,
+      transparent 7px 14px
+    );
+  --wallet-moire-silk-texture:
+    radial-gradient(
+      80% 120% at 20% 15%,
+      rgb(255 255 255 / 20%),
+      transparent 22%
+    ),
+    radial-gradient(90% 140% at 86% 70%, rgb(0 0 0 / 18%), transparent 28%),
+    repeating-linear-gradient(
+      78deg,
+      transparent 0 5px,
+      rgb(255 255 255 / 12%) 5px 6px,
+      transparent 6px 13px,
+      rgb(0 0 0 / 13%) 13px 14px,
+      transparent 14px 21px
+    );
+  --wallet-topographic-grain-texture:
+    repeating-radial-gradient(
+      ellipse at 22% 34%,
+      transparent 0 8px,
+      rgb(255 255 255 / 13%) 9px 10px,
+      transparent 11px 18px,
+      rgb(0 0 0 / 14%) 19px 20px,
+      transparent 21px 30px
+    ),
+    repeating-radial-gradient(
+      ellipse at 78% 68%,
+      transparent 0 7px,
+      rgb(0 0 0 / 15%) 8px 9px,
+      transparent 10px 17px
+    );
+  --wallet-kintsugi-crackle-texture:
+    linear-gradient(
+      126deg,
+      transparent 0 43.5%,
+      var(--wallet-texture-light-strong) 44% 44.25%,
+      var(--wallet-texture-dark-strong) 44.6% 44.8%,
+      transparent 45.2% 100%
+    ),
+    repeating-conic-gradient(
+      from 21deg at 34% 42%,
+      transparent 0deg 38deg,
+      var(--wallet-texture-light-medium) 39deg 39.4deg,
+      transparent 40deg 74deg,
+      var(--wallet-texture-dark-medium) 75deg 75.35deg,
+      transparent 76deg 112deg
+    ),
+    radial-gradient(
+      110% 80% at 68% 24%,
+      var(--wallet-texture-light-soft),
+      transparent 32%
+    );
+  --wallet-damascus-fold-texture:
+    repeating-radial-gradient(
+      ellipse at 24% 28%,
+      transparent 0 7px,
+      var(--wallet-texture-light-medium) 8px 9px,
+      transparent 10px 17px,
+      var(--wallet-texture-dark-medium) 18px 19px,
+      transparent 20px 30px
+    ),
+    repeating-radial-gradient(
+      ellipse at 76% 62%,
+      transparent 0 9px,
+      var(--wallet-texture-dark-strong) 10px 11px,
+      transparent 12px 21px,
+      var(--wallet-texture-light-soft) 22px 23px,
+      transparent 24px 34px
+    ),
+    linear-gradient(
+      98deg,
+      var(--wallet-texture-light-soft),
+      transparent 18% 72%,
+      var(--wallet-texture-dark-soft)
+    );
+  --wallet-constellation-jacquard-texture:
+    radial-gradient(
+      circle at 18% 24%,
+      var(--wallet-texture-light-strong) 0 1px,
+      transparent 1.5px 100%
+    ),
+    radial-gradient(
+      circle at 72% 58%,
+      var(--wallet-texture-light-medium) 0 1px,
+      transparent 1.5px 100%
+    ),
+    repeating-linear-gradient(
+      32deg,
+      transparent 0 12px,
+      var(--wallet-texture-light-soft) 13px 14px,
+      transparent 15px 25px,
+      var(--wallet-texture-dark-soft) 26px 27px,
+      transparent 28px 40px
+    );
+  --wallet-texture: var(--wallet-saffiano-leather-texture);
+  --wallet-texture-size: 92px 64px, 78px 72px, 46px 38px;
 }
 
 .wallet {
@@ -103,6 +244,36 @@
   /*--wallet-color: gray;*/
   /*--wallet-color: #a5a5a5;*/
   /*--wallet-color: orange;*/
+  --wallet-texture-light-strong: color-mix(
+    in srgb,
+    white 24%,
+    var(--wallet-color)
+  );
+  --wallet-texture-light-medium: color-mix(
+    in srgb,
+    white 16%,
+    var(--wallet-color)
+  );
+  --wallet-texture-light-soft: color-mix(
+    in srgb,
+    white 7%,
+    var(--wallet-color)
+  );
+  --wallet-texture-dark-strong: color-mix(
+    in srgb,
+    black 16%,
+    var(--wallet-color)
+  );
+  --wallet-texture-dark-medium: color-mix(
+    in srgb,
+    black 14%,
+    var(--wallet-color)
+  );
+  --wallet-texture-dark-soft: color-mix(
+    in srgb,
+    black 10%,
+    var(--wallet-color)
+  );
   --wallet-sewing-color: color-mix(in srgb, white 40%, var(--wallet-color));
   --wallet-color-shade: color-mix(in srgb, black 25%, var(--wallet-color));
   --wallet-color-shade-dark: color-mix(
@@ -140,6 +311,7 @@
       transparent
     ),
     var(--wallet-texture);
+  --wallet-flap-connector-inner-gradient-size: auto, var(--wallet-texture-size);
   --wallet-tip-highlight: linear-gradient(
     to bottom,
     var(--wallet-color-light-tip),
@@ -258,7 +430,7 @@
     transform: translateZ(var(--wallet-flap-connecter-inner-join-translate));
     background-color: var(--wallet-color-shade-bit-darker);
     background-image: var(--wallet-flap-connector-inner-gradient);
-    background-size: inherit;
+    background-size: var(--wallet-flap-connector-inner-gradient-size);
   }
 
   &::after {
@@ -281,7 +453,7 @@
     &:not(.flapConnectorInner) {
       background-color: var(--wallet-color-shade-dark);
       background-image: var(--wallet-texture), var(--wallet-tip-highlight);
-      background-size: var(--wallet-texture-size), auto, auto;
+      background-size: var(--wallet-texture-size), auto;
 
       &::before,
       &::after {
@@ -363,6 +535,33 @@
 }
 
 .flapConnectorInnerSmallerSewingContainer {
+  --wallet-texture-light-strong: color-mix(
+    in srgb,
+    white 5%,
+    var(--wallet-color)
+  );
+  --wallet-texture-light-medium: color-mix(
+    in srgb,
+    white 3.5%,
+    var(--wallet-color)
+  );
+  --wallet-texture-light-soft: color-mix(
+    in srgb,
+    white 2%,
+    var(--wallet-color)
+  );
+  --wallet-texture-dark-strong: color-mix(
+    in srgb,
+    black 4%,
+    var(--wallet-color)
+  );
+  --wallet-texture-dark-medium: color-mix(
+    in srgb,
+    black 3%,
+    var(--wallet-color)
+  );
+  --wallet-texture-dark-soft: color-mix(in srgb, black 2%, var(--wallet-color));
+
   display: grid;
   grid: 1fr / 1fr;
   grid-area: 1/1;
@@ -392,6 +591,7 @@
       ),
       transparent
     );
+  background-size: var(--wallet-texture-size), auto, auto, auto;
 
   &::before {
     z-index: 1;
@@ -470,7 +670,33 @@
 }
 
 .flapInnerSide {
-  --wallet-sewing-color: color-mix(in srgb, white 25%, var(--wallet-color));
+  --wallet-texture-light-strong: color-mix(
+    in srgb,
+    white 5%,
+    var(--wallet-color)
+  );
+  --wallet-texture-light-medium: color-mix(
+    in srgb,
+    white 3.5%,
+    var(--wallet-color)
+  );
+  --wallet-texture-light-soft: color-mix(
+    in srgb,
+    white 2%,
+    var(--wallet-color)
+  );
+  --wallet-texture-dark-strong: color-mix(
+    in srgb,
+    black 4%,
+    var(--wallet-color)
+  );
+  --wallet-texture-dark-medium: color-mix(
+    in srgb,
+    black 3%,
+    var(--wallet-color)
+  );
+  --wallet-texture-dark-soft: color-mix(in srgb, black 2%, var(--wallet-color));
+  --wallet-sewing-color: color-mix(in srgb, white 18%, var(--wallet-color));
 
   .frontFlap & {
     --wallet-sewing-color: color-mix(in srgb, white 2%, var(--wallet-color));
@@ -494,11 +720,7 @@
       var(--wallet-color-shade-bit-darker) 2%,
       transparent 5%
     );
-  --wallet-pocket-lighting: radial-gradient(
-    40% 120% at 95% 50%,
-    color-mix(in srgb, var(--wallet-color-shade-dark) 95%, white),
-    transparent 50%
-  );
+  --wallet-pocket-lighting: none;
 }
 
 .flapInnerSide {
@@ -508,7 +730,7 @@
   grid-area: 1/1;
   background-color: var(--wallet-color-shade-bit-darker);
   background-image: var(--wallet-texture);
-  background-size: inherit;
+  background-size: var(--wallet-texture-size);
 
   &::before {
     display: block;
@@ -582,7 +804,7 @@
   background-image: var(--wallet-pocket-shading);
   border-radius: 0 calc(var(--wallet-flap-roundness) / 2)
     var(--wallet-flap-roundness) 0;
-  background-size: inherit;
+  background-size: var(--wallet-texture-size), auto, auto;
   align-self: end;
 
   .backFlap & {
@@ -648,6 +870,7 @@
   grid: 1fr / 1fr;
   grid-area: 1 / 1;
   background-image: var(--wallet-texture);
+  background-size: var(--wallet-texture-size);
 
   &::before {
     display: block;
