@@ -1,18 +1,50 @@
-import { Cell } from "retend";
+import { useDerivedValue } from "retend-utils/hooks";
 import classes from "./Wallet.module.css";
-import { Teleport } from "retend-web";
 import { WalletFlapInnerSide } from "./WalletFlapInnerSide";
 import { WalletFlapSewing } from "./WalletFlapSewing";
+import type { JSX } from "retend/jsx-runtime";
+import { Cell } from "retend";
 
-export function Wallet() {
-  const open = Cell.source(true);
+type WalletTexture =
+  | "brushed-leather"
+  | "crosshatch-weave"
+  | "fine-canvas"
+  | "herringbone-twill"
+  | "windowpane-stitch"
+  | "chevron-twill"
+  | "crocodile-glaze"
+  | "saffiano-leather"
+  | "burnished-patina"
+  | "moire-silk"
+  | "topographic-grain"
+  | "kintsugi-crackle"
+  | "damascus-fold"
+  | "constellation-jacquard";
 
-  const handleClick = () => {
-    open.set(!open.get());
-  };
+interface WalletProps {
+  open: JSX.ValueOrCell<boolean>;
+  color: JSX.ValueOrCell<string>;
+  texture: JSX.ValueOrCell<WalletTexture>;
+}
+
+export function Wallet(props: WalletProps) {
+  const {
+    open,
+    color = "green",
+    texture: textureProp = "brushed-leather",
+  } = props;
+  const texture = useDerivedValue(textureProp);
+  const textureVar = Cell.derived(
+    () => `var(--wallet-${texture.get()}-texture)`
+  );
 
   return (
-    <div data-wallet class={classes.wallet} data-open={open}>
+    <div
+      data-wallet
+      class={classes.wallet}
+      data-open={open}
+      style={{ "--wallet-color": color, "--wallet-texture": textureVar }}
+    >
       <div class={classes.flapConnector}>
         <div class={classes.flapConnectorRight} />
         <div class={classes.flapConnectorMiddle} />
@@ -31,13 +63,6 @@ export function Wallet() {
       <div class={[classes.flap, classes.backFlap]}>
         <WalletFlapInnerSide>World!</WalletFlapInnerSide>
       </div>
-      <Teleport to="body">
-        <div class="fixed bottom-10 w-full flex justify-center">
-          <button type="button" onClick={handleClick}>
-            Toggle
-          </button>
-        </div>
-      </Teleport>
     </div>
   );
 }

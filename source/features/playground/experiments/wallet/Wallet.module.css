@@ -1,146 +1,178 @@
 .wallet {
   /* Textures */
+  --wallet-texture-light-7: color-mix(in srgb, white 7%, transparent);
+  --wallet-texture-light-8: color-mix(in srgb, white 8%, transparent);
+  --wallet-texture-light-9: color-mix(in srgb, white 9%, transparent);
+  --wallet-texture-light-10: color-mix(in srgb, white 10%, transparent);
+  --wallet-texture-light-12: color-mix(in srgb, white 12%, transparent);
+  --wallet-texture-light-13: color-mix(in srgb, white 13%, transparent);
+  --wallet-texture-light-14: color-mix(in srgb, white 14%, transparent);
+  --wallet-texture-light-18: color-mix(in srgb, white 18%, transparent);
+  --wallet-texture-light-20: color-mix(in srgb, white 20%, transparent);
+  --wallet-texture-light-24: color-mix(in srgb, white 24%, transparent);
+  --wallet-texture-dark-10: color-mix(in srgb, black 10%, transparent);
+  --wallet-texture-dark-12: color-mix(in srgb, black 12%, transparent);
+  --wallet-texture-dark-13: color-mix(in srgb, black 13%, transparent);
+  --wallet-texture-dark-14: color-mix(in srgb, black 14%, transparent);
+  --wallet-texture-dark-15: color-mix(in srgb, black 15%, transparent);
+  --wallet-texture-dark-16: color-mix(in srgb, black 16%, transparent);
+  --wallet-texture-dark-18: color-mix(in srgb, black 18%, transparent);
+  --wallet-texture-dark-20: color-mix(in srgb, black 20%, transparent);
+  --wallet-texture-dark-22: color-mix(in srgb, black 22%, transparent);
+  --wallet-texture-dark-26: color-mix(in srgb, black 26%, transparent);
   --wallet-brushed-leather-texture: repeating-linear-gradient(
     92deg,
-    rgb(255 255 255 / 10%) 0 1px,
+    var(--wallet-texture-light-10) 0 1px,
     transparent 1px 7px,
-    rgb(0 0 0 / 12%) 7px 8px,
+    var(--wallet-texture-dark-12) 7px 8px,
     transparent 8px 15px
   );
   --wallet-crosshatch-weave-texture:
     repeating-linear-gradient(
       35deg,
-      rgb(255 255 255 / 10%) 0 1px,
+      var(--wallet-texture-light-10) 0 1px,
       transparent 1px 8px
     ),
     repeating-linear-gradient(
       -35deg,
-      rgb(0 0 0 / 16%) 0 1px,
+      var(--wallet-texture-dark-16) 0 1px,
       transparent 1px 8px
     );
   --wallet-fine-canvas-texture:
     repeating-linear-gradient(
       90deg,
-      rgb(255 255 255 / 8%) 0 1px,
+      var(--wallet-texture-light-8) 0 1px,
       transparent 1px 4px
     ),
-    repeating-linear-gradient(0deg, rgb(0 0 0 / 12%) 0 1px, transparent 1px 4px);
+    repeating-linear-gradient(
+      0deg,
+      var(--wallet-texture-dark-12) 0 1px,
+      transparent 1px 4px
+    );
   --wallet-herringbone-twill-texture:
     repeating-linear-gradient(
       45deg,
-      rgb(255 255 255 / 10%) 0 1px,
+      var(--wallet-texture-light-10) 0 1px,
       transparent 1px 7px
     ),
     repeating-linear-gradient(
       -45deg,
       transparent 0 7px,
-      rgb(0 0 0 / 15%) 7px 8px,
+      var(--wallet-texture-dark-15) 7px 8px,
       transparent 8px 15px
     );
   --wallet-windowpane-stitch-texture:
     repeating-linear-gradient(
       90deg,
       transparent 0 31px,
-      rgb(255 255 255 / 18%) 31px 32px,
-      rgb(0 0 0 / 22%) 32px 33px,
+      var(--wallet-texture-light-18) 31px 32px,
+      var(--wallet-texture-dark-22) 32px 33px,
       transparent 33px 64px
     ),
     repeating-linear-gradient(
       0deg,
       transparent 0 23px,
-      rgb(255 255 255 / 14%) 23px 24px,
-      rgb(0 0 0 / 20%) 24px 25px,
+      var(--wallet-texture-light-14) 23px 24px,
+      var(--wallet-texture-dark-20) 24px 25px,
       transparent 25px 48px
     );
   --wallet-chevron-twill-texture:
     repeating-linear-gradient(
       45deg,
       transparent 0 9px,
-      rgb(255 255 255 / 12%) 9px 10px,
+      var(--wallet-texture-light-12) 9px 10px,
       transparent 10px 18px
     ),
     repeating-linear-gradient(
       -45deg,
       transparent 0 9px,
-      rgb(0 0 0 / 16%) 9px 10px,
+      var(--wallet-texture-dark-16) 9px 10px,
       transparent 10px 18px
     );
   --wallet-crocodile-glaze-texture:
     radial-gradient(
       34% 42% at 18% 28%,
-      rgb(255 255 255 / 24%) 0 2px,
+      var(--wallet-texture-light-24) 0 2px,
       transparent 6px 100%
     ),
     radial-gradient(
       46% 58% at 74% 68%,
       transparent 0 58%,
-      rgb(0 0 0 / 26%) 60% 62%,
+      var(--wallet-texture-dark-26) 60% 62%,
       transparent 64% 100%
     ),
     repeating-radial-gradient(
       ellipse at 42% 45%,
       transparent 0 10px,
-      rgb(255 255 255 / 10%) 11px 12px,
-      rgb(0 0 0 / 18%) 13px 14px,
+      var(--wallet-texture-light-10) 11px 12px,
+      var(--wallet-texture-dark-18) 13px 14px,
       transparent 15px 24px
     );
   --wallet-saffiano-leather-texture:
     repeating-linear-gradient(
       42deg,
-      rgb(255 255 255 / 14%) 0 1px,
+      var(--wallet-texture-light-14) 0 1px,
       transparent 1px 5px,
-      rgb(0 0 0 / 16%) 5px 6px,
+      var(--wallet-texture-dark-16) 5px 6px,
       transparent 6px 11px
     ),
     repeating-linear-gradient(
       -42deg,
-      rgb(0 0 0 / 12%) 0 1px,
+      var(--wallet-texture-dark-12) 0 1px,
       transparent 1px 5px,
-      rgb(255 255 255 / 9%) 5px 6px,
+      var(--wallet-texture-light-9) 5px 6px,
       transparent 6px 11px
     );
   --wallet-burnished-patina-texture:
     radial-gradient(
       90% 55% at 18% 24%,
-      rgb(255 255 255 / 14%),
+      var(--wallet-texture-light-14),
       transparent 28%
     ),
-    radial-gradient(70% 80% at 88% 78%, rgb(0 0 0 / 18%), transparent 35%),
+    radial-gradient(
+      70% 80% at 88% 78%,
+      var(--wallet-texture-dark-18),
+      transparent 35%
+    ),
     repeating-radial-gradient(
       circle at 40% 45%,
-      rgb(255 255 255 / 7%) 0 1px,
+      var(--wallet-texture-light-7) 0 1px,
       transparent 1px 6px,
-      rgb(0 0 0 / 10%) 6px 7px,
+      var(--wallet-texture-dark-10) 6px 7px,
       transparent 7px 14px
     );
   --wallet-moire-silk-texture:
     radial-gradient(
       80% 120% at 20% 15%,
-      rgb(255 255 255 / 20%),
+      var(--wallet-texture-light-20),
       transparent 22%
     ),
-    radial-gradient(90% 140% at 86% 70%, rgb(0 0 0 / 18%), transparent 28%),
+    radial-gradient(
+      90% 140% at 86% 70%,
+      var(--wallet-texture-dark-18),
+      transparent 28%
+    ),
     repeating-linear-gradient(
       78deg,
       transparent 0 5px,
-      rgb(255 255 255 / 12%) 5px 6px,
+      var(--wallet-texture-light-12) 5px 6px,
       transparent 6px 13px,
-      rgb(0 0 0 / 13%) 13px 14px,
+      var(--wallet-texture-dark-13) 13px 14px,
       transparent 14px 21px
     );
   --wallet-topographic-grain-texture:
     repeating-radial-gradient(
       ellipse at 22% 34%,
       transparent 0 8px,
-      rgb(255 255 255 / 13%) 9px 10px,
+      var(--wallet-texture-light-13) 9px 10px,
       transparent 11px 18px,
-      rgb(0 0 0 / 14%) 19px 20px,
+      var(--wallet-texture-dark-14) 19px 20px,
       transparent 21px 30px
     ),
     repeating-radial-gradient(
       ellipse at 78% 68%,
       transparent 0 7px,
-      rgb(0 0 0 / 15%) 8px 9px,
+      var(--wallet-texture-dark-15) 8px 9px,
       transparent 10px 17px
     );
   --wallet-kintsugi-crackle-texture:
@@ -207,7 +239,9 @@
       transparent 28px 40px
     );
   --wallet-texture: var(--wallet-saffiano-leather-texture);
-  --wallet-texture-size: 92px 64px, 78px 72px, 46px 38px;
+  /*--wallet-texture-size: 92px 64px, 78px 72px, 46px 38px;*/
+  /*--wallet-texture-size: 32px 22px, 27px 25px, 16px 13px;*/
+  --wallet-texture-size: 32px 22px, 27px 25px, 16px 13px;
 }
 
 .wallet {
@@ -217,7 +251,7 @@
 
   &[data-open] {
     --wallet-easing: cubic-bezier(0.5, 0, 0.5, 1.4);
-    --wallet-open-angle: -130;
+    --wallet-open-angle: -160;
     --wallet-duration: 550ms;
   }
 
