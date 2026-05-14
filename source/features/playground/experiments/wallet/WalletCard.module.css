@@ -1,0 +1,7 @@
+.card {
+  border-radius: calc(var(--wallet-flap-width) * 0.05);
+  border: 1.5px solid;
+  height: auto;
+  aspect-ratio: 1.75;
+  overflow: hidden;
+}

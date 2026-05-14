@@ -1,25 +1,45 @@
-import { JSX } from "retend/jsx-runtime";
-import classes from "./Wallet.module.css";
+import { Cell, If } from "retend";
+import classes from "./WalletFlapInnerSide.module.css";
 import { WalletFlapSewing } from "./WalletFlapSewing";
+import { FlapSlots, TemplateFn } from "./WalletScope";
 
 interface WalletFlapInnerSideProps {
-  children?: JSX.Children;
+  slot: FlapSlots;
 }
 
 export function WalletFlapInnerSide(props: WalletFlapInnerSideProps) {
-  const { children: _children } = props;
+  const { slot } = props;
 
   return (
     <div class={classes.flapInnerSide}>
       <WalletFlapSewing />
-      <div class={classes.flapInnerSideContent}>
-        <div class={classes.innerSideSubPockets}>
-          <div class={[classes.pocket, classes.innerSideSecondPocket]} />
-          <div class={[classes.pocket, classes.innerSideThirdPocket]} />
-          <div class={[classes.pocket, classes.innerSideFourthPocket]} />
+      <div class={classes.mainPocket}>
+        <Slot content={slot.mainPocket} />
+        <div class={classes.mainPocketCovering} />
+      </div>
+      <div class={classes.subPockets}>
+        <div class={[classes.subPocket, classes.firstSubPocket]}>
+          <Slot content={slot.subPockets[0]} />
+          <div class={classes.subPocketCovering} />
         </div>
-        <div class={classes.innerSideMainPocket} />
+        <div class={[classes.subPocket, classes.secondSubPocket]}>
+          <Slot content={slot.subPockets[1]} />
+          <div class={classes.subPocketCovering} />
+        </div>
+        <div class={[classes.subPocket, classes.thirdSubPocket]}>
+          <Slot content={slot.subPockets[2]} />
+          <div class={classes.subPocketCovering} />
+        </div>
       </div>
     </div>
   );
+}
+
+interface SlotProps {
+  content: Cell<TemplateFn>;
+}
+
+function Slot(props: SlotProps) {
+  const { content } = props;
+  return If(content, (SlotContent) => <SlotContent />);
 }
