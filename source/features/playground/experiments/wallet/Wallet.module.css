@@ -246,18 +246,20 @@
 
 .wallet {
   --wallet-open-angle: -0;
-  --wallet-easing: cubic-bezier(0.5, 0, 0.5, 1.2);
-  --wallet-duration: 400ms;
+  --wallet-easing: ease-out;
+  --wallet-easing-bounce: cubic-bezier(0.5, 0, 0.5, 1.6);
+  --wallet-duration: 500ms;
+  --wallet-delay: 0ms;
 
   &[data-open] {
     --wallet-easing: cubic-bezier(0.5, 0, 0.5, 1.4);
     --wallet-open-angle: -140;
-    --wallet-duration: 550ms;
+    --wallet-duration: 450ms;
   }
 
   --wallet-open-angle-deg: calc(var(--wallet-open-angle) * 1deg);
   --wallet-flap-connector: calc((var(--wallet-open-angle) * 0.5deg) - 90deg);
-  --wallet-center-shift: calc((-5 / 18) * var(--wallet-open-angle) * 1%);
+  --wallet-center-shift: calc((-4 / 18) * var(--wallet-open-angle) * 1%);
   --wallet-flap-connector-inner-sewing-height: 93.5%;
   --wallet-flap-connector-inner-sewing-width: 50%;
 
@@ -375,14 +377,16 @@
   user-select: none;
   transform-style: preserve-3d;
   transform: translate(var(--wallet-center-shift));
-  transition: transform var(--wallet-duration) var(--wallet-easing);
+  transition:
+    transform var(--wallet-duration) var(--wallet-delay) var(--wallet-easing),
+    scale var(--wallet-duration) var(--wallet-delay) var(--wallet-easing-bounce);
 
   & > * {
     grid-area: 1 / 1;
   }
 
-  @media (orientation: portrait) {
-    transform: translate(var(--wallet-center-shift));
+  &[data-open] {
+    scale: 1.15;
   }
 }
 
@@ -426,7 +430,8 @@
       transparent 25%
     );
   background-size: var(--wallet-texture-size), auto, auto, auto, auto;
-  transition: transform var(--wallet-duration) var(--wallet-easing);
+  transition: transform var(--wallet-duration) var(--wallet-delay)
+    var(--wallet-easing);
 
   &::after {
     transform: translateZ(calc(var(--wallet-flap-visible-inner-width) * -1));
@@ -450,7 +455,8 @@
   transform-origin: left;
   transform: rotateY(var(--wallet-flap-connector));
   transform-style: preserve-3d;
-  transition: transform var(--wallet-duration) var(--wallet-easing);
+  transition: transform var(--wallet-duration) var(--wallet-delay)
+    var(--wallet-easing);
 
   &::before {
     display: block;

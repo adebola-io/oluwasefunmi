@@ -7,5 +7,9 @@ interface WalletCardProps {
 
 export function WalletCard(props: WalletCardProps) {
   const { children } = props;
-  return <div class={classes.card}>{children}</div>;
+  return (
+    <div class={classes.cardContainer}>
+      <div class={classes.card}>{children}</div>
+    </div>
+  );
 }

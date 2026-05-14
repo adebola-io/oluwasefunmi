@@ -1,0 +1,101 @@
+.card {
+  background: black;
+  aspect-ratio: 1.75;
+  display: grid;
+  grid: 1fr / 40% 1fr;
+  gap: 2%;
+  padding: 5%;
+  container-name: id-card;
+  container-type: inline-size;
+  font-size: 1cqw;
+
+  section {
+    display: grid;
+
+    &:first-child {
+      border-width: 0 0.5cqw 0 0;
+      place-content: center;
+      border-color: color-mix(in srgb, currentColor, transparent);
+    }
+
+    &:nth-child(2) {
+      padding-left: 10%;
+    }
+  }
+}
+
+.avatarContainer {
+  border-radius: 50%;
+  height: auto;
+  width: 50%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 0.3cqw solid;
+  margin-bottom: 5%;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 4.75cqw;
+  line-height: 1.2;
+  padding-block: 3%;
+}
+
+.title {
+  text-transform: uppercase;
+  font-size: 3cqw;
+  color: color-mix(in srgb, currentColor 75%, transparent);
+}
+
+.githubIconLink {
+  display: grid;
+  grid: 1fr / auto 1fr;
+  gap: 5%;
+  align-items: center;
+  font-size: 2.5cqw;
+  padding-top: 3%;
+}
+
+.githubIconContainer {
+  display: grid;
+  place-items: center;
+  place-content: center;
+  height: auto;
+  aspect-ratio: 1;
+  width: 4cqw;
+
+  svg {
+    aspect-ratio: 1;
+    width: auto;
+    height: 70%;
+
+    path {
+      stroke-width: 1.5;
+    }
+  }
+}
+
+.idNumber {
+  display: grid;
+  grid: 1fr / 1fr;
+  align-items: center;
+  justify-items: end;
+  align-self: start;
+  margin-top: -5%;
+}
+
+.idNumberLabel {
+  font-size: 2.4cqw;
+  color: color-mix(in srgb, currentColor 75%, transparent);
+}
+
+.idNumberValue {
+  font-size: 2.5cqw;
+}
+
+.description {
+  font-size: 2.7cqw;
+  line-height: 1.4;
+  padding-bottom: 5%;
+  border-bottom-width: 0.05cqh;
+}

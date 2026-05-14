@@ -86,7 +86,6 @@
   border-radius: inherit;
   grid-area: 1/1;
   background-color: var(--wallet-color-shade);
-  overflow: hidden;
 
   &::after {
     display: block;
@@ -178,6 +177,7 @@
   [data-wallet-flap="back"] &::before {
     display: block;
     content: "";
+    border-radius: inherit;
     background-image:
       linear-gradient(
         to left,

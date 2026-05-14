@@ -1,65 +1,45 @@
 import type { RouteComponent } from "retend/router";
 import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
+
 import { Wallet } from "./wallet/Wallet";
-import { Cell } from "retend";
 import { WalletCard } from "./wallet/WalletCard";
-import { Viewer } from "../components/Viewer/Viewer";
+import { Teleport } from "retend-web";
+import { Cell } from "retend";
+import { IdCard } from "./wallet/IdCard";
 
 const WalletCards: RouteComponent = () => {
-  const open = Cell.source(true);
+  const walletIsOpen = Cell.source(false);
 
-  const handleClick = () => {
-    open.set(!open.get());
+  const toggleWallet = () => {
+    walletIsOpen.set(!walletIsOpen.get());
   };
 
-  // const colors = ["#602d1c", "#2e224f", "#652d3c", "#514180", "#4f4d4d"];
-
   return (
-    <div class="w-dvw h-dvh bg-black text-white">
+    <div class="grid min-h-dvh place-items-center bg-black px-[5vw] py-[12vh] text-white">
       <PlaygroundLayout title="Wallet Cards">
-        <div
-          onClick={handleClick}
-          class="w-full h-full grid place-items-center"
-        >
-          <Viewer>
-            <Wallet open={open} texture="crosshatch-weave" color="#4f4d4d">
-              <Wallet.LeftFlap>
-                <Wallet.SubPocket index={0}>
-                  <WalletCard>
-                    <div class="size-full rounded-[inherit] bg-black backdrop-blur-md">
-                      first
-                    </div>
-                  </WalletCard>
-                </Wallet.SubPocket>
-                <Wallet.SubPocket index={2}>
-                  <WalletCard>
-                    <div class="size-full bg-green-900">second</div>
-                  </WalletCard>
-                </Wallet.SubPocket>
-              </Wallet.LeftFlap>
-
-              <Wallet.RightFlap>
-                <Wallet.SubPocket index={0}>
-                  <WalletCard>
-                    <div class="size-full rounded-[inherit] bg-black backdrop-blur-md">
-                      first
-                    </div>
-                  </WalletCard>
-                </Wallet.SubPocket>
-                <Wallet.SubPocket index={1}>
-                  <WalletCard>
-                    <div class="size-full bg-pink-950">second</div>
-                  </WalletCard>
-                </Wallet.SubPocket>
-                <Wallet.SubPocket index={2}>
-                  <WalletCard>
-                    <div class="size-full bg-pink-900">second</div>
-                  </WalletCard>
-                </Wallet.SubPocket>
-              </Wallet.RightFlap>
-            </Wallet>
-          </Viewer>
-        </div>
+        <Wallet open={walletIsOpen} texture="saffiano-leather" color="#4f4d4d">
+          <Wallet.RightFlap>
+            <Wallet.SubPocket index={0}>
+              <WalletCard>
+                <IdCard />
+              </WalletCard>
+            </Wallet.SubPocket>
+            <Wallet.SubPocket index={1}>
+              <WalletCard />
+            </Wallet.SubPocket>
+          </Wallet.RightFlap>
+        </Wallet>
+        <Teleport to="body">
+          <div class="fixed bottom-0 grid w-full place-items-center pb-10">
+            <button
+              class="rounded-full border border-white/10 bg-black/40 px-5 py-2.5 text-[0.85rem] font-semibold text-white/70 backdrop-blur-xl transition-all duration-300 hover:border-white/30 hover:bg-black/60 hover:text-white active:scale-95"
+              type="button"
+              onClick={toggleWallet}
+            >
+              Open Wallet
+            </button>
+          </div>
+        </Teleport>
       </PlaygroundLayout>
     </div>
   );
