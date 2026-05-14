@@ -262,7 +262,7 @@
   --wallet-flap-connector-inner-sewing-width: 50%;
 
   --wallet-flap-width: min(400px, 45dvw, 60dvh);
-  --wallet-flap-height: calc(var(--wallet-flap-width) / 1.2);
+  --wallet-flap-height: calc(var(--wallet-flap-width) / 1.1);
   --wallet-flap-depth: calc(var(--wallet-flap-width) / 8);
   --wallet-flap-depth-neg: calc(var(--wallet-flap-depth) * -1);
   --wallet-flap-thickness: calc(var(--wallet-flap-depth) / 5);
