@@ -12,7 +12,7 @@ const WalletCards: RouteComponent = () => {
     open.set(!open.get());
   };
 
-  // const colors = ["#602d1c", "#2e224f", "#652d3c"];
+  // const colors = ["#602d1c", "#2e224f", "#652d3c", "#514180", "#4f4d4d"];
 
   return (
     <div class="w-dvw h-dvh bg-black text-white">
@@ -22,7 +22,7 @@ const WalletCards: RouteComponent = () => {
           class="w-full h-full grid place-items-center"
         >
           <Viewer>
-            <Wallet open={open} texture="chevron-twill" color="#2e224f">
+            <Wallet open={open} texture="crosshatch-weave" color="#4f4d4d">
               <Wallet.LeftFlap>
                 <Wallet.SubPocket index={0}>
                   <WalletCard>

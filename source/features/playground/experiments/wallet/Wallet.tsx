@@ -43,7 +43,7 @@ export function Wallet(props: WalletProps) {
     open,
     color = "green",
     texture: textureProp = "brushed-leather",
-    width = "min(400px, 45dvw, 60dvh)",
+    width = "min(300px, 45dvw, 60dvh)",
     children,
   } = props;
   const texture = useDerivedValue(textureProp);
