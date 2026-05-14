@@ -4,7 +4,7 @@ import classes from "./WalletSubPocket.module.css";
 import type { JSX } from "retend/jsx-runtime";
 
 interface WalletSubPocketProps {
-  index: 0 | 1 | 2 | 3;
+  index: 0 | 1 | 2;
   children?: JSX.Children;
 }
 
