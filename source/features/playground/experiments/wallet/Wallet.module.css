@@ -435,11 +435,6 @@
 
 .backFlap {
   justify-self: start;
-  background-color: color-mix(
-    in srgb,
-    black 25%,
-    var(--wallet-color-light-tip)
-  );
 
   &::after {
     display: none;

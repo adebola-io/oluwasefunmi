@@ -51,7 +51,7 @@
   --pocket-rim-highlights:
     radial-gradient(
       100% 1% at 90% 0%,
-      color-mix(in srgb, var(--wallet-color) 85%, white) 10%,
+      color-mix(in srgb, var(--wallet-color) 75%, white) 10%,
       transparent
     ),
     linear-gradient(
@@ -61,7 +61,7 @@
     ),
     radial-gradient(
       100% 1% at 80% 1.75%,
-      color-mix(in srgb, var(--wallet-color) 70%, white) 10%,
+      color-mix(in srgb, var(--wallet-color) 40%, white) 10%,
       transparent
     );
 
@@ -90,7 +90,6 @@
   border-radius: inherit;
   grid-area: 1/1;
   background-color: var(--wallet-color-shade);
-
   overflow: hidden;
 
   &::after {
@@ -113,7 +112,7 @@
   }
 
   [data-wallet-flap="front"] & {
-    filter: brightness(0.7);
+    filter: brightness(0.8);
     transform: translateZ(calc(var(--wallet-flap-thickness) * -1));
 
     &::before {
@@ -182,29 +181,25 @@
 }
 
 .subPockets {
+  position: relative;
   display: grid;
   grid: 1fr / 1fr;
   grid-area: 1 / 1;
 
   &::before,
   &::after {
-    z-index: 6;
+    position: absolute;
+    bottom: 3%;
+    left: 2.5%;
+    z-index: 1;
     display: block;
     content: "";
     width: 95%;
-    height: 85%;
-    margin-bottom: 3%;
-    justify-self: center;
-    align-self: end;
-    grid-area: 1/1;
+    height: 86%;
   }
 
   &::before {
-    background-color: color-mix(
-      in srgb,
-      var(--wallet-color-shade-darker) 60%,
-      transparent
-    );
+    background-color: var(--wallet-color-shade-darker);
     clip-path: var(--wallet-pocket-sewing-shade);
   }
 
@@ -215,41 +210,45 @@
 }
 
 .subPocket {
-  position: relative;
+  position: absolute;
+  bottom: 8%;
+  z-index: 2;
   display: grid;
   grid: 1fr / 1fr;
-  grid-area: 1 / 1;
   justify-self: center;
   width: 93%;
-  height: 100%;
+
+  & > *:not(.subPocketCovering) {
+    position: absolute;
+  }
 }
 
 .subPocketCovering {
+  z-index: 2;
   display: grid;
   grid-area: 1 / 1;
-  background-color: var(--wallet-color-shade);
   align-self: end;
-  height: 90%;
-  background-image: var(--wallet-texture);
-  background-size: var(--wallet-texture-size);
+  height: 88%;
+  overflow: hidden;
 
-  &::before {
-    display: block;
-    content: "";
-    grid-area: 1 / 1;
-    margin-top: -3%;
-    background-image: linear-gradient(
-      to top,
-      transparent 0% 96%,
-      var(--wallet-color-shade-bit-darker) 96%,
-      transparent
-    );
-  }
-
+  &::before,
   &::after {
     display: block;
     content: "";
     grid-area: 1 / 1;
+    height: 95%;
+    align-self: end;
+  }
+
+  &::before {
+    background-color: var(--wallet-color-shade);
+    background-image: var(--wallet-texture);
+    background-size: var(--wallet-texture-size);
+  }
+
+  &::after {
+    width: 100%;
+    box-shadow: 0 -1px 4px 0 black;
   }
 
   [data-wallet-flap="back"] &::after {
@@ -258,75 +257,20 @@
 }
 
 .firstSubPocket {
-  margin-top: 11%;
-  z-index: 1;
-
-  & > .subPocketCovering {
-    z-index: 2;
-  }
-
-  & > *:not(.subPocketCovering) {
-    z-index: 2;
-  }
-
-  [data-wallet-flap="back"] & {
-    background-image: radial-gradient(
-      30% 20% at 100% 0%,
-      color-mix(in srgb, var(--wallet-color-light-tip) 40%, transparent),
-      transparent
-    );
-  }
+  height: 78%;
+  max-height: 78%;
 }
 
 .secondSubPocket {
-  margin-top: 20%;
-  z-index: 2;
-
-  & > .subPocketCovering {
-    z-index: 3;
-  }
+  height: 65%;
+  max-height: 65%;
 
   & > *:not(.subPocketCovering) {
-    z-index: 3;
     transform: rotate(1deg);
-  }
-
-  [data-wallet-flap="back"] & {
-    background-image: radial-gradient(
-      30% 10% at 100% 8%,
-      color-mix(in srgb, var(--wallet-color-light-tip) 70%, transparent),
-      transparent
-    );
   }
 }
 
 .thirdSubPocket {
-  margin-top: 30%;
-  z-index: 3;
-
-  & > .subPocketCovering {
-    z-index: 4;
-
-    [data-wallet-flap="back"] &::after {
-      background-image:
-        var(--pocket-rim-highlights),
-        radial-gradient(
-          50% 80% at 100% 10%,
-          color-mix(in srgb, var(--wallet-color-light-tip) 40%, transparent),
-          transparent
-        );
-    }
-  }
-
-  & > *:not(.subPocketCovering) {
-    z-index: 4;
-  }
-
-  [data-wallet-flap="back"] & {
-    background-image: radial-gradient(
-      30% 10% at 100% 10%,
-      color-mix(in srgb, var(--wallet-color-light-tip) 70%, transparent),
-      transparent
-    );
-  }
+  height: 50%;
+  max-height: 50%;
 }

@@ -12,6 +12,8 @@ const WalletCards: RouteComponent = () => {
     open.set(!open.get());
   };
 
+  // const colors = ["#602d1c", "#2e224f", "#652d3c"];
+
   return (
     <div class="w-dvw h-dvh bg-black text-white">
       <PlaygroundLayout title="Wallet Cards">
@@ -20,28 +22,38 @@ const WalletCards: RouteComponent = () => {
           class="w-full h-full grid place-items-center"
         >
           <Viewer>
-            <Wallet
-              width="30dvw"
-              open={open}
-              texture="chevron-twill"
-              color="#602d1c"
-            >
+            <Wallet open={open} texture="chevron-twill" color="#2e224f">
+              <Wallet.LeftFlap>
+                <Wallet.SubPocket index={0}>
+                  <WalletCard>
+                    <div class="size-full rounded-[inherit] bg-black backdrop-blur-md">
+                      first
+                    </div>
+                  </WalletCard>
+                </Wallet.SubPocket>
+                <Wallet.SubPocket index={2}>
+                  <WalletCard>
+                    <div class="size-full bg-green-900">second</div>
+                  </WalletCard>
+                </Wallet.SubPocket>
+              </Wallet.LeftFlap>
+
               <Wallet.RightFlap>
                 <Wallet.SubPocket index={0}>
                   <WalletCard>
-                    <div class="size-full rounded-[inherit] bg-white/20 backdrop-blur-md">
+                    <div class="size-full rounded-[inherit] bg-black backdrop-blur-md">
                       first
                     </div>
                   </WalletCard>
                 </Wallet.SubPocket>
                 <Wallet.SubPocket index={1}>
                   <WalletCard>
-                    <div class="size-full bg-yellow-500/50">second</div>
+                    <div class="size-full bg-pink-950">second</div>
                   </WalletCard>
                 </Wallet.SubPocket>
                 <Wallet.SubPocket index={2}>
                   <WalletCard>
-                    <div class="size-full bg-green-600">second</div>
+                    <div class="size-full bg-pink-900">second</div>
                   </WalletCard>
                 </Wallet.SubPocket>
               </Wallet.RightFlap>

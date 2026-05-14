@@ -2,7 +2,7 @@
   grid-area: 1/1;
   height: 100%;
   width: 100%;
-  padding-inline: 2%;
+  padding-inline: 3%;
   margin-top: 2%;
 
   [data-wallet-flap="front"] & {
