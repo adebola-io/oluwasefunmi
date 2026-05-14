@@ -24,30 +24,27 @@ const WalletCards: RouteComponent = () => {
               width="30dvw"
               open={open}
               texture="chevron-twill"
-              color="gray"
+              color="#602d1c"
             >
-              <Wallet.LeftFlap>
-                <Wallet.MainPocket>
-                  <WalletCard>
-                    <div class="size-full bg-purple-900" />
-                  </WalletCard>
-                </Wallet.MainPocket>
+              <Wallet.RightFlap>
                 <Wallet.SubPocket index={0}>
                   <WalletCard>
-                    <div class="size-full bg-red-400">first</div>
+                    <div class="size-full rounded-[inherit] bg-white/20 backdrop-blur-md">
+                      first
+                    </div>
                   </WalletCard>
                 </Wallet.SubPocket>
                 <Wallet.SubPocket index={1}>
                   <WalletCard>
-                    <div class="size-full bg-yellow-400">second</div>
+                    <div class="size-full bg-yellow-500/50">second</div>
                   </WalletCard>
                 </Wallet.SubPocket>
                 <Wallet.SubPocket index={2}>
                   <WalletCard>
-                    <div class="size-full bg-blue-200">second</div>
+                    <div class="size-full bg-green-600">second</div>
                   </WalletCard>
                 </Wallet.SubPocket>
-              </Wallet.LeftFlap>
+              </Wallet.RightFlap>
             </Wallet>
           </Viewer>
         </div>
