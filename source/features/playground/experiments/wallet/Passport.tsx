@@ -6,7 +6,7 @@ export const Passport = createUnique(() => {
     <WalletSpotlightTransition>
       <div
         class={[
-          "@container border-[1cqw] h-1/2 w-auto aspect-square",
+          "@container border-[1cqw] h-[45%] w-auto aspect-square",
           "not-[:is([data-pulled],.group:hover)_*]:rotate-[4deg]",
           "transition-transform duration-300",
         ]}

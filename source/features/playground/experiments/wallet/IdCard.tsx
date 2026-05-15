@@ -11,7 +11,7 @@ import { WalletSpotlightTransition } from "./WalletSpotlighTransition";
 export const IdCard = createUnique(() => {
   return (
     <WalletSpotlightTransition>
-      <WalletCard>
+      <WalletCard class="in-data-wallet:rotate-2 duration-300 transition-transform hover:rotate-0">
         <WalletCard.Front>
           <article class={classes.card}>
             <section>
