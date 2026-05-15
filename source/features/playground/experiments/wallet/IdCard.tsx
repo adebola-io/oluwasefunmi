@@ -12,52 +12,54 @@ export const IdCard = createUnique(() => {
   return (
     <WalletSpotlightTransition>
       <WalletCard>
-        <article class={classes.card}>
-          <section>
-            <div class={classes.avatarContainer}>
-              <img
-                class={classes.avatar}
-                src="https://github.com/adebola-io.png"
-                alt="Oluwasefunmi Akomolafe's GitHub profile picture"
-              />
-            </div>
-            <h1 class={classes.name}>Oluwasefunmi Akomolafe.</h1>
-            <p class={classes.title}>software engineer.</p>
-            <Link
-              class={classes.githubIconLink}
-              href="https://github.com/adebola-io"
-              target="_blank"
-            >
-              <div class={classes.githubIconContainer}>
-                <GitHubIcon />
+        <WalletCard.Front>
+          <article class={classes.card}>
+            <section>
+              <div class={classes.avatarContainer}>
+                <img
+                  class={classes.avatar}
+                  src="https://github.com/adebola-io.png"
+                  alt="Oluwasefunmi Akomolafe's GitHub profile picture"
+                />
               </div>
-              <span>adebola-io</span>
-            </Link>
-          </section>
-          <section class={classes.details}>
-            <div class={classes.idNumber}>
-              <span class={classes.idNumberLabel}>ID NO:</span>
-              <span class={classes.idNumberValue}>AO-2024-DEV</span>
-            </div>
-            <p class={classes.description}>
-              Building fast, scalable and beautiful products for the web.
-            </p>
-            <div class={classes.detailList}>
-              <div class={classes.detailItem}>
-                <LocationIcon />
-                <span>Lagos, Nigeria</span>
+              <h1 class={classes.name}>Oluwasefunmi Akomolafe.</h1>
+              <p class={classes.title}>software engineer.</p>
+              <Link
+                class={classes.githubIconLink}
+                href="https://github.com/adebola-io"
+                target="_blank"
+              >
+                <div class={classes.githubIconContainer}>
+                  <GitHubIcon />
+                </div>
+                <span>adebola-io</span>
+              </Link>
+            </section>
+            <section class={classes.details}>
+              <div class={classes.idNumber}>
+                <span class={classes.idNumberLabel}>ID NO:</span>
+                <span class={classes.idNumberValue}>AO-2024-DEV</span>
               </div>
-              <div class={classes.detailItem}>
-                <LinkIcon />
-                <span>oluwasefunmi.com</span>
+              <p class={classes.description}>
+                Building fast, scalable and beautiful products for the web.
+              </p>
+              <div class={classes.detailList}>
+                <div class={classes.detailItem}>
+                  <LocationIcon />
+                  <span>Lagos, Nigeria</span>
+                </div>
+                <div class={classes.detailItem}>
+                  <LinkIcon />
+                  <span>oluwasefunmi.com</span>
+                </div>
+                <div class={classes.detailItem}>
+                  <MailIcon />
+                  <span>adebolaakomolafe@gmail.com</span>
+                </div>
               </div>
-              <div class={classes.detailItem}>
-                <MailIcon />
-                <span>adebolaakomolafe@gmail.com</span>
-              </div>
-            </div>
-          </section>
-        </article>
+            </section>
+          </article>
+        </WalletCard.Front>
       </WalletCard>
     </WalletSpotlightTransition>
   );

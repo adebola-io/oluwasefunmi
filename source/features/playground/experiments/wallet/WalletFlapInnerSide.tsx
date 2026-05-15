@@ -1,7 +1,7 @@
-import { Cell, If } from "retend";
 import classes from "./WalletFlapInnerSide.module.css";
 import { WalletFlapSewing } from "./WalletFlapSewing";
-import { FlapSlots, TemplateFn } from "./WalletScope";
+import { FlapSlots } from "./WalletScope";
+import { Slot } from "@/components/layout/Slot";
 
 interface WalletFlapInnerSideProps {
   slot: FlapSlots;
@@ -33,13 +33,4 @@ export function WalletFlapInnerSide(props: WalletFlapInnerSideProps) {
       </div>
     </div>
   );
-}
-
-interface SlotProps {
-  content: Cell<TemplateFn>;
-}
-
-function Slot(props: SlotProps) {
-  const { content } = props;
-  return If(content, (SlotContent) => <SlotContent />);
 }

@@ -13,6 +13,9 @@ import {
   WalletContentSpotlightView,
   WalletItemType,
 } from "./wallet/WalletContentSpotlightView";
+import { WalletQRCodeCard } from "./wallet/WalletQRCodeCard";
+import { Viewer } from "../components/Viewer/Viewer";
+import { RainbowCard } from "./wallet/RainbowCard";
 
 const WalletCards: RouteComponent<PageMeta> = () => {
   const walletIsOpen = Cell.source(false);
@@ -37,9 +40,16 @@ const WalletCards: RouteComponent<PageMeta> = () => {
             <Wallet
               open={walletIsOpen}
               texture="saffiano-leather"
-              color="#4f4d4d"
+              color="#454c48"
             >
               <Wallet.LeftFlap>
+                <Wallet.SubPocket index={0}>
+                  <WalletHoverable
+                    onSelect={() => selectedWalletItem.set("rainbow-card")}
+                  >
+                    <RainbowCard />
+                  </WalletHoverable>
+                </Wallet.SubPocket>
                 <Wallet.SubPocket index={1}>
                   <WalletHoverable
                     onSelect={() => selectedWalletItem.set("serene-card")}
@@ -58,6 +68,13 @@ const WalletCards: RouteComponent<PageMeta> = () => {
                 </Wallet.SubPocket>
                 <Wallet.SubPocket index={1}>
                   <WalletHoverable
+                    onSelect={() => selectedWalletItem.set("qr-code-card")}
+                  >
+                    <WalletQRCodeCard />
+                  </WalletHoverable>
+                </Wallet.SubPocket>
+                <Wallet.SubPocket index={2}>
+                  <WalletHoverable
                     onSelect={() => selectedWalletItem.set("passport")}
                   >
                     <Passport />
@@ -69,11 +86,18 @@ const WalletCards: RouteComponent<PageMeta> = () => {
 
           {If(selectedWalletItem, (item) => (
             <div class="[grid-area:1/1]">
-              <WalletContentSpotlightView item={item} />
+              <Viewer>
+                <WalletContentSpotlightView item={item} />
+              </Viewer>
             </div>
           ))}
         </div>
       </PlaygroundLayout>
+      {/*<Viewer>
+        <div class="w-[50dvw] transform-3d">
+          <SereneCard />
+        </div>
+      </Viewer>*/}
     </div>
   );
 };
