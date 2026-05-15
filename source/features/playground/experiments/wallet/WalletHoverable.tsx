@@ -8,9 +8,16 @@ interface WalletHoverableProps {
 export function WalletHoverable(props: WalletHoverableProps) {
   const { children, onSelect } = props;
 
-  const handleClick = () => {
+  async function handleClick(this: HTMLButtonElement) {
+    this.style.transitionDuration = "300ms";
+    // this.style.transitionTimingFunction = "var(--ease-spring)";
+    this.style.transform = "translateY(-70%)";
+    await new Promise((resolve) => setTimeout(resolve, 0));
+    const animations = this.getAnimations();
+    await Promise.allSettled(animations.map((a) => a.finished));
+
     onSelect?.();
-  };
+  }
 
   return (
     <div class="w-full h-full group @container mt-[3%] grid place-items-start">

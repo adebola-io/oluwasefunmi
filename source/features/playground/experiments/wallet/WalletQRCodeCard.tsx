@@ -7,9 +7,9 @@ export const WalletQRCodeCard = createUnique(() => {
   return (
     <WalletSpotlightTransition>
       <WalletCard class="bg-black w-full h-auto aspect-[1.75]">
-        <WalletCard.Front class="size-full grid">
+        <div class="size-full grid">
           <WalletQrCode class="size-full" />
-        </WalletCard.Front>
+        </div>
       </WalletCard>
     </WalletSpotlightTransition>
   );

@@ -26,7 +26,7 @@ export function WalletContentSpotlightView(
   return (
     <div
       data-wallet-spotlight
-      class="[--wallet-flap-width:min(90dvw,800px)] h-auto aspect-[1.75] w-(--wallet-flap-width) "
+      class="[--wallet-flap-width:min(90dvw,800px)] grid grid-cols-1 grid-rows-1 h-auto aspect-[1.75] w-(--wallet-flap-width) "
     >
       {Switch(item, {
         "rainbow-card": () => <RainbowCard />,

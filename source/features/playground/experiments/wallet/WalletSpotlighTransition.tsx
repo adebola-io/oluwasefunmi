@@ -11,7 +11,7 @@ export function WalletSpotlightTransition(
   const { children } = props;
   return (
     <UniqueTransition
-      transitionDuration="300ms"
+      transitionDuration="400ms"
       transitionTimingFunction="var(--ease-spring)"
     >
       {children}

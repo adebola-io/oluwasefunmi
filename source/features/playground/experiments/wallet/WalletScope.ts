@@ -15,11 +15,6 @@ interface WalletSlots {
   right: FlapSlots;
 }
 
-export interface WalletCardSlots {
-  front: SourceCell<TemplateFn>;
-  back: SourceCell<TemplateFn>;
-}
-
 export interface WalletContext {
   slots: WalletSlots;
   open: Cell<boolean>;
@@ -27,4 +22,3 @@ export interface WalletContext {
 
 export const WalletScope = createScope<WalletContext>("Wallet");
 export const WalletFlapScope = createScope<"left" | "right">("WalletFlap");
-export const WalletCardScope = createScope<WalletCardSlots>("WalletCard");

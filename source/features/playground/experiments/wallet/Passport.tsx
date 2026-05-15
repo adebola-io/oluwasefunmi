@@ -7,7 +7,8 @@ export const Passport = createUnique(() => {
       <div
         class={[
           "@container border-[1cqw] h-[45%] w-auto aspect-square",
-          "not-[:is([data-pulled],.group:hover)_*]:rotate-[4deg]",
+          "in-data-wallet:rotate-[4deg] not-in-data-wallet:rotate-0 hover:rotate-0",
+          "not-in-data-wallet:place-self-center",
           "transition-transform duration-300",
         ]}
       >
