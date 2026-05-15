@@ -1,23 +1,23 @@
 import type { RouteComponent } from "retend/router";
 import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
 
-import { Wallet } from "./wallet/Wallet";
-import { WalletCard } from "./wallet/WalletCard";
-import { Teleport } from "retend-web";
-import { Cell } from "retend";
+// import { Wallet } from "./wallet/Wallet";
+// import { WalletCard } from "./wallet/WalletCard";
+// import { Teleport } from "retend-web";
+// import { Cell } from "retend";
 import { IdCard } from "./wallet/IdCard";
 
 const WalletCards: RouteComponent = () => {
-  const walletIsOpen = Cell.source(false);
+  // const walletIsOpen = Cell.source(false);
 
-  const toggleWallet = () => {
-    walletIsOpen.set(!walletIsOpen.get());
-  };
+  // const toggleWallet = () => {
+  //   walletIsOpen.set(!walletIsOpen.get());
+  // };
 
   return (
     <div class="grid min-h-dvh place-items-center bg-black px-[5vw] py-[12vh] text-white">
       <PlaygroundLayout title="Wallet Cards">
-        <Wallet open={walletIsOpen} texture="saffiano-leather" color="#4f4d4d">
+        {/*<Wallet open={walletIsOpen} texture="saffiano-leather" color="#4f4d4d">
           <Wallet.RightFlap>
             <Wallet.SubPocket index={0}>
               <WalletCard>
@@ -39,7 +39,10 @@ const WalletCards: RouteComponent = () => {
               Open Wallet
             </button>
           </div>
-        </Teleport>
+        </Teleport>*/}
+        <div class="w-165 rounded-3xl border overflow-hidden">
+          <IdCard />
+        </div>
       </PlaygroundLayout>
     </div>
   );

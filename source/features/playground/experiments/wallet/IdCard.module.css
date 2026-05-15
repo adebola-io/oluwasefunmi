@@ -24,6 +24,12 @@
   }
 }
 
+.details {
+  align-content: center;
+  gap: 5%;
+  min-width: 0;
+}
+
 .avatarContainer {
   border-radius: 50%;
   height: auto;
@@ -77,25 +83,41 @@
 
 .idNumber {
   display: grid;
-  grid: 1fr / 1fr;
-  align-items: center;
   justify-items: end;
-  align-self: start;
-  margin-top: -5%;
 }
 
 .idNumberLabel {
-  font-size: 2.4cqw;
+  font-size: 1.9cqw;
   color: color-mix(in srgb, currentColor 75%, transparent);
 }
 
 .idNumberValue {
-  font-size: 2.5cqw;
+  font-size: 2.1cqw;
 }
 
 .description {
   font-size: 2.7cqw;
-  line-height: 1.4;
-  padding-bottom: 5%;
-  border-bottom-width: 0.05cqh;
+  line-height: 1.35;
+  padding-bottom: 4%;
+  border-bottom: 0.05cqh solid color-mix(in srgb, currentColor 70%, transparent);
+}
+
+.detailList {
+  display: grid;
+  gap: 9%;
+}
+
+.detailItem {
+  display: grid;
+  grid-template-columns: 3cqw minmax(0, 1fr);
+  align-items: center;
+  gap: 4%;
+  font-size: 3.5cqw;
+  line-height: 1.1;
+  min-width: 0;
+
+  svg {
+    aspect-ratio: 1;
+    width: 100%;
+  }
 }
