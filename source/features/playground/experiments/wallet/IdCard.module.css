@@ -1,6 +1,25 @@
 .card {
   position: relative;
-  background: black;
+  background:
+    repeating-linear-gradient(
+      132deg,
+      #050506 0 2.8cqw,
+      color-mix(in srgb, var(--base-color) 5%, #08070b) 4.6cqw,
+      color-mix(in srgb, var(--base-color) 3%, #060609) 7.2cqw,
+      #050506 11.4cqw
+    ),
+    repeating-linear-gradient(
+      42deg,
+      transparent 0 5.6cqw,
+      color-mix(in srgb, white 2%, transparent) 7.4cqw,
+      transparent 10.8cqw
+    ),
+    repeating-linear-gradient(
+      90deg,
+      color-mix(in srgb, black 10%, transparent) 0 0.45cqw,
+      transparent 0.45cqw 3.6cqw
+    ),
+    linear-gradient(145deg, #050506, #0b0a10 52%, #050506);
   aspect-ratio: 1.75;
   display: grid;
   grid: 1fr / 40% 1fr;
@@ -9,6 +28,8 @@
   container-name: id-card;
   container-type: inline-size;
   font-size: 1cqw;
+  text-align: start;
+  --base-color: #ab96e1;
 
   section {
     display: grid;
@@ -16,7 +37,7 @@
     &:first-child {
       border-width: 0 0.5cqw 0 0;
       place-content: center;
-      border-color: color-mix(in srgb, currentColor, transparent);
+      border-color: color-mix(in srgb, var(--base-color) 70%, transparent);
     }
 
     &:nth-child(2) {
@@ -27,7 +48,7 @@
 
 .details {
   align-content: center;
-  gap: 5%;
+  gap: 3%;
   min-width: 0;
 }
 
@@ -51,7 +72,7 @@
 .title {
   text-transform: uppercase;
   font-size: 3cqw;
-  color: color-mix(in srgb, currentColor 75%, transparent);
+  color: color-mix(in srgb, var(--base-color) 75%, transparent);
 }
 
 .githubIconLink {
@@ -91,24 +112,25 @@
 }
 
 .idNumberLabel {
-  font-size: 1.9cqw;
-  color: color-mix(in srgb, currentColor 75%, transparent);
+  font-size: 2.3cqw;
+  color: color-mix(in srgb, var(--base-color) 75%, transparent);
 }
 
 .idNumberValue {
-  font-size: 2.1cqw;
+  font-size: 2.5cqw;
 }
 
 .description {
   font-size: 3cqw;
   line-height: 1.35;
   padding-bottom: 4%;
-  border-bottom: 0.05cqh solid color-mix(in srgb, currentColor 70%, transparent);
+  border-bottom: 0.2cqh solid
+    color-mix(in srgb, var(--base-color) 60%, transparent);
 }
 
 .detailList {
   display: grid;
-  gap: 9%;
+  gap: 30%;
 }
 
 .detailItem {
@@ -123,5 +145,7 @@
   svg {
     aspect-ratio: 1;
     width: 100%;
+    height: auto;
+    aspect-ratio: 1;
   }
 }

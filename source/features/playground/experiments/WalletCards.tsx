@@ -1,51 +1,95 @@
 import type { RouteComponent } from "retend/router";
 import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
 
-// import { Wallet } from "./wallet/Wallet";
-// import { WalletCard } from "./wallet/WalletCard";
-// import { Teleport } from "retend-web";
-// import { Cell } from "retend";
+import { Wallet } from "./wallet/Wallet";
+import { Cell, If } from "retend";
 import { IdCard } from "./wallet/IdCard";
+import { Passport } from "./wallet/Passport";
+import { PageMeta } from "retend-server/client";
+import { SITE_URL } from "@/shared/constants";
+import { WalletHoverable } from "./wallet/WalletHoverable";
+import { SereneCard } from "./wallet/SereneCard";
+import {
+  WalletContentSpotlightView,
+  WalletItemType,
+} from "./wallet/WalletContentSpotlightView";
 
-const WalletCards: RouteComponent = () => {
-  // const walletIsOpen = Cell.source(false);
+const WalletCards: RouteComponent<PageMeta> = () => {
+  const walletIsOpen = Cell.source(false);
+  const selectedWalletItem = Cell.source<WalletItemType | null>(null);
 
-  // const toggleWallet = () => {
-  //   walletIsOpen.set(!walletIsOpen.get());
-  // };
+  const openWallet = () => {
+    walletIsOpen.set(!walletIsOpen.get());
+  };
 
   return (
     <div class="grid min-h-dvh place-items-center bg-black px-[5vw] py-[12vh] text-white">
       <PlaygroundLayout title="Wallet Cards">
-        {/*<Wallet open={walletIsOpen} texture="saffiano-leather" color="#4f4d4d">
-          <Wallet.RightFlap>
-            <Wallet.SubPocket index={0}>
-              <WalletCard>
-                <IdCard />
-              </WalletCard>
-            </Wallet.SubPocket>
-            <Wallet.SubPocket index={1}>
-              <WalletCard />
-            </Wallet.SubPocket>
-          </Wallet.RightFlap>
-        </Wallet>
-        <Teleport to="body">
-          <div class="fixed bottom-0 grid w-full place-items-center pb-10">
-            <button
-              class="rounded-full border border-white/10 bg-black/40 px-5 py-2.5 text-[0.85rem] font-semibold text-white/70 backdrop-blur-xl transition-all duration-300 hover:border-white/30 hover:bg-black/60 hover:text-white active:scale-95"
-              type="button"
-              onClick={toggleWallet}
+        <div class="grid place-items-center">
+          <button
+            class={[
+              "[grid-area:1/1] scale-90 rotate-5 not-has-data-open:cursor-pointer transition-transform duration-500",
+              "hover:scale-100 hover:rotate-0 has-data-open:scale-100 has-data-open:rotate-0",
+            ]}
+            type="button"
+            onClick={openWallet}
+          >
+            <Wallet
+              open={walletIsOpen}
+              texture="saffiano-leather"
+              color="#4f4d4d"
             >
-              Open Wallet
-            </button>
-          </div>
-        </Teleport>*/}
-        <div class="w-165 rounded-3xl border overflow-hidden">
-          <IdCard />
+              <Wallet.LeftFlap>
+                <Wallet.SubPocket index={1}>
+                  <WalletHoverable
+                    onSelect={() => selectedWalletItem.set("serene-card")}
+                  >
+                    <SereneCard />
+                  </WalletHoverable>
+                </Wallet.SubPocket>
+              </Wallet.LeftFlap>
+              <Wallet.RightFlap>
+                <Wallet.SubPocket index={0}>
+                  <WalletHoverable
+                    onSelect={() => selectedWalletItem.set("id-card")}
+                  >
+                    <IdCard />
+                  </WalletHoverable>
+                </Wallet.SubPocket>
+                <Wallet.SubPocket index={1}>
+                  <WalletHoverable
+                    onSelect={() => selectedWalletItem.set("passport")}
+                  >
+                    <Passport />
+                  </WalletHoverable>
+                </Wallet.SubPocket>
+              </Wallet.RightFlap>
+            </Wallet>
+          </button>
+
+          {If(selectedWalletItem, (item) => (
+            <div class="[grid-area:1/1]">
+              <WalletContentSpotlightView item={item} />
+            </div>
+          ))}
         </div>
       </PlaygroundLayout>
     </div>
   );
+};
+
+WalletCards.metadata = {
+  title: "Wallet Cards | Playground",
+  description: "",
+  ogTitle: "Wallet Cards | Playground",
+  ogDescription:
+    "An interactive CSS wallet demo with style previews and animated try-on transitions.",
+  ogImage: `${SITE_URL}/og/wallet.png`,
+  twitterTitle: "Wallet Cards | Playground",
+  twitterDescription:
+    "An interactive CSS wallet demo with style previews and animated try-on transitions.",
+  twitterImage: `${SITE_URL}/og/wallet.png`,
+  viewport: "width=device-width, initial-scale=1.0",
 };
 
 export default WalletCards;

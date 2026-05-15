@@ -1,15 +1,13 @@
 import type { JSX } from "retend/jsx-runtime";
 import classes from "./WalletCard.module.css";
 
-interface WalletCardProps {
-  children?: JSX.Children;
-}
-
-export function WalletCard(props: WalletCardProps) {
-  const { children } = props;
+export function WalletCard(props: JSX.BaseContainerProps) {
+  const { children, ...rest } = props;
   return (
     <div class={classes.cardContainer}>
-      <div class={classes.card}>{children}</div>
+      <div {...rest} class={[classes.card, rest.class]}>
+        {children}
+      </div>
     </div>
   );
 }

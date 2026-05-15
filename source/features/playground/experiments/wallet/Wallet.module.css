@@ -253,13 +253,13 @@
 
   &[data-open] {
     --wallet-easing: cubic-bezier(0.5, 0, 0.5, 1.4);
-    --wallet-open-angle: -140;
+    --wallet-open-angle: -180;
     --wallet-duration: 450ms;
   }
 
   --wallet-open-angle-deg: calc(var(--wallet-open-angle) * 1deg);
   --wallet-flap-connector: calc((var(--wallet-open-angle) * 0.5deg) - 90deg);
-  --wallet-center-shift: calc((-4 / 18) * var(--wallet-open-angle) * 1%);
+  --wallet-center-shift: calc((-5 / 18) * var(--wallet-open-angle) * 1%);
   --wallet-flap-connector-inner-sewing-height: 93.5%;
   --wallet-flap-connector-inner-sewing-width: 50%;
 

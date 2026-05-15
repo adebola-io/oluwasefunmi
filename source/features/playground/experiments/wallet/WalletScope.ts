@@ -1,4 +1,4 @@
-import { createScope, SourceCell } from "retend";
+import { Cell, createScope, SourceCell } from "retend";
 import { JSX } from "retend/jsx-runtime";
 
 export type TemplateFn = (() => JSX.Template) | null;
@@ -19,6 +19,7 @@ interface WalletSlots {
 
 export interface WalletContext {
   slots: WalletSlots;
+  open: Cell<boolean>;
 }
 
 export const WalletScope = createScope<WalletContext>("Wallet");

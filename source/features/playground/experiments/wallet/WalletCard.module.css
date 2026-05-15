@@ -3,13 +3,12 @@
   border-width: calc(var(--wallet-flap-width) * 0.0045)
     calc(var(--wallet-flap-width) * 0.0025) 0
     calc(var(--wallet-flap-width) * 0.002);
-  border-color: color-mix(var(--wallet-color) 50%, white);
+  border-color: color-mix(var(--wallet-color, white) 50%, white);
   height: auto;
   overflow: hidden;
   box-shadow: 0px -2px 10px 0 #00000056;
-  transition: transform 400ms 30ms cubic-bezier(0.4, 0, 0.2, 1);
-  transform: translateY(-100%);
 
-  .cardContainer:hover & {
+  [data-wallet-spotlight] & {
+    border-width: calc(var(--wallet-flap-width) * 0.0045);
   }
 }

@@ -33,14 +33,9 @@ interface WalletProps {
   children?: JSX.Children;
 }
 
-Wallet.MainPocket = WalletMainPocket;
-Wallet.RightFlap = WalletRightFlap;
-Wallet.LeftFlap = WalletLeftFlap;
-Wallet.SubPocket = WalletSubPocket;
-
 export function Wallet(props: WalletProps) {
   const {
-    open,
+    open = false,
     color = "green",
     texture: textureProp = "brushed-leather",
     width = "min(300px, 45dvw, 60dvh)",
@@ -50,7 +45,9 @@ export function Wallet(props: WalletProps) {
   const textureVar = Cell.derived(() => {
     return `var(--wallet-${texture.get()}-texture)`;
   });
+  const openCell = useDerivedValue(open);
   const ctx: WalletContext = {
+    open: openCell,
     slots: {
       left: {
         mainPocket: Cell.source(null),
@@ -101,3 +98,8 @@ export function Wallet(props: WalletProps) {
     </WalletScope.Provider>
   );
 }
+
+Wallet.MainPocket = WalletMainPocket;
+Wallet.RightFlap = WalletRightFlap;
+Wallet.LeftFlap = WalletLeftFlap;
+Wallet.SubPocket = WalletSubPocket;

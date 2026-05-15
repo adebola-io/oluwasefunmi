@@ -242,14 +242,16 @@
   align-self: end;
   height: 88%;
   overflow: hidden;
+  pointer-events: none;
 
   &::before,
   &::after {
     display: block;
     content: "";
     grid-area: 1 / 1;
-    height: 95%;
+    height: 90%;
     align-self: end;
+    pointer-events: auto;
   }
 
   &::before {
@@ -266,17 +268,13 @@
 }
 
 .firstSubPocket {
-  height: 78%;
-  max-height: 78%;
+  height: 80%;
+  max-height: 80%;
 }
 
 .secondSubPocket {
   height: 65%;
   max-height: 65%;
-
-  & > *:not(.subPocketCovering) {
-    transform: rotate(1deg);
-  }
 }
 
 .thirdSubPocket {
