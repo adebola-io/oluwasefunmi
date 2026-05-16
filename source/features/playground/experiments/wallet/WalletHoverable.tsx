@@ -1,5 +1,4 @@
-import { ViewTransitionScope } from "@/components/ViewTransition";
-import { Cell, useScopeContext } from "retend";
+import { Cell, onMove } from "retend";
 import { JSX } from "retend/jsx-runtime";
 
 interface WalletHoverableProps {
@@ -10,8 +9,8 @@ interface WalletHoverableProps {
 export function WalletHoverable(props: WalletHoverableProps) {
   const { children, onSelect } = props;
   const pull = Cell.source(false);
+  const buttonRef = Cell.source<HTMLButtonElement | null>(null);
   const noPull = Cell.derived(() => !pull.get());
-  const viewTransition = useScopeContext(ViewTransitionScope);
   let wasJustSelected = false;
 
   async function handleClick(this: HTMLButtonElement) {
@@ -25,17 +24,29 @@ export function WalletHoverable(props: WalletHoverableProps) {
     onSelect?.();
   }
 
-  viewTransition.onViewTransitionEnd(() => {
-    if (wasJustSelected) {
-      wasJustSelected = false;
-      return;
-    }
-    pull.set(false);
+  onMove(() => {
+    const shouldStayPulled = wasJustSelected;
+    return () => {
+      if (shouldStayPulled) {
+        wasJustSelected = false;
+        return;
+      }
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          const animations =
+            buttonRef.get()?.getAnimations({ subtree: true }) ?? [];
+          Promise.allSettled(animations.map((a) => a.finished)).then(() => {
+            pull.set(false);
+          });
+        });
+      });
+    };
   });
 
   return (
     <div class="w-full group not-in-data-wallet:pointer-events-none">
       <button
+        ref={buttonRef}
         type="button"
         onClick--stop={handleClick}
         class={[

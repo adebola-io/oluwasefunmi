@@ -1760,8 +1760,3 @@
     close
   );
 }
-
-::view-transition-group(wallet-item) {
-  animation-duration: 300ms;
-  animation-timing-function: var(--ease-spring);
-}

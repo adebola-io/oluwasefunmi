@@ -1,8 +1,7 @@
-import { If, SourceCell, useScopeContext } from "retend";
+import { If, SourceCell } from "retend";
 import { JSX } from "retend/jsx-runtime";
 import { Teleport } from "retend-web";
 import { WalletItem, WalletItemType } from "./WalletItem";
-import { ViewTransitionScope } from "@/components/ViewTransition";
 
 interface WalletContentSpotlightViewProps {
   item: SourceCell<WalletItemType | null>;
@@ -13,13 +12,9 @@ export function WalletContentSpotlightView(
   props: WalletContentSpotlightViewProps
 ) {
   const { item } = props;
-  const { startTransition } = useScopeContext(ViewTransitionScope);
 
-  const handleClick = async () => {
-    await startTransition(async () => {
-      item.set(null);
-      await new Promise((resolve) => setTimeout(resolve));
-    });
+  const handleClick = () => {
+    item.set(null);
   };
 
   return (
