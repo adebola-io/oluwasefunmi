@@ -3,6 +3,15 @@ import { WalletCard } from "./WalletCard";
 
 export const RainbowCard = createUnique(() => {
   return (
-    <WalletCard class="aspect-[1.75] w-full h-auto bg-[linear-gradient(to_right,#ff1f3d_0%,#ff8a00_18%,#fff200_34%,#35e35f_50%,#00c8ff_66%,#355cff_82%,#b000ff_100%)]" />
+    <WalletCard class="aspect-[1.75] w-full h-auto bg-[lightgreen] overflow-hidden">
+      <div
+        class="size-full blur-xl"
+        style={{
+          boxShadow: "-6px 7px 0px 2px white inset",
+          background:
+            "radial-gradient(100% 130% at 90% 0%, #398f88, transparent), radial-gradient(50% 130% at 0% 90%, #53ab53, lightgreen)",
+        }}
+      ></div>
+    </WalletCard>
   );
 });

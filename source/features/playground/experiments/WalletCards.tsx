@@ -3,18 +3,11 @@ import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLay
 
 import { Wallet } from "./wallet/Wallet";
 import { Cell, If } from "retend";
-import { IdCard } from "./wallet/IdCard";
-import { Passport } from "./wallet/Passport";
+
 import { PageMeta } from "retend-server/client";
 import { SITE_URL } from "@/shared/constants";
-import { WalletHoverable } from "./wallet/WalletHoverable";
-import { SereneCard } from "./wallet/SereneCard";
-import {
-  WalletContentSpotlightView,
-  WalletItemType,
-} from "./wallet/WalletContentSpotlightView";
-import { WalletQRCodeCard } from "./wallet/WalletQRCodeCard";
-import { RainbowCard } from "./wallet/RainbowCard";
+import { WalletContentSpotlightView } from "./wallet/WalletContentSpotlightView";
+import { WalletItem, WalletItemType } from "./wallet/WalletItem";
 
 const WalletCards: RouteComponent<PageMeta> = () => {
   const walletIsOpen = Cell.source(false);
@@ -39,45 +32,48 @@ const WalletCards: RouteComponent<PageMeta> = () => {
             <Wallet
               open={walletIsOpen}
               texture="saffiano-leather"
-              color="#454c48"
+              color="#363e46"
             >
               <Wallet.LeftFlap>
                 <Wallet.SubPocket index={0}>
-                  <WalletHoverable
-                    onSelect={() => selectedWalletItem.set("qr-code-card")}
-                  >
-                    <WalletQRCodeCard />
-                  </WalletHoverable>
+                  <WalletItem
+                    item="serene-card"
+                    onSelect={() => selectedWalletItem.set("serene-card")}
+                  />
                 </Wallet.SubPocket>
                 <Wallet.SubPocket index={1}>
-                  <WalletHoverable
-                    onSelect={() => selectedWalletItem.set("serene-card")}
-                  >
-                    <SereneCard />
-                  </WalletHoverable>
+                  <WalletItem
+                    item="qr-code-card"
+                    onSelect={() => selectedWalletItem.set("qr-code-card")}
+                  />
+                </Wallet.SubPocket>
+                <Wallet.SubPocket index={2}>
+                  <WalletItem
+                    item="jack-of-spades-card"
+                    onSelect={() =>
+                      selectedWalletItem.set("jack-of-spades-card")
+                    }
+                  />
                 </Wallet.SubPocket>
               </Wallet.LeftFlap>
               <Wallet.RightFlap>
                 <Wallet.SubPocket index={0}>
-                  <WalletHoverable
+                  <WalletItem
+                    item="id-card"
                     onSelect={() => selectedWalletItem.set("id-card")}
-                  >
-                    <IdCard />
-                  </WalletHoverable>
+                  />
                 </Wallet.SubPocket>
                 <Wallet.SubPocket index={1}>
-                  <WalletHoverable
+                  <WalletItem
+                    item="rainbow-card"
                     onSelect={() => selectedWalletItem.set("rainbow-card")}
-                  >
-                    <RainbowCard />
-                  </WalletHoverable>
+                  />
                 </Wallet.SubPocket>
                 <Wallet.SubPocket index={2}>
-                  <WalletHoverable
+                  <WalletItem
+                    item="passport"
                     onSelect={() => selectedWalletItem.set("passport")}
-                  >
-                    <Passport />
-                  </WalletHoverable>
+                  />
                 </Wallet.SubPocket>
               </Wallet.RightFlap>
             </Wallet>

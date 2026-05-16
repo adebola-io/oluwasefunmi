@@ -9,7 +9,7 @@ import { createUnique } from "retend";
 
 export const IdCard = createUnique(() => {
   return (
-    <WalletCard>
+    <WalletCard class="in-data-wallet:-rotate-2">
       <article class={classes.card}>
         <section>
           <div class={classes.avatarContainer}>
