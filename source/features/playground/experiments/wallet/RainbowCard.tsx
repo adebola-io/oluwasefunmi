@@ -1,7 +1,6 @@
-import { createUnique } from "retend";
 import { WalletCard } from "./WalletCard";
 
-export const RainbowCard = createUnique(() => {
+export function RainbowCard() {
   return (
     <WalletCard class="aspect-[1.75] w-full h-auto bg-[lightgreen] overflow-hidden">
       <div
@@ -14,4 +13,4 @@ export const RainbowCard = createUnique(() => {
       ></div>
     </WalletCard>
   );
-});
+}

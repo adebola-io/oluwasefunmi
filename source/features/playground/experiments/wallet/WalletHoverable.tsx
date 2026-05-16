@@ -1,3 +1,4 @@
+import { Cell } from "retend";
 import { JSX } from "retend/jsx-runtime";
 
 interface WalletHoverableProps {
@@ -7,19 +8,20 @@ interface WalletHoverableProps {
 
 export function WalletHoverable(props: WalletHoverableProps) {
   const { children, onSelect } = props;
+  const pull = Cell.source(false);
+  const noPull = Cell.derived(() => !pull.get());
 
   async function handleClick(this: HTMLButtonElement) {
-    this.style.transitionDuration = "350ms";
-    // this.style.transitionTimingFunction = "var(--ease-spring)";
-    this.style.transform = "translateY(-70%)";
+    pull.set(true);
     await new Promise((resolve) => setTimeout(resolve, 0));
     const animations = this.getAnimations();
     const finished = animations.map((a) => a.finished);
     const animationPromise = Promise.allSettled(finished);
-    const timeout = new Promise((resolve) => setTimeout(resolve, 250));
+    const timeout = new Promise((resolve) => setTimeout(resolve, 300));
     await Promise.race([animationPromise, timeout]);
 
     onSelect?.();
+    pull.set(false);
   }
 
   return (
@@ -27,7 +29,14 @@ export function WalletHoverable(props: WalletHoverableProps) {
       <button
         type="button"
         onClick--stop={handleClick}
-        class="w-full pointer-events-none *:pointer-events-auto duration-300 ease-in-out group-hover:translate-y-[-10%]"
+        class={[
+          "w-full pointer-events-none *:pointer-events-auto ease-in-out",
+          {
+            "in-data-wallet:group-hover:translate-y-[-20%] duration-300":
+              noPull,
+          },
+          { "in-data-wallet:translate-y-[-90%] duration-400": pull },
+        ]}
       >
         {children}
       </button>

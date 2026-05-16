@@ -1,6 +1,4 @@
-import { createUnique } from "retend";
-
-export const Passport = createUnique(() => {
+export function Passport() {
   return (
     <div
       class={[
@@ -15,4 +13,4 @@ export const Passport = createUnique(() => {
       />
     </div>
   );
-});
+}

@@ -1,7 +1,7 @@
-import { createUnique } from "retend";
+// oxlint-disable retend/max-component-lines
 import { WalletCard } from "./WalletCard";
 
-export const JackOfSpadesCard = createUnique(() => {
+export function JackOfSpadesCard() {
   return (
     <WalletCard class="in-data-wallet:mt-[3%]">
       <svg
@@ -1147,4 +1147,4 @@ export const JackOfSpadesCard = createUnique(() => {
       </svg>
     </WalletCard>
   );
-});
+}

@@ -5,9 +5,8 @@ import { MailIcon } from "@/components/icons/mail";
 import { WalletCard } from "./WalletCard";
 import classes from "./IdCard.module.css";
 import { Link } from "retend/router";
-import { createUnique } from "retend";
 
-export const IdCard = createUnique(() => {
+export function IdCard() {
   return (
     <WalletCard class="in-data-wallet:-rotate-2">
       <article class={classes.card}>
@@ -58,4 +57,4 @@ export const IdCard = createUnique(() => {
       </article>
     </WalletCard>
   );
-});
+}
