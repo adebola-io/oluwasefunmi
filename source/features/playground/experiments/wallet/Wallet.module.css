@@ -646,7 +646,6 @@
   background-size: var(--wallet-texture-size), auto, auto, auto;
 
   &::before {
-    z-index: 1;
     display: block;
     content: "";
     grid-area: 1 / 1;
@@ -709,7 +708,6 @@
   justify-self: start;
   background-color: var(--wallet-sewing-color);
   clip-path: var(--wallet-flap-sewing);
-  z-index: 1;
 }
 
 .flapSewingShade {
@@ -720,5 +718,4 @@
   justify-self: start;
   background-color: var(--wallet-color-shade-darker);
   clip-path: var(--wallet-flap-sewing-shade);
-  z-index: 1;
 }

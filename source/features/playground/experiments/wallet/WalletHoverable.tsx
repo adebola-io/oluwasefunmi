@@ -9,12 +9,15 @@ export function WalletHoverable(props: WalletHoverableProps) {
   const { children, onSelect } = props;
 
   async function handleClick(this: HTMLButtonElement) {
-    this.style.transitionDuration = "300ms";
+    this.style.transitionDuration = "350ms";
     // this.style.transitionTimingFunction = "var(--ease-spring)";
     this.style.transform = "translateY(-70%)";
     await new Promise((resolve) => setTimeout(resolve, 0));
     const animations = this.getAnimations();
-    await Promise.allSettled(animations.map((a) => a.finished));
+    const finished = animations.map((a) => a.finished);
+    const animationPromise = Promise.allSettled(finished);
+    const timeout = new Promise((resolve) => setTimeout(resolve, 250));
+    await Promise.race([animationPromise, timeout]);
 
     onSelect?.();
   }

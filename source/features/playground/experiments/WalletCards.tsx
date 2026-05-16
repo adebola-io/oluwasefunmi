@@ -83,9 +83,9 @@ const WalletCards: RouteComponent<PageMeta> = () => {
             </Wallet>
           </button>
 
-          {If(selectedWalletItem, (item) => (
+          {If(selectedWalletItem, () => (
             <div class="[grid-area:1/1]">
-              <WalletContentSpotlightView item={item} />
+              <WalletContentSpotlightView item={selectedWalletItem} />
             </div>
           ))}
         </div>
