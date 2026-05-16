@@ -14,7 +14,8 @@ const WalletCards: RouteComponent<PageMeta> = () => {
   const walletIsOpen = Cell.source(false);
   const selectedWalletItem = Cell.source<WalletItemType | null>(null);
 
-  const openWallet = () => {
+  const openWallet = (event: Event) => {
+    console.log({ event });
     walletIsOpen.set(!walletIsOpen.get());
   };
 
@@ -24,10 +25,7 @@ const WalletCards: RouteComponent<PageMeta> = () => {
         <PlaygroundLayout title="Wallet Cards">
           <div class="grid place-items-center">
             <button
-              class={[
-                "[grid-area:1/1] scale-90 rotate-5 not-has-data-open:cursor-pointer transition-transform duration-500",
-                "hover:scale-100 hover:rotate-0 has-data-open:scale-100 has-data-open:rotate-0",
-              ]}
+              class="[grid-area:1/1] not-has-data-open:cursor-pointer transition-transform duration-500"
               type="button"
               onClick={openWallet}
             >

@@ -73,6 +73,9 @@ export function Wallet(props: WalletProps) {
           "--wallet-flap-width": width,
         }}
       >
+        <div data-wallet-flap="back" class={[classes.flap, classes.backFlap]}>
+          <WalletFlapInnerSide slot={ctx.slots.right} />
+        </div>
         <div class={classes.flapConnector}>
           <div class={classes.flapConnectorRight} />
           <div class={classes.flapConnectorMiddle} />
@@ -90,9 +93,6 @@ export function Wallet(props: WalletProps) {
             <WalletFlapSewing />
             <WalletFlapInnerSide slot={ctx.slots.left} />
           </div>
-        </div>
-        <div data-wallet-flap="back" class={[classes.flap, classes.backFlap]}>
-          <WalletFlapInnerSide slot={ctx.slots.right} />
         </div>
       </div>
     </WalletScope.Provider>

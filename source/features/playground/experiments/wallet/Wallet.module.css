@@ -377,6 +377,7 @@
   user-select: none;
   transform-style: preserve-3d;
   transform: translate(var(--wallet-center-shift));
+  will-change: transform, scale;
   transition:
     transform var(--wallet-duration) var(--wallet-delay) var(--wallet-easing),
     scale var(--wallet-duration) var(--wallet-delay) var(--wallet-easing-bounce);
@@ -430,6 +431,7 @@
       transparent 25%
     );
   background-size: var(--wallet-texture-size), auto, auto, auto, auto;
+  will-change: transform;
   transition: transform var(--wallet-duration) var(--wallet-delay)
     var(--wallet-easing);
 
@@ -455,6 +457,7 @@
   transform-origin: left;
   transform: rotateY(var(--wallet-flap-connector));
   transform-style: preserve-3d;
+  will-change: transform;
   transition: transform var(--wallet-duration) var(--wallet-delay)
     var(--wallet-easing);
 

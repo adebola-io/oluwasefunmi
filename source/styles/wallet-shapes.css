@@ -1761,7 +1761,7 @@
   );
 }
 
-::view-transition-group(.wallet-item) {
+::view-transition-group(wallet-item) {
   animation-duration: 300ms;
-  animation-timing-function: ease-in-out;
+  animation-timing-function: var(--ease-spring);
 }

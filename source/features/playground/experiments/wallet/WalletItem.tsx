@@ -37,7 +37,7 @@ export const WalletItem = createUnique<WalletItemProps>((props) => {
   const handleSelect = async () => {
     const div = containerRef.get();
     if (!div) return;
-    div.style.viewTransitionName = item.get();
+    div.style.viewTransitionName = "wallet-item";
     await startTransition(() => {
       selectedWalletItem.set(item.get());
     });
@@ -52,7 +52,10 @@ export const WalletItem = createUnique<WalletItemProps>((props) => {
 
   return (
     <WalletHoverable onSelect={handleSelect}>
-      <div ref={containerRef} class="[view-transition-class:wallet-item]">
+      <div
+        ref={containerRef}
+        class="not-in-data-wallet:pointer-events-none! *:pointer-events-auto"
+      >
         {Switch(item, {
           "rainbow-card": () => <RainbowCard />,
           "serene-card": () => <SereneCard />,
