@@ -17,7 +17,7 @@
 }
 
 /* needs to be available after teleport */
-:root {
+[data-glasses-route] {
   --glass-expanded-duration: 500ms;
   --glass-expanded-delay: calc(var(--glass-expanded-duration) * 0.5);
   /* Lifted from Figma. */
