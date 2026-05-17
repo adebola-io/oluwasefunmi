@@ -58,8 +58,9 @@
     border-radius: inherit;
   }
 
+  filter: brightness(0.8);
   [data-wallet-flap="front"] & {
-    filter: brightness(0.8);
+    filter: brightness(0.7);
     transform: translateZ(calc(var(--wallet-flap-thickness) * -1));
 
     &::before {

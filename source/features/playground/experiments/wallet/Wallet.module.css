@@ -377,17 +377,20 @@
   user-select: none;
   transform-style: preserve-3d;
   transform: translate(var(--wallet-center-shift));
-  will-change: transform, scale;
-  transition:
-    transform var(--wallet-duration) var(--wallet-delay) var(--wallet-easing),
-    scale var(--wallet-duration) var(--wallet-delay) var(--wallet-easing-bounce);
+  rotate: 6deg;
+  will-change: transform, scale, rotate;
+  transition-duration: var(--wallet-duration);
+  transition-property: transform, scale, rotate;
+  transition-timing-function: var(--wallet-easing);
+
+  &:hover,
+  &[data-open] {
+    rotate: 0deg;
+    scale: 1.15;
+  }
 
   & > * {
     grid-area: 1 / 1;
-  }
-
-  &[data-open] {
-    scale: 1.15;
   }
 }
 
@@ -519,6 +522,7 @@
     transparent
   );
   transform: translateZ(calc(var(--wallet-flap-depth-neg) / 4));
+  --wallet-sewing-color: color-mix(in srgb, white 28%, var(--wallet-color));
 }
 
 .flapConnectorInnerMainSewing {
@@ -543,7 +547,6 @@
   justify-self: center;
   transform-origin: bottom;
   transform: scaleY(1.006);
-  --wallet-sewing-color: color-mix(in srgb, white 28%, var(--wallet-color));
 }
 
 .flapConnectorInnerSmallerSewingContainer {
