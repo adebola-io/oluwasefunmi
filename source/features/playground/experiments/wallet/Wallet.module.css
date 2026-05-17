@@ -389,6 +389,12 @@
     scale: 1.15;
   }
 
+  @media (orientation: portrait) {
+    &[data-open] {
+      rotate: 90deg;
+    }
+  }
+
   & > * {
     grid-area: 1 / 1;
   }

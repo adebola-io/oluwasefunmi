@@ -3,17 +3,18 @@ import { JSX } from "retend/jsx-runtime";
 
 interface WalletHoverableProps {
   children?: JSX.Children;
+  pulled: Cell<boolean>;
+  onPull?: () => void;
   onSelect?: () => void;
 }
 
 export function WalletHoverable(props: WalletHoverableProps) {
-  const { children, onSelect } = props;
-  const pull = Cell.source(false);
+  const { children, onSelect, pulled, onPull } = props;
   const buttonRef = Cell.source<HTMLButtonElement | null>(null);
-  const noPull = Cell.derived(() => !pull.get());
+  const noPull = Cell.derived(() => !pulled.get());
 
   async function handleClick(this: HTMLButtonElement) {
-    pull.set(true);
+    onPull?.();
     await new Promise((resolve) => setTimeout(resolve, 300));
     onSelect?.();
   }
@@ -30,7 +31,7 @@ export function WalletHoverable(props: WalletHoverableProps) {
             "in-data-wallet:group-hover:translate-y-[-20%] duration-300":
               noPull,
           },
-          { "in-data-wallet:translate-y-[-90%] duration-400": pull },
+          { "in-data-wallet:translate-y-[-90%] duration-400": pulled },
         ]}
       >
         {children}

@@ -22,18 +22,34 @@ export interface WalletItemProps {
 export const WalletItem = createUnique<WalletItemProps>((props) => {
   const item = Cell.derived(() => props.get().item);
   const selectedWalletItem = props.get().selectedWalletItem;
+  const pulled = Cell.source(false);
+
+  const handlePull = () => {
+    pulled.set(true);
+  };
+
+  const handleTransitionEnd = () => {
+    if (selectedWalletItem.get() !== item.get()) {
+      pulled.set(false);
+    }
+  };
 
   const handleSelect = () => {
     selectedWalletItem.set(item.get());
   };
 
   return (
-    <WalletHoverable onSelect={handleSelect}>
+    <WalletHoverable
+      pulled={pulled}
+      onPull={handlePull}
+      onSelect={handleSelect}
+    >
       <UniqueTransition
         topLayer
         transitionDuration="400ms"
         transitionTimingFunction="ease"
         respectParentTransform={false}
+        onEnd={handleTransitionEnd}
       >
         <div class="not-in-data-wallet:pointer-events-none! *:pointer-events-auto">
           {Switch(item, {
