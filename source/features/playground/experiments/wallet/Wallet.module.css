@@ -253,7 +253,7 @@
 
   &[data-open] {
     --wallet-easing: cubic-bezier(0.5, 0, 0.5, 1.4);
-    --wallet-open-angle: -180;
+    --wallet-open-angle: -165;
     --wallet-duration: 450ms;
   }
 
@@ -383,10 +383,17 @@
   transition-property: transform, scale, rotate;
   transition-timing-function: var(--wallet-easing);
 
+  &:hover {
+    scale: 1.07;
+  }
+
+  &[data-open] {
+    scale: 1.15;
+  }
+
   &:hover,
   &[data-open] {
     rotate: 0deg;
-    scale: 1.15;
   }
 
   @media (orientation: portrait) {

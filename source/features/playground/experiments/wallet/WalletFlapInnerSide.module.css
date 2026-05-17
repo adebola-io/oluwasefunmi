@@ -215,6 +215,12 @@
   }
 }
 
+.subPocketSewing {
+  z-index: 4;
+  top: 23%;
+  grid-area: 1 / 1;
+}
+
 .firstSubPocket {
   height: 88%;
   max-height: 88%;

@@ -3,6 +3,7 @@ import { WalletFlapSewing } from "./WalletFlapSewing";
 import { WalletPocketSewing } from "./WalletPocketSewing";
 import { FlapSlots } from "./WalletScope";
 import { Slot } from "@/components/layout/Slot";
+import { WalletSubPocketSewing } from "./WalletSubPocketSewing";
 
 interface WalletFlapInnerSideProps {
   slot: FlapSlots;
@@ -29,6 +30,7 @@ export function WalletFlapInnerSide(props: WalletFlapInnerSideProps) {
           <div class={classes.subPocketCovering} />
         </div>
         <div class={[classes.subPocket, classes.thirdSubPocket]}>
+          <WalletSubPocketSewing />
           <Slot content={slot.subPockets[2]} />
           <div class={classes.subPocketCovering} />
         </div>
