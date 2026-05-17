@@ -69,13 +69,6 @@ const WalletCards: RouteComponent<PageMeta> = () => {
                     selectedWalletItem={selectedWalletItem}
                   />
                 </Wallet.SubPocket>
-                <Wallet.SubPocket index={2}>
-                  <WalletItem
-                    id="passport"
-                    item="passport"
-                    selectedWalletItem={selectedWalletItem}
-                  />
-                </Wallet.SubPocket>
               </Wallet.RightFlap>
             </Wallet>
           </button>

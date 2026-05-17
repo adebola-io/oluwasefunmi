@@ -3,7 +3,6 @@ import { RainbowCard } from "./RainbowCard";
 import { SereneCard } from "./SereneCard";
 import { WalletQRCodeCard } from "./WalletQRCodeCard";
 import { IdCard } from "./IdCard";
-import { Passport } from "./Passport";
 import { WalletHoverable } from "./WalletHoverable";
 import { JackOfSpadesCard } from "./JackOfSpadesCard";
 import { UniqueTransition } from "retend-utils/components";
@@ -13,7 +12,6 @@ export type WalletItemType =
   | "serene-card"
   | "qr-code-card"
   | "id-card"
-  | "passport"
   | "jack-of-spades-card";
 
 export interface WalletItemProps {
@@ -32,8 +30,10 @@ export const WalletItem = createUnique<WalletItemProps>((props) => {
   return (
     <WalletHoverable onSelect={handleSelect}>
       <UniqueTransition
-        transitionDuration="300ms"
+        topLayer
+        transitionDuration="1000ms"
         transitionTimingFunction="var(--ease-spring)"
+        respectParentTransform={false}
       >
         <div class="not-in-data-wallet:pointer-events-none! *:pointer-events-auto">
           {Switch(item, {
@@ -41,7 +41,6 @@ export const WalletItem = createUnique<WalletItemProps>((props) => {
             "serene-card": () => <SereneCard />,
             "qr-code-card": () => <WalletQRCodeCard />,
             "id-card": () => <IdCard />,
-            passport: () => <Passport />,
             "jack-of-spades-card": () => <JackOfSpadesCard />,
           })}
         </div>

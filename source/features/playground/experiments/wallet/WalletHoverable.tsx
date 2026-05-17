@@ -26,18 +26,18 @@ export function WalletHoverable(props: WalletHoverableProps) {
 
   onMove(() => {
     const shouldStayPulled = wasJustSelected;
+    const button = buttonRef.get();
     return () => {
       if (shouldStayPulled) {
         wasJustSelected = false;
         return;
       }
       requestAnimationFrame(() => {
-        requestAnimationFrame(() => {
-          const animations =
-            buttonRef.get()?.getAnimations({ subtree: true }) ?? [];
-          Promise.allSettled(animations.map((a) => a.finished)).then(() => {
-            pull.set(false);
-          });
+        requestAnimationFrame(async () => {
+          if (!button) return;
+          const animations = button.getAnimations({ subtree: true });
+          await Promise.allSettled(animations.map((a) => a.finished));
+          pull.set(false);
         });
       });
     };

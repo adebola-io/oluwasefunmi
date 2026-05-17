@@ -17,12 +17,12 @@
     "@mdx-js/rollup": "^3.1.0",
     "@types/mdx": "^2.0.13",
     "hono": "^4.10.2",
-    "retend": "https://pkg.pr.new/resuite/retend@6407e2b",
-    "retend-oxlint-plugin": "https://pkg.pr.new/resuite/retend/retend-oxlint-plugin@6407e2b",
-    "retend-server": "https://pkg.pr.new/resuite/retend/retend-server@6407e2b",
-    "retend-utils": "https://pkg.pr.new/resuite/retend/retend-utils@6407e2b",
-    "retend-web": "https://pkg.pr.new/resuite/retend/retend-web@6407e2b",
-    "retend-web-devtools": "https://pkg.pr.new/resuite/retend/retend-web-devtools@6407e2b"
+    "retend": "https://pkg.pr.new/resuite/retend@26d869c",
+    "retend-oxlint-plugin": "https://pkg.pr.new/resuite/retend/retend-oxlint-plugin@26d869c",
+    "retend-server": "https://pkg.pr.new/resuite/retend/retend-server@26d869c",
+    "retend-utils": "https://pkg.pr.new/resuite/retend/retend-utils@26d869c",
+    "retend-web": "https://pkg.pr.new/resuite/retend/retend-web@26d869c",
+    "retend-web-devtools": "https://pkg.pr.new/resuite/retend/retend-web-devtools@26d869c"
   },
   "devDependencies": {
     "@cloudflare/vite-plugin": "^1.12.2",
