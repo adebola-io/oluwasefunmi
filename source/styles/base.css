@@ -43,10 +43,6 @@ body {
   }
 }
 
-:has([data-transitioning]) {
-  z-index: 99;
-}
-
 h1,
 h2,
 h3,

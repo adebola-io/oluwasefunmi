@@ -2,6 +2,7 @@ import { useDerivedValue } from "retend-utils/hooks";
 import classes from "./Wallet.module.css";
 import { WalletFlapInnerSide } from "./WalletFlapInnerSide";
 import { WalletFlapSewing } from "./WalletFlapSewing";
+import { WalletFlapConnectorInnerSewing } from "./WalletFlapConnectorInnerSewing";
 import type { JSX } from "retend/jsx-runtime";
 import { Cell } from "retend";
 import { WalletContext, WalletScope } from "./WalletScope";
@@ -38,7 +39,7 @@ export function Wallet(props: WalletProps) {
     open = false,
     color = "green",
     texture: textureProp = "brushed-leather",
-    width = "min(300px, 45dvw, 60dvh)",
+    width = "min(300px, 35dvw, 60dvh)",
     children,
   } = props;
   const texture = useDerivedValue(textureProp);
@@ -77,10 +78,13 @@ export function Wallet(props: WalletProps) {
           <WalletFlapInnerSide slot={ctx.slots.right} />
         </div>
         <div class={classes.flapConnector}>
-          <div class={classes.flapConnectorRight} />
+          <div class={classes.flapConnectorRight}>
+            <WalletFlapConnectorInnerSewing />
+          </div>
           <div class={classes.flapConnectorMiddle} />
           <div class={classes.flapConnectorLeft} />
           <div class={classes.flapConnectorInner}>
+            <WalletFlapConnectorInnerSewing />
             <div class={classes.flapConnectorInnerMainSewing} />
             <div class={classes.flapConnectorInnerSmallerSewingContainer}>
               <div class={classes.flapConnectorInnerSmallerSewing} />

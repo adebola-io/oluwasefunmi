@@ -489,6 +489,12 @@
   transform-origin: right;
   transform: rotateY(45deg);
   width: calc(100% / 3);
+  overflow: hidden;
+
+  .flapConnectorInnerSewing {
+    height: 95%;
+    transform: none;
+  }
 }
 
 .flapConnectorMiddle {
@@ -530,33 +536,17 @@
   );
 }
 
-.flapConnectorInnerSmallerSewingContainer {
-  --wallet-texture-light-strong: color-mix(
-    in srgb,
-    white 3%,
-    var(--wallet-color)
-  );
-  --wallet-texture-light-medium: color-mix(
-    in srgb,
-    white 2%,
-    var(--wallet-color)
-  );
-  --wallet-texture-light-soft: color-mix(
-    in srgb,
-    white 1%,
-    var(--wallet-color)
-  );
-  --wallet-texture-dark-strong: color-mix(
-    in srgb,
-    black 2.5%,
-    var(--wallet-color)
-  );
-  --wallet-texture-dark-medium: color-mix(
-    in srgb,
-    black 1.8%,
-    var(--wallet-color)
-  );
+.flapConnectorInnerSewing {
+  grid-area: 1 / 1;
+  height: var(--wallet-flap-connector-inner-sewing-height);
+  align-self: center;
+  justify-self: center;
+  transform-origin: bottom;
+  transform: scaleY(1.006);
+  --wallet-sewing-color: color-mix(in srgb, white 28%, var(--wallet-color));
+}
 
+.flapConnectorInnerSmallerSewingContainer {
   display: grid;
   grid: 1fr / 1fr;
   grid-area: 1/1;

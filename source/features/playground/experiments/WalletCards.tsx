@@ -24,7 +24,7 @@ const WalletCards: RouteComponent<PageMeta> = () => {
           <button
             class="[grid-area:1/1] not-has-data-open:cursor-pointer transition-transform duration-500"
             type="button"
-            onClick={openWallet}
+            onDblClick={openWallet}
           >
             <Wallet
               open={walletIsOpen}
