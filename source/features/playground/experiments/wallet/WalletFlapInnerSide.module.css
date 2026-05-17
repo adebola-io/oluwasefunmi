@@ -197,28 +197,17 @@
   display: grid;
   grid: 1fr / 1fr;
   grid-area: 1 / 1;
+}
 
-  &::before,
-  &::after {
-    position: absolute;
-    bottom: 3%;
-    left: 2.5%;
-    z-index: 1;
-    display: block;
-    content: "";
-    width: 95%;
-    height: 86%;
-  }
-
-  &::before {
-    background-color: var(--wallet-color-shade-darker);
-    clip-path: var(--wallet-pocket-sewing-shade);
-  }
-
-  &::after {
-    background-color: var(--wallet-sewing-color);
-    clip-path: var(--wallet-pocket-sewing);
-  }
+.pocketSewing {
+  position: absolute;
+  bottom: 3%;
+  left: 2.5%;
+  z-index: 1;
+  width: 95%;
+  pointer-events: none;
+  transform-origin: bottom;
+  scale: 1 1.14;
 }
 
 .subPocket {

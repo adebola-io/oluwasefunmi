@@ -1,5 +1,6 @@
 import classes from "./WalletFlapInnerSide.module.css";
 import { WalletFlapSewing } from "./WalletFlapSewing";
+import { WalletPocketSewing } from "./WalletPocketSewing";
 import { FlapSlots } from "./WalletScope";
 import { Slot } from "@/components/layout/Slot";
 
@@ -18,6 +19,7 @@ export function WalletFlapInnerSide(props: WalletFlapInnerSideProps) {
         <div class={classes.mainPocketCovering} />
       </div>
       <div class={classes.subPockets}>
+        <WalletPocketSewing />
         <div class={[classes.subPocket, classes.firstSubPocket]}>
           <Slot content={slot.subPockets[0]} />
           <div class={classes.subPocketCovering} />

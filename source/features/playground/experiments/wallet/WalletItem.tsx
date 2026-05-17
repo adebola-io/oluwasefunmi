@@ -31,8 +31,8 @@ export const WalletItem = createUnique<WalletItemProps>((props) => {
     <WalletHoverable onSelect={handleSelect}>
       <UniqueTransition
         topLayer
-        transitionDuration="1000ms"
-        transitionTimingFunction="var(--ease-spring)"
+        transitionDuration="400ms"
+        transitionTimingFunction="ease"
         respectParentTransform={false}
       >
         <div class="not-in-data-wallet:pointer-events-none! *:pointer-events-auto">
