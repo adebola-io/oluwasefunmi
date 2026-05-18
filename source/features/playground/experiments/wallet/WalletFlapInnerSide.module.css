@@ -58,7 +58,6 @@
     border-radius: inherit;
   }
 
-  filter: brightness(0.8);
   [data-wallet-flap="front"] & {
     filter: brightness(0.7);
     transform: translateZ(calc(var(--wallet-flap-thickness) * -1));
@@ -241,7 +240,7 @@
         var(--pocket-rim-highlights),
         linear-gradient(
           to left,
-          transparent,
+          color-mix(in srgb, var(--wallet-color-shade) 60%, black),
           color-mix(in srgb, var(--wallet-color-light-tip) 10%, transparent) 10%,
           transparent 20% 90%,
           color-mix(in srgb, var(--wallet-color-light-tip) 15%, transparent),

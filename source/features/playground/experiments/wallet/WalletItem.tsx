@@ -4,7 +4,7 @@ import { SereneCard } from "./SereneCard";
 import { WalletQRCodeCard } from "./WalletQRCodeCard";
 import { IdCard } from "./IdCard";
 import { WalletHoverable } from "./WalletHoverable";
-import { JackOfSpadesCard } from "./JackOfSpadesCard";
+import { CreditCard } from "./CreditCard";
 import { NairaNote } from "./NairaNote";
 import { UniqueTransition } from "retend-utils/components";
 
@@ -13,7 +13,7 @@ export type WalletItemType =
   | "serene-card"
   | "qr-code-card"
   | "id-card"
-  | "jack-of-spades-card"
+  | "credit-card"
   | "naira-note";
 
 export interface WalletItemProps {
@@ -60,7 +60,7 @@ export const WalletItem = createUnique<WalletItemProps>((props) => {
             "serene-card": () => <SereneCard />,
             "qr-code-card": () => <WalletQRCodeCard />,
             "id-card": () => <IdCard />,
-            "jack-of-spades-card": () => <JackOfSpadesCard />,
+            "credit-card": () => <CreditCard />,
             "naira-note": () => <NairaNote selected={selected} />,
           })}
         </div>

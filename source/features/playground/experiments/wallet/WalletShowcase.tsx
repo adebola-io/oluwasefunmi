@@ -25,8 +25,8 @@ export function WalletShowcase() {
         </Wallet.SubPocket>
         <Wallet.SubPocket index={2}>
           <WalletItem
-            id="jack-of-spades-card"
-            item="jack-of-spades-card"
+            id="credit-card"
+            item="credit-card"
             selectedWalletItem={selectedWalletItem}
           />
         </Wallet.SubPocket>
