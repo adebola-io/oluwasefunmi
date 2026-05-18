@@ -1,6 +1,6 @@
 import type { ImageModule } from "@/shared/types";
 import { preloadImages } from "@/shared/utils/imagePreloader";
-import { Cell, onSetup } from "retend";
+import { Cell } from "retend";
 import { WalletCard } from "./WalletCard";
 
 const imageModules = import.meta.glob<ImageModule>(
@@ -19,18 +19,18 @@ interface NairaNoteProps {
   selected: Cell<boolean>;
 }
 
+if (typeof window !== "undefined") {
+  preloadImages([lowNoteImage, noteImage]);
+}
+
 export function NairaNote(props: NairaNoteProps) {
   const { selected } = props;
   const imageSrc = Cell.derived(() =>
     selected.get() ? noteImage : lowNoteImage
   );
 
-  onSetup(() => {
-    preloadImages([noteImage]);
-  });
-
   return (
-    <WalletCard class="aspect-[2.18] w-full h-auto rounded-[3%] in-data-wallet:-rotate-1">
+    <WalletCard class="aspect-[1.9] w-full h-auto rounded-[3%] in-data-wallet:rotate-2">
       <img
         class="size-full object-cover"
         src={imageSrc}

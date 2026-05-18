@@ -46,6 +46,13 @@ export function WalletShowcase() {
             selectedWalletItem={selectedWalletItem}
           />
         </Wallet.SubPocket>
+        <Wallet.SubPocket index={2}>
+          <WalletItem
+            id="naira-note"
+            item="naira-note"
+            selectedWalletItem={selectedWalletItem}
+          />
+        </Wallet.SubPocket>
       </Wallet.RightFlap>
     </Wallet>
   );
