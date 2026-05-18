@@ -2,7 +2,7 @@
   --pocket-rim-highlights:
     radial-gradient(
       100% 1% at 90% 0%,
-      color-mix(in srgb, var(--wallet-color) 75%, white) 10%,
+      color-mix(in srgb, var(--wallet-color) 55%, white) 10%,
       transparent
     ),
     linear-gradient(

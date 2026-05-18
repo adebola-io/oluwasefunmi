@@ -5,6 +5,7 @@ import { WalletQRCodeCard } from "./WalletQRCodeCard";
 import { IdCard } from "./IdCard";
 import { WalletHoverable } from "./WalletHoverable";
 import { JackOfSpadesCard } from "./JackOfSpadesCard";
+import { NairaNote } from "./NairaNote";
 import { UniqueTransition } from "retend-utils/components";
 
 export type WalletItemType =
@@ -12,7 +13,8 @@ export type WalletItemType =
   | "serene-card"
   | "qr-code-card"
   | "id-card"
-  | "jack-of-spades-card";
+  | "jack-of-spades-card"
+  | "naira-note";
 
 export interface WalletItemProps {
   item: WalletItemType;
@@ -22,6 +24,7 @@ export interface WalletItemProps {
 export const WalletItem = createUnique<WalletItemProps>((props) => {
   const item = Cell.derived(() => props.get().item);
   const selectedWalletItem = props.get().selectedWalletItem;
+  const selected = Cell.derived(() => selectedWalletItem.get() === item.get());
   const pulled = Cell.source(false);
 
   const handlePull = () => {
@@ -46,7 +49,7 @@ export const WalletItem = createUnique<WalletItemProps>((props) => {
     >
       <UniqueTransition
         topLayer
-        transitionDuration="400ms"
+        transitionDuration="300ms"
         transitionTimingFunction="ease"
         respectParentTransform={false}
         onEnd={handleTransitionEnd}
@@ -58,6 +61,7 @@ export const WalletItem = createUnique<WalletItemProps>((props) => {
             "qr-code-card": () => <WalletQRCodeCard />,
             "id-card": () => <IdCard />,
             "jack-of-spades-card": () => <JackOfSpadesCard />,
+            "naira-note": () => <NairaNote selected={selected} />,
           })}
         </div>
       </UniqueTransition>

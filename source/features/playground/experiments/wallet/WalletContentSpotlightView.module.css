@@ -1,0 +1,21 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  place-items: center;
+}
+
+.spotlight {
+  --wallet-flap-width: min(90dvw, 800px);
+
+  width: var(--wallet-flap-width);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  grid-template-rows: minmax(0, 1fr);
+  height: auto;
+  aspect-ratio: 1.75;
+}

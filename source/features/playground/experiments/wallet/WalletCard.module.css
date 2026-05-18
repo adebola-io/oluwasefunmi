@@ -1,11 +1,5 @@
 .card {
-  --base-width: var(--wallet-flap-width, 50dvw);
-  --base-color: var(--wallet-color, gray);
-
   overflow: hidden;
-  border-radius: calc(var(--base-width) * 0.035);
-  border-width: calc(var(--base-width) * 0.0005);
-  border-color: color-mix(var(--base-color) 50%, white);
-  box-shadow: 0px -2px 10px 0 #00000056;
+  box-shadow: 0px -5px 10px 0 #00000056;
   isolation: isolate;
 }

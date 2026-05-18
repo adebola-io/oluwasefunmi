@@ -20,7 +20,10 @@ export function WalletHoverable(props: WalletHoverableProps) {
   }
 
   return (
-    <div class="w-full group not-in-data-wallet:pointer-events-none">
+    <div
+      data-pulled={pulled}
+      class="w-full group not-in-data-wallet:pointer-events-none"
+    >
       <button
         ref={buttonRef}
         type="button"

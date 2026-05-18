@@ -7,7 +7,7 @@ export function WalletShowcase() {
   const { selectedWalletItem, isOpen } = useScopeContext(WalletSelectionScope);
 
   return (
-    <Wallet open={isOpen} texture="saffiano-leather" color="#363e46">
+    <Wallet open={isOpen} texture="saffiano-leather" color="#60205c">
       <Wallet.LeftFlap>
         <Wallet.SubPocket index={0}>
           <WalletItem

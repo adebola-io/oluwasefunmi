@@ -2,6 +2,7 @@ import { If, SourceCell } from "retend";
 import { JSX } from "retend/jsx-runtime";
 import { Teleport } from "retend-web";
 import { WalletItem, WalletItemType } from "./WalletItem";
+import styles from "./WalletContentSpotlightView.module.css";
 
 interface WalletContentSpotlightViewProps {
   item: SourceCell<WalletItemType | null>;
@@ -19,14 +20,8 @@ export function WalletContentSpotlightView(
 
   return (
     <Teleport to="body">
-      <div
-        class="fixed top-0 w-full h-full grid grid-cols-1 grid-rows-1 place-items-center"
-        onClick--self={handleClick}
-      >
-        <div
-          data-wallet-spotlight
-          class="[--wallet-flap-width:min(90dvw,800px)] grid grid-cols-1 grid-rows-1 h-auto aspect-[1.75] w-(--wallet-flap-width)"
-        >
+      <div class={styles.overlay} onClick--self={handleClick}>
+        <div data-wallet-spotlight class={styles.spotlight}>
           {If(item, (i) => (
             <WalletItem id={i} item={i} selectedWalletItem={item} />
           ))}

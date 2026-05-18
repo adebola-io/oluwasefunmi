@@ -248,12 +248,12 @@
   --wallet-open-angle: -0;
   --wallet-easing: ease-out;
   --wallet-easing-bounce: cubic-bezier(0.5, 0, 0.5, 1.6);
-  --wallet-duration: 500ms;
+  --wallet-duration: 300ms;
   --wallet-delay: 0ms;
 
   &[data-open] {
     --wallet-easing: cubic-bezier(0.5, 0, 0.5, 1.4);
-    --wallet-open-angle: -165;
+    --wallet-open-angle: -180;
     --wallet-duration: 450ms;
   }
 
@@ -376,11 +376,11 @@
   width: var(--wallet-flap-width);
   user-select: none;
   transform-style: preserve-3d;
-  transform: translate(var(--wallet-center-shift));
+  transform: translate(var(--wallet-center-shift)) rotateX(10deg);
   rotate: 6deg;
   will-change: transform, scale, rotate;
   transition-duration: var(--wallet-duration);
-  transition-property: transform, scale, rotate;
+  transition-property: transform, scale, rotate, translate;
   transition-timing-function: var(--wallet-easing);
 
   &:hover {
@@ -396,10 +396,8 @@
     rotate: 0deg;
   }
 
-  @media (orientation: portrait) {
-    &[data-open] {
-      rotate: 90deg;
-    }
+  &:has([data-pulled]) {
+    translate: 0 15%;
   }
 
   & > * {
