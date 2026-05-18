@@ -24,7 +24,6 @@ export interface WalletItemProps {
 export const WalletItem = createUnique<WalletItemProps>((props) => {
   const item = Cell.derived(() => props.get().item);
   const selectedWalletItem = props.get().selectedWalletItem;
-  const selected = Cell.derived(() => selectedWalletItem.get() === item.get());
   const pulled = Cell.source(false);
 
   const handlePull = () => {
@@ -61,7 +60,7 @@ export const WalletItem = createUnique<WalletItemProps>((props) => {
             "qr-code-card": () => <WalletQRCodeCard />,
             "id-card": () => <IdCard />,
             "credit-card": () => <CreditCard />,
-            "naira-note": () => <NairaNote selected={selected} />,
+            "naira-note": () => <NairaNote />,
           })}
         </div>
       </UniqueTransition>

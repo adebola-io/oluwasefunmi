@@ -1,39 +1,26 @@
 import type { ImageModule } from "@/shared/types";
 import { preloadImages } from "@/shared/utils/imagePreloader";
-import { Cell } from "retend";
 import { WalletCard } from "./WalletCard";
 
 const imageModules = import.meta.glob<ImageModule>(
-  "/source/features/playground/data/images/naira-note*.webp",
+  "/source/features/playground/data/images/naira-note.webp",
   { eager: true }
 );
 
 const noteImage =
   imageModules["/source/features/playground/data/images/naira-note.webp"]
     .default;
-const lowNoteImage =
-  imageModules["/source/features/playground/data/images/naira-note-low.webp"]
-    .default;
-
-interface NairaNoteProps {
-  selected: Cell<boolean>;
-}
 
 if (typeof window !== "undefined") {
-  preloadImages([lowNoteImage, noteImage]);
+  preloadImages([noteImage]);
 }
 
-export function NairaNote(props: NairaNoteProps) {
-  const { selected } = props;
-  const imageSrc = Cell.derived(() =>
-    selected.get() ? noteImage : lowNoteImage
-  );
-
+export function NairaNote() {
   return (
     <WalletCard class="aspect-[1.9] w-full h-auto rounded-[3%] in-data-wallet:rotate-2">
       <img
         class="size-full object-cover"
-        src={imageSrc}
+        src={noteImage}
         alt="Nigerian naira note"
         draggable={false}
       />
