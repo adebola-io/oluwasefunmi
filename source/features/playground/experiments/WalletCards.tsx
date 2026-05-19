@@ -120,10 +120,10 @@ WalletCards.metadata = {
   description: "",
   ogTitle: "Wallets | Playground",
   ogDescription: "CSS wallets demo with pull out cards.",
-  ogImage: `${SITE_URL}/og/wallet.png`,
+  ogImage: `${SITE_URL}/og/wallets.png`,
   twitterTitle: "Wallets | Playground",
   twitterDescription: "CSS wallets demo with pull out cards.",
-  twitterImage: `${SITE_URL}/og/wallet.png`,
+  twitterImage: `${SITE_URL}/og/wallets.png`,
   viewport: "width=device-width, initial-scale=1.0",
 };
 
