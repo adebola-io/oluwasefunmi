@@ -33,8 +33,10 @@ function ExternalLink(props: ExternalLinkProps) {
 export const playgroundItems: PlaygroundItem[] = [
   {
     path: "/playground/wallet-cards",
-    title: "wallet-cards",
-    description: () => <>Wallet cards interaction and layout experiment.</>,
+    title: "wallets",
+    description: () => (
+      <>A 3D wallet with pull-out cards, IDs, a QR code, and a naira note.</>
+    ),
     icon: () => <WalletCardsIcon />,
   },
   {
