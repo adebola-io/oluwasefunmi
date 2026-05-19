@@ -1,0 +1,9 @@
+.subPocketContent {
+  grid-area: 1/1;
+  width: 100%;
+  padding-inline: 3%;
+
+  [data-wallet-flap="front"] & {
+    transform: scaleX(-1);
+  }
+}

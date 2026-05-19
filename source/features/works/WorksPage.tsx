@@ -4,7 +4,6 @@ import type { RouteComponent } from "retend/router";
 import { LayeredCard } from "@/components/ui/LayeredCard";
 import classes from "./WorksPage.module.css";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { StarShower } from "@/components/ui/StarShower";
 import type { Project } from "@/features/works/types";
 import { projects } from "@/features/works/data/projects";
 import { ArrowIcon } from "@/components/icons/arrow";
@@ -52,7 +51,6 @@ const ProjectItem = (props: ProjectItemProps) => {
 const Works: RouteComponent = () => {
   return (
     <div class={classes.works}>
-      <StarShower />
       <div class={classes.container}>
         <PageHeader
           title="My Works."

@@ -1,8 +1,60 @@
 {
+  "format_on_save": "on",
   "language_servers": [
     "vtsls",
     "!tsgo",
     "oxlint",
+    "oxfmt",
     "tailwindcss-language-server"
-  ]
+  ],
+  "languages": {
+    "JavaScript": {
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": [
+        {
+          "language_server": {
+            "name": "oxfmt"
+          }
+        }
+      ]
+    },
+    "TypeScript": {
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": [
+        {
+          "language_server": {
+            "name": "oxfmt"
+          }
+        }
+      ]
+    },
+    "TSX": {
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": [
+        {
+          "language_server": {
+            "name": "oxfmt"
+          }
+        }
+      ]
+    },
+    "CSS": {
+      "prettier": {
+        "allowed": false
+      },
+      "formatter": [
+        {
+          "language_server": {
+            "name": "oxfmt"
+          }
+        }
+      ]
+    }
+  }
 }

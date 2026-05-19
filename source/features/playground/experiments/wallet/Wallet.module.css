@@ -1,0 +1,631 @@
+.wallet {
+  /* Textures */
+  --wallet-texture-light-7: color-mix(in srgb, white 7%, transparent);
+  --wallet-texture-light-8: color-mix(in srgb, white 8%, transparent);
+  --wallet-texture-light-9: color-mix(in srgb, white 9%, transparent);
+  --wallet-texture-light-10: color-mix(in srgb, white 10%, transparent);
+  --wallet-texture-light-12: color-mix(in srgb, white 12%, transparent);
+  --wallet-texture-light-13: color-mix(in srgb, white 13%, transparent);
+  --wallet-texture-light-14: color-mix(in srgb, white 14%, transparent);
+  --wallet-texture-light-18: color-mix(in srgb, white 18%, transparent);
+  --wallet-texture-light-20: color-mix(in srgb, white 20%, transparent);
+  --wallet-texture-light-24: color-mix(in srgb, white 24%, transparent);
+  --wallet-texture-dark-10: color-mix(in srgb, black 10%, transparent);
+  --wallet-texture-dark-12: color-mix(in srgb, black 12%, transparent);
+  --wallet-texture-dark-13: color-mix(in srgb, black 13%, transparent);
+  --wallet-texture-dark-14: color-mix(in srgb, black 14%, transparent);
+  --wallet-texture-dark-15: color-mix(in srgb, black 15%, transparent);
+  --wallet-texture-dark-16: color-mix(in srgb, black 16%, transparent);
+  --wallet-texture-dark-18: color-mix(in srgb, black 18%, transparent);
+  --wallet-texture-dark-20: color-mix(in srgb, black 20%, transparent);
+  --wallet-texture-dark-22: color-mix(in srgb, black 22%, transparent);
+  --wallet-texture-dark-26: color-mix(in srgb, black 26%, transparent);
+  --wallet-brushed-leather-texture: repeating-linear-gradient(
+    92deg,
+    var(--wallet-texture-light-10) 0 1px,
+    transparent 1px 7px,
+    var(--wallet-texture-dark-12) 7px 8px,
+    transparent 8px 15px
+  );
+  --wallet-crosshatch-weave-texture:
+    repeating-linear-gradient(
+      35deg,
+      var(--wallet-texture-light-10) 0 1px,
+      transparent 1px 8px
+    ),
+    repeating-linear-gradient(
+      -35deg,
+      var(--wallet-texture-dark-16) 0 1px,
+      transparent 1px 8px
+    );
+  --wallet-fine-canvas-texture:
+    repeating-linear-gradient(
+      90deg,
+      var(--wallet-texture-light-8) 0 1px,
+      transparent 1px 4px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      var(--wallet-texture-dark-12) 0 1px,
+      transparent 1px 4px
+    );
+  --wallet-herringbone-twill-texture:
+    repeating-linear-gradient(
+      45deg,
+      var(--wallet-texture-light-10) 0 1px,
+      transparent 1px 7px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0 7px,
+      var(--wallet-texture-dark-15) 7px 8px,
+      transparent 8px 15px
+    );
+  --wallet-windowpane-stitch-texture:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 31px,
+      var(--wallet-texture-light-18) 31px 32px,
+      var(--wallet-texture-dark-22) 32px 33px,
+      transparent 33px 64px
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 23px,
+      var(--wallet-texture-light-14) 23px 24px,
+      var(--wallet-texture-dark-20) 24px 25px,
+      transparent 25px 48px
+    );
+  --wallet-chevron-twill-texture:
+    repeating-linear-gradient(
+      45deg,
+      transparent 0 9px,
+      var(--wallet-texture-light-12) 9px 10px,
+      transparent 10px 18px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      transparent 0 9px,
+      var(--wallet-texture-dark-16) 9px 10px,
+      transparent 10px 18px
+    );
+  --wallet-crocodile-glaze-texture:
+    radial-gradient(
+      34% 42% at 18% 28%,
+      var(--wallet-texture-light-24) 0 2px,
+      transparent 6px 100%
+    ),
+    radial-gradient(
+      46% 58% at 74% 68%,
+      transparent 0 58%,
+      var(--wallet-texture-dark-26) 60% 62%,
+      transparent 64% 100%
+    ),
+    repeating-radial-gradient(
+      ellipse at 42% 45%,
+      transparent 0 10px,
+      var(--wallet-texture-light-10) 11px 12px,
+      var(--wallet-texture-dark-18) 13px 14px,
+      transparent 15px 24px
+    );
+  --wallet-saffiano-leather-texture:
+    repeating-linear-gradient(
+      42deg,
+      var(--wallet-texture-light-14) 0 1px,
+      transparent 1px 5px,
+      var(--wallet-texture-dark-16) 5px 6px,
+      transparent 6px 11px
+    ),
+    repeating-linear-gradient(
+      -42deg,
+      var(--wallet-texture-dark-12) 0 1px,
+      transparent 1px 5px,
+      var(--wallet-texture-light-9) 5px 6px,
+      transparent 6px 11px
+    );
+  --wallet-burnished-patina-texture:
+    radial-gradient(
+      90% 55% at 18% 24%,
+      var(--wallet-texture-light-14),
+      transparent 28%
+    ),
+    radial-gradient(
+      70% 80% at 88% 78%,
+      var(--wallet-texture-dark-18),
+      transparent 35%
+    ),
+    repeating-radial-gradient(
+      circle at 40% 45%,
+      var(--wallet-texture-light-7) 0 1px,
+      transparent 1px 6px,
+      var(--wallet-texture-dark-10) 6px 7px,
+      transparent 7px 14px
+    );
+  --wallet-moire-silk-texture:
+    radial-gradient(
+      80% 120% at 20% 15%,
+      var(--wallet-texture-light-20),
+      transparent 22%
+    ),
+    radial-gradient(
+      90% 140% at 86% 70%,
+      var(--wallet-texture-dark-18),
+      transparent 28%
+    ),
+    repeating-linear-gradient(
+      78deg,
+      transparent 0 5px,
+      var(--wallet-texture-light-12) 5px 6px,
+      transparent 6px 13px,
+      var(--wallet-texture-dark-13) 13px 14px,
+      transparent 14px 21px
+    );
+  --wallet-topographic-grain-texture:
+    repeating-radial-gradient(
+      ellipse at 22% 34%,
+      transparent 0 8px,
+      var(--wallet-texture-light-13) 9px 10px,
+      transparent 11px 18px,
+      var(--wallet-texture-dark-14) 19px 20px,
+      transparent 21px 30px
+    ),
+    repeating-radial-gradient(
+      ellipse at 78% 68%,
+      transparent 0 7px,
+      var(--wallet-texture-dark-15) 8px 9px,
+      transparent 10px 17px
+    );
+  --wallet-kintsugi-crackle-texture:
+    linear-gradient(
+      126deg,
+      transparent 0 43.5%,
+      var(--wallet-texture-light-strong) 44% 44.25%,
+      var(--wallet-texture-dark-strong) 44.6% 44.8%,
+      transparent 45.2% 100%
+    ),
+    repeating-conic-gradient(
+      from 21deg at 34% 42%,
+      transparent 0deg 38deg,
+      var(--wallet-texture-light-medium) 39deg 39.4deg,
+      transparent 40deg 74deg,
+      var(--wallet-texture-dark-medium) 75deg 75.35deg,
+      transparent 76deg 112deg
+    ),
+    radial-gradient(
+      110% 80% at 68% 24%,
+      var(--wallet-texture-light-soft),
+      transparent 32%
+    );
+  --wallet-damascus-fold-texture:
+    repeating-radial-gradient(
+      ellipse at 24% 28%,
+      transparent 0 7px,
+      var(--wallet-texture-light-medium) 8px 9px,
+      transparent 10px 17px,
+      var(--wallet-texture-dark-medium) 18px 19px,
+      transparent 20px 30px
+    ),
+    repeating-radial-gradient(
+      ellipse at 76% 62%,
+      transparent 0 9px,
+      var(--wallet-texture-dark-strong) 10px 11px,
+      transparent 12px 21px,
+      var(--wallet-texture-light-soft) 22px 23px,
+      transparent 24px 34px
+    ),
+    linear-gradient(
+      98deg,
+      var(--wallet-texture-light-soft),
+      transparent 18% 72%,
+      var(--wallet-texture-dark-soft)
+    );
+  --wallet-constellation-jacquard-texture:
+    radial-gradient(
+      circle at 18% 24%,
+      var(--wallet-texture-light-strong) 0 1px,
+      transparent 1.5px 100%
+    ),
+    radial-gradient(
+      circle at 72% 58%,
+      var(--wallet-texture-light-medium) 0 1px,
+      transparent 1.5px 100%
+    ),
+    repeating-linear-gradient(
+      32deg,
+      transparent 0 12px,
+      var(--wallet-texture-light-soft) 13px 14px,
+      transparent 15px 25px,
+      var(--wallet-texture-dark-soft) 26px 27px,
+      transparent 28px 40px
+    );
+  --wallet-texture: var(--wallet-saffiano-leather-texture);
+  /*--wallet-texture-size: 92px 64px, 78px 72px, 46px 38px;*/
+  /*--wallet-texture-size: 32px 22px, 27px 25px, 16px 13px;*/
+  --wallet-texture-size: 32px 22px, 27px 25px, 16px 13px;
+}
+
+.wallet {
+  --wallet-open-angle: -0;
+  --wallet-easing: ease-out;
+  --wallet-easing-bounce: cubic-bezier(0.5, 0, 0.5, 1.6);
+  --wallet-duration: 300ms;
+  --wallet-delay: 0ms;
+
+  &[data-open] {
+    --wallet-easing: cubic-bezier(0.5, 0, 0.5, 1.4);
+    --wallet-open-angle: -180;
+    --wallet-duration: 450ms;
+  }
+
+  --wallet-open-angle-deg: calc(var(--wallet-open-angle) * 1deg);
+  --wallet-flap-connector: calc((var(--wallet-open-angle) * 0.5deg) - 90deg);
+  --wallet-center-shift: calc((-5 / 18) * var(--wallet-open-angle) * 1%);
+
+  @media (orientation: portrait) {
+    --wallet-center-shift: calc((-5.5 / 18) * var(--wallet-open-angle) * 1%);
+  }
+
+  --wallet-flap-connector-inner-sewing-height: 93.5%;
+  --wallet-flap-connector-inner-sewing-width: 50%;
+
+  --wallet-flap-width: min(400px, 45dvw, 60dvh);
+  --wallet-flap-height: calc(var(--wallet-flap-width));
+  --wallet-flap-depth: calc(var(--wallet-flap-width) / 8);
+  --wallet-flap-depth-neg: calc(var(--wallet-flap-depth) * -1);
+  --wallet-flap-thickness: calc(var(--wallet-flap-depth) / 5);
+  --wallet-flap-visible-inner-width: 1.5px;
+  --wallet-flap-roundness: 10%;
+  /*--wallet-color: #af5faf;*/
+  /*--wallet-color: #514180;*/
+  --wallet-color: #546353;
+  /*--wallet-color: maroon;*/
+  /*--wallet-color: rebeccapurple;*/
+  /*--wallet-color: #4f4d4d;*/
+  /*--wallet-color: lightseagreen;*/
+  /*--wallet-color: gray;*/
+  /*--wallet-color: #a5a5a5;*/
+  /*--wallet-color: orange;*/
+  --wallet-texture-light-strong: color-mix(
+    in srgb,
+    white 24%,
+    var(--wallet-color)
+  );
+  --wallet-texture-light-medium: color-mix(
+    in srgb,
+    white 16%,
+    var(--wallet-color)
+  );
+  --wallet-texture-light-soft: color-mix(
+    in srgb,
+    white 7%,
+    var(--wallet-color)
+  );
+  --wallet-texture-dark-strong: color-mix(
+    in srgb,
+    black 16%,
+    var(--wallet-color)
+  );
+  --wallet-texture-dark-medium: color-mix(
+    in srgb,
+    black 14%,
+    var(--wallet-color)
+  );
+  --wallet-texture-dark-soft: color-mix(
+    in srgb,
+    black 10%,
+    var(--wallet-color)
+  );
+  --wallet-sewing-color: color-mix(in srgb, white 40%, var(--wallet-color));
+  --wallet-color-shade: color-mix(in srgb, black 25%, var(--wallet-color));
+  --wallet-color-shade-dark: color-mix(
+    in srgb,
+    black 20%,
+    var(--wallet-color-shade)
+  );
+  --wallet-color-shade-bit-darker: color-mix(
+    in srgb,
+    black 30%,
+    var(--wallet-color-shade)
+  );
+  --wallet-color-shade-darker: color-mix(
+    in srgb,
+    black 60%,
+    var(--wallet-color-shade)
+  );
+  --wallet-color-shade-darkest: color-mix(
+    in srgb,
+    var(--wallet-color-shade-darker) 90%,
+    black
+  );
+  --wallet-color-light-tip: color-mix(
+    in srgb,
+    color-mix(in srgb, white 95%, var(--wallet-color)),
+    transparent 70%
+  );
+  --wallet-flap-connector-width: calc(
+    var(--wallet-flap-depth) + var(--wallet-flap-width)
+  );
+  --wallet-flap-connector-inner-gradient:
+    radial-gradient(
+      circle at -100% 50%,
+      color-mix(in srgb, var(--wallet-color-light-tip) 40%, transparent) 40%,
+      transparent
+    ),
+    var(--wallet-texture);
+  --wallet-flap-connector-inner-gradient-size: auto, var(--wallet-texture-size);
+  --wallet-tip-highlight: linear-gradient(
+    to bottom,
+    var(--wallet-color-light-tip),
+    transparent 1.5%
+  );
+  --front-flap-gradient-2: linear-gradient(
+    to right,
+    var(--wallet-color-shade-dark),
+    transparent 5% 85%,
+    var(--wallet-color-shade) 95%,
+    transparent
+  );
+  --wallet-front-flap-rotation: calc(
+    90deg + calc(var(--wallet-open-angle-deg) / 2)
+  );
+  --wallet-flap-connecter-inner-join-translate: calc(
+    var(--wallet-flap-depth-neg) / 5
+  );
+}
+
+.wallet {
+  display: grid;
+  grid: 1fr / 1fr 1fr;
+  place-items: center;
+  height: var(--wallet-flap-height);
+  width: var(--wallet-flap-width);
+  user-select: none;
+  transform-style: preserve-3d;
+  transform: translate(var(--wallet-center-shift)) rotateX(10deg);
+  rotate: 6deg;
+  will-change: transform, scale, rotate;
+  transition-duration: var(--wallet-duration);
+  transition-property: transform, scale, rotate, translate;
+  transition-timing-function: var(--wallet-easing);
+
+  &:hover {
+    scale: 1.07;
+  }
+
+  &[data-open] {
+    scale: 1.15;
+  }
+
+  &:hover,
+  &[data-open] {
+    rotate: 0deg;
+  }
+
+  &:has([data-pulled]) {
+    translate: 0 15%;
+  }
+
+  & > * {
+    grid-area: 1 / 1;
+  }
+}
+
+.flap {
+  display: grid;
+  grid: 1fr / 1fr;
+  height: var(--wallet-flap-height);
+  width: var(--wallet-flap-width);
+  background-color: var(--wallet-color);
+  background-size: var(--wallet-texture-size), auto;
+  transform-origin: left;
+  border-radius: 0 var(--wallet-flap-roundness) var(--wallet-flap-roundness) 0;
+  transform-style: preserve-3d;
+
+  &::after {
+    display: block;
+    content: "";
+    background-color: var(--wallet-color-shade-darker);
+    grid-area: 1/1;
+    border-radius: inherit;
+  }
+}
+
+.frontFlap {
+  grid-area: 1 / 2;
+  transform-origin: left;
+  transform: rotateY(var(--wallet-front-flap-rotation));
+  background-image:
+    var(--wallet-texture), var(--wallet-tip-highlight),
+    var(--front-flap-gradient-2),
+    radial-gradient(
+      160% 60% at 50% 100%,
+      var(--wallet-color-shade-dark),
+      transparent,
+      transparent
+    ),
+    linear-gradient(
+      to bottom,
+      transparent,
+      color-mix(in srgb, white 9%, var(--wallet-color)) 10%,
+      transparent 25%
+    );
+  background-size: var(--wallet-texture-size), auto, auto, auto, auto;
+  will-change: transform;
+  transition: transform var(--wallet-duration) var(--wallet-delay)
+    var(--wallet-easing);
+
+  &::after {
+    transform: translateZ(calc(var(--wallet-flap-visible-inner-width) * -1));
+  }
+}
+
+.backFlap {
+  justify-self: start;
+
+  &::after {
+    display: none;
+  }
+}
+
+.flapConnector {
+  display: grid;
+  grid: 1fr / 1fr 1fr;
+  height: 100%;
+  width: var(--wallet-flap-connector-width);
+  justify-self: start;
+  transform-origin: left;
+  transform: rotateY(var(--wallet-flap-connector));
+  transform-style: preserve-3d;
+  will-change: transform;
+  transition: transform var(--wallet-duration) var(--wallet-delay)
+    var(--wallet-easing);
+
+  &::before {
+    display: block;
+    content: "";
+    grid-area: 1 / 1;
+    transform: translateZ(var(--wallet-flap-connecter-inner-join-translate));
+    background-color: var(--wallet-color-shade-bit-darker);
+    background-image: var(--wallet-flap-connector-inner-gradient);
+    background-size: var(--wallet-flap-connector-inner-gradient-size);
+  }
+
+  & > *:not(.flap) {
+    display: grid;
+    grid: 1fr / 1fr;
+    grid-area: 1 / 1;
+
+    &:not(.flapConnectorInner) {
+      background-color: var(--wallet-color-shade-dark);
+      background-image: var(--wallet-texture), var(--wallet-tip-highlight);
+      background-size: var(--wallet-texture-size), auto;
+    }
+  }
+}
+
+.flapConnectorRight {
+  justify-self: end;
+  transform-origin: right;
+  transform: rotateY(45deg);
+  width: calc(100% / 3);
+  overflow: hidden;
+
+  .flapConnectorInnerSewing {
+    height: 95%;
+    transform: none;
+  }
+}
+
+.flapConnectorMiddle {
+  width: calc(100% / 1.7);
+  height: 100%;
+  justify-self: center;
+  transform: translateZ(calc(var(--wallet-flap-depth) / 4));
+}
+
+.flapConnectorLeft {
+  display: grid;
+  grid-area: 1 / 1;
+  width: calc(100% / 3);
+  transform-origin: left;
+  transform: rotateY(-45deg);
+}
+
+.flapConnectorInner {
+  background-image: radial-gradient(
+    30% 100%,
+    color-mix(in srgb, var(--wallet-color-light-tip) 50%, transparent),
+    transparent
+  );
+  transform: translateZ(calc(var(--wallet-flap-depth-neg) / 4));
+  --wallet-sewing-color: color-mix(in srgb, white 28%, var(--wallet-color));
+}
+
+.flapConnectorInnerMainSewing {
+  display: grid;
+  grid: 1fr / 1fr;
+  grid-area: 1 / 1;
+  width: 100%;
+  height: 100%;
+  place-self: center;
+  place-items: center;
+  background-image: linear-gradient(
+    to left,
+    var(--wallet-color-shade-darker),
+    transparent
+  );
+}
+
+.flapConnectorInnerSewing {
+  grid-area: 1 / 1;
+  height: var(--wallet-flap-connector-inner-sewing-height);
+  align-self: center;
+  justify-self: center;
+  transform-origin: bottom;
+  transform: scaleY(1.006);
+}
+
+.flapConnectorInnerSmallerSewingContainer {
+  display: grid;
+  grid: 1fr / 1fr;
+  grid-area: 1/1;
+  height: 92%;
+  width: 100%;
+  align-self: end;
+  background-color: var(--wallet-color-shade-bit-darker);
+  background-image:
+    var(--wallet-texture),
+    linear-gradient(
+      to bottom,
+      transparent,
+      var(--wallet-color-shade-bit-darker) 3%,
+      transparent 3%
+    ),
+    radial-gradient(
+      60% 1.5% at 50% 0%,
+      color-mix(in srgb, var(--wallet-color-light-tip) 95%, white),
+      transparent
+    ),
+    radial-gradient(
+      50% 100%,
+      color-mix(in srgb, var(--wallet-color) 95%, white),
+      transparent
+    );
+  background-size: var(--wallet-texture-size), auto, auto, auto;
+
+  &::after {
+    display: block;
+    content: "";
+    grid-area: 1 / 1;
+    background-image:
+      linear-gradient(
+        to left,
+        var(--wallet-color-shade-darker) 12%,
+        transparent 12%
+      ),
+      radial-gradient(
+        60% 70% at 90% 50%,
+        color-mix(in srgb, var(--wallet-color-shade-darker), black),
+        transparent
+      );
+    height: 100%;
+    align-self: end;
+  }
+}
+
+.flapConnectorInnerSmallerSewing {
+  display: grid;
+  grid: 1fr / 1fr;
+  grid-area: 1 / 1;
+  align-self: center;
+  width: 100%;
+  height: 93%;
+}
+
+.flapSewing {
+  grid-area: 1/1;
+  height: 95%;
+  width: 98%;
+  align-self: center;
+  justify-self: start;
+}

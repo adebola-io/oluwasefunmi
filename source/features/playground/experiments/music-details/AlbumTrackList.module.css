@@ -81,6 +81,24 @@
     background-color 180ms ease,
     color 180ms ease,
     scale 180ms ease;
+
+  &:hover {
+    color: color-mix(in srgb, var(--cover-color) 8%, white);
+  }
+
+  &:hover .trackName,
+  &:focus-visible .trackName {
+    color: color-mix(in srgb, var(--cover-color) 10%, white);
+  }
+
+  &:focus-visible {
+    outline: 1px solid color-mix(in srgb, var(--cover-color) 46%, white);
+    outline-offset: 2px;
+  }
+
+  &:active {
+    scale: 0.96;
+  }
 }
 
 .trackNumber,
@@ -98,24 +116,6 @@
   letter-spacing: -0.02em;
   text-overflow: ellipsis;
   white-space: nowrap;
-}
-
-.trackButton:hover {
-  color: color-mix(in srgb, var(--cover-color) 8%, white);
-}
-
-.trackButton:hover .trackName,
-.trackButton:focus-visible .trackName {
-  color: color-mix(in srgb, var(--cover-color) 10%, white);
-}
-
-.trackButton:focus-visible {
-  outline: 1px solid color-mix(in srgb, var(--cover-color) 46%, white);
-  outline-offset: 2px;
-}
-
-.trackButton:active {
-  scale: 0.96;
 }
 
 .active {

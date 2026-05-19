@@ -1,6 +1,5 @@
 import { Cell } from "retend";
 import { useRouteQuery, useRouter } from "retend/router";
-import { useMatchMedia } from "retend-utils/hooks";
 import type { Bookmark } from "@/features/bookmarks/types";
 import { BOOKMARKS_API_BASE_PATH } from "@/features/bookmarks/api/bookmarks";
 
@@ -18,26 +17,18 @@ export function useBookmarks() {
   const router = useRouter();
   const routeQuery = useRouteQuery();
   const routeSearch = routeQuery.get("q");
-  const routeTag = routeQuery.get("tag");
   const query = Cell.source(routeSearch.get() ?? "");
-  const tag = Cell.source(routeTag.get() ?? "");
   const debouncedQuery = Cell.source(query.get());
   const page = Cell.source(1);
   const loaded = Cell.source(false);
   const state = Cell.source(emptyBookmarksState);
   let searchTimeout = 0;
 
-  const isMobile = useMatchMedia("(max-width: 768px)");
-  const isTablet = useMatchMedia("(max-width: 1024px)");
-  const isDesktopSmall = useMatchMedia("(max-width: 1160px)");
-
   const response = Cell.derivedAsync(async (get, signal) => {
     const params = new URLSearchParams();
     const q = get(debouncedQuery).trim();
-    const t = get(tag);
     params.set("page", String(get(page)));
     if (q) params.set("q", q);
-    if (t) params.set("tag", t);
 
     try {
       const response = await fetch(
@@ -65,17 +56,9 @@ export function useBookmarks() {
       });
     }
   });
-
-  const layout = Cell.derived(() => {
-    if (isMobile.get()) return { columns: 1, width: "100%" };
-    if (isTablet.get()) return { columns: 2, width: "340px" };
-    if (isDesktopSmall.get()) return { columns: 3, width: "310px" };
-    return { columns: 4, width: "266px" };
-  });
-  const updateUrl = (q: string, t: string) => {
+  const updateUrl = (q: string) => {
     const params = new URLSearchParams();
     if (q) params.set("q", q);
-    if (t) params.set("tag", t);
     let href = "/bookmarks";
     const search = params.toString();
     if (search) {
@@ -89,19 +72,12 @@ export function useBookmarks() {
       const val = e.currentTarget.value;
       query.set(val);
       page.set(1);
-      updateUrl(val, tag.get());
+      updateUrl(val);
       window.clearTimeout(searchTimeout);
       searchTimeout = window.setTimeout(() => {
         debouncedQuery.set(val);
       }, 250);
     }
-  };
-
-  const handleTagSelect = (t: string) => {
-    const nextTag = tag.get() === t ? "" : t;
-    tag.set(nextTag);
-    page.set(1);
-    updateUrl(query.get(), nextTag);
   };
 
   const handlePagination = (delta: number) => {
@@ -115,19 +91,12 @@ export function useBookmarks() {
     query.set(value ?? "");
     debouncedQuery.set(value ?? "");
   });
-  routeTag.listen((value) => {
-    tag.set(value ?? "");
-  });
-
   return {
     state,
     loaded,
     pending: response.pending,
     query,
-    tag,
-    layout,
     handleSearch,
-    handleTagSelect,
     handlePagination,
   };
 }

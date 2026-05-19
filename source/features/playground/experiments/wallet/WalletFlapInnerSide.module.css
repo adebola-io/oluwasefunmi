@@ -1,0 +1,256 @@
+.flapInnerSide {
+  --pocket-rim-highlights:
+    radial-gradient(
+      100% 1% at 90% 0%,
+      color-mix(in srgb, var(--wallet-color) 55%, white) 10%,
+      transparent
+    ),
+    linear-gradient(
+      transparent,
+      var(--wallet-color-shade-bit-darker) 1.5%,
+      transparent 2.5%
+    ),
+    radial-gradient(
+      100% 1% at 80% 1.75%,
+      color-mix(in srgb, var(--wallet-color) 40%, white) 10%,
+      transparent
+    );
+  --wallet-sewing-color: color-mix(in srgb, white 28%, var(--wallet-color));
+
+  --wallet-color-light-tip: color-mix(
+    in srgb,
+    color-mix(in srgb, white 81%, var(--wallet-color)),
+    transparent 67%
+  );
+  --wallet-pocket-tip-highlight: linear-gradient(
+    to bottom,
+    var(--wallet-color-light-tip),
+    transparent 2%
+  );
+  --wallet-pocket-lighting: none;
+  --wallet-inner-texture-opacity: 0.42;
+  --wallet-inner-texture-blur: 0.45px;
+}
+
+.flapInnerSide {
+  display: grid;
+  border-width: inherit;
+  border-radius: inherit;
+  grid-area: 1/1;
+  background-color: var(--wallet-color-shade);
+
+  &::after {
+    display: block;
+    content: "";
+    grid-area: 1/1;
+    border-radius: inherit;
+    background-image: var(--wallet-texture);
+    background-size: var(--wallet-texture-size);
+    filter: blur(var(--wallet-inner-texture-blur));
+    opacity: var(--wallet-inner-texture-opacity);
+    scale: 1.01;
+  }
+
+  &::before {
+    display: block;
+    content: "";
+    grid-area: 1/1;
+    border-radius: inherit;
+  }
+
+  [data-wallet-flap="front"] & {
+    filter: brightness(0.7);
+    transform: translateZ(calc(var(--wallet-flap-thickness) * -1));
+
+    &::before {
+      background-color: color-mix(
+        in srgb,
+        var(--wallet-color-shade) 50%,
+        black
+      );
+      background-image: linear-gradient(
+        to bottom,
+        transparent 5.5%,
+        color-mix(in srgb, var(--wallet-color), black) 8%,
+        transparent
+      );
+    }
+  }
+
+  [data-wallet-flap="back"] & {
+    background-image: linear-gradient(
+      to right,
+      var(--wallet-color-shade-bit-darker),
+      transparent
+    );
+    transform: translateZ(var(--wallet-flap-thickness));
+
+    &::before {
+      background-image:
+        linear-gradient(
+          -160deg,
+          var(--wallet-color-light-tip) 1%,
+          transparent 5%
+        ),
+        linear-gradient(
+          to bottom,
+          transparent 5.5%,
+          color-mix(in srgb, var(--wallet-color-shade), black) 8%,
+          transparent
+        );
+    }
+  }
+}
+
+.mainPocket {
+  display: grid;
+  grid: 1fr / 1fr;
+  grid-area: 1 / 1;
+}
+
+.mainPocketCovering {
+  z-index: 1;
+  display: grid;
+  grid: 1fr / 1fr;
+  height: 92%;
+  align-self: end;
+  grid-area: 1 / 1;
+  border-radius: 0 calc(var(--wallet-flap-roundness) / 2)
+    var(--wallet-flap-roundness) 0;
+  background-color: var(--wallet-color-shade);
+  background-image: var(--wallet-texture);
+  background-size: var(--wallet-texture-size);
+
+  [data-wallet-flap="front"] & {
+    border-color: var(--wallet-color-shade);
+    border-width: 0px 0px 0px calc(var(--wallet-flap-width) * 0.02);
+  }
+
+  [data-wallet-flap="back"] &::before {
+    display: block;
+    content: "";
+    border-radius: inherit;
+    background-image:
+      linear-gradient(
+        to left,
+        color-mix(var(--wallet-color-light-tip) 30%, transparent),
+        transparent 3%
+      ),
+      radial-gradient(
+        100% 50% at 50% 110%,
+        var(--wallet-color-shade-bit-darker),
+        transparent
+      );
+  }
+}
+
+.subPockets {
+  position: relative;
+  display: grid;
+  grid: 1fr / 1fr;
+  grid-area: 1 / 1;
+}
+
+.pocketSewing {
+  position: absolute;
+  bottom: 3%;
+  left: 2.5%;
+  z-index: 1;
+  width: 95%;
+  pointer-events: none;
+  transform-origin: bottom;
+  scale: 1 1.14;
+}
+
+.subPocket {
+  position: absolute;
+  bottom: 8%;
+  z-index: 2;
+  display: grid;
+  grid: 1fr / 1fr;
+  justify-self: center;
+  width: 93%;
+
+  &:not(.thirdSubPocket) {
+    & > *:not(.subPocketCovering) {
+      padding-top: 9%;
+    }
+  }
+
+  & > *:not(.subPocketCovering) {
+    position: absolute;
+  }
+}
+
+.subPocketCovering {
+  z-index: 2;
+  display: grid;
+  grid-area: 1 / 1;
+  align-self: end;
+  height: 88%;
+  overflow: hidden;
+  pointer-events: none;
+
+  &::before,
+  &::after {
+    display: block;
+    content: "";
+    grid-area: 1 / 1;
+    height: 90%;
+    align-self: end;
+    pointer-events: auto;
+  }
+
+  &::before {
+    background-color: var(--wallet-color-shade);
+    background-image: var(--wallet-texture);
+    background-size: var(--wallet-texture-size);
+  }
+
+  &::after {
+    width: 100%;
+    box-shadow: 0 -1px 4px 0 black;
+    background-image: var(--pocket-rim-highlights);
+  }
+}
+
+.subPocketSewing {
+  z-index: 4;
+  top: 23%;
+  grid-area: 1 / 1;
+}
+
+.firstSubPocket {
+  height: 88%;
+  max-height: 88%;
+}
+
+.secondSubPocket {
+  height: 75%;
+  max-height: 75%;
+}
+
+.thirdSubPocket {
+  height: 60%;
+  max-height: 60%;
+
+  .subPocketCovering {
+    [data-wallet-flap="back"] &::after {
+      background-image:
+        var(--pocket-rim-highlights),
+        linear-gradient(
+          to left,
+          color-mix(in srgb, var(--wallet-color-shade) 60%, black),
+          color-mix(in srgb, var(--wallet-color-light-tip) 10%, transparent) 10%,
+          transparent 20% 90%,
+          color-mix(in srgb, var(--wallet-color-light-tip) 15%, transparent),
+          transparent
+        ),
+        radial-gradient(
+          circle at 50% 140%,
+          var(--wallet-color-shade-dark),
+          transparent
+        );
+    }
+  }
+}

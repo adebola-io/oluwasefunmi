@@ -1,0 +1,119 @@
+.overlay {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid: 1fr / 1fr;
+  place-items: center;
+}
+
+.spotlight {
+  --wallet-flap-width: min(90dvw, 800px);
+  --perspective: 1900px;
+  --rotation: 10deg;
+  --rotation-mid: calc(var(--rotation) / 2);
+  --rotation-mid-neg: calc(var(--rotation-mid) * -1);
+  --rotation-neg: calc(var(--rotation) * -1);
+
+  width: var(--wallet-flap-width);
+  display: grid;
+  grid: 1fr / 1fr;
+  height: fit-content;
+  transition: transform 300ms ease;
+  transform: perspective(var(--perspective));
+  will-change: transform;
+}
+
+.itemContainer {
+  grid-area: 1 / 1;
+}
+
+.hoverTarget {
+  display: grid;
+  grid: repeat(4, 1fr) / repeat(4, 1fr);
+  grid-area: 1 / 1;
+  isolation: isolate;
+}
+
+.hoverBox {
+  .spotlight:has(&:nth-child(1):hover) {
+    transform: perspective(var(--perspective)) rotateY(var(--rotation))
+      rotateX(var(--rotation-neg));
+  }
+
+  .spotlight:has(&:nth-child(2):hover) {
+    transform: perspective(var(--perspective)) rotateY(var(--rotation-mid))
+      rotateX(var(--rotation-neg));
+  }
+
+  .spotlight:has(&:nth-child(3):hover) {
+    transform: perspective(var(--perspective)) rotateY(var(--rotation-mid-neg))
+      rotateX(var(--rotation-neg));
+  }
+
+  .spotlight:has(&:nth-child(4):hover) {
+    transform: perspective(var(--perspective)) rotateY(var(--rotation-neg))
+      rotateX(var(--rotation-neg));
+  }
+
+  .spotlight:has(&:nth-child(5):hover) {
+    transform: perspective(var(--perspective)) rotateY(var(--rotation))
+      rotateX(var(--rotation-mid-neg));
+  }
+
+  .spotlight:has(&:nth-child(6):hover) {
+    transform: perspective(var(--perspective)) rotateY(var(--rotation-mid))
+      rotateX(var(--rotation-mid-neg));
+  }
+
+  .spotlight:has(&:nth-child(7):hover) {
+    transform: perspective(var(--perspective)) rotateY(var(--rotation-mid-neg))
+      rotateX(var(--rotation-mid-neg));
+  }
+
+  .spotlight:has(&:nth-child(8):hover) {
+    transform: perspective(var(--perspective)) rotateY(var(--rotation-neg))
+      rotateX(var(--rotation-mid-neg));
+  }
+
+  .spotlight:has(&:nth-child(9):hover) {
+    transform: perspective(var(--perspective)) rotateY(var(--rotation))
+      rotateX(var(--rotation-mid));
+  }
+
+  .spotlight:has(&:nth-child(10):hover) {
+    transform: perspective(var(--perspective)) rotateY(var(--rotation-mid))
+      rotateX(var(--rotation-mid));
+  }
+
+  .spotlight:has(&:nth-child(11):hover) {
+    transform: perspective(var(--perspective)) rotateY(var(--rotation-mid-neg))
+      rotateX(var(--rotation-mid));
+  }
+
+  .spotlight:has(&:nth-child(12):hover) {
+    transform: perspective(var(--perspective)) rotateY(var(--rotation-neg))
+      rotateX(var(--rotation-mid));
+  }
+
+  .spotlight:has(&:nth-child(13):hover) {
+    transform: perspective(var(--perspective)) rotateY(var(--rotation))
+      rotateX(var(--rotation));
+  }
+
+  .spotlight:has(&:nth-child(14):hover) {
+    transform: perspective(var(--perspective)) rotateY(var(--rotation-mid))
+      rotateX(var(--rotation));
+  }
+
+  .spotlight:has(&:nth-child(15):hover) {
+    transform: perspective(var(--perspective)) rotateY(var(--rotation-mid-neg))
+      rotateX(var(--rotation));
+  }
+
+  .spotlight:has(&:nth-child(16):hover) {
+    transform: perspective(var(--perspective)) rotateY(var(--rotation-neg))
+      rotateX(var(--rotation));
+  }
+}

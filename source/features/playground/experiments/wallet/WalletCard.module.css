@@ -1,0 +1,5 @@
+.card {
+  overflow: hidden;
+  box-shadow: 0px -5px 10px 0 #00000056;
+  isolation: isolate;
+}

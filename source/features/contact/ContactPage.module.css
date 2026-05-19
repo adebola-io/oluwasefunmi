@@ -32,10 +32,10 @@
   border-bottom: 1px solid var(--border-subtle);
   padding-bottom: 0.5rem;
   transition: border-color 0.2s;
-}
 
-.emailLink:hover {
-  border-color: var(--text-primary);
+  &:hover {
+    border-color: var(--text-primary);
+  }
 }
 
 .resume {
@@ -58,8 +58,8 @@
   display: flex;
   align-items: center;
   gap: 0.5rem;
-}
 
-.socialLink:hover {
-  color: var(--text-primary);
+  &:hover {
+    color: var(--text-primary);
+  }
 }

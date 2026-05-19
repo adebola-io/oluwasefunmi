@@ -35,13 +35,13 @@
   justify-content: center;
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
-}
 
-.iconButton:hover {
-  background: rgba(255, 255, 255, 0.1);
-  color: #fff;
-  transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  &:hover {
+    background: rgba(255, 255, 255, 0.1);
+    color: #fff;
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 255, 255, 0.1);
+  }
 }
 
 .iconButton.active {
@@ -75,34 +75,34 @@
 .dimmed {
   opacity: 0.2;
   transition: opacity 0.5s var(--ease-spring);
-}
 
-.dimmed:hover,
-.dimmed:focus-within {
-  opacity: 1;
+  &:hover,
+  &:focus-within {
+    opacity: 1;
+  }
 }
 
 .scrollableContent {
   padding: 1.5rem;
   overflow-y: auto;
   max-height: 70vh;
-}
 
-.scrollableContent::-webkit-scrollbar {
-  width: 4px;
-}
+  &::-webkit-scrollbar {
+    width: 4px;
+  }
 
-.scrollableContent::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.2);
-  border-radius: 4px;
+  &::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 4px;
+  }
 }
 
 .section {
   margin-bottom: 2rem;
-}
 
-.section:last-child {
-  margin-bottom: 0;
+  &:last-child {
+    margin-bottom: 0;
+  }
 }
 
 .section h3 {
@@ -136,11 +136,11 @@
   cursor: pointer;
   transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
   font-weight: 500;
-}
 
-.segmentButton:hover {
-  color: #ccc;
-  background: rgba(255, 255, 255, 0.05);
+  &:hover {
+    color: #ccc;
+    background: rgba(255, 255, 255, 0.05);
+  }
 }
 
 .segmentButton.activeSegment {

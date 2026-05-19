@@ -34,6 +34,18 @@
   opacity: var(--item-opacity);
   animation: item-enter 0.5s var(--ease-spring) backwards;
   animation-delay: calc(var(--stagger, 0) * 80ms + 100ms);
+
+  &:first-child .markerRing {
+    border-color: var(--accent-color);
+  }
+
+  &:first-child .marker {
+    background-color: var(--accent-color);
+  }
+
+  &:last-child .line {
+    display: none;
+  }
 }
 
 @keyframes item-enter {
@@ -65,7 +77,6 @@
   justify-content: center;
   border: 1.5px solid var(--border-subtle);
   flex-shrink: 0;
-  transition: border-color 0.3s ease;
 }
 
 .marker {
@@ -73,40 +84,13 @@
   height: 8px;
   border-radius: 50%;
   background-color: var(--border-subtle);
-  transition:
-    background-color 0.3s ease,
-    box-shadow 0.3s ease;
 }
 
-.item:first-child .markerRing {
-  border-color: var(--accent-color);
-}
-
-.item:first-child .marker {
-  background-color: var(--accent-color);
-  box-shadow: 0 0 8px color-mix(in srgb, var(--accent-color) 50%, transparent);
-  animation: marker-pulse 2.5s ease-in-out infinite;
-}
-
-@keyframes marker-pulse {
-  0%,
-  100% {
-    box-shadow: 0 0 4px color-mix(in srgb, var(--accent-color) 30%, transparent);
-  }
-  50% {
-    box-shadow: 0 0 12px
-      color-mix(in srgb, var(--accent-color) 60%, transparent);
-  }
-}
 .line {
   width: 1px;
   flex: 1;
   min-height: 8px;
   background: linear-gradient(to bottom, var(--border-subtle), transparent);
-}
-
-.item:last-child .line {
-  display: none;
 }
 
 .itemContent {

@@ -1,0 +1,154 @@
+.card {
+  position: relative;
+  background:
+    repeating-linear-gradient(
+      132deg,
+      #050506 0 2.8cqw,
+      color-mix(in srgb, var(--base-color) 5%, #08070b) 4.6cqw,
+      color-mix(in srgb, var(--base-color) 3%, #060609) 7.2cqw,
+      #050506 11.4cqw
+    ),
+    repeating-linear-gradient(
+      42deg,
+      transparent 0 5.6cqw,
+      color-mix(in srgb, white 2%, transparent) 7.4cqw,
+      transparent 10.8cqw
+    ),
+    repeating-linear-gradient(
+      90deg,
+      color-mix(in srgb, black 10%, transparent) 0 0.45cqw,
+      transparent 0.45cqw 3.6cqw
+    ),
+    linear-gradient(145deg, #050506, #0b0a10 52%, #050506);
+  aspect-ratio: 1.75;
+  display: grid;
+  grid: 1fr / 40% 1fr;
+  gap: 2%;
+  padding: 5%;
+  container-name: id-card;
+  container-type: inline-size;
+  font-size: 1cqw;
+  text-align: start;
+  border-width: 0.1cqw;
+  border-color: white;
+  border-radius: 0.7cqw;
+  --base-color: #ab96e1;
+
+  section {
+    display: grid;
+
+    &:first-child {
+      border-width: 0 0.5cqw 0 0;
+      place-content: center;
+      border-color: color-mix(in srgb, var(--base-color) 70%, transparent);
+    }
+
+    &:nth-child(2) {
+      padding-left: 10%;
+    }
+  }
+}
+
+.details {
+  align-content: center;
+  gap: 3%;
+  min-width: 0;
+}
+
+.avatarContainer {
+  border-radius: 50%;
+  height: auto;
+  width: 50%;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 0.3cqw solid;
+  margin-bottom: 5%;
+}
+
+.name {
+  font-weight: 600;
+  font-size: 4.75cqw;
+  line-height: 1.2;
+  padding-block: 3%;
+}
+
+.title {
+  text-transform: uppercase;
+  font-size: 3cqw;
+  color: color-mix(in srgb, var(--base-color) 75%, transparent);
+}
+
+.githubIconLink {
+  display: grid;
+  grid: 1fr / auto 1fr;
+  gap: 5%;
+  align-items: center;
+  font-size: 2.5cqw;
+  padding-top: 3%;
+}
+
+.githubIconContainer {
+  display: grid;
+  place-items: center;
+  place-content: center;
+  height: auto;
+  aspect-ratio: 1;
+  width: 4cqw;
+
+  svg {
+    aspect-ratio: 1;
+    width: auto;
+    height: 70%;
+
+    path {
+      stroke-width: 1.5;
+    }
+  }
+}
+
+.idNumber {
+  display: grid;
+  justify-items: end;
+  position: absolute;
+  right: 5%;
+  top: 5%;
+}
+
+.idNumberLabel {
+  font-size: 2.3cqw;
+  color: color-mix(in srgb, var(--base-color) 75%, transparent);
+}
+
+.idNumberValue {
+  font-size: 2.5cqw;
+}
+
+.description {
+  font-size: 3cqw;
+  line-height: 1.35;
+  padding-bottom: 4%;
+  border-bottom: 0.2cqh solid
+    color-mix(in srgb, var(--base-color) 60%, transparent);
+}
+
+.detailList {
+  display: grid;
+  gap: 30%;
+}
+
+.detailItem {
+  display: grid;
+  grid-template-columns: 3cqw minmax(0, 1fr);
+  align-items: center;
+  gap: 4%;
+  font-size: 2.7cqw;
+  line-height: 1.1;
+  min-width: 0;
+
+  svg {
+    aspect-ratio: 1;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 1;
+  }
+}

@@ -52,74 +52,6 @@
   flex-shrink: 0;
 }
 
-.tagsWrapper {
-  flex: 1;
-  display: flex;
-  justify-content: flex-end;
-  overflow: hidden;
-}
-
-.tagsContainer {
-  display: flex;
-  gap: 0.75rem;
-  overflow-x: auto;
-  padding: 0.5rem 1rem;
-  scrollbar-width: none;
-  -ms-overflow-style: none;
-  mask-image: linear-gradient(
-    to right,
-    transparent,
-    black 5%,
-    black 95%,
-    transparent
-  );
-}
-
-.tagsContainer::-webkit-scrollbar {
-  display: none;
-}
-
-.tagPill {
-  white-space: nowrap;
-  padding: 0.6rem 1.25rem;
-  border-radius: 100px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  cursor: pointer;
-  background: color-mix(
-    in srgb,
-    var(--tag-color, rgba(255, 255, 255, 0.08)),
-    transparent 92%
-  );
-  border: 1px solid
-    color-mix(
-      in srgb,
-      var(--tag-color, rgba(255, 255, 255, 0.15)),
-      transparent 80%
-    );
-  color: var(--text-secondary);
-  transition: all 0.25s var(--ease-spring);
-}
-
-.tagPill:hover {
-  background: color-mix(
-    in srgb,
-    var(--tag-color, rgba(255, 255, 255, 0.12)),
-    transparent 85%
-  );
-  border-color: var(--tag-color, rgba(255, 255, 255, 0.3));
-  color: var(--text-primary);
-  transform: translateY(-1px);
-}
-
-.tagPill.active {
-  background: var(--tag-color);
-  border-color: var(--tag-color);
-  color: var(--tag-text, white);
-  box-shadow: 0 4px 16px color-mix(in srgb, var(--tag-color), transparent 80%);
-  transform: translateY(-1px);
-}
-
 .searchIcon {
   position: absolute;
   left: 1.5rem;
@@ -141,24 +73,17 @@
   border-radius: 16px;
   font-family: var(--font-family);
   font-size: 1.05rem;
-  box-shadow:
-    0 2px 4px rgba(0, 0, 0, 0.1),
-    0 4px 12px rgba(0, 0, 0, 0.1);
   transition:
     background 0.3s var(--ease-spring),
     border-color 0.3s var(--ease-spring),
-    box-shadow 0.3s var(--ease-spring),
     transform 0.3s var(--ease-spring);
-}
 
-.search:focus {
-  outline: none;
-  background: rgba(255, 255, 255, 0.12);
-  border-color: rgba(255, 255, 255, 0.4);
-  box-shadow:
-    0 0 0 4px rgba(255, 255, 255, 0.08),
-    0 8px 24px rgba(0, 0, 0, 0.2);
-  transform: translateY(-1px);
+  &:focus {
+    outline: none;
+    background: rgba(255, 255, 255, 0.12);
+    border-color: rgba(255, 255, 255, 0.4);
+    transform: translateY(-1px);
+  }
 }
 
 .pagination {
@@ -179,20 +104,20 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s var(--ease-spring);
-}
 
-.paginationButton:hover:not(:disabled) {
-  background: rgba(255, 255, 255, 0.1);
-  border-color: rgba(255, 255, 255, 0.3);
-}
+  &:hover:not(:disabled) {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.3);
+  }
 
-.paginationButton:active:not(:disabled) {
-  transform: scale(0.96);
-}
+  &:active:not(:disabled) {
+    transform: scale(0.96);
+  }
 
-.paginationButton:disabled {
-  opacity: 0.3;
-  cursor: not-allowed;
+  &:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+  }
 }
 
 .pageLabel {
@@ -200,13 +125,6 @@
   color: var(--text-secondary);
   font-variant-numeric: tabular-nums;
   letter-spacing: 0.02em;
-}
-
-.centeredGrid {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  transition: opacity 0.2s var(--ease-spring);
 }
 
 .dimmed {
@@ -219,9 +137,17 @@
 }
 
 .board {
-  width: fit-content;
-  max-width: 100%;
-  margin: 0 auto;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(266px, 100%), 1fr));
+  gap: 1.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.item {
+  min-width: 0;
 }
 
 .bookmarkCard {
@@ -235,20 +161,18 @@
   border-radius: 12px;
   border-width: 1px;
   border-color: var(--layered-border-color);
-  transition:
-    border-color 0.3s var(--ease-spring),
-    box-shadow 0.3s var(--ease-spring);
-}
+  transition: border-color 0.3s var(--ease-spring);
 
-.bookmarkCard::before {
-  border-radius: 12px;
-}
+  &::before {
+    border-radius: 12px;
+  }
 
-.bookmarkCard:hover,
-.bookmarkCard:hover::before,
-.bookmarkCard:active,
-.bookmarkCard:active::before {
-  transform: none;
+  &:hover,
+  &:hover::before,
+  &:active,
+  &:active::before {
+    transform: none;
+  }
 }
 
 .imageContainer {
@@ -405,29 +329,7 @@
     flex-shrink: 1;
   }
 
-  .tagsWrapper {
-    justify-content: flex-start;
-  }
-
-  .tagsContainer {
-    mask-image: linear-gradient(
-      to right,
-      transparent,
-      black 10%,
-      black 90%,
-      transparent
-    );
-    margin: 0 -1.5rem;
-    padding: 0.5rem 1.5rem;
-  }
-
   .pagination {
     justify-content: space-between;
-  }
-
-  .board {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem;
   }
 }

@@ -88,6 +88,15 @@
   transition:
     transform 0.3s var(--ease-spring),
     opacity 0.3s var(--ease-spring);
+
+  &:hover .projectIcon {
+    opacity: 1;
+  }
+
+  &:hover .arrowIcon {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .projectIcon {
@@ -97,10 +106,6 @@
   color: var(--primary-color);
   opacity: 0.8;
   transition: opacity 0.3s ease;
-}
-
-.projectCard:hover .projectIcon {
-  opacity: 1;
 }
 
 .projectTitle {
@@ -122,11 +127,6 @@
     transform 0.3s var(--ease-spring),
     opacity 0.3s var(--ease-spring);
   color: var(--primary-color);
-}
-
-.projectCard:hover .arrowIcon {
-  opacity: 1;
-  transform: translateX(0);
 }
 
 .projectDescription {

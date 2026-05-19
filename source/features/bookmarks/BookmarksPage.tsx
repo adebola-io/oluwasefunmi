@@ -1,14 +1,11 @@
 import { Cell, For, If } from "retend";
 import type { RouteComponent } from "retend/router";
-import { FluidList } from "retend-utils/components";
 import { useIntersectionObserver } from "retend-utils/hooks";
 import classes from "./BookmarksPage.module.css";
 import { PageHeader } from "@/components/layout/PageHeader";
-import { StarShower } from "@/components/ui/StarShower";
 import { SITE_URL } from "@/shared/constants";
 import { BookmarkItem } from "./components/BookmarkItem";
 import { useBookmarks } from "./hooks/useBookmarks";
-import { BOOKMARK_TAGS } from "@/features/bookmarks/data/bookmarkTags";
 import { ClientOnly } from "retend-server";
 
 const SearchIcon = () => (
@@ -26,95 +23,13 @@ const SearchIcon = () => (
   </svg>
 );
 
-const TAG_COLORS: Record<string, string> = {
-  frontend: "#2563eb",
-  design: "#db2777",
-  fintech: "#059669",
-  article: "#7c3aed",
-  shaders: "#d97706",
-  graphics: "#dc2626",
-  product: "#0891b2",
-  native: "#4f46e5",
-  media: "#ea580c",
-  web: "#0d9488",
-  tools: "#475569",
-  inspiration: "#c026d3",
-  dev: "#4338ca",
-  react: "#0891b2",
-  typescript: "#2563eb",
-  css: "#1d4ed8",
-  animation: "#db2777",
-  portfolio: "#059669",
-  blog: "#d97706",
-  resource: "#7c3aed",
-  interactive: "#0891b2",
-};
-const ALL_TAGS = BOOKMARK_TAGS;
-
-const getContrastColor = (hexcolor: string) => {
-  if (hexcolor.startsWith("hsl")) {
-    const match = hexcolor.match(/hsl\(\d+,\s*\d+%?,\s*(\d+)%?\)/);
-    if (match) {
-      const lightness = parseInt(match[1]);
-      return lightness > 55 ? "#000000" : "#ffffff";
-    }
-    return "#ffffff";
-  }
-
-  // Convert hex to RGB
-  const r = parseInt(hexcolor.slice(1, 3), 16);
-  const g = parseInt(hexcolor.slice(3, 5), 16);
-  const b = parseInt(hexcolor.slice(5, 7), 16);
-
-  // Calculate relative luminance
-  const luminance = (0.299 * r + 0.587 * g + 0.114 * b) / 255;
-  return luminance > 0.5 ? "#000000" : "#ffffff";
-};
-
-const getTagStyles = (tagName: string) => {
-  const normalized = tagName.toLowerCase();
-  let bgColor = TAG_COLORS[normalized];
-
-  if (!bgColor) {
-    let hash = 0;
-    for (let i = 0; i < normalized.length; i++) {
-      hash = normalized.charCodeAt(i) + ((hash << 5) - hash);
-    }
-    const h = Math.abs(hash % 360);
-    bgColor = `hsl(${h}, 65%, 42%)`;
-  }
-
-  return {
-    "--tag-color": bgColor,
-    "--tag-text": getContrastColor(bgColor),
-  };
-};
-
 const Bookmarks: RouteComponent = () => {
-  const {
-    state,
-    loaded,
-    pending,
-    query,
-    tag,
-    layout,
-    handleSearch,
-    handleTagSelect,
-    handlePagination,
-  } = useBookmarks();
+  const { state, loaded, pending, query, handleSearch, handlePagination } =
+    useBookmarks();
   const loadMoreRef = Cell.source<HTMLDivElement | null>(null);
   const items = Cell.derived(() => state.get().items);
   const totalItems = Cell.derived(() => state.get().totalItems);
   const showEmpty = Cell.derived(() => loaded.get() && totalItems.get() === 0);
-  const maxColumns = Cell.derived(() => layout.get().columns);
-  const itemWidth = Cell.derived(() => layout.get().width);
-  const activeTagClasses = Object.fromEntries(
-    ALL_TAGS.map((tagName) => [
-      tagName,
-      Cell.derived(() => (tag.get() === tagName ? classes.active : "")),
-    ])
-  );
-
   useIntersectionObserver(
     loadMoreRef,
     ([entry]) => {
@@ -129,7 +44,6 @@ const Bookmarks: RouteComponent = () => {
 
   return (
     <div>
-      <StarShower />
       <div class={classes.container}>
         <PageHeader
           title="Bookmarks."
@@ -146,39 +60,18 @@ const Bookmarks: RouteComponent = () => {
               onInput={handleSearch}
             />
           </div>
-          <div class={classes.tagsWrapper}>
-            <div class={classes.tagsContainer}>
-              {For(ALL_TAGS, (tagName) => (
-                <button
-                  type="button"
-                  class={[classes.tagPill, activeTagClasses[tagName]]}
-                  style={getTagStyles(tagName)}
-                  onClick={() => handleTagSelect(tagName)}
-                >
-                  {tagName}
-                </button>
-              ))}
-            </div>
-          </div>
         </div>
         <ClientOnly>
           {If(showEmpty, () => (
             <div class={classes.error}>No items found in the archive.</div>
           ))}
-          <div class={classes.centeredGrid}>
-            <FluidList
-              items={items}
-              itemKey="id"
-              class={classes.board}
-              direction="inline"
-              maxColumns={maxColumns}
-              itemWidth={itemWidth}
-              gap="24px"
-              speed="300ms"
-              easing="var(--ease-spring)"
-              Template={BookmarkItem}
-            />
-          </div>
+          <ul class={classes.board}>
+            {For(items, (item, index) => (
+              <li class={classes.item}>
+                <BookmarkItem item={item} index={index} />
+              </li>
+            ))}
+          </ul>
         </ClientOnly>
         <div ref={loadMoreRef} class={classes.loadMoreTrigger} />
       </div>

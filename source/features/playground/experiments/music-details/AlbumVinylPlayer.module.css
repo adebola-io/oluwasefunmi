@@ -24,7 +24,7 @@
     transparent,
     color-mix(in srgb, var(--cover-color) 30%, black)
   );
-  background-color: color-mix(var(--cover-color) 80%, black);
+  background-color: color-mix(in srgb, var(--cover-color) 80%, black);
   box-shadow: 2px 2px 2px 2px inset #ffffff40;
 
   &::before {

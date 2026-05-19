@@ -1,5 +1,4 @@
 import { lazy } from "retend/router";
-import Glasses from "@/features/playground/experiments/Glasses";
 
 export const playgroundExperimentRoutes = [
   {
@@ -59,7 +58,13 @@ export const playgroundExperimentRoutes = [
     ),
   },
   {
+    path: "/wallet-cards",
+    component: lazy(
+      () => import("@/features/playground/experiments/WalletCards")
+    ),
+  },
+  {
     path: "/glasses",
-    component: Glasses,
+    component: lazy(() => import("@/features/playground/experiments/Glasses")),
   },
 ];
