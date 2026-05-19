@@ -1,6 +1,7 @@
-import { Cell } from "retend";
+import { Cell, useScopeContext } from "retend";
 import { JSX } from "retend/jsx-runtime";
 import { Wallet, WalletTexture } from "./Wallet";
+import { WalletStateScope } from "./WalletScope";
 
 interface WalletContainerProps {
   texture?: WalletTexture;
@@ -10,7 +11,7 @@ interface WalletContainerProps {
 
 export function WalletContainer(props: WalletContainerProps) {
   const { texture, color, children } = props;
-  const walletIsOpen = Cell.source(false);
+  const { isOpen: walletIsOpen } = useScopeContext(WalletStateScope);
   const lastTapAt = Cell.source(0);
 
   const openWallet = () => {
@@ -35,7 +36,7 @@ export function WalletContainer(props: WalletContainerProps) {
 
   return (
     <button
-      class="[grid-area:1/1] touch-manipulation not-has-data-open:cursor-pointer transition-transform duration-500"
+      class="size-full touch-manipulation not-has-data-open:cursor-pointer transition-transform duration-500"
       type="button"
       onDblClick={openWallet}
       onClick={handleClick}

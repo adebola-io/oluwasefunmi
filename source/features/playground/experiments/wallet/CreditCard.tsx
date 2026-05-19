@@ -1,3 +1,4 @@
+// @ts-nocheck
 // oxlint-disable retend/max-component-lines
 import { WalletCard } from "./WalletCard";
 

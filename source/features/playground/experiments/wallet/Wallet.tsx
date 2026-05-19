@@ -4,8 +4,8 @@ import { WalletFlapInnerSide } from "./WalletFlapInnerSide";
 import { WalletFlapSewing } from "./WalletFlapSewing";
 import { WalletFlapConnectorInnerSewing } from "./WalletFlapConnectorInnerSewing";
 import type { JSX } from "retend/jsx-runtime";
-import { Cell, If } from "retend";
-import { WalletContext, WalletScope } from "./WalletScope";
+import { Cell, If, useScopeContext } from "retend";
+import { WalletContext, WalletScope, WalletStateScope } from "./WalletScope";
 import { WalletLeftFlap, WalletRightFlap } from "./WalletFlap";
 import { WalletMainPocket } from "./WalletMainPocket";
 import { WalletSubPocket } from "./WalletSubPocket";
@@ -37,32 +37,20 @@ interface WalletProps {
 
 export function Wallet(props: WalletProps) {
   const {
-    open = false,
     color = "green",
     texture: textureProp = "brushed-leather",
-    width = "min(300px, 35dvw, 60dvh)",
+    width = "min(300px, 38dvw, 60dvh)",
     children,
   } = props;
   const texture = useDerivedValue(textureProp);
-  const openCell = useDerivedValue(open);
-  const walletRef = Cell.source<HTMLElement | null>(null);
   const textureVar = Cell.derived(() => {
     return `var(--wallet-${texture.get()}-texture)`;
   });
-  const openOrClosing = Cell.derivedAsync(async (get) => {
-    if (get(openCell)) return true;
-
-    const walletContainer = get(walletRef);
-    if (!walletContainer) return false;
-
-    await new Promise<void>((resolve) => queueMicrotask(resolve));
-    const animations = walletContainer.getAnimations();
-    await Promise.allSettled(animations.map((animation) => animation.finished));
-    return get(openCell);
-  });
+  const walletState = useScopeContext(WalletStateScope);
+  const { isOpen, isOpenOrIsClosing, walletRef } = walletState;
 
   const ctx: WalletContext = {
-    open: openCell,
+    open: isOpen,
     slots: {
       left: {
         mainPocket: Cell.source(null),
@@ -77,12 +65,12 @@ export function Wallet(props: WalletProps) {
 
   return (
     <WalletScope.Provider value={ctx}>
-      {If(openOrClosing, () => children)}
+      {If(isOpenOrIsClosing, () => children)}
       <div
         ref={walletRef}
         data-wallet
         class={classes.wallet}
-        data-open={open}
+        data-open={isOpen}
         style={{
           "--wallet-color": color,
           "--wallet-texture": textureVar,

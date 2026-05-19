@@ -1,5 +1,5 @@
 import { TemplateFn } from "@/components/layout/Slot";
-import { Cell, createScope, SourceCell } from "retend";
+import { AsyncDerivedCell, Cell, createScope, SourceCell } from "retend";
 import { WalletItemType } from "./WalletItem";
 
 export interface FlapSlots {
@@ -26,7 +26,12 @@ export interface WalletSelectionCtx {
   isOpen: Cell<boolean>;
 }
 
+export interface WalletStateCtx {
+  isOpen: SourceCell<boolean>;
+  isOpenOrIsClosing: AsyncDerivedCell<boolean>;
+  walletRef: Cell<HTMLElement | null>;
+}
+
 export const WalletScope = createScope<WalletContext>("Wallet");
-export const WalletSelectionScope =
-  createScope<WalletSelectionCtx>("WalletSelection");
 export const WalletFlapScope = createScope<"left" | "right">("WalletFlap");
+export const WalletStateScope = createScope<WalletStateCtx>("WalletState");

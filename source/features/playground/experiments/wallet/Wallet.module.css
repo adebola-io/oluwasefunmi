@@ -260,6 +260,11 @@
   --wallet-open-angle-deg: calc(var(--wallet-open-angle) * 1deg);
   --wallet-flap-connector: calc((var(--wallet-open-angle) * 0.5deg) - 90deg);
   --wallet-center-shift: calc((-5 / 18) * var(--wallet-open-angle) * 1%);
+
+  @media (orientation: portrait) {
+    --wallet-center-shift: calc((-5.5 / 18) * var(--wallet-open-angle) * 1%);
+  }
+
   --wallet-flap-connector-inner-sewing-height: 93.5%;
   --wallet-flap-connector-inner-sewing-width: 50%;
 
