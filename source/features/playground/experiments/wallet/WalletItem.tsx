@@ -7,6 +7,11 @@ import { WalletHoverable } from "./WalletHoverable";
 import { CreditCard } from "./CreditCard";
 import { NairaNote } from "./NairaNote";
 import { UniqueTransition } from "retend-utils/components";
+import { PokemonCard } from "./PokemonCard";
+import { GiftCard } from "./GiftCard";
+import { StickerSheet } from "./StickerSheet";
+import { CurrencyNote } from "./CurrencyNote";
+import { TransitTicket } from "./TransitTicket";
 
 export type WalletItemType =
   | "rainbow-card"
@@ -14,7 +19,12 @@ export type WalletItemType =
   | "qr-code-card"
   | "id-card"
   | "credit-card"
-  | "naira-note";
+  | "naira-note"
+  | "pokemon-card"
+  | "gift-card"
+  | "sticker-sheet"
+  | "currency-note"
+  | "transit-ticket";
 
 export interface WalletItemProps {
   item: WalletItemType;
@@ -61,6 +71,11 @@ export const WalletItem = createUnique<WalletItemProps>((props) => {
             "id-card": () => <IdCard />,
             "credit-card": () => <CreditCard />,
             "naira-note": () => <NairaNote />,
+            "pokemon-card": () => <PokemonCard />,
+            "gift-card": () => <GiftCard />,
+            "sticker-sheet": () => <StickerSheet />,
+            "currency-note": () => <CurrencyNote />,
+            "transit-ticket": () => <TransitTicket />,
           })}
         </div>
       </UniqueTransition>

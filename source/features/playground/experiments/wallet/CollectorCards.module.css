@@ -1,0 +1,881 @@
+.cardRoot {
+  position: relative;
+  height: auto;
+  color: #261812;
+  text-align: start;
+  filter: saturate(0.98) contrast(1.02);
+}
+
+.landscapeRoot {
+  width: 100%;
+  aspect-ratio: 1.586;
+  border-radius: 3.8%;
+}
+
+.portraitRoot {
+  width: min(58dvw, 380px);
+  aspect-ratio: 0.715;
+  margin-inline: auto;
+  border-radius: 5.2%;
+  transform-origin: center;
+}
+
+.surface {
+  --card-safe-inset: 6%;
+
+  position: relative;
+  display: grid;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  border-radius: inherit;
+  container-type: inline-size;
+  font-size: 1cqw;
+  font-variant-numeric: tabular-nums;
+  isolation: isolate;
+  box-shadow:
+    inset 0 0 0 0.18cqw color-mix(in srgb, black 28%, transparent),
+    inset 0 0.7cqw 0.8cqw color-mix(in srgb, #d2b575 16%, transparent),
+    inset 0 -1.4cqw 2.8cqw color-mix(in srgb, black 15%, transparent),
+    0 1.4cqw 2.6cqw color-mix(in srgb, black 24%, transparent),
+    0 5.8cqw 10cqw color-mix(in srgb, black 16%, transparent);
+
+  &::before {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    display: block;
+    content: "";
+    border-radius: inherit;
+    opacity: 0.36;
+    background-image:
+      radial-gradient(
+        circle at 14% 18%,
+        color-mix(in srgb, #b7955c 22%, transparent) 0 0.35cqw,
+        transparent 0.42cqw
+      ),
+      radial-gradient(
+        circle at 83% 76%,
+        color-mix(in srgb, black 22%, transparent) 0 0.28cqw,
+        transparent 0.34cqw
+      ),
+      repeating-linear-gradient(
+        105deg,
+        transparent 0 2.6cqw,
+        color-mix(in srgb, #b7955c 12%, transparent) 2.7cqw 2.95cqw,
+        transparent 3.08cqw 5.9cqw
+      );
+    background-size:
+      4.8cqw 4.8cqw,
+      5.4cqw 5.4cqw,
+      auto;
+    mix-blend-mode: soft-light;
+    pointer-events: none;
+  }
+
+  &::after {
+    position: absolute;
+    inset: 0;
+    z-index: 15;
+    display: block;
+    content: "";
+    border-radius: inherit;
+    box-shadow:
+      inset 0 0 0 0.22cqw color-mix(in srgb, black 20%, transparent),
+      inset 0 0 0 0.72cqw color-mix(in srgb, #d0a65f 11%, transparent),
+      inset 0 -2.2cqw 4.4cqw color-mix(in srgb, black 12%, transparent);
+    pointer-events: none;
+  }
+
+  & > * {
+    position: relative;
+    z-index: 1;
+  }
+}
+
+.monsterSurface {
+  --moss-ink: #21341f;
+  --moss-gold: #e8c65a;
+  --moss-paper: #f0dca3;
+
+  grid-template-rows: auto 1fr auto;
+  gap: 4.2%;
+  padding: var(--card-safe-inset);
+  color: var(--moss-ink);
+  background:
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, #6f4d26 28%, transparent),
+      transparent 16% 84%,
+      color-mix(in srgb, #6f4d26 20%, transparent)
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 7cqw,
+      color-mix(in srgb, #5f7d42 13%, transparent) 7.2cqw 7.5cqw,
+      transparent 7.7cqw 14cqw
+    ),
+    linear-gradient(145deg, #f4e5b4, #d4b66f 48%, #f5eac5);
+}
+
+.monsterCardBackplate {
+  position: absolute;
+  inset: 3.2%;
+  border-radius: 3.8cqw;
+  border: 0.48cqw solid color-mix(in srgb, var(--moss-ink) 35%, transparent);
+  box-shadow:
+    inset 0 0 0 1cqw color-mix(in srgb, var(--moss-gold) 56%, transparent),
+    inset 0 0 0 1.35cqw color-mix(in srgb, var(--moss-ink) 18%, transparent);
+}
+
+.monsterHeader {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 5%;
+}
+
+.monsterEdition,
+.monsterSpecimenTag,
+.arcadeKicker,
+.stickerMeta,
+.reserveIssuer,
+.transitMeta {
+  margin: 0;
+  color: color-mix(in srgb, currentColor 62%, transparent);
+  font-size: 2.9cqw;
+  font-weight: 950;
+  line-height: 1;
+  letter-spacing: 0.19em;
+  text-transform: uppercase;
+}
+
+.monsterName {
+  margin: 1.2cqw 0 0;
+  font-size: 8.3cqw;
+  font-weight: 950;
+  line-height: 0.86;
+  letter-spacing: -0.04em;
+  text-shadow: 0 0.32cqw 0 color-mix(in srgb, #b8924a 20%, transparent);
+}
+
+.monsterBadge {
+  display: grid;
+  place-items: center;
+  width: 12cqw;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background:
+    radial-gradient(circle at 34% 28%, #d49f34, transparent 24%),
+    linear-gradient(145deg, #f1d964, #a9791d);
+  box-shadow:
+    inset 0 0 0 0.45cqw color-mix(in srgb, var(--moss-ink) 28%, transparent),
+    0 0.7cqw 1.4cqw color-mix(in srgb, black 18%, transparent);
+  font-size: 4.3cqw;
+  font-weight: 950;
+}
+
+.monsterPortrait {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  border: 0.55cqw solid color-mix(in srgb, var(--moss-ink) 36%, transparent);
+  border-radius: 3.8cqw;
+  background:
+    radial-gradient(circle at 28% 23%, #f9f0b7, transparent 14%),
+    radial-gradient(circle at 68% 61%, #2d5534, transparent 25%),
+    linear-gradient(135deg, #8aaa63, #d6df9d 52%, #6a8b4a);
+  box-shadow:
+    inset 0 0 0 0.8cqw color-mix(in srgb, #637b47 18%, transparent),
+    inset 0 -2.4cqw 4.8cqw color-mix(in srgb, black 18%, transparent);
+}
+
+.monsterMoon {
+  position: absolute;
+  top: 8%;
+  right: 10%;
+  width: 13cqw;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: #f7e78e;
+  box-shadow: 0 0 3cqw color-mix(in srgb, #f7e78e 54%, transparent);
+}
+
+.monsterCreature {
+  position: relative;
+  width: 42cqw;
+  aspect-ratio: 0.95;
+  border-radius: 32% 32% 26% 26%;
+  background:
+    radial-gradient(circle at 50% 18%, #6d9a55, transparent 18%),
+    linear-gradient(145deg, #27381f, #172216);
+  box-shadow:
+    inset 0 1cqw 1.3cqw color-mix(in srgb, #496b3a 18%, transparent),
+    inset 0 -1.4cqw 2.2cqw color-mix(in srgb, black 32%, transparent),
+    0 0 0 1.15cqw var(--moss-gold),
+    0 2cqw 4.2cqw color-mix(in srgb, black 30%, transparent);
+}
+
+.monsterAntenna {
+  position: absolute;
+  top: -13%;
+  left: 43%;
+  width: 14%;
+  height: 22%;
+  border-radius: 999px 999px 0 0;
+  border-top: 0.9cqw solid var(--moss-gold);
+  border-left: 0.7cqw solid var(--moss-gold);
+  transform: rotate(-12deg);
+}
+
+.monsterEyeLeft,
+.monsterEyeRight {
+  position: absolute;
+  top: 39%;
+  width: 15%;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: var(--moss-gold);
+  box-shadow: inset 0 -0.35cqw 0 color-mix(in srgb, black 20%, transparent);
+}
+
+.monsterEyeLeft {
+  left: 23%;
+}
+
+.monsterEyeRight {
+  right: 23%;
+}
+
+.monsterMouth {
+  position: absolute;
+  bottom: 22%;
+  left: 31%;
+  width: 38%;
+  height: 12%;
+  border-bottom: 0.72cqw solid var(--moss-gold);
+  border-radius: 999px;
+}
+
+.monsterSpecimenTag {
+  position: absolute;
+  right: 5%;
+  bottom: 5%;
+  padding: 1.2cqw 1.6cqw;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--moss-paper) 86%, transparent);
+  box-shadow: 0 0.5cqw 1.2cqw color-mix(in srgb, black 18%, transparent);
+}
+
+.monsterStats {
+  display: grid;
+  gap: 1.8cqw;
+}
+
+.monsterStats > div {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  gap: 4%;
+  padding-bottom: 1.3cqw;
+  border-bottom: 0.28cqw solid
+    color-mix(in srgb, var(--moss-ink) 22%, transparent);
+  font-size: 3.8cqw;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.monsterStats p,
+.monsterStats strong {
+  margin: 0;
+}
+
+.monsterFooterMarks {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 4%;
+  color: color-mix(in srgb, var(--moss-ink) 66%, transparent);
+  font-size: 2.75cqw;
+  font-weight: 950;
+  line-height: 1;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.aceSurface {
+  color: #2f1c16;
+  background:
+    radial-gradient(
+      circle at 50% 46%,
+      color-mix(in srgb, #b62721 8%, transparent),
+      transparent 29%
+    ),
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 8cqw,
+      color-mix(in srgb, #3d251b 5%, transparent) 8.1cqw 8.35cqw,
+      transparent 8.45cqw 16cqw
+    ),
+    linear-gradient(145deg, #fff6df, #dfcfb5);
+}
+
+.aceInkPlate {
+  position: absolute;
+  inset: 6%;
+  border: 0.32cqw solid color-mix(in srgb, #3d251b 34%, transparent);
+  border-radius: 4.4cqw;
+  box-shadow:
+    inset 0 0 0 0.7cqw color-mix(in srgb, #d9bd86 58%, transparent),
+    inset 0 0 0 1cqw color-mix(in srgb, #3d251b 13%, transparent);
+}
+
+.aceCornerTop,
+.aceCornerBottom {
+  position: absolute;
+  display: grid;
+  gap: 0.4cqw;
+  color: #2f1c16;
+  font-weight: 950;
+  line-height: 0.82;
+  text-align: center;
+}
+
+.aceCornerTop {
+  top: 8%;
+  left: 8%;
+}
+
+.aceCornerBottom {
+  right: 8%;
+  bottom: 8%;
+  transform: rotate(180deg);
+}
+
+.aceCornerTop strong,
+.aceCornerBottom strong {
+  font-size: 9.2cqw;
+}
+
+.aceCornerTop span,
+.aceCornerBottom span {
+  color: #ad2d27;
+  font-size: 7cqw;
+  text-shadow: 0 0.32cqw 0 color-mix(in srgb, black 12%, transparent);
+}
+
+.aceCenterMark {
+  position: absolute;
+  inset: 24% 18%;
+  display: grid;
+  place-items: center;
+}
+
+.aceDiamondLarge {
+  position: relative;
+  z-index: 2;
+  color: #ad2d27;
+  font-size: 42cqw;
+  line-height: 1;
+  text-shadow:
+    0 0.45cqw 0 color-mix(in srgb, #5f1815 16%, transparent),
+    0 1.2cqw 2.4cqw color-mix(in srgb, black 16%, transparent);
+}
+
+.aceFineLineTop,
+.aceFineLineBottom {
+  position: absolute;
+  width: 48cqw;
+  height: 0.45cqw;
+  border-radius: 999px;
+  background: color-mix(in srgb, #ad2d27 42%, transparent);
+}
+
+.aceFineLineTop {
+  top: 23%;
+  transform: rotate(-27deg);
+}
+
+.aceFineLineBottom {
+  bottom: 21%;
+  transform: rotate(27deg);
+}
+
+.arcadeSurface {
+  grid-template-columns: minmax(0, 1fr) 36%;
+  gap: 5%;
+  padding: var(--card-safe-inset);
+  color: #fff6db;
+  background:
+    radial-gradient(circle at 23% 25%, #ffcc57 0 7%, transparent 8%),
+    radial-gradient(circle at 76% 18%, #ff6a55 0 8%, transparent 9%),
+    radial-gradient(circle at 42% 88%, #56d5c7 0 6%, transparent 7%),
+    linear-gradient(135deg, #18233f, #53305d 52%, #162b3c);
+}
+
+.arcadeFoilBurst {
+  position: absolute;
+  inset: -22%;
+  background: conic-gradient(
+    from 16deg at 34% 58%,
+    transparent,
+    color-mix(in srgb, #ffe16d 32%, transparent),
+    transparent,
+    color-mix(in srgb, #56d5c7 22%, transparent),
+    transparent
+  );
+  opacity: 0.9;
+  mix-blend-mode: screen;
+}
+
+.arcadeHero {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  min-width: 0;
+}
+
+.arcadeTitle {
+  align-self: center;
+  max-width: 8ch;
+  margin: 0;
+  font-size: 9.6cqw;
+  font-weight: 950;
+  line-height: 0.78;
+  letter-spacing: -0.075em;
+  text-transform: uppercase;
+  text-shadow:
+    0.45cqw 0.45cqw 0 #e34954,
+    0.85cqw 0.85cqw 0 color-mix(in srgb, black 22%, transparent);
+}
+
+.arcadeNote {
+  max-width: 20ch;
+  margin: 0;
+  color: color-mix(in srgb, #fff6db 78%, transparent);
+  font-size: 2.85cqw;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.arcadePanel {
+  display: grid;
+  grid-template-rows: auto 1fr auto auto;
+  gap: 6%;
+  min-width: 0;
+  padding: 8% 9%;
+  border-radius: 2.4cqw;
+  color: #1a2438;
+  background:
+    linear-gradient(
+      135deg,
+      color-mix(in srgb, #d6bd83 84%, transparent),
+      color-mix(in srgb, #ffe2a5 82%, transparent)
+    ),
+    #fff4d3;
+  box-shadow:
+    inset 0 0 0 0.38cqw color-mix(in srgb, #1a2438 16%, transparent),
+    inset 0 1cqw 0 color-mix(in srgb, #c6a563 30%, transparent),
+    0 1cqw 2.8cqw color-mix(in srgb, black 24%, transparent);
+}
+
+.arcadeCreditPill {
+  justify-self: start;
+  padding: 1.2cqw 1.7cqw;
+  border-radius: 999px;
+  background: #1a2438;
+  color: #fff4d3;
+  font-size: 3.1cqw;
+  font-weight: 950;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
+.arcadeScratch {
+  position: relative;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  min-height: 12cqw;
+  border-radius: 1.2cqw;
+  background:
+    repeating-linear-gradient(112deg, #d9d1c2 0 1.1cqw, #f5eee1 1.2cqw 2cqw),
+    #e5dccd;
+  box-shadow:
+    inset 0 0 0 0.28cqw color-mix(in srgb, #1a2438 14%, transparent),
+    inset 0 0.7cqw 1.4cqw color-mix(in srgb, white 44%, transparent),
+    inset 0 -0.8cqw 1.8cqw color-mix(in srgb, black 12%, transparent);
+}
+
+.arcadeScratch span {
+  position: absolute;
+  height: 1.1cqw;
+  border-radius: 999px;
+  background: color-mix(in srgb, #b8a27d 70%, transparent);
+  transform: rotate(-16deg);
+}
+
+.arcadeScratch span:nth-child(1) {
+  top: 33%;
+  left: 12%;
+  width: 64%;
+}
+
+.arcadeScratch span:nth-child(2) {
+  top: 48%;
+  left: 23%;
+  width: 54%;
+}
+
+.arcadeScratch span:nth-child(3) {
+  top: 62%;
+  left: 10%;
+  width: 70%;
+}
+
+.arcadeCode {
+  margin: 0;
+  font-size: 3cqw;
+  font-weight: 950;
+  line-height: 1;
+  letter-spacing: 0.08em;
+  white-space: nowrap;
+}
+
+.arcadeBarcode {
+  display: grid;
+  grid-template-columns: 1fr 0.45fr 1.2fr 0.5fr 0.72fr 1.5fr 0.38fr;
+  align-items: end;
+  gap: 4%;
+  height: 8cqw;
+}
+
+.arcadeBarcode span {
+  height: 100%;
+  border-radius: 999px;
+  background: #1a2438;
+}
+
+.stickerSurface {
+  grid-template-rows: auto 1fr;
+  gap: 6%;
+  padding: var(--card-safe-inset);
+  background:
+    linear-gradient(
+      90deg,
+      color-mix(in srgb, #e4c389 25%, transparent),
+      transparent 18% 82%,
+      color-mix(in srgb, #b49363 18%, transparent)
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 4.4cqw,
+      color-mix(in srgb, #9a7a51 8%, transparent) 4.5cqw 4.8cqw
+    ),
+    #e8cf9f;
+}
+
+.stickerHeader {
+  display: flex;
+  justify-content: space-between;
+  gap: 4%;
+}
+
+.stickerTitle {
+  margin: 0.8cqw 0 0;
+  font-size: 6.7cqw;
+  font-weight: 950;
+  line-height: 0.86;
+  letter-spacing: -0.045em;
+}
+
+.stickerCornerLabel {
+  max-width: 12ch;
+  margin: 0;
+  color: color-mix(in srgb, #261812 52%, transparent);
+  font-size: 2.45cqw;
+  font-weight: 950;
+  line-height: 1.12;
+  letter-spacing: 0.16em;
+  text-align: end;
+  text-transform: uppercase;
+}
+
+.stickerGrid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-template-rows: repeat(2, 1fr);
+  gap: 7% 6%;
+  padding: 2.3cqw;
+  border-radius: 2.2cqw;
+  background: color-mix(in srgb, #d2b174 28%, transparent);
+  box-shadow: inset 0 0 0 0.28cqw color-mix(in srgb, #261812 12%, transparent);
+}
+
+.sticker {
+  position: relative;
+  display: block;
+  border-radius: 38% 44% 35% 48%;
+  background:
+    radial-gradient(
+      circle at 32% 24%,
+      color-mix(in srgb, #c49b54 42%, transparent),
+      transparent 23%
+    ),
+    var(--sticker-color);
+  box-shadow:
+    0 0 0 0.58cqw #d8bd83,
+    0 0 0 0.82cqw color-mix(in srgb, #261812 12%, transparent),
+    0 1.1cqw 1.5cqw color-mix(in srgb, black 16%, transparent);
+}
+
+.sticker::before {
+  position: absolute;
+  inset: 18% 20%;
+  display: block;
+  content: "";
+  border-radius: inherit;
+  border: 0.45cqw solid color-mix(in srgb, #261812 22%, transparent);
+}
+
+.sticker::after {
+  position: absolute;
+  right: -0.1cqw;
+  bottom: -0.25cqw;
+  width: 28%;
+  aspect-ratio: 1;
+  display: block;
+  content: "";
+  border-radius: 0 0 90% 0;
+  background: color-mix(in srgb, #d1b47b 72%, transparent);
+  box-shadow: -0.35cqw -0.35cqw 0.7cqw
+    color-mix(in srgb, black 14%, transparent);
+}
+
+.sticker[data-index="1"],
+.sticker[data-index="5"] {
+  transform: rotate(-7deg);
+}
+
+.sticker[data-index="2"],
+.sticker[data-index="6"] {
+  transform: rotate(5deg);
+}
+
+.reserveSurface {
+  grid-template-columns: 20% 1fr 20%;
+  align-items: center;
+  gap: 4%;
+  padding: var(--card-safe-inset);
+  color: #24301d;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 4cqw,
+      color-mix(in srgb, #34502a 10%, transparent) 4.2cqw 4.45cqw,
+      transparent 4.65cqw 8cqw
+    ),
+    linear-gradient(90deg, #e6edc5, #b6c78f 48%, #e2e8bf);
+}
+
+.reserveGuilloche {
+  position: absolute;
+  inset: -24% 8%;
+  border-radius: 50%;
+  border: 0.5cqw solid color-mix(in srgb, #34502a 18%, transparent);
+  box-shadow:
+    0 0 0 2.2cqw color-mix(in srgb, #f2f0ca 18%, transparent),
+    0 0 0 4.4cqw color-mix(in srgb, #34502a 10%, transparent),
+    inset 0 0 0 3cqw color-mix(in srgb, #34502a 8%, transparent);
+}
+
+.reserveMedallion,
+.reserveSeal {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  border: 0.42cqw solid color-mix(in srgb, #24301d 35%, transparent);
+  background:
+    radial-gradient(
+      circle at 32% 24%,
+      color-mix(in srgb, #c0a268 34%, transparent),
+      transparent 27%
+    ),
+    color-mix(in srgb, #f5e78d 54%, transparent);
+  box-shadow:
+    inset 0 0 0 0.9cqw color-mix(in srgb, #24301d 10%, transparent),
+    0 0.9cqw 1.8cqw color-mix(in srgb, black 14%, transparent);
+  font-size: 10cqw;
+  font-weight: 950;
+}
+
+.reserveCenter {
+  display: grid;
+  justify-items: center;
+  gap: 2.2cqw;
+  text-align: center;
+}
+
+.reserveValue {
+  margin: 0;
+  font-size: 8.5cqw;
+  font-weight: 950;
+  line-height: 0.82;
+  letter-spacing: -0.055em;
+  text-transform: uppercase;
+}
+
+.reserveMicroLines {
+  display: grid;
+  gap: 0.8cqw;
+  width: min(48cqw, 82%);
+}
+
+.reserveMicroLines span {
+  height: 0.45cqw;
+  border-radius: 999px;
+  background: color-mix(in srgb, #24301d 26%, transparent);
+}
+
+.reserveSerial {
+  margin: 0;
+  color: color-mix(in srgb, #24301d 68%, transparent);
+  font-size: 2.8cqw;
+  font-weight: 950;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+
+.transitSurface {
+  grid-template-columns: 1fr 22%;
+  overflow: hidden;
+  color: #372112;
+  background:
+    linear-gradient(
+      90deg,
+      transparent 0 76%,
+      color-mix(in srgb, #372112 8%, transparent) 76% 77%,
+      transparent 77%
+    ),
+    repeating-linear-gradient(
+      0deg,
+      transparent 0 5.2cqw,
+      color-mix(in srgb, #c67a3a 12%, transparent) 5.35cqw 5.7cqw,
+      transparent 5.9cqw 10.4cqw
+    ),
+    #ffe0a9;
+}
+
+.transitPunches {
+  position: absolute;
+  top: 10%;
+  right: 15.5%;
+  bottom: 10%;
+  display: grid;
+  align-content: space-between;
+  z-index: 4;
+}
+
+.transitPunches span {
+  width: 8cqw;
+  aspect-ratio: 1;
+  border-radius: 999px;
+  background: color-mix(in srgb, black 18%, transparent);
+  box-shadow:
+    inset 0 0.6cqw 0.8cqw color-mix(in srgb, black 28%, transparent),
+    0 0.25cqw 0 color-mix(in srgb, #8b5c2d 18%, transparent);
+}
+
+.transitMain {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 7%;
+  padding: var(--card-safe-inset);
+}
+
+.transitRoute {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  align-items: center;
+  gap: 5%;
+  align-self: center;
+  font-size: 8.8cqw;
+  font-weight: 950;
+  line-height: 0.82;
+  letter-spacing: -0.05em;
+}
+
+.transitRoute i {
+  display: block;
+  height: 0.4cqw;
+  border-top: 0.42cqw dashed color-mix(in srgb, #372112 42%, transparent);
+}
+
+.transitFooter {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 6%;
+  min-width: 0;
+}
+
+.transitFooter p,
+.transitFooter strong {
+  margin: 0;
+}
+
+.transitFooter p {
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  color: color-mix(in srgb, #372112 68%, transparent);
+  font-size: 2.75cqw;
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.1em;
+  text-overflow: ellipsis;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.transitFooter strong {
+  font-size: 3.2cqw;
+  font-weight: 950;
+  letter-spacing: 0.12em;
+  white-space: nowrap;
+}
+
+.transitStub {
+  display: grid;
+  place-items: center;
+  gap: 8%;
+  padding: 18% 12%;
+  border-left: 0.45cqw dashed color-mix(in srgb, #372112 36%, transparent);
+  background:
+    radial-gradient(
+      circle at 50% 14%,
+      color-mix(in srgb, #b66f34 20%, transparent),
+      transparent 20%
+    ),
+    #d8924d;
+  font-weight: 950;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.transitStub span:first-child {
+  font-size: 3.6cqw;
+  letter-spacing: 0.2em;
+  writing-mode: vertical-rl;
+}
+
+.transitStub span:last-child {
+  color: color-mix(in srgb, #372112 66%, transparent);
+  font-size: 2.2cqw;
+  letter-spacing: 0.14em;
+  line-height: 1.1;
+}

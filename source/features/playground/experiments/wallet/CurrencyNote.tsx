@@ -3,26 +3,26 @@ import { preloadImages } from "@/shared/utils/imagePreloader";
 import { WalletCard } from "./WalletCard";
 
 const imageModules = import.meta.glob<ImageModule>(
-  "/source/features/playground/data/images/wallet-cards/naira-note.webp",
+  "/source/features/playground/data/images/wallet-cards/reserve-note.webp",
   { eager: true }
 );
 
 const noteImage =
   imageModules[
-    "/source/features/playground/data/images/wallet-cards/naira-note.webp"
+    "/source/features/playground/data/images/wallet-cards/reserve-note.webp"
   ].default;
 
 if (typeof window !== "undefined") {
   preloadImages([noteImage]);
 }
 
-export function NairaNote() {
+export function CurrencyNote() {
   return (
-    <WalletCard class="aspect-[1.9] w-full h-auto rounded-[3%]">
+    <WalletCard class="aspect-[1.75] w-full h-auto in-data-wallet:rotate-4">
       <img
-        class="size-full"
+        class="size-full object-cover"
         src={noteImage}
-        alt="Nigerian naira note"
+        alt="Reserve note card"
         draggable={false}
       />
     </WalletCard>

@@ -4,31 +4,31 @@ import { WalletContentSpotlightView } from "./WalletContentSpotlightView";
 import { WalletItem, WalletItemType } from "./WalletItem";
 import { WalletContainer } from "./WalletContainer";
 
-export function FirstWalletShowcase() {
+export function SecondWalletShowcase() {
   const selectedWalletItem = Cell.source<WalletItemType | null>(null);
 
   return (
     <div class="grid place-items-center">
-      <WalletContainer texture="saffiano-leather" color="#5b475a">
+      <WalletContainer texture="burnished-patina" color="#7b322f">
         <Wallet.LeftFlap>
           <Wallet.SubPocket index={0}>
             <WalletItem
-              id="serene-card"
-              item="serene-card"
+              id="pokemon-card"
+              item="pokemon-card"
               selectedWalletItem={selectedWalletItem}
             />
           </Wallet.SubPocket>
           <Wallet.SubPocket index={1}>
             <WalletItem
-              id="qr-code-card"
-              item="qr-code-card"
+              id="transit-ticket"
+              item="transit-ticket"
               selectedWalletItem={selectedWalletItem}
             />
           </Wallet.SubPocket>
           <Wallet.SubPocket index={2}>
             <WalletItem
-              id="credit-card"
-              item="credit-card"
+              id="currency-note"
+              item="currency-note"
               selectedWalletItem={selectedWalletItem}
             />
           </Wallet.SubPocket>
@@ -36,22 +36,15 @@ export function FirstWalletShowcase() {
         <Wallet.RightFlap>
           <Wallet.SubPocket index={0}>
             <WalletItem
-              id="id-card"
-              item="id-card"
+              id="gift-card"
+              item="gift-card"
               selectedWalletItem={selectedWalletItem}
             />
           </Wallet.SubPocket>
           <Wallet.SubPocket index={1}>
             <WalletItem
-              id="rainbow-card"
-              item="rainbow-card"
-              selectedWalletItem={selectedWalletItem}
-            />
-          </Wallet.SubPocket>
-          <Wallet.SubPocket index={2}>
-            <WalletItem
-              id="naira-note"
-              item="naira-note"
+              id="sticker-sheet"
+              item="sticker-sheet"
               selectedWalletItem={selectedWalletItem}
             />
           </Wallet.SubPocket>

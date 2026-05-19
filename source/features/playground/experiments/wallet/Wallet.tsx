@@ -11,7 +11,7 @@ import { WalletMainPocket } from "./WalletMainPocket";
 import { WalletSubPocket } from "./WalletSubPocket";
 import { WalletFlapConnectorSmallerSewing } from "./WalletFlapConnectorSmallerSewing";
 
-type WalletTexture =
+export type WalletTexture =
   | "brushed-leather"
   | "crosshatch-weave"
   | "fine-canvas"
