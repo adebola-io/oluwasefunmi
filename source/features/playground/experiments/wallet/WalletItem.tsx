@@ -12,6 +12,10 @@ import { GiftCard } from "./GiftCard";
 import { StickerSheet } from "./StickerSheet";
 import { CurrencyNote } from "./CurrencyNote";
 import { TransitTicket } from "./TransitTicket";
+import { CampusFlier } from "./CampusFlier";
+import { LibraryCard } from "./LibraryCard";
+import { StudentAtmCard } from "./StudentAtmCard";
+import { TimeTable } from "./TimeTable";
 
 export type WalletItemType =
   | "rainbow-card"
@@ -24,7 +28,11 @@ export type WalletItemType =
   | "gift-card"
   | "sticker-sheet"
   | "currency-note"
-  | "transit-ticket";
+  | "transit-ticket"
+  | "campus-flier"
+  | "library-card"
+  | "student-atm-card"
+  | "time-table";
 
 export interface WalletItemProps {
   item: WalletItemType;
@@ -76,6 +84,10 @@ export const WalletItem = createUnique<WalletItemProps>((props) => {
             "sticker-sheet": () => <StickerSheet />,
             "currency-note": () => <CurrencyNote />,
             "transit-ticket": () => <TransitTicket />,
+            "campus-flier": () => <CampusFlier />,
+            "library-card": () => <LibraryCard />,
+            "student-atm-card": () => <StudentAtmCard />,
+            "time-table": () => <TimeTable />,
           })}
         </div>
       </UniqueTransition>
