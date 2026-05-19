@@ -37,7 +37,9 @@ export function FadeSwitch<T extends PropertyKey>(props: FadeSwitchProps<T>) {
         ref={ref}
         class={[
           "[grid-area:1/1] transition-[opacity,scale] duration-300",
-          { "opacity-0 scale-80 pointer-events-none": isNotSelected },
+          {
+            "opacity-0 scale-70 pointer-events-none": isNotSelected,
+          },
         ]}
       >
         {If(isVisible, CaseFn)}

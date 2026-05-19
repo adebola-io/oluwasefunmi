@@ -16,17 +16,17 @@ const walletButtonClass =
 const walletOptions = [
   {
     id: "first",
-    label: "First",
+    label: "Don Juan",
     badgeClass: "bg-[#5b475a] shadow-[0_0_18px_rgb(91_71_90_/_0.9)]",
   },
   {
     id: "second",
-    label: "Second",
+    label: "BBQ",
     badgeClass: "bg-[#7b322f] shadow-[0_0_18px_rgb(123_50_47_/_0.9)]",
   },
   {
     id: "third",
-    label: "Third",
+    label: "Slate Green",
     badgeClass: "bg-[#2f4f46] shadow-[0_0_18px_rgb(47_79_70_/_0.9)]",
   },
 ] as const;
@@ -56,9 +56,10 @@ const WalletCards: RouteComponent<PageMeta> = () => {
       isOpen.set(!isOpen.get());
       return;
     }
-    isOpen.set(false);
-    await isOpenOrIsClosing.get();
-    selectedWallet.set(id);
+    Cell.batch(() => {
+      isOpen.set(false);
+      selectedWallet.set(id);
+    });
   };
 
   const walletButtons = For(walletOptions, (wallet) => {
