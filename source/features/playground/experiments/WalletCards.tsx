@@ -95,7 +95,7 @@ const WalletCards: RouteComponent<PageMeta> = () => {
   return (
     <WalletStateScope.Provider value={ctx}>
       <div class="grid min-h-dvh place-items-center bg-black px-[5vw] py-[12vh] text-white">
-        <PlaygroundLayout title="Wallet Cards">
+        <PlaygroundLayout title="Wallets">
           <div class="grid min-h-full pt-10 gap-25 place-content-center place-items-center">
             <FadeSwitch
               value={selectedWallet}
@@ -116,15 +116,13 @@ const WalletCards: RouteComponent<PageMeta> = () => {
 };
 
 WalletCards.metadata = {
-  title: "Wallet Cards | Playground",
+  title: "Wallets | Playground",
   description: "",
-  ogTitle: "Wallet Cards | Playground",
-  ogDescription:
-    "An interactive CSS wallet demo with style previews and animated try-on transitions.",
+  ogTitle: "Wallets | Playground",
+  ogDescription: "CSS wallets demo with pull out cards.",
   ogImage: `${SITE_URL}/og/wallet.png`,
-  twitterTitle: "Wallet Cards | Playground",
-  twitterDescription:
-    "An interactive CSS wallet demo with style previews and animated try-on transitions.",
+  twitterTitle: "Wallets | Playground",
+  twitterDescription: "CSS wallets demo with pull out cards.",
   twitterImage: `${SITE_URL}/og/wallet.png`,
   viewport: "width=device-width, initial-scale=1.0",
 };

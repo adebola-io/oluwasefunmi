@@ -34,9 +34,7 @@ export const playgroundItems: PlaygroundItem[] = [
   {
     path: "/playground/wallet-cards",
     title: "wallets",
-    description: () => (
-      <>A 3D wallet with pull-out cards, IDs, a QR code, and a naira note.</>
-    ),
+    description: () => <>3D wallets with pull-out cards.</>,
     icon: () => <WalletCardsIcon />,
   },
   {
