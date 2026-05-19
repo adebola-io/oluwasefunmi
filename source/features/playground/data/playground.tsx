@@ -32,7 +32,7 @@ function ExternalLink(props: ExternalLinkProps) {
 
 export const playgroundItems: PlaygroundItem[] = [
   {
-    path: "/playground/wallet-cards",
+    path: "/playground/wallets",
     title: "wallets",
     description: () => <>3D wallets with pull-out cards.</>,
     icon: () => <WalletCardsIcon />,

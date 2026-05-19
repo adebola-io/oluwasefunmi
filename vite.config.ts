@@ -26,7 +26,7 @@ const pages = [
   "/playground/product-transitions",
   "/playground/three-dimensional-marquee",
   "/playground/css-keyboard",
-  "/playground/wallet-cards",
+  "/playground/wallets",
   "/playground/vinyl-player",
   "/playground/painting-wheel",
   "/playground/glasses",
