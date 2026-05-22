@@ -1,15 +1,47 @@
-.book {
-  --book-width: 63dvw;
+.bookContainer {
+  --book-width: min(400px, 35dvw);
   --book-height: calc(var(--book-width) / var(--book-front-aspect-ratio));
   --book-depth: calc(var(--book-height) * var(--book-spine-aspect-ratio));
   --book-depth-neg: calc(var(--book-depth) * -1);
   --book-cover-thickness: 5px;
   --book-cover-thickness-neg: calc(var(--book-cover-thickness) * -1);
+  --book-transition-duration: 700ms;
+  --book-easing: ease;
+  --displacement-deg: calc(var(--book-index) * -0.75deg);
 
+  display: grid;
+  place-content: center;
+  height: min(30dvh, 25dvw);
+  transform-style: preserve-3d;
+  transition: opacity var(--book-transition-duration);
+
+  &[data-selected] {
+    pointer-events: auto;
+  }
+
+  &[data-not-selected] {
+    opacity: 0;
+  }
+}
+
+.book {
   display: grid;
   transform-style: preserve-3d;
   user-select: none;
   place-content: center;
+  will-change: transform;
+  transition-property: transform, scale;
+  transition-duration: var(--book-transition-duration);
+  transition-timing-function: var(--book-easing);
+  transform: rotateY(90deg) rotateX(90deg) rotateY(var(--displacement-deg));
+
+  .bookContainer[data-selected] & {
+    transform: rotateY(20deg) rotateX(12deg) rotateZ(1deg);
+  }
+
+  &:hover {
+    scale: 1.02;
+  }
 
   & > * {
     display: grid;
@@ -20,6 +52,7 @@
 
 .front {
   background-image: var(--book-front-url);
+  background-color: var(--book-background-color);
   background-size: cover;
 
   [data-top] {
@@ -44,10 +77,16 @@
   grid-area: 1 / 1;
   transform-origin: right;
   transform: translateX(-100%) rotateY(-90deg);
+  transition: filter var(--book-transition-duration) var(--book-easing);
+
+  .book:hover & {
+    filter: brightness(0.8);
+  }
 
   [data-front] {
     background-image: var(--book-spine-url);
     background-size: cover;
+    background-color: var(--book-background-color);
   }
 
   [data-top] {
@@ -94,10 +133,44 @@
 }
 
 .pages {
-  place-self: center;
-  transform: translateZ(calc(var(--book-cover-thickness) * -1));
+  align-self: center;
+  justify-self: start;
+  transform: translateX(var(--book-cover-thickness))
+    translateZ(calc(var(--book-cover-thickness) * -1));
 
   [data-face] {
     background-color: white;
+  }
+
+  [data-top],
+  [data-bottom] {
+    background-image: linear-gradient(
+      to bottom,
+      transparent 3%,
+      black calc(4% + 1px) calc(5% - 1px),
+      transparent 5%
+    );
+    background-size: 100% 5%;
+    background-repeat: repeat;
+
+    &::before {
+      display: block;
+      content: "";
+      color: black;
+      height: 100%;
+      width: 1.5%;
+      background-image: linear-gradient(to right, black, transparent);
+    }
+  }
+
+  [data-right] {
+    background-image: linear-gradient(
+      to right,
+      transparent 3%,
+      black calc(4% + 1px) calc(5% - 1px),
+      transparent 5%
+    );
+    background-size: 5% 100%;
+    background-repeat: repeat;
   }
 }

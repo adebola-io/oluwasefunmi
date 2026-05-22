@@ -36,21 +36,6 @@ export interface Book extends BookSource {
 
 const bookSources: BookSource[] = [
   {
-    title: "Guns, Germs, and Steel",
-    author: "Jared Diamond",
-    frontCoverImageId: "guns-germs-and-steel-front",
-    spineImageId: "guns-germs-and-steel-spine",
-    blurb:
-      "A sweeping argument about how geography, crops, disease, and technology shaped the unequal paths of human societies.",
-    authorInfo:
-      "Jared Diamond is a Pulitzer Prize-winning scientist and writer known for connecting history, biology, geography, and anthropology.",
-    foregroundColor: "#606060",
-    backgroundColor: "#FFFFFF",
-    gradient:
-      "linear-gradient(to bottom, #ee923f 62%, black 62% 81.2%, white 81.2%)",
-    aspectRatio: { frontCover: 0.6619, spine: 0.1602 },
-  },
-  {
     title: "Project Hail Mary",
     author: "Andy Weir",
     frontCoverImageId: "project-hail-mary-front",
@@ -114,6 +99,21 @@ const bookSources: BookSource[] = [
     foregroundColor: "#FFFFFF",
     backgroundColor: "#306090",
     aspectRatio: { frontCover: 0.6627, spine: 0.191 },
+  },
+  {
+    title: "Guns, Germs, and Steel",
+    author: "Jared Diamond",
+    frontCoverImageId: "guns-germs-and-steel-front",
+    spineImageId: "guns-germs-and-steel-spine",
+    blurb:
+      "A sweeping argument about how geography, crops, disease, and technology shaped the unequal paths of human societies.",
+    authorInfo:
+      "Jared Diamond is a Pulitzer Prize-winning scientist and writer known for connecting history, biology, geography, and anthropology.",
+    foregroundColor: "#606060",
+    backgroundColor: "#FFFFFF",
+    gradient:
+      "linear-gradient(to bottom, #ee923f 62%, black 62% 81.2%, white 81.2%)",
+    aspectRatio: { frontCover: 0.6619, spine: 0.1602 },
   },
   {
     title: "The Way of Kings",
