@@ -1,0 +1,103 @@
+.book {
+  --book-width: 63dvw;
+  --book-height: calc(var(--book-width) / var(--book-front-aspect-ratio));
+  --book-depth: calc(var(--book-height) * var(--book-spine-aspect-ratio));
+  --book-depth-neg: calc(var(--book-depth) * -1);
+  --book-cover-thickness: 5px;
+  --book-cover-thickness-neg: calc(var(--book-cover-thickness) * -1);
+
+  display: grid;
+  transform-style: preserve-3d;
+  user-select: none;
+  place-content: center;
+
+  & > * {
+    display: grid;
+    grid: 1fr/ 1fr;
+    grid-area: 1/1;
+  }
+}
+
+.front {
+  background-image: var(--book-front-url);
+  background-size: cover;
+
+  [data-top] {
+    background-image: var(--book-front-url);
+    background-size: 100%;
+  }
+
+  [data-bottom] {
+    background-image: var(--book-front-url);
+    background-size: 100%;
+    background-position: bottom;
+  }
+
+  [data-right] {
+    background-image: var(--book-front-url);
+    background-size: auto 100%;
+    background-position: right;
+  }
+}
+
+.spine {
+  grid-area: 1 / 1;
+  transform-origin: right;
+  transform: translateX(-100%) rotateY(-90deg);
+
+  [data-front] {
+    background-image: var(--book-spine-url);
+    background-size: cover;
+  }
+
+  [data-top] {
+    background-image: var(--book-spine-url);
+    background-size: 100%;
+  }
+
+  [data-bottom] {
+    background-image: var(--book-spine-url);
+    background-size: 100%;
+    background-position: bottom;
+    background-repeat: no-repeat;
+  }
+}
+
+.back {
+  transform: translateZ(
+    calc(var(--book-depth-neg) + var(--book-cover-thickness))
+  );
+
+  [data-front],
+  [data-back] {
+    background-color: var(--book-background-color);
+    background-image: var(--book-gradient);
+  }
+
+  [data-bottom] {
+    background-image: var(--book-front-url);
+    background-size: 100%;
+    background-position: bottom;
+    background-repeat: no-repeat;
+  }
+
+  [data-top] {
+    background-image: var(--book-front-url);
+    background-size: 100dvw;
+  }
+
+  [data-right] {
+    background-image: var(--book-front-url);
+    background-size: auto 100%;
+    background-position: right;
+  }
+}
+
+.pages {
+  place-self: center;
+  transform: translateZ(calc(var(--book-cover-thickness) * -1));
+
+  [data-face] {
+    background-color: white;
+  }
+}

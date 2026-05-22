@@ -67,4 +67,10 @@ export const playgroundExperimentRoutes = [
     path: "/glasses",
     component: lazy(() => import("@/features/playground/experiments/Glasses")),
   },
+  {
+    path: "/floating-books",
+    component: lazy(
+      () => import("@/features/playground/experiments/FloatingBooks")
+    ),
+  },
 ];
