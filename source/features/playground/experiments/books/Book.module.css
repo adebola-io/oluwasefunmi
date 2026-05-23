@@ -5,8 +5,9 @@
   --book-depth-neg: calc(var(--book-depth) * -1);
   --book-cover-thickness: 7px;
   --book-cover-thickness-neg: calc(var(--book-cover-thickness) * -1);
-  --book-transition-duration: 750ms;
-  --book-easing: ease-in-out;
+  --book-transition-duration: 550ms;
+  --book-delay: 100ms;
+  --book-easing: var(--ease-spring-slower);
   --displacement-deg: calc(var(--book-index) * -0.75deg);
 
   display: grid;
@@ -14,7 +15,8 @@
   height: min(30dvh, 25dvw);
   transform-style: preserve-3d;
   will-change: opacity;
-  transition: opacity var(--book-transition-duration) var(--book-easing);
+  transition: opacity var(--book-transition-duration) var(--book-easing)
+    var(--book-delay);
 
   &[data-selected] {
     pointer-events: auto;
@@ -22,6 +24,7 @@
 
   &[data-not-selected] {
     opacity: 0;
+    transition-delay: 0ms;
   }
 }
 
@@ -34,6 +37,7 @@
   transition-property: transform, scale, translate;
   transition-duration: var(--book-transition-duration);
   transition-timing-function: var(--book-easing);
+  transition-delay: 0ms, 0ms, var(--book-delay);
   transform: rotateY(90deg) rotateX(90deg) rotateY(var(--displacement-deg));
 
   .bookContainer[data-selected] & {
@@ -42,10 +46,12 @@
 
   .bookContainer[data-above-index] & {
     translate: 0 -100%;
+    transition-delay: 0ms;
   }
 
   .bookContainer[data-below-index] & {
     translate: 0 100%;
+    transition-delay: 0ms;
   }
 
   & > * {

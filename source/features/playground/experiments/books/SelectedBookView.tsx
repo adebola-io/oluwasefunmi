@@ -19,14 +19,8 @@ export function SelectedBookView(props: SelectedBookViewProps) {
   });
 
   return If(selectedBookAsync, (selected) => (
-    <div
-      class={[
-        "fixed top-0 w-full h-full grid grid-cols-2",
-        "before:absolute before:size-full before:bg-(--book-color)",
-      ]}
-      style={{ color }}
-    >
-      <div class="place-self-center relative">
+    <div class="fixed top-0 w-full h-full grid grid-cols-2" style={{ color }}>
+      <div class="self-center justify-self-end ">
         <Book
           id={selected.title}
           item={selected}
@@ -34,7 +28,7 @@ export function SelectedBookView(props: SelectedBookViewProps) {
           index={0}
         />
       </div>
-      <div class="place-self-center relative">
+      <div class="self-center justify-self-start">
         <button onClick={onClose}>Close</button>
       </div>
     </div>

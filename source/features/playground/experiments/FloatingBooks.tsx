@@ -41,8 +41,8 @@ const FloatingBooks: RouteComponent = () => {
       <div
         style={{ backgroundColor }}
         class={[
-          "h-screen w-screen opacity-10 duration-500 fixed top-0 bg-red-200",
-          { "opacity-50": selectedBook },
+          "h-screen w-screen opacity-10 duration-500 delay-200 fixed top-0 bg-red-200",
+          { "opacity-80": selectedBook },
         ]}
       />
       <PlaygroundLayout title="Floating Books">
