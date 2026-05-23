@@ -37,10 +37,14 @@ const FloatingBooks: RouteComponent = () => {
   };
 
   return (
-    <div
-      style={{ backgroundColor }}
-      class="h-full w-full min-h-screen grid place-items-center"
-    >
+    <div class="h-full w-full min-h-screen grid place-items-center">
+      <div
+        style={{ backgroundColor }}
+        class={[
+          "h-screen w-screen opacity-10 duration-500 fixed top-0 bg-red-200",
+          { "opacity-50": selectedBook },
+        ]}
+      />
       <PlaygroundLayout title="Floating Books">
         <ul
           ref={listRef}

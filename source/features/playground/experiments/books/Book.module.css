@@ -5,7 +5,7 @@
   --book-depth-neg: calc(var(--book-depth) * -1);
   --book-cover-thickness: 7px;
   --book-cover-thickness-neg: calc(var(--book-cover-thickness) * -1);
-  --book-transition-duration: 850ms;
+  --book-transition-duration: 750ms;
   --book-easing: ease-in-out;
   --displacement-deg: calc(var(--book-index) * -0.75deg);
 
