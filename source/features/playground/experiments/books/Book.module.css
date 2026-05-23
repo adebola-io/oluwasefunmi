@@ -3,17 +3,18 @@
   --book-height: calc(var(--book-width) / var(--book-front-aspect-ratio));
   --book-depth: calc(var(--book-height) * var(--book-spine-aspect-ratio));
   --book-depth-neg: calc(var(--book-depth) * -1);
-  --book-cover-thickness: 5px;
+  --book-cover-thickness: 7px;
   --book-cover-thickness-neg: calc(var(--book-cover-thickness) * -1);
-  --book-transition-duration: 700ms;
-  --book-easing: ease;
+  --book-transition-duration: 850ms;
+  --book-easing: ease-in-out;
   --displacement-deg: calc(var(--book-index) * -0.75deg);
 
   display: grid;
   place-content: center;
   height: min(30dvh, 25dvw);
   transform-style: preserve-3d;
-  transition: opacity var(--book-transition-duration);
+  will-change: opacity;
+  transition: opacity var(--book-transition-duration) var(--book-easing);
 
   &[data-selected] {
     pointer-events: auto;
@@ -29,18 +30,22 @@
   transform-style: preserve-3d;
   user-select: none;
   place-content: center;
-  will-change: transform;
-  transition-property: transform, scale;
+  will-change: transform, translate;
+  transition-property: transform, scale, translate;
   transition-duration: var(--book-transition-duration);
   transition-timing-function: var(--book-easing);
   transform: rotateY(90deg) rotateX(90deg) rotateY(var(--displacement-deg));
 
   .bookContainer[data-selected] & {
-    transform: rotateY(20deg) rotateX(12deg) rotateZ(1deg);
+    transform: rotateY(27deg) rotateX(25deg);
   }
 
-  &:hover {
-    scale: 1.02;
+  .bookContainer[data-above-index] & {
+    translate: 0 -100%;
+  }
+
+  .bookContainer[data-below-index] & {
+    translate: 0 100%;
   }
 
   & > * {
@@ -48,12 +53,27 @@
     grid: 1fr/ 1fr;
     grid-area: 1/1;
   }
+
+  [data-bottom] {
+    filter: brightness(0.75);
+  }
 }
 
 .front {
   background-image: var(--book-front-url);
   background-color: var(--book-background-color);
   background-size: cover;
+
+  [data-front] {
+    background-image: linear-gradient(
+      to right,
+      transparent 2%,
+      #00000020 3%,
+      transparent 3% 6%,
+      #00000030 8%,
+      transparent 9%
+    );
+  }
 
   [data-top] {
     background-image: var(--book-front-url);
@@ -71,6 +91,10 @@
     background-size: auto 100%;
     background-position: right;
   }
+
+  [data-back] {
+    display: none;
+  }
 }
 
 .spine {
@@ -79,14 +103,11 @@
   transform: translateX(-100%) rotateY(-90deg);
   transition: filter var(--book-transition-duration) var(--book-easing);
 
-  .book:hover & {
-    filter: brightness(0.8);
-  }
-
   [data-front] {
     background-image: var(--book-spine-url);
     background-size: cover;
     background-color: var(--book-background-color);
+    filter: brightness(0.85);
   }
 
   [data-top] {
@@ -107,10 +128,13 @@
     calc(var(--book-depth-neg) + var(--book-cover-thickness))
   );
 
-  [data-front],
   [data-back] {
     background-color: var(--book-background-color);
     background-image: var(--book-gradient);
+  }
+
+  [data-front] {
+    display: none;
   }
 
   [data-bottom] {
@@ -118,6 +142,7 @@
     background-size: 100%;
     background-position: bottom;
     background-repeat: no-repeat;
+    background-blend-mode: darken;
   }
 
   [data-top] {
@@ -138,28 +163,38 @@
   transform: translateX(var(--book-cover-thickness))
     translateZ(calc(var(--book-cover-thickness) * -1));
 
-  [data-face] {
-    background-color: white;
+  .bookContainer:not([data-selected], [data-transitioning]) & {
+    display: none;
   }
 
-  [data-top],
+  [data-top] {
+    display: none;
+  }
+
+  [data-face]:not([data-right]) {
+    background-color: color-mix(in srgb, white 90%, black);
+  }
+
   [data-bottom] {
-    background-image: linear-gradient(
-      to bottom,
-      transparent 3%,
-      black calc(4% + 1px) calc(5% - 1px),
-      transparent 5%
-    );
-    background-size: 100% 5%;
-    background-repeat: repeat;
+    display: grid;
 
     &::before {
+      grid-area: 1/1;
       display: block;
       content: "";
       color: black;
       height: 100%;
       width: 1.5%;
       background-image: linear-gradient(to right, black, transparent);
+    }
+
+    &::after {
+      grid-area: 1/1;
+      display: block;
+      content: "";
+      height: 100%;
+      width: 100%;
+      background-image: linear-gradient(to bottom, #00000070, transparent 13%);
     }
   }
 

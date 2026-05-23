@@ -1,6 +1,6 @@
 import type { JSX } from "retend/jsx-runtime";
 import { SimpleBox } from "../../components/SimpleBox";
-import type { Book as BookType } from "../../data/books";
+import { books, type Book as BookType } from "../../data/books";
 import classes from "./Book.module.css";
 import { Cell, createUnique } from "retend";
 import { UniqueTransition } from "retend-utils/components";
@@ -33,6 +33,21 @@ export const Book = createUnique<BookProps>((props) => {
   const isNotSelected = Cell.derived(() => {
     return selected.get() && selected.get() !== item;
   });
+  const selectedIndex = Cell.derived(() => {
+    const selectedBook = selected.get();
+    if (!selectedBook) return -1;
+    const index = books.findIndex((book) => book === selectedBook);
+    return index;
+  });
+
+  const isAboveIndex = Cell.derived(() => {
+    const selectedI = selectedIndex.get();
+    return selectedI !== -1 && selectedI > index.get();
+  });
+  const isBelowIndex = Cell.derived(() => {
+    const selectedI = selectedIndex.get();
+    return selectedI !== -1 && selectedI < index.get();
+  });
 
   const handleClick = () => {
     onSelect.get()?.(item);
@@ -52,20 +67,22 @@ export const Book = createUnique<BookProps>((props) => {
   return (
     <UniqueTransition
       transitionDuration="var(--book-transition-duration)"
-      transitionTimingFunction="ease"
+      transitionTimingFunction="var(--book-easing)"
       respectParentTransform={false}
     >
       <div
         class={classes.bookContainer}
         data-selected={isSelected}
         data-not-selected={isNotSelected}
+        data-above-index={isAboveIndex}
+        data-below-index={isBelowIndex}
         style={style}
       >
         <button type="button" class={classes.book} onClick={handleClick}>
           <SimpleBox
             class={classes.pages}
             width="calc(var(--book-width) - var(--book-cover-thickness) * 2)"
-            height="calc(var(--book-height) - var(--book-cover-thickness) * 4)"
+            height="calc(var(--book-height) - var(--book-cover-thickness) * 2)"
             depth="calc(var(--book-depth) - var(--book-cover-thickness) * 2)"
           />
           <SimpleBox

@@ -9,13 +9,43 @@ import { SelectedBookView } from "./books/SelectedBookView";
 
 const FloatingBooks: RouteComponent = () => {
   const selectedBook = Cell.source<BookType | null>(null);
+  const listRef = Cell.source<HTMLUListElement | null>(null);
+  const backgroundColor = Cell.derived(() => {
+    return selectedBook.get()?.backgroundColor ?? "transparent";
+  });
+
+  const handleSelect = (item: BookType) => {
+    const ul = listRef.get();
+    if (!ul) return;
+
+    ul.style.overflow = "hidden";
+
+    selectedBook.set(item);
+  };
+
+  const handleClose = async () => {
+    selectedBook.set(null);
+
+    const ul = listRef.get();
+    if (!ul) return;
+
+    const animations = ul.getAnimations({ subtree: true });
+    const promises = animations.map((animation) => animation.finished);
+    await Promise.allSettled(promises);
+
+    ul.style.removeProperty("overflow");
+  };
 
   return (
-    <div class="h-full w-full min-h-screen grid place-items-center">
+    <div
+      style={{ backgroundColor }}
+      class="h-full w-full min-h-screen grid place-items-center"
+    >
       <PlaygroundLayout title="Floating Books">
         <ul
+          ref={listRef}
           class={[
-            "h-full grid place-items-center py-30",
+            "h-full w-screen grid place-items-center py-30",
             { "pointer-events-none": selectedBook },
           ]}
         >
@@ -26,13 +56,13 @@ const FloatingBooks: RouteComponent = () => {
                 item={book}
                 selected={selectedBook}
                 index={index}
-                onSelect={(item) => selectedBook.set(item)}
+                onSelect={handleSelect}
               />
             </li>
           ))}
         </ul>
         <Teleport to="body">
-          <SelectedBookView selectedBook={selectedBook} />
+          <SelectedBookView selectedBook={selectedBook} onClose={handleClose} />
         </Teleport>
       </PlaygroundLayout>
     </div>

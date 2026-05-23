@@ -12,6 +12,7 @@ function getBookImageUrl(imageId: string) {
 }
 
 interface BookSource {
+  id: number;
   title: string;
   author: string;
   frontCoverImageId: string;
@@ -36,6 +37,7 @@ export interface Book extends BookSource {
 
 const bookSources: BookSource[] = [
   {
+    id: 1,
     title: "Project Hail Mary",
     author: "Andy Weir",
     frontCoverImageId: "project-hail-mary-front",
@@ -49,6 +51,7 @@ const bookSources: BookSource[] = [
     aspectRatio: { frontCover: 0.6636, spine: 0.1944 },
   },
   {
+    id: 2,
     title: "The Fault in Our Stars",
     author: "John Green",
     frontCoverImageId: "the-fault-in-our-stars-front",
@@ -62,6 +65,7 @@ const bookSources: BookSource[] = [
     aspectRatio: { frontCover: 0.6682, spine: 0.1586 },
   },
   {
+    id: 3,
     title: "The Fellowship of the Ring",
     author: "J.R.R. Tolkien",
     frontCoverImageId: "the-fellowship-of-the-ring-front",
@@ -75,6 +79,7 @@ const bookSources: BookSource[] = [
     aspectRatio: { frontCover: 0.6453, spine: 0.2222 },
   },
   {
+    id: 4,
     title: "The Fifth Season",
     author: "N.K. Jemisin",
     frontCoverImageId: "the-fifth-season-front",
@@ -88,6 +93,7 @@ const bookSources: BookSource[] = [
     aspectRatio: { frontCover: 0.6432, spine: 0.1517 },
   },
   {
+    id: 5,
     title: "The Three-Body Problem",
     author: "Cixin Liu",
     frontCoverImageId: "the-three-body-problem-front",
@@ -101,6 +107,7 @@ const bookSources: BookSource[] = [
     aspectRatio: { frontCover: 0.6627, spine: 0.191 },
   },
   {
+    id: 6,
     title: "Guns, Germs, and Steel",
     author: "Jared Diamond",
     frontCoverImageId: "guns-germs-and-steel-front",
@@ -116,6 +123,7 @@ const bookSources: BookSource[] = [
     aspectRatio: { frontCover: 0.6619, spine: 0.1602 },
   },
   {
+    id: 7,
     title: "The Way of Kings",
     author: "Brandon Sanderson",
     frontCoverImageId: "the-way-of-kings-front",
@@ -129,6 +137,7 @@ const bookSources: BookSource[] = [
     aspectRatio: { frontCover: 0.6611, spine: 0.2355 },
   },
   {
+    id: 8,
     title: "They Both Die at the End",
     author: "Adam Silvera",
     frontCoverImageId: "they-both-die-at-the-end-front",
