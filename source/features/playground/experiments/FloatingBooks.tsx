@@ -3,16 +3,12 @@ import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLay
 import { SITE_URL } from "@/shared/constants";
 import { Book as BookType, books } from "../data/books";
 import { Book } from "./books/Book";
-import { Cell, For, If } from "retend";
+import { Cell, For } from "retend";
 import { Teleport } from "retend-web";
+import { SelectedBookView } from "./books/SelectedBookView";
 
 const FloatingBooks: RouteComponent = () => {
   const selectedBook = Cell.source<BookType | null>(null);
-  const selectedBookAsync = Cell.derivedAsync(async (get) => {
-    const selected = get(selectedBook);
-    await new Promise<void>((resolve) => queueMicrotask(resolve));
-    return selected;
-  });
 
   return (
     <div class="h-full w-full min-h-screen grid place-items-center">
@@ -36,19 +32,7 @@ const FloatingBooks: RouteComponent = () => {
           ))}
         </ul>
         <Teleport to="body">
-          {If(selectedBookAsync, (selected) => (
-            <div class="fixed pointer-events-none top-0 w-full h-full grid grid-cols-2">
-              <div class="place-self-center">
-                <Book
-                  id={selected.title}
-                  item={selected}
-                  index={0}
-                  selected={selectedBook}
-                  onSelect={() => selectedBook.set(null)}
-                />
-              </div>
-            </div>
-          ))}
+          <SelectedBookView selectedBook={selectedBook} />
         </Teleport>
       </PlaygroundLayout>
     </div>

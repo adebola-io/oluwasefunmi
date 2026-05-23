@@ -9,15 +9,18 @@ import { useDerivedValue } from "retend-utils/hooks";
 interface BookProps {
   item: BookType;
   index: JSX.ValueOrCell<number>;
-  onSelect: (book: BookType) => void;
-  selected: Cell<BookType | null>;
+  onSelect?: (book: BookType) => void;
+  selected?: Cell<BookType | null>;
 }
 
 export const Book = createUnique<BookProps>((props) => {
-  const { item, index: indexProp, selected } = props.get();
+  const { item, index: indexProp } = props.get();
 
   const onSelect = Cell.derived(() => {
     return props.get().onSelect;
+  });
+  const selected = Cell.derived(() => {
+    return props.get().selected?.get();
   });
 
   const index = useDerivedValue(indexProp);
