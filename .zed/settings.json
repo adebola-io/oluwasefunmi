@@ -1,8 +1,8 @@
 {
   "format_on_save": "on",
   "language_servers": [
-    "vtsls",
-    "!tsgo",
+    "!vtsls",
+    "tsgo",
     "oxlint",
     "oxfmt",
     "tailwindcss-language-server"
