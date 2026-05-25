@@ -78,7 +78,7 @@ const FloatingBooks: RouteComponent = () => {
           ))}
         </ul>
         <Teleport to="body">
-          <SelectedBookView selectedBook={selectedBook} onClose={handleClose} />
+          <SelectedBookView selectedBook={selectedBook} />
         </Teleport>
       </PlaygroundLayout>
     </div>
@@ -86,13 +86,16 @@ const FloatingBooks: RouteComponent = () => {
 };
 
 FloatingBooks.metadata = () => ({
-  title: "floating-books | Playground",
-  description: "floating-books",
-  ogTitle: "floating-books | Playground",
-  ogDescription: "floating-books",
+  title: "Floating Books | Playground",
+  description:
+    "Recreation of the Stripe Press website and effects with 3D CSS.",
+  ogTitle: "Floating Books | Playground",
+  ogDescription:
+    "Recreation of the Stripe Press website and effects with 3D CSS.",
   ogImage: `${SITE_URL}/og/floating-books.png`,
-  twitterTitle: "floating-books | Playground",
-  twitterDescription: "floating-books",
+  twitterTitle: "Floating Books | Playground",
+  twitterDescription:
+    "Recreation of the Stripe Press website and effects with 3D CSS.",
   twitterImage: `${SITE_URL}/og/floating-books.png`,
   viewport: "width=device-width, initial-scale=1.0",
 });
