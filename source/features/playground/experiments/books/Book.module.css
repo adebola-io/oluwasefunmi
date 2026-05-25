@@ -41,7 +41,7 @@
   transform: rotateY(90deg) rotateX(90deg) rotateY(var(--displacement-deg));
 
   .bookContainer[data-selected] & {
-    transform: rotateY(27deg) rotateX(25deg);
+    transform: rotateY(27deg) rotateX(25deg) scale(0.8);
   }
 
   .bookContainer[data-above-index] & {

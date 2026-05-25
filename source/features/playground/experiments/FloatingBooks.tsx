@@ -1,4 +1,4 @@
-import type { RouteComponent } from "retend/router";
+import { useRouter, type RouteComponent } from "retend/router";
 import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
 import { SITE_URL } from "@/shared/constants";
 import { Book as BookType, books } from "../data/books";
@@ -8,10 +8,14 @@ import { Teleport } from "retend-web";
 import { SelectedBookView } from "./books/SelectedBookView";
 
 const FloatingBooks: RouteComponent = () => {
+  const router = useRouter();
   const selectedBook = Cell.source<BookType | null>(null);
   const listRef = Cell.source<HTMLUListElement | null>(null);
   const backgroundColor = Cell.derived(() => {
     return selectedBook.get()?.backgroundColor ?? "transparent";
+  });
+  const backLabel = Cell.derived(() => {
+    return selectedBook.get() ? "back to books list" : "back to playground";
   });
 
   const handleSelect = (item: BookType) => {
@@ -35,6 +39,10 @@ const FloatingBooks: RouteComponent = () => {
 
     ul.style.removeProperty("overflow");
   };
+  const handleBack = () => {
+    if (selectedBook.get()) return handleClose();
+    return router.navigate("/playground");
+  };
 
   return (
     <div class="h-full w-full min-h-screen grid place-items-center">
@@ -45,7 +53,11 @@ const FloatingBooks: RouteComponent = () => {
           { "opacity-80": selectedBook },
         ]}
       />
-      <PlaygroundLayout title="Floating Books">
+      <PlaygroundLayout
+        title="Floating Books"
+        backLabel={backLabel}
+        onBack={handleBack}
+      >
         <ul
           ref={listRef}
           class={[

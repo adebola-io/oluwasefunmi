@@ -69,6 +69,8 @@ export const Book = createUnique<BookProps>((props) => {
       transitionDuration="var(--book-transition-duration)"
       transitionTimingFunction="var(--book-easing)"
       respectParentTransform={false}
+      maintainWidthDuringTransition
+      maintainHeightDuringTransition
     >
       <div
         class={classes.bookContainer}

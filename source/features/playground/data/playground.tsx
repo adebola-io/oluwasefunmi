@@ -33,6 +33,12 @@ function ExternalLink(props: ExternalLinkProps) {
 
 export const playgroundItems: PlaygroundItem[] = [
   {
+    path: "/playground/paper-fold-transitions",
+    title: "paper-fold-transitions",
+    description: () => <>Paper fold transitions.</>,
+    icon: () => <BookIcon />,
+  },
+  {
     path: "/playground/floating-books",
     title: "floating-books",
     description: () => (
