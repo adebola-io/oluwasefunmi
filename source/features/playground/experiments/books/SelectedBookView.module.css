@@ -1,0 +1,179 @@
+.view {
+  position: fixed;
+  inset: 0;
+  z-index: 90;
+  display: grid;
+  grid-template-columns: minmax(20rem, 45vw) minmax(24rem, 37rem) minmax(
+      2rem,
+      1fr
+    );
+  gap: clamp(3rem, 6vw, 7rem);
+  min-height: 100dvh;
+  padding: clamp(2rem, 5vw, 6rem) clamp(1.5rem, 4vw, 4rem);
+  overflow: auto;
+  color: var(--book-detail-ink);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.bookStage {
+  display: grid;
+  place-items: center;
+  min-height: 70dvh;
+}
+
+.content {
+  align-self: center;
+  display: grid;
+  gap: clamp(1rem, 2vw, 1.75rem);
+  max-width: 34rem;
+  margin-left: clamp(1rem, 2vw, 2.5rem);
+  animation: editorial-slide-in 500ms var(--ease-spring) 200ms backwards;
+}
+
+@keyframes editorial-slide-in {
+  from {
+    translate: 12% 0;
+    opacity: 0;
+  }
+}
+
+.kicker {
+  margin: 0;
+  font-family: var(--font-family);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  opacity: 0.62;
+}
+
+.title {
+  margin: 0;
+  max-width: 12ch;
+  font-size: clamp(1.85rem, 3vw, 3.1rem);
+  font-weight: 700;
+  line-height: 0.92;
+  letter-spacing: -0.045em;
+  text-wrap: balance;
+}
+
+.author {
+  margin: 0.45rem 0 0;
+  font-size: clamp(0.95rem, 1.2vw, 1.25rem);
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1.1;
+}
+
+.blurb {
+  margin: 0;
+  max-width: 34rem;
+  font-size: clamp(0.95rem, 1.15vw, 1.15rem);
+  font-weight: 700;
+  line-height: 1.42;
+  text-wrap: pretty;
+}
+
+.purchaseList {
+  display: grid;
+  border: 1px solid color-mix(in srgb, currentColor 72%, transparent);
+}
+
+.purchaseRow {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+  min-height: 3.1rem;
+  color: currentColor;
+  text-decoration: none;
+  transition:
+    background-color 160ms ease,
+    color 160ms ease;
+}
+
+.purchaseRow + .purchaseRow {
+  border-top: 1px solid color-mix(in srgb, currentColor 72%, transparent);
+}
+
+.purchaseRow:hover {
+  background: color-mix(in srgb, currentColor 10%, transparent);
+}
+
+.purchaseLabel {
+  padding: 0.75rem 1rem;
+  font-size: clamp(1rem, 1.4vw, 1.18rem);
+  font-weight: 700;
+  line-height: 1.1;
+}
+
+.purchaseMeta {
+  font-family: var(--font-family);
+  font-size: 0.84rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  opacity: 0.72;
+}
+
+.purchaseArrow {
+  display: grid;
+  place-items: center;
+  align-self: stretch;
+  width: 3rem;
+  border-left: 1px solid color-mix(in srgb, currentColor 72%, transparent);
+  font-family: var(--font-family);
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.authorSection {
+  align-self: end;
+  display: grid;
+  gap: 0.8rem;
+  margin-top: clamp(1rem, 5vh, 3rem);
+}
+
+.authorSectionTitle {
+  margin: -0.2rem 0 0;
+  font-size: 1.25rem;
+  font-weight: 700;
+  font-style: italic;
+  line-height: 1;
+}
+
+.authorInfo {
+  margin: 0;
+  max-width: 32rem;
+  font-family: var(--font-family);
+  font-size: 0.95rem;
+  line-height: 1.6;
+  opacity: 0.76;
+}
+
+@media (max-width: 1100px) {
+  .view {
+    grid-template-columns: minmax(0, 1fr);
+    justify-items: center;
+    gap: 1.5rem;
+    padding: 1rem;
+  }
+
+  .bookStage {
+    min-height: 48dvh;
+  }
+
+  .content {
+    justify-self: center;
+    align-self: start;
+    width: min(100%, 34rem);
+    margin-left: 0;
+    padding-bottom: 3rem;
+  }
+
+  .title {
+    max-width: 14ch;
+  }
+
+  .authorSection {
+    margin-top: 1.5rem;
+  }
+}

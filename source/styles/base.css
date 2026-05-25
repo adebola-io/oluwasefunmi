@@ -14,6 +14,7 @@
   --border-subtle: #2a3550;
 
   --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-spring-slower: cubic-bezier(0.5, 1, 0.3, 1);
 
   /* Bento Layout Tokens - Sharp/Technical Redesign */
   --card-radius: 12px;

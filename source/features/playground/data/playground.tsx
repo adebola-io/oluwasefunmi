@@ -9,6 +9,7 @@ import { HaloIcon } from "@/components/icons/halo";
 import { KeyboardIcon } from "@/components/icons/keyboard";
 import { MusicIcon } from "@/components/icons/music";
 import { WalletCardsIcon } from "@/components/icons/wallet-cards";
+import { BookIcon } from "@/components/icons/book";
 
 interface ExternalLinkProps {
   url: string;
@@ -31,6 +32,24 @@ function ExternalLink(props: ExternalLinkProps) {
 }
 
 export const playgroundItems: PlaygroundItem[] = [
+  // {
+  //   path: "/playground/paper-fold-transitions",
+  //   title: "paper-fold-transitions",
+  //   description: () => <>Paper fold transitions.</>,
+  //   icon: () => <BookIcon />,
+  // },
+  {
+    path: "/playground/floating-books",
+    title: "floating-books",
+    description: () => (
+      <>
+        Recreation of the{" "}
+        <ExternalLink url="https://press.stripe.com">Stripe Press</ExternalLink>{" "}
+        website and effects with 3D CSS.
+      </>
+    ),
+    icon: () => <BookIcon />,
+  },
   {
     path: "/playground/wallets",
     title: "wallets",

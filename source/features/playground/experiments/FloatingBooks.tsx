@@ -1,0 +1,103 @@
+import { useRouter, type RouteComponent } from "retend/router";
+import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLayout";
+import { SITE_URL } from "@/shared/constants";
+import { Book as BookType, books } from "../data/books";
+import { Book } from "./books/Book";
+import { Cell, For } from "retend";
+import { Teleport } from "retend-web";
+import { SelectedBookView } from "./books/SelectedBookView";
+
+const FloatingBooks: RouteComponent = () => {
+  const router = useRouter();
+  const selectedBook = Cell.source<BookType | null>(null);
+  const listRef = Cell.source<HTMLUListElement | null>(null);
+  const backgroundColor = Cell.derived(() => {
+    return selectedBook.get()?.backgroundColor ?? "transparent";
+  });
+  const backLabel = Cell.derived(() => {
+    return selectedBook.get() ? "back to books list" : "back to playground";
+  });
+
+  const handleSelect = (item: BookType) => {
+    const ul = listRef.get();
+    if (!ul) return;
+
+    ul.style.overflow = "hidden";
+
+    selectedBook.set(item);
+  };
+
+  const handleClose = async () => {
+    selectedBook.set(null);
+
+    const ul = listRef.get();
+    if (!ul) return;
+
+    const animations = ul.getAnimations({ subtree: true });
+    const promises = animations.map((animation) => animation.finished);
+    await Promise.allSettled(promises);
+
+    ul.style.removeProperty("overflow");
+  };
+  const handleBack = () => {
+    if (selectedBook.get()) return handleClose();
+    return router.navigate("/playground");
+  };
+
+  return (
+    <div class="h-full w-full min-h-screen grid place-items-center">
+      <div
+        style={{ backgroundColor }}
+        class={[
+          "h-screen w-screen opacity-10 duration-500 delay-200 fixed top-0 bg-red-200",
+          { "opacity-80": selectedBook },
+        ]}
+      />
+      <PlaygroundLayout
+        title="Floating Books"
+        backLabel={backLabel}
+        onBack={handleBack}
+      >
+        <ul
+          ref={listRef}
+          class={[
+            "h-full w-screen grid place-items-center py-30",
+            { "pointer-events-none": selectedBook },
+          ]}
+        >
+          {For(books, (book, index) => (
+            <li class="h-[min(30dvh,25dvw)]">
+              <Book
+                id={book.title}
+                item={book}
+                selected={selectedBook}
+                index={index}
+                onSelect={handleSelect}
+              />
+            </li>
+          ))}
+        </ul>
+        <Teleport to="body">
+          <SelectedBookView selectedBook={selectedBook} />
+        </Teleport>
+      </PlaygroundLayout>
+    </div>
+  );
+};
+
+FloatingBooks.metadata = () => ({
+  title: "Floating Books | Playground",
+  description:
+    "Recreation of the Stripe Press website and effects with 3D CSS.",
+  ogTitle: "Floating Books | Playground",
+  ogDescription:
+    "Recreation of the Stripe Press website and effects with 3D CSS.",
+  ogImage: `${SITE_URL}/og/floating-books.png`,
+  twitterTitle: "Floating Books | Playground",
+  twitterDescription:
+    "Recreation of the Stripe Press website and effects with 3D CSS.",
+  twitterImage: `${SITE_URL}/og/floating-books.png`,
+  viewport: "width=device-width, initial-scale=1.0",
+});
+
+export default FloatingBooks;

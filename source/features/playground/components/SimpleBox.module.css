@@ -1,0 +1,62 @@
+.simpleBox {
+  display: grid;
+  grid: 1fr / 1fr;
+  transform-style: preserve-3d;
+  width: fit-content;
+  height: fit-content;
+}
+
+.simpleContentBox {
+  --box-depth-neg: calc(var(--box-depth) * -1);
+
+  display: grid;
+  width: var(--box-width);
+  height: var(--box-height);
+  max-width: var(--box-width);
+  max-height: var(--box-height);
+  grid-template-columns: var(--box-width);
+  grid-template-rows: var(--box-height);
+  transform-style: preserve-3d;
+
+  & > * {
+    grid-area: 1 / 1;
+  }
+
+  [data-front] {
+    height: var(--box-height);
+    width: var(--box-width);
+  }
+
+  [data-back] {
+    height: var(--box-height);
+    width: var(--box-width);
+    transform: translateZ(var(--box-depth-neg));
+  }
+
+  [data-left] {
+    width: var(--box-depth);
+    transform-origin: left;
+    transform: rotateY(90deg);
+  }
+
+  [data-right] {
+    width: var(--box-depth);
+    transform-origin: right;
+    transform: rotateY(-90deg) scaleX(-1) translateX(100%);
+    justify-self: end;
+  }
+
+  [data-top] {
+    height: var(--box-depth);
+    transform-origin: bottom;
+    transform: translateY(-100%) rotateX(90deg);
+    align-self: start;
+  }
+
+  [data-bottom] {
+    height: var(--box-depth);
+    transform-origin: bottom;
+    transform: rotateX(90deg);
+    align-self: end;
+  }
+}

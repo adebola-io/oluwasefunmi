@@ -67,4 +67,16 @@ export const playgroundExperimentRoutes = [
     path: "/glasses",
     component: lazy(() => import("@/features/playground/experiments/Glasses")),
   },
+  {
+    path: "/floating-books",
+    component: lazy(
+      () => import("@/features/playground/experiments/FloatingBooks")
+    ),
+  },
+  // {
+  //   path: "/paper-fold-transitions",
+  //   component: lazy(
+  //     () => import("@/features/playground/experiments/PaperFoldTransitions")
+  //   ),
+  // },
 ];

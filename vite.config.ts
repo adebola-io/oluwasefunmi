@@ -30,6 +30,8 @@ const pages = [
   "/playground/vinyl-player",
   "/playground/painting-wheel",
   "/playground/glasses",
+  "/playground/floating-books",
+  "/playground/paper-fold-transitions",
   "/random-notes",
   "/contact",
   "/works",

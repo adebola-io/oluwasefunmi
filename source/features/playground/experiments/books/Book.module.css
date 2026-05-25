@@ -1,0 +1,217 @@
+.bookContainer {
+  --book-width: min(400px, 35dvw);
+  --book-height: calc(var(--book-width) / var(--book-front-aspect-ratio));
+  --book-depth: calc(var(--book-height) * var(--book-spine-aspect-ratio));
+  --book-depth-neg: calc(var(--book-depth) * -1);
+  --book-cover-thickness: 7px;
+  --book-cover-thickness-neg: calc(var(--book-cover-thickness) * -1);
+  --book-transition-duration: 550ms;
+  --book-delay: 100ms;
+  --book-easing: var(--ease-spring-slower);
+  --displacement-deg: calc(var(--book-index) * -0.75deg);
+
+  display: grid;
+  place-content: center;
+  height: min(30dvh, 25dvw);
+  transform-style: preserve-3d;
+  will-change: opacity;
+  transition: opacity var(--book-transition-duration) var(--book-easing)
+    var(--book-delay);
+
+  &[data-selected] {
+    pointer-events: auto;
+  }
+
+  &[data-not-selected] {
+    opacity: 0;
+    transition-delay: 0ms;
+  }
+}
+
+.book {
+  display: grid;
+  transform-style: preserve-3d;
+  user-select: none;
+  place-content: center;
+  will-change: transform, translate;
+  transition-property: transform, scale, translate;
+  transition-duration: var(--book-transition-duration);
+  transition-timing-function: var(--book-easing);
+  transition-delay: 0ms, 0ms, var(--book-delay);
+  transform: rotateY(90deg) rotateX(90deg) rotateY(var(--displacement-deg));
+
+  .bookContainer[data-selected] & {
+    transform: rotateY(27deg) rotateX(25deg) scale(0.8);
+  }
+
+  .bookContainer[data-above-index] & {
+    translate: 0 -100%;
+    transition-delay: 0ms;
+  }
+
+  .bookContainer[data-below-index] & {
+    translate: 0 100%;
+    transition-delay: 0ms;
+  }
+
+  & > * {
+    display: grid;
+    grid: 1fr/ 1fr;
+    grid-area: 1/1;
+  }
+
+  [data-bottom] {
+    filter: brightness(0.75);
+  }
+}
+
+.front {
+  background-image: var(--book-front-url);
+  background-color: var(--book-background-color);
+  background-size: cover;
+
+  [data-front] {
+    background-image: linear-gradient(
+      to right,
+      transparent 2%,
+      #00000020 3%,
+      transparent 3% 6%,
+      #00000030 8%,
+      transparent 9%
+    );
+  }
+
+  [data-top] {
+    background-image: var(--book-front-url);
+    background-size: 100%;
+  }
+
+  [data-bottom] {
+    background-image: var(--book-front-url);
+    background-size: 100%;
+    background-position: bottom;
+  }
+
+  [data-right] {
+    background-image: var(--book-front-url);
+    background-size: auto 100%;
+    background-position: right;
+  }
+
+  [data-back] {
+    display: none;
+  }
+}
+
+.spine {
+  grid-area: 1 / 1;
+  transform-origin: right;
+  transform: translateX(-100%) rotateY(-90deg);
+  transition: filter var(--book-transition-duration) var(--book-easing);
+
+  [data-front] {
+    background-image: var(--book-spine-url);
+    background-size: cover;
+    background-color: var(--book-background-color);
+    filter: brightness(0.85);
+  }
+
+  [data-top] {
+    background-image: var(--book-spine-url);
+    background-size: 100%;
+  }
+
+  [data-bottom] {
+    background-image: var(--book-spine-url);
+    background-size: 100%;
+    background-position: bottom;
+    background-repeat: no-repeat;
+  }
+}
+
+.back {
+  transform: translateZ(
+    calc(var(--book-depth-neg) + var(--book-cover-thickness))
+  );
+
+  [data-back] {
+    background-color: var(--book-background-color);
+    background-image: var(--book-gradient);
+  }
+
+  [data-front] {
+    display: none;
+  }
+
+  [data-bottom] {
+    background-image: var(--book-front-url);
+    background-size: 100%;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    background-blend-mode: darken;
+  }
+
+  [data-top] {
+    background-image: var(--book-front-url);
+    background-size: 100dvw;
+  }
+
+  [data-right] {
+    background-image: var(--book-front-url);
+    background-size: auto 100%;
+    background-position: right;
+  }
+}
+
+.pages {
+  align-self: center;
+  justify-self: start;
+  transform: translateX(var(--book-cover-thickness))
+    translateZ(calc(var(--book-cover-thickness) * -1));
+
+  .bookContainer:not([data-selected], [data-transitioning]) & {
+    display: none;
+  }
+
+  [data-top] {
+    display: none;
+  }
+
+  [data-face]:not([data-right]) {
+    background-color: color-mix(in srgb, white 90%, black);
+  }
+
+  [data-bottom] {
+    display: grid;
+
+    &::before {
+      grid-area: 1/1;
+      display: block;
+      content: "";
+      color: black;
+      height: 100%;
+      width: 1.5%;
+      background-image: linear-gradient(to right, black, transparent);
+    }
+
+    &::after {
+      grid-area: 1/1;
+      display: block;
+      content: "";
+      height: 100%;
+      width: 100%;
+      background-image: linear-gradient(to bottom, #00000070, transparent 13%);
+    }
+  }
+
+  [data-right] {
+    background-image: linear-gradient(
+      to right,
+      transparent 3%,
+      black calc(4% + 1px) calc(5% - 1px),
+      transparent 5%
+    );
+    background-size: 5% 100%;
+    background-repeat: repeat;
+  }
+}
