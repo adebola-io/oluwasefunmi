@@ -10,7 +10,6 @@ import { KeyboardIcon } from "@/components/icons/keyboard";
 import { MusicIcon } from "@/components/icons/music";
 import { WalletCardsIcon } from "@/components/icons/wallet-cards";
 import { BookIcon } from "@/components/icons/book";
-import { PaperStripsIcon } from "@/components/icons/paper-strips";
 
 interface ExternalLinkProps {
   url: string;
@@ -33,12 +32,6 @@ function ExternalLink(props: ExternalLinkProps) {
 }
 
 export const playgroundItems: PlaygroundItem[] = [
-  {
-    path: "/playground/paper-strips",
-    title: "paper-strips",
-    description: () => <>Paper fold transitions.</>,
-    icon: () => <PaperStripsIcon />,
-  },
   {
     path: "/playground/floating-books",
     title: "floating-books",

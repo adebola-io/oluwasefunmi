@@ -73,10 +73,4 @@ export const playgroundExperimentRoutes = [
       () => import("@/features/playground/experiments/FloatingBooks")
     ),
   },
-  {
-    path: "/paper-strips",
-    component: lazy(
-      () => import("@/features/playground/experiments/PaperStrips")
-    ),
-  },
 ];
