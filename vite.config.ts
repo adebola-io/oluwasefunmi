@@ -31,7 +31,7 @@ const pages = [
   "/playground/painting-wheel",
   "/playground/glasses",
   "/playground/floating-books",
-  // "/playground/paper-fold-transitions",
+  "/playground/paper-strips",
   "/random-notes",
   "/contact",
   "/works",

@@ -73,10 +73,10 @@ export const playgroundExperimentRoutes = [
       () => import("@/features/playground/experiments/FloatingBooks")
     ),
   },
-  // {
-  //   path: "/paper-fold-transitions",
-  //   component: lazy(
-  //     () => import("@/features/playground/experiments/PaperFoldTransitions")
-  //   ),
-  // },
+  {
+    path: "/paper-strips",
+    component: lazy(
+      () => import("@/features/playground/experiments/PaperStrips")
+    ),
+  },
 ];

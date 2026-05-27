@@ -1,0 +1,24 @@
+.paper {
+  display: grid;
+  grid: 1fr / 1fr;
+  height: min(500px, 50dvw);
+  width: auto;
+  aspect-ratio: 1 / 1;
+  background-color: red;
+  color: white;
+  transform-style: preserve-3d;
+
+  [data-front] {
+    grid-area: 1 / 1;
+    backface-visibility: hidden;
+    display: grid;
+    grid: 1fr / 1fr;
+  }
+
+  [data-back] {
+    grid-area: 1 / 1;
+    transform: translateZ(-1px) rotateY(180deg);
+    display: grid;
+    grid: 1fr / 1fr;
+  }
+}
