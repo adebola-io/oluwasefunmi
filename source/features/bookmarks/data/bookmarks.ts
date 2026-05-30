@@ -1,5 +1,17 @@
 export const bookmarks = [
   {
+    id: "taste",
+    link: "https://shedsgns.me/taste",
+    notes: "",
+    image: "https://pbs.twimg.com/media/HJJDP3BW0AA7LnP?format=jpg&name=medium",
+    themeColor: "#fafafa",
+    openGraph: {
+      title: "On AI, systems, taste and the human filter",
+      description: "On AI, systems, taste and the human filter",
+      siteName: "shedsgns.me",
+    },
+  },
+  {
     id: "projecting-react",
     link: "https://tannerlinsley.com/posts/projecting-react",
     notes: "",
