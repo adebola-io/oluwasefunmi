@@ -1,5 +1,19 @@
 export const bookmarks = [
   {
+    id: "collision-detection-in-hover-detection",
+    link: "https://motion.dev/magazine/collision-detection-in-hover-detection",
+    notes: "",
+    image:
+      "https://api.motion.dev/magazine/og/article/collision-detection-in-hover-detection.png?title=Crashing+cars+and+improving+hover+detection&description=Fast+pointer+movements+can+skip+over+elements%2C+breaking+hover+detection.+The+surprising+solution+can+be+found+in+game+development.&category=Feature&author=Matt+Perry&date=2026-06-04T00%3A00%3A00.000Z",
+    themeColor: "#ffffff",
+    openGraph: {
+      title: "Crashing cars and improving hover detection | Motion Magazine",
+      description:
+        "Fast pointer movements can skip over elements, breaking hover detection. The surprising solution can be found in game development.",
+      siteName: "Motion",
+    },
+  },
+  {
     id: "taste",
     link: "https://shedsgns.me/taste",
     notes: "",
