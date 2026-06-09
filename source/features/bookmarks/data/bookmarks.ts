@@ -1,5 +1,17 @@
 export const bookmarks = [
   {
+    id: "the-user-doesnt-care-but-you-should",
+    link: "https://lewiscampbell.tech/blog/260607.html",
+    notes: "",
+    image: "https://lewiscampbell.tech/img/icon512-967261d058848800.png",
+    themeColor: "#80D4FF",
+    openGraph: {
+      title: "The User Doesn't Care - But you should",
+      description: "Debunking one of the most poisonous myths in programming.",
+      siteName: "lewiscampbell.tech",
+    },
+  },
+  {
     id: "collision-detection-in-hover-detection",
     link: "https://motion.dev/magazine/collision-detection-in-hover-detection",
     notes: "",
