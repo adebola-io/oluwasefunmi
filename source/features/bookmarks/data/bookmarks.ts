@@ -1,5 +1,32 @@
 export const bookmarks = [
   {
+    id: "introducing-deltadb",
+    link: "https://zed.dev/blog/introducing-deltadb",
+    notes: "",
+    image: "https://images.zed.dev/blog/deltadb-early-access/thumbnail.webp",
+    themeColor: "#ffffff",
+    openGraph: {
+      title: "Software Is Made Between Commits - Zed Blog",
+      description:
+        "Agents turned the conversation into the real source of our software. DeltaDB is the version control built for it.",
+      siteName: "Zed Blog",
+    },
+  },
+  {
+    id: "bootstrapping-composer-with-autoinstall",
+    link: "https://cursor.com/blog/bootstrapping-composer-with-autoinstall",
+    notes: "",
+    image:
+      "https://ptht05hbb1ssoooe.public.blob.vercel-storage.com/assets/blog/og/autoinstall-og-image-2.png",
+    themeColor: "#f7f7f4",
+    openGraph: {
+      title: "Bootstrapping Composer with autoinstall · Cursor",
+      description:
+        "How Composer autoinstall bootstraps runnable RL environments by using earlier model versions to automate setup and verification.",
+      siteName: "Cursor",
+    },
+  },
+  {
     id: "the-user-doesnt-care-but-you-should",
     link: "https://lewiscampbell.tech/blog/260607.html",
     notes: "",
@@ -591,6 +618,20 @@ export const bookmarks = [
     openGraph: {
       title: "How Is Data Stored",
       description: "A chapter exploring how software stores data.",
+      siteName: "Making Software",
+    },
+  },
+  {
+    id: "image-compression",
+    link: "https://makingsoftware.com/chapters/image-compression",
+    notes: "",
+    image:
+      "https://www.makingsoftware.com/_next/image?url=%2Fdata-and-compression%2Fimage-compression%2Fhero.png&w=3840&q=75",
+    themeColor: "#ffffff",
+    openGraph: {
+      title: "Image compression.",
+      description:
+        "Exploiting the quirks of human vision to make images smaller, without looking awful.",
       siteName: "Making Software",
     },
   },
