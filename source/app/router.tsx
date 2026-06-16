@@ -1,13 +1,9 @@
-import { defineRoutes, Router } from "retend/router";
+import { defineRoutes, lazy, Router } from "retend/router";
 
 import PortfolioHome from "@/features/home/HomePage";
 import Bookmarks from "@/features/bookmarks/BookmarksPage";
-import Playground from "@/features/playground/PlaygroundPage";
-import RandomNotes from "@/features/notes/RandomNotesPage";
-import RandomNote from "@/features/notes/RandomNotePage";
 import Contact from "@/features/contact/ContactPage";
 import Works from "@/features/works/WorksPage";
-import { playgroundExperimentRoutes } from "@/features/playground/playgroundExperimentRoutes";
 
 import { RootLayout } from "@/components/layout/RootLayout";
 
@@ -25,17 +21,11 @@ const routes = defineRoutes([
       { path: "/", component: PortfolioHome },
       {
         path: "/playground",
-        children: [
-          { path: "/", component: Playground },
-          ...playgroundExperimentRoutes,
-        ],
+        subtree: lazy(() => import("@/features/playground/playgroundRoutes")),
       },
       {
         path: "/random-notes",
-        children: [
-          { path: "/", component: RandomNotes },
-          { path: "/:slug", component: RandomNote },
-        ],
+        subtree: lazy(() => import("@/features/notes/notesRoutes")),
       },
       { path: "/works", component: Works },
       { path: "/bookmarks", component: Bookmarks },

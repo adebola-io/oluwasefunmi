@@ -33,6 +33,12 @@ function ExternalLink(props: ExternalLinkProps) {
 
 export const playgroundItems: PlaygroundItem[] = [
   {
+    path: "/playground/mirror",
+    title: "mirror",
+    description: () => <></>,
+    icon: () => <CubeIcon />,
+  },
+  {
     path: "/playground/floating-books",
     title: "floating-books",
     description: () => (

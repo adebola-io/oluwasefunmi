@@ -20,6 +20,7 @@ const productRoutes = products.map((product: (typeof products)[number]) => {
 const pages = [
   "/",
   "/playground",
+  "/playground/mirror",
   "/playground/curved-css-solid",
   "/playground/ripple-effect",
   "/playground/blur-carousel",
