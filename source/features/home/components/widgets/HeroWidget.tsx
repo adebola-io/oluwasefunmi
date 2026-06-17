@@ -1,6 +1,5 @@
 import { Cell, onSetup } from "retend";
 import classes from "./HeroWidget.module.css";
-import { StatusPill } from "./StatusPill";
 
 interface HeroWidgetProps {
   name: string;
@@ -29,7 +28,6 @@ export function HeroWidget(props: HeroWidgetProps) {
         <div class={classes.avatarWrapper}>
           <img ref={imgRef} src={avatar} alt={name} class={classes.avatar} />
         </div>
-        <StatusPill text="Available for Work" />
       </header>
 
       <div class={classes.content}>
