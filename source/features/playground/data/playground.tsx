@@ -39,9 +39,11 @@ export const playgroundItems: PlaygroundItem[] = [
     title: "floating-books",
     description: () => (
       <>
-        Recreation of the{" "}
+        Recreating the{" "}
         <ExternalLink url="https://press.stripe.com">Stripe Press</ExternalLink>{" "}
-        website and effects with 3D CSS.
+        book wall in CSS, with each cover kept on its own transform layer.
+        Selecting one locks the list, teleports the detail view to the body, and
+        derives the page wash from the active book.
       </>
     ),
     icon: () => <BookIcon />,
@@ -49,14 +51,23 @@ export const playgroundItems: PlaygroundItem[] = [
   {
     path: "/playground/wallets",
     title: "wallets",
-    description: () => <>3D wallets with pull-out cards.</>,
+    description: () => (
+      <>
+        Three CSS wallets, each packed with cards, notes, IDs, stickers, and
+        tickets. The closing path is the awkward part: the shared wallet scope
+        keeps the old view alive until its animations settle.
+      </>
+    ),
     icon: () => <WalletCardsIcon />,
   },
   {
     path: "/playground/glasses",
     title: "glasses",
     description: () => (
-      <>Clipped path glasses-like transitions with CSS transforms.</>
+      <>
+        Switchable glasses on a fixed face preview. Each frame is assembled from
+        DOM pieces, masks, ridges, and small marks instead of a flat image.
+      </>
     ),
     icon: () => <GlassesIcon />,
   },
@@ -65,7 +76,9 @@ export const playgroundItems: PlaygroundItem[] = [
     title: "vinyl-player",
     description: () => (
       <>
-        A tactile vinyl player with animated record artwork and smooth playback.
+        Album collections, a basket view, then a vinyl player. The record,
+        cover, tone arm, controls, and track list share context cells, so the
+        back action steps through those states instead of resetting the route.
       </>
     ),
     icon: () => <MusicIcon />,
@@ -74,7 +87,11 @@ export const playgroundItems: PlaygroundItem[] = [
     path: "/playground/painting-wheel",
     title: "painting-wheel",
     description: () => (
-      <>A specialized painting carousel that rotates like a wheel.</>
+      <>
+        A rotating painting wheel with a side collection panel and a routed
+        detail layer. The selected painting is stored in the query string, which
+        lets the wheel stage stay mounted behind the details.
+      </>
     ),
     icon: () => <PaintingWheelIcon />,
   },
@@ -82,7 +99,11 @@ export const playgroundItems: PlaygroundItem[] = [
     path: "/playground/css-keyboard",
     title: "css-keyboard",
     description: () => (
-      <>A 3D keyboard implementation using pure CSS transformations.</>
+      <>
+        A DOM keyboard with CSS depth, key presses, WPM tracking, sound packs,
+        and theme controls. View mode passes rotation to the shared viewer. Type
+        mode sends input into the keyboard.
+      </>
     ),
     icon: () => <KeyboardIcon />,
   },
@@ -91,7 +112,9 @@ export const playgroundItems: PlaygroundItem[] = [
     title: "three-dimensional-marquee",
     description: () => (
       <>
-        3d marquee rotating text with a halo effect, in pure CSS. Original by{" "}
+        Editable text on a circular path, rotated through the shared 3D viewer.
+        The text and color inputs write straight into cells, and the halo stays
+        CSS-only. Original by{" "}
         <ExternalLink url="https://x.com/dejager/status/2012219287952380320">
           @dejager
         </ExternalLink>
@@ -104,7 +127,9 @@ export const playgroundItems: PlaygroundItem[] = [
     title: "product-transitions",
     description: () => (
       <>
-        Product card transitions with drag to dismiss gesture. Original by{" "}
+        A masonry product grid where each card opens a routed detail page.
+        Stable image IDs are reused between the list and detail states, which
+        gives the transition a continuous anchor. Original by{" "}
         <ExternalLink url="https://x.com/aydahnizzy/status/2009766429780820131">
           @aydahnizzy
         </ExternalLink>
@@ -117,9 +142,10 @@ export const playgroundItems: PlaygroundItem[] = [
     title: "blur-carousel",
     description: () => (
       <>
-        A carousel using scroll-driven animations to mimic physical depth of
-        field. Items dynamically blur and recede as they move out of focus.
-        Original by{" "}
+        FluidList handles the horizontal scroll track, while CSS handles the
+        blur and depth treatment around each avatar. An IntersectionObserver
+        only changes stacking, so the centered item does not get buried by its
+        neighbors. Original by{" "}
         <ExternalLink url="https://x.com/SebJVidal/status/2005309959056338981">
           @SebJVidal
         </ExternalLink>
@@ -132,8 +158,9 @@ export const playgroundItems: PlaygroundItem[] = [
     title: "ripple-effect",
     description: () => (
       <>
-        Optimized grid interaction where clicks trigger cascading ripple effects
-        across cells.
+        A click ripple across a responsive button grid. Each cell derives its
+        row and column from its index, computes Euclidean distance from the
+        active click, and uses that as its animation delay.
       </>
     ),
     icon: () => <RippleIcon />,
@@ -143,8 +170,9 @@ export const playgroundItems: PlaygroundItem[] = [
     title: "curved-css-solid",
     description: () => (
       <>
-        Using CSS transforms to create a volumetric 3D box. It uses pure DOM
-        elements to achieve smooth curves and full interactivity.
+        A CSS solid made from regular elements, not WebGL. Width, height, depth,
+        curve, color, rotation, dragging, and autorotate all sit in cells that
+        feed the generated box faces and shared viewer.
       </>
     ),
     icon: () => <CubeIcon />,
