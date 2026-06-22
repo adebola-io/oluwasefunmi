@@ -1,68 +1,53 @@
-import { Link, type RouteComponent } from "retend/router";
-import classes from "./ContactPage.module.css";
+import type { RouteComponent } from "retend/router";
+import { SimpleListPage } from "@/components/layout/SimpleListPage";
 import { SITE_URL } from "@/shared/constants";
+
+const contactItems = [
+  {
+    title: "email",
+    subtitle: "adebolaakomolafe@gmail.com",
+    href: "mailto:adebolaakomolafe@gmail.com",
+    external: true,
+  },
+  {
+    title: "resume",
+    subtitle: "Read the current PDF resume.",
+    href: "/oluwasefunmi-akomolafe.pdf",
+    external: true,
+  },
+  {
+    title: "twitter",
+    subtitle: "Short posts and working notes.",
+    href: "https://www.twitter.com/adebola_io",
+    external: true,
+  },
+  {
+    title: "linkedin",
+    subtitle: "Professional profile and work history.",
+    href: "https://www.linkedin.com/in/oluwasefunmi-akomolafe-3a6a42214/",
+    external: true,
+  },
+  {
+    title: "bluesky",
+    subtitle: "Social profile for lighter updates.",
+    href: "https://bsky.app/profile/oluwasefunmi.com",
+    external: true,
+  },
+  {
+    title: "github",
+    subtitle: "Code, libraries, experiments, and public repositories.",
+    href: "https://www.github.com/adebola-io",
+    external: true,
+  },
+];
 
 const Contact: RouteComponent = () => {
   return (
-    <div class={classes.page}>
-      <div class={classes.container}>
-        <p class={classes.intro}>
-          Got a cool idea or a big dream? Don't just sit on it! Hit me up, and
-          let's turn it into something awesome together. You can reach me at:
-        </p>
-        <h1 class={classes.emailLink}>
-          <a href="mailto:adebolaakomolafe@gmail.com">
-            adebolaakomolafe@gmail.com
-          </a>
-        </h1>
-        <br />
-
-        <Link
-          href="/oluwasefunmi-akomolafe.pdf"
-          class={classes.resume}
-          data-pill-link
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          read my resume →
-        </Link>
-
-        <div class={classes.socials}>
-          <a
-            href="https://www.twitter.com/adebola_io"
-            class={classes.socialLink}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            twitter
-          </a>
-          <a
-            href="https://www.linkedin.com/in/oluwasefunmi-akomolafe-3a6a42214/"
-            class={classes.socialLink}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            linkedin
-          </a>
-          <a
-            href="https://bsky.app/profile/oluwasefunmi.com"
-            class={classes.socialLink}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            bluesky
-          </a>
-          <a
-            href="https://www.github.com/adebola-io"
-            class={classes.socialLink}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            github
-          </a>
-        </div>
-      </div>
-    </div>
+    <SimpleListPage
+      title="Contact"
+      subtitle="A simple list of places to reach me or inspect my work."
+      items={contactItems}
+    />
   );
 };
 

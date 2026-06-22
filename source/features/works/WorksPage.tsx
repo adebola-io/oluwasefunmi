@@ -1,65 +1,22 @@
-import { Cell, For } from "retend";
-import { Link } from "retend/router";
 import type { RouteComponent } from "retend/router";
-import { LayeredCard } from "@/components/ui/LayeredCard";
-import classes from "./WorksPage.module.css";
-import { PageHeader } from "@/components/layout/PageHeader";
-import type { Project } from "@/features/works/types";
+import { SimpleListPage } from "@/components/layout/SimpleListPage";
 import { projects } from "@/features/works/data/projects";
-import { ArrowIcon } from "@/components/icons/arrow";
 import { SITE_URL } from "@/shared/constants";
 
-interface ProjectItemProps {
-  project: Project;
-  index: Cell<number>;
-}
-
-const ProjectItem = (props: ProjectItemProps) => {
-  const { project, index } = props;
-  const animationDelay = Cell.derived(() => `${index.get() * 100}ms`);
-
-  return (
-    <li class={[classes.item, project.class]} style={{ animationDelay }}>
-      <LayeredCard
-        as={Link}
-        href={project.link}
-        target="_blank"
-        rel="noreferrer"
-        class={classes.projectCard}
-      >
-        <div>
-          <h2 class={classes.projectTitle}>
-            {project.name}.
-            <ArrowIcon class={classes.arrowIcon} />
-          </h2>
-          <p class={classes.projectDescription}>{project.description}</p>
-        </div>
-        <div class={classes.tags}>
-          {For(project.tags, (tag) => (
-            <span class={classes.tag}>{tag}</span>
-          ))}
-        </div>
-      </LayeredCard>
-    </li>
-  );
-};
+const workItems = projects.map((project) => ({
+  title: project.name,
+  subtitle: project.description,
+  href: project.link,
+  external: true,
+}));
 
 const Works: RouteComponent = () => {
   return (
-    <div class={classes.works}>
-      <div class={classes.container}>
-        <PageHeader
-          title="My Works."
-          subtitle="Here's a curated collection of my works, highlighting my past achievements and current projects."
-        />
-
-        <ul class={classes.grid}>
-          {For(projects, (project, i) => (
-            <ProjectItem project={project} index={i} />
-          ))}
-        </ul>
-      </div>
-    </div>
+    <SimpleListPage
+      title="Works"
+      subtitle="A simple index of products, frameworks, tools, and selected client work."
+      items={workItems}
+    />
   );
 };
 

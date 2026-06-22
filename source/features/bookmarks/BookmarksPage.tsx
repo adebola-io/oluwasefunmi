@@ -1,81 +1,22 @@
-import { Cell, For, If } from "retend";
 import type { RouteComponent } from "retend/router";
-import { useIntersectionObserver } from "retend-utils/hooks";
-import classes from "./BookmarksPage.module.css";
-import { PageHeader } from "@/components/layout/PageHeader";
+import { SimpleListPage } from "@/components/layout/SimpleListPage";
 import { SITE_URL } from "@/shared/constants";
-import { BookmarkItem } from "./components/BookmarkItem";
-import { useBookmarks } from "./hooks/useBookmarks";
-import { ClientOnly } from "retend-server";
+import { bookmarks } from "./data/bookmarks";
 
-const SearchIcon = () => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2.5"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    class={classes.searchIcon}
-  >
-    <circle cx="11" cy="11" r="8" />
-    <path d="m21 21-4.3-4.3" />
-  </svg>
-);
+const bookmarkItems = bookmarks.map((bookmark) => ({
+  title: bookmark.openGraph.title,
+  subtitle: bookmark.openGraph.description || bookmark.openGraph.siteName,
+  href: bookmark.link,
+  external: true,
+}));
 
 const Bookmarks: RouteComponent = () => {
-  const { state, loaded, pending, query, handleSearch, handlePagination } =
-    useBookmarks();
-  const loadMoreRef = Cell.source<HTMLDivElement | null>(null);
-  const items = Cell.derived(() => state.get().items);
-  const totalItems = Cell.derived(() => state.get().totalItems);
-  const showEmpty = Cell.derived(() => loaded.get() && totalItems.get() === 0);
-  useIntersectionObserver(
-    loadMoreRef,
-    ([entry]) => {
-      if (!entry.isIntersecting) return;
-      if (!loaded.get()) return;
-      if (pending.get()) return;
-      if (items.get().length === totalItems.get()) return;
-      handlePagination(1);
-    },
-    () => ({ rootMargin: "400px 0px" })
-  );
-
   return (
-    <div>
-      <div class={classes.container}>
-        <PageHeader
-          title="Bookmarks."
-          subtitle="Here's a curated collection of digital ephemera, tools, and inspirations."
-        />
-        <div class={classes.controls}>
-          <div class={classes.searchContainer}>
-            <SearchIcon />
-            <input
-              type="search"
-              value={query}
-              placeholder="Search archive"
-              class={classes.search}
-              onInput={handleSearch}
-            />
-          </div>
-        </div>
-        <ClientOnly>
-          {If(showEmpty, () => (
-            <div class={classes.error}>No items found in the archive.</div>
-          ))}
-          <ul class={classes.board}>
-            {For(items, (item, index) => (
-              <li class={classes.item}>
-                <BookmarkItem item={item} index={index} />
-              </li>
-            ))}
-          </ul>
-        </ClientOnly>
-        <div ref={loadMoreRef} class={classes.loadMoreTrigger} />
-      </div>
-    </div>
+    <SimpleListPage
+      title="Bookmarks"
+      subtitle="A simple index of saved writing, tools, references, and interface material."
+      items={bookmarkItems}
+    />
   );
 };
 

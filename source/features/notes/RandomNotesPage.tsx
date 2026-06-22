@@ -1,13 +1,9 @@
-import { For, If, Cell } from "retend";
+import { Cell } from "retend";
 import type { RouteComponent } from "retend/router";
 import type { PageMeta } from "retend-server/client";
 import type { Note, NotePreviewProps } from "@/shared/types";
-import { Link } from "retend/router";
-import { LayeredCard } from "@/components/ui/LayeredCard";
-import { PageHeader } from "@/components/layout/PageHeader";
-import { NoteHeading } from "@/components/ui/typography";
+import { SimpleListPage } from "@/components/layout/SimpleListPage";
 import { SITE_URL } from "@/shared/constants";
-import classes from "./RandomNotesPage.module.css";
 
 export const getNotesIndex = async () => {
   const items: NotePreviewProps[] = [];
@@ -33,45 +29,21 @@ export const getNotesIndex = async () => {
 
 const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
   const { metadata } = props;
-  const notes = Cell.derived(() => metadata.get("misc"));
-  const isEmptyNotes = Cell.derived(() => {
-    const n = notes.get();
-    return !n || n.length === 0;
-  });
+  const notes = Cell.derived(() => metadata.get("misc") ?? []);
+  const noteItems = Cell.derived(() =>
+    notes.get().map((note) => ({
+      title: note.title,
+      subtitle: `${note.dateStr} · ${note.description}`,
+      href: `/random-notes/${note.id}`,
+    }))
+  );
 
   return (
-    <div class={classes.page}>
-      <div class={classes.container}>
-        <PageHeader
-          title="Random Notes."
-          subtitle="Disjoint musings, incoherent rants and streams of consciousness that I have decided to write down. Anything about life, technology and consequence."
-        />
-
-        <div class={classes.notesList}>
-          {If(
-            isEmptyNotes,
-            () => (
-              <p class={classes.empty}>No notes yet.</p>
-            ),
-            () =>
-              For(notes, (note) => (
-                <LayeredCard
-                  as={Link}
-                  href={`/random-notes/${note.id}`}
-                  class={classes.noteCard}
-                >
-                  <NoteHeading
-                    id={`random-note-heading-${note.id}`}
-                    title={note.title}
-                  />
-                  <div class={classes.noteDate}>{note.dateStr}</div>
-                  <p class={classes.noteSummary}>{note.description}</p>
-                </LayeredCard>
-              ))
-          )}
-        </div>
-      </div>
-    </div>
+    <SimpleListPage
+      title="Random Notes"
+      subtitle="Loose notes on life, technology, software, and consequence."
+      items={noteItems}
+    />
   );
 };
 
