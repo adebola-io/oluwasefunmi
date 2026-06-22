@@ -1,5 +1,10 @@
 import type { RouteComponent } from "retend/router";
-import { SimpleListPage } from "@/components/layout/SimpleListPage";
+import {
+  SimpleList,
+  SimpleListBackLink,
+  SimpleListHeader,
+  SimpleListPageLayout,
+} from "@/components/layout/SimpleListPage";
 import { projects } from "@/features/works/data/projects";
 import { SITE_URL } from "@/shared/constants";
 
@@ -14,13 +19,14 @@ const workItems = projects.map((project) => {
 
 const Works: RouteComponent = () => {
   return (
-    <SimpleListPage
-      title="Works"
-      subtitle="A simple index of products, frameworks, tools, and selected client work."
-      items={workItems}
-      backHref="/"
-      backLabel="back to home"
-    />
+    <SimpleListPageLayout>
+      <SimpleListBackLink href="/" label="back to home" />
+      <SimpleListHeader
+        title="Works"
+        subtitle="A simple index of products, frameworks, tools, and selected client work."
+      />
+      <SimpleList items={workItems} />
+    </SimpleListPageLayout>
   );
 };
 

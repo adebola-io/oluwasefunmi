@@ -1,5 +1,10 @@
 import type { RouteComponent } from "retend/router";
-import { SimpleListPage } from "@/components/layout/SimpleListPage";
+import {
+  SimpleList,
+  SimpleListBackLink,
+  SimpleListHeader,
+  SimpleListPageLayout,
+} from "@/components/layout/SimpleListPage";
 import { SITE_URL } from "@/shared/constants";
 
 const contactItems = [
@@ -43,13 +48,14 @@ const contactItems = [
 
 const Contact: RouteComponent = () => {
   return (
-    <SimpleListPage
-      title="Contact"
-      subtitle="A simple list of places to reach me or inspect my work."
-      items={contactItems}
-      backHref="/"
-      backLabel="back to home"
-    />
+    <SimpleListPageLayout>
+      <SimpleListBackLink href="/" label="back to home" />
+      <SimpleListHeader
+        title="Contact"
+        subtitle="A simple list of places to reach me or inspect my work."
+      />
+      <SimpleList items={contactItems} />
+    </SimpleListPageLayout>
   );
 };
 

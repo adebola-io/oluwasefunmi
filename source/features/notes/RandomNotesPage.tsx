@@ -2,7 +2,12 @@ import { Cell } from "retend";
 import type { RouteComponent } from "retend/router";
 import type { PageMeta } from "retend-server/client";
 import type { Note, NotePreviewProps } from "@/shared/types";
-import { SimpleListPage } from "@/components/layout/SimpleListPage";
+import {
+  SimpleList,
+  SimpleListBackLink,
+  SimpleListHeader,
+  SimpleListPageLayout,
+} from "@/components/layout/SimpleListPage";
 import { SITE_URL } from "@/shared/constants";
 
 export const getNotesIndex = async () => {
@@ -51,13 +56,14 @@ const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
   });
 
   return (
-    <SimpleListPage
-      title="Random Notes"
-      subtitle="Loose notes on life, technology, software, and consequence."
-      items={noteItems}
-      backHref="/"
-      backLabel="back to home"
-    />
+    <SimpleListPageLayout>
+      <SimpleListBackLink href="/" label="back to home" />
+      <SimpleListHeader
+        title="Random Notes"
+        subtitle="Loose notes on life, technology, software, and consequence."
+      />
+      <SimpleList items={noteItems} />
+    </SimpleListPageLayout>
   );
 };
 

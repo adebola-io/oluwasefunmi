@@ -33,10 +33,10 @@
   --layout-content-max: 32.5rem;
   --layout-article-max: 43.75rem;
   --layout-page-breakpoint: 40rem;
-  --layout-page-gutter: clamp(var(--space-4), 4vw, 3rem);
+  --layout-page-gutter: max(4vw, 2rem);
   --layout-main-block-padding: 10dvh;
 
-  --text-title-size: min(2.5rem, 15vw);
+  --text-title-size: min(2.5rem, 9vw);
   --text-heading-size: 2rem;
   --text-body-size: 1rem;
   --text-reading-size: 1.1rem;

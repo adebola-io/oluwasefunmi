@@ -1,5 +1,10 @@
 import type { RouteComponent } from "retend/router";
-import { SimpleListPage } from "@/components/layout/SimpleListPage";
+import {
+  SimpleList,
+  SimpleListBackLink,
+  SimpleListHeader,
+  SimpleListPageLayout,
+} from "@/components/layout/SimpleListPage";
 import { SITE_URL } from "@/shared/constants";
 import { bookmarks } from "./data/bookmarks";
 
@@ -14,13 +19,14 @@ const bookmarkItems = bookmarks.map((bookmark) => {
 
 const Bookmarks: RouteComponent = () => {
   return (
-    <SimpleListPage
-      title="Bookmarks"
-      subtitle="A simple index of saved writing, tools, references, and interface material."
-      items={bookmarkItems}
-      backHref="/"
-      backLabel="back to home"
-    />
+    <SimpleListPageLayout>
+      <SimpleListBackLink href="/" label="back to home" />
+      <SimpleListHeader
+        title="Bookmarks"
+        subtitle="A simple index of saved writing, tools, references, and interface material."
+      />
+      <SimpleList items={bookmarkItems} />
+    </SimpleListPageLayout>
   );
 };
 
