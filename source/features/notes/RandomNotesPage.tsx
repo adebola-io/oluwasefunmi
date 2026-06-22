@@ -43,6 +43,8 @@ const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
       title="Random Notes"
       subtitle="Loose notes on life, technology, software, and consequence."
       items={noteItems}
+      backHref="/"
+      backLabel="back to home"
     />
   );
 };

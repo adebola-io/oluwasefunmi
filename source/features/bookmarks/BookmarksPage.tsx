@@ -16,6 +16,8 @@ const Bookmarks: RouteComponent = () => {
       title="Bookmarks"
       subtitle="A simple index of saved writing, tools, references, and interface material."
       items={bookmarkItems}
+      backHref="/"
+      backLabel="back to home"
     />
   );
 };

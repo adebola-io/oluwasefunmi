@@ -39,6 +39,8 @@ const Playground: RouteComponent = () => {
       title="Playground"
       subtitle="A simple index of interactive UI experiments and visual effects."
       items={playgroundListItems}
+      backHref="/"
+      backLabel="back to home"
     />
   );
 };

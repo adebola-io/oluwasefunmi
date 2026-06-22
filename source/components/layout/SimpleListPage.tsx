@@ -18,6 +18,8 @@ interface SimpleListPageProps {
   items: SimpleListItem[] | Cell<SimpleListItem[]>;
   avatar?: string;
   avatarAlt?: string;
+  backHref?: string;
+  backLabel?: string;
 }
 
 interface SimpleListRowProps {
@@ -86,7 +88,8 @@ function SimpleListRow(props: SimpleListRowProps) {
 }
 
 export function SimpleListPage(props: SimpleListPageProps) {
-  const { title, subtitle, items, avatar, avatarAlt } = props;
+  const { title, subtitle, items, avatar, avatarAlt, backHref, backLabel } =
+    props;
   const heading = avatar ? (
     <div class={classes.headingRow}>
       <span class={classes.avatarWrapper}>
@@ -102,8 +105,15 @@ export function SimpleListPage(props: SimpleListPageProps) {
     </h1>
   );
 
+  const backLink = backHref ? (
+    <Link href={backHref} class={classes.backLink} data-pill-link>
+      ← {backLabel ?? "back"}
+    </Link>
+  ) : null;
+
   return (
     <section class={classes.page} aria-labelledby="page-title">
+      {backLink}
       <header class={classes.header}>
         {heading}
         <p class={classes.subtitle}>{subtitle}</p>

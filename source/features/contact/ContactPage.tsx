@@ -4,37 +4,37 @@ import { SITE_URL } from "@/shared/constants";
 
 const contactItems = [
   {
-    title: "email",
+    title: "Email",
     subtitle: "adebolaakomolafe@gmail.com",
     href: "mailto:adebolaakomolafe@gmail.com",
     external: true,
   },
   {
-    title: "resume",
+    title: "Resume",
     subtitle: "Read the current PDF resume.",
     href: "/oluwasefunmi-akomolafe.pdf",
     external: true,
   },
   {
-    title: "twitter",
+    title: "Twitter",
     subtitle: "Short posts and working notes.",
     href: "https://www.twitter.com/adebola_io",
     external: true,
   },
   {
-    title: "linkedin",
+    title: "LinkedIn",
     subtitle: "Professional profile and work history.",
     href: "https://www.linkedin.com/in/oluwasefunmi-akomolafe-3a6a42214/",
     external: true,
   },
   {
-    title: "bluesky",
+    title: "Bluesky",
     subtitle: "Social profile for lighter updates.",
     href: "https://bsky.app/profile/oluwasefunmi.com",
     external: true,
   },
   {
-    title: "github",
+    title: "GitHub",
     subtitle: "Code, libraries, experiments, and public repositories.",
     href: "https://www.github.com/adebola-io",
     external: true,
@@ -47,6 +47,8 @@ const Contact: RouteComponent = () => {
       title="Contact"
       subtitle="A simple list of places to reach me or inspect my work."
       items={contactItems}
+      backHref="/"
+      backLabel="back to home"
     />
   );
 };

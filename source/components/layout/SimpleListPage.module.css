@@ -3,25 +3,44 @@
   max-width: 640px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   margin: 0 auto;
   text-align: left;
+}
+
+.backLink {
+  width: fit-content;
+  align-self: flex-start;
+  padding: 0.5rem 1rem 0.5rem 0.5rem;
+  margin-bottom: 2rem;
+
+  @media (max-width: 640px) {
+    margin-bottom: 1.5rem;
+    margin-left: 0;
+  }
 }
 
 .header {
   width: min(100%, 520px);
   margin-bottom: 2.5rem;
+
+  @media (max-width: 640px) {
+    margin-bottom: 2rem;
+  }
 }
 
 .headingRow {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 0.5rem;
   margin-bottom: 1rem;
+
+  .title {
+    margin-bottom: 0;
+  }
 }
 
 .avatarWrapper {
-  --avatar-radius: 34% 38% 36% 32% / 36% 34% 38% 32%;
+  --avatar-radius: 50%;
   --cobalt: #041c7e;
   --klein: #1e2c96;
   --egyptian: #0335a8;
@@ -31,8 +50,9 @@
   --spectrum: #3857f5;
   --carrot: #f7520a;
 
-  width: clamp(2.5rem, 5vw, 3.5rem);
-  height: clamp(2.5rem, 5vw, 3.5rem);
+  width: clamp(2rem, 5vw, 3.5rem);
+  height: auto;
+  aspect-ratio: 1 / 1;
   flex: 0 0 auto;
   padding: 3px;
   border-radius: var(--avatar-radius);
@@ -96,14 +116,14 @@
       transparent 50%
     );
   background-repeat: no-repeat;
-}
 
-.avatar {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  border-radius: var(--avatar-radius);
+  .avatar {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    border-radius: var(--avatar-radius);
+  }
 }
 
 .title {
@@ -112,10 +132,6 @@
   font-size: clamp(2rem, 5vw, 3.5rem);
   line-height: 1;
   text-wrap: balance;
-}
-
-.headingRow .title {
-  margin-bottom: 0;
 }
 
 .subtitle {
@@ -142,20 +158,22 @@
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
+
+  &::before {
+    content: "";
+    width: 0.35rem;
+    height: 0.35rem;
+    flex: 0 0 auto;
+    margin-top: 0.55rem;
+    border-radius: 50%;
+    background: var(--text-secondary);
+  }
 }
 
-.item::before {
-  content: "";
-  width: 0.35rem;
-  height: 0.35rem;
-  flex: 0 0 auto;
-  margin-top: 0.55rem;
-  border-radius: 50%;
-  background: var(--text-secondary);
-}
-
-.hasIcon::before {
-  content: none;
+.hasIcon {
+  &::before {
+    content: none;
+  }
 }
 
 .itemIcon {
@@ -206,11 +224,5 @@
 
   &::after {
     content: "→";
-  }
-}
-
-@media (max-width: 640px) {
-  .header {
-    margin-bottom: 2rem;
   }
 }

@@ -5,27 +5,27 @@ import { SITE_URL } from "@/shared/constants";
 
 const homeItems = [
   {
-    title: "works",
+    title: "Works",
     subtitle: "Selected products, frameworks, tools, and client work.",
     href: "/works",
   },
   {
-    title: "playground",
+    title: "Playground",
     subtitle: "Interactive UI experiments and visual studies.",
     href: "/playground",
   },
   {
-    title: "random notes",
+    title: "Random Notes",
     subtitle: "Loose notes on software, design, and consequence.",
     href: "/random-notes",
   },
   {
-    title: "bookmarks",
+    title: "Bookmarks",
     subtitle: "Saved writing, tools, references, and interface material.",
     href: "/bookmarks",
   },
   {
-    title: "contact",
+    title: "Contact",
     subtitle: "Email, social links, and resume.",
     href: "/contact",
   },

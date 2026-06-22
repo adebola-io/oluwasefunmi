@@ -17,11 +17,5 @@
   z-index: 1;
   width: min(1200px, calc(100% - (var(--page-gutter) * 2)));
   margin: 0 auto;
-  padding: 4rem 0;
-}
-
-@media (max-width: 768px) {
-  .main {
-    padding: 3rem 0;
-  }
+  padding: 10dvh 0;
 }

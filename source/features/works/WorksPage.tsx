@@ -16,6 +16,8 @@ const Works: RouteComponent = () => {
       title="Works"
       subtitle="A simple index of products, frameworks, tools, and selected client work."
       items={workItems}
+      backHref="/"
+      backLabel="back to home"
     />
   );
 };
