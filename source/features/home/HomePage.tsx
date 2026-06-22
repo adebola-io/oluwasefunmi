@@ -34,8 +34,8 @@ const homeItems = [
 const PortfolioHome: RouteComponent<PageMeta> = () => {
   return (
     <SimpleListPage
-      title="Oluwasefunmi Akomolafe"
-      subtitle="Software engineer focused on clear systems, expressive interfaces, and useful web products."
+      title="oluwasefunmi."
+      subtitle="Hello, this is Sefunmi. I am a software engineer focused on clear systems, expressive interfaces, and useful web products."
       items={homeItems}
       avatar="https://github.com/adebola-io.png"
     />

@@ -16,6 +16,7 @@ export const getNotesIndex = async () => {
       id: markdownContent.id,
       title: markdownContent.title,
       description: markdownContent.description,
+      date: markdownContent.date,
       dateStr: markdownContent.dateStr,
     });
   }
@@ -29,14 +30,25 @@ export const getNotesIndex = async () => {
 
 const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
   const { metadata } = props;
-  const notes = Cell.derived(() => metadata.get("misc") ?? []);
-  const noteItems = Cell.derived(() =>
-    notes.get().map((note) => ({
-      title: note.title,
-      subtitle: `${note.dateStr} · ${note.description}`,
-      href: `/random-notes/${note.id}`,
-    }))
-  );
+  const notes = Cell.derived(() => {
+    return metadata.get("misc") ?? [];
+  });
+  const noteItems = Cell.derived(() => {
+    return notes.get().map((note) => {
+      return {
+        title: note.title,
+        subtitle: (
+          <>
+            <time dateTime={note.date} title={note.dateStr}>
+              {note.dateStr}
+            </time>
+            <span> · {note.description}</span>
+          </>
+        ),
+        href: `/random-notes/${note.id}`,
+      };
+    });
+  });
 
   return (
     <SimpleListPage

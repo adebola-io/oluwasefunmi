@@ -1,6 +1,4 @@
 .layout {
-  --page-gutter: clamp(1rem, 4vw, 3rem);
-
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -15,7 +13,10 @@
   flex-direction: column;
   position: relative;
   z-index: 1;
-  width: min(1200px, calc(100% - (var(--page-gutter) * 2)));
-  margin: 0 auto;
-  padding: 10dvh 0;
+  width: min(
+    var(--layout-main-max),
+    calc(100% - (var(--layout-page-gutter) * 2))
+  );
+  margin-inline: auto;
+  padding-block: var(--layout-main-block-padding);
 }

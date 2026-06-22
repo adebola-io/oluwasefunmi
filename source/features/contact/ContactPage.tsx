@@ -53,18 +53,20 @@ const Contact: RouteComponent = () => {
   );
 };
 
-Contact.metadata = () => ({
-  title: "Contact | Oluwasefunmi Akomolafe",
-  description:
-    "Get in touch with Oluwasefunmi Akomolafe. Let's collaborate on your next project.",
-  ogTitle: "Contact | Oluwasefunmi Akomolafe",
-  ogDescription:
-    "Get in touch with Oluwasefunmi. Let's collaborate on your next project.",
-  ogImage: `${SITE_URL}/og/contact-me.png`,
-  twitterTitle: "Contact | Oluwasefunmi Akomolafe",
-  twitterDescription:
-    "Get in touch with Oluwasefunmi. Let's collaborate on your next project.",
-  twitterImage: `${SITE_URL}/og/contact-me.png`,
-});
+Contact.metadata = () => {
+  return {
+    title: "Contact | Oluwasefunmi Akomolafe",
+    description:
+      "Get in touch with Oluwasefunmi Akomolafe. Let's collaborate on your next project.",
+    ogTitle: "Contact | Oluwasefunmi Akomolafe",
+    ogDescription:
+      "Get in touch with Oluwasefunmi. Let's collaborate on your next project.",
+    ogImage: `${SITE_URL}/og/contact-me.png`,
+    twitterTitle: "Contact | Oluwasefunmi Akomolafe",
+    twitterDescription:
+      "Get in touch with Oluwasefunmi. Let's collaborate on your next project.",
+    twitterImage: `${SITE_URL}/og/contact-me.png`,
+  };
+};
 
 export default Contact;

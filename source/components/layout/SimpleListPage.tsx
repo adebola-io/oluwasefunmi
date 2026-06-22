@@ -5,7 +5,7 @@ import classes from "./SimpleListPage.module.css";
 
 export interface SimpleListItem {
   title: string;
-  subtitle: string;
+  subtitle: string | JSX.Element;
   href?: string;
   external?: boolean;
   actionLabel?: string;
@@ -14,7 +14,7 @@ export interface SimpleListItem {
 
 interface SimpleListPageProps {
   title: string;
-  subtitle: string;
+  subtitle: string | JSX.Element;
   items: SimpleListItem[] | Cell<SimpleListItem[]>;
   avatar?: string;
   avatarAlt?: string;
@@ -35,14 +35,24 @@ function SimpleListRow(props: SimpleListRowProps) {
       <Icon />
     </span>
   ) : null;
-  const title = <h2 class={classes.itemTitle}>{item.title}</h2>;
-  const subtitle = <p class={classes.itemSubtitle}>{item.subtitle}</p>;
+  const subtitleTitle =
+    typeof item.subtitle === "string" ? item.subtitle : undefined;
+  const title = (
+    <h2 class={classes.itemTitle} title={item.title}>
+      {item.title}
+    </h2>
+  );
+  const subtitle = (
+    <p class={classes.itemSubtitle} title={subtitleTitle}>
+      {item.subtitle}
+    </p>
+  );
 
   if (!item.href || item.actionLabel) {
     const actionLabel = item.actionLabel;
     const action =
       item.href && actionLabel ? (
-        <Link class={classes.actionLink} href={item.href}>
+        <Link class={classes.actionLink} href={item.href} title={actionLabel}>
           {actionLabel}
         </Link>
       ) : null;
@@ -66,6 +76,7 @@ function SimpleListRow(props: SimpleListRowProps) {
         <a
           class={classes.itemContent}
           href={item.href}
+          title={item.title}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -79,7 +90,7 @@ function SimpleListRow(props: SimpleListRowProps) {
   return (
     <li class={itemClass}>
       {itemIcon}
-      <Link class={classes.itemContent} href={item.href}>
+      <Link class={classes.itemContent} href={item.href} title={item.title}>
         {title}
         {subtitle}
       </Link>
@@ -90,39 +101,54 @@ function SimpleListRow(props: SimpleListRowProps) {
 export function SimpleListPage(props: SimpleListPageProps) {
   const { title, subtitle, items, avatar, avatarAlt, backHref, backLabel } =
     props;
+  const avatarDescription = avatarAlt ?? title;
   const heading = avatar ? (
     <div class={classes.headingRow}>
       <span class={classes.avatarWrapper}>
-        <img src={avatar} alt={avatarAlt ?? ""} class={classes.avatar} />
+        <img
+          src={avatar}
+          alt={avatarDescription}
+          title={avatarDescription}
+          class={classes.avatar}
+        />
       </span>
-      <h1 id="page-title" class={classes.title}>
+      <h1 id="page-title" class={classes.title} title={title}>
         {title}
       </h1>
     </div>
   ) : (
-    <h1 id="page-title" class={classes.title}>
+    <h1 id="page-title" class={classes.title} title={title}>
       {title}
     </h1>
   );
 
   const backLink = backHref ? (
-    <Link href={backHref} class={classes.backLink} data-pill-link>
+    <Link
+      href={backHref}
+      class={classes.backLink}
+      title={backLabel ?? "back"}
+      data-pill-link
+    >
       ← {backLabel ?? "back"}
     </Link>
   ) : null;
+
+  const pageSubtitleTitle = typeof subtitle === "string" ? subtitle : undefined;
 
   return (
     <section class={classes.page} aria-labelledby="page-title">
       {backLink}
       <header class={classes.header}>
         {heading}
-        <p class={classes.subtitle}>{subtitle}</p>
+        <p class={classes.subtitle} title={pageSubtitleTitle}>
+          {subtitle}
+        </p>
       </header>
 
       <ul class={classes.list}>
-        {For(items, (item) => (
-          <SimpleListRow item={item} />
-        ))}
+        {For(items, (item) => {
+          return <SimpleListRow item={item} />;
+        })}
       </ul>
     </section>
   );

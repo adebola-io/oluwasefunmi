@@ -25,13 +25,15 @@ const playgroundSubtitles: Record<string, string> = {
   "curved-css-solid": "A pure DOM volumetric 3D box built with CSS transforms.",
 };
 
-const playgroundListItems = playgroundItems.map((item) => ({
-  title: item.title,
-  subtitle: playgroundSubtitles[item.title],
-  href: item.path,
-  actionLabel: "view",
-  icon: item.icon,
-}));
+const playgroundListItems = playgroundItems.map((item) => {
+  return {
+    title: item.title,
+    subtitle: playgroundSubtitles[item.title],
+    href: item.path,
+    actionLabel: "view",
+    icon: item.icon,
+  };
+});
 
 const Playground: RouteComponent = () => {
   return (
@@ -45,16 +47,18 @@ const Playground: RouteComponent = () => {
   );
 };
 
-Playground.metadata = () => ({
-  title: "Playground | Oluwasefunmi Akomolafe",
-  description:
-    "Interactive UI experiments and visual effects showcasing creative web development.",
-  ogTitle: "Playground | Oluwasefunmi Akomolafe",
-  ogDescription: "Interactive UI experiments and visual effects.",
-  ogImage: `${SITE_URL}/og/playground.png`,
-  twitterTitle: "Playground | Oluwasefunmi Akomolafe",
-  twitterDescription: "Interactive UI experiments and visual effects.",
-  twitterImage: `${SITE_URL}/og/playground.png`,
-});
+Playground.metadata = () => {
+  return {
+    title: "Playground | Oluwasefunmi Akomolafe",
+    description:
+      "Interactive UI experiments and visual effects showcasing creative web development.",
+    ogTitle: "Playground | Oluwasefunmi Akomolafe",
+    ogDescription: "Interactive UI experiments and visual effects.",
+    ogImage: `${SITE_URL}/og/playground.png`,
+    twitterTitle: "Playground | Oluwasefunmi Akomolafe",
+    twitterDescription: "Interactive UI experiments and visual effects.",
+    twitterImage: `${SITE_URL}/og/playground.png`,
+  };
+};
 
 export default Playground;

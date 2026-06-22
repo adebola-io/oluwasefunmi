@@ -3,12 +3,14 @@ import { SimpleListPage } from "@/components/layout/SimpleListPage";
 import { SITE_URL } from "@/shared/constants";
 import { bookmarks } from "./data/bookmarks";
 
-const bookmarkItems = bookmarks.map((bookmark) => ({
-  title: bookmark.openGraph.title,
-  subtitle: bookmark.openGraph.description || bookmark.openGraph.siteName,
-  href: bookmark.link,
-  external: true,
-}));
+const bookmarkItems = bookmarks.map((bookmark) => {
+  return {
+    title: bookmark.openGraph.title,
+    subtitle: bookmark.openGraph.description || bookmark.openGraph.siteName,
+    href: bookmark.link,
+    external: true,
+  };
+});
 
 const Bookmarks: RouteComponent = () => {
   return (
@@ -22,18 +24,20 @@ const Bookmarks: RouteComponent = () => {
   );
 };
 
-Bookmarks.metadata = () => ({
-  title: "Bookmarks | Oluwasefunmi",
-  description:
-    "A curated collection of digital ephemera, tools, and inspirations.",
-  ogTitle: "Bookmarks | Oluwasefunmi",
-  ogDescription:
-    "A curated collection of digital ephemera, tools, and inspirations.",
-  ogImage: `${SITE_URL}/og/bookmarks.png`,
-  twitterTitle: "Bookmarks | Oluwasefunmi",
-  twitterDescription:
-    "A curated collection of digital ephemera, tools, and inspirations.",
-  twitterImage: `${SITE_URL}/og/bookmarks.png`,
-});
+Bookmarks.metadata = () => {
+  return {
+    title: "Bookmarks | Oluwasefunmi",
+    description:
+      "A curated collection of digital ephemera, tools, and inspirations.",
+    ogTitle: "Bookmarks | Oluwasefunmi",
+    ogDescription:
+      "A curated collection of digital ephemera, tools, and inspirations.",
+    ogImage: `${SITE_URL}/og/bookmarks.png`,
+    twitterTitle: "Bookmarks | Oluwasefunmi",
+    twitterDescription:
+      "A curated collection of digital ephemera, tools, and inspirations.",
+    twitterImage: `${SITE_URL}/og/bookmarks.png`,
+  };
+};
 
 export default Bookmarks;

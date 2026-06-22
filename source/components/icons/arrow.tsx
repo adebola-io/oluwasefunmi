@@ -4,6 +4,7 @@ export const ArrowIcon = (props: JSX.IntrinsicElements["svg"]) => {
   const { ...rest } = props;
   return (
     <svg
+      aria-hidden="true"
       {...rest}
       width="800px"
       height="800px"

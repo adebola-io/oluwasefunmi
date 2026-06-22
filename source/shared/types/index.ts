@@ -18,5 +18,6 @@ export interface NotePreviewProps {
   id: string;
   title: string;
   description: string;
+  date: string;
   dateStr: string;
 }

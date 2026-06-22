@@ -60,22 +60,18 @@ export const CircularPath = (props: CircularPathProps) => {
     return parts.get().length;
   });
 
-  const style = {
+  const baseStyle = {
     "--circ-path-speed": speed,
     "--circ-count": count,
-    ...(userStyle as any),
   };
 
   return (
-    <div
-      {...rest}
-      style={style}
-      title={text}
-      class={[classes.container, rest.class]}
-    >
-      {For(parts, (part, i) => (
-        <Letter part={part} index={i} text={text} />
-      ))}
+    <div {...rest} style={userStyle} title={text} class={rest.class}>
+      <div style={baseStyle} class={classes.container}>
+        {For(parts, (part, i) => {
+          return <Letter part={part} index={i} text={text} />;
+        })}
+      </div>
     </div>
   );
 };
