@@ -116,8 +116,10 @@ const RippleEffect: RouteComponent = () => {
     return `repeat(${rows.get()}, 1fr) / repeat(${cols.get()}, 1fr)`;
   });
   const handleClick = (row: number, column: number) => {
-    clicked.set([row, column]);
-    currentColorIndex.set((currentColorIndex.get() + 1) % colors.length);
+    Cell.batch(() => {
+      clicked.set([row, column]);
+      currentColorIndex.set((currentColorIndex.get() + 1) % colors.length);
+    });
   };
 
   return (

@@ -19,6 +19,26 @@ const PRESETS = {
 
 type PresetKey = keyof typeof PRESETS;
 
+const renderQuickPresets = (applyPreset: (preset: PresetKey) => void) => (
+  <div class={classes.section}>
+    <h3>Quick Presets</h3>
+    <div class={classes.presetGrid}>
+      <button type="button" onClick={() => applyPreset("cube")}>
+        Cube
+      </button>
+      <button type="button" onClick={() => applyPreset("pill")}>
+        Pill
+      </button>
+      <button type="button" onClick={() => applyPreset("card")}>
+        Card
+      </button>
+      <button type="button" onClick={() => applyPreset("tower")}>
+        Tower
+      </button>
+    </div>
+  </div>
+);
+
 const CurvedCssSolid: RouteComponent = () => {
   const rx = Cell.source(25);
   const ry = Cell.source(-35);
@@ -34,10 +54,12 @@ const CurvedCssSolid: RouteComponent = () => {
 
   const applyPreset = (preset: PresetKey) => {
     const p = PRESETS[preset];
-    height.set(p.height);
-    width.set(p.width);
-    depth.set(p.depth);
-    curve.set(p.curve);
+    Cell.batch(() => {
+      height.set(p.height);
+      width.set(p.width);
+      depth.set(p.depth);
+      curve.set(p.curve);
+    });
   };
 
   const headerActions = [
@@ -74,23 +96,7 @@ const CurvedCssSolid: RouteComponent = () => {
           </Viewer>
 
           <InteractionPanel headerActions={headerActions}>
-            <div class={classes.section}>
-              <h3>Quick Presets</h3>
-              <div class={classes.presetGrid}>
-                <button type="button" onClick={() => applyPreset("cube")}>
-                  Cube
-                </button>
-                <button type="button" onClick={() => applyPreset("pill")}>
-                  Pill
-                </button>
-                <button type="button" onClick={() => applyPreset("card")}>
-                  Card
-                </button>
-                <button type="button" onClick={() => applyPreset("tower")}>
-                  Tower
-                </button>
-              </div>
-            </div>
+            {renderQuickPresets(applyPreset)}
 
             <DimensionsSection
               height={height}

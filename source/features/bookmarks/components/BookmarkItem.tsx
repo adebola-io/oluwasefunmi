@@ -10,6 +10,17 @@ export interface BookmarkItemProps {
 
 export const BookmarkItem = (props: BookmarkItemProps) => {
   const { item: bookmark } = props;
+  const handleLoad = (e: Event) => {
+    if (e.currentTarget instanceof HTMLElement) {
+      e.currentTarget.style.opacity = "1";
+    }
+  };
+  const handleError = (e: Event) => {
+    const target = e.currentTarget;
+    if (target instanceof HTMLImageElement) {
+      target.style.display = "none";
+    }
+  };
 
   return (
     <LayeredCard
@@ -33,17 +44,8 @@ export const BookmarkItem = (props: BookmarkItemProps) => {
           alt={bookmark.openGraph.title}
           class={classes.image}
           loading="lazy"
-          onLoad={(e) => {
-            if (e.currentTarget instanceof HTMLElement) {
-              e.currentTarget.style.opacity = "1";
-            }
-          }}
-          onError={(e) => {
-            const target = e.currentTarget;
-            if (target instanceof HTMLImageElement) {
-              target.style.display = "none";
-            }
-          }}
+          onLoad={handleLoad}
+          onError={handleError}
         />
       </div>
       <div class={classes.content}>

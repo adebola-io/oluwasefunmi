@@ -423,7 +423,7 @@ const Keyboard = (props: KeyboardProps) => {
       />
       <div class={classes.keyboard}>
         {For(KEYS, (row, rowIndex) => (
-          <div key={rowIndex} class={classes.keyboardRow}>
+          <div class={classes.keyboardRow}>
             {For(row, (key) => (
               <Key
                 mode={mode}

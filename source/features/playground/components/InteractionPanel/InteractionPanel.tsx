@@ -11,12 +11,13 @@ interface ModeOptionButtonProps {
 const ModeOptionButton = (props: ModeOptionButtonProps) => {
   const { option, mode } = props;
   const isActive = Cell.derived(() => mode?.get() === option.value);
+  const handleClick = () => mode?.set(option.value);
 
   return (
     <button
       type="button"
       class={[classes.segmentButton, { [classes.activeSegment]: isActive }]}
-      onClick={() => mode?.set(option.value)}
+      onClick={handleClick}
     >
       {option.label}
     </button>
