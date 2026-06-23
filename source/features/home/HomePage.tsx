@@ -4,8 +4,7 @@ import type { PageMeta } from "retend-server/client";
 import { SimpleListPageLayout } from "@/components/layout/SimpleListPage";
 import listClasses from "@/components/layout/SimpleListPage.module.css";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import textClasses from "@/components/ui/TextStack.module.css";
-import twoColumnClasses from "@/components/ui/TwoColumnList.module.css";
+import uiClasses from "@/components/ui/ui.module.css";
 import { PlaygroundHeading } from "@/features/playground/PlaygroundHeading";
 import { SITE_URL } from "@/shared/constants";
 import { HomeSocialLinks } from "./HomeSocialLinks";
@@ -76,12 +75,12 @@ const PortfolioHome: RouteComponent<PageMeta> = () => {
         >
           <PlaygroundHeading />
         </SectionHeading>
-        <ul class={twoColumnClasses.list}>
+        <ul class={uiClasses.twoColumnList}>
           {For(playgroundPreviewItems, (item) => (
-            <li class={twoColumnClasses.item}>
-              <span class={textClasses.stack}>
+            <li class={uiClasses.twoColumnItem}>
+              <span class={uiClasses.textStack}>
                 <Link href={item.path}>{item.title}</Link>
-                <span class={textClasses.subtle}>{item.summary}</span>
+                <span class={uiClasses.subtleText}>{item.summary}</span>
               </span>
             </li>
           ))}
@@ -89,14 +88,14 @@ const PortfolioHome: RouteComponent<PageMeta> = () => {
       </section>
       <section class={classes.experience} aria-labelledby="experience-heading">
         <SectionHeading id="experience-heading">Experience</SectionHeading>
-        <ul class={twoColumnClasses.list}>
+        <ul class={uiClasses.twoColumnList}>
           {For(experiences, (item) => (
-            <li class={twoColumnClasses.item}>
-              <span class={textClasses.stack}>
+            <li class={uiClasses.twoColumnItem}>
+              <span class={uiClasses.textStack}>
                 <span>{item.company}</span>
-                <span class={textClasses.subtle}>{item.role}</span>
+                <span class={uiClasses.subtleText}>{item.role}</span>
               </span>
-              <span class={textClasses.subtle}>{item.year}</span>
+              <span class={uiClasses.subtleText}>{item.year}</span>
             </li>
           ))}
         </ul>
