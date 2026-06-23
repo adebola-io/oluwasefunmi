@@ -8,6 +8,7 @@ import { PlaygroundHeading } from "@/features/playground/PlaygroundHeading";
 import { SITE_URL } from "@/shared/constants";
 import { HomeSocialLinks } from "./HomeSocialLinks";
 import classes from "./HomePage.module.css";
+import { ArrowIcon } from "@/components/icons/arrow";
 
 const playgroundPreviewItems = [
   {
@@ -70,13 +71,16 @@ const PortfolioHome: RouteComponent<PageMeta> = () => {
       >
         <Link
           href="/playground"
-          class={uiClasses.sectionHeading}
+          class={[uiClasses.sectionHeading, classes.sectionHeading]}
           id="playground-preview-heading"
         >
           <h2 class={uiClasses.sectionHeadingContent}>
             <PlaygroundHeading />
           </h2>
-          <div class={uiClasses.sectionHeadingLink}>View all</div>
+          <div class={[uiClasses.sectionHeadingLink, classes.link]}>
+            View all
+            <ArrowIcon class={classes.arrowIcon} />
+          </div>
         </Link>
         <ul class={[uiClasses.twoColumnList, classes.playgroundList]}>
           {For(playgroundPreviewItems, (item) => (

@@ -28,7 +28,6 @@
 .playgroundPreview {
   width: 100%;
   display: grid;
-  row-gap: var(--space-4);
 }
 
 .experience {
@@ -40,5 +39,34 @@
 .playgroundList:hover {
   .playgroundItem:not(:hover) {
     opacity: 0.55;
+  }
+}
+
+.sectionHeading {
+  padding-bottom: var(--space-4);
+
+  svg {
+    transition: transform var(--motion-duration-fast);
+  }
+
+  &:hover {
+    svg {
+      transform: translate(30%);
+    }
+  }
+}
+
+.link {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  align-items: center;
+
+  svg {
+    height: var(--space-6);
+    width: var(--space-6);
+  }
+
+  path {
+    stroke-width: 1.5;
   }
 }
