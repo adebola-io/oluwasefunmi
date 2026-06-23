@@ -5,9 +5,9 @@ import type { Note, NotePreviewProps } from "@/shared/types";
 import {
   SimpleList,
   SimpleListBackLink,
-  SimpleListHeader,
   SimpleListPageLayout,
 } from "@/components/layout/SimpleListPage";
+import listClasses from "@/components/layout/SimpleListPage.module.css";
 import { NoteHeading } from "@/components/ui/typography";
 import { SITE_URL } from "@/shared/constants";
 import classes from "./RandomNotePage.module.css";
@@ -66,9 +66,14 @@ const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
   return (
     <SimpleListPageLayout>
       <SimpleListBackLink href="/" label="back to home" />
-      <SimpleListHeader title="Random Notes">
-        <p>Loose notes on life, technology, software, and consequence.</p>
-      </SimpleListHeader>
+      <header class={listClasses.header}>
+        <h1 id="page-title" class={listClasses.title} title="Random Notes">
+          Random Notes
+        </h1>
+        <div class={listClasses.subtitle}>
+          <p>Loose notes on life, technology, software, and consequence.</p>
+        </div>
+      </header>
       <SimpleList items={noteItems} />
     </SimpleListPageLayout>
   );

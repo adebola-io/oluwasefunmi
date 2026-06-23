@@ -14,14 +14,6 @@ export interface SimpleListPageLayoutProps extends JSX.BaseContainerProps {
   titleId?: string;
 }
 
-export interface SimpleListHeaderProps {
-  title: string;
-  avatar?: string;
-  avatarAlt?: string;
-  titleId?: string;
-  children?: JSX.Template;
-}
-
 export interface SimpleListBackLinkProps {
   href: string;
   label?: string;

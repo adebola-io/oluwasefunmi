@@ -8,7 +8,7 @@
 .item {
   display: grid;
   grid-template-columns: minmax(0, 1fr) auto;
-  align-items: baseline;
+  align-items: center;
   column-gap: var(--space-4);
   padding-block: var(--space-2);
   border-block-start: var(--border-width-hairline) solid var(--border-muted);

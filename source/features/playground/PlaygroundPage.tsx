@@ -2,11 +2,12 @@ import type { RouteComponent } from "retend/router";
 import {
   SimpleList,
   SimpleListBackLink,
-  SimpleListHeader,
   SimpleListPageLayout,
 } from "@/components/layout/SimpleListPage";
+import listClasses from "@/components/layout/SimpleListPage.module.css";
 import { playgroundItems } from "@/features/playground/data/playground";
 import { SITE_URL } from "@/shared/constants";
+import { PlaygroundHeading } from "./PlaygroundHeading";
 
 const playgroundListItems = playgroundItems.map((item) => {
   const Description = item.description;
@@ -23,9 +24,16 @@ const Playground: RouteComponent = () => {
   return (
     <SimpleListPageLayout>
       <SimpleListBackLink href="/" label="back to home" />
-      <SimpleListHeader title="Playground">
-        <p>A simple index of interactive UI experiments and visual effects.</p>
-      </SimpleListHeader>
+      <header class={listClasses.header}>
+        <h1 id="page-title" class={listClasses.title} title="Playground">
+          <PlaygroundHeading />
+        </h1>
+        <div class={listClasses.subtitle}>
+          <p>
+            A simple index of interactive UI experiments and visual effects.
+          </p>
+        </div>
+      </header>
       <SimpleList items={playgroundListItems} />
     </SimpleListPageLayout>
   );

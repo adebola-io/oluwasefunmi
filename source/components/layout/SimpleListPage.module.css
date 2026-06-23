@@ -118,6 +118,8 @@
   }
 
   .subtitle {
+    display: grid;
+    gap: 1rem;
     margin: var(--space-0);
     color: var(--text-secondary);
     font-size: var(--text-body-size);

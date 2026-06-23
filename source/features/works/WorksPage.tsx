@@ -2,9 +2,9 @@ import type { RouteComponent } from "retend/router";
 import {
   SimpleList,
   SimpleListBackLink,
-  SimpleListHeader,
   SimpleListPageLayout,
 } from "@/components/layout/SimpleListPage";
+import listClasses from "@/components/layout/SimpleListPage.module.css";
 import { projects } from "@/features/works/data/projects";
 import { SITE_URL } from "@/shared/constants";
 
@@ -21,12 +21,17 @@ const Works: RouteComponent = () => {
   return (
     <SimpleListPageLayout>
       <SimpleListBackLink href="/" label="back to home" />
-      <SimpleListHeader title="Works">
-        <p>
-          A simple index of products, frameworks, tools, and selected client
-          work.
-        </p>
-      </SimpleListHeader>
+      <header class={listClasses.header}>
+        <h1 id="page-title" class={listClasses.title} title="Works">
+          Works
+        </h1>
+        <div class={listClasses.subtitle}>
+          <p>
+            A simple index of products, frameworks, tools, and selected client
+            work.
+          </p>
+        </div>
+      </header>
       <SimpleList items={workItems} />
     </SimpleListPageLayout>
   );
