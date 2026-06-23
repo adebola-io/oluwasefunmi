@@ -34,7 +34,6 @@ const pages = [
   "/playground/floating-books",
   "/playground/contact-sheet",
   "/random-notes",
-  "/contact",
   "/works",
   ...notes,
   ...productRoutes,
