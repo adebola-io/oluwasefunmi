@@ -26,3 +26,9 @@
     }
   }
 }
+
+.experience {
+  width: 100%;
+  display: grid;
+  row-gap: var(--space-4);
+}

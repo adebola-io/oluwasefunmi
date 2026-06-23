@@ -5,39 +5,23 @@ import { BlueskyIcon } from "@/components/icons/bluesky";
 import { ThreadsIcon } from "@/components/icons/threads";
 import { XIcon } from "@/components/icons/x";
 import {
-  SimpleList,
   SimpleListHeader,
   SimpleListPageLayout,
 } from "@/components/layout/SimpleListPage";
+import { SectionHeading } from "@/components/ui/SectionHeading";
+import { TextStack, SubtleText } from "@/components/ui/TextStack";
+import {
+  TwoColumnList,
+  TwoColumnListItem,
+} from "@/components/ui/TwoColumnList";
 import { SITE_URL } from "@/shared/constants";
 import classes from "./HomePage.module.css";
 
-const homeItems = [
-  {
-    title: "Works",
-    subtitle: "Selected products, frameworks, tools, and client work.",
-    href: "/works",
-  },
-  {
-    title: "Playground",
-    subtitle: "Interactive UI experiments and visual studies.",
-    href: "/playground",
-  },
-  {
-    title: "Random Notes",
-    subtitle: "Loose notes on software, design, and consequence.",
-    href: "/random-notes",
-  },
-  {
-    title: "Bookmarks",
-    subtitle: "Saved writing, tools, references, and interface material.",
-    href: "/bookmarks",
-  },
-  {
-    title: "Contact",
-    subtitle: "Email, social links, and resume.",
-    href: "/contact",
-  },
+const experiences = [
+  { company: "Summitech", role: "Full Stack Developer", year: "Now" },
+  { company: "Lighthaus Eko", role: "Developer", year: "2024" },
+  { company: "TechMadeEazy", role: "Developer", year: "2023" },
+  { company: "Panoramic Synergy", role: "Intern", year: "2022" },
 ];
 
 const socialLinks = [
@@ -92,7 +76,20 @@ const PortfolioHome: RouteComponent<PageMeta> = () => {
         avatar="https://github.com/adebola-io.png"
       />
       <HomeSocialLinks />
-      <SimpleList items={homeItems} />
+      <section class={classes.experience} aria-labelledby="experience-heading">
+        <SectionHeading id="experience-heading">Experience</SectionHeading>
+        <TwoColumnList>
+          {For(experiences, (item) => (
+            <TwoColumnListItem>
+              <TextStack>
+                <span>{item.company}</span>
+                <SubtleText>{item.role}</SubtleText>
+              </TextStack>
+              <SubtleText>{item.year}</SubtleText>
+            </TwoColumnListItem>
+          ))}
+        </TwoColumnList>
+      </section>
     </SimpleListPageLayout>
   );
 };
