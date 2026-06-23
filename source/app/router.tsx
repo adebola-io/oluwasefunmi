@@ -1,8 +1,6 @@
 import { defineRoutes, lazy, Router } from "retend/router";
 
 import PortfolioHome from "@/features/home/HomePage";
-import Bookmarks from "@/features/bookmarks/BookmarksPage";
-import Works from "@/features/works/WorksPage";
 
 import { RootLayout } from "@/components/layout/RootLayout";
 
@@ -26,8 +24,6 @@ const routes = defineRoutes([
         path: "/random-notes",
         subtree: lazy(() => import("@/features/notes/notesRoutes")),
       },
-      { path: "/works", component: Works },
-      { path: "/bookmarks", component: Bookmarks },
     ],
   },
 ]);

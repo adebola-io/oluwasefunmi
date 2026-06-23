@@ -1,47 +1,30 @@
-import { For } from "retend";
-import { Link, type RouteComponent } from "retend/router";
+import { Cell, If } from "retend";
+import { type RouteComponent, useRouteQuery } from "retend/router";
 import type { PageMeta } from "retend-server/client";
 import { SimpleListPageLayout } from "@/components/layout/SimpleListPage";
 import listClasses from "@/components/layout/SimpleListPage.module.css";
-import uiClasses from "@/components/ui/ui.module.css";
-import { PlaygroundHeading } from "@/features/playground/PlaygroundHeading";
 import { SITE_URL } from "@/shared/constants";
+import { BookmarksTabPanel } from "./BookmarksTabPanel";
 import { HomeSocialLinks } from "./HomeSocialLinks";
-import classes from "./HomePage.module.css";
-import { ArrowIcon } from "@/components/icons/arrow";
-
-const playgroundPreviewItems = [
-  {
-    title: "floating-books",
-    summary: "A CSS book wall with routed detail views and derived page color.",
-    path: "/playground/floating-books",
-  },
-  {
-    title: "wallets",
-    summary:
-      "Layered CSS wallets with cards, notes, stickers, and close animations.",
-    path: "/playground/wallets",
-  },
-  {
-    title: "glasses",
-    summary: "Switchable DOM-built glasses on a fixed face preview.",
-    path: "/playground/glasses",
-  },
-];
-
-const homeNavigationItems = [
-  { title: "Works", path: "/works" },
-  { title: "Bookmarks", path: "/bookmarks" },
-];
-
-const experiences = [
-  { company: "Summitech", role: "Full Stack Developer", year: "Now" },
-  { company: "Lighthaus Eko", role: "Full Stack Developer", year: "2024" },
-  { company: "TechMadeEazy", role: "Developer", year: "2023" },
-  { company: "Panoramic Synergy", role: "Intern", year: "2022" },
-];
+import { HomeTabs, type HomeTab } from "./HomeTabs";
+import { PlaygroundTabPanel } from "./PlaygroundTabPanel";
+import { SelectedWorksTabPanel } from "./SelectedWorksTabPanel";
 
 const PortfolioHome: RouteComponent<PageMeta> = () => {
+  const query = useRouteQuery();
+  const tab = query.get("tab");
+  const activeTab = Cell.derived<HomeTab>(() => {
+    const value = tab.get();
+    if (value === "playground" || value === "works" || value === "bookmarks") {
+      return value;
+    }
+
+    return "home";
+  });
+  const isPlaygroundTab = Cell.derived(() => activeTab.get() === "playground");
+  const isWorksTab = Cell.derived(() => activeTab.get() === "works");
+  const isBookmarksTab = Cell.derived(() => activeTab.get() === "bookmarks");
+
   return (
     <SimpleListPageLayout>
       <header class={listClasses.header}>
@@ -74,69 +57,19 @@ const PortfolioHome: RouteComponent<PageMeta> = () => {
         </div>
       </header>
       <HomeSocialLinks />
-      <nav
-        class={classes.homeNavigation}
-        aria-label="Primary portfolio sections"
-      >
-        <span class={classes.homeNavigationLabel}>Browse</span>
-        <ul class={classes.homeNavigationList}>
-          {For(homeNavigationItems, (item) => (
-            <li>
-              <Link href={item.path} class={classes.homeNavigationLink}>
-                {item.title}
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </nav>
-      <section
-        class={classes.playgroundPreview}
-        aria-labelledby="playground-preview-heading"
-      >
-        <Link
-          href="/playground"
-          class={[uiClasses.sectionHeading, classes.sectionHeading]}
-          id="playground-preview-heading"
-        >
-          <h2 class={uiClasses.sectionHeadingContent}>
-            <PlaygroundHeading />
-          </h2>
-          <div class={[uiClasses.sectionHeadingLink, classes.link]}>
-            View all
-            <ArrowIcon class={classes.arrowIcon} />
-          </div>
-        </Link>
-        <ul class={[uiClasses.twoColumnList, classes.playgroundList]}>
-          {For(playgroundPreviewItems, (item) => (
-            <li class={[uiClasses.twoColumnItem, classes.playgroundItem]}>
-              <Link href={item.path} class={uiClasses.textStack}>
-                <span>{item.title}</span>
-                <span class={uiClasses.subtleText}>{item.summary}</span>
-              </Link>
-            </li>
-          ))}
-        </ul>
-      </section>
-      <section class={classes.experience} aria-labelledby="experience-heading">
-        <div class={uiClasses.sectionHeading} id="experience-heading">
-          <h2 class={uiClasses.sectionHeadingContent}>Experience</h2>
-        </div>
-        <ul class={uiClasses.twoColumnList}>
-          {For(experiences, (item) => (
-            <li class={uiClasses.twoColumnItem}>
-              <span class={uiClasses.textStack}>
-                <span>{item.company}</span>
-                <span class={uiClasses.subtleText}>{item.role}</span>
-              </span>
-              <span class={uiClasses.subtleText}>{item.year}</span>
-            </li>
-          ))}
-        </ul>
-      </section>
+      <HomeTabs activeTab={activeTab} />
+      {If(isPlaygroundTab, () => (
+        <PlaygroundTabPanel />
+      ))}
+      {If(isWorksTab, () => (
+        <SelectedWorksTabPanel />
+      ))}
+      {If(isBookmarksTab, () => (
+        <BookmarksTabPanel />
+      ))}
     </SimpleListPageLayout>
   );
 };
-
 PortfolioHome.metadata = async () => {
   return {
     title: "Oluwasefunmi | Software Engineer",

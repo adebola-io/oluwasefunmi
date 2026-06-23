@@ -21,7 +21,8 @@ export function PlaygroundLayout(props: PlaygroundLayoutProps) {
     children,
   } = props;
   const router = useRouter();
-  const handleBack = () => (onBack ? onBack() : router.navigate("/playground"));
+  const handleBack = () =>
+    onBack ? onBack() : router.navigate("/?tab=playground");
 
   return (
     <>

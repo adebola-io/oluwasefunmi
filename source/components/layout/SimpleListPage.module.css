@@ -125,6 +125,10 @@
     font-size: var(--text-body-size);
     line-height: 1.7;
     text-wrap: pretty;
+
+    a {
+      text-decoration: underline;
+    }
   }
 
   .list {

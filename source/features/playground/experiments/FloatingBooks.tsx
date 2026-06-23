@@ -41,7 +41,7 @@ const FloatingBooks: RouteComponent = () => {
   };
   const handleBack = () => {
     if (selectedBook.get()) return handleClose();
-    return router.navigate("/playground");
+    return router.navigate("/?tab=playground");
   };
 
   return (

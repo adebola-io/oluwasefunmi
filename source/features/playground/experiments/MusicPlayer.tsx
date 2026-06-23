@@ -37,7 +37,7 @@ const MusicPlayer: RouteComponent = () => {
     const backAction = back.get();
     if (selectedAlbum.get()) selectedAlbum.set(null);
     else if (backAction) void backAction();
-    else void router.navigate("/playground");
+    else void router.navigate("/?tab=playground");
   };
 
   return (

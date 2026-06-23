@@ -27,24 +27,21 @@
 
 .homeNavigation {
   width: 100%;
-  display: flex;
-  align-items: center;
-  gap: var(--space-4);
   color: var(--text-secondary);
   font-size: var(--text-small-size);
 }
 
-.homeNavigationLabel {
-  flex: 0 0 auto;
-}
-
 .homeNavigationList {
   display: flex;
-  flex-wrap: wrap;
   gap: var(--space-2);
   margin: var(--space-0);
   padding: var(--space-0);
   list-style: none;
+  scrollbar-width: none;
+
+  li {
+    flex: 0 0 auto;
+  }
 }
 
 .homeNavigationLink {
@@ -53,11 +50,13 @@
   padding-inline: var(--control-pill-padding-inline);
   border: var(--border-width-hairline) solid var(--border-muted);
   border-radius: var(--radius-pill);
-  color: var(--text-primary);
+  color: var(--text-secondary);
   text-decoration: none;
 
-  &:hover {
+  &:hover,
+  &.activeTab {
     border-color: currentColor;
+    color: var(--text-primary);
   }
 
   &:focus-visible {
@@ -66,54 +65,15 @@
   }
 }
 
-.playgroundPreview {
+.tabPanel {
+  width: 100%;
+  display: grid;
+  row-gap: var(--space-6);
+}
+
+.experience,
+.worksSection {
   width: 100%;
   display: grid;
   row-gap: var(--space-4);
-}
-
-.arrowIcon {
-  width: var(--space-5);
-  height: var(--space-5);
-}
-
-.experience {
-  width: 100%;
-  display: grid;
-  row-gap: var(--space-4);
-}
-
-.playgroundList:hover {
-  .playgroundItem:not(:hover) {
-    opacity: 0.55;
-  }
-}
-
-.sectionHeading {
-  padding-bottom: var(--space-4);
-
-  svg {
-    transition: transform var(--motion-duration-fast);
-  }
-
-  &:hover {
-    svg {
-      transform: translate(30%);
-    }
-  }
-}
-
-.link {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  align-items: center;
-
-  svg {
-    height: var(--space-6);
-    width: var(--space-6);
-  }
-
-  path {
-    stroke-width: 1.5;
-  }
 }
