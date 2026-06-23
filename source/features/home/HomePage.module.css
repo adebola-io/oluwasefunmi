@@ -36,3 +36,9 @@
   display: grid;
   row-gap: var(--space-4);
 }
+
+.playgroundList:hover {
+  .playgroundItem:not(:hover) {
+    opacity: 0.55;
+  }
+}

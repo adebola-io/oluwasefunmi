@@ -78,13 +78,13 @@ const PortfolioHome: RouteComponent<PageMeta> = () => {
           </h2>
           <div class={uiClasses.sectionHeadingLink}>View all</div>
         </Link>
-        <ul class={uiClasses.twoColumnList}>
+        <ul class={[uiClasses.twoColumnList, classes.playgroundList]}>
           {For(playgroundPreviewItems, (item) => (
-            <li class={uiClasses.twoColumnItem}>
-              <span class={uiClasses.textStack}>
-                <Link href={item.path}>{item.title}</Link>
+            <li class={[uiClasses.twoColumnItem, classes.playgroundItem]}>
+              <Link href={item.path} class={uiClasses.textStack}>
+                <span>{item.title}</span>
                 <span class={uiClasses.subtleText}>{item.summary}</span>
-              </span>
+              </Link>
             </li>
           ))}
         </ul>
