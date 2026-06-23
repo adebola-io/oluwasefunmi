@@ -11,7 +11,10 @@ export const NoteHeading = createUnique<NoteProps>((props) => {
   const title = Cell.derived(() => props.get().title);
   const className = Cell.derived(() => props.get().class);
   return (
-    <UniqueTransition transitionDuration="var(--motion-duration-medium)">
+    <UniqueTransition
+      transitionDuration="var(--motion-duration-medium)"
+      respectParentTransform={false}
+    >
       <h1 class={[className, "note-heading"]} title={title}>
         {title}
       </h1>

@@ -8,7 +8,9 @@ import {
   SimpleListHeader,
   SimpleListPageLayout,
 } from "@/components/layout/SimpleListPage";
+import { NoteHeading } from "@/components/ui/typography";
 import { SITE_URL } from "@/shared/constants";
+import classes from "./RandomNotePage.module.css";
 
 export const getNotesIndex = async () => {
   const items: NotePreviewProps[] = [];
@@ -41,7 +43,13 @@ const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
   const noteItems = Cell.derived(() => {
     return notes.get().map((note) => {
       return {
-        title: note.title,
+        title: (
+          <NoteHeading
+            id={`random-note-heading-${note.id}`}
+            title={note.title}
+            class={classes.title}
+          />
+        ),
         subtitle: (
           <>
             <time dateTime={note.date} title={note.dateStr}>

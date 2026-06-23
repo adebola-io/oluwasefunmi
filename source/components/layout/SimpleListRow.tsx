@@ -28,13 +28,14 @@ export function SimpleListRow(props: SimpleListRowProps) {
   const { item } = props;
   const Icon = item.icon;
   const itemClass = [classes.item, { [classes.hasIcon]: Boolean(Icon) }];
+  const title = typeof item.title === "string" ? item.title : undefined;
 
   if (item.actionLabel) {
     return (
       <li class={itemClass}>
         <SimpleListItemIcon icon={Icon} />
         <div class={classes.itemContent}>
-          <h2 class={classes.itemTitle} title={item.title}>
+          <h2 class={classes.itemTitle} title={title}>
             {item.title}
           </h2>
           <p class={classes.itemSubtitle}>{item.subtitle}</p>
@@ -57,7 +58,7 @@ export function SimpleListRow(props: SimpleListRowProps) {
       <li class={itemClass}>
         <SimpleListItemIcon icon={Icon} />
         <div class={classes.itemContent}>
-          <h2 class={classes.itemTitle} title={item.title}>
+          <h2 class={classes.itemTitle} title={title}>
             {item.title}
           </h2>
           <p class={classes.itemSubtitle}>{item.subtitle}</p>
@@ -73,11 +74,11 @@ export function SimpleListRow(props: SimpleListRowProps) {
         <a
           class={classes.itemContent}
           href={item.href}
-          title={item.title}
+          title={title}
           target="_blank"
           rel="noopener noreferrer"
         >
-          <h2 class={classes.itemTitle} title={item.title}>
+          <h2 class={classes.itemTitle} title={title}>
             {item.title}
           </h2>
           <p class={classes.itemSubtitle}>{item.subtitle}</p>
@@ -89,8 +90,8 @@ export function SimpleListRow(props: SimpleListRowProps) {
   return (
     <li class={itemClass}>
       <SimpleListItemIcon icon={Icon} />
-      <Link class={classes.itemContent} href={item.href} title={item.title}>
-        <h2 class={classes.itemTitle} title={item.title}>
+      <Link class={classes.itemContent} href={item.href} title={title}>
+        <h2 class={classes.itemTitle} title={title}>
           {item.title}
         </h2>
         <p class={classes.itemSubtitle}>{item.subtitle}</p>

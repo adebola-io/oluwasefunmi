@@ -2,7 +2,7 @@ import { Cell } from "retend";
 import type { JSX } from "retend/jsx-runtime";
 
 export interface SimpleListItem {
-  title: string;
+  title: JSX.Template;
   subtitle: string | JSX.Element;
   href?: string;
   external?: boolean;
