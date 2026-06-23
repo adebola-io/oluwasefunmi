@@ -1,21 +1,12 @@
+import { For } from "retend";
 import type { RouteComponent } from "retend/router";
 import {
-  SimpleList,
   SimpleListBackLink,
   SimpleListPageLayout,
 } from "@/components/layout/SimpleListPage";
 import listClasses from "@/components/layout/SimpleListPage.module.css";
 import { projects } from "@/features/works/data/projects";
 import { SITE_URL } from "@/shared/constants";
-
-const workItems = projects.map((project) => {
-  return {
-    title: project.name,
-    subtitle: project.description,
-    href: project.link,
-    external: true,
-  };
-});
 
 const Works: RouteComponent = () => {
   return (
@@ -32,7 +23,28 @@ const Works: RouteComponent = () => {
           </p>
         </div>
       </header>
-      <SimpleList items={workItems} />
+      <ul class={listClasses.list}>
+        {For(projects, (project) => {
+          return (
+            <li class={listClasses.item}>
+              <a
+                class={listClasses.itemContent}
+                href={project.link}
+                title={project.name}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <h2 class={listClasses.itemTitle} title={project.name}>
+                  {project.name}
+                </h2>
+                <div class={listClasses.itemSubtitle}>
+                  {project.description}
+                </div>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
     </SimpleListPageLayout>
   );
 };

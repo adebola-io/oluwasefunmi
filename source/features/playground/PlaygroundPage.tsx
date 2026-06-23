@@ -1,6 +1,6 @@
-import type { RouteComponent } from "retend/router";
+import { For, If } from "retend";
+import { Link, type RouteComponent } from "retend/router";
 import {
-  SimpleList,
   SimpleListBackLink,
   SimpleListPageLayout,
 } from "@/components/layout/SimpleListPage";
@@ -9,17 +9,6 @@ import { playgroundItems } from "@/features/playground/data/playground";
 import { SITE_URL } from "@/shared/constants";
 import { PlaygroundHeading } from "./PlaygroundHeading";
 
-const playgroundListItems = playgroundItems.map((item) => {
-  const Description = item.description;
-
-  return {
-    title: item.title,
-    subtitle: <Description />,
-    href: item.path,
-    actionLabel: "view",
-    icon: item.icon,
-  };
-});
 const Playground: RouteComponent = () => {
   return (
     <SimpleListPageLayout>
@@ -34,7 +23,39 @@ const Playground: RouteComponent = () => {
           </p>
         </div>
       </header>
-      <SimpleList items={playgroundListItems} />
+      <ul class={listClasses.list}>
+        {For(playgroundItems, (item) => {
+          const Description = item.description;
+          const Icon = item.icon;
+
+          return (
+            <li
+              class={[
+                listClasses.item,
+                { [listClasses.hasIcon]: Boolean(Icon) },
+              ]}
+            >
+              {If(Boolean(Icon), () => (
+                <span class={listClasses.itemIcon}>
+                  <Icon />
+                </span>
+              ))}
+              <Link
+                class={listClasses.itemContent}
+                href={item.path}
+                title={item.title}
+              >
+                <h2 class={listClasses.itemTitle} title={item.title}>
+                  {item.title}
+                </h2>
+                <div class={listClasses.itemSubtitle}>
+                  <Description />
+                </div>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
     </SimpleListPageLayout>
   );
 };

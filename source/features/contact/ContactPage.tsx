@@ -1,6 +1,6 @@
+import { For } from "retend";
 import type { RouteComponent } from "retend/router";
 import {
-  SimpleList,
   SimpleListBackLink,
   SimpleListPageLayout,
 } from "@/components/layout/SimpleListPage";
@@ -58,7 +58,26 @@ const Contact: RouteComponent = () => {
           <p>A simple list of places to reach me or inspect my work.</p>
         </div>
       </header>
-      <SimpleList items={contactItems} />
+      <ul class={listClasses.list}>
+        {For(contactItems, (item) => {
+          return (
+            <li class={listClasses.item}>
+              <a
+                class={listClasses.itemContent}
+                href={item.href}
+                title={item.title}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <h2 class={listClasses.itemTitle} title={item.title}>
+                  {item.title}
+                </h2>
+                <div class={listClasses.itemSubtitle}>{item.subtitle}</div>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
     </SimpleListPageLayout>
   );
 };

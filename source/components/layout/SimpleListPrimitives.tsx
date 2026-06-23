@@ -1,9 +1,15 @@
 import { Link } from "retend/router";
-import type {
-  SimpleListBackLinkProps,
-  SimpleListPageLayoutProps,
-} from "./simpleListTypes";
+import type { JSX } from "retend/jsx-runtime";
 import classes from "./SimpleListPage.module.css";
+
+interface SimpleListPageLayoutProps extends JSX.BaseContainerProps {
+  titleId?: string;
+}
+
+interface SimpleListBackLinkProps {
+  href: string;
+  label?: string;
+}
 
 export function SimpleListPageLayout(props: SimpleListPageLayoutProps) {
   const { titleId = "page-title", children } = props;

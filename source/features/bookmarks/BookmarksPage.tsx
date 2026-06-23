@@ -1,21 +1,12 @@
+import { For } from "retend";
 import type { RouteComponent } from "retend/router";
 import {
-  SimpleList,
   SimpleListBackLink,
   SimpleListPageLayout,
 } from "@/components/layout/SimpleListPage";
 import listClasses from "@/components/layout/SimpleListPage.module.css";
 import { SITE_URL } from "@/shared/constants";
 import { bookmarks } from "./data/bookmarks";
-
-const bookmarkItems = bookmarks.map((bookmark) => {
-  return {
-    title: bookmark.openGraph.title,
-    subtitle: bookmark.openGraph.description || bookmark.openGraph.siteName,
-    href: bookmark.link,
-    external: true,
-  };
-});
 
 const Bookmarks: RouteComponent = () => {
   return (
@@ -32,7 +23,30 @@ const Bookmarks: RouteComponent = () => {
           </p>
         </div>
       </header>
-      <SimpleList items={bookmarkItems} />
+      <ul class={listClasses.list}>
+        {For(bookmarks, (bookmark) => {
+          const title = bookmark.openGraph.title;
+          const description =
+            bookmark.openGraph.description || bookmark.openGraph.siteName;
+
+          return (
+            <li class={listClasses.item}>
+              <a
+                class={listClasses.itemContent}
+                href={bookmark.link}
+                title={title}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <h2 class={listClasses.itemTitle} title={title}>
+                  {title}
+                </h2>
+                <div class={listClasses.itemSubtitle}>{description}</div>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
     </SimpleListPageLayout>
   );
 };

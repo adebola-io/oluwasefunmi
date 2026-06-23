@@ -1,9 +1,8 @@
-import { Cell } from "retend";
-import type { RouteComponent } from "retend/router";
+import { Cell, For } from "retend";
+import { Link, type RouteComponent } from "retend/router";
 import type { PageMeta } from "retend-server/client";
 import type { Note, NotePreviewProps } from "@/shared/types";
 import {
-  SimpleList,
   SimpleListBackLink,
   SimpleListPageLayout,
 } from "@/components/layout/SimpleListPage";
@@ -40,29 +39,6 @@ const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
   const notes = Cell.derived(() => {
     return metadata.get("misc") ?? [];
   });
-  const noteItems = Cell.derived(() => {
-    return notes.get().map((note) => {
-      return {
-        title: (
-          <NoteHeading
-            id={`random-note-heading-${note.id}`}
-            title={note.title}
-            class={classes.title}
-          />
-        ),
-        subtitle: (
-          <>
-            <time dateTime={note.date} title={note.dateStr}>
-              {note.dateStr}
-            </time>
-            <span> · {note.description}</span>
-          </>
-        ),
-        href: `/random-notes/${note.id}`,
-      };
-    });
-  });
-
   return (
     <SimpleListPageLayout>
       <SimpleListBackLink href="/" label="back to home" />
@@ -74,7 +50,31 @@ const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
           <p>Loose notes on life, technology, software, and consequence.</p>
         </div>
       </header>
-      <SimpleList items={noteItems} />
+      <ul class={listClasses.list}>
+        {For(notes, (note) => {
+          return (
+            <li class={listClasses.item}>
+              <Link
+                class={listClasses.itemContent}
+                href={`/random-notes/${note.id}`}
+                title={note.title}
+              >
+                <NoteHeading
+                  id={`random-note-heading-${note.id}`}
+                  title={note.title}
+                  class={classes.title}
+                />
+                <div class={listClasses.itemSubtitle}>
+                  <time dateTime={note.date} title={note.dateStr}>
+                    {note.dateStr}
+                  </time>
+                  <span> · {note.description}</span>
+                </div>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
     </SimpleListPageLayout>
   );
 };

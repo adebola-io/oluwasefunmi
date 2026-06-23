@@ -135,6 +135,20 @@
     padding: var(--space-0);
     list-style: none;
     text-align: left;
+
+    li.item {
+      transition: opacity var(--motion-duration-fast);
+    }
+
+    &:hover {
+      li:hover {
+        transition-duration: 0ms;
+      }
+
+      li.item:not(:hover) {
+        opacity: 0.55;
+      }
+    }
   }
 
   .item {
@@ -143,7 +157,7 @@
     align-items: start;
     column-gap: var(--space-3);
 
-    &::before {
+    a&::before {
       content: "";
       width: var(--marker-size);
       height: var(--marker-size);
@@ -183,6 +197,12 @@
     color: inherit;
     text-decoration: none;
 
+    &:hover {
+      .itemTitle {
+        text-decoration: underline;
+      }
+    }
+
     &:focus-visible {
       outline: var(--focus-ring-width) solid var(--focus-ring-color);
       outline-offset: var(--focus-ring-offset);
@@ -206,26 +226,6 @@
 
     p {
       margin: var(--space-0);
-    }
-  }
-
-  .actionLink {
-    display: inline-grid;
-    grid-auto-flow: column;
-    align-items: center;
-    justify-self: start;
-    gap: var(--space-1);
-    color: var(--text-primary);
-    font-size: var(--text-small-size);
-    text-decoration: none;
-
-    &::after {
-      content: "→";
-    }
-
-    &:focus-visible {
-      outline: var(--focus-ring-width) solid var(--focus-ring-color);
-      outline-offset: var(--focus-ring-offset);
     }
   }
 }
