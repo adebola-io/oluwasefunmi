@@ -29,6 +29,11 @@ const playgroundPreviewItems = [
   },
 ];
 
+const homeNavigationItems = [
+  { title: "Works", path: "/works" },
+  { title: "Bookmarks", path: "/bookmarks" },
+];
+
 const experiences = [
   { company: "Summitech", role: "Full Stack Developer", year: "Now" },
   { company: "Lighthaus Eko", role: "Full Stack Developer", year: "2024" },
@@ -62,9 +67,28 @@ const PortfolioHome: RouteComponent<PageMeta> = () => {
             I work mostly around frontend architecture, motion, local tools, and
             interaction-heavy experiments.
           </p>
+          <p>
+            You can read my <a href="oluwasefunmi-akomolafe.pdf">resume</a>, or
+            send me an <a href="mailto:adebolaakomolafe@gmail.com">email</a>.
+          </p>
         </div>
       </header>
       <HomeSocialLinks />
+      <nav
+        class={classes.homeNavigation}
+        aria-label="Primary portfolio sections"
+      >
+        <span class={classes.homeNavigationLabel}>Browse</span>
+        <ul class={classes.homeNavigationList}>
+          {For(homeNavigationItems, (item) => (
+            <li>
+              <Link href={item.path} class={classes.homeNavigationLink}>
+                {item.title}
+              </Link>
+            </li>
+          ))}
+        </ul>
+      </nav>
       <section
         class={classes.playgroundPreview}
         aria-labelledby="playground-preview-heading"

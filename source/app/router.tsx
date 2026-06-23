@@ -2,7 +2,6 @@ import { defineRoutes, lazy, Router } from "retend/router";
 
 import PortfolioHome from "@/features/home/HomePage";
 import Bookmarks from "@/features/bookmarks/BookmarksPage";
-import Contact from "@/features/contact/ContactPage";
 import Works from "@/features/works/WorksPage";
 
 import { RootLayout } from "@/components/layout/RootLayout";
@@ -29,7 +28,6 @@ const routes = defineRoutes([
       },
       { path: "/works", component: Works },
       { path: "/bookmarks", component: Bookmarks },
-      { path: "/contact", component: Contact },
     ],
   },
 ]);

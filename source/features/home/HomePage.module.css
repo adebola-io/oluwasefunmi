@@ -9,7 +9,7 @@
   .socialLink {
     display: grid;
     place-items: center;
-    color: var(--text-primary);
+    color: var(--text-secondary);
     text-decoration: none;
 
     &:focus-visible {
@@ -25,9 +25,56 @@
   }
 }
 
+.homeNavigation {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  color: var(--text-secondary);
+  font-size: var(--text-small-size);
+}
+
+.homeNavigationLabel {
+  flex: 0 0 auto;
+}
+
+.homeNavigationList {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin: var(--space-0);
+  padding: var(--space-0);
+  list-style: none;
+}
+
+.homeNavigationLink {
+  display: block;
+  padding-block: var(--control-pill-padding-block);
+  padding-inline: var(--control-pill-padding-inline);
+  border: var(--border-width-hairline) solid var(--border-muted);
+  border-radius: var(--radius-pill);
+  color: var(--text-primary);
+  text-decoration: none;
+
+  &:hover {
+    border-color: currentColor;
+  }
+
+  &:focus-visible {
+    outline: var(--focus-ring-width) solid var(--focus-ring-color);
+    outline-offset: var(--focus-ring-offset);
+  }
+}
+
 .playgroundPreview {
   width: 100%;
   display: grid;
+  row-gap: var(--space-4);
+}
+
+.arrowIcon {
+  width: var(--space-5);
+  height: var(--space-5);
 }
 
 .experience {

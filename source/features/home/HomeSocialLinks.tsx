@@ -1,4 +1,5 @@
 import { BlueskyIcon } from "@/components/icons/bluesky";
+import { GitHubIcon } from "@/components/icons/github";
 import { ThreadsIcon } from "@/components/icons/threads";
 import { XIcon } from "@/components/icons/x";
 import classes from "./HomePage.module.css";
@@ -19,6 +20,11 @@ const socialLinks = [
     label: "Threads",
     href: "https://www.threads.net/@adebola_io",
     icon: ThreadsIcon,
+  },
+  {
+    label: "GitHub",
+    href: "https://www.github.com/adebola-io",
+    icon: GitHubIcon,
   },
 ];
 
