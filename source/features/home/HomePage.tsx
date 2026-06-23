@@ -3,7 +3,6 @@ import { Link, type RouteComponent } from "retend/router";
 import type { PageMeta } from "retend-server/client";
 import { SimpleListPageLayout } from "@/components/layout/SimpleListPage";
 import listClasses from "@/components/layout/SimpleListPage.module.css";
-import { SectionHeading } from "@/components/ui/SectionHeading";
 import uiClasses from "@/components/ui/ui.module.css";
 import { PlaygroundHeading } from "@/features/playground/PlaygroundHeading";
 import { SITE_URL } from "@/shared/constants";
@@ -69,12 +68,16 @@ const PortfolioHome: RouteComponent<PageMeta> = () => {
         class={classes.playgroundPreview}
         aria-labelledby="playground-preview-heading"
       >
-        <SectionHeading
+        <Link
+          href="/playground"
+          class={uiClasses.sectionHeading}
           id="playground-preview-heading"
-          Link={() => <Link href="/playground">View all</Link>}
         >
-          <PlaygroundHeading />
-        </SectionHeading>
+          <h2 class={uiClasses.sectionHeadingContent}>
+            <PlaygroundHeading />
+          </h2>
+          <div class={uiClasses.sectionHeadingLink}>View all</div>
+        </Link>
         <ul class={uiClasses.twoColumnList}>
           {For(playgroundPreviewItems, (item) => (
             <li class={uiClasses.twoColumnItem}>
@@ -87,7 +90,9 @@ const PortfolioHome: RouteComponent<PageMeta> = () => {
         </ul>
       </section>
       <section class={classes.experience} aria-labelledby="experience-heading">
-        <SectionHeading id="experience-heading">Experience</SectionHeading>
+        <div class={uiClasses.sectionHeading} id="experience-heading">
+          <h2 class={uiClasses.sectionHeadingContent}>Experience</h2>
+        </div>
         <ul class={uiClasses.twoColumnList}>
           {For(experiences, (item) => (
             <li class={uiClasses.twoColumnItem}>
