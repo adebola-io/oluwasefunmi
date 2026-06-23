@@ -7,8 +7,6 @@
   list-style: none;
 
   .socialLink {
-    width: var(--space-7);
-    height: var(--space-7);
     display: grid;
     place-items: center;
     color: var(--text-primary);
@@ -20,11 +18,17 @@
     }
 
     svg {
-      width: var(--space-4);
-      height: var(--space-4);
+      width: var(--space-6);
+      height: var(--space-6);
       display: block;
     }
   }
+}
+
+.playgroundPreview {
+  width: 100%;
+  display: grid;
+  row-gap: var(--space-4);
 }
 
 .experience {

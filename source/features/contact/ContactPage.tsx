@@ -50,10 +50,9 @@ const Contact: RouteComponent = () => {
   return (
     <SimpleListPageLayout>
       <SimpleListBackLink href="/" label="back to home" />
-      <SimpleListHeader
-        title="Contact"
-        subtitle="A simple list of places to reach me or inspect my work."
-      />
+      <SimpleListHeader title="Contact">
+        <p>A simple list of places to reach me or inspect my work.</p>
+      </SimpleListHeader>
       <SimpleList items={contactItems} />
     </SimpleListPageLayout>
   );

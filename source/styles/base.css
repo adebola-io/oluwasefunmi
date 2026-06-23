@@ -36,7 +36,7 @@
   --layout-page-gutter: max(4vw, 2rem);
   --layout-main-block-padding: 10dvh;
 
-  --text-title-size: min(2.5rem, 9vw);
+  --text-title-size: min(2rem, 9vw);
   --text-heading-size: 2rem;
   --text-body-size: 1rem;
   --text-reading-size: 1.1rem;

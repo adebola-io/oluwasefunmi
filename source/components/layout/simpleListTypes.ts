@@ -3,7 +3,7 @@ import type { JSX } from "retend/jsx-runtime";
 
 export interface SimpleListItem {
   title: JSX.Template;
-  subtitle: string | JSX.Element;
+  subtitle: JSX.Template;
   href?: string;
   external?: boolean;
   actionLabel?: string;
@@ -16,10 +16,10 @@ export interface SimpleListPageLayoutProps extends JSX.BaseContainerProps {
 
 export interface SimpleListHeaderProps {
   title: string;
-  subtitle: string | JSX.Element;
   avatar?: string;
   avatarAlt?: string;
   titleId?: string;
+  children?: JSX.Template;
 }
 
 export interface SimpleListBackLinkProps {

@@ -21,10 +21,12 @@ const Bookmarks: RouteComponent = () => {
   return (
     <SimpleListPageLayout>
       <SimpleListBackLink href="/" label="back to home" />
-      <SimpleListHeader
-        title="Bookmarks"
-        subtitle="A simple index of saved writing, tools, references, and interface material."
-      />
+      <SimpleListHeader title="Bookmarks">
+        <p>
+          A simple index of saved writing, tools, references, and interface
+          material.
+        </p>
+      </SimpleListHeader>
       <SimpleList items={bookmarkItems} />
     </SimpleListPageLayout>
   );

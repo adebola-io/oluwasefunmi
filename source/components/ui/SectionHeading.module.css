@@ -1,8 +1,16 @@
 .heading {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
   margin: var(--space-0);
   color: var(--text-secondary);
   font-size: var(--text-body-size);
-  font-weight: 500;
   line-height: 1.4;
   letter-spacing: var(--letter-spacing-tight);
+}
+
+.link {
+  font-size: var(--text-small-size);
 }

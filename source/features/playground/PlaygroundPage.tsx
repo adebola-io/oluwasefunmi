@@ -23,10 +23,9 @@ const Playground: RouteComponent = () => {
   return (
     <SimpleListPageLayout>
       <SimpleListBackLink href="/" label="back to home" />
-      <SimpleListHeader
-        title="Playground"
-        subtitle="A simple index of interactive UI experiments and visual effects."
-      />
+      <SimpleListHeader title="Playground">
+        <p>A simple index of interactive UI experiments and visual effects.</p>
+      </SimpleListHeader>
       <SimpleList items={playgroundListItems} />
     </SimpleListPageLayout>
   );

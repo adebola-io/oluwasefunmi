@@ -21,10 +21,12 @@ const Works: RouteComponent = () => {
   return (
     <SimpleListPageLayout>
       <SimpleListBackLink href="/" label="back to home" />
-      <SimpleListHeader
-        title="Works"
-        subtitle="A simple index of products, frameworks, tools, and selected client work."
-      />
+      <SimpleListHeader title="Works">
+        <p>
+          A simple index of products, frameworks, tools, and selected client
+          work.
+        </p>
+      </SimpleListHeader>
       <SimpleList items={workItems} />
     </SimpleListPageLayout>
   );

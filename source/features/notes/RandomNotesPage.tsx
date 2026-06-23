@@ -66,10 +66,9 @@ const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
   return (
     <SimpleListPageLayout>
       <SimpleListBackLink href="/" label="back to home" />
-      <SimpleListHeader
-        title="Random Notes"
-        subtitle="Loose notes on life, technology, software, and consequence."
-      />
+      <SimpleListHeader title="Random Notes">
+        <p>Loose notes on life, technology, software, and consequence.</p>
+      </SimpleListHeader>
       <SimpleList items={noteItems} />
     </SimpleListPageLayout>
   );

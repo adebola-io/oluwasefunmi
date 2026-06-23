@@ -5,7 +5,7 @@ import classes from "./SimpleListPage.module.css";
 export function SimpleListHeader(props: SimpleListHeaderProps) {
   const {
     title,
-    subtitle,
+    children,
     avatar,
     avatarAlt = title,
     titleId = "page-title",
@@ -35,7 +35,7 @@ export function SimpleListHeader(props: SimpleListHeaderProps) {
           </h1>
         ),
       })}
-      <p class={classes.subtitle}>{subtitle}</p>
+      <div class={classes.subtitle}>{children}</div>
     </header>
   );
 }

@@ -13,7 +13,7 @@
   padding-block: var(--space-2);
   border-block-start: var(--border-width-hairline) solid var(--border-muted);
   color: var(--text-primary);
-  font-size: var(--text-body-size);
+  font-size: var(--text-secondary-size);
   line-height: 1.4;
 
   &:last-child {
