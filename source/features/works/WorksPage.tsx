@@ -6,6 +6,7 @@ import {
 import listClasses from "@/components/layout/SimpleListPage.module.css";
 import { SITE_URL } from "@/shared/constants";
 import { projects } from "./data/projects";
+import { SelectedWorksHeading } from "./SelectedWorksHeading";
 
 const Works = () => {
   return (
@@ -13,7 +14,7 @@ const Works = () => {
       <SimpleListBackLink href="/" label="back to home" />
       <header class={listClasses.header}>
         <h1 id="page-title" class={listClasses.title} title="Selected Works">
-          Selected Works
+          <SelectedWorksHeading />
         </h1>
         <div class={listClasses.subtitle}>
           <p>Products, frameworks, tools, and selected client work.</p>
