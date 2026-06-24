@@ -1,29 +1,17 @@
-import { Cell, If } from "retend";
-import { type RouteComponent, useRouteQuery } from "retend/router";
+import type { RouteComponent } from "retend/router";
+import { Cell } from "retend";
 import type { PageMeta } from "retend-server/client";
+import type { NotePreviewProps } from "@/shared/types";
 import { SimpleListPageLayout } from "@/components/layout/SimpleListPage";
 import listClasses from "@/components/layout/SimpleListPage.module.css";
+import { getNotesIndex } from "@/features/notes/RandomNotesPage";
 import { SITE_URL } from "@/shared/constants";
-import { BookmarksTabPanel } from "./BookmarksTabPanel";
+import { HomePreviewSections } from "./HomePreviewSections";
 import { HomeSocialLinks } from "./HomeSocialLinks";
-import { HomeTabs, type HomeTab } from "./HomeTabs";
-import { PlaygroundTabPanel } from "./PlaygroundTabPanel";
-import { SelectedWorksTabPanel } from "./SelectedWorksTabPanel";
 
-const PortfolioHome: RouteComponent<PageMeta> = () => {
-  const query = useRouteQuery();
-  const tab = query.get("tab");
-  const activeTab = Cell.derived<HomeTab>(() => {
-    const value = tab.get();
-    if (value === "playground" || value === "works" || value === "bookmarks") {
-      return value;
-    }
-
-    return "home";
-  });
-  const isPlaygroundTab = Cell.derived(() => activeTab.get() === "playground");
-  const isWorksTab = Cell.derived(() => activeTab.get() === "works");
-  const isBookmarksTab = Cell.derived(() => activeTab.get() === "bookmarks");
+const PortfolioHome: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
+  const { metadata } = props;
+  const notes = Cell.derived(() => metadata.get("misc") ?? []);
 
   return (
     <SimpleListPageLayout>
@@ -57,20 +45,13 @@ const PortfolioHome: RouteComponent<PageMeta> = () => {
         </div>
       </header>
       <HomeSocialLinks />
-      <HomeTabs activeTab={activeTab} />
-      {If(isPlaygroundTab, () => (
-        <PlaygroundTabPanel />
-      ))}
-      {If(isWorksTab, () => (
-        <SelectedWorksTabPanel />
-      ))}
-      {If(isBookmarksTab, () => (
-        <BookmarksTabPanel />
-      ))}
+      <HomePreviewSections notes={notes} />
     </SimpleListPageLayout>
   );
 };
 PortfolioHome.metadata = async () => {
+  const notes = await getNotesIndex();
+
   return {
     title: "Oluwasefunmi | Software Engineer",
     description:
@@ -83,6 +64,7 @@ PortfolioHome.metadata = async () => {
     twitterDescription:
       "Full-stack software engineer from Lagos, Nigeria focused on creating interactive digital experiences.",
     twitterImage: `${SITE_URL}/og/home.png`,
+    misc: notes,
   };
 };
 

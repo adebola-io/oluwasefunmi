@@ -21,6 +21,7 @@
 }
 
 .backLink {
+  justify-self: start;
   padding-block: var(--control-pill-padding-block);
   padding-inline: var(--control-pill-leading-padding-inline)
     var(--control-pill-padding-inline);

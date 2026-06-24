@@ -25,55 +25,18 @@
   }
 }
 
-.homeNavigation {
-  width: 100%;
-  color: var(--text-secondary);
-  font-size: var(--text-small-size);
-}
-
-.homeNavigationList {
-  display: flex;
-  gap: var(--space-2);
-  margin: var(--space-0);
-  padding: var(--space-0);
-  list-style: none;
-  scrollbar-width: none;
-
-  li {
-    flex: 0 0 auto;
-  }
-}
-
-.homeNavigationLink {
-  display: block;
-  padding-block: var(--control-pill-padding-block);
-  padding-inline: var(--control-pill-padding-inline);
-  border: var(--border-width-hairline) solid var(--border-muted);
-  border-radius: var(--radius-pill);
-  color: var(--text-secondary);
-  text-decoration: none;
-
-  &:hover,
-  &.activeTab {
-    border-color: currentColor;
-    color: var(--text-primary);
-  }
-
-  &:focus-visible {
-    outline: var(--focus-ring-width) solid var(--focus-ring-color);
-    outline-offset: var(--focus-ring-offset);
-  }
-}
-
-.tabPanel {
+.previewSections {
   width: 100%;
   display: grid;
-  row-gap: var(--space-6);
+  row-gap: var(--space-8);
 }
 
-.experience,
-.worksSection {
+.previewSection {
   width: 100%;
   display: grid;
   row-gap: var(--space-4);
+}
+
+.viewAllLink {
+  font-size: var(--text-small-size);
 }

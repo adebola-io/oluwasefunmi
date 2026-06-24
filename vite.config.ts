@@ -20,7 +20,6 @@ const productRoutes = products.map((product: (typeof products)[number]) => {
 const pages = [
   "/",
   "/playground",
-  "/playground/mirror",
   "/playground/curved-css-solid",
   "/playground/ripple-effect",
   "/playground/blur-carousel",
@@ -32,9 +31,9 @@ const pages = [
   "/playground/painting-wheel",
   "/playground/glasses",
   "/playground/floating-books",
-  "/playground/contact-sheet",
   "/random-notes",
   "/works",
+  "/bookmarks",
   ...notes,
   ...productRoutes,
 ];
