@@ -8,6 +8,7 @@ import { PlaygroundHeading } from "@/features/playground/PlaygroundHeading";
 import { SelectedWorksHeading } from "@/features/works/SelectedWorksHeading";
 import classes from "./HomePage.module.css";
 import { BookmarksPreviewList } from "./BookmarksPreviewList";
+import { ExperiencePreviewList } from "./ExperiencePreviewList";
 import { NotesPreviewList } from "./NotesPreviewList";
 import { PlaygroundPreviewList } from "./PlaygroundPreviewList";
 import { WorksPreviewList } from "./WorksPreviewList";
@@ -21,18 +22,6 @@ export const HomePreviewSections = (props: HomePreviewSectionsProps) => {
 
   return (
     <div class={classes.previewSections}>
-      <section class={classes.previewSection} aria-labelledby="works-preview">
-        <div class={uiClasses.sectionHeading} id="works-preview">
-          <h2 class={uiClasses.sectionHeadingContent}>
-            <SelectedWorksHeading />
-          </h2>
-          <Link href="/works" class={classes.viewAllLink} data-pill-link>
-            View all
-          </Link>
-        </div>
-        <WorksPreviewList />
-      </section>
-
       <section
         class={classes.previewSection}
         aria-labelledby="playground-preview"
@@ -46,6 +35,28 @@ export const HomePreviewSections = (props: HomePreviewSectionsProps) => {
           </Link>
         </div>
         <PlaygroundPreviewList />
+      </section>
+
+      <section
+        class={classes.previewSection}
+        aria-labelledby="experience-preview"
+      >
+        <div class={uiClasses.sectionHeading} id="experience-preview">
+          <h2 class={uiClasses.sectionHeadingContent}>Experience</h2>
+        </div>
+        <ExperiencePreviewList />
+      </section>
+
+      <section class={classes.previewSection} aria-labelledby="works-preview">
+        <div class={uiClasses.sectionHeading} id="works-preview">
+          <h2 class={uiClasses.sectionHeadingContent}>
+            <SelectedWorksHeading />
+          </h2>
+          <Link href="/works" class={classes.viewAllLink} data-pill-link>
+            View all
+          </Link>
+        </div>
+        <WorksPreviewList />
       </section>
 
       <section class={classes.previewSection} aria-labelledby="notes-preview">
