@@ -1,18 +1,12 @@
 import type { RouteComponent } from "retend/router";
-import { Cell } from "retend";
 import type { PageMeta } from "retend-server/client";
-import type { NotePreviewProps } from "@/shared/types";
 import { SimpleListPageLayout } from "@/components/layout/SimpleListPage";
 import listClasses from "@/components/layout/SimpleListPage.module.css";
-import { getNotesIndex } from "@/features/notes/RandomNotesPage";
 import { SITE_URL } from "@/shared/constants";
 import { HomePreviewSections } from "./HomePreviewSections";
 import { HomeSocialLinks } from "./HomeSocialLinks";
 
-const PortfolioHome: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
-  const { metadata } = props;
-  const notes = Cell.derived(() => metadata.get("misc") ?? []);
-
+const PortfolioHome: RouteComponent<PageMeta> = () => {
   return (
     <SimpleListPageLayout>
       <header class={listClasses.header}>
@@ -45,13 +39,11 @@ const PortfolioHome: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
         </div>
       </header>
       <HomeSocialLinks />
-      <HomePreviewSections notes={notes} />
+      <HomePreviewSections />
     </SimpleListPageLayout>
   );
 };
-PortfolioHome.metadata = async () => {
-  const notes = await getNotesIndex();
-
+PortfolioHome.metadata = () => {
   return {
     title: "Oluwasefunmi | Software Engineer",
     description:
@@ -64,7 +56,6 @@ PortfolioHome.metadata = async () => {
     twitterDescription:
       "Full-stack software engineer from Lagos, Nigeria focused on creating interactive digital experiences.",
     twitterImage: `${SITE_URL}/og/home.png`,
-    misc: notes,
   };
 };
 

@@ -5,7 +5,6 @@ import {
 } from "@/components/layout/SimpleListPage";
 import listClasses from "@/components/layout/SimpleListPage.module.css";
 import { SITE_URL } from "@/shared/constants";
-import { BookmarksHeading } from "./BookmarksHeading";
 import { bookmarks } from "./data/bookmarks";
 
 const Bookmarks = () => {
@@ -14,7 +13,7 @@ const Bookmarks = () => {
       <SimpleListBackLink href="/" label="back to home" />
       <header class={listClasses.header}>
         <h1 id="page-title" class={listClasses.title} title="Bookmarks">
-          <BookmarksHeading />
+          Bookmarks
         </h1>
         <div class={listClasses.subtitle}>
           <p>Saved writing, tools, references, and interface material.</p>

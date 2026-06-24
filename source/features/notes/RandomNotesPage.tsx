@@ -10,7 +10,6 @@ import listClasses from "@/components/layout/SimpleListPage.module.css";
 import { NoteHeading } from "@/components/ui/typography";
 import { SITE_URL } from "@/shared/constants";
 import classes from "./RandomNotePage.module.css";
-import { RandomNotesHeading } from "./RandomNotesHeading";
 
 export const getNotesIndex = async () => {
   const items: NotePreviewProps[] = [];
@@ -45,7 +44,7 @@ const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
       <SimpleListBackLink href="/" label="back to home" />
       <header class={listClasses.header}>
         <h1 id="page-title" class={listClasses.title} title="Random Notes">
-          <RandomNotesHeading />
+          Random Notes
         </h1>
         <div class={listClasses.subtitle}>
           <p>Loose notes on life, technology, software, and consequence.</p>
