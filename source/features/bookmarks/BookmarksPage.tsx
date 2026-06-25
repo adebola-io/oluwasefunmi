@@ -19,7 +19,7 @@ const Bookmarks = () => {
           <p>Saved writing, tools, references, and interface material.</p>
         </div>
       </header>
-      <ul class={listClasses.list}>
+      <ul class={[listClasses.list, "staggering"]}>
         {For(bookmarks, (bookmark) => {
           const title = bookmark.openGraph.title;
           const description =

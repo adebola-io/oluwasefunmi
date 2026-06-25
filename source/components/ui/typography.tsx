@@ -25,7 +25,7 @@ export const NoteHeading = createUnique<NoteProps>((props) => {
 export function NoteContent(props: JSX.IntrinsicElements["div"]) {
   const { children, ...rest } = props;
   return (
-    <div {...rest} class={["note-content", rest.class]}>
+    <div {...rest} class={["note-content", "staggering", rest.class]}>
       {children}
     </div>
   );

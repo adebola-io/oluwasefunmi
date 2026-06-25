@@ -4,7 +4,7 @@ import { projects } from "@/features/works/data/projects";
 
 export const WorksPreviewList = () => {
   return (
-    <ul class={listClasses.list}>
+    <ul class={[listClasses.list, "staggering"]}>
       {For(projects.slice(0, 3), (project) => (
         <li class={listClasses.item}>
           <a

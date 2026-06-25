@@ -2,6 +2,7 @@ import { Cell } from "retend";
 import { Outlet, useRouter } from "retend/router";
 import { ScrollRestoration } from "@/components/layout/ScrollRestoration";
 import classes from "./PageLayout.module.css";
+import { useWindowEventListener } from "retend-utils/hooks";
 
 export function RootLayout() {
   const router = useRouter();
@@ -16,6 +17,14 @@ export function RootLayout() {
   const containerClass = Cell.derived(() => {
     if (isPlaygroundDetail.get()) return "contents";
     return classes.main;
+  });
+
+  useWindowEventListener("animationend", (event) => {
+    if (!(event.target instanceof HTMLElement)) return;
+    if (!event.target.parentElement) return;
+    if (event.target.parentElement.classList.contains("staggering")) {
+      event.target.parentElement.classList.remove("staggering");
+    }
   });
 
   return (

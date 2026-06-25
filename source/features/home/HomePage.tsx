@@ -23,7 +23,7 @@ const PortfolioHome: RouteComponent<PageMeta> = () => {
             oluwasefunmi.
           </h1>
         </div>
-        <div class={listClasses.subtitle}>
+        <div class={[listClasses.subtitle, "staggering"]}>
           <p>
             Hello, this is Sefunmi. I am a software engineer focused on clear
             systems, expressive interfaces, and useful web products.

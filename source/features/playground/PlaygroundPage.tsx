@@ -23,7 +23,7 @@ const Playground: RouteComponent = () => {
           </p>
         </div>
       </header>
-      <ul class={listClasses.list}>
+      <ul class={[listClasses.list, "staggering"]}>
         {For(playgroundItems, (item) => {
           const Description = item.description;
           const Icon = item.icon;

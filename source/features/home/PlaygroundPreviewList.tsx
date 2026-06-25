@@ -5,7 +5,7 @@ import { playgroundItems } from "@/features/playground/data/playground";
 
 export const PlaygroundPreviewList = () => {
   return (
-    <ul class={listClasses.list}>
+    <ul class={[listClasses.list, "staggering"]}>
       {For(playgroundItems.slice(0, 3), (item) => {
         const Description = item.description;
 

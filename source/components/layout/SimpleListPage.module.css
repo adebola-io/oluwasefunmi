@@ -149,7 +149,7 @@
       transition: opacity var(--motion-duration-fast);
     }
 
-    &:hover {
+    &:not(:global(.staggering)):hover {
       li:hover {
         transition-duration: 0ms;
       }
