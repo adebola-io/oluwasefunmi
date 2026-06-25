@@ -1,0 +1,16 @@
+.container {
+  position: relative;
+  overscroll-behavior: none;
+  touch-action: none;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+}
+
+.node {
+  position: absolute;
+  top: 0;
+  left: 0;
+  will-change: transform;
+}
