@@ -5,6 +5,20 @@ import { Cell } from "retend";
 
 interface InfiniteCanvasProps extends JSX.BaseContainerProps {}
 
+function normalizeWheelDelta(event: WheelEvent) {
+  const multiplier =
+    event.deltaMode === WheelEvent.DOM_DELTA_LINE
+      ? 16
+      : event.deltaMode === WheelEvent.DOM_DELTA_PAGE
+        ? window.innerHeight
+        : 1;
+
+  return {
+    x: event.deltaX * multiplier,
+    y: event.deltaY * multiplier,
+  };
+}
+
 export function InfiniteCanvas(props: InfiniteCanvasProps) {
   const { children, class: className, ...rest } = props;
   const cameraX = Cell.source(0);
@@ -43,6 +57,15 @@ export function InfiniteCanvas(props: InfiniteCanvasProps) {
     });
   }
 
+  function handleWheel(this: HTMLElement, event: WheelEvent) {
+    const delta = normalizeWheelDelta(event);
+
+    Cell.batch(() => {
+      cameraX.set(cameraX.get() - delta.x);
+      cameraY.set(cameraY.get() - delta.y);
+    });
+  }
+
   const ctx = { cameraX, cameraY };
 
   return (
@@ -53,6 +76,7 @@ export function InfiniteCanvas(props: InfiniteCanvasProps) {
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
         onPointerCancel={handlePointerUp}
+        onWheel--passive={handleWheel}
         {...rest}
       >
         {children}
