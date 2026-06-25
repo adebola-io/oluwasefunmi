@@ -33,7 +33,7 @@ const PortfolioHome: RouteComponent<PageMeta> = () => {
             interaction-heavy experiments.
           </p>
           <p>
-            You can read my <a href="oluwasefunmi-akomolafe.pdf">resume</a>, or
+            You can <a href="oluwasefunmi-akomolafe.pdf">read my resume,</a> or
             send me an <a href="mailto:adebolaakomolafe@gmail.com">email</a>.
           </p>
         </div>

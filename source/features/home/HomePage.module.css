@@ -20,6 +20,10 @@
     color: var(--text-secondary);
     text-decoration: none;
 
+    &:hover {
+      color: var(--text-primary);
+    }
+
     &:focus-visible {
       outline: var(--focus-ring-width) solid var(--focus-ring-color);
       outline-offset: var(--focus-ring-offset);
