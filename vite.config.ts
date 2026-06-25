@@ -22,7 +22,6 @@ const pages = [
   "/playground",
   "/playground/curved-css-solid",
   "/playground/ripple-effect",
-  "/playground/blur-carousel",
   "/playground/product-transitions",
   "/playground/three-dimensional-marquee",
   "/playground/css-keyboard",

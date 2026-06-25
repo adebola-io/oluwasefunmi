@@ -20,12 +20,6 @@ export const playgroundExperimentRoutes = [
     ),
   },
   {
-    path: "/blur-carousel",
-    component: lazy(
-      () => import("@/features/playground/experiments/BlurCarousel")
-    ),
-  },
-  {
     path: "/product-transitions",
     component: lazy(
       () => import("@/features/playground/experiments/ProductTransition")

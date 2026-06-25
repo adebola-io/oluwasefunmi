@@ -2,7 +2,6 @@ import type { PlaygroundItem } from "@/features/playground/types";
 import { CubeIcon } from "@/components/icons/cube";
 import { GlassesIcon } from "@/components/icons/glasses";
 import { RippleIcon } from "@/components/icons/ripple";
-import { CarouselIcon } from "@/components/icons/carousel";
 import { PaintingWheelIcon } from "@/components/icons/painting-wheel";
 import { ShoppingCartIcon } from "@/components/icons/shopping-cart";
 import { HaloIcon } from "@/components/icons/halo";
@@ -136,22 +135,6 @@ export const playgroundItems: PlaygroundItem[] = [
       </>
     ),
     icon: () => <ShoppingCartIcon />,
-  },
-  {
-    path: "/playground/blur-carousel",
-    title: "blur-carousel",
-    description: () => (
-      <>
-        FluidList handles the horizontal scroll track, while CSS handles the
-        blur and depth treatment around each avatar. An IntersectionObserver
-        only changes stacking, so the centered item does not get buried by its
-        neighbors. Original by{" "}
-        <ExternalLink url="https://x.com/SebJVidal/status/2005309959056338981">
-          @SebJVidal
-        </ExternalLink>
-      </>
-    ),
-    icon: () => <CarouselIcon />,
   },
   {
     path: "/playground/ripple-effect",
