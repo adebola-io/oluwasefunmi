@@ -25,8 +25,8 @@ const PortfolioHome: RouteComponent<PageMeta> = () => {
         </div>
         <div class={[listClasses.subtitle, "staggering"]}>
           <p>
-            Hello, this is Sefunmi. I am a software engineer focused on clear
-            systems, expressive interfaces, and useful web products.
+            I am Sefunmi, a software engineer focused on clear systems,
+            expressive interfaces, and useful web products.
           </p>
           <p>
             I work mostly around frontend architecture, motion, local tools, and
