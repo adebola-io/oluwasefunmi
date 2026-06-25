@@ -1,3 +1,7 @@
+:root:has(.container) {
+  overscroll-behavior: none;
+}
+
 .container {
   position: relative;
   overscroll-behavior: none;
@@ -6,11 +10,17 @@
   user-select: none;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
+  container: infinite-canvas inline-size;
 }
 
 .node {
   position: absolute;
   top: 0;
   left: 0;
+  width: var(--node-width);
+  height: var(--node-height);
   will-change: transform;
+  content-visibility: auto;
+  contain-intrinsic-size: var(--node-width) var(--node-height);
+  contain: strict;
 }

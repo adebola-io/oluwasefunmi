@@ -8,7 +8,13 @@ const BubbleWrap: RouteComponent = () => {
   return (
     <PlaygroundLayout title="Bubble Wrap">
       <InfiniteCanvas class="fixed top-0 left-0 w-screen h-screen grid grid-cols-1 grid-rows-1">
-        <InfiniteCanvasNode x={10} y={300}>
+        <InfiniteCanvasNode
+          x={10}
+          y={300}
+          width="300px"
+          height="80px"
+          class="bg-red-900 text-white"
+        >
           Hello world.
         </InfiniteCanvasNode>
       </InfiniteCanvas>
