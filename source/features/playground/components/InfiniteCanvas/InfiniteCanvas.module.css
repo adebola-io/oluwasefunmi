@@ -10,7 +10,7 @@
   user-select: none;
   -webkit-user-select: none;
   -webkit-touch-callout: none;
-  container: infinite-canvas inline-size;
+  container: infinite-canvas size;
 }
 
 .node {
@@ -23,4 +23,51 @@
   content-visibility: auto;
   contain-intrinsic-size: var(--node-width) var(--node-height);
   contain: strict;
+}
+
+.repeatedPattern {
+  display: grid;
+}
+
+.repeatedPatternItem {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: calc(100cqh / var(--irp-density));
+  width: calc(100cqw / var(--irp-density));
+  will-change: transform;
+}
+
+.repeatedPatternSentinel {
+  position: absolute;
+  pointer-events: none;
+  z-index: 99;
+
+  &:is([data-dir="top"], [data-dir="bottom"]) {
+    width: 100%;
+    height: 2px;
+  }
+
+  &:is([data-dir="left"], [data-dir="right"]) {
+    width: 2px;
+    height: 100%;
+  }
+
+  &[data-dir="top"] {
+    top: calc((var(--irp-overscan) / 2) * 100cqh);
+  }
+
+  &[data-dir="bottom"] {
+    bottom: calc((var(--irp-overscan) / 2) * 100cqh);
+  }
+
+  &[data-dir="left"] {
+    left: calc((var(--irp-overscan) / 2) * 100cqw);
+  }
+
+  &[data-dir="right"] {
+    right: calc((var(--irp-overscan) / 2) * 100cqw);
+  }
 }

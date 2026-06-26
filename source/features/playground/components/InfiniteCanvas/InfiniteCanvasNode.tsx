@@ -5,8 +5,8 @@ import { InfiniteCanvasScope } from "./InfiniteCanvasScope";
 import classes from "./InfiniteCanvas.module.css";
 
 interface InfiniteCanvasNodeProps extends JSX.BaseContainerProps {
-  x?: JSX.ValueOrCell<number>;
-  y?: JSX.ValueOrCell<number>;
+  x?: JSX.ValueOrCell<string>;
+  y?: JSX.ValueOrCell<string>;
   width?: JSX.ValueOrCell<string>;
   height?: JSX.ValueOrCell<string>;
 }
@@ -14,8 +14,8 @@ interface InfiniteCanvasNodeProps extends JSX.BaseContainerProps {
 export function InfiniteCanvasNode(props: InfiniteCanvasNodeProps) {
   const {
     children,
-    x: xProp = 0,
-    y: yProp = 0,
+    x: xProp = "0px",
+    y: yProp = "0px",
     width: widthProp = "20px",
     height: heightProp = "20px",
     ...rest
@@ -27,9 +27,9 @@ export function InfiniteCanvasNode(props: InfiniteCanvasNodeProps) {
   const height = useDerivedValue(heightProp);
 
   const transform = Cell.derived(() => {
-    const screenX = x.get() + cameraX.get();
-    const screenY = y.get() + cameraY.get();
-    return `translate3d(${screenX}px, ${screenY}px, 0)`;
+    const screenX = `calc(${x.get()} + ${cameraX.get()}px)`;
+    const screenY = `calc(${y.get()} + ${cameraY.get()}px)`;
+    return `translate3d(${screenX}, ${screenY}, 0)`;
   });
 
   const style = { transform, "--node-width": width, "--node-height": height };

@@ -3,7 +3,9 @@ import classes from "./InfiniteCanvas.module.css";
 import { InfiniteCanvasScope } from "./InfiniteCanvasScope";
 import { Cell } from "retend";
 
-interface InfiniteCanvasProps extends JSX.BaseContainerProps {}
+interface InfiniteCanvasProps extends JSX.BaseContainerProps {
+  ref?: Cell<HTMLElement | null>;
+}
 
 function normalizeWheelDelta(event: WheelEvent) {
   const multiplier =
@@ -20,7 +22,12 @@ function normalizeWheelDelta(event: WheelEvent) {
 }
 
 export function InfiniteCanvas(props: InfiniteCanvasProps) {
-  const { children, class: className, ...rest } = props;
+  const {
+    children,
+    ref = Cell.source(null),
+    class: className,
+    ...rest
+  } = props;
   const cameraX = Cell.source(0);
   const cameraY = Cell.source(0);
 
@@ -66,18 +73,19 @@ export function InfiniteCanvas(props: InfiniteCanvasProps) {
     });
   }
 
-  const ctx = { cameraX, cameraY };
+  const ctx = { cameraX, cameraY, viewportRef: ref };
 
   return (
     <InfiniteCanvasScope.Provider value={ctx}>
       <div
+        {...rest}
+        ref={ref}
         class={[classes.container, className]}
         onPointerDown={handlePointerDown}
         onPointerMove={handlePointerMove}
         onPointerUp={handlePointerUp}
         onPointerCancel={handlePointerUp}
         onWheel--passive={handleWheel}
-        {...rest}
       >
         {children}
       </div>
