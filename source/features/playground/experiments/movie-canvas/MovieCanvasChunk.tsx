@@ -91,7 +91,7 @@ function Poster(props: PosterProps) {
 
   const marginOffsetY = Cell.derived(() => {
     if (!isOddColumn.get() || height.get() === 0) return 0;
-    return (-1.5 * width.get()) / height.get() / subgridCols.get();
+    return (-0.75 * width.get()) / height.get() / subgridCols.get();
   });
 
   const themeColor = Cell.derived(() => {
