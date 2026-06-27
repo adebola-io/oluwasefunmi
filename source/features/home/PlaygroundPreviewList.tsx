@@ -11,18 +11,20 @@ export const PlaygroundPreviewList = () => {
 
         return (
           <li class={listClasses.item}>
-            <Link
-              class={listClasses.itemContent}
-              href={item.path}
-              title={item.title}
-            >
+            <div class={listClasses.itemContent}>
               <h3 class={listClasses.itemTitle} title={item.title}>
-                {item.title}
+                <Link
+                  class={listClasses.itemTitleLink}
+                  href={item.path}
+                  title={item.title}
+                >
+                  {item.title}
+                </Link>
               </h3>
               <div class={listClasses.itemSubtitle}>
                 <Description />
               </div>
-            </Link>
+            </div>
           </li>
         );
       })}

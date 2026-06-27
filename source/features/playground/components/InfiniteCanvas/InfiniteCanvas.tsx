@@ -1,10 +1,10 @@
 import type { JSX } from "retend/jsx-runtime";
 import classes from "./InfiniteCanvas.module.css";
 import { InfiniteCanvasScope } from "./InfiniteCanvasScope";
-import { Cell, onConnected } from "retend";
+import { Cell, onConnected, type SourceCell } from "retend";
 
 interface InfiniteCanvasProps extends JSX.BaseContainerProps {
-  ref?: Cell<HTMLElement | null>;
+  ref?: SourceCell<HTMLElement | null>;
 }
 
 function normalizeWheelDelta(event: WheelEvent) {
@@ -78,9 +78,9 @@ export function InfiniteCanvas(props: InfiniteCanvasProps) {
   const ctx = {
     cameraX,
     cameraY,
+    height: viewportHeight,
     viewportRef: ref,
-    viewportWidth,
-    viewportHeight,
+    width: viewportWidth,
   };
 
   onConnected(ref, (container) => {

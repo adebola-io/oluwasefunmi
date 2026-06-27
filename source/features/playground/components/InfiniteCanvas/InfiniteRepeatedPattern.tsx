@@ -1,7 +1,10 @@
 import type { JSX } from "retend/jsx-runtime";
 import { Cell, For, useScopeContext } from "retend";
 import { InfiniteCanvasNode } from "./InfiniteCanvasNode";
-import { InfiniteCanvasScope } from "./InfiniteCanvasScope";
+import {
+  InfiniteCanvasScope,
+  InfiniteRepeatedPatternScope,
+} from "./InfiniteCanvasScope";
 import { useDerivedValue } from "retend-utils/hooks";
 import classes from "./InfiniteCanvas.module.css";
 
@@ -14,6 +17,8 @@ type PatternTemplate = (props: PatternTemplateProps) => JSX.Template;
 interface InfiniteRepeatedPatternProps {
   density?: JSX.ValueOrCell<number>;
   overscan?: JSX.ValueOrCell<number>;
+  initialX?: JSX.ValueOrCell<string>;
+  initialY?: JSX.ValueOrCell<string>;
   Template: PatternTemplate;
 }
 
@@ -28,7 +33,12 @@ interface InfiniteGridOptions {
 
 function useInfiniteGrid(options: InfiniteGridOptions) {
   const ctx = useScopeContext(InfiniteCanvasScope);
-  const { cameraX, cameraY, viewportHeight, viewportWidth } = ctx;
+  const {
+    cameraX,
+    cameraY,
+    height: viewportHeight,
+    width: viewportWidth,
+  } = ctx;
 
   const { density, overscan } = options;
   const nodeRef = Cell.source<HTMLElement | null>(null);
@@ -47,8 +57,19 @@ function useInfiniteGrid(options: InfiniteGridOptions) {
   const colOffset = Cell.derived(() => -originX.get() * density.get());
   const rowOffset = Cell.derived(() => -originY.get() * density.get());
 
+  const center = (row: number, col: number) => {
+    const cellWidth = viewportWidth.get() / density.get();
+    const cellHeight = viewportHeight.get() / density.get();
+
+    Cell.batch(() => {
+      cameraX.set(viewportWidth.get() / 2 - (col + 0.5) * cellWidth);
+      cameraY.set(viewportHeight.get() / 2 - (row + 0.5) * cellHeight);
+    });
+  };
+
   return {
     affordance,
+    center,
     colOffset,
     originX,
     originY,
@@ -63,18 +84,22 @@ export function InfiniteRepeatedPattern(props: InfiniteRepeatedPatternProps) {
     Template,
     density: densityProp = 1,
     overscan: overscanProp = 1,
+    initialX: initialXProp = "0px",
+    initialY: initialYProp = "0px",
   } = props;
 
   const density = useDerivedValue(densityProp);
   const overscan = useDerivedValue(overscanProp);
+  const initialX = useDerivedValue(initialXProp);
+  const initialY = useDerivedValue(initialYProp);
   const ctx = useInfiniteGrid({ density, overscan });
   const width = Cell.derived(() => `calc(100cqw * ${ctx.affordance.get()})`);
   const height = Cell.derived(() => `calc(100cqh * ${ctx.affordance.get()})`);
   const x = Cell.derived(() => {
-    return `calc((-100cqw * ${overscan.get()}) + (${ctx.originX.get()} * 100cqw))`;
+    return `calc((${initialX.get()}) + (-100cqw * ${overscan.get()}) + (${ctx.originX.get()} * 100cqw))`;
   });
   const y = Cell.derived(() => {
-    return `calc((-100cqh * ${overscan.get()}) + (${ctx.originY.get()} * 100cqh))`;
+    return `calc((${initialY.get()}) + (-100cqh * ${overscan.get()}) + (${ctx.originY.get()} * 100cqh))`;
   });
 
   const grid = Cell.derived(() => {
@@ -87,16 +112,20 @@ export function InfiniteRepeatedPattern(props: InfiniteRepeatedPatternProps) {
   const style = { "--irp-density": density };
   const nodeProps = { width, height, x, y, style, ref: ctx.nodeRef };
 
+  const repeatedPatternScopeValue = { center: ctx.center };
+
   return (
-    <InfiniteCanvasNode {...nodeProps}>
-      {For(
-        grid,
-        (props) => (
-          <RepeatedPatternTile {...props} {...tileProps} />
-        ),
-        { key: "id" }
-      )}
-    </InfiniteCanvasNode>
+    <InfiniteRepeatedPatternScope.Provider value={repeatedPatternScopeValue}>
+      <InfiniteCanvasNode {...nodeProps}>
+        {For(
+          grid,
+          (props) => (
+            <RepeatedPatternTile {...props} {...tileProps} />
+          ),
+          { key: "id" }
+        )}
+      </InfiniteCanvasNode>
+    </InfiniteRepeatedPatternScope.Provider>
   );
 }
 

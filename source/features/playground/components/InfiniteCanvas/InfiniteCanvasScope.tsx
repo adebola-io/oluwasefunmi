@@ -1,12 +1,19 @@
-import { Cell, createScope } from "retend";
+import { Cell, createScope, type SourceCell } from "retend";
 
 interface InfiniteCanvasCtx {
-  cameraX: Cell<number>;
-  cameraY: Cell<number>;
-  viewportRef: Cell<HTMLElement | null>;
-  viewportWidth: Cell<number>;
-  viewportHeight: Cell<number>;
+  cameraX: SourceCell<number>;
+  cameraY: SourceCell<number>;
+  viewportRef: SourceCell<HTMLElement | null>;
+  width: Cell<number>;
+  height: Cell<number>;
+}
+
+interface InfiniteRepeatedPatternCtx {
+  center(row: number, col: number): void;
 }
 
 export const InfiniteCanvasScope =
   createScope<InfiniteCanvasCtx>("InfiniteCanvas");
+
+export const InfiniteRepeatedPatternScope =
+  createScope<InfiniteRepeatedPatternCtx>("InfiniteRepeatedPattern");

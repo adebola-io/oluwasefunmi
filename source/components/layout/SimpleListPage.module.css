@@ -204,12 +204,14 @@
     row-gap: var(--space-1);
     min-width: var(--space-0);
     color: inherit;
+  }
+
+  .itemTitleLink {
+    color: inherit;
     text-decoration: none;
 
     &:hover {
-      .itemTitle {
-        text-decoration: underline;
-      }
+      text-decoration: underline;
     }
 
     &:focus-visible {

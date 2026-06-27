@@ -40,18 +40,20 @@ const Playground: RouteComponent = () => {
                   <Icon />
                 </span>
               ))}
-              <Link
-                class={listClasses.itemContent}
-                href={item.path}
-                title={item.title}
-              >
+              <div class={listClasses.itemContent}>
                 <h2 class={listClasses.itemTitle} title={item.title}>
-                  {item.title}
+                  <Link
+                    class={listClasses.itemTitleLink}
+                    href={item.path}
+                    title={item.title}
+                  >
+                    {item.title}
+                  </Link>
                 </h2>
                 <div class={listClasses.itemSubtitle}>
                   <Description />
                 </div>
-              </Link>
+              </div>
             </li>
           );
         })}
