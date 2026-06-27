@@ -1,5 +1,5 @@
 .container {
-  --gap: 1.5cqw;
+  --gap: 2cqw;
   display: grid;
   grid: repeat(var(--movie-rows), 1fr) / repeat(var(--movie-cols), 1fr);
   width: 100%;
@@ -17,6 +17,19 @@
   background: white;
   place-self: center;
   color: black;
-  outline: 2px solid black;
-  border-radius: 1.5cqw;
+  outline: 2px solid white;
+  overflow: hidden;
+
+  &[data-odd-column] {
+    margin-top: -150%;
+  }
+}
+
+.image {
+  min-width: 100%;
+  max-width: 0;
+  min-height: 100%;
+  max-height: 0;
+  object-fit: cover;
+  pointer-events: none;
 }

@@ -1,11 +1,11 @@
 import { Cell, For, useScopeContext } from "retend";
 import type { PatternTemplateProps } from "../../components/InfiniteCanvas/InfiniteRepeatedPattern";
 import classes from "./MovieCanvasChunk.module.css";
-import { posterColor } from "./posterColor";
 import {
   InfiniteCanvasScope,
   InfiniteRepeatedPatternScope,
 } from "../../components/InfiniteCanvas/InfiniteCanvasScope";
+import { movieForPoster } from "./movies";
 
 export function MovieCanvasChunk(props: PatternTemplateProps) {
   const { width, height } = useScopeContext(InfiniteCanvasScope);
@@ -78,8 +78,20 @@ function Poster(props: PosterProps) {
     return col.get() * subgridCols.get() + localCol;
   });
 
-  const background = Cell.derived(() => {
-    return posterColor(posterRow.get(), posterCol.get());
+  const movie = Cell.derived(() => {
+    return movieForPoster(posterRow.get(), posterCol.get());
+  });
+
+  const isOddColumn = Cell.derived(() => {
+    return posterCol.get() % 2 !== 0;
+  });
+
+  const src = Cell.derived(() => {
+    return movie.get().posterUrl;
+  });
+
+  const alt = Cell.derived(() => {
+    return movie.get().title;
   });
 
   const handleClick = () => {
@@ -93,10 +105,12 @@ function Poster(props: PosterProps) {
     <button
       type="button"
       class={classes.poster}
-      style={{ background }}
-      onClick--stop={handleClick}
+      data-odd-column={isOddColumn}
+      data-row={posterRow}
+      data-col={posterCol}
+      onClick={handleClick}
     >
-      {posterRow}, {posterCol}
+      <img src={src} alt={alt} class={classes.image} loading="lazy" />
     </button>
   );
 }
