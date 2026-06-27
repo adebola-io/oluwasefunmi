@@ -39,9 +39,9 @@ export const playgroundItems: PlaygroundItem[] = [
     title: "movie-canvas",
     description: () => (
       <>
-        An empty slot for an infinite movie-poster canvas. The plan is a tiled
-        wall of generated posters that can keep extending in every direction as
-        the viewport moves.
+        An infinite movie poster canvas with draggable panning, repeated poster
+        tiles, search, and similarity-based rearrangement around the selected
+        movie.
       </>
     ),
     icon: () => <MovieCanvasIcon />,

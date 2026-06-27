@@ -5,20 +5,23 @@ import { PlaygroundLayout } from "@/features/playground/components/PlaygroundLay
 import { InfiniteCanvas } from "@/features/playground/components/InfiniteCanvas/InfiniteCanvas";
 import { InfiniteRepeatedPattern } from "@/features/playground/components/InfiniteCanvas/InfiniteRepeatedPattern";
 import { MovieCanvasChunk } from "@/features/playground/experiments/movie-canvas/MovieCanvasChunk";
+import { MovieCanvasSearch } from "@/features/playground/experiments/movie-canvas/MovieCanvasSearch";
 import { MovieCanvasScope } from "./movie-canvas/MovieCanvasScope";
 import { MOVIES } from "./movie-canvas/movies";
 
 const MovieCanvas: RouteComponent = () => {
   const selectedMovie = Cell.source(null);
+  const movieFocusRequest = Cell.source(null);
   const movieList = Cell.source(MOVIES);
 
-  const ctx = { selectedMovie, movieList };
+  const ctx = { movieFocusRequest, movieList, selectedMovie };
 
   return (
     <MovieCanvasScope.Provider value={ctx}>
       <PlaygroundLayout title="Movie Canvas">
         <InfiniteCanvas class="fixed top-0 left-0 w-screen h-screen grid grid-cols-1 grid-rows-1">
           <InfiniteRepeatedPattern Template={MovieCanvasChunk} />
+          <MovieCanvasSearch />
         </InfiniteCanvas>
       </PlaygroundLayout>
     </MovieCanvasScope.Provider>

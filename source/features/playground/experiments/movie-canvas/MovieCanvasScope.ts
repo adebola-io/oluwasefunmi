@@ -1,7 +1,9 @@
-import { createScope, SourceCell } from "retend";
-import { MovieCanvasMovie } from "./movies";
+import { createScope, type SourceCell } from "retend";
+import type { MovieCanvasFocusRequest } from "./movieFocus";
+import type { MovieCanvasMovie } from "./movies";
 
 interface MovieCanvasScope {
+  movieFocusRequest: SourceCell<MovieCanvasFocusRequest | null>;
   movieList: SourceCell<MovieCanvasMovie[]>;
   selectedMovie: SourceCell<MovieCanvasMovie | null>;
 }

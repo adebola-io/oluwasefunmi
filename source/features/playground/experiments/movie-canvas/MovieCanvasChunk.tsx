@@ -8,23 +8,17 @@ import {
 import { movieForPoster, type MovieCanvasMovie } from "./movies";
 import { MovieCanvasScope } from "./MovieCanvasScope";
 import { arrangeMoviesBySimilarity } from "./movieArrangement";
+import { getMovieCanvasMode } from "./movieFocus";
 
 export function MovieCanvasChunk(props: PatternTemplateProps) {
   const { width, height } = useScopeContext(InfiniteCanvasScope);
+  const { center } = useScopeContext(InfiniteRepeatedPatternScope);
+  const { movieFocusRequest, movieList, selectedMovie } =
+    useScopeContext(MovieCanvasScope);
 
-  const mode = Cell.derived(() => {
-    const aspectRatio = width.get() / height.get();
-    if (Number.isNaN(aspectRatio)) return [2, 5];
-
-    if (aspectRatio < 0.6) return [4, 3];
-    if (aspectRatio < 0.7) return [3, 3];
-    if (aspectRatio < 0.8) return [3, 4];
-    if (aspectRatio < 1) return [2, 3];
-    if (aspectRatio < 1.2) return [3, 5];
-    if (aspectRatio < 1.5) return [2, 4];
-
-    return [2, 5];
-  });
+  const mode = Cell.derived(() =>
+    getMovieCanvasMode(width.get(), height.get())
+  );
 
   const subgridRows = Cell.derived(() => {
     return mode.get()[0];
@@ -42,6 +36,20 @@ export function MovieCanvasChunk(props: PatternTemplateProps) {
         return { index, localRow, localCol };
       }
     );
+  });
+
+  movieFocusRequest.listen(async (request) => {
+    if (!request || movieFocusRequest.get() !== request) return;
+    movieFocusRequest.set(null);
+    const centered = await center(request.row, request.col, {
+      offsetY: request.offsetY,
+    });
+    const movie = selectedMovie.get();
+
+    if (centered && movie?.id === request.movieId) {
+      arrangeMovieList(movieList, movie, request.posterRow, request.posterCol);
+    }
+    if (selectedMovie.get()?.id === request.movieId) selectedMovie.set(null);
   });
 
   return (
