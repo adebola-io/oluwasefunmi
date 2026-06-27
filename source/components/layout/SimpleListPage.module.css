@@ -33,7 +33,7 @@
 
   .avatarWrapper {
     width: var(--avatar-size);
-    height: auto;
+    height: var(--avatar-size);
     aspect-ratio: 1 / 1;
     flex: 0 0 auto;
     padding: var(--avatar-frame-padding);

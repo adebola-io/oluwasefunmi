@@ -138,13 +138,10 @@ function Poster(props: PosterProps) {
     }
     selectedMovie.set(null);
   };
-  const handleAnimationEnd = () => {
-    animated.set(true);
-  };
+  const handleAnimationEnd = () => animated.set(true);
+  const handleLoad = () => loaded.set(true);
 
-  const handleLoad = () => {
-    loaded.set(true);
-  };
+  src.listen(() => loaded.set(false));
 
   return (
     <button
