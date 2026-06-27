@@ -30,12 +30,12 @@ const MovieCanvas: RouteComponent = () => {
 
 MovieCanvas.metadata = () => ({
   title: "Movie Canvas | Playground",
-  description: "An infinite movie-poster canvas playground experiment.",
+  description: "An infinite movie-poster canvas.",
   ogTitle: "Movie Canvas | Playground",
-  ogDescription: "An infinite movie-poster canvas playground experiment.",
-  ogImage: `${SITE_URL}/og/playground.png`,
+  ogDescription: "An infinite movie-poster canvas.",
+  ogImage: `${SITE_URL}/og/movie-canvas.png`,
   twitterTitle: "Movie Canvas | Playground",
-  twitterDescription: "An infinite movie-poster canvas playground experiment.",
+  twitterDescription: "An infinite movie-poster canvas.",
   twitterImage: `${SITE_URL}/og/playground.png`,
 });
 

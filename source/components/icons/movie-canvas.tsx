@@ -12,15 +12,20 @@ export const MovieCanvasIcon = (props: JSX.IntrinsicElements["svg"]) => {
       fill="none"
       stroke="currentColor"
       stroke-width="1.5"
+      stroke-linecap="round"
+      stroke-linejoin="round"
     >
       <title>Movie canvas</title>
-      <rect x="3.5" y="4" width="5" height="7" rx="1" />
-      <rect x="10" y="3" width="5" height="7" rx="1" />
-      <rect x="16.5" y="4" width="4" height="6" rx="1" />
-      <rect x="4.5" y="13.5" width="5" height="6.5" rx="1" />
-      <rect x="11" y="12.5" width="5" height="7.5" rx="1" />
-      <path d="m18.5 18.5 2 2" stroke-linecap="round" stroke-linejoin="round" />
-      <circle cx="17" cy="17" r="2.25" />
+      {/* Clapperboard body */}
+      <rect x="2" y="8" width="20" height="13" rx="2" />
+      {/* Clapperboard top strip */}
+      <rect x="2" y="4.5" width="20" height="3.5" rx="1" />
+      {/* Clapper sticks diagonal lines on top strip */}
+      <line x1="7" y1="4.5" x2="7" y2="8" />
+      <line x1="12" y1="4.5" x2="12" y2="8" />
+      <line x1="17" y1="4.5" x2="17" y2="8" />
+      {/* Play triangle in center of body */}
+      <path d="M10 12.5l4 2.5-4 2.5z" fill="currentColor" stroke="none" />
     </svg>
   );
 };
