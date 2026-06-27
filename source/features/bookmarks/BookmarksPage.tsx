@@ -1,96 +1,64 @@
-import { Cell, For, If } from "retend";
-import type { RouteComponent } from "retend/router";
-import { useIntersectionObserver } from "retend-utils/hooks";
-import classes from "./BookmarksPage.module.css";
-import { PageHeader } from "@/components/layout/PageHeader";
+import { For } from "retend";
+import {
+  SimpleListBackLink,
+  SimpleListPageLayout,
+} from "@/components/layout/SimpleListPage";
+import listClasses from "@/components/layout/SimpleListPage.module.css";
 import { SITE_URL } from "@/shared/constants";
-import { BookmarkItem } from "./components/BookmarkItem";
-import { useBookmarks } from "./hooks/useBookmarks";
-import { ClientOnly } from "retend-server";
+import { bookmarks } from "./data/bookmarks";
 
-const SearchIcon = () => (
-  <svg
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    stroke-width="2.5"
-    stroke-linecap="round"
-    stroke-linejoin="round"
-    class={classes.searchIcon}
-  >
-    <circle cx="11" cy="11" r="8" />
-    <path d="m21 21-4.3-4.3" />
-  </svg>
-);
-
-const Bookmarks: RouteComponent = () => {
-  const { state, loaded, pending, query, handleSearch, handlePagination } =
-    useBookmarks();
-  const loadMoreRef = Cell.source<HTMLDivElement | null>(null);
-  const items = Cell.derived(() => state.get().items);
-  const totalItems = Cell.derived(() => state.get().totalItems);
-  const showEmpty = Cell.derived(() => loaded.get() && totalItems.get() === 0);
-  useIntersectionObserver(
-    loadMoreRef,
-    ([entry]) => {
-      if (!entry.isIntersecting) return;
-      if (!loaded.get()) return;
-      if (pending.get()) return;
-      if (items.get().length === totalItems.get()) return;
-      handlePagination(1);
-    },
-    () => ({ rootMargin: "400px 0px" })
-  );
-
+const Bookmarks = () => {
   return (
-    <div>
-      <div class={classes.container}>
-        <PageHeader
-          title="Bookmarks."
-          subtitle="Here's a curated collection of digital ephemera, tools, and inspirations."
-        />
-        <div class={classes.controls}>
-          <div class={classes.searchContainer}>
-            <SearchIcon />
-            <input
-              type="search"
-              value={query}
-              placeholder="Search archive"
-              class={classes.search}
-              onInput={handleSearch}
-            />
-          </div>
+    <SimpleListPageLayout>
+      <SimpleListBackLink href="/" label="back to home" />
+      <header class={listClasses.header}>
+        <h1 id="page-title" class={listClasses.title} title="Bookmarks">
+          Bookmarks
+        </h1>
+        <div class={listClasses.subtitle}>
+          <p>Saved writing, tools, references, and interface material.</p>
         </div>
-        <ClientOnly>
-          {If(showEmpty, () => (
-            <div class={classes.error}>No items found in the archive.</div>
-          ))}
-          <ul class={classes.board}>
-            {For(items, (item, index) => (
-              <li class={classes.item}>
-                <BookmarkItem item={item} index={index} />
-              </li>
-            ))}
-          </ul>
-        </ClientOnly>
-        <div ref={loadMoreRef} class={classes.loadMoreTrigger} />
-      </div>
-    </div>
+      </header>
+      <ul class={[listClasses.list, "staggering"]}>
+        {For(bookmarks, (bookmark) => {
+          const title = bookmark.openGraph.title;
+          const description =
+            bookmark.openGraph.description || bookmark.openGraph.siteName;
+
+          return (
+            <li class={listClasses.item}>
+              <a
+                class={listClasses.itemContent}
+                href={bookmark.link}
+                title={title}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <h2 class={listClasses.itemTitle} title={title}>
+                  {title}
+                </h2>
+                <div class={listClasses.itemSubtitle}>{description}</div>
+              </a>
+            </li>
+          );
+        })}
+      </ul>
+    </SimpleListPageLayout>
   );
 };
 
-Bookmarks.metadata = () => ({
-  title: "Bookmarks | Oluwasefunmi",
-  description:
-    "A curated collection of digital ephemera, tools, and inspirations.",
-  ogTitle: "Bookmarks | Oluwasefunmi",
-  ogDescription:
-    "A curated collection of digital ephemera, tools, and inspirations.",
-  ogImage: `${SITE_URL}/og/bookmarks.png`,
-  twitterTitle: "Bookmarks | Oluwasefunmi",
-  twitterDescription:
-    "A curated collection of digital ephemera, tools, and inspirations.",
-  twitterImage: `${SITE_URL}/og/bookmarks.png`,
-});
+Bookmarks.metadata = () => {
+  return {
+    title: "Bookmarks | Oluwasefunmi Akomolafe",
+    description: "Saved writing, tools, references, and interface material.",
+    ogTitle: "Bookmarks | Oluwasefunmi Akomolafe",
+    ogDescription: "Saved writing, tools, references, and interface material.",
+    ogImage: `${SITE_URL}/og/home.png`,
+    twitterTitle: "Bookmarks | Oluwasefunmi Akomolafe",
+    twitterDescription:
+      "Saved writing, tools, references, and interface material.",
+    twitterImage: `${SITE_URL}/og/home.png`,
+  };
+};
 
 export default Bookmarks;

@@ -15,19 +15,3 @@
   white-space: nowrap;
   text-align: center;
 }
-
-@keyframes blurSlideUp {
-  from {
-    opacity: 0;
-    filter: blur(8px);
-  }
-  to {
-    opacity: 1;
-    filter: blur(0);
-  }
-}
-
-.animateEnter {
-  display: inline-block;
-  animation: blurSlideUp 0.8s var(--ease-spring) backwards;
-}

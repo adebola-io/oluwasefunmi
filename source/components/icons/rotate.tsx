@@ -4,6 +4,7 @@ export const RotateIcon = (props: JSX.IntrinsicElements["svg"]) => {
   const { ...rest } = props;
   return (
     <svg
+      aria-hidden="true"
       {...rest}
       width="20"
       height="20"

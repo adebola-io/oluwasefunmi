@@ -1,22 +1,27 @@
 import type { JSX } from "retend/jsx-runtime";
 
-export const PaintingWheelIcon = (props: JSX.IntrinsicElements["svg"]) => {
+type PaintingWheelIconProps = JSX.IntrinsicElements["svg"] & {
+  "stroke-width"?: string;
+  "stroke-linecap"?: string;
+  "stroke-linejoin"?: string;
+};
+
+export const PaintingWheelIcon = (props: PaintingWheelIconProps) => {
   const {
     width = "24",
     height = "24",
     viewBox = "0 0 24 24",
     fill = "none",
     stroke = "currentColor",
+    "stroke-width": strokeWidth = "1.5",
+    "stroke-linecap": strokeLinecap = "round",
+    "stroke-linejoin": strokeLinejoin = "round",
     ...rest
   } = props;
 
-  const propsAny = props as any;
-  const strokeWidth = propsAny["stroke-width"] || "1.5";
-  const strokeLinecap = propsAny["stroke-linecap"] || "round";
-  const strokeLinejoin = propsAny["stroke-linejoin"] || "round";
-
   return (
     <svg
+      aria-hidden="true"
       {...rest}
       width={width}
       height={height}

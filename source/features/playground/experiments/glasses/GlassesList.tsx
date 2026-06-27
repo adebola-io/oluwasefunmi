@@ -12,8 +12,10 @@ export function GlassesList() {
 
   const getSelectedIndex = () => getSelectedGlassViewIndex(selected);
   const selectIndex = (index: number) => {
-    selected.set(glassViews[index]);
-    programmaticScrollTarget.set(index);
+    Cell.batch(() => {
+      selected.set(glassViews[index]);
+      programmaticScrollTarget.set(index);
+    });
     scrollToGlassView(scrollContainer.peek(), index);
   };
   const moveSelection = (direction: -1 | 1) => {

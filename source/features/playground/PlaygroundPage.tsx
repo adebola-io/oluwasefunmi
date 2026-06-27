@@ -1,70 +1,77 @@
-import { For } from "retend";
-import { Link } from "retend/router";
-import type { RouteComponent } from "retend/router";
-import classes from "./PlaygroundPage.module.css";
-import { PageHeader } from "@/components/layout/PageHeader";
+import { For, If } from "retend";
+import { Link, type RouteComponent } from "retend/router";
+import {
+  SimpleListBackLink,
+  SimpleListPageLayout,
+} from "@/components/layout/SimpleListPage";
+import listClasses from "@/components/layout/SimpleListPage.module.css";
 import { playgroundItems } from "@/features/playground/data/playground";
-import { ArrowRightIcon } from "@/components/icons/arrow-right";
 import { SITE_URL } from "@/shared/constants";
+import { PlaygroundHeading } from "./PlaygroundHeading";
 
 const Playground: RouteComponent = () => {
-  const handlePointerMove = (e: PointerEvent) => {
-    const target = e.currentTarget as HTMLElement;
-    const rect = target.getBoundingClientRect();
-    target.style.setProperty("--mouse-x", `${e.clientX - rect.left}px`);
-    target.style.setProperty("--mouse-y", `${e.clientY - rect.top}px`);
-  };
-
   return (
-    <div class={classes.page}>
-      <header class={classes.header}>
-        <PageHeader
-          title="Playground."
-          subtitle="Interactive UI experiments & visual effects"
-        />
+    <SimpleListPageLayout>
+      <SimpleListBackLink href="/" label="back to home" />
+      <header class={listClasses.header}>
+        <h1 id="page-title" class={listClasses.title} title="Playground">
+          <PlaygroundHeading />
+        </h1>
+        <div class={listClasses.subtitle}>
+          <p>Sefunmi's interactive UI experiments and visual effects.</p>
+        </div>
       </header>
+      <ul class={[listClasses.list, "staggering"]}>
+        {For(playgroundItems, (item) => {
+          const Description = item.description;
+          const Icon = item.icon;
 
-      <main class={classes.grid}>
-        {For(playgroundItems, (exp) => (
-          <div class={classes.card} onPointerMove={handlePointerMove}>
-            <div class={classes.cardInner}>
-              <div class={classes.cardHeader}>
-                <div class={classes.titleGroup}>
-                  <div class={classes.iconWrapper}>
-                    <exp.icon />
-                  </div>
-                  <h2 class={classes.cardTitle}>{exp.title}</h2>
+          return (
+            <li
+              class={[
+                listClasses.item,
+                { [listClasses.hasIcon]: Boolean(Icon) },
+              ]}
+            >
+              {If(Boolean(Icon), () => (
+                <span class={listClasses.itemIcon}>
+                  <Icon />
+                </span>
+              ))}
+              <div class={listClasses.itemContent}>
+                <h2 class={listClasses.itemTitle} title={item.title}>
+                  <Link
+                    class={listClasses.itemTitleLink}
+                    href={item.path}
+                    title={item.title}
+                  >
+                    {item.title}
+                  </Link>
+                </h2>
+                <div class={listClasses.itemSubtitle}>
+                  <Description />
                 </div>
               </div>
-              <p class={classes.cardDescription}>
-                <exp.description />
-              </p>
-              <Link href={exp.path} class={classes.viewButton}>
-                View
-                <ArrowRightIcon />
-              </Link>
-            </div>
-          </div>
-        ))}
-      </main>
-
-      <footer class={classes.footer}>
-        <p>Built with Retend</p>
-      </footer>
-    </div>
+            </li>
+          );
+        })}
+      </ul>
+    </SimpleListPageLayout>
   );
 };
 
-Playground.metadata = () => ({
-  title: "Playground | Oluwasefunmi Akomolafe",
-  description:
-    "Interactive UI experiments and visual effects showcasing creative web development.",
-  ogTitle: "Playground | Oluwasefunmi Akomolafe",
-  ogDescription: "Interactive UI experiments and visual effects.",
-  ogImage: `${SITE_URL}/og/playground.png`,
-  twitterTitle: "Playground | Oluwasefunmi Akomolafe",
-  twitterDescription: "Interactive UI experiments and visual effects.",
-  twitterImage: `${SITE_URL}/og/playground.png`,
-});
+Playground.metadata = () => {
+  return {
+    title: "Playground | Oluwasefunmi Akomolafe",
+    description:
+      "Interactive UI experiments and visual effects showcasing creative web development.",
+    ogTitle: "Playground | Oluwasefunmi Akomolafe",
+    ogDescription: "Interactive UI experiments and visual effects.",
+    ogImage: `${SITE_URL}/og/playground.png`,
+    twitterTitle: "Playground | Oluwasefunmi Akomolafe",
+    twitterDescription: "Interactive UI experiments and visual effects.",
+    twitterImage: `${SITE_URL}/og/playground.png`,
+  };
+};
 
 export default Playground;

@@ -30,10 +30,14 @@ export function createAlbumPreviewPlayer(album: Album): AlbumPreviewPlayer {
   let audio: HTMLAudioElement | null = null;
 
   const updateTime = () => {
-    if (!audio) return;
-
-    currentTime.set(audio.currentTime * 1000);
-    duration.set((audio.duration || currentTrack.get().duration / 1000) * 1000);
+    Cell.batch(() => {
+      if (!audio) return;
+      currentTime.set(audio.currentTime * 1000);
+      duration.set(
+        (audio.duration ? audio.duration : currentTrack.get().duration / 1000) *
+          1000
+      );
+    });
   };
 
   const destroyAudio = () => {
@@ -66,10 +70,12 @@ export function createAlbumPreviewPlayer(album: Album): AlbumPreviewPlayer {
     const nextIndex = (index + album.tracks.length) % album.tracks.length;
 
     destroyAudio();
-    trackIndex.set(nextIndex);
-    currentTime.set(0);
-    duration.set(album.tracks[nextIndex].duration);
-    isPlaying.set(false);
+    Cell.batch(() => {
+      trackIndex.set(nextIndex);
+      currentTime.set(0);
+      duration.set(album.tracks[nextIndex].duration);
+      isPlaying.set(false);
+    });
 
     if (shouldPlay) play();
   };
@@ -104,9 +110,11 @@ export function createAlbumPreviewPlayer(album: Album): AlbumPreviewPlayer {
 
   const destroy = () => {
     destroyAudio();
-    currentTime.set(0);
-    duration.set(0);
-    isPlaying.set(false);
+    Cell.batch(() => {
+      currentTime.set(0);
+      duration.set(0);
+      isPlaying.set(false);
+    });
   };
 
   return {

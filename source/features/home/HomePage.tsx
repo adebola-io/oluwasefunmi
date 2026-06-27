@@ -1,73 +1,49 @@
 import type { RouteComponent } from "retend/router";
 import type { PageMeta } from "retend-server/client";
-import classes from "./HomePage.module.css";
-import { BentoGrid } from "@/features/home/components/widgets/BentoGrid";
-import { BentoCard } from "@/features/home/components/widgets/BentoCard";
-import { HeroWidget } from "@/features/home/components/widgets/HeroWidget";
-import { MusicWidget } from "@/features/home/components/widgets/MusicWidget";
-import { ExperienceWidget } from "@/features/home/components/widgets/ExperienceWidget";
-import { ReadingWidget } from "@/features/home/components/widgets/ReadingWidget";
-import { StackWidget } from "@/features/home/components/widgets/StackWidget";
-import { ConnectWidget } from "@/features/home/components/widgets/ConnectWidget";
-import { PlaygroundWidget } from "@/features/home/components/widgets/PlaygroundWidget";
-import { LocationWidget } from "@/features/home/components/widgets/LocationWidget";
+import { SimpleListPageLayout } from "@/components/layout/SimpleListPage";
+import listClasses from "@/components/layout/SimpleListPage.module.css";
 import { SITE_URL } from "@/shared/constants";
-import { playgroundItems } from "@/features/playground/data/playground";
-import { EXPERIENCES } from "@/features/home/data/experiences";
-import { socialLinks } from "@/features/home/data/socialLinks";
-import { TECHNOLOGIES } from "@/features/home/data/technologies";
+import { HomePreviewSections } from "./HomePreviewSections";
+import { HomeSocialLinks } from "./HomeSocialLinks";
 
 const PortfolioHome: RouteComponent<PageMeta> = () => {
   return (
-    <div class={classes.home}>
-      <div class={classes.container}>
-        <BentoGrid>
-          <BentoCard span={2} rowSpan={5}>
-            <HeroWidget
-              name="Oluwasefunmi"
-              avatar="https://github.com/adebola-io.png"
-              bio="I build web products that feel good to use, and I like turning messy ideas into clear, useful experiences."
+    <SimpleListPageLayout>
+      <header class={listClasses.header}>
+        <div class={listClasses.headingRow}>
+          <span class={listClasses.avatarWrapper}>
+            <img
+              src="https://github.com/adebola-io.png"
+              alt="oluwasefunmi."
+              title="oluwasefunmi."
+              class={listClasses.avatar}
             />
-          </BentoCard>
-
-          <BentoCard span={1} rowSpan={2}>
-            <ConnectWidget links={socialLinks} />
-          </BentoCard>
-
-          <BentoCard span={1} rowSpan={3}>
-            <PlaygroundWidget projects={playgroundItems.slice(0, 2)} />
-          </BentoCard>
-
-          <BentoCard span={1} rowSpan={3}>
-            <MusicWidget />
-          </BentoCard>
-
-          <BentoCard span={1} rowSpan={3}>
-            <ExperienceWidget items={EXPERIENCES} />
-          </BentoCard>
-
-          <BentoCard span={1} rowSpan={3}>
-            <LocationWidget />
-          </BentoCard>
-
-          <BentoCard span={2} rowSpan={2}>
-            <StackWidget techs={TECHNOLOGIES} />
-          </BentoCard>
-
-          <BentoCard span={1} rowSpan={2}>
-            <ReadingWidget
-              title="The Black Prism"
-              author="Brent Weeks"
-              image="https://covers.openlibrary.org/b/isbn/9780316075558-L.jpg"
-            />
-          </BentoCard>
-        </BentoGrid>
-      </div>
-    </div>
+          </span>
+          <h1 id="page-title" class={listClasses.title} title="oluwasefunmi.">
+            oluwasefunmi.
+          </h1>
+        </div>
+        <div class={[listClasses.subtitle, "staggering"]}>
+          <p>
+            I am Sefunmi, a software engineer focused on clear systems,
+            expressive interfaces, and useful web products.
+          </p>
+          <p>
+            I work mostly around frontend architecture, motion, local tools, and
+            interaction-heavy experiments.
+          </p>
+          <p>
+            You can <a href="oluwasefunmi-akomolafe.pdf">read my resume,</a> or
+            send me an <a href="mailto:adebolaakomolafe@gmail.com">email</a>.
+          </p>
+        </div>
+      </header>
+      <HomeSocialLinks />
+      <HomePreviewSections />
+    </SimpleListPageLayout>
   );
 };
-
-PortfolioHome.metadata = async () => {
+PortfolioHome.metadata = () => {
   return {
     title: "Oluwasefunmi | Software Engineer",
     description:

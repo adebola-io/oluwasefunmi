@@ -58,8 +58,9 @@ export function DragToDismissView(props: DragToDismissViewProps) {
   );
 
   onConnected(contentRef, (content) => {
-    requestAnimationFrame(() => {
-      requestAnimationFrame(() => {
+    let innerFrame = 0;
+    const outerFrame = requestAnimationFrame(() => {
+      innerFrame = requestAnimationFrame(() => {
         enableDismiss.set(true);
         content.scrollIntoView({
           behavior: "instant",
@@ -68,6 +69,10 @@ export function DragToDismissView(props: DragToDismissViewProps) {
         });
       });
     });
+    return () => {
+      cancelAnimationFrame(outerFrame);
+      cancelAnimationFrame(innerFrame);
+    };
   });
 
   return (

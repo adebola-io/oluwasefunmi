@@ -1,0 +1,100 @@
+.search {
+  position: fixed;
+  left: 50%;
+  bottom: calc(env(safe-area-inset-bottom) + 1.25rem);
+  z-index: 100;
+  width: min(28rem, calc(100vw - 2rem));
+  display: grid;
+  transform: translateX(-50%);
+  pointer-events: none;
+}
+
+.field {
+  pointer-events: auto;
+  display: grid;
+  grid-template-columns: 2rem minmax(0, 1fr);
+  align-items: center;
+  height: 3rem;
+  padding: 0 0.75rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 99px;
+  background: rgba(0, 0, 0, 0.55);
+  backdrop-filter: blur(10px);
+}
+
+.iconButton {
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border-radius: 50%;
+  color: rgba(255, 255, 255, 0.55);
+  transition:
+    background 0.2s,
+    color 0.2s;
+
+  &:hover,
+  &:focus-visible {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+  }
+}
+
+.icon {
+  width: 1rem;
+  height: 1rem;
+}
+
+.input {
+  width: 100%;
+  min-width: 0;
+  border: 0;
+  outline: 0;
+  color: #fff;
+  background: transparent;
+  font: inherit;
+  appearance: none;
+
+  &::placeholder {
+    color: rgba(255, 255, 255, 0.45);
+  }
+
+  &::-webkit-search-cancel-button {
+    -webkit-appearance: none;
+  }
+}
+
+.results {
+  pointer-events: auto;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: calc(100% + 0.5rem);
+  display: grid;
+  gap: 0.25rem;
+  max-height: min(16rem, 50dvh);
+  padding: 0.35rem;
+  overflow: auto;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 1rem;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(10px);
+}
+
+.result {
+  width: 100%;
+  padding: 0.65rem 0.8rem;
+  border-radius: 0.7rem;
+  color: rgba(255, 255, 255, 0.85);
+  text-align: left;
+  transition:
+    background 0.2s,
+    color 0.2s;
+
+  &:hover,
+  &:focus-visible,
+  &[data-active] {
+    background: rgba(255, 255, 255, 0.08);
+    color: #fff;
+  }
+}
