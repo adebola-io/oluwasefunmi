@@ -1,5 +1,5 @@
 import type { PlaygroundItem } from "@/features/playground/types";
-import { BubbleWrapIcon } from "@/components/icons/bubble-wrap";
+import { MovieCanvasIcon } from "@/components/icons/movie-canvas";
 import { CubeIcon } from "@/components/icons/cube";
 import { GlassesIcon } from "@/components/icons/glasses";
 import { RippleIcon } from "@/components/icons/ripple";
@@ -35,16 +35,16 @@ function ExternalLink(props: ExternalLinkProps) {
 
 export const playgroundItems: PlaygroundItem[] = [
   {
-    path: "/playground/bubble-wrap",
-    title: "bubble-wrap",
+    path: "/playground/movie-canvas",
+    title: "movie-canvas",
     description: () => (
       <>
-        An empty slot for an infinite bubble-wrap canvas. The plan is a tiled
-        sheet of bubbles that can keep extending in every direction as the
-        viewport moves.
+        An empty slot for an infinite movie-poster canvas. The plan is a tiled
+        wall of generated posters that can keep extending in every direction as
+        the viewport moves.
       </>
     ),
-    icon: () => <BubbleWrapIcon />,
+    icon: () => <MovieCanvasIcon />,
   },
   {
     path: "/playground/floating-books",

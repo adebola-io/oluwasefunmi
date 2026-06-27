@@ -5,13 +5,13 @@ import { InfiniteCanvasScope } from "./InfiniteCanvasScope";
 import { useDerivedValue, useIntersectionObserver } from "retend-utils/hooks";
 import classes from "./InfiniteCanvas.module.css";
 
-interface PatternTemplateProps {
+export interface PatternTemplateProps {
   col: Cell<number>;
   row: Cell<number>;
 }
 type PatternTemplate = (props: PatternTemplateProps) => JSX.Template;
 
-interface InfiniteRepeatedPatternProps extends JSX.BaseContainerProps {
+interface InfiniteRepeatedPatternProps {
   density?: JSX.ValueOrCell<number>;
   overscan?: JSX.ValueOrCell<number>;
   Template: PatternTemplate;
@@ -36,55 +36,57 @@ interface InfiniteGridOptions {
 function useInfiniteGrid(options: InfiniteGridOptions) {
   const { viewportRef } = useScopeContext(InfiniteCanvasScope);
   const { density, overscan } = options;
+  const nodeRef = Cell.source<HTMLElement | null>(null);
   const sentinelData = sentinels.map((s) => ({ ...s, ref: Cell.source(null) }));
 
   const affordance = Cell.derived(() => overscan.get() * 2 + 1);
   const side = Cell.derived(() => affordance.get() * density.get());
 
-  const colOffset = Cell.source(0);
-  const rowOffset = Cell.source(0);
   const originX = Cell.source(0);
   const originY = Cell.source(0);
+  const colOffset = Cell.derived(() => -originX.get() * density.get());
+  const rowOffset = Cell.derived(() => -originY.get() * density.get());
 
-  const intersectionCallback: IntersectionObserverCallback = (entries) => {
+  const sentinelIntersectionCb: IntersectionObserverCallback = (entries) => {
     for (const entry of entries) {
       const { isIntersecting, target } = entry;
       if (!isIntersecting || !(target instanceof HTMLElement)) continue;
       const { dir: direction } = target.dataset;
       Cell.batch(() => {
         if (direction === "left") {
-          colOffset.set(wrap(colOffset.get() + density.get(), side.get()));
           originX.set(originX.get() - 1);
         } else if (direction === "right") {
-          colOffset.set(wrap(colOffset.get() - density.get(), side.get()));
           originX.set(originX.get() + 1);
         } else if (direction === "top") {
-          rowOffset.set(wrap(rowOffset.get() + density.get(), side.get()));
           originY.set(originY.get() - 1);
         } else if (direction === "bottom") {
-          rowOffset.set(wrap(rowOffset.get() - density.get(), side.get()));
           originY.set(originY.get() + 1);
         }
       });
     }
+  };
+  const rootIntersectionCb: IntersectionObserverCallback = ([entry]) => {
+    console.log({ entry });
   };
 
   const sentinelRefs = sentinelData.map((s) => s.ref);
   const intersectionOptions = () => ({ root: viewportRef.get() });
   useIntersectionObserver(
     sentinelRefs,
-    intersectionCallback,
+    sentinelIntersectionCb,
     intersectionOptions
   );
+  useIntersectionObserver(nodeRef, rootIntersectionCb, intersectionOptions);
 
   return {
+    affordance,
     colOffset,
-    rowOffset,
     originX,
     originY,
+    nodeRef,
+    rowOffset,
     sentinelData,
     side,
-    affordance,
   };
 }
 
@@ -93,7 +95,6 @@ export function InfiniteRepeatedPattern(props: InfiniteRepeatedPatternProps) {
     Template,
     density: densityProp = 1,
     overscan: overscanProp = 1,
-    ...rest
   } = props;
 
   const density = useDerivedValue(densityProp);
@@ -115,23 +116,11 @@ export function InfiniteRepeatedPattern(props: InfiniteRepeatedPatternProps) {
   });
 
   const tileProps = { overscan, density, Template, ...ctx };
-  const style = {
-    "--irp-side": ctx.side,
-    "--irp-overscan": overscan,
-    "--irp-density": density,
-  };
-  if (typeof rest.style === "object") Object.assign(style, rest.style);
+  const style = { "--irp-density": density };
+  const nodeProps = { width, height, x, y, style, ref: ctx.nodeRef };
 
   return (
-    <InfiniteCanvasNode
-      {...rest}
-      width={width}
-      height={height}
-      x={x}
-      y={y}
-      class={[classes.repeatedPattern, rest.class]}
-      style={style}
-    >
+    <InfiniteCanvasNode {...nodeProps}>
       {For(ctx.sentinelData, (s) => (
         <div
           ref={s.ref}
@@ -158,52 +147,43 @@ interface RepeatedPatternTileProps {
   colOffset: Cell<number>;
   density: Cell<number>;
   Template: PatternTemplate;
-  originX: Cell<number>;
-  originY: Cell<number>;
 }
 
 function RepeatedPatternTile(props: RepeatedPatternTileProps) {
-  const {
-    id,
-    side,
-    overscan,
-    rowOffset,
-    colOffset,
-    density,
-    Template,
-    originX,
-    originY,
-  } = props;
+  const { id, side, overscan, rowOffset, colOffset, density, Template } = props;
 
   const baseRow = Cell.derived(() => Math.floor(id / side.get()));
   const baseCol = Cell.derived(() => id % side.get());
   const slotRow = Cell.derived(() => {
-    return wrap(baseRow.get() + rowOffset.get(), side.get()) + 1;
+    return wrap(baseRow.get() + rowOffset.get(), side.get());
   });
   const slotCol = Cell.derived(() => {
-    return wrap(baseCol.get() + colOffset.get(), side.get()) + 1;
+    return wrap(baseCol.get() + colOffset.get(), side.get());
   });
   const x = Cell.derived(() => {
-    return `calc(${slotCol.get() - overscan.get()} * (100cqw / ${density.get()}))`;
+    return `calc(${slotCol.get()} * (100cqw / ${density.get()}))`;
   });
   const y = Cell.derived(() => {
-    return `calc(${slotRow.get() - overscan.get()} * (100cqh / ${density.get()}))`;
+    return `calc(${slotRow.get()} * (100cqh / ${density.get()}))`;
   });
   const transform = Cell.derived(() => `translate(${x.get()}, ${y.get()})`);
+  const factor = Cell.derived(() => overscan.get() * density.get());
 
   const row = Cell.derived(() => {
+    const rawRow = baseRow.get() + rowOffset.get();
     return (
-      originY.get() * density.get() +
-      slotRow.get() -
-      overscan.get() * density.get()
+      baseRow.get() -
+      factor.get() -
+      Math.floor(rawRow / side.get()) * side.get()
     );
   });
 
   const col = Cell.derived(() => {
+    const rawCol = baseCol.get() + colOffset.get();
     return (
-      originX.get() * density.get() +
-      slotCol.get() -
-      overscan.get() * density.get()
+      baseCol.get() -
+      factor.get() -
+      Math.floor(rawCol / side.get()) * side.get()
     );
   });
 

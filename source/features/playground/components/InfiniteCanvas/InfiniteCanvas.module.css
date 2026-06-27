@@ -25,10 +25,6 @@
   contain: strict;
 }
 
-.repeatedPattern {
-  display: grid;
-}
-
 .repeatedPatternItem {
   display: grid;
   place-items: center;
@@ -56,18 +52,18 @@
   }
 
   &[data-dir="top"] {
-    top: calc((var(--irp-overscan) / 2) * 100cqh);
+    top: 10cqh;
   }
 
   &[data-dir="bottom"] {
-    bottom: calc((var(--irp-overscan) / 2) * 100cqh);
+    bottom: 10cqh;
   }
 
   &[data-dir="left"] {
-    left: calc((var(--irp-overscan) / 2) * 100cqw);
+    left: 10cqw;
   }
 
   &[data-dir="right"] {
-    right: calc((var(--irp-overscan) / 2) * 100cqw);
+    right: 10cqw;
   }
 }

@@ -2,9 +2,9 @@ import { lazy } from "retend/router";
 
 export const playgroundExperimentRoutes = [
   {
-    path: "/bubble-wrap",
+    path: "/movie-canvas",
     component: lazy(
-      () => import("@/features/playground/experiments/BubbleWrap")
+      () => import("@/features/playground/experiments/MovieCanvas")
     ),
   },
   {
