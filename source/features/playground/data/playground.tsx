@@ -47,32 +47,6 @@ export const playgroundItems: PlaygroundItem[] = [
     icon: () => <MovieCanvasIcon />,
   },
   {
-    path: "/playground/floating-books",
-    title: "floating-books",
-    description: () => (
-      <>
-        Recreating the{" "}
-        <ExternalLink url="https://press.stripe.com">Stripe Press</ExternalLink>{" "}
-        book wall in CSS, with each cover kept on its own transform layer.
-        Selecting one locks the list, teleports the detail view to the body, and
-        derives the page wash from the active book.
-      </>
-    ),
-    icon: () => <BookIcon />,
-  },
-  {
-    path: "/playground/wallets",
-    title: "wallets",
-    description: () => (
-      <>
-        Three CSS wallets, each packed with cards, notes, IDs, stickers, and
-        tickets. The closing path is the awkward part: the shared wallet scope
-        keeps the old view alive until its animations settle.
-      </>
-    ),
-    icon: () => <WalletCardsIcon />,
-  },
-  {
     path: "/playground/glasses",
     title: "glasses",
     description: () => (
@@ -118,6 +92,32 @@ export const playgroundItems: PlaygroundItem[] = [
       </>
     ),
     icon: () => <KeyboardIcon />,
+  },
+  {
+    path: "/playground/floating-books",
+    title: "floating-books",
+    description: () => (
+      <>
+        Recreating the{" "}
+        <ExternalLink url="https://press.stripe.com">Stripe Press</ExternalLink>{" "}
+        book wall in CSS, with each cover kept on its own transform layer.
+        Selecting one locks the list, teleports the detail view to the body, and
+        derives the page wash from the active book.
+      </>
+    ),
+    icon: () => <BookIcon />,
+  },
+  {
+    path: "/playground/wallets",
+    title: "wallets",
+    description: () => (
+      <>
+        Three CSS wallets, each packed with cards, notes, IDs, stickers, and
+        tickets. The closing path is the awkward part: the shared wallet scope
+        keeps the old view alive until its animations settle.
+      </>
+    ),
+    icon: () => <WalletCardsIcon />,
   },
   {
     path: "/playground/three-dimensional-marquee",

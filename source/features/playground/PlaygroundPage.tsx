@@ -18,9 +18,7 @@ const Playground: RouteComponent = () => {
           <PlaygroundHeading />
         </h1>
         <div class={listClasses.subtitle}>
-          <p>
-            A simple index of interactive UI experiments and visual effects.
-          </p>
+          <p>Sefunmi's interactive UI experiments and visual effects.</p>
         </div>
       </header>
       <ul class={[listClasses.list, "staggering"]}>
