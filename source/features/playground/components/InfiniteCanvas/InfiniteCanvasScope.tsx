@@ -8,8 +8,13 @@ interface InfiniteCanvasCtx {
   height: Cell<number>;
 }
 
+export interface CenterOptions {
+  offsetX?: number;
+  offsetY?: number;
+}
+
 interface InfiniteRepeatedPatternCtx {
-  center(row: number, col: number): void;
+  center(row: number, col: number, options?: CenterOptions): void;
 }
 
 export const InfiniteCanvasScope =

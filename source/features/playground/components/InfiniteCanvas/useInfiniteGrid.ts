@@ -1,5 +1,5 @@
 import { Cell, useScopeContext } from "retend";
-import { InfiniteCanvasScope } from "./InfiniteCanvasScope";
+import { InfiniteCanvasScope, type CenterOptions } from "./InfiniteCanvasScope";
 import { easeOutCubic, mix } from "./infiniteCanvasUtils";
 
 const CENTER_DURATION_MS = 360;
@@ -36,7 +36,7 @@ export function useInfiniteGrid(options: InfiniteGridOptions) {
   const rowOffset = Cell.derived(() => -originY.get() * density.get());
   let centerFrame: number | null = null;
 
-  const center = (row: number, col: number) => {
+  const center = (row: number, col: number, options?: CenterOptions) => {
     const width = viewportWidth.get();
     const height = viewportHeight.get();
     if (width === 0 || height === 0) return;
@@ -45,8 +45,10 @@ export function useInfiniteGrid(options: InfiniteGridOptions) {
     const cellHeight = height / density.get();
     const startX = cameraX.get();
     const startY = cameraY.get();
-    const targetX = width / 2 - (col + 0.5) * cellWidth;
-    const targetY = height / 2 - (row + 0.5) * cellHeight;
+    const targetX =
+      width / 2 - (col + 0.5 + (options?.offsetX ?? 0)) * cellWidth;
+    const targetY =
+      height / 2 - (row + 0.5 + (options?.offsetY ?? 0)) * cellHeight;
     const startTime = performance.now();
     let lastAnimationX = startX;
     let lastAnimationY = startY;

@@ -68,6 +68,7 @@ interface PosterProps extends PatternTemplateProps {
 
 function Poster(props: PosterProps) {
   const { row, col, localRow, localCol, subgridRows, subgridCols } = props;
+  const { width, height } = useScopeContext(InfiniteCanvasScope);
   const { center } = useScopeContext(InfiniteRepeatedPatternScope);
 
   const posterRow = Cell.derived(() => {
@@ -86,6 +87,11 @@ function Poster(props: PosterProps) {
     return posterCol.get() % 2 !== 0;
   });
 
+  const marginOffsetY = Cell.derived(() => {
+    if (!isOddColumn.get() || height.get() === 0) return 0;
+    return (-1.5 * width.get()) / height.get() / subgridCols.get();
+  });
+
   const src = Cell.derived(() => {
     return movie.get().posterUrl;
   });
@@ -98,7 +104,7 @@ function Poster(props: PosterProps) {
     const targetRow = row.get() + (localRow + 0.5) / subgridRows.get() - 0.5;
     const targetCol = col.get() + (localCol + 0.5) / subgridCols.get() - 0.5;
 
-    center(targetRow, targetCol);
+    center(targetRow, targetCol, { offsetY: marginOffsetY.get() });
   };
 
   return (
