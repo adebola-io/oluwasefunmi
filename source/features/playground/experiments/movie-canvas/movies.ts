@@ -7,7 +7,7 @@ export interface MovieCanvasMovie {
 }
 
 const posterModules = import.meta.glob<ImageModule>(
-  "/source/features/playground/experiments/movie-canvas/posters/*.webp",
+  "/source/features/playground/data/images/posters/*.webp",
   { eager: true }
 );
 
@@ -520,7 +520,7 @@ export const MOVIES: MovieCanvasMovie[] = [
 
 function getMoviePoster(imageId: string) {
   return posterModules[
-    `/source/features/playground/experiments/movie-canvas/posters/${imageId}.webp`
+    `/source/features/playground/data/images/posters/${imageId}.webp`
   ].default;
 }
 
