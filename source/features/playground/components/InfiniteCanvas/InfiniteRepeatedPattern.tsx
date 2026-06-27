@@ -1,12 +1,11 @@
 import type { JSX } from "retend/jsx-runtime";
-import { Cell, For, useScopeContext } from "retend";
-import { InfiniteCanvasNode } from "./InfiniteCanvasNode";
-import {
-  InfiniteCanvasScope,
-  InfiniteRepeatedPatternScope,
-} from "./InfiniteCanvasScope";
+import { Cell, For } from "retend";
 import { useDerivedValue } from "retend-utils/hooks";
+import { InfiniteCanvasNode } from "./InfiniteCanvasNode";
+import { InfiniteRepeatedPatternScope } from "./InfiniteCanvasScope";
 import classes from "./InfiniteCanvas.module.css";
+import { wrap } from "./infiniteCanvasUtils";
+import { useInfiniteGrid } from "./useInfiniteGrid";
 
 export interface PatternTemplateProps {
   col: Cell<number>;
@@ -20,63 +19,6 @@ interface InfiniteRepeatedPatternProps {
   initialX?: JSX.ValueOrCell<string>;
   initialY?: JSX.ValueOrCell<string>;
   Template: PatternTemplate;
-}
-
-function wrap(value: number, size: number) {
-  return ((value % size) + size) % size;
-}
-
-interface InfiniteGridOptions {
-  density: Cell<number>;
-  overscan: Cell<number>;
-}
-
-function useInfiniteGrid(options: InfiniteGridOptions) {
-  const ctx = useScopeContext(InfiniteCanvasScope);
-  const {
-    cameraX,
-    cameraY,
-    height: viewportHeight,
-    width: viewportWidth,
-  } = ctx;
-
-  const { density, overscan } = options;
-  const nodeRef = Cell.source<HTMLElement | null>(null);
-  const affordance = Cell.derived(() => overscan.get() * 2 + 1);
-  const side = Cell.derived(() => affordance.get() * density.get());
-  const originX = Cell.derived(() => {
-    const width = viewportWidth.get();
-    return width === 0 ? 0 : Math.round(-cameraX.get() / width);
-  });
-
-  const originY = Cell.derived(() => {
-    const height = viewportHeight.get();
-    return height === 0 ? 0 : Math.round(-cameraY.get() / height);
-  });
-
-  const colOffset = Cell.derived(() => -originX.get() * density.get());
-  const rowOffset = Cell.derived(() => -originY.get() * density.get());
-
-  const center = (row: number, col: number) => {
-    const cellWidth = viewportWidth.get() / density.get();
-    const cellHeight = viewportHeight.get() / density.get();
-
-    Cell.batch(() => {
-      cameraX.set(viewportWidth.get() / 2 - (col + 0.5) * cellWidth);
-      cameraY.set(viewportHeight.get() / 2 - (row + 0.5) * cellHeight);
-    });
-  };
-
-  return {
-    affordance,
-    center,
-    colOffset,
-    originX,
-    originY,
-    nodeRef,
-    rowOffset,
-    side,
-  };
 }
 
 export function InfiniteRepeatedPattern(props: InfiniteRepeatedPatternProps) {

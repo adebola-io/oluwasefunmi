@@ -83,7 +83,10 @@ function Poster(props: PosterProps) {
   });
 
   const handleClick = () => {
-    center(row.get(), col.get());
+    const targetRow = row.get() + (localRow + 0.5) / subgridRows.get() - 0.5;
+    const targetCol = col.get() + (localCol + 0.5) / subgridCols.get() - 0.5;
+
+    center(targetRow, targetCol);
   };
 
   return (
@@ -91,7 +94,7 @@ function Poster(props: PosterProps) {
       type="button"
       class={classes.poster}
       style={{ background }}
-      onClick={handleClick}
+      onClick--stop={handleClick}
     >
       {posterRow}, {posterCol}
     </button>
