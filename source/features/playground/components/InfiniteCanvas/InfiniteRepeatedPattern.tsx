@@ -2,7 +2,7 @@ import type { JSX } from "retend/jsx-runtime";
 import { Cell, For, useScopeContext } from "retend";
 import { InfiniteCanvasNode } from "./InfiniteCanvasNode";
 import { InfiniteCanvasScope } from "./InfiniteCanvasScope";
-import { useDerivedValue, useIntersectionObserver } from "retend-utils/hooks";
+import { useDerivedValue } from "retend-utils/hooks";
 import classes from "./InfiniteCanvas.module.css";
 
 export interface PatternTemplateProps {
@@ -17,13 +17,6 @@ interface InfiniteRepeatedPatternProps {
   Template: PatternTemplate;
 }
 
-const sentinels = [
-  { dir: "top" },
-  { dir: "right" },
-  { dir: "bottom" },
-  { dir: "left" },
-];
-
 function wrap(value: number, size: number) {
   return ((value % size) + size) % size;
 }
@@ -34,49 +27,25 @@ interface InfiniteGridOptions {
 }
 
 function useInfiniteGrid(options: InfiniteGridOptions) {
-  const { viewportRef } = useScopeContext(InfiniteCanvasScope);
+  const ctx = useScopeContext(InfiniteCanvasScope);
+  const { cameraX, cameraY, viewportHeight, viewportWidth } = ctx;
+
   const { density, overscan } = options;
   const nodeRef = Cell.source<HTMLElement | null>(null);
-  const sentinelData = sentinels.map((s) => ({ ...s, ref: Cell.source(null) }));
-
   const affordance = Cell.derived(() => overscan.get() * 2 + 1);
   const side = Cell.derived(() => affordance.get() * density.get());
+  const originX = Cell.derived(() => {
+    const width = viewportWidth.get();
+    return width === 0 ? 0 : Math.round(-cameraX.get() / width);
+  });
 
-  const originX = Cell.source(0);
-  const originY = Cell.source(0);
+  const originY = Cell.derived(() => {
+    const height = viewportHeight.get();
+    return height === 0 ? 0 : Math.round(-cameraY.get() / height);
+  });
+
   const colOffset = Cell.derived(() => -originX.get() * density.get());
   const rowOffset = Cell.derived(() => -originY.get() * density.get());
-
-  const sentinelIntersectionCb: IntersectionObserverCallback = (entries) => {
-    for (const entry of entries) {
-      const { isIntersecting, target } = entry;
-      if (!isIntersecting || !(target instanceof HTMLElement)) continue;
-      const { dir: direction } = target.dataset;
-      Cell.batch(() => {
-        if (direction === "left") {
-          originX.set(originX.get() - 1);
-        } else if (direction === "right") {
-          originX.set(originX.get() + 1);
-        } else if (direction === "top") {
-          originY.set(originY.get() - 1);
-        } else if (direction === "bottom") {
-          originY.set(originY.get() + 1);
-        }
-      });
-    }
-  };
-  const rootIntersectionCb: IntersectionObserverCallback = ([entry]) => {
-    console.log({ entry });
-  };
-
-  const sentinelRefs = sentinelData.map((s) => s.ref);
-  const intersectionOptions = () => ({ root: viewportRef.get() });
-  useIntersectionObserver(
-    sentinelRefs,
-    sentinelIntersectionCb,
-    intersectionOptions
-  );
-  useIntersectionObserver(nodeRef, rootIntersectionCb, intersectionOptions);
 
   return {
     affordance,
@@ -85,7 +54,6 @@ function useInfiniteGrid(options: InfiniteGridOptions) {
     originY,
     nodeRef,
     rowOffset,
-    sentinelData,
     side,
   };
 }
@@ -121,13 +89,6 @@ export function InfiniteRepeatedPattern(props: InfiniteRepeatedPatternProps) {
 
   return (
     <InfiniteCanvasNode {...nodeProps}>
-      {For(ctx.sentinelData, (s) => (
-        <div
-          ref={s.ref}
-          data-dir={s.dir}
-          class={classes.repeatedPatternSentinel}
-        />
-      ))}
       {For(
         grid,
         (props) => (

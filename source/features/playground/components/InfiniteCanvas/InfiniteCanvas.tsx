@@ -1,7 +1,7 @@
 import type { JSX } from "retend/jsx-runtime";
 import classes from "./InfiniteCanvas.module.css";
 import { InfiniteCanvasScope } from "./InfiniteCanvasScope";
-import { Cell } from "retend";
+import { Cell, onConnected } from "retend";
 
 interface InfiniteCanvasProps extends JSX.BaseContainerProps {
   ref?: Cell<HTMLElement | null>;
@@ -30,6 +30,8 @@ export function InfiniteCanvas(props: InfiniteCanvasProps) {
   } = props;
   const cameraX = Cell.source(0);
   const cameraY = Cell.source(0);
+  const viewportHeight = Cell.source(0);
+  const viewportWidth = Cell.source(0);
 
   let startPointerX = 0;
   let startPointerY = 0;
@@ -73,7 +75,25 @@ export function InfiniteCanvas(props: InfiniteCanvasProps) {
     });
   }
 
-  const ctx = { cameraX, cameraY, viewportRef: ref };
+  const ctx = {
+    cameraX,
+    cameraY,
+    viewportRef: ref,
+    viewportWidth,
+    viewportHeight,
+  };
+
+  onConnected(ref, (container) => {
+    const observer = new ResizeObserver(([entry]) => {
+      if (!entry) return;
+      Cell.batch(() => {
+        viewportWidth.set(entry.contentRect.width);
+        viewportHeight.set(entry.contentRect.height);
+      });
+    });
+    observer.observe(container);
+    return () => observer.disconnect();
+  });
 
   return (
     <InfiniteCanvasScope.Provider value={ctx}>
