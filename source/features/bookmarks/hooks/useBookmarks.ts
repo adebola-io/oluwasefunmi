@@ -45,14 +45,18 @@ export function useBookmarks() {
   });
 
   void response.get().then((data) => {
-    state.set(data);
-    loaded.set(true);
+    Cell.batch(() => {
+      state.set(data);
+      loaded.set(true);
+    });
   });
   response.pending.listen((isPending) => {
     if (!isPending) {
       void response.get().then((data) => {
-        state.set(data);
-        loaded.set(true);
+        Cell.batch(() => {
+          state.set(data);
+          loaded.set(true);
+        });
       });
     }
   });
@@ -70,8 +74,10 @@ export function useBookmarks() {
   const handleSearch = (e: Event) => {
     if (e.currentTarget instanceof HTMLInputElement) {
       const val = e.currentTarget.value;
-      query.set(val);
-      page.set(1);
+      Cell.batch(() => {
+        query.set(val);
+        page.set(1);
+      });
       updateUrl(val);
       window.clearTimeout(searchTimeout);
       searchTimeout = window.setTimeout(() => {
@@ -88,8 +94,10 @@ export function useBookmarks() {
   routeSearch.listen((value) => {
     if (value === query.get()) return;
     window.clearTimeout(searchTimeout);
-    query.set(value ?? "");
-    debouncedQuery.set(value ?? "");
+    Cell.batch(() => {
+      query.set(value ?? "");
+      debouncedQuery.set(value ?? "");
+    });
   });
   return {
     state,

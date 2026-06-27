@@ -16,11 +16,13 @@ interface ExternalLinkProps {
   children: string;
 }
 
+const handleExternalLinkClick = () => {};
+
 function ExternalLink(props: ExternalLinkProps) {
   const { url, children } = props;
   return (
     <a
-      onClick--stop={() => {}}
+      onClick--stop={handleExternalLinkClick}
       href={url}
       target="_blank"
       rel="noopener noreferrer"
@@ -32,12 +34,6 @@ function ExternalLink(props: ExternalLinkProps) {
 }
 
 export const playgroundItems: PlaygroundItem[] = [
-  {
-    path: "/playground/mirror",
-    title: "mirror",
-    description: () => <></>,
-    icon: () => <CubeIcon />,
-  },
   {
     path: "/playground/floating-books",
     title: "floating-books",

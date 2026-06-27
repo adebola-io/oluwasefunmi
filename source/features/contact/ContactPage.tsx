@@ -1,4 +1,4 @@
-import type { RouteComponent } from "retend/router";
+import { Link, type RouteComponent } from "retend/router";
 import classes from "./ContactPage.module.css";
 import { SITE_URL } from "@/shared/constants";
 
@@ -17,7 +17,7 @@ const Contact: RouteComponent = () => {
         </h1>
         <br />
 
-        <a
+        <Link
           href="/oluwasefunmi-akomolafe.pdf"
           class={classes.resume}
           data-pill-link
@@ -25,7 +25,7 @@ const Contact: RouteComponent = () => {
           rel="noopener noreferrer"
         >
           read my resume →
-        </a>
+        </Link>
 
         <div class={classes.socials}>
           <a

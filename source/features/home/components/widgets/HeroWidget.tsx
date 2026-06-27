@@ -20,6 +20,7 @@ export function HeroWidget(props: HeroWidgetProps) {
     } else {
       img.addEventListener("load", reveal, { once: true });
     }
+    return () => img.removeEventListener("load", reveal);
   });
 
   return (

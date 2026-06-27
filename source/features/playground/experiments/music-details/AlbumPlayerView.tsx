@@ -14,6 +14,7 @@ export function AlbumPlayerView() {
   if (!albumData) return null;
 
   const player = createAlbumPreviewPlayer(albumData);
+  const playbackScope = { player };
 
   onSetup(() => {
     const timeout = window.setTimeout(player.play, 800);
@@ -26,7 +27,7 @@ export function AlbumPlayerView() {
 
   return (
     <div class={[classes.view, "animate-fade-in"]}>
-      <AlbumPlaybackScope.Provider value={{ player }}>
+      <AlbumPlaybackScope.Provider value={playbackScope}>
         <AlbumVinylPlayer />
         <div
           class={classes.details}

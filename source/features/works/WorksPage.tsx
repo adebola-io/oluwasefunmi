@@ -19,11 +19,7 @@ const ProjectItem = (props: ProjectItemProps) => {
   const animationDelay = Cell.derived(() => `${index.get() * 100}ms`);
 
   return (
-    <li
-      key={project.id}
-      class={[classes.item, project.class]}
-      style={{ animationDelay }}
-    >
+    <li class={[classes.item, project.class]} style={{ animationDelay }}>
       <LayeredCard
         as={Link}
         href={project.link}

@@ -32,6 +32,7 @@ const pages = [
   "/playground/painting-wheel",
   "/playground/glasses",
   "/playground/floating-books",
+  "/playground/contact-sheet",
   "/random-notes",
   "/contact",
   "/works",
