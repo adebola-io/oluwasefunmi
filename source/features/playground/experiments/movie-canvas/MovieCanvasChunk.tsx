@@ -1,11 +1,13 @@
-import { Cell, For, useScopeContext } from "retend";
+import { Cell, For, type SourceCell, useScopeContext } from "retend";
 import type { PatternTemplateProps } from "../../components/InfiniteCanvas/InfiniteRepeatedPattern";
 import classes from "./MovieCanvasChunk.module.css";
 import {
   InfiniteCanvasScope,
   InfiniteRepeatedPatternScope,
 } from "../../components/InfiniteCanvas/InfiniteCanvasScope";
-import { movieForPoster } from "./movies";
+import { movieForPoster, type MovieCanvasMovie } from "./movies";
+import { MovieCanvasScope } from "./MovieCanvasScope";
+import { arrangeMoviesBySimilarity } from "./movieArrangement";
 
 export function MovieCanvasChunk(props: PatternTemplateProps) {
   const { width, height } = useScopeContext(InfiniteCanvasScope);
@@ -70,6 +72,7 @@ function Poster(props: PosterProps) {
   const { row, col, localRow, localCol, subgridRows, subgridCols } = props;
   const { width, height } = useScopeContext(InfiniteCanvasScope);
   const { center } = useScopeContext(InfiniteRepeatedPatternScope);
+  const { selectedMovie, movieList } = useScopeContext(MovieCanvasScope);
   const animated = Cell.source(false);
   const loaded = Cell.source(false);
 
@@ -82,7 +85,16 @@ function Poster(props: PosterProps) {
   });
 
   const movie = Cell.derived(() => {
-    return movieForPoster(posterRow.get(), posterCol.get());
+    return movieForPoster(posterRow.get(), posterCol.get(), movieList.get());
+  });
+
+  const isSelected = Cell.derived(() => {
+    const selected = selectedMovie.get();
+    return selected?.id === movie.get().id;
+  });
+
+  const isVisible = Cell.derived(() => {
+    return isSelected.get() || !selectedMovie.get();
   });
 
   const isOddColumn = Cell.derived(() => {
@@ -95,7 +107,7 @@ function Poster(props: PosterProps) {
   });
 
   const themeColor = Cell.derived(() => {
-    return movie.get().themeColor;
+    return selectedMovie.get()?.themeColor ?? movie.get().themeColor;
   });
 
   const src = Cell.derived(() => {
@@ -108,16 +120,24 @@ function Poster(props: PosterProps) {
   });
 
   const opacity = Cell.derived(() => {
-    return loaded.get() ? "1" : "0";
+    return loaded.get() && isVisible.get() ? "1" : "0";
   });
 
-  const handleClick = () => {
+  const handleClick = async () => {
+    const movieVal = movie.get();
+    selectedMovie.set(movieVal);
+
     const targetRow = row.get() + (localRow + 0.5) / subgridRows.get() - 0.5;
     const targetCol = col.get() + (localCol + 0.5) / subgridCols.get() - 0.5;
+    const centered = await center(targetRow, targetCol, {
+      offsetY: marginOffsetY.get(),
+    });
 
-    center(targetRow, targetCol, { offsetY: marginOffsetY.get() });
+    if (centered) {
+      arrangeMovieList(movieList, movieVal, posterRow.get(), posterCol.get());
+    }
+    selectedMovie.set(null);
   };
-
   const handleAnimationEnd = () => {
     animated.set(true);
   };
@@ -146,5 +166,21 @@ function Poster(props: PosterProps) {
         onLoad={handleLoad}
       />
     </button>
+  );
+}
+
+function arrangeMovieList(
+  movieList: SourceCell<MovieCanvasMovie[]>,
+  selectedMovie: MovieCanvasMovie,
+  centerRow: number,
+  centerCol: number
+) {
+  movieList.set(
+    arrangeMoviesBySimilarity(
+      selectedMovie,
+      movieList.get(),
+      centerRow,
+      centerCol
+    )
   );
 }

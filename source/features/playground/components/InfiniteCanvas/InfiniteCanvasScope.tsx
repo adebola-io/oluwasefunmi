@@ -14,7 +14,7 @@ export interface CenterOptions {
 }
 
 interface InfiniteRepeatedPatternCtx {
-  center(row: number, col: number, options?: CenterOptions): void;
+  center(row: number, col: number, options?: CenterOptions): Promise<boolean>;
 }
 
 export const InfiniteCanvasScope =

@@ -2734,8 +2734,12 @@ function positiveModulo(value: number, size: number) {
   return ((value % size) + size) % size;
 }
 
-export function movieForPoster(row: number, col: number) {
-  const patternRow = positiveModulo(row, MOVIES.length / MOVIE_CANVAS_COLUMNS);
+export function movieForPoster(
+  row: number,
+  col: number,
+  movies: MovieCanvasMovie[]
+) {
+  const patternRow = positiveModulo(row, movies.length / MOVIE_CANVAS_COLUMNS);
   const patternCol = positiveModulo(col, MOVIE_CANVAS_COLUMNS);
-  return MOVIES[patternRow * MOVIE_CANVAS_COLUMNS + patternCol]!;
+  return movies[patternRow * MOVIE_CANVAS_COLUMNS + patternCol]!;
 }
