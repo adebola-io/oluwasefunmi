@@ -10,17 +10,20 @@
 }
 
 .poster {
+  --translate-y-start: 50cqw;
   display: grid;
   place-items: center;
   height: 100%;
   width: 100%;
-  background: white;
+  background: color-mix(in srgb, var(--poster-theme) 45%, black);
   place-self: center;
   color: black;
   outline: 2px solid white;
   overflow: hidden;
+  animation: fade-in 1000ms;
 
   &[data-odd-column] {
+    --translate-y-start: -50cqw;
     margin-top: -150%;
   }
 }
@@ -32,4 +35,12 @@
   max-height: 0;
   object-fit: cover;
   pointer-events: none;
+  transition: opacity 800ms var(--ease-spring);
+}
+
+@keyframes fade-in {
+  from {
+    transform: translateY(var(--translate-y-start));
+    opacity: 0;
+  }
 }

@@ -70,6 +70,8 @@ function Poster(props: PosterProps) {
   const { row, col, localRow, localCol, subgridRows, subgridCols } = props;
   const { width, height } = useScopeContext(InfiniteCanvasScope);
   const { center } = useScopeContext(InfiniteRepeatedPatternScope);
+  const animated = Cell.source(false);
+  const loaded = Cell.source(false);
 
   const posterRow = Cell.derived(() => {
     return row.get() * subgridRows.get() + localRow;
@@ -92,12 +94,21 @@ function Poster(props: PosterProps) {
     return (-1.5 * width.get()) / height.get() / subgridCols.get();
   });
 
+  const themeColor = Cell.derived(() => {
+    return movie.get().themeColor;
+  });
+
   const src = Cell.derived(() => {
+    if (!animated.get()) return undefined;
     return movie.get().posterUrl;
   });
 
   const alt = Cell.derived(() => {
     return movie.get().title;
+  });
+
+  const opacity = Cell.derived(() => {
+    return loaded.get() ? "1" : "0";
   });
 
   const handleClick = () => {
@@ -107,6 +118,14 @@ function Poster(props: PosterProps) {
     center(targetRow, targetCol, { offsetY: marginOffsetY.get() });
   };
 
+  const handleAnimationEnd = () => {
+    animated.set(true);
+  };
+
+  const handleLoad = () => {
+    loaded.set(true);
+  };
+
   return (
     <button
       type="button"
@@ -114,9 +133,18 @@ function Poster(props: PosterProps) {
       data-odd-column={isOddColumn}
       data-row={posterRow}
       data-col={posterCol}
+      style={{ "--poster-theme": themeColor }}
       onClick={handleClick}
+      onAnimationEnd--once={handleAnimationEnd}
     >
-      <img src={src} alt={alt} class={classes.image} loading="lazy" />
+      <img
+        src={src}
+        alt={alt}
+        class={classes.image}
+        loading="lazy"
+        style={{ opacity }}
+        onLoad={handleLoad}
+      />
     </button>
   );
 }

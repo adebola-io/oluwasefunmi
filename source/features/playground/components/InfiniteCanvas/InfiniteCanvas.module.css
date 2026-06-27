@@ -20,8 +20,6 @@
   width: var(--node-width);
   height: var(--node-height);
   will-change: transform;
-  content-visibility: auto;
-  contain-intrinsic-size: var(--node-width) var(--node-height);
   contain: strict;
 }
 
