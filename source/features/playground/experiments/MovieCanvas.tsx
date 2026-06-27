@@ -9,7 +9,7 @@ const MovieCanvas: RouteComponent = () => {
   return (
     <PlaygroundLayout title="Movie Canvas">
       <InfiniteCanvas class="fixed top-0 left-0 w-screen h-screen grid grid-cols-1 grid-rows-1">
-        <InfiniteRepeatedPattern Template={MovieCanvasChunk} initialY="25cqh" />
+        <InfiniteRepeatedPattern Template={MovieCanvasChunk} />
       </InfiniteCanvas>
     </PlaygroundLayout>
   );

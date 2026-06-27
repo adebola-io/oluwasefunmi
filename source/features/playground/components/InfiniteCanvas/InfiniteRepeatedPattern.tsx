@@ -16,8 +16,6 @@ type PatternTemplate = (props: PatternTemplateProps) => JSX.Template;
 interface InfiniteRepeatedPatternProps {
   density?: JSX.ValueOrCell<number>;
   overscan?: JSX.ValueOrCell<number>;
-  initialX?: JSX.ValueOrCell<string>;
-  initialY?: JSX.ValueOrCell<string>;
   Template: PatternTemplate;
 }
 
@@ -26,22 +24,18 @@ export function InfiniteRepeatedPattern(props: InfiniteRepeatedPatternProps) {
     Template,
     density: densityProp = 1,
     overscan: overscanProp = 1,
-    initialX: initialXProp = "0px",
-    initialY: initialYProp = "0px",
   } = props;
 
   const density = useDerivedValue(densityProp);
   const overscan = useDerivedValue(overscanProp);
-  const initialX = useDerivedValue(initialXProp);
-  const initialY = useDerivedValue(initialYProp);
   const ctx = useInfiniteGrid({ density, overscan });
   const width = Cell.derived(() => `calc(100cqw * ${ctx.affordance.get()})`);
   const height = Cell.derived(() => `calc(100cqh * ${ctx.affordance.get()})`);
   const x = Cell.derived(() => {
-    return `calc((${initialX.get()}) + (-100cqw * ${overscan.get()}) + (${ctx.originX.get()} * 100cqw))`;
+    return `calc((-100cqw * ${overscan.get()}) + (${ctx.originX.get()} * 100cqw))`;
   });
   const y = Cell.derived(() => {
-    return `calc((${initialY.get()}) + (-100cqh * ${overscan.get()}) + (${ctx.originY.get()} * 100cqh))`;
+    return `calc((-100cqh * ${overscan.get()}) + (${ctx.originY.get()} * 100cqh))`;
   });
 
   const grid = Cell.derived(() => {
