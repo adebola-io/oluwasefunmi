@@ -1,12 +1,11 @@
-import { Cell, createUnique, SourceCell, Switch } from "retend";
+import { Cell, createUnique, If, SourceCell, Switch } from "retend";
+import { WalletHoverable } from "./WalletHoverable";
+import { UniqueTransition } from "retend-utils/components";
 import { RainbowCard } from "./RainbowCard";
 import { SereneCard } from "./SereneCard";
-import { WalletQRCodeCard } from "./WalletQRCodeCard";
 import { IdCard } from "./IdCard";
-import { WalletHoverable } from "./WalletHoverable";
 import { CreditCard } from "./CreditCard";
 import { NairaNote } from "./NairaNote";
-import { UniqueTransition } from "retend-utils/components";
 import { PokemonCard } from "./PokemonCard";
 import { GiftCard } from "./GiftCard";
 import { StickerSheet } from "./StickerSheet";
@@ -16,6 +15,18 @@ import { CampusFlier } from "./CampusFlier";
 import { LibraryCard } from "./LibraryCard";
 import { StudentAtmCard } from "./StudentAtmCard";
 import { TimeTable } from "./TimeTable";
+
+function lazyComponent<T>(importer: () => Promise<T>) {
+  return () => {
+    const LazyComponent = Cell.derivedAsync(importer);
+    return If(LazyComponent, (Component) => <Component />);
+  };
+}
+
+const WalletQRCodeCard = lazyComponent(async () => {
+  const module = await import("./WalletQRCodeCard");
+  return module.WalletQRCodeCard;
+});
 
 export type WalletItemType =
   | "rainbow-card"

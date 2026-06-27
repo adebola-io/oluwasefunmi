@@ -1,0 +1,35 @@
+:root:has(.container) {
+  overscroll-behavior: none;
+}
+
+.container {
+  position: relative;
+  overscroll-behavior: none;
+  touch-action: none;
+  overflow: hidden;
+  user-select: none;
+  -webkit-user-select: none;
+  -webkit-touch-callout: none;
+  container: infinite-canvas size;
+}
+
+.node {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: var(--node-width);
+  height: var(--node-height);
+  will-change: transform;
+  contain: strict;
+}
+
+.repeatedPatternItem {
+  display: grid;
+  place-items: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: calc(100cqh / var(--irp-density));
+  width: calc(100cqw / var(--irp-density));
+  will-change: transform;
+}

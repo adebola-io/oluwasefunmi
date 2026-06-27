@@ -1,80 +1,59 @@
-import { Cell, For } from "retend";
-import { Link } from "retend/router";
-import type { RouteComponent } from "retend/router";
-import { LayeredCard } from "@/components/ui/LayeredCard";
-import classes from "./WorksPage.module.css";
-import { PageHeader } from "@/components/layout/PageHeader";
-import type { Project } from "@/features/works/types";
-import { projects } from "@/features/works/data/projects";
-import { ArrowIcon } from "@/components/icons/arrow";
+import { For } from "retend";
+import {
+  SimpleListBackLink,
+  SimpleListPageLayout,
+} from "@/components/layout/SimpleListPage";
+import listClasses from "@/components/layout/SimpleListPage.module.css";
 import { SITE_URL } from "@/shared/constants";
+import { projects } from "./data/projects";
+import { SelectedWorksHeading } from "./SelectedWorksHeading";
 
-interface ProjectItemProps {
-  project: Project;
-  index: Cell<number>;
-}
-
-const ProjectItem = (props: ProjectItemProps) => {
-  const { project, index } = props;
-  const animationDelay = Cell.derived(() => `${index.get() * 100}ms`);
-
+const Works = () => {
   return (
-    <li class={[classes.item, project.class]} style={{ animationDelay }}>
-      <LayeredCard
-        as={Link}
-        href={project.link}
-        target="_blank"
-        rel="noreferrer"
-        class={classes.projectCard}
-      >
-        <div>
-          <h2 class={classes.projectTitle}>
-            {project.name}.
-            <ArrowIcon class={classes.arrowIcon} />
-          </h2>
-          <p class={classes.projectDescription}>{project.description}</p>
+    <SimpleListPageLayout>
+      <SimpleListBackLink href="/" label="back to home" />
+      <header class={listClasses.header}>
+        <h1 id="page-title" class={listClasses.title} title="Selected Works">
+          <SelectedWorksHeading />
+        </h1>
+        <div class={listClasses.subtitle}>
+          <p>Products, frameworks, tools, and selected client work.</p>
         </div>
-        <div class={classes.tags}>
-          {For(project.tags, (tag) => (
-            <span class={classes.tag}>{tag}</span>
-          ))}
-        </div>
-      </LayeredCard>
-    </li>
+      </header>
+      <ul class={[listClasses.list, "staggering"]}>
+        {For(projects, (project) => (
+          <li class={listClasses.item}>
+            <a
+              class={listClasses.itemContent}
+              href={project.link}
+              title={project.name}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <h2 class={listClasses.itemTitle} title={project.name}>
+                {project.name}
+              </h2>
+              <div class={listClasses.itemSubtitle}>{project.description}</div>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </SimpleListPageLayout>
   );
 };
 
-const Works: RouteComponent = () => {
-  return (
-    <div class={classes.works}>
-      <div class={classes.container}>
-        <PageHeader
-          title="My Works."
-          subtitle="Here's a curated collection of my works, highlighting my past achievements and current projects."
-        />
-
-        <ul class={classes.grid}>
-          {For(projects, (project, i) => (
-            <ProjectItem project={project} index={i} />
-          ))}
-        </ul>
-      </div>
-    </div>
-  );
+Works.metadata = () => {
+  return {
+    title: "Selected Works | Oluwasefunmi Akomolafe",
+    description: "Products, frameworks, tools, and selected client work.",
+    ogTitle: "Selected Works | Oluwasefunmi Akomolafe",
+    ogDescription: "Products, frameworks, tools, and selected client work.",
+    ogImage: `${SITE_URL}/og/home.png`,
+    twitterTitle: "Selected Works | Oluwasefunmi Akomolafe",
+    twitterDescription:
+      "Products, frameworks, tools, and selected client work.",
+    twitterImage: `${SITE_URL}/og/home.png`,
+  };
 };
-
-Works.metadata = () => ({
-  title: "My Works | Oluwasefunmi",
-  description:
-    "A curated collection of my works, highlighting my past achievements and current projects.",
-  ogTitle: "My Works | Oluwasefunmi",
-  ogDescription:
-    "A curated collection of my works, highlighting my past achievements and current projects.",
-  ogImage: `${SITE_URL}/og/my-works.png`,
-  twitterTitle: "My Works | Oluwasefunmi",
-  twitterDescription:
-    "A curated collection of my works, highlighting my past achievements and current projects.",
-  twitterImage: `${SITE_URL}/og/my-works.png`,
-});
 
 export default Works;

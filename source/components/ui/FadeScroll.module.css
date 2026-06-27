@@ -1,0 +1,64 @@
+.container {
+  display: grid;
+  scrollbar-width: none;
+
+  &[data-direction="horizontal"] {
+    --fade-scroll-direction: to right;
+    grid-auto-flow: column;
+    justify-content: start;
+    max-width: 0;
+    min-width: 100%;
+    width: 100%;
+    overflow-x: auto;
+    overscroll-behavior-x: auto;
+
+    & > [data-fade-scroll-sentinel] {
+      height: 100%;
+      width: 1px;
+      min-height: 1px;
+    }
+  }
+
+  &[data-direction="vertical"] {
+    --fade-scroll-direction: to bottom;
+    grid-auto-flow: row;
+    align-items: start;
+    max-height: 0;
+    min-height: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overscroll-behavior-y: auto;
+
+    & > [data-fade-scroll-sentinel] {
+      width: 100%;
+      height: 1px;
+      min-width: 1px;
+    }
+  }
+
+  &[data-scrolled-from-start] {
+    mask-image: linear-gradient(
+      var(--fade-scroll-direction),
+      transparent,
+      black 10%
+    );
+
+    &[data-not-scrolled-to-bottom] {
+      mask-image: linear-gradient(
+        var(--fade-scroll-direction),
+        transparent,
+        black 10%,
+        black 90%,
+        transparent
+      );
+    }
+  }
+
+  &[data-not-scrolled-to-bottom]:not([data-scrolled-from-start]) {
+    mask-image: linear-gradient(
+      var(--fade-scroll-direction),
+      black 90%,
+      transparent
+    );
+  }
+}

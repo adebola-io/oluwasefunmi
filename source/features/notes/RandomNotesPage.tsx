@@ -1,13 +1,15 @@
-import { For, If, Cell } from "retend";
-import type { RouteComponent } from "retend/router";
+import { Cell, For } from "retend";
+import { Link, type RouteComponent } from "retend/router";
 import type { PageMeta } from "retend-server/client";
 import type { Note, NotePreviewProps } from "@/shared/types";
-import { Link } from "retend/router";
-import { LayeredCard } from "@/components/ui/LayeredCard";
-import { PageHeader } from "@/components/layout/PageHeader";
+import {
+  SimpleListBackLink,
+  SimpleListPageLayout,
+} from "@/components/layout/SimpleListPage";
+import listClasses from "@/components/layout/SimpleListPage.module.css";
 import { NoteHeading } from "@/components/ui/typography";
 import { SITE_URL } from "@/shared/constants";
-import classes from "./RandomNotesPage.module.css";
+import classes from "./RandomNotePage.module.css";
 
 export const getNotesIndex = async () => {
   const items: NotePreviewProps[] = [];
@@ -20,6 +22,7 @@ export const getNotesIndex = async () => {
       id: markdownContent.id,
       title: markdownContent.title,
       description: markdownContent.description,
+      date: markdownContent.date,
       dateStr: markdownContent.dateStr,
     });
   }
@@ -33,45 +36,46 @@ export const getNotesIndex = async () => {
 
 const RandomNotes: RouteComponent<PageMeta<NotePreviewProps[]>> = (props) => {
   const { metadata } = props;
-  const notes = Cell.derived(() => metadata.get("misc"));
-  const isEmptyNotes = Cell.derived(() => {
-    const n = notes.get();
-    return !n || n.length === 0;
+  const notes = Cell.derived(() => {
+    return metadata.get("misc") ?? [];
   });
-
   return (
-    <div class={classes.page}>
-      <div class={classes.container}>
-        <PageHeader
-          title="Random Notes."
-          subtitle="Disjoint musings, incoherent rants and streams of consciousness that I have decided to write down. Anything about life, technology and consequence."
-        />
-
-        <div class={classes.notesList}>
-          {If(
-            isEmptyNotes,
-            () => (
-              <p class={classes.empty}>No notes yet.</p>
-            ),
-            () =>
-              For(notes, (note) => (
-                <LayeredCard
-                  as={Link}
-                  href={`/random-notes/${note.id}`}
-                  class={classes.noteCard}
-                >
-                  <NoteHeading
-                    id={`random-note-heading-${note.id}`}
-                    title={note.title}
-                  />
-                  <div class={classes.noteDate}>{note.dateStr}</div>
-                  <p class={classes.noteSummary}>{note.description}</p>
-                </LayeredCard>
-              ))
-          )}
+    <SimpleListPageLayout>
+      <SimpleListBackLink href="/" label="back to home" />
+      <header class={listClasses.header}>
+        <h1 id="page-title" class={listClasses.title} title="Random Notes">
+          Random Notes
+        </h1>
+        <div class={listClasses.subtitle}>
+          <p>Loose notes on life, technology, software, and consequence.</p>
         </div>
-      </div>
-    </div>
+      </header>
+      <ul class={listClasses.list}>
+        {For(notes, (note) => {
+          return (
+            <li class={listClasses.item}>
+              <Link
+                class={listClasses.itemContent}
+                href={`/random-notes/${note.id}`}
+                title={note.title}
+              >
+                <NoteHeading
+                  id={`random-note-heading-${note.id}`}
+                  title={note.title}
+                  class={classes.title}
+                />
+                <div class={listClasses.itemSubtitle}>
+                  <time dateTime={note.date} title={note.dateStr}>
+                    {note.dateStr}
+                  </time>
+                  <span> · {note.description}</span>
+                </div>
+              </Link>
+            </li>
+          );
+        })}
+      </ul>
+    </SimpleListPageLayout>
   );
 };
 

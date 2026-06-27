@@ -1,10 +1,11 @@
 import { Cell, If, onSetup } from "retend";
+import type { JSX } from "retend/jsx-runtime";
 
 interface WPMCounterProps {
   show: Cell<boolean>;
 }
 
-const wpmStyle = {
+const wpmStyle: JSX.StyleValue = {
   position: "absolute",
   bottom: "20px",
   left: "20px",

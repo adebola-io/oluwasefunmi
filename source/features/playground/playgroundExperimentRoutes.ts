@@ -2,6 +2,12 @@ import { lazy } from "retend/router";
 
 export const playgroundExperimentRoutes = [
   {
+    path: "/movie-canvas",
+    component: lazy(
+      () => import("@/features/playground/experiments/MovieCanvas")
+    ),
+  },
+  {
     path: "/painting-wheel",
     component: lazy(
       () => import("@/features/playground/experiments/PaintingWheel")
@@ -17,12 +23,6 @@ export const playgroundExperimentRoutes = [
     path: "/ripple-effect",
     component: lazy(
       () => import("@/features/playground/experiments/RippleEffect")
-    ),
-  },
-  {
-    path: "/blur-carousel",
-    component: lazy(
-      () => import("@/features/playground/experiments/BlurCarousel")
     ),
   },
   {

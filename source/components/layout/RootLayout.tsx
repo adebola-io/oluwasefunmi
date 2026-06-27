@@ -1,8 +1,8 @@
-import { Cell, If } from "retend";
+import { Cell } from "retend";
 import { Outlet, useRouter } from "retend/router";
 import { ScrollRestoration } from "@/components/layout/ScrollRestoration";
-import { Navigation } from "./Navigation";
 import classes from "./PageLayout.module.css";
+import { useWindowEventListener } from "retend-utils/hooks";
 
 export function RootLayout() {
   const router = useRouter();
@@ -14,16 +14,22 @@ export function RootLayout() {
     return path.startsWith("/playground/") && path !== "/playground";
   });
 
-  const showNav = Cell.derived(() => !isPlaygroundDetail.get());
   const containerClass = Cell.derived(() => {
-    if (showNav.get()) return classes.main;
-    return "contents";
+    if (isPlaygroundDetail.get()) return "contents";
+    return classes.main;
+  });
+
+  useWindowEventListener("animationend", (event) => {
+    if (!(event.target instanceof HTMLElement)) return;
+    if (!event.target.parentElement) return;
+    if (event.target.parentElement.classList.contains("staggering")) {
+      event.target.parentElement.classList.remove("staggering");
+    }
   });
 
   return (
     <div class={classes.layout}>
       <ScrollRestoration />
-      {If(showNav, Navigation)}
       <main class={containerClass}>
         <Outlet />
       </main>
