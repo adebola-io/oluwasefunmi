@@ -1,4 +1,4 @@
-import { Cell, onConnected } from "retend";
+import { Cell, If, onConnected, onSetup } from "retend";
 import classes from "./HomePage.module.css";
 
 const BIRTHDAY_DAY = 28;
@@ -89,22 +89,26 @@ const startCelebration = (canvas: HTMLCanvasElement) => {
 };
 
 export function HomeCelebrationCanvas() {
-  if (!isBirthday() || hasRun) return null;
-
-  hasRun = true;
-
+  const showBirthday = Cell.source(false);
   const canvasRef = Cell.source<HTMLCanvasElement | null>(null);
+
+  onSetup(() => {
+    if (hasRun) return;
+
+    hasRun = isBirthday();
+    showBirthday.set(hasRun);
+  });
 
   onConnected(canvasRef, (canvas) => {
     const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
     return motionQuery.matches ? undefined : startCelebration(canvas);
   });
 
-  return (
+  return If(showBirthday, () => (
     <canvas
       ref={canvasRef}
       class={classes.celebrationCanvas}
       aria-hidden="true"
     />
-  );
+  ));
 }

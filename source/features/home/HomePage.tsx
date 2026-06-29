@@ -1,4 +1,4 @@
-import { If } from "retend";
+import { Cell, If, onSetup } from "retend";
 import type { RouteComponent } from "retend/router";
 import type { PageMeta } from "retend-server/client";
 import { SimpleListPageLayout } from "@/components/layout/SimpleListPage";
@@ -20,6 +20,10 @@ const isBirthday = () => {
 };
 
 const PortfolioHome: RouteComponent<PageMeta> = () => {
+  const showBirthday = Cell.source(false);
+
+  onSetup(() => showBirthday.set(isBirthday()));
+
   return (
     <>
       <HomeCelebrationCanvas />
@@ -38,7 +42,7 @@ const PortfolioHome: RouteComponent<PageMeta> = () => {
               oluwasefunmi.
             </h1>
           </div>
-          {If(isBirthday(), () => (
+          {If(showBirthday, () => (
             <span class={classes.birthdaySign}>It&apos;s my birthday!</span>
           ))}
           <div class={[listClasses.subtitle, "staggering"]}>
