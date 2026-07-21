@@ -110,7 +110,7 @@ const RippleEffect: RouteComponent = () => {
   });
 
   const boxes = Cell.derived(() => {
-    return Array(rows.get() * cols.get()).fill(0);
+    return Array.from({ length: rows.get() * cols.get() }, () => 0);
   });
   const gridTemplate = Cell.derived(() => {
     return `repeat(${rows.get()}, 1fr) / repeat(${cols.get()}, 1fr)`;
