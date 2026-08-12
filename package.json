@@ -1,38 +1,38 @@
 {
-  "name": "explorations",
-  "version": "0.0.0",
-  "private": true,
-  "type": "module",
-  "scripts": {
-    "dev": "vp dev --port 5229",
-    "build": "vp build",
-    "preview": "vp preview",
-    "deploy": "wrangler deploy",
-    "lint": "vp lint -c oxlint.json",
-    "lint:fix": "vp lint -c oxlint.json --fix",
-    "format": "vp fmt",
-    "format:check": "vp fmt --check"
-  },
-  "dependencies": {
-    "@mdx-js/rollup": "^3.1.0",
-    "@types/mdx": "^2.0.13",
-    "hono": "^4.10.2",
-    "retend": "https://pkg.pr.new/resuite/retend@a65446e",
-    "retend-oxlint-plugin": "https://pkg.pr.new/resuite/retend/retend-oxlint-plugin@a65446e",
-    "retend-server": "https://pkg.pr.new/resuite/retend/retend-server@a65446e",
-    "retend-utils": "https://pkg.pr.new/resuite/retend/retend-utils@a65446e",
-    "retend-web": "https://pkg.pr.new/resuite/retend/retend-web@a65446e",
-    "retend-web-devtools": "https://pkg.pr.new/resuite/retend/retend-web-devtools@a65446e"
-  },
-  "devDependencies": {
-    "@cloudflare/vite-plugin": "^1.12.2",
-    "@cloudflare/workers-types": "^4.20250904.0",
-    "@tailwindcss/vite": "^4.1.5",
-    "@types/node": "latest",
-    "tailwindcss": "^4.1.8",
-    "typescript": "^5.5.2",
-    "vite": "^8.0.2",
-    "vite-plus": "^0.1.13",
-    "wrangler": "^4.38.0"
-  }
+    "name": "explorations",
+    "version": "0.0.0",
+    "private": true,
+    "type": "module",
+    "scripts": {
+        "dev": "vp dev --port 5229",
+        "build": "vp build",
+        "preview": "vp preview",
+        "deploy": "wrangler deploy",
+        "lint": "vp lint -c oxlint.json",
+        "lint:fix": "vp lint -c oxlint.json --fix",
+        "format": "vp fmt",
+        "format:check": "vp fmt --check"
+    },
+    "dependencies": {
+        "@mdx-js/rollup": "^3.1.0",
+        "@types/mdx": "^2.0.13",
+        "hono": "^4.10.2",
+        "retend": "0.0.33",
+        "retend-server": "0.0.33",
+        "retend-utils": "0.0.33",
+        "retend-web": "0.0.33",
+        "retend-web-devtools": "0.0.33"
+    },
+    "devDependencies": {
+        "@cloudflare/vite-plugin": "^1.12.2",
+        "@cloudflare/workers-types": "^4.20250904.0",
+        "retend-oxlint-plugin": "0.0.33",
+        "@tailwindcss/vite": "^4.1.5",
+        "@types/node": "latest",
+        "tailwindcss": "^4.1.8",
+        "typescript": "^5.5.2",
+        "vite": "^8.0.2",
+        "vite-plus": "^0.1.13",
+        "wrangler": "^4.38.0"
+    }
 }
