@@ -45,7 +45,7 @@ const PortfolioHome: RouteComponent<PageMeta> = () => {
           {If(showBirthday, () => (
             <span class={classes.birthdaySign}>It&apos;s my birthday!</span>
           ))}
-          <div class={[listClasses.subtitle, "staggering"]}>
+          <div class={listClasses.subtitle}>
             <p>
               I am Sefunmi, a software engineer focused on clear systems,
               expressive interfaces, and useful web products.

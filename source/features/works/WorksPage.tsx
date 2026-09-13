@@ -20,7 +20,7 @@ const Works = () => {
           <p>Products, frameworks, tools, and selected client work.</p>
         </div>
       </header>
-      <ul class={[listClasses.list, "staggering"]}>
+      <ul class={listClasses.list}>
         {For(projects, (project) => (
           <li class={listClasses.item}>
             <a

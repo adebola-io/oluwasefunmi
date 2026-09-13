@@ -135,21 +135,6 @@ export const playgroundItems: PlaygroundItem[] = [
     icon: () => <HaloIcon />,
   },
   {
-    path: "/playground/product-transitions",
-    title: "product-transitions",
-    description: () => (
-      <>
-        A masonry product grid where each card opens a routed detail page.
-        Stable image IDs are reused between the list and detail states, which
-        gives the transition a continuous anchor. Original by{" "}
-        <ExternalLink url="https://x.com/aydahnizzy/status/2009766429780820131">
-          @aydahnizzy
-        </ExternalLink>
-      </>
-    ),
-    icon: () => <ShoppingCartIcon />,
-  },
-  {
     path: "/playground/ripple-effect",
     title: "ripple-effect",
     description: () => (
@@ -172,5 +157,20 @@ export const playgroundItems: PlaygroundItem[] = [
       </>
     ),
     icon: () => <CubeIcon />,
+  },
+  {
+    path: "/playground/product-transitions",
+    title: "product-transitions",
+    description: () => (
+      <>
+        A masonry product grid where each card opens a routed detail page.
+        Stable image IDs are reused between the list and detail states, which
+        gives the transition a continuous anchor. Original by{" "}
+        <ExternalLink url="https://x.com/aydahnizzy/status/2009766429780820131">
+          @aydahnizzy
+        </ExternalLink>
+      </>
+    ),
+    icon: () => <ShoppingCartIcon />,
   },
 ];

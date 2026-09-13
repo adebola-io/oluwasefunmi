@@ -21,7 +21,7 @@ const Playground: RouteComponent = () => {
           <p>Sefunmi's interactive UI experiments and visual effects.</p>
         </div>
       </header>
-      <ul class={[listClasses.list, "staggering"]}>
+      <ul class={listClasses.list}>
         {For(playgroundItems, (item) => {
           const Description = item.description;
           const Icon = item.icon;
