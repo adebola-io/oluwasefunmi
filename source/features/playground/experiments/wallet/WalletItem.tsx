@@ -15,8 +15,11 @@ import { CampusFlier } from "./CampusFlier";
 import { LibraryCard } from "./LibraryCard";
 import { StudentAtmCard } from "./StudentAtmCard";
 import { TimeTable } from "./TimeTable";
+import { JSX } from "retend/jsx-runtime";
 
-function lazyComponent<T>(importer: () => Promise<T>) {
+function lazyComponent<T extends () => JSX.Template>(
+  importer: () => Promise<T>
+) {
   return () => {
     const LazyComponent = Cell.derivedAsync(importer);
     return If(LazyComponent, (Component) => <Component />);

@@ -1,5 +1,32 @@
 export const bookmarks = [
   {
+    id: "rebuilding-delta-sync-read-path",
+    link: "https://linear.app/now/rebuilding-delta-sync-read-path",
+    notes: "",
+    image:
+      "https://webassets.linear.app/images/ornj730p/production/977b879d2afb57c6a555af1cd994e35e35351144-3904x1920.png?auto=format&dpr=2&q=95",
+    themeColor: "#ffffff",
+    openGraph: {
+      title: "Rebuilding Linear’s delta sync read path",
+      description:
+        "How Linear rebuilt its delta sync read path with turbopuffer to keep permission-aware catch-up queries fast and predictable at scale.",
+      siteName: "Linear",
+    },
+  },
+  {
+    id: "the-ai-future-is-for-everyone",
+    link: "https://www.wsj.com/opinion/the-ai-future-is-for-everyone-a0c24e20?mod=hp_opin_pos_2",
+    notes: "",
+    image: "https://opinion-images.wsj.net/im-10483662/",
+    themeColor: "#ffffff",
+    openGraph: {
+      title: "The AI Future Is for Everyone",
+      description:
+        "The history of democracy and economics has proved that centralized power stifles human potential.",
+      siteName: "The Wall Street Journal",
+    },
+  },
+  {
     id: "introducing-deltadb",
     link: "https://zed.dev/blog/introducing-deltadb",
     notes: "",
