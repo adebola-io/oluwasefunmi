@@ -1,5 +1,19 @@
 export const bookmarks = [
   {
+    id: "one-month-without-ai",
+    link: "https://blog.bustikiller.com/2026/09/25/one-month-without-ai.html",
+    notes: "",
+    image:
+      "https://image.thum.io/get/width/1200/crop/630/https://blog.bustikiller.com/2026/09/25/one-month-without-ai.html",
+    themeColor: "#ffffff",
+    openGraph: {
+      title: "One month without AI",
+      description:
+        "A developer reflects on quitting AI at work for a month, and how leaning on coding agents eroded control, code quality, and the joy of programming.",
+      siteName: "Bustikiller's Blog",
+    },
+  },
+  {
     id: "rebuilding-delta-sync-read-path",
     link: "https://linear.app/now/rebuilding-delta-sync-read-path",
     notes: "",
